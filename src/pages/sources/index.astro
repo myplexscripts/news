@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../../data/news.json';
+
+const stories = news.stories || [];
+const base = import.meta.env.BASE_URL;
+const sourceMap = new Map();
+
+for (const story of stories) {
+  if (!story.source) continue;
+  const existing = sourceMap.get(story.source) || {
+    name: story.source,
+    accent: story.source_accent || 'var(--blue)',
+    count: 0,
+    latest: story.published
+  };
+  existing.count += 1;
+  if (story.published && (!existing.latest || new Date(story.published) > new Date(existing.latest))) existing.latest = story.published;
+  sourceMap.set(story.source, existing);
+}
+
+const sources = [...sourceMap.values()].sort((a, b) => a.name.localeCompare(b.name));
+const initials = (name = '') => name.split(/\s+/).filter(Boolean).map((part) => part[0]).slice(0, 2).join('').toUpperCase();
+
+const latestDate = (value) => {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      month: 'short',
+      day: 'numeric'
+    }).format(new Date(value));
+  } catch {
+    return '';
+  }
+};
+---
+<BaseLayout title="Sources | London News" description="Choose which London news sources appear in your feed.">
+  <main class="sources-page" id="main-content">
+    <section class="sources-shell shell">
+      <header class="sources-heading">
+        <div>
+          <p class="masthead-label">Your feed</p>
+          <h1>Sources</h1>
+          <p>Choose which publishers and local organizations appear in London News. Your choices are saved on this device.</p>
+        </div>
+        <div class="sources-heading-actions">
+          <span id="sourcePreferenceStatus" aria-live="polite">{sources.length} sources shown</span>
+          <button class="bordered-button" id="showAllSources" type="button">Show all</button>
+        </div>
+      </header>
+
+      <div class="source-preference-list" id="sourcePreferenceList">
+        {sources.map((source) => (
+          <article class="source-preference-card" data-source-name={source.name}>
+            <div class="source-preference-identity">
+              <span class="source-preference-avatar" style={`--source-color:${source.accent}`}>{initials(source.name)}</span>
+              <div>
+                <h2>{source.name}</h2>
+                <p>{source.count} {source.count === 1 ? 'story' : 'stories'} in the current archive <span aria-hidden="true">·</span> Latest {latestDate(source.latest)}</p>
+              </div>
+            </div>
+            <label class="source-switch-row">
+              <span class="visually-hidden">Show {source.name}</span>
+              <input class="source-switch-input" type="checkbox" data-source-toggle={source.name} checked />
+              <span class="source-switch" aria-hidden="true"><span></span></span>
+            </label>
+          </article>
+        ))}
+      </div>
+
+      <div class="sources-footer-note">
+        <i class="ph ph-device-mobile" aria-hidden="true"></i>
+        <p>These preferences only affect what London News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    const storageKey = 'london-news-hidden-sources';
+    const toggles = [...document.querySelectorAll('[data-source-toggle]')];
+    const status = document.getElementById('sourcePreferenceStatus');
+    const showAllButton = document.getElementById('showAllSources');
+    let hidden = new Set();
+
+    try { hidden = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch { hidden = new Set(); }
+    const knownSources = new Set(toggles.map((toggle) => toggle.dataset.sourceToggle || '').filter(Boolean));
+    hidden = new Set([...hidden].filter((name) => knownSources.has(name)));
+
+    function syncUI() {
+      toggles.forEach((toggle) => {
+        const isShown = !hidden.has(toggle.dataset.sourceToggle || '');
+        toggle.checked = isShown;
+        toggle.closest('.source-preference-card')?.classList.toggle('source-hidden', !isShown);
+      });
+      const shown = toggles.length - hidden.size;
+      if (status) status.textContent = `${Math.max(0, shown)} of ${toggles.length} sources shown`;
+      if (showAllButton) showAllButton.disabled = hidden.size === 0;
+    }
+
+    function save() {
+      localStorage.setItem(storageKey, JSON.stringify([...hidden]));
+      syncUI();
+    }
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('change', () => {
+        const name = toggle.dataset.sourceToggle || '';
+        if (!name) return;
+        if (toggle.checked) hidden.delete(name);
+        else hidden.add(name);
+        save();
+      });
+    });
+
+    showAllButton?.addEventListener('click', () => {
+      hidden.clear();
+      save();
+    });
+
+    syncUI();
+  </script>
+</BaseLayout>

@@ -1,31 +1,23 @@
-# London News HIG Editorial UI Update
+# London News card + sources update
 
-Upload the contents of this folder into the matching paths in your existing London News GitHub repository and replace the existing files.
-
-Updated files:
+Replace/add these files in the existing repository:
 
 - `src/layouts/BaseLayout.astro`
 - `src/pages/index.astro`
+- `src/pages/sources/index.astro` (new)
 - `src/styles/global.css`
 
 ## What changed
 
-- Editorial homepage hierarchy instead of a dashboard/card-heavy layout
-- Sticky translucent material header
-- Search expands directly inside the header
-- Search supports Escape, clear/close, live filtering, and live results status
-- Top-level section navigation with a compact More menu
-- Publisher filtering uses a native select control
-- Lead story plus three-story editorial feature row
-- Cleaner Latest feed with quieter metadata and fewer containers
-- Publisher directory simplified into a restrained sidebar
-- Article reader restyled for a more publication-like reading experience
-- Article hero and publisher sidebar retain separate grid columns
-- All visible UI text remains 16px or larger
-- 44px minimum interactive targets
-- Focus indicators and skip navigation
-- Reduced motion support
-- Light, dark, and increased contrast system palettes retained
-- London, Ontario timezone display retained
+- New `/sources/` page with persistent show/hide switches for every source currently present in `data/news.json`.
+- Source preferences are stored in `localStorage` under `london-news-hidden-sources` and automatically applied to the homepage.
+- New mobile bottom tab bar for Home, Latest, and Sources.
+- Desktop keeps the compact header and adds only an icon shortcut to Sources.
+- Homepage converted to a responsive card publication layout.
+- First visible story becomes the feature card automatically. The next two become secondary cards. Remaining stories reflow into compact cards.
+- Filtering, search, and hidden-source preferences all trigger a live layout reflow.
+- Article reader and related stories receive matching card surfaces for visual consistency.
+- All controls remain at least 44px touch targets and all UI text remains at least 16px.
+- London, Ontario timezone formatting remains `America/Toronto`.
 
-The scraper, source configuration, cached news data, and GitHub workflow are not replaced by this update.
+No scraper, workflow, source configuration, or `data/news.json` files are replaced by this update.
