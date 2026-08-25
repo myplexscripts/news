@@ -5,9 +5,18 @@ import news from '../../data/news.json';
 const stories = news.stories || [];
 const withImages = stories.filter((story) => story.image && story.content_status !== 'failed');
 const lead = withImages.find((story) => (story.quality?.score ?? 70) >= 55) || withImages[0] || stories[0];
-const feed = lead ? stories.filter((story) => story.id !== lead.id).slice(0, 60) : stories.slice(0, 60);
-const categories = ['All', ...Array.from(new Set(stories.map((story) => story.category))).sort()];
-const sources = Array.from(new Map(stories.map((story) => [story.source, story])).values());
+const remaining = lead ? stories.filter((story) => story.id !== lead.id) : stories;
+const topStories = remaining.slice(0, 3);
+const feed = remaining.slice(3, 63);
+const preferredCategoryOrder = ['Local', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
+const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter(Boolean)));
+const orderedCategories = [
+  ...preferredCategoryOrder.filter((category) => discoveredCategories.includes(category)),
+  ...discoveredCategories.filter((category) => !preferredCategoryOrder.includes(category)).sort()
+];
+const primaryCategories = orderedCategories.slice(0, 4);
+const moreCategories = orderedCategories.slice(4);
+const sources = Array.from(new Map(stories.map((story) => [story.source, story])).values()).sort((a, b) => a.source.localeCompare(b.source));
 const base = import.meta.env.BASE_URL;
 
 const storyHref = (story) => `${base}story/${story.id}/`;
@@ -17,7 +26,10 @@ const published = (value) => {
   try {
     return new Intl.DateTimeFormat('en-CA', {
       timeZone: 'America/Toronto',
-      month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
     }).format(new Date(value));
   } catch {
     return '';
@@ -25,139 +37,209 @@ const published = (value) => {
 };
 
 const generated = news.generated_at
-  ? new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(news.generated_at))
+  ? new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    }).format(new Date(news.generated_at))
   : 'Waiting for first refresh';
+
+const today = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'America/Toronto',
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric'
+}).format(new Date());
 ---
 <BaseLayout>
   <div slot="header-actions" class="header-search" id="headerSearch">
-    <button class="header-search-toggle" id="searchToggle" aria-label="Search news" title="Search news" aria-expanded="false">
+    <button class="header-search-toggle" id="searchToggle" aria-label="Search news" title="Search news" aria-expanded="false" aria-controls="searchInput">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
     </button>
-    <input id="searchInput" type="search" placeholder="Search London news" autocomplete="off" aria-label="Search London news" />
+    <input id="searchInput" type="search" placeholder="Search London News" autocomplete="off" aria-label="Search London News" />
     <button class="header-search-close" id="searchClose" aria-label="Close search" title="Close search">
-      <i class="ph ph-x" aria-hidden="true"></i>
+      <i class="ph ph-x-circle" aria-hidden="true"></i>
     </button>
   </div>
 
-  <main class="home-page">
-    <section class="news-intro shell">
-      <div class="news-intro-copy">
-        <span class="eyebrow"><i class="ph-fill ph-map-pin"></i> London, Ontario</span>
-        <h1>London, at a glance.</h1>
-        <p>A clean daily read of what is happening across the city, gathered from local reporting.</p>
+  <main class="home-page" id="main-content">
+    <section class="masthead shell">
+      <div class="masthead-kicker">
+        <span>London, Ontario</span>
+        <span aria-hidden="true">•</span>
+        <time>{today}</time>
       </div>
-      <div class="news-intro-status">
-        <span>Last refreshed</span>
-        <strong>{generated}</strong>
-        <small>{news.full_story_count || 0} full articles captured</small>
+      <div class="masthead-row">
+        <div>
+          <p class="masthead-label">Today</p>
+          <h1>News that matters in London.</h1>
+        </div>
+        <div class="masthead-status" aria-label="Newsroom status">
+          <span>Updated {generated}</span>
+          <span>{stories.length} stories in the local feed</span>
+        </div>
       </div>
     </section>
 
-    <section class="filter-strip shell" aria-label="News categories">
-      <div class="filter-scroller" id="filters">
-        {categories.map((category) => (
-          <button class:list={["filter-pill", category === 'All' && 'active']} data-filter={category}>{category}</button>
-        ))}
+    <section class="section-nav-wrap" id="sections" aria-label="News sections">
+      <div class="shell section-nav-inner">
+        <div class="section-tabs" role="group" aria-label="Filter by section">
+          <button class="section-tab active" data-filter="All" aria-pressed="true">Latest</button>
+          {primaryCategories.map((category) => (
+            <button class:list={["section-tab", categoryClass(category)]} data-filter={category} aria-pressed="false">{category}</button>
+          ))}
+          {moreCategories.length > 0 && (
+            <details class="section-more" id="sectionMore">
+              <summary>
+                <span id="moreLabel">More</span>
+                <i class="ph ph-caret-down" aria-hidden="true"></i>
+              </summary>
+              <div class="section-menu">
+                {moreCategories.map((category) => (
+                  <button class:list={["section-menu-item", categoryClass(category)]} data-filter={category}>
+                    <span class="section-color" aria-hidden="true"></span>
+                    <span>{category}</span>
+                  </button>
+                ))}
+              </div>
+            </details>
+          )}
+        </div>
       </div>
     </section>
 
     {lead ? (
-      <section class:list={["lead-story shell searchable", categoryClass(lead.category)]} data-category={lead.category} data-search={`${lead.title} ${lead.summary} ${lead.source} ${lead.category}`.toLowerCase()}>
+      <section class:list={["lead-story shell searchable", categoryClass(lead.category)]} data-category={lead.category} data-source={lead.source} data-search={`${lead.title} ${lead.summary} ${lead.source} ${lead.category}`.toLowerCase()}>
         <a class="lead-media" href={storyHref(lead)} aria-label={`Read ${lead.title}`}>
-          {lead.image ? <img src={lead.image} alt="" loading="eager" referrerpolicy="no-referrer" /> : <div class="image-fallback"><i class="ph-fill ph-buildings"></i></div>}
+          {lead.image ? <img src={lead.image} alt={lead.image_alt || ''} loading="eager" referrerpolicy="no-referrer" /> : <div class="image-fallback"><i class="ph-fill ph-buildings" aria-hidden="true"></i></div>}
         </a>
         <div class="lead-copy">
-          <div class="story-meta">
-            <span class="source-dot" style={`--source-color:${lead.source_accent}`}></span>
-            <span>{lead.source}</span>
-            <span class="meta-separator">•</span>
-            <time datetime={lead.published}>{published(lead.published)}</time>
-          </div>
           <span class="section-label">{lead.category}</span>
           <h2><a href={storyHref(lead)}>{lead.title}</a></h2>
           {lead.summary && <p>{lead.summary}</p>}
-          <a class="read-link" href={storyHref(lead)}>Read full story <i class="ph ph-arrow-right"></i></a>
+          <div class="lead-footer">
+            <div class="story-meta">
+              <span class="source-dot" style={`--source-color:${lead.source_accent}`}></span>
+              <span>{lead.source}</span>
+              <span class="meta-separator" aria-hidden="true">•</span>
+              <time datetime={lead.published}>{published(lead.published)}</time>
+            </div>
+            <a class="text-button" href={storyHref(lead)}>Read story <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+          </div>
         </div>
       </section>
     ) : (
       <section class="empty-state shell">
-        <div class="empty-icon"><i class="ph ph-newspaper"></i></div>
+        <div class="empty-icon"><i class="ph ph-newspaper" aria-hidden="true"></i></div>
         <h2>The newsroom is ready.</h2>
         <p>Your first refresh will populate this page automatically.</p>
       </section>
     )}
 
+    {topStories.length > 0 && (
+      <section class="top-stories shell" aria-labelledby="top-stories-heading">
+        <div class="editorial-section-heading">
+          <div>
+            <p class="section-eyebrow">Top stories</p>
+            <h2 id="top-stories-heading">Worth knowing today</h2>
+          </div>
+        </div>
+        <div class="top-story-grid">
+          {topStories.map((story) => (
+            <article class:list={["top-story searchable", categoryClass(story.category)]} data-category={story.category} data-source={story.source} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
+              <a class="top-story-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
+                {story.image ? <img src={story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="thumb-fallback"><i class="ph ph-newspaper-clipping" aria-hidden="true"></i></div>}
+              </a>
+              <div class="top-story-copy">
+                <span class="feed-category">{story.category}</span>
+                <h3><a href={storyHref(story)}>{story.title}</a></h3>
+                <div class="story-meta compact">
+                  <span>{story.source}</span>
+                  <span class="meta-separator" aria-hidden="true">•</span>
+                  <time datetime={story.published}>{published(story.published)}</time>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
     {feed.length > 0 && (
-      <section class="blog-layout shell" id="latest">
+      <section class="latest-layout shell" id="latest">
         <div class="feed-column">
-          <header class="blog-section-header">
+          <header class="feed-header">
             <div>
-              <span class="eyebrow">Latest</span>
+              <p class="section-eyebrow">Latest</p>
               <h2>The local feed</h2>
             </div>
-            <span>{stories.length} stories</span>
+            <div class="feed-tools">
+              <label class="source-picker" for="sourceSelect">
+                <span class="visually-hidden">Filter by source</span>
+                <i class="ph ph-buildings" aria-hidden="true"></i>
+                <select id="sourceSelect" aria-label="Filter stories by source">
+                  <option value="All">All sources</option>
+                  {sources.map((source) => <option value={source.source}>{source.source}</option>)}
+                </select>
+                <i class="ph ph-caret-down" aria-hidden="true"></i>
+              </label>
+            </div>
           </header>
+
+          <div class="results-status" id="resultsStatus" aria-live="polite">Showing the latest London stories</div>
 
           <div class="feed-list">
             {feed.map((story) => (
-              <article class:list={["feed-post searchable", categoryClass(story.category)]} data-category={story.category} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
+              <article class:list={["feed-post searchable", categoryClass(story.category)]} data-category={story.category} data-source={story.source} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
                 <div class="feed-post-copy">
                   <div class="story-meta">
                     <span class="source-dot" style={`--source-color:${story.source_accent}`}></span>
                     <span>{story.source}</span>
-                    <span class="meta-separator">•</span>
+                    <span class="meta-separator" aria-hidden="true">•</span>
                     <time datetime={story.published}>{published(story.published)}</time>
                   </div>
                   <span class="feed-category">{story.category}</span>
                   <h3><a href={storyHref(story)}>{story.title}</a></h3>
                   {story.summary && <p>{story.summary}</p>}
                   <div class="feed-post-footer">
-                    <a href={storyHref(story)}>Read story <i class="ph ph-arrow-right"></i></a>
+                    <a class="text-button" href={storyHref(story)}>Read story <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
                     {story.word_count > 0 && <span>{Math.max(1, Math.round(story.word_count / 220))} min read</span>}
                   </div>
                 </div>
                 <a class="feed-thumb" href={storyHref(story)} aria-label={`Read ${story.title}`}>
-                  {story.image ? <img src={story.image} alt="" loading="lazy" referrerpolicy="no-referrer" /> : <div class="thumb-fallback"><i class="ph ph-newspaper-clipping"></i></div>}
+                  {story.image ? <img src={story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="thumb-fallback"><i class="ph ph-newspaper-clipping" aria-hidden="true"></i></div>}
                 </a>
               </article>
             ))}
           </div>
         </div>
 
-        <aside class="blog-sidebar" id="sources">
-          <div class="sidebar-section" id="sections">
-            <span class="eyebrow">Sections</span>
-            <div class="section-links">
-              {categories.filter((category) => category !== 'All').map((category) => (
-                <button class:list={["section-link", categoryClass(category)]} data-side-filter={category}>
-                  <span class="section-color"></span>
-                  <span>{category}</span>
-                  <i class="ph ph-arrow-right"></i>
-                </button>
-              ))}
+        <aside class="publication-sidebar" id="sources" aria-label="News sources">
+          <section class="sidebar-panel">
+            <div class="sidebar-heading">
+              <p class="section-eyebrow">Publishers</p>
+              <h2>Across London</h2>
             </div>
-          </div>
-
-          <div class="sidebar-section source-directory">
-            <span class="eyebrow">Sources</span>
             <div class="source-list">
               {sources.map((source) => (
                 <a class="source-row" href={source.source_home} target="_blank" rel="noopener noreferrer">
                   <span class="source-avatar" style={`--source-color:${source.source_accent}`}>{source.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
                   <span class="source-name">{source.source}</span>
-                  <i class="ph ph-arrow-up-right"></i>
+                  <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
                 </a>
               ))}
             </div>
-          </div>
+          </section>
         </aside>
       </section>
     )}
 
     <section class="no-results shell" id="noResults" hidden>
-      <div class="empty-icon"><i class="ph ph-magnifying-glass"></i></div>
+      <div class="empty-icon"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></div>
       <h2>No matching stories</h2>
-      <p>Try another search or section.</p>
+      <p>Try another search, section, or publisher.</p>
     </section>
   </main>
 
@@ -167,8 +249,13 @@ const generated = news.generated_at
     const searchToggle = document.getElementById('searchToggle');
     const searchClose = document.getElementById('searchClose');
     const searchInput = document.getElementById('searchInput');
+    const sourceSelect = document.getElementById('sourceSelect');
     const noResults = document.getElementById('noResults');
+    const resultsStatus = document.getElementById('resultsStatus');
+    const sectionMore = document.getElementById('sectionMore');
+    const moreLabel = document.getElementById('moreLabel');
     let activeFilter = 'All';
+    let activeSource = 'All';
 
     function openSearch() {
       headerSearch?.classList.add('is-open');
@@ -177,48 +264,71 @@ const generated = news.generated_at
       requestAnimationFrame(() => searchInput?.focus());
     }
 
-    function closeSearch() {
+    function closeSearch({ clear = true } = {}) {
       headerSearch?.classList.remove('is-open');
       siteHeader?.classList.remove('searching');
       searchToggle?.setAttribute('aria-expanded', 'false');
-      if (searchInput) searchInput.value = '';
+      if (clear && searchInput) searchInput.value = '';
       applyFilters();
     }
 
     function setFilter(category) {
       activeFilter = category || 'All';
-      document.querySelectorAll('[data-filter]').forEach((item) => item.classList.toggle('active', item.dataset.filter === activeFilter));
+      document.querySelectorAll('[data-filter]').forEach((item) => {
+        const selected = item.dataset.filter === activeFilter;
+        item.classList.toggle('active', selected);
+        item.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+
+      const inMore = [...document.querySelectorAll('.section-menu-item')].some((item) => item.dataset.filter === activeFilter);
+      if (moreLabel) moreLabel.textContent = inMore ? activeFilter : 'More';
+      sectionMore?.removeAttribute('open');
       applyFilters();
-      document.getElementById('latest')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('latest')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     }
 
     searchToggle?.addEventListener('click', () => {
-      if (headerSearch?.classList.contains('is-open')) {
-        searchInput?.focus();
-      } else {
-        openSearch();
-      }
+      if (headerSearch?.classList.contains('is-open')) searchInput?.focus();
+      else openSearch();
     });
-    searchClose?.addEventListener('click', closeSearch);
+    searchClose?.addEventListener('click', () => closeSearch());
     searchInput?.addEventListener('input', applyFilters);
     searchInput?.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeSearch();
     });
-
+    sourceSelect?.addEventListener('change', () => {
+      activeSource = sourceSelect.value || 'All';
+      applyFilters();
+    });
     document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.filter || 'All')));
-    document.querySelectorAll('[data-side-filter]').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.sideFilter || 'All')));
+
+    document.addEventListener('click', (event) => {
+      if (sectionMore?.hasAttribute('open') && !sectionMore.contains(event.target)) sectionMore.removeAttribute('open');
+    });
 
     function applyFilters() {
       const query = (searchInput?.value || '').trim().toLowerCase();
       let visible = 0;
       document.querySelectorAll('.searchable').forEach((item) => {
         const categoryMatch = activeFilter === 'All' || item.dataset.category === activeFilter;
+        const sourceMatch = activeSource === 'All' || item.dataset.source === activeSource;
         const queryMatch = !query || (item.dataset.search || '').includes(query);
-        const show = categoryMatch && queryMatch;
+        const show = categoryMatch && sourceMatch && queryMatch;
         item.classList.toggle('filtered-out', !show);
         if (show) visible += 1;
       });
       if (noResults) noResults.hidden = visible !== 0;
+      if (resultsStatus) {
+        const parts = [];
+        if (activeFilter !== 'All') parts.push(activeFilter);
+        if (activeSource !== 'All') parts.push(activeSource);
+        if (query) parts.push(`“${searchInput.value.trim()}”`);
+        resultsStatus.textContent = visible === 0
+          ? 'No stories match the current filters'
+          : parts.length
+            ? `${visible} ${visible === 1 ? 'story' : 'stories'} matching ${parts.join(' · ')}`
+            : 'Showing the latest London stories';
+      }
     }
   </script>
 </BaseLayout>
