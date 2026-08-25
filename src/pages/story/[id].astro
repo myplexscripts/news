@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../../data/news.json';
+
+export function getStaticPaths() {
+  return (news.stories || []).map((story) => ({
+    params: { id: story.id },
+    props: { story }
+  }));
+}
+
+const { story } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const published = (value) => {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'
+    }).format(new Date(value));
+  } catch {
+    return '';
+  }
+};
+
+const categoryClass = `category-${(story.category || 'Local').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const related = (news.stories || [])
+  .filter((item) => item.id !== story.id && (item.category === story.category || item.source === story.source))
+  .slice(0, 4);
+---
+<BaseLayout title={`${story.title} | London News`} description={story.summary || `Local reporting from ${story.source}.`}>
+  <main class:list={["article-page", categoryClass]}>
+    <div class="article-shell shell">
+      <a class="back-link" href={base}><i class="ph ph-arrow-left"></i><span>Back to London News</span></a>
+
+      <article class="article-layout">
+        <header class="article-header">
+          <span class="category-chip">{story.category}</span>
+          <h1>{story.title}</h1>
+          {story.summary && <p class="article-deck">{story.summary}</p>}
+          <div class="article-byline">
+            <span class="source-avatar" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
+            <div>
+              <strong>{story.source}</strong>
+              <span>{story.author ? `By ${story.author} · ` : ''}{published(story.published)}</span>
+            </div>
+          </div>
+        </header>
+
+        {story.image && (
+          <figure class="article-hero">
+            <img src={story.image} alt="" referrerpolicy="no-referrer" />
+          </figure>
+        )}
+
+        <div class="article-body-grid">
+          <div class="article-reader">
+            <div class="reader-note">
+              <div class="reader-note-icon"><i class="ph ph-newspaper-clipping"></i></div>
+              <div>
+                <strong>From {story.source}</strong>
+                <p>London News gives you a clean preview and keeps the reporting attributed to the original publisher.</p>
+              </div>
+            </div>
+
+            {story.summary ? (
+              <div class="article-preview">
+                <p>{story.summary}</p>
+              </div>
+            ) : (
+              <div class="article-preview">
+                <p>This story does not include a publisher summary in its feed.</p>
+              </div>
+            )}
+
+            <a class="primary-action" href={story.url} target="_blank" rel="noopener noreferrer">
+              Continue at {story.source}
+              <i class="ph ph-arrow-up-right"></i>
+            </a>
+          </div>
+
+          <aside class="article-source-card">
+            <span class="source-avatar large" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
+            <div>
+              <span class="source-card-label">Original source</span>
+              <h2>{story.source}</h2>
+              <p>Reporting, photos and full article content remain with the publisher.</p>
+            </div>
+            <a href={story.source_home} target="_blank" rel="noopener noreferrer">Visit publisher <i class="ph ph-arrow-up-right"></i></a>
+          </aside>
+        </div>
+      </article>
+
+      {related.length > 0 && (
+        <section class="related-section">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">Keep reading</span>
+              <h2>Related stories</h2>
+            </div>
+          </div>
+          <div class="related-grid">
+            {related.map((item) => (
+              <article class="related-card">
+                <a class="related-media" href={`${base}story/${item.id}/`}>
+                  {item.image ? <img src={item.image} alt="" loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper"></i></div>}
+                </a>
+                <div class="story-meta"><span>{item.source}</span></div>
+                <h3><a href={`${base}story/${item.id}/`}>{item.title}</a></h3>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'London News',
+  description = 'A fast, independent index of local London, Ontario news from multiple sources.'
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="en-CA" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f2f7" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1c1e" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('london-news-theme');
+        const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = saved || preferred;
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href={base} aria-label="London News home">
+          <span class="brand-mark" aria-hidden="true"><i class="ph-fill ph-newspaper-clipping"></i></span>
+          <span>London News</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href={`${base}#latest`}>Latest</a>
+          <a href={`${base}#local`}>Local</a>
+          <a href={`${base}#sources`}>Sources</a>
+        </nav>
+
+        <div class="header-actions">
+          <slot name="header-actions" />
+          <button class="icon-button" id="themeToggle" aria-label="Toggle appearance" title="Toggle appearance">
+            <i class="ph ph-moon" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <slot name="header-panel" />
+    </header>
+
+    <slot />
+
+    <footer class="site-footer shell">
+      <div>
+        <strong>London News</strong>
+        <span>Independent local news index</span>
+      </div>
+      <span>Updated automatically from local publishers</span>
+    </footer>
+
+    <script is:inline>
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle?.querySelector('i');
+
+      function updateThemeIcon() {
+        if (!themeIcon) return;
+        themeIcon.className = root.dataset.theme === 'dark' ? 'ph ph-sun' : 'ph ph-moon';
+      }
+
+      updateThemeIcon();
+
+      themeToggle?.addEventListener('click', () => {
+        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('london-news-theme', root.dataset.theme);
+        updateThemeIcon();
+      });
+    </script>
+  </body>
+</html>
