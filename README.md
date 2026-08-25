@@ -1,20 +1,19 @@
-# London News extraction upgrade
+# London News polish and scraper fixes
 
-Upload these files into the matching paths in your existing repository and replace the old versions.
+Replace the matching files in the repository with the files in this package.
 
-This phase adds:
+This update adds:
 
-- source-specific extraction profiles for Global, CBC, London Free Press, CTV, 106.9 The X, City of London, London Police and London Fire
-- structured article blocks for paragraphs, headings, quotes, lists and inline images
-- stronger hero and inline image selection with duplicate and junk-image filtering
-- extraction quality scoring from 0 to 100
-- full, partial, summary and failed content states
-- a hidden `/admin/` collector health page
-- a per-source health report showing current extraction quality and failures
-- a review queue for weak extractions
-- automatic schema upgrades for cached stories
-- quality-aware homepage lead selection
+- London, Ontario timezone handling using `America/Toronto` in the scraper and all displayed dates
+- stronger London Free Press cleanup for Trending, Most Read, subscription and teaser modules
+- London Police Service page discovery limited to real `/news/posts/` article pages
+- London Police article boundaries that skip search, subscribe and category furniture and stop before media-contact boilerplate
+- stronger hero and inline image deduplication
+- automatic removal of publisher default images that repeat across many stories
+- article media and publisher sidebar in separate grid columns so they cannot overlap
+- publisher sidebar positioned beside the hero image on desktop
+- inline article images use their natural aspect ratio
+- search now expands inside the sticky header with an animated transition instead of opening a second search row
+- extraction schema bumped to 4 so older captures are gradually refreshed with the improved rules
 
-The collector uses extraction schema 3. Stories from the current feeds upgrade immediately. Older cached stories are upgraded in batches of 12 per scheduled run so the collector does not hit every publisher at once.
-
-The `/admin/` page is intentionally not linked from the public navigation and includes a `noindex` robots tag. It is hidden from normal visitors, but it is not password protected.
+The collector still stores timestamps in UTC internally. Naive timestamps from local publishers are interpreted as London, Ontario local time before conversion to UTC. The frontend always formats times in `America/Toronto`, including daylight saving time automatically.

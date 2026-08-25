@@ -16,6 +16,7 @@ const categoryClass = (category = 'Local') => `category-${category.toLowerCase()
 const published = (value) => {
   try {
     return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
       month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
     }).format(new Date(value));
   } catch {
@@ -24,20 +25,18 @@ const published = (value) => {
 };
 
 const generated = news.generated_at
-  ? new Intl.DateTimeFormat('en-CA', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(news.generated_at))
+  ? new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(news.generated_at))
   : 'Waiting for first refresh';
 ---
 <BaseLayout>
-  <button slot="header-actions" class="icon-button" id="searchToggle" aria-label="Search news" title="Search news">
-    <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
-  </button>
-
-  <div slot="header-panel" class="search-panel" id="searchPanel" hidden>
-    <div class="shell search-inner">
+  <div slot="header-actions" class="header-search" id="headerSearch">
+    <button class="header-search-toggle" id="searchToggle" aria-label="Search news" title="Search news" aria-expanded="false">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
-      <input id="searchInput" type="search" placeholder="Search London news" autocomplete="off" />
-      <button id="searchClose" class="text-button">Done</button>
-    </div>
+    </button>
+    <input id="searchInput" type="search" placeholder="Search London news" autocomplete="off" aria-label="Search London news" />
+    <button class="header-search-close" id="searchClose" aria-label="Close search" title="Close search">
+      <i class="ph ph-x" aria-hidden="true"></i>
+    </button>
   </div>
 
   <main class="home-page">
@@ -163,7 +162,8 @@ const generated = news.generated_at
   </main>
 
   <script is:inline>
-    const searchPanel = document.getElementById('searchPanel');
+    const siteHeader = document.querySelector('.site-header');
+    const headerSearch = document.getElementById('headerSearch');
     const searchToggle = document.getElementById('searchToggle');
     const searchClose = document.getElementById('searchClose');
     const searchInput = document.getElementById('searchInput');
@@ -171,14 +171,16 @@ const generated = news.generated_at
     let activeFilter = 'All';
 
     function openSearch() {
-      if (!searchPanel) return;
-      searchPanel.hidden = false;
+      headerSearch?.classList.add('is-open');
+      siteHeader?.classList.add('searching');
+      searchToggle?.setAttribute('aria-expanded', 'true');
       requestAnimationFrame(() => searchInput?.focus());
     }
 
     function closeSearch() {
-      if (!searchPanel) return;
-      searchPanel.hidden = true;
+      headerSearch?.classList.remove('is-open');
+      siteHeader?.classList.remove('searching');
+      searchToggle?.setAttribute('aria-expanded', 'false');
       if (searchInput) searchInput.value = '';
       applyFilters();
     }
@@ -190,9 +192,18 @@ const generated = news.generated_at
       document.getElementById('latest')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    searchToggle?.addEventListener('click', openSearch);
+    searchToggle?.addEventListener('click', () => {
+      if (headerSearch?.classList.contains('is-open')) {
+        searchInput?.focus();
+      } else {
+        openSearch();
+      }
+    });
     searchClose?.addEventListener('click', closeSearch);
     searchInput?.addEventListener('input', applyFilters);
+    searchInput?.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeSearch();
+    });
 
     document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.filter || 'All')));
     document.querySelectorAll('[data-side-filter]').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.sideFilter || 'All')));

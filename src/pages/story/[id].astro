@@ -15,7 +15,13 @@ const base = import.meta.env.BASE_URL;
 const published = (value) => {
   try {
     return new Intl.DateTimeFormat('en-CA', {
-      weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'
+      timeZone: 'America/Toronto',
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
     }).format(new Date(value));
   } catch {
     return '';
@@ -31,18 +37,9 @@ const legacyParagraphs = Array.isArray(story.paragraphs) && story.paragraphs.len
   ? story.paragraphs
   : (story.content ? story.content.split(/\n+/).filter(Boolean) : story.summary ? [story.summary] : []);
 
-const contentBlocks = Array.isArray(story.content_blocks) && story.content_blocks.length
+const rawContentBlocks = Array.isArray(story.content_blocks) && story.content_blocks.length
   ? story.content_blocks
   : legacyParagraphs.map((text) => ({ type: 'paragraph', text }));
-
-const qualityScore = story.quality?.score ?? (story.content_status === 'full' ? 70 : 40);
-const extractionUsable = contentBlocks.length > 0 && !['failed', 'summary'].includes(story.content_status) && qualityScore >= 45;
-const readerBlocks = extractionUsable
-  ? contentBlocks
-  : story.summary ? [{ type: 'paragraph', text: story.summary }] : contentBlocks;
-
-const firstTextBlock = readerBlocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
-const readMinutes = story.word_count ? Math.max(1, Math.round(story.word_count / 220)) : null;
 
 const compareKey = (value = '') => String(value)
   .toLowerCase()
@@ -60,6 +57,46 @@ const nearDuplicate = (left = '', right = '') => {
   return shorter.length >= 28 && longer.startsWith(shorter) && shorter.length / longer.length >= 0.58;
 };
 
+const imageKey = (value = '') => {
+  try {
+    const url = new URL(value);
+    const parts = url.pathname.toLowerCase().split('/').filter(Boolean);
+    let name = parts.at(-1) || '';
+    name = name.replace(/[-_]\d{2,5}x\d{2,5}(?=\.[a-z0-9]{2,5}$)/, '');
+    const parent = parts.at(-2) || '';
+    return `${parent}/${name}`;
+  } catch {
+    return String(value).toLowerCase().split('?')[0];
+  }
+};
+
+const sameImage = (left = '', right = '') => {
+  if (!left || !right) return false;
+  const a = imageKey(left);
+  const b = imageKey(right);
+  if (a === b) return true;
+  const aName = a.split('/').at(-1) || '';
+  const bName = b.split('/').at(-1) || '';
+  return aName.length >= 14 && aName === bName;
+};
+
+const seenImages = [];
+const contentBlocks = rawContentBlocks.filter((block) => {
+  if (block.type !== 'image' || !block.url) return true;
+  if (sameImage(block.url, story.image)) return false;
+  if (seenImages.some((image) => sameImage(image, block.url))) return false;
+  seenImages.push(block.url);
+  return true;
+});
+
+const qualityScore = story.quality?.score ?? (story.content_status === 'full' ? 70 : 40);
+const extractionUsable = contentBlocks.length > 0 && !['failed', 'summary'].includes(story.content_status) && qualityScore >= 45;
+const readerBlocks = extractionUsable
+  ? contentBlocks
+  : story.summary ? [{ type: 'paragraph', text: story.summary }] : contentBlocks;
+
+const firstTextBlock = readerBlocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
+const readMinutes = story.word_count ? Math.max(1, Math.round(story.word_count / 220)) : null;
 const showDeck = Boolean(
   story.summary &&
   !nearDuplicate(story.summary, story.title) &&
@@ -88,11 +125,24 @@ const showDeck = Boolean(
           </div>
         </header>
 
-        {story.image && (
-          <figure class="article-hero">
-            <img src={story.image} alt="" referrerpolicy="no-referrer" />
-          </figure>
-        )}
+        <div class:list={["article-media-grid", !story.image && "no-hero"]}>
+          {story.image && (
+            <figure class="article-hero">
+              <img src={story.image} alt="" referrerpolicy="no-referrer" />
+            </figure>
+          )}
+
+          <aside class="article-sidebar">
+            <div class="article-source-card">
+              <span class="source-avatar large" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
+              <div>
+                <span class="source-card-label">Published by</span>
+                <h2>{story.source}</h2>
+              </div>
+              <a href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right"></i></a>
+            </div>
+          </aside>
+        </div>
 
         <div class="article-body-grid">
           <div class="article-reader">
@@ -129,17 +179,6 @@ const showDeck = Boolean(
               <a href={story.url} target="_blank" rel="noopener noreferrer">View original <i class="ph ph-arrow-up-right"></i></a>
             </div>
           </div>
-
-          <aside class="article-sidebar">
-            <div class="article-source-card">
-              <span class="source-avatar large" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
-              <div>
-                <span class="source-card-label">Published by</span>
-                <h2>{story.source}</h2>
-              </div>
-              <a href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right"></i></a>
-            </div>
-          </aside>
         </div>
       </article>
 

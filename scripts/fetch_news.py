@@ -7,6 +7,7 @@ import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
@@ -28,7 +29,8 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 12
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 3
+EXTRACTION_SCHEMA = 4
+LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
 SESSION = requests.Session()
@@ -58,6 +60,7 @@ GENERIC_BOILERPLATE = (
     "this advertisement has not loaded yet", "advertisement has not loaded yet",
     "story continues below", "continue reading", "download our app", "follow us on",
     "recommended video", "related stories", "related story", "more from", "all rights reserved",
+    "back to news search subscribe", "back to news search", "trending stories", "trending now",
 )
 
 POSTMEDIA_BOILERPLATE = (
@@ -69,7 +72,7 @@ POSTMEDIA_BOILERPLATE = (
     "share your thoughts and join the conversation in the comments",
     "enjoy additional articles per month", "get email updates from your favourite authors",
     "get email updates from your favorite authors", "sign in or create an account",
-    "unlock more articles", "manage print subscription",
+    "unlock more articles", "manage print subscription", "trending", "most read",
 )
 
 SOURCE_PROFILES: dict[str, dict[str, Any]] = {
@@ -91,6 +94,8 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
             ".newsletter", ".related", ".share", ".social", ".ad", ".advertisement",
             "[class*='subscription']", "[class*='paywall']", "[class*='registration']",
             "[class*='epaper']", "[class*='puzzle']", "[class*='comment']",
+            "[class*='trending']", "[id*='trending']", "[data-testid*='trending']",
+            "[class*='most-read']", "[class*='most-popular']", "[class*='popular']",
         ],
     },
     "CTV News": {
@@ -110,8 +115,8 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
     },
     "London Police Service": {
         "profile": "police",
-        "roots": [".news-article-content", ".field--name-body", ".article-content", "[itemprop='articleBody']", "article", "main"],
-        "remove": [".related", ".share", ".social", ".newsletter"],
+        "roots": [".news-article-content", ".news-post-content", ".news-post__content", ".field--name-body", ".article-content", "[itemprop='articleBody']", "article", "main"],
+        "remove": [".related", ".share", ".social", ".newsletter", ".news-search", ".subscribe", "[class*='back-to']"],
     },
     "London Fire Department": {
         "profile": "fire",
@@ -134,13 +139,13 @@ GENERIC_REMOVE_SELECTORS = [
 JUNK_CLASS_TOKENS = (
     "caption", "related", "promo", "newsletter", "share", "social", "advert", "author-card",
     "footer", "nav", "subscription", "subscribe", "paywall", "registration", "register",
-    "account", "epaper", "puzzle", "comment", "recommend", "most-popular", "outbrain", "taboola",
+    "account", "epaper", "puzzle", "comment", "recommend", "most-popular", "most-read", "trending", "popular", "outbrain", "taboola",
 )
 
 IMAGE_JUNK = (
     "logo", "icon", "avatar", "author", "profile", "sprite", "pixel", "tracking", "badge",
     "weather", "placeholder", "default", "newsletter", "app-store", "google-play", "social",
-    "facebook", "twitter", "instagram", "tiktok", "favicon", "headshot",
+    "facebook", "twitter", "instagram", "tiktok", "favicon", "headshot", "crest", "coat-of-arms", "coat_of_arms", "emblem",
 )
 
 ACRONYMS = {
@@ -356,6 +361,33 @@ def image_dedupe_key(url: str) -> str:
     return urlunparse(parsed._replace(query=urlencode(query), fragment=""))
 
 
+def image_path_key(url: str) -> str:
+    parsed = urlparse(normalize_image_url(url))
+    path = parsed.path.lower().rstrip("/")
+    if not path:
+        return ""
+    parts = [part for part in path.split("/") if part]
+    if not parts:
+        return ""
+    filename = re.sub(r"[-_](?:\d{2,5})x(?:\d{2,5})(?=\.[a-z0-9]{2,5}$)", "", parts[-1])
+    filename = re.sub(r"[-_](?:w|h)\d{2,5}(?=\.[a-z0-9]{2,5}$)", "", filename)
+    parent = parts[-2] if len(parts) > 1 else ""
+    return f"{parent}/{filename}" if parent else filename
+
+
+def same_image(left: str, right: str) -> bool:
+    if not left or not right:
+        return False
+    if image_dedupe_key(left) == image_dedupe_key(right):
+        return True
+    left_key, right_key = image_path_key(left), image_path_key(right)
+    if left_key and right_key and left_key == right_key:
+        return True
+    left_name = left_key.rsplit("/", 1)[-1] if left_key else ""
+    right_name = right_key.rsplit("/", 1)[-1] if right_key else ""
+    return len(left_name) >= 14 and left_name == right_name
+
+
 def make_id(url: str) -> str:
     return hashlib.sha1(canonical_url(url).encode("utf-8")).hexdigest()[:16]
 
@@ -365,8 +397,9 @@ def parse_date(value: Any) -> str:
         return datetime.now(timezone.utc).isoformat()
     try:
         dt = date_parser.parse(str(value))
+        # Local publishers often omit a zone. Treat naive timestamps as London, Ontario time.
         if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
+            dt = dt.replace(tzinfo=LOCAL_TIMEZONE)
         return dt.astimezone(timezone.utc).isoformat()
     except Exception:
         return datetime.now(timezone.utc).isoformat()
@@ -633,6 +666,49 @@ def choose_article_root(soup: BeautifulSoup, source_name: str) -> tuple[Tag | No
     return root, selector
 
 
+def is_police_source(source_name: str) -> bool:
+    return "london police" in source_name.lower()
+
+
+def is_postmedia_source(source_name: str) -> bool:
+    return "free press" in source_name.lower()
+
+
+def police_stop_text(value: str) -> bool:
+    key = boilerplate_key(value)
+    return key.startswith((
+        "for media inquiries", "for media enquiries", "media relations officer",
+        "media relations unit", "contact media relations", "contact us",
+    ))
+
+
+def police_start_text(value: str) -> bool:
+    text = clean_text(value)
+    return bool(re.match(r"(?i)^(?:update\s*[-:]\s*)?london,?\s+on(?:t\.)?\s*\(", text))
+
+
+def strip_postmedia_trending_blocks(blocks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if not blocks:
+        return blocks
+    cleaned: list[dict[str, Any]] = []
+    skipping = False
+    for block in blocks:
+        kind = block.get("type")
+        text = clean_text(block.get("text", "")) if kind in ("paragraph", "heading", "quote") else ""
+        key = boilerplate_key(text)
+        if kind == "heading" and (key.startswith("trending") or key.startswith("most read") or key.startswith("most popular")):
+            skipping = True
+            continue
+        if skipping:
+            # Trending modules are usually a run of short linked headlines. Resume at real prose.
+            if kind == "paragraph" and len(text) >= 70 and (police_start_text(text) or re.search(r"[.!?][\"'’)]?$", text)):
+                skipping = False
+            else:
+                continue
+        cleaned.append(block)
+    return cleaned
+
+
 def clean_structured_text(value: str, source_name: str, title: str, seen: list[str], stats: dict[str, int], min_length: int = 18) -> str:
     stats["raw_text_blocks"] = stats.get("raw_text_blocks", 0) + 1
     text = clean_text(strip_title_echo(normalize_source_case(value), title))
@@ -670,8 +746,11 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
 
     blocks: list[dict[str, Any]] = []
     seen_text: list[str] = []
-    seen_images: set[str] = set()
-    lead_key = image_dedupe_key(lead_image)
+    seen_images: list[str] = []
+    police_mode = is_police_source(source_name)
+    police_started = not police_mode
+    postmedia_mode = is_postmedia_source(source_name)
+    postmedia_trending = False
 
     nodes = clone_root.find_all(["h2", "h3", "p", "blockquote", "ul", "ol", "figure", "img"], recursive=True)
     for node in nodes:
@@ -686,8 +765,25 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             continue
 
         if node.name in ("p", "h2", "h3", "blockquote"):
+            raw_node_text = clean_text(node.get_text(" ", strip=True))
+            raw_key = boilerplate_key(raw_node_text)
+            if postmedia_mode and node.name in ("h2", "h3") and (raw_key.startswith("trending") or raw_key.startswith("most read") or raw_key.startswith("most popular")):
+                postmedia_trending = True
+                continue
+            if postmedia_trending:
+                if node.name == "p" and len(raw_node_text) >= 70 and re.search(r"[.!?][\"'’)]?$", raw_node_text):
+                    postmedia_trending = False
+                else:
+                    continue
+            if police_mode and not police_started:
+                if node.name in ("h2", "h3") or police_start_text(raw_node_text):
+                    police_started = True
+                else:
+                    continue
+            if police_mode and police_stop_text(raw_node_text):
+                break
             min_length = 4 if node.name in ("h2", "h3") else 18
-            text = clean_structured_text(node.get_text(" ", strip=True), source_name, title, seen_text, stats, min_length=min_length)
+            text = clean_structured_text(raw_node_text, source_name, title, seen_text, stats, min_length=min_length)
             if not text:
                 continue
             if node.name == "p":
@@ -719,9 +815,9 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             stats["images_rejected"] = stats.get("images_rejected", 0) + 1
             continue
         key = image_dedupe_key(url)
-        if not key or key == lead_key or key in seen_images:
+        if not key or same_image(url, lead_image) or any(same_image(url, prior) for prior in seen_images):
             continue
-        seen_images.add(key)
+        seen_images.append(url)
         blocks.append({
             "type": "image",
             "url": url,
@@ -729,6 +825,8 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             "caption": figure_caption(img),
         })
 
+    if is_postmedia_source(source_name):
+        blocks = strip_postmedia_trending_blocks(blocks)
     method = f"dom:{profile.get('profile', 'generic')}:{root_selector}"
     return blocks, stats, method
 
@@ -927,7 +1025,15 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
 
     image_candidates = collect_image_candidates(soup, final_url, ld, story.get("image", ""))
     lead_image = image_candidates[0]["url"] if image_candidates else normalize_image_url(story.get("image", ""), final_url)
-    inline_candidates = [item for item in image_candidates if image_dedupe_key(item["url"]) != image_dedupe_key(lead_image)][:MAX_ARTICLE_IMAGES]
+    inline_candidates: list[dict[str, Any]] = []
+    for item in image_candidates:
+        if same_image(item["url"], lead_image):
+            continue
+        if any(same_image(item["url"], prior["url"]) for prior in inline_candidates):
+            continue
+        inline_candidates.append(item)
+        if len(inline_candidates) >= MAX_ARTICLE_IMAGES:
+            break
 
     dom_blocks, stats, method = extract_dom_blocks(soup, final_url, source.name, title, lead_image)
     dom_paragraphs, dom_text = text_from_blocks(dom_blocks)
@@ -1046,10 +1152,14 @@ def page_links(source: Source) -> list[str]:
     soup = BeautifulSoup(raw, "html.parser")
     host = urlparse(final_url).netloc.lower().replace("www.", "")
     links: list[str] = []
-    selectors = [
-        "main h2 a[href]", "main h3 a[href]", "article h2 a[href]", "article h3 a[href]",
-        ".news-item a[href]", ".card a[href]", "a[href*='/news/']",
-    ]
+    selectors = (
+        ["a[href*='/news/posts/']"]
+        if is_police_source(source.name)
+        else [
+            "main h2 a[href]", "main h3 a[href]", "article h2 a[href]", "article h3 a[href]",
+            ".news-item a[href]", ".card a[href]", "a[href*='/news/']",
+        ]
+    )
     for selector in selectors:
         for anchor in soup.select(selector):
             href = anchor.get("href")
@@ -1057,6 +1167,8 @@ def page_links(source: Source) -> list[str]:
                 continue
             url = urljoin(final_url, href)
             if urlparse(url).netloc.lower().replace("www.", "") != host:
+                continue
+            if is_police_source(source.name) and "/news/posts/" not in urlparse(url).path.lower():
                 continue
             if canonical_url(url) == canonical_url(source.url) or len(clean_text(anchor.get_text(" ", strip=True))) < 8:
                 continue
@@ -1088,18 +1200,31 @@ def page_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict
     return items
 
 
-def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, title: str) -> list[dict[str, Any]]:
+def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, title: str, lead_image: str = "") -> list[dict[str, Any]]:
     cleaned: list[dict[str, Any]] = []
     seen: list[str] = []
+    seen_images: list[str] = []
+    skipping_postmedia_trending = False
     for block in blocks:
         if not isinstance(block, dict):
             continue
         kind = block.get("type")
         if kind in ("paragraph", "heading", "quote"):
             text = clean_text(strip_title_echo(normalize_source_case(block.get("text", "")), title))
+            key = boilerplate_key(text)
+            if is_postmedia_source(source_name) and kind == "heading" and (key.startswith("trending") or key.startswith("most read") or key.startswith("most popular")):
+                skipping_postmedia_trending = True
+                continue
+            if skipping_postmedia_trending:
+                if kind == "paragraph" and len(text) >= 70 and re.search(r"[.!?][\"'’)]?$", text):
+                    skipping_postmedia_trending = False
+                else:
+                    continue
             min_length = 4 if kind == "heading" else 18
             if len(text) < min_length or is_boilerplate_block(text, source_name) or any(near_duplicate(text, prior) for prior in seen[-12:]):
                 continue
+            if is_police_source(source_name) and police_stop_text(text):
+                break
             seen.append(text)
             cleaned.append({**block, "text": text})
         elif kind == "list":
@@ -1108,8 +1233,12 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
             if items:
                 cleaned.append({"type": "list", "ordered": bool(block.get("ordered")), "items": items})
         elif kind == "image" and valid_article_image(block.get("url", "")):
+            url = normalize_image_url(block.get("url", ""))
+            if same_image(url, lead_image) or any(same_image(url, prior) for prior in seen_images):
+                continue
+            seen_images.append(url)
             cleaned.append({
-                "type": "image", "url": normalize_image_url(block.get("url", "")),
+                "type": "image", "url": url,
                 "alt": clean_text(block.get("alt", ""), 180), "caption": clean_text(block.get("caption", ""), 320),
             })
     return cleaned
@@ -1122,7 +1251,7 @@ def sanitize_cached_story(story: dict[str, Any]) -> dict[str, Any]:
 
     existing_blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
     if existing_blocks:
-        blocks = sanitize_content_blocks(existing_blocks, source_name, title)
+        blocks = sanitize_content_blocks(existing_blocks, source_name, title, story.get("image", ""))
         paragraphs, text = text_from_blocks(blocks)
     else:
         raw_blocks = story.get("paragraphs") or re.split(r"\n+", str(story.get("content", "")))
@@ -1143,6 +1272,43 @@ def sanitize_cached_story(story: dict[str, Any]) -> dict[str, Any]:
     if story.get("content_status") == "full" and story["word_count"] < 55:
         story["content_status"] = "summary"
     return story
+
+
+def remove_repeated_source_images(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_source: dict[str, list[dict[str, Any]]] = {}
+    for story in stories:
+        if story.get("source") and story.get("image"):
+            by_source.setdefault(story["source"], []).append(story)
+
+    for source_name, source_stories in by_source.items():
+        recent = source_stories[:30]
+        counts: dict[str, int] = {}
+        sample_url: dict[str, str] = {}
+        for story in recent:
+            key = image_path_key(story.get("image", "")) or image_dedupe_key(story.get("image", ""))
+            if key:
+                counts[key] = counts.get(key, 0) + 1
+                sample_url[key] = story.get("image", "")
+        if not counts:
+            continue
+        key, count = max(counts.items(), key=lambda item: item[1])
+        # Repeated on many stories means this is almost certainly a publisher default image or logo.
+        if count < 3 or count / max(1, len(recent)) < 0.34:
+            continue
+        repeated_url = sample_url[key]
+        for story in source_stories:
+            if same_image(story.get("image", ""), repeated_url):
+                story["image"] = ""
+                story["source_default_image_removed"] = True
+                story["content_blocks"] = [
+                    block for block in (story.get("content_blocks") or [])
+                    if block.get("type") != "image" or not same_image(block.get("url", ""), repeated_url)
+                ]
+                story["article_images"] = [
+                    image for image in (story.get("article_images") or [])
+                    if not same_image(image.get("url", ""), repeated_url)
+                ]
+    return stories
 
 
 def backfill_missing(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -1236,6 +1402,7 @@ def main() -> int:
     stories = sorted(merged.values(), key=lambda item: item.get("published", ""), reverse=True)[:HISTORY_LIMIT]
     stories = [sanitize_cached_story(story) for story in stories]
     stories = backfill_missing(stories)
+    stories = remove_repeated_source_images(stories)
 
     now = datetime.now(timezone.utc).isoformat()
     full_count = sum(1 for item in stories if item.get("content_status") == "full")
