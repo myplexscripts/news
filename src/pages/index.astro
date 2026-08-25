@@ -3,8 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import news from '../../data/news.json';
 
 const stories = news.stories || [];
-const withImages = stories.filter((story) => story.image);
-const lead = withImages[0] || stories[0];
+const withImages = stories.filter((story) => story.image && story.content_status !== 'failed');
+const lead = withImages.find((story) => (story.quality?.score ?? 70) >= 55) || withImages[0] || stories[0];
 const feed = lead ? stories.filter((story) => story.id !== lead.id).slice(0, 60) : stories.slice(0, 60);
 const categories = ['All', ...Array.from(new Set(stories.map((story) => story.category))).sort()];
 const sources = Array.from(new Map(stories.map((story) => [story.source, story])).values());

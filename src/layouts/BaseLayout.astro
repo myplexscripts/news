@@ -4,11 +4,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'London News',
-  description = 'A fast local news reader for London, Ontario, gathering reporting from across the city.'
+  description = 'A fast local news reader for London, Ontario, gathering reporting from across the city.',
+  noindex = false
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
@@ -19,6 +21,7 @@ const base = import.meta.env.BASE_URL;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f2f7" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1c1e" />
     <title>{title}</title>

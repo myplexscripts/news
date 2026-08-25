@@ -27,18 +27,44 @@ const related = (news.stories || [])
   .filter((item) => item.id !== story.id && (item.category === story.category || item.source === story.source))
   .slice(0, 4);
 
-const paragraphs = Array.isArray(story.paragraphs) && story.paragraphs.length
+const legacyParagraphs = Array.isArray(story.paragraphs) && story.paragraphs.length
   ? story.paragraphs
   : (story.content ? story.content.split(/\n+/).filter(Boolean) : story.summary ? [story.summary] : []);
-const articleImages = Array.isArray(story.article_images) ? story.article_images : [];
+
+const contentBlocks = Array.isArray(story.content_blocks) && story.content_blocks.length
+  ? story.content_blocks
+  : legacyParagraphs.map((text) => ({ type: 'paragraph', text }));
+
+const qualityScore = story.quality?.score ?? (story.content_status === 'full' ? 70 : 40);
+const extractionUsable = contentBlocks.length > 0 && !['failed', 'summary'].includes(story.content_status) && qualityScore >= 45;
+const readerBlocks = extractionUsable
+  ? contentBlocks
+  : story.summary ? [{ type: 'paragraph', text: story.summary }] : contentBlocks;
+
+const firstTextBlock = readerBlocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
 const readMinutes = story.word_count ? Math.max(1, Math.round(story.word_count / 220)) : null;
-const imageSlots = new Map();
-if (articleImages.length && paragraphs.length) {
-  const interval = Math.max(3, Math.floor(paragraphs.length / (articleImages.length + 1)));
-  articleImages.forEach((image, index) => {
-    imageSlots.set(Math.min(paragraphs.length - 1, interval * (index + 1)), image);
-  });
-}
+
+const compareKey = (value = '') => String(value)
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+const nearDuplicate = (left = '', right = '') => {
+  const a = compareKey(left);
+  const b = compareKey(right);
+  if (!a || !b) return false;
+  if (a === b) return true;
+  const shorter = a.length <= b.length ? a : b;
+  const longer = a.length <= b.length ? b : a;
+  return shorter.length >= 28 && longer.startsWith(shorter) && shorter.length / longer.length >= 0.58;
+};
+
+const showDeck = Boolean(
+  story.summary &&
+  !nearDuplicate(story.summary, story.title) &&
+  !(firstTextBlock?.text && nearDuplicate(story.summary, firstTextBlock.text))
+);
 ---
 <BaseLayout title={`${story.title} | London News`} description={story.summary || `Local reporting from ${story.source}.`}>
   <main class:list={["article-page", categoryClass]}>
@@ -52,7 +78,7 @@ if (articleImages.length && paragraphs.length) {
             {readMinutes && <span>{readMinutes} min read</span>}
           </div>
           <h1>{story.title}</h1>
-          {story.summary && <p class="article-deck">{story.summary}</p>}
+          {showDeck && <p class="article-deck">{story.summary}</p>}
           <div class="article-byline">
             <span class="source-avatar" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
             <div>
@@ -70,15 +96,24 @@ if (articleImages.length && paragraphs.length) {
 
         <div class="article-body-grid">
           <div class="article-reader">
-            {paragraphs.length ? (
+            {readerBlocks.length ? (
               <div class="article-copy">
-                {paragraphs.map((paragraph, index) => (
+                {readerBlocks.map((block) => (
                   <>
-                    <p>{paragraph}</p>
-                    {imageSlots.has(index) && (
+                    {block.type === 'paragraph' && block.text && <p>{block.text}</p>}
+                    {block.type === 'heading' && block.text && block.level === 3 && <h3>{block.text}</h3>}
+                    {block.type === 'heading' && block.text && block.level !== 3 && <h2>{block.text}</h2>}
+                    {block.type === 'quote' && block.text && <blockquote>{block.text}</blockquote>}
+                    {block.type === 'list' && block.ordered && (
+                      <ol>{(block.items || []).map((item) => <li>{item}</li>)}</ol>
+                    )}
+                    {block.type === 'list' && !block.ordered && (
+                      <ul>{(block.items || []).map((item) => <li>{item}</li>)}</ul>
+                    )}
+                    {block.type === 'image' && block.url && (
                       <figure class="inline-article-image">
-                        <img src={imageSlots.get(index).url} alt={imageSlots.get(index).alt || ''} loading="lazy" referrerpolicy="no-referrer" />
-                        {imageSlots.get(index).caption && <figcaption>{imageSlots.get(index).caption}</figcaption>}
+                        <img src={block.url} alt={block.alt || ''} loading="lazy" referrerpolicy="no-referrer" />
+                        {block.caption && <figcaption>{block.caption}</figcaption>}
                       </figure>
                     )}
                   </>

@@ -1,46 +1,20 @@
-# London News
+# London News extraction upgrade
 
-A static local news reader for London, Ontario. The public site is built with Astro and deployed to GitHub Pages. A scheduled GitHub Action collects source feeds, fetches article pages, extracts readable article content and images, then rebuilds the site.
+Upload these files into the matching paths in your existing repository and replace the old versions.
 
-## How it works
+This phase adds:
 
-1. `scripts/sources.py` defines local sources.
-2. `scripts/fetch_news.py` reads RSS feeds or source pages.
-3. New and stale articles are fetched and passed through Trafilatura plus a BeautifulSoup fallback.
-4. Full readable text, metadata, hero imagery and inline article images are stored in `data/news.json`.
-5. Astro turns the data into static homepage and story pages.
-6. GitHub Pages serves only prebuilt files, so visitors never wait for scraping.
+- source-specific extraction profiles for Global, CBC, London Free Press, CTV, 106.9 The X, City of London, London Police and London Fire
+- structured article blocks for paragraphs, headings, quotes, lists and inline images
+- stronger hero and inline image selection with duplicate and junk-image filtering
+- extraction quality scoring from 0 to 100
+- full, partial, summary and failed content states
+- a hidden `/admin/` collector health page
+- a per-source health report showing current extraction quality and failures
+- a review queue for weak extractions
+- automatic schema upgrades for cached stories
+- quality-aware homepage lead selection
 
-Previously captured full articles are reused for 12 hours. This keeps scheduled runs much lighter than re-downloading every article on every refresh. Older summary-only records are gradually backfilled on future runs.
+The collector uses extraction schema 3. Stories from the current feeds upgrade immediately. Older cached stories are upgraded in batches of 12 per scheduled run so the collector does not hit every publisher at once.
 
-## Add a source
-
-Edit `scripts/sources.py` and add another `Source(...)` entry.
-
-```python
-Source(
-    name="Example News",
-    url="https://example.com/feed/",
-    homepage="https://example.com/",
-    accent="#0088FF",
-)
-```
-
-For a source without RSS, use `kind="page"` and point `url` at the publication's news listing page.
-
-## Local development
-
-```bash
-pip install -r requirements.txt
-python scripts/fetch_news.py
-npm install
-npm run dev
-```
-
-## GitHub Pages
-
-In the repository settings, set Pages to **GitHub Actions**. The included workflow refreshes and redeploys automatically.
-
-## Publishing note
-
-Full-text scraping and republishing can be subject to publisher terms, copyright and image licensing. For a public site, only enable full-content republication for sources where you have the appropriate permission or licence.
+The `/admin/` page is intentionally not linked from the public navigation and includes a `noindex` robots tag. It is hidden from normal visitors, but it is not password protected.

@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../../data/news.json';
+
+const health = news.source_health || [];
+const stories = news.stories || [];
+const base = import.meta.env.BASE_URL;
+
+const formatDate = (value) => {
+  if (!value) return 'Not yet';
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+    }).format(new Date(value));
+  } catch {
+    return 'Unknown';
+  }
+};
+
+const averageQuality = news.average_quality || 0;
+const needsAttention = stories
+  .filter((story) => ['partial', 'summary', 'failed'].includes(story.content_status) || (story.quality?.score || 0) < 55)
+  .slice(0, 16);
+
+const statusIcon = (status) => status === 'healthy' ? 'ph-check-circle' : status === 'error' ? 'ph-warning-circle' : status === 'waiting' ? 'ph-clock' : 'ph-info';
+---
+<BaseLayout title="Collector Health | London News" description="Internal collector health for London News." noindex={true}>
+  <main class="admin-page">
+    <div class="shell admin-shell">
+      <div class="admin-heading">
+        <div>
+          <span class="eyebrow"><i class="ph ph-pulse"></i> Internal</span>
+          <h1>Collector health</h1>
+          <p>Extraction quality, source status and stories that need attention.</p>
+        </div>
+        <a class="admin-home-link" href={base}><i class="ph ph-arrow-left"></i> Newsroom</a>
+      </div>
+
+      <section class="admin-stats" aria-label="Collector summary">
+        <div class="admin-stat">
+          <span>Last refresh</span>
+          <strong>{formatDate(news.generated_at)}</strong>
+        </div>
+        <div class="admin-stat">
+          <span>Stories tracked</span>
+          <strong>{news.story_count || stories.length}</strong>
+        </div>
+        <div class="admin-stat">
+          <span>Full articles</span>
+          <strong>{news.full_story_count || 0}</strong>
+        </div>
+        <div class="admin-stat">
+          <span>Average quality</span>
+          <strong>{averageQuality}<small>/100</small></strong>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <header class="admin-section-header">
+          <div>
+            <span class="eyebrow">Sources</span>
+            <h2>Current extraction status</h2>
+          </div>
+          <span>{health.length} configured</span>
+        </header>
+
+        <div class="health-list">
+          {health.length ? health.map((source) => (
+            <article class="health-row">
+              <div class="health-source">
+                <span class="source-avatar" style={`--source-color:${source.accent}`}>
+                  {source.source.split(' ').map((part) => part[0]).slice(0, 2).join('')}
+                </span>
+                <div>
+                  <strong>{source.source}</strong>
+                  <span>{source.profile} extractor</span>
+                </div>
+              </div>
+
+              <div class="health-metric">
+                <span>Found</span>
+                <strong>{source.found_this_run}</strong>
+              </div>
+              <div class="health-metric">
+                <span>Full</span>
+                <strong>{source.full}</strong>
+              </div>
+              <div class="health-metric">
+                <span>Partial</span>
+                <strong>{source.partial}</strong>
+              </div>
+              <div class="health-metric">
+                <span>Quality</span>
+                <strong>{source.average_quality}</strong>
+              </div>
+              <div class:list={["health-status", `status-${source.status}`]}>
+                <i class={`ph ${statusIcon(source.status)}`}></i>
+                <span>{source.status}</span>
+              </div>
+              {source.last_error && <p class="health-error">{source.last_error}</p>}
+            </article>
+          )) : (
+            <div class="admin-empty">Source health appears after the next collector run.</div>
+          )}
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <header class="admin-section-header">
+          <div>
+            <span class="eyebrow">Review queue</span>
+            <h2>Stories needing attention</h2>
+          </div>
+          <span>{needsAttention.length} shown</span>
+        </header>
+
+        <div class="review-list">
+          {needsAttention.length ? needsAttention.map((story) => (
+            <article class="review-row">
+              <div class="review-main">
+                <span class="review-source">{story.source}</span>
+                <h3><a href={`${base}story/${story.id}/`}>{story.title}</a></h3>
+                <span>{formatDate(story.published)} · {story.quality?.method || 'legacy extraction'}</span>
+              </div>
+              <div class="review-score">
+                <strong>{story.quality?.score || 0}</strong>
+                <span>{story.quality?.grade || story.content_status || 'unknown'}</span>
+              </div>
+            </article>
+          )) : (
+            <div class="admin-empty">No recent stories are below the review threshold.</div>
+          )}
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
