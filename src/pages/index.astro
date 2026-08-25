@@ -5,15 +5,12 @@ import news from '../../data/news.json';
 const stories = news.stories || [];
 const withImages = stories.filter((story) => story.image);
 const lead = withImages[0] || stories[0];
-const remaining = lead ? stories.filter((story) => story.id !== lead.id) : stories;
-const latest = remaining.slice(0, 9);
-const moreStories = remaining.slice(9, 39);
+const feed = lead ? stories.filter((story) => story.id !== lead.id).slice(0, 60) : stories.slice(0, 60);
 const categories = ['All', ...Array.from(new Set(stories.map((story) => story.category))).sort()];
 const sources = Array.from(new Map(stories.map((story) => [story.source, story])).values());
 const base = import.meta.env.BASE_URL;
 
 const storyHref = (story) => `${base}story/${story.id}/`;
-
 const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 
 const published = (value) => {
@@ -26,7 +23,7 @@ const published = (value) => {
   }
 };
 
-const relativeGenerated = news.generated_at
+const generated = news.generated_at
   ? new Intl.DateTimeFormat('en-CA', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(news.generated_at))
   : 'Waiting for first refresh';
 ---
@@ -43,19 +40,17 @@ const relativeGenerated = news.generated_at
     </div>
   </div>
 
-  <main>
-    <section class="masthead shell">
-      <div class="masthead-copy">
-        <div class="location-line"><i class="ph-fill ph-map-pin"></i><span>London, Ontario</span></div>
-        <h1>What London is talking about.</h1>
-        <p class="lede">One calm, current view of reporting from across the city.</p>
+  <main class="home-page">
+    <section class="news-intro shell">
+      <div class="news-intro-copy">
+        <span class="eyebrow"><i class="ph-fill ph-map-pin"></i> London, Ontario</span>
+        <h1>London, at a glance.</h1>
+        <p>A clean daily read of what is happening across the city, gathered from local reporting.</p>
       </div>
-      <div class="update-status" title={`Last refreshed ${relativeGenerated}`}>
-        <span class="status-dot" aria-hidden="true"></span>
-        <div>
-          <span>Updated</span>
-          <strong>{relativeGenerated}</strong>
-        </div>
+      <div class="news-intro-status">
+        <span>Last refreshed</span>
+        <strong>{generated}</strong>
+        <small>{news.full_story_count || 0} full articles captured</small>
       </div>
     </section>
 
@@ -68,24 +63,21 @@ const relativeGenerated = news.generated_at
     </section>
 
     {lead ? (
-      <section class:list={["hero shell searchable", categoryClass(lead.category)]} data-category={lead.category} data-search={`${lead.title} ${lead.summary} ${lead.source} ${lead.category}`.toLowerCase()}>
-        <a class="hero-media" href={storyHref(lead)} aria-label={`Read ${lead.title}`}>
+      <section class:list={["lead-story shell searchable", categoryClass(lead.category)]} data-category={lead.category} data-search={`${lead.title} ${lead.summary} ${lead.source} ${lead.category}`.toLowerCase()}>
+        <a class="lead-media" href={storyHref(lead)} aria-label={`Read ${lead.title}`}>
           {lead.image ? <img src={lead.image} alt="" loading="eager" referrerpolicy="no-referrer" /> : <div class="image-fallback"><i class="ph-fill ph-buildings"></i></div>}
         </a>
-        <div class="hero-copy">
+        <div class="lead-copy">
           <div class="story-meta">
             <span class="source-dot" style={`--source-color:${lead.source_accent}`}></span>
             <span>{lead.source}</span>
             <span class="meta-separator">•</span>
             <time datetime={lead.published}>{published(lead.published)}</time>
           </div>
-          <span class="category-chip">{lead.category}</span>
+          <span class="section-label">{lead.category}</span>
           <h2><a href={storyHref(lead)}>{lead.title}</a></h2>
-          {lead.summary && <p class="hero-summary">{lead.summary}</p>}
-          <a class="read-link" href={storyHref(lead)}>
-            Read story
-            <i class="ph ph-arrow-right" aria-hidden="true"></i>
-          </a>
+          {lead.summary && <p>{lead.summary}</p>}
+          <a class="read-link" href={storyHref(lead)}>Read full story <i class="ph ph-arrow-right"></i></a>
         </div>
       </section>
     ) : (
@@ -96,32 +88,36 @@ const relativeGenerated = news.generated_at
       </section>
     )}
 
-    {stories.length > 0 && (
-      <section class="content-grid shell" id="latest">
-        <div class="latest-column">
-          <div class="section-heading">
+    {feed.length > 0 && (
+      <section class="blog-layout shell" id="latest">
+        <div class="feed-column">
+          <header class="blog-section-header">
             <div>
-              <span class="section-kicker">Now</span>
-              <h2>Latest</h2>
+              <span class="eyebrow">Latest</span>
+              <h2>The local feed</h2>
             </div>
             <span>{stories.length} stories</span>
-          </div>
+          </header>
 
-          <div class="latest-list">
-            {latest.map((story) => (
-              <article class:list={["latest-item searchable", categoryClass(story.category)]} data-category={story.category} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
-                <div class="latest-copy">
+          <div class="feed-list">
+            {feed.map((story) => (
+              <article class:list={["feed-post searchable", categoryClass(story.category)]} data-category={story.category} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
+                <div class="feed-post-copy">
                   <div class="story-meta">
                     <span class="source-dot" style={`--source-color:${story.source_accent}`}></span>
                     <span>{story.source}</span>
                     <span class="meta-separator">•</span>
                     <time datetime={story.published}>{published(story.published)}</time>
                   </div>
+                  <span class="feed-category">{story.category}</span>
                   <h3><a href={storyHref(story)}>{story.title}</a></h3>
                   {story.summary && <p>{story.summary}</p>}
-                  <span class="inline-category">{story.category}</span>
+                  <div class="feed-post-footer">
+                    <a href={storyHref(story)}>Read story <i class="ph ph-arrow-right"></i></a>
+                    {story.word_count > 0 && <span>{Math.max(1, Math.round(story.word_count / 220))} min read</span>}
+                  </div>
                 </div>
-                <a class="latest-thumb" href={storyHref(story)} aria-label={`Read ${story.title}`}>
+                <a class="feed-thumb" href={storyHref(story)} aria-label={`Read ${story.title}`}>
                   {story.image ? <img src={story.image} alt="" loading="lazy" referrerpolicy="no-referrer" /> : <div class="thumb-fallback"><i class="ph ph-newspaper-clipping"></i></div>}
                 </a>
               </article>
@@ -129,67 +125,40 @@ const relativeGenerated = news.generated_at
           </div>
         </div>
 
-        <aside class="sources-column" id="sources">
-          <div class="section-heading compact">
-            <div>
-              <span class="section-kicker">Following</span>
-              <h2>Sources</h2>
+        <aside class="blog-sidebar" id="sources">
+          <div class="sidebar-section" id="sections">
+            <span class="eyebrow">Sections</span>
+            <div class="section-links">
+              {categories.filter((category) => category !== 'All').map((category) => (
+                <button class:list={["section-link", categoryClass(category)]} data-side-filter={category}>
+                  <span class="section-color"></span>
+                  <span>{category}</span>
+                  <i class="ph ph-arrow-right"></i>
+                </button>
+              ))}
             </div>
           </div>
-          <div class="source-panel">
+
+          <div class="sidebar-section source-directory">
+            <span class="eyebrow">Sources</span>
             <div class="source-list">
               {sources.map((source) => (
                 <a class="source-row" href={source.source_home} target="_blank" rel="noopener noreferrer">
                   <span class="source-avatar" style={`--source-color:${source.source_accent}`}>{source.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
                   <span class="source-name">{source.source}</span>
-                  <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                  <i class="ph ph-arrow-up-right"></i>
                 </a>
               ))}
             </div>
           </div>
-          <div class="about-card">
-            <i class="ph ph-info" aria-hidden="true"></i>
-            <p>Stories open here first. Original reporting remains credited and linked to its publisher.</p>
-          </div>
         </aside>
-      </section>
-    )}
-
-    {moreStories.length > 0 && (
-      <section class="more-section shell" id="local">
-        <div class="section-heading">
-          <div>
-            <span class="section-kicker">Across London</span>
-            <h2>More local news</h2>
-          </div>
-        </div>
-        <div class="story-grid" id="storyGrid">
-          {moreStories.map((story) => (
-            <article class:list={["story-card searchable", categoryClass(story.category)]} data-category={story.category} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
-              <a class="card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
-                {story.image ? <img src={story.image} alt="" loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-buildings"></i></div>}
-                <span class="category-badge">{story.category}</span>
-              </a>
-              <div class="card-copy">
-                <div class="story-meta">
-                  <span class="source-dot" style={`--source-color:${story.source_accent}`}></span>
-                  <span>{story.source}</span>
-                  <span class="meta-separator">•</span>
-                  <time datetime={story.published}>{published(story.published)}</time>
-                </div>
-                <h3><a href={storyHref(story)}>{story.title}</a></h3>
-                {story.summary && <p>{story.summary}</p>}
-              </div>
-            </article>
-          ))}
-        </div>
       </section>
     )}
 
     <section class="no-results shell" id="noResults" hidden>
       <div class="empty-icon"><i class="ph ph-magnifying-glass"></i></div>
       <h2>No matching stories</h2>
-      <p>Try another search or category.</p>
+      <p>Try another search or section.</p>
     </section>
   </main>
 
@@ -214,17 +183,19 @@ const relativeGenerated = news.generated_at
       applyFilters();
     }
 
+    function setFilter(category) {
+      activeFilter = category || 'All';
+      document.querySelectorAll('[data-filter]').forEach((item) => item.classList.toggle('active', item.dataset.filter === activeFilter));
+      applyFilters();
+      document.getElementById('latest')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     searchToggle?.addEventListener('click', openSearch);
     searchClose?.addEventListener('click', closeSearch);
     searchInput?.addEventListener('input', applyFilters);
 
-    document.querySelectorAll('[data-filter]').forEach((button) => {
-      button.addEventListener('click', () => {
-        activeFilter = button.dataset.filter || 'All';
-        document.querySelectorAll('[data-filter]').forEach((item) => item.classList.toggle('active', item === button));
-        applyFilters();
-      });
-    });
+    document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.filter || 'All')));
+    document.querySelectorAll('[data-side-filter]').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.sideFilter || 'All')));
 
     function applyFilters() {
       const query = (searchInput?.value || '').trim().toLowerCase();

@@ -26,15 +26,31 @@ const categoryClass = `category-${(story.category || 'Local').toLowerCase().repl
 const related = (news.stories || [])
   .filter((item) => item.id !== story.id && (item.category === story.category || item.source === story.source))
   .slice(0, 4);
+
+const paragraphs = Array.isArray(story.paragraphs) && story.paragraphs.length
+  ? story.paragraphs
+  : (story.content ? story.content.split(/\n+/).filter(Boolean) : story.summary ? [story.summary] : []);
+const articleImages = Array.isArray(story.article_images) ? story.article_images : [];
+const readMinutes = story.word_count ? Math.max(1, Math.round(story.word_count / 220)) : null;
+const imageSlots = new Map();
+if (articleImages.length && paragraphs.length) {
+  const interval = Math.max(3, Math.floor(paragraphs.length / (articleImages.length + 1)));
+  articleImages.forEach((image, index) => {
+    imageSlots.set(Math.min(paragraphs.length - 1, interval * (index + 1)), image);
+  });
+}
 ---
 <BaseLayout title={`${story.title} | London News`} description={story.summary || `Local reporting from ${story.source}.`}>
   <main class:list={["article-page", categoryClass]}>
     <div class="article-shell shell">
-      <a class="back-link" href={base}><i class="ph ph-arrow-left"></i><span>Back to London News</span></a>
+      <a class="back-link" href={base}><i class="ph ph-arrow-left"></i><span>London News</span></a>
 
       <article class="article-layout">
         <header class="article-header">
-          <span class="category-chip">{story.category}</span>
+          <div class="article-topline">
+            <span class="article-section">{story.category}</span>
+            {readMinutes && <span>{readMinutes} min read</span>}
+          </div>
           <h1>{story.title}</h1>
           {story.summary && <p class="article-deck">{story.summary}</p>}
           <div class="article-byline">
@@ -54,50 +70,52 @@ const related = (news.stories || [])
 
         <div class="article-body-grid">
           <div class="article-reader">
-            <div class="reader-note">
-              <div class="reader-note-icon"><i class="ph ph-newspaper-clipping"></i></div>
-              <div>
-                <strong>From {story.source}</strong>
-                <p>London News gives you a clean preview and keeps the reporting attributed to the original publisher.</p>
-              </div>
-            </div>
-
-            {story.summary ? (
-              <div class="article-preview">
-                <p>{story.summary}</p>
+            {paragraphs.length ? (
+              <div class="article-copy">
+                {paragraphs.map((paragraph, index) => (
+                  <>
+                    <p>{paragraph}</p>
+                    {imageSlots.has(index) && (
+                      <figure class="inline-article-image">
+                        <img src={imageSlots.get(index).url} alt={imageSlots.get(index).alt || ''} loading="lazy" referrerpolicy="no-referrer" />
+                        {imageSlots.get(index).caption && <figcaption>{imageSlots.get(index).caption}</figcaption>}
+                      </figure>
+                    )}
+                  </>
+                ))}
               </div>
             ) : (
-              <div class="article-preview">
-                <p>This story does not include a publisher summary in its feed.</p>
-              </div>
+              <div class="article-copy"><p>No readable article body was returned by this source.</p></div>
             )}
 
-            <a class="primary-action" href={story.url} target="_blank" rel="noopener noreferrer">
-              Continue at {story.source}
-              <i class="ph ph-arrow-up-right"></i>
-            </a>
+            <div class="article-endcap">
+              <span>Source</span>
+              <strong>{story.source}</strong>
+              <a href={story.url} target="_blank" rel="noopener noreferrer">View original <i class="ph ph-arrow-up-right"></i></a>
+            </div>
           </div>
 
-          <aside class="article-source-card">
-            <span class="source-avatar large" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
-            <div>
-              <span class="source-card-label">Original source</span>
-              <h2>{story.source}</h2>
-              <p>Reporting, photos and full article content remain with the publisher.</p>
+          <aside class="article-sidebar">
+            <div class="article-source-card">
+              <span class="source-avatar large" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
+              <div>
+                <span class="source-card-label">Published by</span>
+                <h2>{story.source}</h2>
+              </div>
+              <a href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right"></i></a>
             </div>
-            <a href={story.source_home} target="_blank" rel="noopener noreferrer">Visit publisher <i class="ph ph-arrow-up-right"></i></a>
           </aside>
         </div>
       </article>
 
       {related.length > 0 && (
         <section class="related-section">
-          <div class="section-heading">
+          <header class="blog-section-header">
             <div>
-              <span class="section-kicker">Keep reading</span>
-              <h2>Related stories</h2>
+              <span class="eyebrow">Keep reading</span>
+              <h2>More from London</h2>
             </div>
-          </div>
+          </header>
           <div class="related-grid">
             {related.map((item) => (
               <article class="related-card">
