@@ -1,0 +1,288 @@
+---
+import '../styles/global.css';
+import news from '../../data/news.json';
+
+const stories = news.stories || [];
+const withImages = stories.filter((story) => story.image);
+const lead = withImages[0] || stories[0];
+const remaining = lead ? stories.filter((story) => story.id !== lead.id) : stories;
+const latest = remaining.slice(0, 8);
+const moreStories = remaining.slice(8, 32);
+const categories = ['All', ...Array.from(new Set(stories.map((story) => story.category))).sort()];
+const sources = Array.from(new Map(stories.map((story) => [story.source, story])).values());
+
+const published = (value) => {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+    }).format(new Date(value));
+  } catch {
+    return '';
+  }
+};
+
+const relativeGenerated = news.generated_at
+  ? new Intl.DateTimeFormat('en-CA', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(news.generated_at))
+  : 'Not updated yet';
+---
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="A fast, independent index of local London, Ontario news from multiple sources." />
+    <meta name="theme-color" content="#f5f5f7" />
+    <title>London News</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./" aria-label="London News home">
+          <span class="brand-mark">LN</span>
+          <span>London News</span>
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <a href="#latest">Latest</a>
+          <a href="#local">Local</a>
+          <a href="#sources">Sources</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-button" id="searchToggle" aria-label="Search news" title="Search news">
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          </button>
+          <button class="icon-button" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <i class="ph ph-moon" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="search-panel" id="searchPanel" hidden>
+        <div class="shell search-inner">
+          <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          <input id="searchInput" type="search" placeholder="Search headlines, sources and topics" autocomplete="off" />
+          <button id="searchClose" class="text-button">Close</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="masthead shell">
+        <div class="masthead-copy">
+          <p class="eyebrow">London, Ontario</p>
+          <h1>Your city, in one place.</h1>
+          <p class="lede">Local reporting from across London, collected into a fast, quiet reading experience.</p>
+        </div>
+        <div class="update-card">
+          <i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i>
+          <div>
+            <span>Last refresh</span>
+            <strong>{relativeGenerated}</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="filter-strip shell" aria-label="News categories">
+        <div class="filter-scroller" id="filters">
+          {categories.map((category) => (
+            <button class:list={["filter-pill", category === 'All' && 'active']} data-filter={category}>{category}</button>
+          ))}
+        </div>
+      </section>
+
+      {lead ? (
+        <section class="hero shell searchable" data-category={lead.category} data-search={`${lead.title} ${lead.summary} ${lead.source} ${lead.category}`.toLowerCase()}>
+          <a class="hero-media" href={lead.url} target="_blank" rel="noopener noreferrer" aria-label={`Read ${lead.title} at ${lead.source}`}>
+            {lead.image ? <img src={lead.image} alt="" loading="eager" referrerpolicy="no-referrer" /> : <div class="image-fallback"><span>London</span></div>}
+          </a>
+          <div class="hero-copy">
+            <div class="story-meta">
+              <span class="source-dot" style={`--source-color:${lead.source_accent}`}></span>
+              <span>{lead.source}</span>
+              <span>•</span>
+              <span>{published(lead.published)}</span>
+            </div>
+            <p class="category-label">{lead.category}</p>
+            <h2><a href={lead.url} target="_blank" rel="noopener noreferrer">{lead.title}</a></h2>
+            {lead.summary && <p class="hero-summary">{lead.summary}</p>}
+            <a class="read-link" href={lead.url} target="_blank" rel="noopener noreferrer">
+              Read at {lead.source}
+              <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
+        </section>
+      ) : (
+        <section class="empty-state shell">
+          <i class="ph ph-newspaper" aria-hidden="true"></i>
+          <h2>The newsroom is ready.</h2>
+          <p>Run the collector once, or let GitHub Actions populate this page on its first scheduled refresh.</p>
+        </section>
+      )}
+
+      {stories.length > 0 && (
+        <section class="content-grid shell" id="latest">
+          <div class="latest-column">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Live index</p>
+                <h2>Latest</h2>
+              </div>
+              <span>{stories.length} stories</span>
+            </div>
+            <div class="latest-list">
+              {latest.map((story) => (
+                <article class="latest-item searchable" data-category={story.category} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
+                  <div class="latest-copy">
+                    <div class="story-meta">
+                      <span class="source-dot" style={`--source-color:${story.source_accent}`}></span>
+                      <span>{story.source}</span>
+                      <span>•</span>
+                      <span>{published(story.published)}</span>
+                    </div>
+                    <h3><a href={story.url} target="_blank" rel="noopener noreferrer">{story.title}</a></h3>
+                    {story.summary && <p>{story.summary}</p>}
+                  </div>
+                  <a class="latest-thumb" href={story.url} target="_blank" rel="noopener noreferrer" aria-label={`Read ${story.title}`}>
+                    {story.image ? <img src={story.image} alt="" loading="lazy" referrerpolicy="no-referrer" /> : <div class="thumb-fallback"><i class="ph ph-newspaper"></i></div>}
+                  </a>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <aside class="sources-column" id="sources">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Publishers</p>
+                <h2>Sources</h2>
+              </div>
+            </div>
+            <div class="source-list">
+              {sources.map((source) => (
+                <a class="source-row" href={source.source_home} target="_blank" rel="noopener noreferrer">
+                  <span class="source-avatar" style={`--source-color:${source.source_accent}`}>{source.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
+                  <span>{source.source}</span>
+                  <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                </a>
+              ))}
+            </div>
+            <div class="about-card">
+              <i class="ph ph-info" aria-hidden="true"></i>
+              <p>Headlines and summaries link directly to the original publisher. This site does not republish full articles.</p>
+            </div>
+          </aside>
+        </section>
+      )}
+
+      {moreStories.length > 0 && (
+        <section class="more-section shell" id="local">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Across the city</p>
+              <h2>More local news</h2>
+            </div>
+          </div>
+          <div class="story-grid" id="storyGrid">
+            {moreStories.map((story) => (
+              <article class="story-card searchable" data-category={story.category} data-search={`${story.title} ${story.summary} ${story.source} ${story.category}`.toLowerCase()}>
+                <a class="card-media" href={story.url} target="_blank" rel="noopener noreferrer">
+                  {story.image ? <img src={story.image} alt="" loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-buildings"></i></div>}
+                </a>
+                <div class="card-copy">
+                  <div class="story-meta">
+                    <span class="source-dot" style={`--source-color:${story.source_accent}`}></span>
+                    <span>{story.source}</span>
+                  </div>
+                  <h3><a href={story.url} target="_blank" rel="noopener noreferrer">{story.title}</a></h3>
+                  <div class="card-footer">
+                    <span>{story.category}</span>
+                    <span>{published(story.published)}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section class="no-results shell" id="noResults" hidden>
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <h2>No matching stories</h2>
+        <p>Try another search or choose a different category.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>London News</span>
+      <span>Independent news index</span>
+      <span>Updated automatically</span>
+    </footer>
+
+    <script is:inline>
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle?.querySelector('i');
+      const savedTheme = localStorage.getItem('london-news-theme');
+      const initialTheme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      root.dataset.theme = initialTheme;
+      updateThemeIcon();
+
+      function updateThemeIcon() {
+        if (!themeIcon) return;
+        themeIcon.className = root.dataset.theme === 'dark' ? 'ph ph-sun' : 'ph ph-moon';
+      }
+
+      themeToggle?.addEventListener('click', () => {
+        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('london-news-theme', root.dataset.theme);
+        updateThemeIcon();
+      });
+
+      const searchPanel = document.getElementById('searchPanel');
+      const searchToggle = document.getElementById('searchToggle');
+      const searchClose = document.getElementById('searchClose');
+      const searchInput = document.getElementById('searchInput');
+      const noResults = document.getElementById('noResults');
+      let activeFilter = 'All';
+
+      function openSearch() {
+        if (!searchPanel) return;
+        searchPanel.hidden = false;
+        requestAnimationFrame(() => searchInput?.focus());
+      }
+      function closeSearch() {
+        if (!searchPanel) return;
+        searchPanel.hidden = true;
+        if (searchInput) searchInput.value = '';
+        applyFilters();
+      }
+      searchToggle?.addEventListener('click', openSearch);
+      searchClose?.addEventListener('click', closeSearch);
+      searchInput?.addEventListener('input', applyFilters);
+
+      document.querySelectorAll('[data-filter]').forEach((button) => {
+        button.addEventListener('click', () => {
+          activeFilter = button.dataset.filter || 'All';
+          document.querySelectorAll('[data-filter]').forEach((item) => item.classList.toggle('active', item === button));
+          applyFilters();
+        });
+      });
+
+      function applyFilters() {
+        const query = (searchInput?.value || '').trim().toLowerCase();
+        let visible = 0;
+        document.querySelectorAll('.searchable').forEach((item) => {
+          const categoryMatch = activeFilter === 'All' || item.dataset.category === activeFilter;
+          const queryMatch = !query || (item.dataset.search || '').includes(query);
+          const show = categoryMatch && queryMatch;
+          item.classList.toggle('filtered-out', !show);
+          if (show) visible += 1;
+        });
+        if (noResults) noResults.hidden = visible !== 0;
+      }
+    </script>
+  </body>
+</html>
