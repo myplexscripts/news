@@ -4728,3 +4728,214 @@ hr {
   .mobile-tab-bar > .mobile-tab:nth-child(3) { grid-column: 3 !important; }
   .mobile-tab-bar > .mobile-tab:nth-child(4) { grid-column: 4 !important; }
 }
+
+/* ================================================================
+   STORY INTERACTION + ARTICLE SIDEBAR CLEANUP
+   One link target per story card, one metadata home on article pages.
+   ================================================================ */
+
+/* Every story card is the link. Nested headline/image links are intentionally removed. */
+a.news-card,
+a.related-card,
+a.search-result-card {
+  color: inherit !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+a.news-card:visited,
+a.related-card:visited,
+a.search-result-card:visited {
+  color: inherit !important;
+}
+
+a.news-card:focus-visible,
+a.related-card:focus-visible,
+a.search-result-card:focus-visible {
+  outline: 3px solid var(--blue) !important;
+  outline-offset: 3px;
+}
+
+/* Keep hover motion on the photograph only. The logo overlay remains stationary. */
+a.news-card:hover h3,
+a.related-card:hover h3,
+a.search-result-card:hover h2 {
+  color: inherit !important;
+}
+
+/* Article sidebar is the single home for reading metadata and tags. */
+@media (min-width: 761px) {
+  .article-sidebar-refined {
+    position: relative !important;
+    top: auto !important;
+    align-self: stretch !important;
+  }
+
+  .article-sidebar-sticky {
+    position: sticky;
+    top: 24px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .article-source-card-refined {
+    position: static !important;
+    top: auto !important;
+  }
+}
+
+.article-sidebar-details {
+  display: grid;
+  gap: 14px;
+}
+
+.article-sidebar-readtime {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.article-sidebar-readtime i {
+  flex: 0 0 auto;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.article-sidebar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.article-sidebar-tags span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--surface-subtle);
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Keep Reading cards carry source, headline, publish date, and read time. */
+.related-card {
+  grid-template-rows: auto auto auto !important;
+  min-height: 156px !important;
+}
+
+.related-media {
+  grid-row: 1 / span 3 !important;
+  width: 156px !important;
+  height: 156px !important;
+}
+
+.related-card .story-meta {
+  align-self: end;
+}
+
+.related-card h3 {
+  align-self: start;
+  margin-bottom: 5px !important;
+}
+
+.related-card-footer {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px 12px;
+  margin: 0 18px 16px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.related-card-footer > * + *::before {
+  content: "•";
+  margin-right: 12px;
+  color: var(--gray-3);
+}
+
+/* Search results are also one large hit target. */
+a.search-result-card {
+  display: grid;
+}
+
+@media (max-width: 760px) {
+  .article-sidebar-sticky {
+    position: static;
+    display: grid;
+    gap: 16px;
+  }
+
+  .article-source-card-refined {
+    position: static !important;
+    top: auto !important;
+  }
+
+  .article-sidebar-details {
+    gap: 12px;
+  }
+
+  .article-sidebar-readtime {
+    min-height: 36px;
+  }
+
+  .related-card {
+    min-height: 132px !important;
+    grid-template-columns: 132px minmax(0, 1fr) !important;
+    grid-template-rows: auto auto auto !important;
+  }
+
+  .related-media {
+    width: 132px !important;
+    height: 132px !important;
+    grid-row: 1 / span 3 !important;
+  }
+
+  .related-card .story-meta {
+    margin: 11px 14px 0 !important;
+  }
+
+  .related-card h3 {
+    margin: 4px 14px 4px !important;
+    font-size: 17px !important;
+  }
+
+  .related-card-footer {
+    margin: 0 14px 11px;
+    gap: 4px 8px;
+    font-size: 16px;
+  }
+
+  .related-card-footer > * + *::before {
+    margin-right: 8px;
+  }
+}
+
+/* Whole-card links keep the same headline truncation rules as the old nested links. */
+.news-card.card-featured h3,
+.news-card.card-standard h3,
+.related-card h3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-card.card-featured h3 {
+  -webkit-line-clamp: 4;
+}
+
+.news-card.card-standard h3 {
+  -webkit-line-clamp: 3;
+}
+
+.related-card h3 {
+  -webkit-line-clamp: 2;
+}

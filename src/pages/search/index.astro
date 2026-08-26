@@ -27,14 +27,14 @@ const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{tim
 
       <div class="search-results" id="archiveSearchResults">
         {stories.map((story) => (
-          <article class="search-result-card" data-search={`${story.title} ${story.summary || ''} ${story.source || ''} ${story.category || ''} ${(story.paragraphs || []).slice(0,4).join(' ')} ${(story.story_topics || []).join(' ')}`.toLowerCase()} hidden>
-            {story.image && <a class="search-result-media" href={`${base}story/${story.id}/`}><img class="search-result-photo" src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" />{logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}</a>}
+          <a class="search-result-card" href={`${base}story/${story.id}/`} data-search={`${story.title} ${story.summary || ''} ${story.source || ''} ${story.category || ''} ${(story.paragraphs || []).slice(0,4).join(' ')} ${(story.story_topics || []).join(' ')}`.toLowerCase()} hidden>
+            {story.image && <div class="search-result-media"><img class="search-result-photo" src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" />{logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}</div>}
             <div class="search-result-copy">
               <span>{story.source}</span>
-              <h2><a href={`${base}story/${story.id}/`}>{story.title}</a></h2>
+              <h2>{story.title}</h2>
               <time datetime={story.cluster_latest_published || story.published}>{published(story.cluster_latest_published || story.published)}</time>
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </section>

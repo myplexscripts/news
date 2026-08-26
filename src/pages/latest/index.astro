@@ -88,16 +88,16 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
             {group.stories.map((story) => {
               const timestamp = storyTime(story);
               return (
-                <article
+                <a
                   class:list={["news-card", "card-standard", "searchable", !story.image && "no-image"]}
+                  href={storyHref(story)}
                   data-source={story.source}
                   data-sources={(story.cluster_sources || [story.source]).join('|')}
                   data-date-group={group.key}
-                data-hero-eligible={story.hero_eligible === false ? 'false' : 'true'}
                   data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
                 >
                   {story.image && (
-                    <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
+                    <div class="news-card-media">
                       <img
                         class="news-card-photo"
                         src={story.card_image ? `${base}${story.card_image}` : story.image}
@@ -107,20 +107,20 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
                         style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
                       />
                       {logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}
-                    </a>
+                    </div>
                   )}
                   <div class="news-card-body">
                     <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
                       <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
                     </div>
-                    <h3><a href={storyHref(story)}>{story.title}</a></h3>
+                    <h3>{story.title}</h3>
                     {story.summary && <p class="news-card-summary">{story.summary}</p>}
                     <div class="news-card-footer">
                       <time datetime={timestamp}>{published(timestamp)}</time>
-                      {Number(story.cluster_source_count || 1) > 1 && <span>{story.cluster_source_count} sources</span>}
+                      {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
                     </div>
                   </div>
-                </article>
+                </a>
               );
             })}
           </>

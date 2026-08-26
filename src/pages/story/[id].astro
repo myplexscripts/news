@@ -56,7 +56,35 @@ const readerBlocks = extractionUsable
   : story.summary ? [{ type: 'paragraph', text: story.summary }] : contentBlocks;
 
 const firstTextBlock = readerBlocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
-const readMinutes = story.word_count ? Math.max(1, Math.round(story.word_count / 220)) : null;
+const readerWordCount = Number(story.word_count) || readerBlocks.reduce((total, block) => {
+  const text = block.text || (Array.isArray(block.items) ? block.items.join(' ') : '');
+  return total + String(text || '').trim().split(/\s+/).filter(Boolean).length;
+}, 0);
+const readMinutes = readerWordCount > 0 ? Math.max(1, Math.round(readerWordCount / 220)) : null;
+const compactPublished = (value) => {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    }).format(new Date(value));
+  } catch {
+    return '';
+  }
+};
+const sidebarTagKeys = new Set();
+const sidebarTags = [story.category, ...(Array.isArray(story.story_topics) ? story.story_topics : [])]
+  .map((tag) => String(tag || '').trim())
+  .filter((tag) => {
+    if (!tag) return false;
+    const key = tag.toLowerCase().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+    if (key === 'full story' || sidebarTagKeys.has(key)) return false;
+    sidebarTagKeys.add(key);
+    return true;
+  });
 
 const compareKey = (value = '') => String(value)
   .toLowerCase()
@@ -103,51 +131,56 @@ const showDeck = Boolean(
 <BaseLayout title={`${story.title} | London News`} description={story.summary || `Local reporting from ${story.source}.`}>
   <main class:list={["article-page", categoryClass]} id="main-content">
     <div class="article-shell shell article-shell-refined">
-      <a class="back-link" href={base}><i class="ph ph-arrow-left" aria-hidden="true"></i><span>London News</span></a>
-
       <article class="article-layout article-layout-refined">
         <header class="article-header article-header-refined">
-          <div class="article-topline">
-            <span class="article-section">{story.category}</span>
-            {readMinutes && <span>{readMinutes} min read</span>}
-            {Number(story.cluster_source_count || 1) > 1 && <span>{story.cluster_source_count} sources</span>}
-          </div>
           <h1>{story.title}</h1>
-          {Array.isArray(story.story_topics) && story.story_topics.length > 0 && (
-            <div class="article-topic-row" aria-label="Story topics">
-              {story.story_topics.slice(0, 4).map((topic) => <span>{topic}</span>)}
-            </div>
-          )}
           {showDeck && <p class="article-deck">{story.summary}</p>}
         </header>
 
-        <aside class="article-sidebar article-sidebar-refined" aria-label="Article source">
-          <div class="article-source-card article-source-card-refined">
-            <div class="source-card-identity">
-              {logoFor(story.source) && <img class="source-card-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" /> }
-              <div>
-                <span class="source-card-label">Published by</span>
-                <h2>{story.source}</h2>
-              </div>
-            </div>
-            <div class="source-card-details">
-              {story.author && <span>By {story.author}</span>}
-              <time datetime={story.published}>{published(story.published)}</time>
-            </div>
-            {Number(story.cluster_source_count || 1) > 1 && (
-              <div class="source-coverage">
-                <span class="source-card-label">Also covered by</span>
-                <div class="source-coverage-links">
-                  {clusterCoverage.slice(0, 5).map((item) => (
-                    <a href={`${base}story/${item.id}/`}>
-                      <span>{item.source}</span>
-                      <i class="ph ph-arrow-right" aria-hidden="true"></i>
-                    </a>
-                  ))}
+        <aside class="article-sidebar article-sidebar-refined" aria-label="Article source and details">
+          <div class="article-sidebar-sticky">
+            <div class="article-source-card article-source-card-refined">
+              <div class="source-card-identity">
+                {logoFor(story.source) && <img class="source-card-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" /> }
+                <div>
+                  <span class="source-card-label">Published by</span>
+                  <h2>{story.source}</h2>
                 </div>
               </div>
+              <div class="source-card-details">
+                {story.author && <span>By {story.author}</span>}
+                <time datetime={story.published}>{published(story.published)}</time>
+              </div>
+              {Number(story.cluster_source_count || 1) > 1 && (
+                <div class="source-coverage">
+                  <span class="source-card-label">Also covered by</span>
+                  <div class="source-coverage-links">
+                    {clusterCoverage.slice(0, 5).map((item) => (
+                      <a href={`${base}story/${item.id}/`}>
+                        <span>{item.source}</span>
+                        <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <a class="source-original-link" href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            </div>
+            {(readMinutes || sidebarTags.length > 0) && (
+              <div class="article-sidebar-details">
+                {readMinutes && (
+                  <div class="article-sidebar-readtime">
+                    <i class="ph ph-clock" aria-hidden="true"></i>
+                    <span>{readMinutes} min read</span>
+                  </div>
+                )}
+                {sidebarTags.length > 0 && (
+                  <div class="article-sidebar-tags" aria-label="Story categories and tags">
+                    {sidebarTags.map((tag) => <span>{tag}</span>)}
+                  </div>
+                )}
+              </div>
             )}
-            <a class="source-original-link" href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
           </div>
         </aside>
 
@@ -192,16 +225,25 @@ const showDeck = Boolean(
             </div>
           </header>
           <div class="related-grid">
-            {related.map((item) => (
-              <article class="related-card">
-                <a class="related-media" href={`${base}story/${item.id}/`} aria-label={`Read ${item.title}`}>
-                  {item.image ? <img class="related-photo" src={item.card_image ? `${base}${item.card_image}` : item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
-                  {item.image && logoFor(item.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(item.source)} alt="" loading="lazy" />}
+            {related.map((item) => {
+              const relatedWords = Number(item.word_count) || String((item.paragraphs || []).join(' ') || item.content || item.summary || '').trim().split(/\s+/).filter(Boolean).length;
+              const relatedMinutes = relatedWords > 0 ? Math.max(1, Math.round(relatedWords / 220)) : 1;
+              const relatedPublished = item.cluster_latest_published || item.published;
+              return (
+                <a class="related-card" href={`${base}story/${item.id}/`}>
+                  <div class="related-media">
+                    {item.image ? <img class="related-photo" src={item.card_image ? `${base}${item.card_image}` : item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
+                    {item.image && logoFor(item.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(item.source)} alt="" loading="lazy" />}
+                  </div>
+                  <div class="story-meta"><span>{item.source}</span></div>
+                  <h3>{item.title}</h3>
+                  <div class="related-card-footer">
+                    <time datetime={relatedPublished}>{compactPublished(relatedPublished)}</time>
+                    {relatedMinutes && <span>{relatedMinutes} min read</span>}
+                  </div>
                 </a>
-                <div class="story-meta"><span>{item.source}</span></div>
-                <h3><a href={`${base}story/${item.id}/`}>{item.title}</a></h3>
-              </article>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}

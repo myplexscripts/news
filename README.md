@@ -1,37 +1,23 @@
-# London News: mobile nav + CBC/CTV reliability repair
+# London News story/card interaction cleanup
 
-Replace the matching files in your project:
+Replace these files:
 
-- `src/layouts/BaseLayout.astro`
-- `src/styles/global.css`
 - `src/pages/index.astro`
-- `src/lib/sourceLogos.ts`
-- `scripts/fetch_news.py`
-- `scripts/sources.py`
+- `src/pages/latest/index.astro`
+- `src/pages/search/index.astro`
+- `src/pages/story/[id].astro`
+- `src/styles/global.css`
 
-## Fixes
+## Changes
 
-### Mobile navigation
-- Forces Home, Sections, Search and Sources into one four-column row.
-- The final rule uses `!important` so the older three-column mobile override cannot win in the cascade.
-- Preserves the 50px capsule/tab radii and back-to-top behaviour.
-
-### CBC News London
-- Keeps the configured CBC London RSS feed as the first path.
-- If it times out, automatically tries alternate first-party CBC feed endpoints.
-- If feeds are unavailable, falls back to the CBC London regional page and only accepts `/news/canada/london/` article URLs.
-- A failed primary feed no longer makes the whole CBC source disappear when another CBC path works.
-
-### CTV News
-- More article-body DOM selectors and junk-module removal.
-- Reads JSON-LD article bodies.
-- Reads traditional embedded JSON state.
-- Decodes newer Next.js `self.__next_f.push()` hydration payloads.
-- Chooses the most complete cleaned first-party article-body candidate.
-- Stops before CTV app/contact/newsletter/related-content furniture.
-- Recovers London article links from hydration data when the landing page does not expose them as normal text anchors.
-
-### Health and repair
-- Extraction schema bumped to 11.
-- Backfill increased to 36 stories/run and prioritizes recent CBC/CTV records.
-- Source health now measures usable extraction rate and failure rate instead of penalizing publishers simply for publishing short articles.
+- Home, Latest, Search, and Keep Reading story cards are now one full clickable link target.
+- Keep Reading cards now show publisher, publish date/time, and estimated reading time.
+- Removed the `← London News` link from story pages.
+- Removed the coloured article category/read-time row above story headlines.
+- Removed the duplicate topic pills from below the headline.
+- Category + story-topic pills now live under the source card in the article sidebar.
+- `Full story` is always excluded from the pill list, with case-insensitive tag deduplication.
+- Reading time now lives in the article sidebar.
+- Desktop article source/details stack is sticky at 24px from the viewport top and follows the reader while scrolling.
+- Mobile article sidebar remains in normal document flow.
+- Existing publisher logo image overlays remain outside the photo zoom transform.
