@@ -4699,3 +4699,32 @@ hr {
     max-height: 38px;
   }
 }
+
+/* Mobile nav integrity repair: four destinations always occupy one row. */
+@media (max-width: 760px) {
+  .mobile-tab-bar {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-rows: minmax(56px, 1fr) !important;
+    grid-auto-flow: column !important;
+    grid-auto-rows: 0 !important;
+    align-items: stretch !important;
+    min-height: 66px !important;
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  .mobile-tab-bar > .mobile-tab {
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 56px !important;
+    margin: 0 !important;
+  }
+
+  .mobile-tab-bar > .mobile-tab:nth-child(1) { grid-column: 1 !important; }
+  .mobile-tab-bar > .mobile-tab:nth-child(2) { grid-column: 2 !important; }
+  .mobile-tab-bar > .mobile-tab:nth-child(3) { grid-column: 3 !important; }
+  .mobile-tab-bar > .mobile-tab:nth-child(4) { grid-column: 4 !important; }
+}

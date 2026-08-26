@@ -32,10 +32,10 @@ CARD_IMAGE_DIR = ROOT / "public" / "cache" / "news"
 HISTORY_LIMIT = 750
 REQUEST_TIMEOUT = 30
 ARTICLE_REFRESH_HOURS = 12
-BACKFILL_PER_RUN = 24
+BACKFILL_PER_RUN = 36
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 10
+EXTRACTION_SCHEMA = 11
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -61,6 +61,7 @@ SESSION.mount("http://", HTTPAdapter(max_retries=RETRY_POLICY))
 # CBC occasionally stalls from GitHub-hosted runners. Fail fast for CBC requests
 # and keep the last successful cached stories instead of spending minutes retrying.
 CBC_REQUEST_TIMEOUT = 12
+CBC_FEED_TIMEOUT = 8
 FAST_SESSION = requests.Session()
 FAST_SESSION.headers.update(SESSION.headers)
 FAST_SESSION.mount("https://", HTTPAdapter(max_retries=Retry(total=0)))
@@ -123,6 +124,21 @@ GLOBAL_BOILERPLATE = (
     "click to play video",
     "recommended video",
 )
+
+
+CTV_BOILERPLATE = (
+    "ctv news app", "download the ctv news app", "contact us", "newsletters",
+    "sign up for our newsletters", "more from ctv news", "related stories",
+    "recommended for you", "watch more", "latest videos", "advertisement",
+    "bell media", "privacy policy", "terms and conditions", "team",
+)
+
+CTV_STOP_MARKERS = (
+    "ctv news app", "contact us", "faq", "newsletters", "team",
+    "related stories", "more from ctv news", "recommended for you",
+    "latest videos", "watch more",
+)
+
 
 SOURCE_NAME_ALIASES = {
     "CBC": "CBC News London",
@@ -227,12 +243,18 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
     "CTV News": {
         "profile": "ctv",
         "roots": [
-            "[data-testid='article-body']", "[class*='articleBody']", ".articleBody",
-            ".article-body", ".article__body", ".article-content", "[itemprop='articleBody']", "article"
+            "[data-testid='article-body']", "[data-testid*='article-body']",
+            "[data-testid*='articleBody']", "[class*='articleBody']", "[class*='ArticleBody']",
+            ".articleBody", ".article-body", ".article__body", ".article-content",
+            ".story-body", "[class*='storyBody']", "[class*='StoryBody']",
+            "[itemprop='articleBody']", "main article", "article", "main"
         ],
         "remove": [
             ".related", ".newsletter", ".share", ".social", ".ad", ".advertisement",
-            "[class*='related']", "[class*='recommend']", "[class*='advert']", "aside"
+            "[class*='related']", "[class*='recommend']", "[class*='advert']",
+            "[class*='newsletter']", "[class*='recirc']", "[class*='popular']",
+            "[class*='video']", "[data-testid*='video']", "[class*='player']",
+            "nav", "footer", "aside"
         ],
     },
     "104.7 Heart FM": {
@@ -376,7 +398,17 @@ def source_boilerplate(source_name: str) -> tuple[str, ...]:
         return POSTMEDIA_BOILERPLATE
     if "global news" in lower:
         return GLOBAL_BOILERPLATE
+    if "ctv" in lower:
+        return CTV_BOILERPLATE
     return ()
+
+
+
+def ctv_stop_text(value: str) -> bool:
+    key = boilerplate_key(value)
+    if not key:
+        return False
+    return any(key == boilerplate_key(marker) or key.startswith(boilerplate_key(marker) + " ") for marker in CTV_STOP_MARKERS)
 
 
 def is_boilerplate_block(value: str, source_name: str = "") -> bool:
@@ -454,6 +486,8 @@ def clean_article_blocks(blocks: list[str], source_name: str = "", title: str = 
             stats["raw_text_blocks"] = stats.get("raw_text_blocks", 0) + 1
         text = clean_text(strip_title_echo(normalize_source_case(block), title))
         if is_global_source(source_name) and global_stop_text(text):
+            break
+        if source_name == "CTV News" and ctv_stop_text(text):
             break
         if len(text) < 25:
             if stats is not None:
@@ -993,11 +1027,11 @@ def _ctv_value_blocks(value: Any, source_name: str, title: str, stats: dict[str,
 
 
 def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[dict[str, Any]], dict[str, int]]:
-    """Extract CTV article prose from JSON page state when the DOM is only a shell.
+    """Extract CTV article prose from any server-provided application state.
 
-    CTV's current London pages can expose headline/byline/image in server HTML while
-    the story body is hydrated from embedded application state. We only use this
-    fallback for CTV and choose the largest plausible article-body candidate.
+    CTV has used several React/Next rendering shapes. Some pages expose ordinary
+    JSON in __NEXT_DATA__, while newer pages can serialize the same state inside
+    self.__next_f.push() strings. Decode both before looking for body fields.
     """
     stats: dict[str, int] = {"raw_text_blocks": 0, "boilerplate_removed": 0, "duplicates_removed": 0, "short_removed": 0}
     candidates: list[list[dict[str, Any]]] = []
@@ -1005,11 +1039,11 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
     def consider(value: Any) -> None:
         blocks = _ctv_value_blocks(value, "CTV News", title, stats)
         paragraphs, text = text_from_blocks(blocks)
-        if len(paragraphs) >= 2 and len(text) >= 220:
+        if len(paragraphs) >= 2 and len(text) >= 180:
             candidates.append(blocks)
 
     def scan_object(node: Any, depth: int = 0) -> None:
-        if depth > 12:
+        if depth > 14:
             return
         if isinstance(node, list):
             for item in node:
@@ -1022,10 +1056,59 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
             compact = normalized.replace("_", "")
             if normalized in CTV_EMBEDDED_BODY_KEYS or compact in CTV_EMBEDDED_BODY_KEYS:
                 consider(value)
-            elif normalized == "content" and (isinstance(value, (dict, list)) or (isinstance(value, str) and len(value) > 500)):
+            elif normalized == "content" and (
+                isinstance(value, (dict, list)) or (isinstance(value, str) and len(value) > 420)
+            ):
                 consider(value)
             if isinstance(value, (dict, list)):
                 scan_object(value, depth + 1)
+
+    def scan_serialized_text(raw_text: str) -> None:
+        if not raw_text:
+            return
+        text = html.unescape(raw_text)
+
+        # First try the whole value as JSON.
+        try:
+            scan_object(json.loads(text))
+        except Exception:
+            pass
+
+        # Pull JSON string values directly after known article-body keys. This is
+        # more stable than relying on one exact application-state object shape.
+        key_pattern = re.compile(
+            r'["\\\'](?:articleBody|article_body|articleContent|article_content|storyBody|story_body|bodyContent|body_content|body|content)["\\\']\\s*:\\s*',
+            re.I,
+        )
+        decoder = json.JSONDecoder()
+        for match in key_pattern.finditer(text):
+            tail = text[match.end():].lstrip()
+            if not tail:
+                continue
+            try:
+                value, _ = decoder.raw_decode(tail)
+            except Exception:
+                continue
+            if isinstance(value, str) and len(value) < 160:
+                continue
+            consider(value)
+
+        # Some scripts remain one level escaped after hydration serialization.
+        # Decode common escaped quote/slash sequences and scan once more.
+        if '\\"' in text or '\\/' in text:
+            decoded = text.replace('\\/', '/').replace('\\"', '"')
+            if decoded != text:
+                try:
+                    scan_object(json.loads(decoded))
+                except Exception:
+                    pass
+                for match in key_pattern.finditer(decoded):
+                    tail = decoded[match.end():].lstrip()
+                    try:
+                        value, _ = decoder.raw_decode(tail)
+                    except Exception:
+                        continue
+                    consider(value)
 
     for script in soup.find_all("script"):
         raw = script.string or script.get_text("", strip=False)
@@ -1033,24 +1116,37 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
             continue
         script_type = (script.get("type") or "").lower()
         script_id = (script.get("id") or "").lower()
-        if "json" in script_type or script_id in {"__next_data__", "__nuxt_data__"}:
-            try:
-                scan_object(json.loads(raw))
-            except Exception:
-                pass
 
-        # Also support JSON serialized inside a normal JavaScript assignment.
-        for match in re.finditer(r'"(?:articleBody|article_body|articleContent|storyBody|story_body|bodyContent|body|content)"\\s*:\\s*"((?:\\\\.|[^"\\\\]){180,})"', raw):
-            escaped = match.group(1)
-            try:
-                decoded = json.loads('"' + escaped + '"')
-            except Exception:
-                continue
-            consider(decoded)
+        if "json" in script_type or script_id in {"__next_data__", "__nuxt_data__"}:
+            scan_serialized_text(raw)
+
+        # Next.js App Router stores hydration data as JSON-encoded strings inside
+        # self.__next_f.push([id, "..."]). Decode each payload before scanning.
+        if "__next_f.push" in raw:
+            for match in re.finditer(
+                r'self\.__next_f\.push\(\s*\[\s*\d+\s*,\s*("(?:\\.|[^"\\])*")\s*\]\s*\)',
+                raw,
+                flags=re.S,
+            ):
+                try:
+                    payload = json.loads(match.group(1))
+                except Exception:
+                    continue
+                scan_serialized_text(payload)
+
+        # Legacy JavaScript assignments can contain body strings without being a
+        # complete JSON document. Scan every script, but only known body keys.
+        if any(key.lower() in raw.lower() for key in ("articleBody", "articleContent", "storyBody", "bodyContent")):
+            scan_serialized_text(raw)
 
     if not candidates:
         return [], stats
-    candidates.sort(key=lambda blocks: len(text_from_blocks(blocks)[1]), reverse=True)
+
+    # Prefer the most complete candidate after boilerplate/duplicate cleanup.
+    candidates.sort(
+        key=lambda blocks: (len(text_from_blocks(blocks)[1]), len(text_from_blocks(blocks)[0])),
+        reverse=True,
+    )
     return candidates[0], stats
 
 def clean_structured_text(value: str, source_name: str, title: str, seen: list[str], stats: dict[str, int], min_length: int = 18) -> str:
@@ -1097,6 +1193,7 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
     postmedia_trending = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
+    ctv_mode = source_name == "CTV News"
 
     nodes = clone_root.find_all(["h2", "h3", "p", "blockquote", "ul", "ol", "figure", "img"], recursive=True)
     for node in nodes:
@@ -1114,6 +1211,8 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             raw_node_text = clean_text(node.get_text(" ", strip=True))
             raw_key = boilerplate_key(raw_node_text)
             if is_global_source(source_name) and global_stop_text(raw_node_text):
+                break
+            if ctv_mode and ctv_stop_text(raw_node_text):
                 break
             # Heart FM places a large "More from Local News" module inside the
             # same broad page region as the article. Ignore the breadcrumb copy
@@ -1343,6 +1442,10 @@ def extraction_quality(story: dict[str, Any], stats: dict[str, int], method: str
         score += 9
     elif method.startswith("dom:") and ":none" not in method:
         score += 6
+    elif method.startswith(("jsonld:", "embedded-json:")):
+        # Publisher-supplied structured article bodies are first-party extraction
+        # paths, not lower-confidence fallbacks. CTV in particular relies on them.
+        score += 9
     elif method.startswith("trafilatura"):
         score += 4
 
@@ -1523,12 +1626,42 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
             stats[key] = stats.get(key, 0) + value
         _, ctv_text = text_from_blocks(ctv_blocks)
 
-    # Prefer the CTV page-state body when it is materially more complete than the
-    # server-rendered DOM or Trafilatura result. Otherwise retain the normal path.
-    if ctv_blocks and len(ctv_text) >= MIN_ARTICLE_CHARS and len(ctv_text) >= max(len(dom_text), len(extracted_text)) * 0.92:
-        blocks = ctv_blocks
-        paragraphs, text = text_from_blocks(blocks)
-        method = "embedded-json:ctv"
+    # CTV changes its rendering shape frequently. Treat DOM, JSON-LD, embedded
+    # React state and readability extraction as parallel first-party candidates,
+    # clean each one, then use the most complete plausible article body.
+    if source.name == "CTV News":
+        ctv_candidates: list[tuple[int, int, str, list[dict[str, Any]], list[str], str]] = []
+
+        def add_ctv_candidate(candidate_method: str, candidate_blocks: list[dict[str, Any]], priority: int) -> None:
+            candidate_paragraphs, candidate_text = text_from_blocks(candidate_blocks)
+            candidate_paragraphs = clean_article_blocks(candidate_paragraphs, source.name, title)
+            if len(candidate_paragraphs) < 2 or len(candidate_text) < 150:
+                return
+            # Rebuild the final CTV block list from the cleaned prose every time.
+            # This prevents a footer/related module removed from paragraphs from
+            # surviving separately inside content_blocks.
+            candidate_blocks = fallback_blocks(candidate_paragraphs, inline_candidates)
+            candidate_text = "\n\n".join(candidate_paragraphs)
+            ctv_candidates.append((len(candidate_text), priority, candidate_method, candidate_blocks, candidate_paragraphs, candidate_text))
+
+        if ctv_blocks:
+            add_ctv_candidate("embedded-json:ctv", ctv_blocks, 4)
+        if ld_paragraphs:
+            add_ctv_candidate("jsonld:ctv", fallback_blocks(ld_paragraphs, inline_candidates), 3)
+        if dom_blocks:
+            add_ctv_candidate(method, dom_blocks, 2)
+        cleaned_extracted = clean_article_blocks(extracted_paragraphs or initial_paragraphs, source.name, title)
+        if cleaned_extracted:
+            add_ctv_candidate("trafilatura:ctv", fallback_blocks(cleaned_extracted, inline_candidates), 1)
+
+        if ctv_candidates:
+            # Length is the strongest completeness signal; priority only breaks
+            # near-ties in favour of publisher-structured data.
+            ctv_candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)
+            _, _, method, blocks, paragraphs, text = ctv_candidates[0]
+        else:
+            blocks, paragraphs, text = [], [], ""
+            method = "ctv:no-trusted-body"
     elif is_global_source(source.name):
         # Scoop treats Global as a strict source. Whole-page readability extraction can
         # accidentally ingest video rails, newsletter modules and hidden recirculation.
@@ -1609,7 +1742,9 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     story["quality"] = extraction_quality(story, stats, method)
     score = story["quality"]["score"]
     complete_shape = word_count >= 120 or len(paragraphs) >= 3
-    story["content_status"] = "full" if score >= 55 and complete_shape else "partial" if word_count >= 55 else "summary"
+    trusted_ctv_body = source.name == "CTV News" and method.startswith(("jsonld:ctv", "embedded-json:ctv"))
+    full_enough = (score >= 55 and complete_shape) or (trusted_ctv_body and score >= 45 and word_count >= 90 and len(paragraphs) >= 2)
+    story["content_status"] = "full" if full_enough else "partial" if word_count >= 55 else "summary"
     return story
 
 
@@ -1644,10 +1779,10 @@ def google_entry_source(entry: Any) -> tuple[str, str]:
     return canonical_source_name(name), clean_text(home, 500)
 
 
-def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+def rss_items(source: Source, existing: dict[str, dict[str, Any]], request_timeout: int | None = None) -> list[dict[str, Any]]:
     is_cbc = source.name == "CBC News London"
     session = FAST_SESSION if is_cbc else SESSION
-    timeout = CBC_REQUEST_TIMEOUT if is_cbc else REQUEST_TIMEOUT
+    timeout = request_timeout if request_timeout is not None else (CBC_REQUEST_TIMEOUT if is_cbc else REQUEST_TIMEOUT)
     response = session.get(source.url, timeout=timeout)
     response.raise_for_status()
     feed = feedparser.parse(response.content)
@@ -1732,18 +1867,83 @@ def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[
     return items
 
 
+
+def cbc_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    """Fetch CBC London without making one Akamai RSS endpoint a single point of failure."""
+    attempts: list[str] = []
+    feed_urls = [
+        source.url,
+        "https://rss.cbc.ca/lineup/canada-london.xml",
+        "https://www.cbc.ca/cmlink/rss-canada-london",
+    ]
+    seen_urls: set[str] = set()
+
+    for feed_url in feed_urls:
+        if not feed_url or feed_url in seen_urls:
+            continue
+        seen_urls.add(feed_url)
+        candidate = Source(
+            name=source.name,
+            logo=getattr(source, "logo", ""),
+            url=feed_url,
+            kind="rss",
+            homepage=source.homepage,
+            accent=source.accent,
+            max_items=source.max_items,
+        )
+        try:
+            items = rss_items(candidate, existing, request_timeout=CBC_FEED_TIMEOUT)
+            if items:
+                for item in items:
+                    item["ingestion_path"] = "cbc-rss" if feed_url == source.url else "cbc-rss-fallback"
+                if feed_url != source.url:
+                    print(f"CBC News London: primary feed unavailable; using {feed_url}", file=sys.stderr)
+                return items
+            attempts.append(f"{feed_url}: empty feed")
+        except Exception as exc:
+            attempts.append(f"{feed_url}: {str(exc)[:110]}")
+
+    # Final first-party fallback: discover only CBC London article links from the
+    # regional landing page. This is intentionally narrow so national CBC stories
+    # cannot leak into the local feed.
+    page_source = Source(
+        name=source.name,
+        logo=getattr(source, "logo", ""),
+        url=source.homepage or "https://www.cbc.ca/news/canada/london",
+        kind="page",
+        homepage=source.homepage or "https://www.cbc.ca/news/canada/london",
+        accent=source.accent,
+        max_items=source.max_items,
+    )
+    try:
+        items = page_items(page_source, existing)
+        if items:
+            for item in items:
+                item["ingestion_path"] = "cbc-regional-page"
+            print("CBC News London: RSS unavailable; using regional page discovery", file=sys.stderr)
+            return items
+        attempts.append("regional page: no London article links")
+    except Exception as exc:
+        attempts.append(f"regional page: {str(exc)[:110]}")
+
+    raise RuntimeError("CBC London unavailable through all first-party paths: " + " | ".join(attempts[-4:]))
+
 def page_links(source: Source) -> list[str]:
     raw, final_url = fetch_html(source.url)
     soup = BeautifulSoup(raw, "html.parser")
     host = urlparse(final_url).netloc.lower().replace("www.", "")
     links: list[str] = []
     ctv_mode = source.name == "CTV News"
+    cbc_mode = source.name == "CBC News London"
     city_mode = source.name == "City of London Newsroom"
+
     selectors = (
         ["a[href*='/news/posts/']"]
         if is_police_source(source.name)
         else ["a[href*='/london/article/']", "main a[href*='/london/article/']"]
         if ctv_mode
+        else ["a[href*='/news/canada/london/']", "main a[href*='/news/canada/london/']"]
+        if cbc_mode
         else ["a[href*='/newsroom/']", "main a[href*='/newsroom/']"]
         if city_mode
         else [
@@ -1751,30 +1951,53 @@ def page_links(source: Source) -> list[str]:
             ".news-item a[href]", ".card a[href]", "a[href*='/news/']",
         ]
     )
+
+    def add_url(url: str, anchor_text: str = "") -> bool:
+        url = canonical_url(url)
+        if not url or canonical_url(url) == canonical_url(source.url):
+            return False
+        parsed = urlparse(url)
+        if parsed.netloc.lower().replace("www.", "") != host:
+            return False
+        path = parsed.path.lower()
+        if is_police_source(source.name) and "/news/posts/" not in path:
+            return False
+        if ctv_mode and "/london/article/" not in path:
+            return False
+        if cbc_mode and "/news/canada/london/" not in path:
+            return False
+        if city_mode and "/newsroom/" not in path:
+            return False
+        # CTV/CBC often wrap the image and headline in separate anchors. Their
+        # image anchor may contain no text, but the URL is still authoritative.
+        if not (ctv_mode or cbc_mode) and len(clean_text(anchor_text)) < 8:
+            return False
+        if url not in links:
+            links.append(url)
+        return len(links) >= source.max_items
+
     for selector in selectors:
         for anchor in soup.select(selector):
             href = anchor.get("href")
             if not href:
                 continue
-            url = urljoin(final_url, href)
-            if urlparse(url).netloc.lower().replace("www.", "") != host:
-                continue
-            path = urlparse(url).path.lower()
-            if is_police_source(source.name) and "/news/posts/" not in path:
-                continue
-            if ctv_mode and "/london/article/" not in path:
-                continue
-            if city_mode and "/newsroom/" not in path:
-                continue
-            if canonical_url(url) == canonical_url(source.url) or len(clean_text(anchor.get_text(" ", strip=True))) < 8:
-                continue
-            clean = canonical_url(url)
-            if clean not in links:
-                links.append(clean)
-            if len(links) >= source.max_items:
+            if add_url(urljoin(final_url, href), anchor.get_text(" ", strip=True)):
                 return links
-    return links
 
+    # React hydration payloads can contain article URLs that are not rendered as
+    # ordinary anchors in the server HTML. Recover only first-party local paths.
+    if ctv_mode or cbc_mode:
+        normalized_raw = html.unescape(raw).replace("\\/", "/")
+        pattern = (
+            r'(?:https?://(?:www\.)?ctvnews\.ca)?(/london/article/[A-Za-z0-9][^"\'<>\\\s?#]*)'
+            if ctv_mode
+            else r'(?:https?://(?:www\.)?cbc\.ca)?(/news/canada/london/[A-Za-z0-9][^"\'<>\\\s?#]*)'
+        )
+        for match in re.finditer(pattern, normalized_raw, flags=re.I):
+            if add_url(urljoin(final_url, match.group(1))):
+                return links
+
+    return links
 
 def page_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     items: list[dict[str, Any]] = []
@@ -1813,6 +2036,7 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
     skipping_postmedia_trending = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
+    ctv_mode = source_name == "CTV News"
     for block in blocks:
         if not isinstance(block, dict):
             continue
@@ -1961,7 +2185,17 @@ def backfill_missing(
     source_by_name = {source.name: source for source in SOURCES}
     skip_sources = skip_sources or set()
     done = 0
-    for story in stories:
+    # Repair CBC/CTV first after extractor changes so stale degraded records do
+    # not keep their source health orange for many scheduled refreshes.
+    priority_sources = {"CBC News London": 0, "CTV News": 0}
+    # Python's sort is stable, so sorting only by priority preserves the existing
+    # newest-first order within CBC/CTV and repairs the records that affect health
+    # and the visible feed first.
+    candidates = sorted(
+        stories,
+        key=lambda item: priority_sources.get(item.get("source", ""), 1),
+    )
+    for story in candidates:
         if done >= BACKFILL_PER_RUN:
             break
         needs_upgrade = story.get("extraction_schema") != EXTRACTION_SCHEMA
@@ -2007,15 +2241,21 @@ def build_source_health(stories: list[dict[str, Any]], run_counts: dict[str, int
         scores = [int((story.get("quality") or {}).get("score") or 0) for story in recent]
         grades = [str((story.get("quality") or {}).get("grade") or "poor") for story in recent]
         full = sum(1 for story in recent if story.get("content_status") == "full")
-        partial = sum(1 for story in recent if story.get("content_status") in ("partial", "summary"))
+        partial = sum(1 for story in recent if story.get("content_status") == "partial")
+        summary = sum(1 for story in recent if story.get("content_status") == "summary")
         failed = sum(1 for story in recent if story.get("content_status") == "failed" or story.get("scrape_error"))
         avg = round(sum(scores) / len(scores)) if scores else 0
         last_scrape = max((story.get("scraped_at", "") for story in recent), default="")
         error = run_errors.get(source.name, "")
+        tracked = max(1, len(recent))
+        usable_ratio = (full + partial) / tracked
+        failure_ratio = failed / tracked
+        # Source health measures extractor reliability, not how long a publisher's
+        # stories happen to be. A source with clean short briefs should not be orange.
         status = (
             "error" if error and not recent
             else "degraded" if error
-            else "healthy" if avg >= 65 and failed == 0
+            else "healthy" if recent and usable_ratio >= 0.70 and failure_ratio <= 0.10
             else "degraded" if recent
             else "waiting"
         )
@@ -2030,6 +2270,7 @@ def build_source_health(stories: list[dict[str, Any]], run_counts: dict[str, int
             "tracked": len(recent),
             "full": full,
             "partial": partial,
+            "summary": summary,
             "failed": failed,
             "excellent": grades.count("excellent"),
             "good": grades.count("good"),
@@ -2199,7 +2440,9 @@ def main() -> int:
 
     for source in SOURCES:
         try:
-            if source.kind in ("rss", "google_topic"):
+            if source.name == "CBC News London":
+                items = cbc_items(source, lookup)
+            elif source.kind in ("rss", "google_topic"):
                 items = rss_items(source, lookup)
             else:
                 items = page_items(source, lookup)
