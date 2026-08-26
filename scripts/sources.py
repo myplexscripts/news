@@ -35,9 +35,11 @@ SOURCES = [
     ),
     Source(
         name="CTV News",
-        # CTV still exposes a dedicated London RSS feed. Use it for dependable
-        # story discovery, then enrich each entry from the current article URL.
-        url="https://london.ctvnews.ca/rss/ctv-news-london-1.1073369",
+        # CTV's legacy London RSS endpoint now redirects to a dead URL. Discover
+        # stories from the current London landing page and scrape the first-party
+        # /london/article/ pages directly instead.
+        url="https://www.ctvnews.ca/london/",
+        kind="page",
         homepage="https://www.ctvnews.ca/london/",
         accent="#6155f5",
         max_items=30,

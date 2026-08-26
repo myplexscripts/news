@@ -57,6 +57,14 @@ RETRY_POLICY = Retry(
 SESSION.mount("https://", HTTPAdapter(max_retries=RETRY_POLICY))
 SESSION.mount("http://", HTTPAdapter(max_retries=RETRY_POLICY))
 
+# CBC occasionally stalls from GitHub-hosted runners. Fail fast for CBC requests
+# and keep the last successful cached stories instead of spending minutes retrying.
+CBC_REQUEST_TIMEOUT = 12
+FAST_SESSION = requests.Session()
+FAST_SESSION.headers.update(SESSION.headers)
+FAST_SESSION.mount("https://", HTTPAdapter(max_retries=Retry(total=0)))
+FAST_SESSION.mount("http://", HTTPAdapter(max_retries=Retry(total=0)))
+
 CATEGORY_RULES = [
     ("Public Safety", ("police", "arrest", "charged", "shooting", "collision", "fire", "fraud", "missing", "court", "crime")),
     ("City Hall", ("council", "mayor", "city hall", "municipal", "zoning", "budget", "ward", "election", "city of london")),
@@ -565,7 +573,11 @@ def image_from_entry(entry: Any) -> str:
 
 
 def fetch_html(url: str) -> tuple[str, str]:
-    response = SESSION.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
+    host = urlparse(url).netloc.lower()
+    is_cbc = host == "cbc.ca" or host.endswith(".cbc.ca")
+    session = FAST_SESSION if is_cbc else SESSION
+    timeout = CBC_REQUEST_TIMEOUT if is_cbc else REQUEST_TIMEOUT
+    response = session.get(url, timeout=timeout, allow_redirects=True)
     response.raise_for_status()
     return response.text, response.url
 
@@ -1179,7 +1191,12 @@ def json_ld_body_paragraphs(ld: dict[str, Any], source_name: str, title: str, st
         raw = BeautifulSoup(str(body), "html.parser").get_text("\n", strip=True)
     parts = [part for part in re.split(r"\n{2,}|\r\n{2,}", raw) if clean_text(part)]
     if len(parts) <= 1 and len(clean_text(raw)) > 700:
-        sentences = re.split(r"(?<=[.!?][\"'’”)]?)\s+(?=[A-Z0-9\"'“‘])", clean_text(raw))
+        sentence_text = clean_text(raw)
+        # Python look-behind must be fixed-width. Mark sentence boundaries in two
+        # ordinary substitutions instead, including punctuation followed by a quote.
+        sentence_text = re.sub(r"([.!?])([\"'’”])\s+(?=[A-Z0-9\"'“‘])", r"\1\2\n", sentence_text)
+        sentence_text = re.sub(r"([.!?])\s+(?=[A-Z0-9\"'“‘])", r"\1\n", sentence_text)
+        sentences = [part.strip() for part in sentence_text.split("\n") if part.strip()]
         parts = []
         chunk: list[str] = []
         size = 0
@@ -1569,7 +1586,10 @@ def google_entry_source(entry: Any) -> tuple[str, str]:
 
 
 def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    response = SESSION.get(source.url, timeout=REQUEST_TIMEOUT)
+    is_cbc = source.name == "CBC News London"
+    session = FAST_SESSION if is_cbc else SESSION
+    timeout = CBC_REQUEST_TIMEOUT if is_cbc else REQUEST_TIMEOUT
+    response = session.get(source.url, timeout=timeout)
     response.raise_for_status()
     feed = feedparser.parse(response.content)
     items: list[dict[str, Any]] = []
@@ -1629,7 +1649,18 @@ def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[
             merged.update({"source": display_source, "source_home": source_home, "source_accent": source_accent})
             items.append(merged)
         else:
-            enriched = enrich_article({**(old or {}), **basic}, effective_source)
+            try:
+                enriched = enrich_article({**(old or {}), **basic}, effective_source)
+            except Exception as exc:
+                # One malformed publisher page should degrade one story, not the
+                # entire source refresh. Keep the feed metadata as a safe fallback.
+                enriched = {**(old or {}), **basic}
+                enriched["scrape_error"] = str(exc)[:240]
+                enriched["scraped_at"] = datetime.now(timezone.utc).isoformat()
+                enriched["content_status"] = "summary"
+                enriched["extraction_schema"] = EXTRACTION_SCHEMA
+                enriched["quality"] = extraction_quality(enriched, {}, "failed:story")
+                print(f"Story skipped: {display_source} | {title[:70]} | {exc}", file=sys.stderr)
             # If a Google News redirect resolved, replace its temporary id with the
             # canonical article id so a direct-feed copy merges cleanly later.
             if google_discovery:
@@ -1693,13 +1724,23 @@ def page_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict
         if old and not stale(old):
             story = {**old, "source": source.name, "source_home": source.homepage, "source_accent": source.accent}
         else:
-            story = enrich_article({
+            basic = {
                 "id": make_id(url), "title": old.get("title", "") if old else "", "source": source.name,
                 "source_home": source.homepage, "source_accent": source.accent, "url": canonical_url(url),
                 "published": old.get("published", datetime.now(timezone.utc).isoformat()) if old else datetime.now(timezone.utc).isoformat(),
                 "summary": old.get("summary", "") if old else "", "image": old.get("image", "") if old else "",
                 "author": old.get("author", "") if old else "", "category": old.get("category", "Local") if old else "Local",
-            }, source)
+            }
+            try:
+                story = enrich_article(basic, source)
+            except Exception as exc:
+                story = {**(old or {}), **basic}
+                story["scrape_error"] = str(exc)[:240]
+                story["scraped_at"] = datetime.now(timezone.utc).isoformat()
+                story["content_status"] = "summary"
+                story["extraction_schema"] = EXTRACTION_SCHEMA
+                story["quality"] = extraction_quality(story, {}, "failed:story")
+                print(f"Story skipped: {source.name} | {url[:90]} | {exc}", file=sys.stderr)
             time.sleep(0.14)
         if story.get("title"):
             items.append(story)
@@ -1846,8 +1887,12 @@ def add_image_focus(stories: list[dict[str, Any]], limit: int = 24) -> list[dict
     return stories
 
 
-def backfill_missing(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def backfill_missing(
+    stories: list[dict[str, Any]],
+    skip_sources: set[str] | None = None,
+) -> list[dict[str, Any]]:
     source_by_name = {source.name: source for source in SOURCES}
+    skip_sources = skip_sources or set()
     done = 0
     for story in stories:
         if done >= BACKFILL_PER_RUN:
@@ -1857,6 +1902,8 @@ def backfill_missing(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if not needs_upgrade and not needs_content:
             continue
         source_name = story.get("source", "")
+        if source_name in skip_sources:
+            continue
         source = source_by_name.get(source_name)
         if not source and story.get("url"):
             source = Source(
@@ -1870,7 +1917,13 @@ def backfill_missing(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if not source or not story.get("url"):
             continue
         print(f"Backfill: {story.get('source')} | {story.get('title', '')[:70]}")
-        enrich_article(story, source)
+        try:
+            enrich_article(story, source)
+        except Exception as exc:
+            # A single malformed legacy article must never abort the whole refresh.
+            story["scrape_error"] = str(exc)[:240]
+            story["scraped_at"] = datetime.now(timezone.utc).isoformat()
+            print(f"Backfill skipped: {story.get('source')} | {exc}", file=sys.stderr)
         done += 1
         time.sleep(0.18)
     return stories
@@ -1997,7 +2050,9 @@ def main() -> int:
     stories = dedupe_stories(list(merged.values()))
     stories = [story for story in stories if not is_unusable_google_story(story)]
     stories = [sanitize_cached_story(story) for story in stories]
-    stories = backfill_missing(stories)
+    # Do not immediately hammer a source again during backfill if it already failed
+    # during this run. Cached stories stay available until that publisher recovers.
+    stories = backfill_missing(stories, skip_sources=set(run_errors))
     stories = remove_repeated_source_images(stories)
     stories = add_image_focus(stories)
 
