@@ -83,10 +83,6 @@ const generated = news.generated_at
             </details>
           )}
         </div>
-        <a class="manage-sources-button" href={`${base}sources/`}>
-          <i class="ph ph-sliders-horizontal" aria-hidden="true"></i>
-          <span>Sources</span>
-        </a>
       </div>
     </section>
 
@@ -97,9 +93,9 @@ const generated = news.generated_at
       </header>
 
       <div class="news-card-grid" id="newsCardGrid">
-        {stories.map((story) => (
+        {stories.map((story, index) => (
           <article
-            class:list={["news-card", "searchable", categoryClass(story.category), !story.image && "no-image"]}
+            class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
             data-category={story.category}
             data-source={story.source}
             data-search={`${story.title} ${story.summary || ''} ${story.source} ${story.category || ''}`.toLowerCase()}

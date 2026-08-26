@@ -35,11 +35,12 @@ SOURCES = [
     ),
     Source(
         name="CTV News",
-        url="https://www.ctvnews.ca/london/",
-        kind="page",
+        # CTV still exposes a dedicated London RSS feed. Use it for dependable
+        # story discovery, then enrich each entry from the current article URL.
+        url="https://london.ctvnews.ca/rss/ctv-news-london-1.1073369",
         homepage="https://www.ctvnews.ca/london/",
         accent="#6155f5",
-        max_items=25,
+        max_items=30,
     ),
     Source(
         name="106.9 The X",

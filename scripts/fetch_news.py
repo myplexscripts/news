@@ -16,6 +16,8 @@ from urllib.parse import parse_qsl, urlencode, urljoin, urlparse, urlunparse
 
 import feedparser
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup, Tag
 from dateutil import parser as date_parser
 from trafilatura import bare_extraction, extract
@@ -26,12 +28,12 @@ from sources import SOURCES, Source
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "news.json"
 HISTORY_LIMIT = 750
-REQUEST_TIMEOUT = 22
+REQUEST_TIMEOUT = 30
 ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 12
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 5
+EXTRACTION_SCHEMA = 6
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -41,6 +43,18 @@ SESSION.headers.update({
     "Accept": "text/html,application/xhtml+xml,application/rss+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-CA,en;q=0.9",
 })
+RETRY_POLICY = Retry(
+    total=2,
+    connect=2,
+    read=2,
+    status=2,
+    backoff_factor=0.65,
+    status_forcelist=(429, 500, 502, 503, 504),
+    allowed_methods=frozenset({"GET"}),
+    raise_on_status=False,
+)
+SESSION.mount("https://", HTTPAdapter(max_retries=RETRY_POLICY))
+SESSION.mount("http://", HTTPAdapter(max_retries=RETRY_POLICY))
 
 CATEGORY_RULES = [
     ("Public Safety", ("police", "arrest", "charged", "shooting", "collision", "fire", "fraud", "missing", "court", "crime")),
@@ -766,6 +780,159 @@ def strip_postmedia_trending_blocks(blocks: list[dict[str, Any]]) -> list[dict[s
     return cleaned
 
 
+
+CTV_EMBEDDED_BODY_KEYS = {
+    "articlebody", "article_body", "articlecontent", "article_content",
+    "storybody", "story_body", "bodycontent", "body_content", "body",
+}
+CTV_EMBEDDED_TEXT_KEYS = {"text", "html", "value", "content", "paragraph", "description"}
+
+
+def _ctv_value_blocks(value: Any, source_name: str, title: str, stats: dict[str, int]) -> list[dict[str, Any]]:
+    """Turn a CTV embedded JSON body value into clean structured blocks."""
+    raw_blocks: list[dict[str, Any]] = []
+
+    def append_text(raw_value: str) -> None:
+        value_text = html.unescape(str(raw_value or "")).strip()
+        if len(value_text) < 18:
+            return
+        fragment = BeautifulSoup(value_text, "html.parser")
+        rich_nodes = fragment.find_all(["h2", "h3", "p", "blockquote", "li"])
+        if rich_nodes:
+            for node in rich_nodes:
+                text = clean_text(node.get_text(" ", strip=True))
+                if not text:
+                    continue
+                if node.name == "h2":
+                    raw_blocks.append({"type": "heading", "level": 2, "text": text})
+                elif node.name == "h3":
+                    raw_blocks.append({"type": "heading", "level": 3, "text": text})
+                elif node.name == "blockquote":
+                    raw_blocks.append({"type": "quote", "text": text})
+                elif node.name == "li":
+                    raw_blocks.append({"type": "paragraph", "text": text})
+                else:
+                    raw_blocks.append({"type": "paragraph", "text": text})
+            return
+
+        # Some CTV page-state payloads store prose as escaped newline-delimited text.
+        parts = [clean_text(part) for part in re.split(r"(?:\\n|\n){1,2}", value_text)]
+        parts = [part for part in parts if len(part) >= 18]
+        if len(parts) == 1 and len(parts[0]) > 650:
+            # Last-resort sentence grouping keeps a large JSON string from becoming
+            # one unreadable paragraph without inventing or rewriting any prose.
+            sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z0-9‘'\"“])", parts[0])
+            grouped: list[str] = []
+            buffer = ""
+            for sentence in sentences:
+                if not sentence:
+                    continue
+                buffer = f"{buffer} {sentence}".strip()
+                if len(buffer) >= 220:
+                    grouped.append(buffer)
+                    buffer = ""
+            if buffer:
+                grouped.append(buffer)
+            if len(grouped) >= 2:
+                parts = grouped
+        raw_blocks.extend({"type": "paragraph", "text": part} for part in parts)
+
+    def walk(node: Any, depth: int = 0) -> None:
+        if depth > 10:
+            return
+        if isinstance(node, str):
+            append_text(node)
+            return
+        if isinstance(node, list):
+            for item in node:
+                walk(item, depth + 1)
+            return
+        if isinstance(node, dict):
+            preferred = []
+            fallback = []
+            for key, child in node.items():
+                lowered = str(key).lower().replace("-", "_")
+                if lowered in CTV_EMBEDDED_TEXT_KEYS:
+                    preferred.append(child)
+                elif isinstance(child, (dict, list)):
+                    fallback.append(child)
+            for child in preferred or fallback:
+                walk(child, depth + 1)
+
+    walk(value)
+
+    cleaned: list[dict[str, Any]] = []
+    seen: list[str] = []
+    for block in raw_blocks:
+        raw_text = clean_text(block.get("text", ""))
+        min_length = 4 if block.get("type") == "heading" else 18
+        text = clean_structured_text(raw_text, source_name, title, seen, stats, min_length=min_length)
+        if text:
+            cleaned.append({**block, "text": text})
+    return cleaned
+
+
+def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Extract CTV article prose from JSON page state when the DOM is only a shell.
+
+    CTV's current London pages can expose headline/byline/image in server HTML while
+    the story body is hydrated from embedded application state. We only use this
+    fallback for CTV and choose the largest plausible article-body candidate.
+    """
+    stats: dict[str, int] = {"raw_text_blocks": 0, "boilerplate_removed": 0, "duplicates_removed": 0, "short_removed": 0}
+    candidates: list[list[dict[str, Any]]] = []
+
+    def consider(value: Any) -> None:
+        blocks = _ctv_value_blocks(value, "CTV News", title, stats)
+        paragraphs, text = text_from_blocks(blocks)
+        if len(paragraphs) >= 2 and len(text) >= 220:
+            candidates.append(blocks)
+
+    def scan_object(node: Any, depth: int = 0) -> None:
+        if depth > 12:
+            return
+        if isinstance(node, list):
+            for item in node:
+                scan_object(item, depth + 1)
+            return
+        if not isinstance(node, dict):
+            return
+        for key, value in node.items():
+            normalized = str(key).lower().replace("-", "_")
+            compact = normalized.replace("_", "")
+            if normalized in CTV_EMBEDDED_BODY_KEYS or compact in CTV_EMBEDDED_BODY_KEYS:
+                consider(value)
+            elif normalized == "content" and (isinstance(value, (dict, list)) or (isinstance(value, str) and len(value) > 500)):
+                consider(value)
+            if isinstance(value, (dict, list)):
+                scan_object(value, depth + 1)
+
+    for script in soup.find_all("script"):
+        raw = script.string or script.get_text("", strip=False)
+        if not raw or len(raw) < 120:
+            continue
+        script_type = (script.get("type") or "").lower()
+        script_id = (script.get("id") or "").lower()
+        if "json" in script_type or script_id in {"__next_data__", "__nuxt_data__"}:
+            try:
+                scan_object(json.loads(raw))
+            except Exception:
+                pass
+
+        # Also support JSON serialized inside a normal JavaScript assignment.
+        for match in re.finditer(r'"(?:articleBody|article_body|articleContent|storyBody|story_body|bodyContent|body|content)"\\s*:\\s*"((?:\\\\.|[^"\\\\]){180,})"', raw):
+            escaped = match.group(1)
+            try:
+                decoded = json.loads('"' + escaped + '"')
+            except Exception:
+                continue
+            consider(decoded)
+
+    if not candidates:
+        return [], stats
+    candidates.sort(key=lambda blocks: len(text_from_blocks(blocks)[1]), reverse=True)
+    return candidates[0], stats
+
 def clean_structured_text(value: str, source_name: str, title: str, seen: list[str], stats: dict[str, int], min_length: int = 18) -> str:
     stats["raw_text_blocks"] = stats.get("raw_text_blocks", 0) + 1
     text = clean_text(strip_title_echo(normalize_source_case(value), title))
@@ -1157,7 +1324,21 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     dom_paragraphs, dom_text = text_from_blocks(dom_blocks)
 
     extracted_text, extracted_paragraphs, extracted_meta = extracted_article_text(raw, final_url, source.name, title)
-    if len(dom_text) < MIN_ARTICLE_CHARS or len(dom_paragraphs) < 2:
+    ctv_blocks: list[dict[str, Any]] = []
+    ctv_text = ""
+    if source.name == "CTV News":
+        ctv_blocks, ctv_stats = extract_ctv_embedded_blocks(soup, title)
+        for key, value in ctv_stats.items():
+            stats[key] = stats.get(key, 0) + value
+        _, ctv_text = text_from_blocks(ctv_blocks)
+
+    # Prefer the CTV page-state body when it is materially more complete than the
+    # server-rendered DOM or Trafilatura result. Otherwise retain the normal path.
+    if ctv_blocks and len(ctv_text) >= MIN_ARTICLE_CHARS and len(ctv_text) >= max(len(dom_text), len(extracted_text)) * 0.92:
+        blocks = ctv_blocks
+        paragraphs, text = text_from_blocks(blocks)
+        method = "embedded-json:ctv"
+    elif len(dom_text) < MIN_ARTICLE_CHARS or len(dom_paragraphs) < 2:
         paragraphs = clean_article_blocks(extracted_paragraphs or initial_paragraphs, source.name, title, stats)
         blocks = fallback_blocks(paragraphs, inline_candidates)
         text = "\n\n".join(paragraphs)

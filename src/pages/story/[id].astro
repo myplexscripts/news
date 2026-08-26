@@ -37,9 +37,18 @@ const legacyParagraphs = Array.isArray(story.paragraphs) && story.paragraphs.len
   ? story.paragraphs
   : (story.content ? story.content.split(/\n+/).filter(Boolean) : story.summary ? [story.summary] : []);
 
-const rawContentBlocks = Array.isArray(story.content_blocks) && story.content_blocks.length
+const contentBlocks = Array.isArray(story.content_blocks) && story.content_blocks.length
   ? story.content_blocks
   : legacyParagraphs.map((text) => ({ type: 'paragraph', text }));
+
+const qualityScore = story.quality?.score ?? (story.content_status === 'full' ? 70 : 40);
+const extractionUsable = contentBlocks.length > 0 && !['failed', 'summary'].includes(story.content_status) && qualityScore >= 45;
+const readerBlocks = extractionUsable
+  ? contentBlocks
+  : story.summary ? [{ type: 'paragraph', text: story.summary }] : contentBlocks;
+
+const firstTextBlock = readerBlocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
+const readMinutes = story.word_count ? Math.max(1, Math.round(story.word_count / 220)) : null;
 
 const compareKey = (value = '') => String(value)
   .toLowerCase()
@@ -57,144 +66,110 @@ const nearDuplicate = (left = '', right = '') => {
   return shorter.length >= 28 && longer.startsWith(shorter) && shorter.length / longer.length >= 0.58;
 };
 
-const imageKey = (value = '') => {
+const normalizeImageKey = (value = '') => {
   try {
     const url = new URL(value);
-    const parts = url.pathname.toLowerCase().split('/').filter(Boolean);
-    let name = parts.at(-1) || '';
-    name = name.replace(/[-_]\d{2,5}x\d{2,5}(?=\.[a-z0-9]{2,5}$)/, '');
-    const parent = parts.at(-2) || '';
-    return `${parent}/${name}`;
+    return `${url.hostname}${url.pathname}`.toLowerCase().replace(/\/$/, '');
   } catch {
-    return String(value).toLowerCase().split('?')[0];
+    return String(value).split('?')[0].toLowerCase().replace(/\/$/, '');
   }
 };
 
-const sameImage = (left = '', right = '') => {
-  if (!left || !right) return false;
-  const a = imageKey(left);
-  const b = imageKey(right);
-  if (a === b) return true;
-  const aName = a.split('/').at(-1) || '';
-  const bName = b.split('/').at(-1) || '';
-  return aName.length >= 14 && aName === bName;
-};
-
-const seenImages = [];
-const contentBlocks = rawContentBlocks.filter((block) => {
+const heroKey = normalizeImageKey(story.image || '');
+const seenImages = new Set(heroKey ? [heroKey] : []);
+const filteredReaderBlocks = readerBlocks.filter((block) => {
   if (block.type !== 'image' || !block.url) return true;
-  if (sameImage(block.url, story.image)) return false;
-  if (seenImages.some((image) => sameImage(image, block.url))) return false;
-  seenImages.push(block.url);
+  const key = normalizeImageKey(block.url);
+  if (!key || seenImages.has(key)) return false;
+  seenImages.add(key);
   return true;
 });
 
-const qualityScore = story.quality?.score ?? (story.content_status === 'full' ? 70 : 40);
-const extractionUsable = contentBlocks.length > 0 && !['failed', 'summary'].includes(story.content_status) && qualityScore >= 45;
-const readerBlocks = extractionUsable
-  ? contentBlocks
-  : story.summary ? [{ type: 'paragraph', text: story.summary }] : contentBlocks;
-
-const firstTextBlock = readerBlocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
-const readMinutes = story.word_count ? Math.max(1, Math.round(story.word_count / 220)) : null;
 const showDeck = Boolean(
   story.summary &&
   !nearDuplicate(story.summary, story.title) &&
   !(firstTextBlock?.text && nearDuplicate(story.summary, firstTextBlock.text))
 );
+
+const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2).join('');
 ---
 <BaseLayout title={`${story.title} | London News`} description={story.summary || `Local reporting from ${story.source}.`}>
-  <main class:list={["article-page", categoryClass]}>
-    <div class="article-shell shell">
-      <a class="back-link" href={base}><i class="ph ph-arrow-left"></i><span>London News</span></a>
+  <main class:list={["article-page", categoryClass]} id="main-content">
+    <div class="article-shell shell article-shell-refined">
+      <a class="back-link" href={base}><i class="ph ph-arrow-left" aria-hidden="true"></i><span>London News</span></a>
 
-      <article class="article-layout">
-        <header class="article-header">
+      <article class="article-layout article-layout-refined">
+        <header class="article-header article-header-refined">
           <div class="article-topline">
             <span class="article-section">{story.category}</span>
             {readMinutes && <span>{readMinutes} min read</span>}
           </div>
           <h1>{story.title}</h1>
           {showDeck && <p class="article-deck">{story.summary}</p>}
-          <div class="article-byline">
-            <span class="source-avatar" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
-            <div>
-              <strong>{story.source}</strong>
-              <span>{story.author ? `By ${story.author} · ` : ''}{published(story.published)}</span>
-            </div>
-          </div>
         </header>
 
-        <div class:list={["article-media-grid", !story.image && "no-hero"]}>
-          {story.image && (
-            <figure class="article-hero">
-              <img src={story.image} alt="" referrerpolicy="no-referrer" />
-            </figure>
-          )}
-
-          <aside class="article-sidebar">
-            <div class="article-source-card">
-              <span class="source-avatar large" style={`--source-color:${story.source_accent}`}>{story.source.split(' ').map((part) => part[0]).slice(0,2).join('')}</span>
+        <aside class="article-sidebar article-sidebar-refined" aria-label="Article source">
+          <div class="article-source-card article-source-card-refined">
+            <div class="source-card-identity">
+              <span class="source-avatar large source-avatar-square-fix" style={`--source-color:${story.source_accent}`}>{sourceInitials}</span>
               <div>
                 <span class="source-card-label">Published by</span>
                 <h2>{story.source}</h2>
               </div>
-              <a href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right"></i></a>
             </div>
-          </aside>
-        </div>
-
-        <div class="article-body-grid">
-          <div class="article-reader">
-            {readerBlocks.length ? (
-              <div class="article-copy">
-                {readerBlocks.map((block) => (
-                  <>
-                    {block.type === 'paragraph' && block.text && <p>{block.text}</p>}
-                    {block.type === 'heading' && block.text && block.level === 3 && <h3>{block.text}</h3>}
-                    {block.type === 'heading' && block.text && block.level !== 3 && <h2>{block.text}</h2>}
-                    {block.type === 'quote' && block.text && <blockquote>{block.text}</blockquote>}
-                    {block.type === 'list' && block.ordered && (
-                      <ol>{(block.items || []).map((item) => <li>{item}</li>)}</ol>
-                    )}
-                    {block.type === 'list' && !block.ordered && (
-                      <ul>{(block.items || []).map((item) => <li>{item}</li>)}</ul>
-                    )}
-                    {block.type === 'image' && block.url && (
-                      <figure class="inline-article-image">
-                        <img src={block.url} alt={block.alt || ''} loading="lazy" referrerpolicy="no-referrer" />
-                        {block.caption && <figcaption>{block.caption}</figcaption>}
-                      </figure>
-                    )}
-                  </>
-                ))}
-              </div>
-            ) : (
-              <div class="article-copy"><p>No readable article body was returned by this source.</p></div>
-            )}
-
-            <div class="article-endcap">
-              <span>Source</span>
-              <strong>{story.source}</strong>
-              <a href={story.url} target="_blank" rel="noopener noreferrer">View original <i class="ph ph-arrow-up-right"></i></a>
+            <div class="source-card-details">
+              {story.author && <span>By {story.author}</span>}
+              <time datetime={story.published}>{published(story.published)}</time>
             </div>
+            <a class="source-original-link" href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
           </div>
+        </aside>
+
+        {story.image && (
+          <figure class="article-hero article-hero-refined">
+            <img src={story.image} alt={story.image_alt || ''} referrerpolicy="no-referrer" />
+          </figure>
+        )}
+
+        <div class="article-reader article-reader-refined">
+          {filteredReaderBlocks.length ? (
+            <div class="article-copy article-copy-refined">
+              {filteredReaderBlocks.map((block) => (
+                <>
+                  {block.type === 'paragraph' && block.text && <p>{block.text}</p>}
+                  {block.type === 'heading' && block.text && block.level === 3 && <h3>{block.text}</h3>}
+                  {block.type === 'heading' && block.text && block.level !== 3 && <h2>{block.text}</h2>}
+                  {block.type === 'quote' && block.text && <blockquote>{block.text}</blockquote>}
+                  {block.type === 'list' && block.ordered && <ol>{(block.items || []).map((item) => <li>{item}</li>)}</ol>}
+                  {block.type === 'list' && !block.ordered && <ul>{(block.items || []).map((item) => <li>{item}</li>)}</ul>}
+                  {block.type === 'image' && block.url && (
+                    <figure class="inline-article-image">
+                      <img src={block.url} alt={block.alt || ''} loading="lazy" referrerpolicy="no-referrer" />
+                      {block.caption && <figcaption>{block.caption}</figcaption>}
+                    </figure>
+                  )}
+                </>
+              ))}
+            </div>
+          ) : (
+            <div class="article-copy article-copy-refined"><p>No readable article body was returned by this source.</p></div>
+          )}
         </div>
       </article>
 
       {related.length > 0 && (
-        <section class="related-section">
-          <header class="blog-section-header">
+        <section class="related-section related-section-refined">
+          <header class="editorial-section-heading">
             <div>
-              <span class="eyebrow">Keep reading</span>
+              <p class="section-eyebrow">Keep reading</p>
               <h2>More from London</h2>
             </div>
           </header>
           <div class="related-grid">
             {related.map((item) => (
               <article class="related-card">
-                <a class="related-media" href={`${base}story/${item.id}/`}>
-                  {item.image ? <img src={item.image} alt="" loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper"></i></div>}
+                <a class="related-media" href={`${base}story/${item.id}/`} aria-label={`Read ${item.title}`}>
+                  {item.image ? <img src={item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
                 </a>
                 <div class="story-meta"><span>{item.source}</span></div>
                 <h3><a href={`${base}story/${item.id}/`}>{item.title}</a></h3>
