@@ -16,8 +16,8 @@ const {
 const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
 const onSources = path.includes('/sources/');
-const onLatest = path.includes('/latest/');
-const onHome = !onSources && !onLatest && !path.includes('/story/') && !path.includes('/admin/');
+const onSections = path.includes('/sections/');
+const onHome = !onSources && !onSections && !path.includes('/latest/') && !path.includes('/story/') && !path.includes('/admin/');
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="light">
@@ -77,17 +77,36 @@ const onHome = !onSources && !onLatest && !path.includes('/story/') && !path.inc
     </footer>
 
     <nav class="mobile-tab-bar" aria-label="Primary navigation">
-      <a class:list={["mobile-tab", onHome && "active"]} href={base} aria-current={onHome ? 'page' : undefined}>
-        <i class={onHome ? 'ph-fill ph-house' : 'ph ph-house'} aria-hidden="true"></i>
-        <span>Home</span>
+      <a
+        id="mobileHomeTab"
+        class:list={["mobile-tab", "mobile-home-tab", onHome && "active"]}
+        href={base}
+        aria-label="Home"
+        title="Home"
+        aria-current={onHome ? 'page' : undefined}
+      >
+        <i id="mobileHomeIcon" class={onHome ? 'ph-fill ph-house' : 'ph ph-house'} aria-hidden="true"></i>
+        <span class="visually-hidden">Home</span>
       </a>
-      <a class:list={["mobile-tab", onLatest && "active"]} href={`${base}latest/`} aria-current={onLatest ? 'page' : undefined}>
-        <i class={onLatest ? 'ph-fill ph-clock-countdown' : 'ph ph-clock-countdown'} aria-hidden="true"></i>
-        <span>Latest</span>
+      <a
+        class:list={["mobile-tab", onSections && "active"]}
+        href={`${base}sections/`}
+        aria-label="Sections"
+        title="Sections"
+        aria-current={onSections ? 'page' : undefined}
+      >
+        <i class={onSections ? 'ph-fill ph-squares-four' : 'ph ph-squares-four'} aria-hidden="true"></i>
+        <span class="visually-hidden">Sections</span>
       </a>
-      <a class:list={["mobile-tab", onSources && "active"]} href={`${base}sources/`} aria-current={onSources ? 'page' : undefined}>
+      <a
+        class:list={["mobile-tab", onSources && "active"]}
+        href={`${base}sources/`}
+        aria-label="Sources"
+        title="Sources"
+        aria-current={onSources ? 'page' : undefined}
+      >
         <i class={onSources ? 'ph-fill ph-buildings' : 'ph ph-buildings'} aria-hidden="true"></i>
-        <span>Sources</span>
+        <span class="visually-hidden">Sources</span>
       </a>
     </nav>
 
@@ -108,6 +127,38 @@ const onHome = !onSources && !onLatest && !path.includes('/story/') && !path.inc
         localStorage.setItem('london-news-theme', root.dataset.theme);
         updateThemeIcon();
       });
+
+      const mobileHomeTab = document.getElementById('mobileHomeTab');
+      const mobileHomeIcon = document.getElementById('mobileHomeIcon');
+      const homeIconClass = mobileHomeIcon?.className || 'ph ph-house';
+      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+      function syncMobileHomeAction() {
+        if (!mobileHomeTab || !mobileHomeIcon) return;
+        const threshold = Math.min(420, Math.max(240, window.innerHeight * 0.38));
+        const backToTop = window.scrollY > threshold;
+        mobileHomeTab.classList.toggle('is-back-to-top', backToTop);
+        mobileHomeTab.setAttribute('aria-label', backToTop ? 'Back to top' : 'Home');
+        mobileHomeTab.setAttribute('title', backToTop ? 'Back to top' : 'Home');
+        mobileHomeIcon.className = backToTop ? 'ph ph-arrow-up' : homeIconClass;
+      }
+
+      mobileHomeTab?.addEventListener('click', (event) => {
+        if (!mobileHomeTab.classList.contains('is-back-to-top')) return;
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+      });
+
+      let scrollFrame = 0;
+      window.addEventListener('scroll', () => {
+        if (scrollFrame) return;
+        scrollFrame = requestAnimationFrame(() => {
+          syncMobileHomeAction();
+          scrollFrame = 0;
+        });
+      }, { passive: true });
+      window.addEventListener('resize', syncMobileHomeAction, { passive: true });
+      syncMobileHomeAction();
     </script>
   </body>
 </html>

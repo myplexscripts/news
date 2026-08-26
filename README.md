@@ -1,15 +1,18 @@
-# London News: Heart FM + mobile width repair
+# London News mobile navigation + Sections update
 
-Replace these files in your repository:
+Replace/add these files in the repository:
 
+- `src/layouts/BaseLayout.astro`
+- `src/pages/index.astro`
+- `src/pages/sections/index.astro` (new)
 - `src/styles/global.css`
-- `scripts/fetch_news.py`
 
-`source.py` is included only as a reference copy from the previous Scoop Action repair. You do not need to replace it if you already installed that repair.
+What changed:
 
-Changes:
-- Mobile feed uses a single flex column as the final layout authority, so hero cards, compact cards, and date headers share exactly the same content width.
-- First 3 cards remain vertical image-on-top cards.
-- Heart FM extraction now hard-stops at its post-article `More from Local News`, comments, weather, and recently-played regions once article prose has begun.
-- Heart FM related-story link lists and images linked to other Heart FM articles are rejected.
-- Extraction schema bumped to v9 so cached Heart FM stories are progressively cleaned/re-extracted.
+- Mobile navigation is now icon-only: Home, Sections, Sources.
+- Mobile nav bar and active tabs use a 50px radius.
+- The Home icon becomes a Back to Top arrow after scrolling on every page. Tapping it scrolls the current page to the top, then it returns to Home state.
+- Added `/sections/`, generated from categories already present in `news.json`.
+- Section links return to Home with that category filtered.
+- The old horizontal category bar is hidden on mobile but remains on desktop.
+- Decorative horizontal dividers are removed across the public UI. Story source-rail dividers are intentionally preserved.

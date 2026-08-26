@@ -302,6 +302,12 @@ const generated = news.generated_at
       applyFilters();
     });
 
-    applyFilters();
+    const requestedSection = new URLSearchParams(window.location.search).get('section');
+    if (requestedSection && cards.some((card) => card.dataset.category === requestedSection)) {
+      setFilter(requestedSection);
+      document.getElementById('latest')?.scrollIntoView({ block: 'start' });
+    } else {
+      applyFilters();
+    }
   </script>
 </BaseLayout>

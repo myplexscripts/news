@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../../data/news.json';
+
+const stories = (news.stories || []).filter((story) => story.cluster_representative !== false);
+const base = import.meta.env.BASE_URL;
+const preferredOrder = ['Local', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
+const discovered = Array.from(new Set(stories.map((story) => story.category).filter(Boolean)));
+const categories = [
+  ...preferredOrder.filter((category) => discovered.includes(category)),
+  ...discovered.filter((category) => !preferredOrder.includes(category)).sort()
+];
+
+const iconFor = (category) => ({
+  'Local': 'ph-map-pin',
+  'Public Safety': 'ph-shield-check',
+  'City Hall': 'ph-buildings',
+  'Business': 'ph-briefcase',
+  'Traffic': 'ph-car',
+  'Education': 'ph-graduation-cap',
+  'Health': 'ph-heartbeat',
+  'Community': 'ph-users-three',
+  'Sports': 'ph-trophy'
+}[category] || 'ph-newspaper-clipping');
+
+const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const hrefFor = (category) => `${base}?section=${encodeURIComponent(category)}#latest`;
+---
+<BaseLayout title="Sections | London News" description="Browse London News by section.">
+  <main class="sections-page" id="main-content">
+    <section class="sections-shell shell">
+      <header class="sections-heading">
+        <p class="masthead-label">Browse</p>
+        <h1>Sections</h1>
+        <p>Choose a section to see its newest stories first.</p>
+      </header>
+
+      <div class="section-directory-grid" aria-label="News sections">
+        <a class="section-directory-card section-all" href={base}>
+          <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
+          <div>
+            <strong>Latest</strong>
+            <span>Everything, newest first</span>
+          </div>
+          <i class="ph ph-caret-right" aria-hidden="true"></i>
+        </a>
+
+        {categories.map((category) => (
+          <a class:list={["section-directory-card", categoryClass(category)]} href={hrefFor(category)}>
+            <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
+            <div>
+              <strong>{category}</strong>
+              <span>View {category.toLowerCase()} stories</span>
+            </div>
+            <i class="ph ph-caret-right" aria-hidden="true"></i>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
