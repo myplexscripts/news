@@ -152,12 +152,11 @@ const generated = news.generated_at
               const timestamp = storyTime(story);
               return (
                 <article
-                  class:list={["news-card", "searchable", index < 3 && story.hero_eligible !== false ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
+                  class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
                   data-category={story.category}
                   data-source={story.source}
                   data-sources={(story.cluster_sources || [story.source]).join('|')}
                   data-date-group={group.key}
-                  data-hero-eligible={story.hero_eligible === false ? 'false' : 'true'}
                   data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
                 >
                   {story.image && (
@@ -249,12 +248,11 @@ const generated = news.generated_at
     }
 
     function assignCardLayouts(visibleCards) {
+      // Layout is positional, never editorially ranked: the first three visible
+      // chronological stories are always the three full-width hero cards.
       cards.forEach((card) => card.classList.remove('card-featured', 'card-secondary', 'card-standard'));
-      let heroCount = 0;
-      visibleCards.forEach((card) => {
-        const eligible = card.dataset.heroEligible !== 'false';
-        if (heroCount < 3 && eligible) { card.classList.add('card-featured'); heroCount += 1; }
-        else card.classList.add('card-standard');
+      visibleCards.forEach((card, index) => {
+        card.classList.add(index < 3 ? 'card-featured' : 'card-standard');
       });
     }
 
