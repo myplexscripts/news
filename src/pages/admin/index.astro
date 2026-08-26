@@ -10,8 +10,7 @@ const formatDate = (value) => {
   if (!value) return 'Not yet';
   try {
     return new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Toronto',
-      month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+      timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
     }).format(new Date(value));
   } catch {
     return 'Unknown';
@@ -19,6 +18,10 @@ const formatDate = (value) => {
 };
 
 const averageQuality = news.average_quality || 0;
+
+const storyById = new Map(stories.map((story) => [story.id, story]));
+const topStories = (news.top_story_ids || []).map((id) => storyById.get(id)).filter(Boolean);
+const multiSourceClusters = (news.editorial_clusters || []).filter((cluster) => Number(cluster.source_count) > 1).slice(0, 12);
 const needsAttention = stories
   .filter((story) => ['partial', 'summary', 'failed'].includes(story.content_status) || (story.quality?.score || 0) < 55)
   .slice(0, 16);
@@ -104,6 +107,51 @@ const statusIcon = (status) => status === 'healthy' ? 'ph-check-circle' : status
             <div class="admin-empty">Source health appears after the next collector run.</div>
           )}
         </div>
+      </section>
+
+      <section class="admin-section">
+        <header class="admin-section-header">
+          <div>
+            <span class="eyebrow">Editorial intelligence</span>
+            <h2>Why stories are being promoted</h2>
+          </div>
+          <span>{news.multi_source_cluster_count || 0} multi-source clusters</span>
+        </header>
+
+        <div class="ranking-list">
+          {topStories.length ? topStories.map((story, index) => (
+            <article class="ranking-row">
+              <span class="ranking-position">#{index + 1}</span>
+              <div class="ranking-main">
+                <span class="review-source">{story.source} · {story.category}</span>
+                <h3><a href={`${base}story/${story.id}/`}>{story.title}</a></h3>
+                <div class="ranking-reasons">
+                  {(story.ranking_reasons || []).map((reason) => <span>{reason}</span>)}
+                </div>
+              </div>
+              <div class="ranking-scores">
+                <span><small>Rank</small><strong>{story.rank_score || 0}</strong></span>
+                <span><small>Local</small><strong>{story.cluster_local_score || story.local_score || 0}</strong></span>
+                <span><small>Sources</small><strong>{story.cluster_source_count || 1}</strong></span>
+              </div>
+            </article>
+          )) : <div class="admin-empty">Ranking metadata appears after the next collector run.</div>}
+        </div>
+
+        {multiSourceClusters.length > 0 && (
+          <div class="cluster-admin-list">
+            <h3>Recent clustered coverage</h3>
+            {multiSourceClusters.map((cluster) => (
+              <article class="cluster-admin-row">
+                <div>
+                  <strong>{cluster.title}</strong>
+                  <span>{(cluster.sources || []).join(' · ')}</span>
+                </div>
+                <span>{cluster.source_count} sources</span>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       <section class="admin-section">

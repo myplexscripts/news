@@ -24,6 +24,7 @@ from trafilatura import bare_extraction, extract
 from PIL import Image, ImageFilter
 
 from sources import SOURCES, Source
+from ranking import GOOGLE_DISCOVERY_MIN_LOCAL_SCORE, apply_editorial_intelligence
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "news.json"
@@ -33,7 +34,7 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 12
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 6
+EXTRACTION_SCHEMA = 7
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -119,6 +120,32 @@ SOURCE_ACCENTS = {
 def canonical_source_name(value: str | None) -> str:
     name = clean_text(value) if 'clean_text' in globals() else (value or '').strip()
     return SOURCE_NAME_ALIASES.get(name, name) or "Unknown source"
+
+
+
+DIRECT_SOURCE_NAMES = {
+    canonical_source_name(source.name)
+    for source in SOURCES
+    if source.kind != "google_topic"
+}
+
+
+def is_unusable_google_story(story: dict[str, Any]) -> bool:
+    """Reject unresolved Google News shells and discovery copies of direct sources."""
+    if not story:
+        return True
+    title = clean_text(story.get("title", "")).lower()
+    url = story.get("url", "")
+    host = urlparse(url).netloc.lower()
+    source_name = canonical_source_name(story.get("source", ""))
+    via_google = bool(story.get("discovery_via"))
+    if title in {"google news", "google"}:
+        return True
+    if via_google and "news.google.com" in host:
+        return True
+    if via_google and source_name in DIRECT_SOURCE_NAMES:
+        return True
+    return False
 
 
 def accent_for_source(name: str) -> str:
@@ -1444,6 +1471,14 @@ def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[
             discovered_name, discovered_home = google_entry_source(entry)
             if discovered_name and discovered_name != "Unknown source":
                 display_source = discovered_name
+            display_source = canonical_source_name(display_source)
+
+            # Publishers that already have a first-party source must never be
+            # reintroduced through Google News. This keeps CTV, CBC, Global,
+            # Free Press, etc. strictly first-party.
+            if display_source in DIRECT_SOURCE_NAMES:
+                continue
+
             if discovered_home:
                 source_home = discovered_home
             source_accent = accent_for_source(display_source)
@@ -1461,6 +1496,8 @@ def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[
             raw_entry_title = re.sub(rf"\s+-\s+{re.escape(display_source)}\s*$", "", raw_entry_title, flags=re.I)
         title = clean_story_title(raw_entry_title, display_source)
         if not url or not title:
+            continue
+        if google_discovery and clean_text(title).lower() in {"google news", "google"}:
             continue
         summary = clean_summary_text(entry.get("summary") or entry.get("description"), title)
         published = entry.get("published") or entry.get("updated") or entry.get("created")
@@ -1481,8 +1518,11 @@ def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[
             enriched = enrich_article({**(old or {}), **basic}, effective_source)
             # If a Google News redirect resolved, replace its temporary id with the
             # canonical article id so a direct-feed copy merges cleanly later.
-            if google_discovery and enriched.get("url") and "news.google.com" not in urlparse(enriched["url"]).netloc:
-                enriched["id"] = make_id(enriched["url"])
+            if google_discovery:
+                if is_unusable_google_story(enriched):
+                    continue
+                if enriched.get("url") and "news.google.com" not in urlparse(enriched["url"]).netloc:
+                    enriched["id"] = make_id(enriched["url"])
             items.append(enriched)
             time.sleep(0.14)
     return items
@@ -1809,7 +1849,7 @@ def dedupe_stories(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return final
 
 def main() -> int:
-    previous = load_existing()
+    previous = [story for story in load_existing() if not is_unusable_google_story(story)]
     lookup = existing_lookup(previous)
     fresh: list[dict[str, Any]] = []
     errors: list[dict[str, str]] = []
@@ -1838,11 +1878,35 @@ def main() -> int:
         if key:
             merged[key] = story
 
-    stories = dedupe_stories(list(merged.values()))[:HISTORY_LIMIT]
+    stories = dedupe_stories(list(merged.values()))
+    stories = [story for story in stories if not is_unusable_google_story(story)]
     stories = [sanitize_cached_story(story) for story in stories]
     stories = backfill_missing(stories)
     stories = remove_repeated_source_images(stories)
     stories = add_image_focus(stories)
+
+    # Editorial intelligence is deterministic and free: local relevance,
+    # cross-publisher event clustering, and homepage ranking are calculated on
+    # every refresh and stored directly in news.json for inspection.
+    stories, editorial = apply_editorial_intelligence(stories)
+
+    # Google News is discovery only. Once the full article is available, remove
+    # discoveries that do not clear the London-locality threshold, then recalculate
+    # clusters so filtered stories cannot inflate coverage counts.
+    before_discovery_filter = len(stories)
+    stories = [
+        story for story in stories
+        if not (story.get("discovery_via") and int(story.get("local_score") or 0) < GOOGLE_DISCOVERY_MIN_LOCAL_SCORE)
+    ]
+    discovery_filtered = before_discovery_filter - len(stories)
+
+    # Keep the canonical history chronological. Homepage ranking is represented by
+    # top_story_ids rather than reordering the archive itself. Re-run the editorial
+    # pass after the history cap so cluster member IDs can never reference records
+    # that are not present in the published JSON.
+    stories.sort(key=lambda item: item.get("published", ""), reverse=True)
+    stories = stories[:HISTORY_LIMIT]
+    stories, editorial = apply_editorial_intelligence(stories)
 
     now = datetime.now(timezone.utc).isoformat()
     full_count = sum(1 for item in stories if item.get("content_status") == "full")
@@ -1856,6 +1920,12 @@ def main() -> int:
         "partial_story_count": partial_count,
         "average_quality": round(sum(scores) / len(scores)) if scores else 0,
         "source_count": len({story.get("source") for story in stories if story.get("source")}),
+        "editorial_schema_version": 1,
+        "cluster_count": editorial.get("cluster_count", 0),
+        "multi_source_cluster_count": editorial.get("multi_source_cluster_count", 0),
+        "top_story_ids": editorial.get("top_story_ids", []),
+        "editorial_clusters": editorial.get("clusters", []),
+        "google_discoveries_filtered": discovery_filtered,
         "errors": errors,
         "source_health": build_source_health(stories, run_counts, run_errors),
         "stories": stories,

@@ -29,8 +29,14 @@ const published = (value) => {
 };
 
 const categoryClass = `category-${(story.category || 'Local').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const clusterMembers = story.cluster_id
+  ? (news.stories || [])
+      .filter((item) => item.cluster_id === story.cluster_id)
+      .sort((a, b) => (Number(b.quality?.score) || 0) - (Number(a.quality?.score) || 0))
+  : [story];
+const clusterCoverage = clusterMembers.filter((item) => item.id !== story.id);
 const related = (news.stories || [])
-  .filter((item) => item.id !== story.id && (item.category === story.category || item.source === story.source))
+  .filter((item) => item.id !== story.id && item.cluster_id !== story.cluster_id && item.cluster_representative !== false && (item.category === story.category || item.source === story.source))
   .slice(0, 4);
 
 const legacyParagraphs = Array.isArray(story.paragraphs) && story.paragraphs.length
@@ -103,6 +109,7 @@ const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2
           <div class="article-topline">
             <span class="article-section">{story.category}</span>
             {readMinutes && <span>{readMinutes} min read</span>}
+            {Number(story.cluster_source_count || 1) > 1 && <span>{story.cluster_source_count} sources</span>}
           </div>
           <h1>{story.title}</h1>
           {showDeck && <p class="article-deck">{story.summary}</p>}
@@ -121,6 +128,19 @@ const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2
               {story.author && <span>By {story.author}</span>}
               <time datetime={story.published}>{published(story.published)}</time>
             </div>
+            {Number(story.cluster_source_count || 1) > 1 && (
+              <div class="source-coverage">
+                <span class="source-card-label">Also covered by</span>
+                <div class="source-coverage-links">
+                  {clusterCoverage.slice(0, 5).map((item) => (
+                    <a href={`${base}story/${item.id}/`}>
+                      <span>{item.source}</span>
+                      <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
             <a class="source-original-link" href={story.url} target="_blank" rel="noopener noreferrer">Original article <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
           </div>
         </aside>

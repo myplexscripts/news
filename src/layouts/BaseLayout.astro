@@ -16,7 +16,8 @@ const {
 const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
 const onSources = path.includes('/sources/');
-const onHome = !onSources;
+const onLatest = path.includes('/latest/');
+const onHome = !onSources && !onLatest && !path.includes('/story/') && !path.includes('/admin/');
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="light">
@@ -80,8 +81,8 @@ const onHome = !onSources;
         <i class={onHome ? 'ph-fill ph-house' : 'ph ph-house'} aria-hidden="true"></i>
         <span>Home</span>
       </a>
-      <a class="mobile-tab" href={`${base}#latest`}>
-        <i class="ph ph-clock-countdown" aria-hidden="true"></i>
+      <a class:list={["mobile-tab", onLatest && "active"]} href={`${base}latest/`} aria-current={onLatest ? 'page' : undefined}>
+        <i class={onLatest ? 'ph-fill ph-clock-countdown' : 'ph ph-clock-countdown'} aria-hidden="true"></i>
         <span>Latest</span>
       </a>
       <a class:list={["mobile-tab", onSources && "active"]} href={`${base}sources/`} aria-current={onSources ? 'page' : undefined}>

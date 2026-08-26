@@ -2,7 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import news from '../../data/news.json';
 
-const stories = (news.stories || []).slice(0, 90);
+const allStories = news.stories || [];
+const representatives = allStories.filter((story) => story.cluster_representative !== false);
+const byId = new Map(representatives.map((story) => [story.id, story]));
+const rankedTop = (news.top_story_ids || []).map((id) => byId.get(id)).filter(Boolean).slice(0, 3);
+const fallbackTop = rankedTop.length ? rankedTop : [...representatives]
+  .sort((a, b) => (Number(b.rank_score) || 0) - (Number(a.rank_score) || 0) || new Date(b.published).getTime() - new Date(a.published).getTime())
+  .slice(0, 3);
+const topIds = new Set(fallbackTop.map((story) => story.id));
+const chronological = [...representatives]
+  .filter((story) => !topIds.has(story.id))
+  .sort((a, b) => new Date(b.cluster_latest_published || b.published).getTime() - new Date(a.cluster_latest_published || a.published).getTime());
+const stories = [...fallbackTop, ...chronological].slice(0, 90);
 const preferredCategoryOrder = ['Local', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
 const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter(Boolean)));
 const orderedCategories = [
@@ -54,9 +65,9 @@ const generated = news.generated_at
     <section class="home-intro shell">
       <div>
         <p class="masthead-label">London, Ontario</p>
-        <h1>Latest local news</h1>
+        <h1>London local news</h1>
       </div>
-      <p class="home-update">Updated {generated} <span aria-hidden="true">·</span> {stories.length} stories</p>
+      <p class="home-update">Updated {generated} <span aria-hidden="true">·</span> {representatives.length} stories</p>
     </section>
 
     <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
@@ -89,7 +100,7 @@ const generated = news.generated_at
     <section class="news-card-section shell" id="latest" aria-labelledby="latest-heading">
       <header class="news-card-section-header">
         <h2 id="latest-heading" class="visually-hidden">Latest London news</h2>
-        <p class="results-status" id="resultsStatus" aria-live="polite">Showing the latest London stories</p>
+        <p class="results-status" id="resultsStatus" aria-live="polite">Showing top stories, then the latest London news</p>
       </header>
 
       <div class="news-card-grid" id="newsCardGrid">
@@ -98,7 +109,9 @@ const generated = news.generated_at
             class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
             data-category={story.category}
             data-source={story.source}
-            data-search={`${story.title} ${story.summary || ''} ${story.source} ${story.category || ''}`.toLowerCase()}
+            data-sources={(story.cluster_sources || [story.source]).join('|')}
+            data-rank={story.rank_score || 0}
+            data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
           >
             <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
               {story.image
@@ -112,16 +125,22 @@ const generated = news.generated_at
                 : <div class="news-card-fallback"><i class="ph-fill ph-newspaper-clipping" aria-hidden="true"></i></div>}
             </a>
             <div class="news-card-body">
-              <div class="news-card-source">
+              <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
                 <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
-                <strong>{story.source}</strong>
+                <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
+                {Number(story.cluster_source_count || 1) > 1 && (
+                  <span class="cluster-source-names">{(story.cluster_sources || []).slice(0, 4).join(' · ')}</span>
+                )}
               </div>
               <span class="news-card-category">{story.category}</span>
               <h3><a href={storyHref(story)}>{story.title}</a></h3>
               {story.summary && <p class="news-card-summary">{story.summary}</p>}
+              {Number(story.cluster_source_count || 1) > 1 && (
+                <span class="coverage-chip"><i class="ph ph-stack" aria-hidden="true"></i>{story.cluster_source_count} sources covering this</span>
+              )}
               <div class="news-card-footer">
                 <time datetime={story.published}>{published(story.published)}</time>
-                {story.word_count && <span>{Math.max(1, Math.round(story.word_count / 220))} min read</span>}
+                {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
               </div>
             </div>
           </article>
@@ -199,7 +218,8 @@ const generated = news.generated_at
       cards.forEach((item) => {
         const categoryMatch = activeFilter === 'All' || item.dataset.category === activeFilter;
         const queryMatch = !query || (item.dataset.search || '').includes(query);
-        const sourceMatch = !hiddenSources.has(item.dataset.source || '');
+        const clusterSources = (item.dataset.sources || item.dataset.source || '').split('|').filter(Boolean);
+        const sourceMatch = clusterSources.length === 0 || clusterSources.some((source) => !hiddenSources.has(source));
         const show = categoryMatch && queryMatch && sourceMatch;
         item.classList.toggle('filtered-out', !show);
         if (show) visibleCards.push(item);

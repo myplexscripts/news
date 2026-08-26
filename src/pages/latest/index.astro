@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../../data/news.json';
+
+const base = import.meta.env.BASE_URL;
+const representatives = (news.stories || [])
+  .filter((story) => story.cluster_representative !== false)
+  .sort((a, b) => new Date(b.cluster_latest_published || b.published).getTime() - new Date(a.cluster_latest_published || a.published).getTime())
+  .slice(0, 140);
+
+const storyHref = (story) => `${base}story/${story.id}/`;
+const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const initials = (name = '') => name.split(/\s+/).filter(Boolean).map((part) => part[0]).slice(0, 2).join('').toUpperCase();
+
+const published = (value) => {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    }).format(new Date(value));
+  } catch {
+    return '';
+  }
+};
+---
+<BaseLayout title="Latest | London News" description="The latest local news from London, Ontario in chronological order.">
+  <div slot="header-actions" class="header-search" id="headerSearch">
+    <button class="header-search-toggle" id="searchToggle" aria-label="Search latest news" title="Search" aria-expanded="false" aria-controls="searchInput">
+      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+    </button>
+    <input id="searchInput" type="search" placeholder="Search latest news" autocomplete="off" aria-label="Search latest news" />
+    <button class="header-search-close" id="searchClose" aria-label="Close search" title="Close search">
+      <i class="ph ph-x-circle" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <main class="latest-page" id="main-content">
+    <section class="latest-page-heading shell">
+      <p class="masthead-label">Chronological</p>
+      <h1>Latest</h1>
+      <p>Every local story event, newest first.</p>
+    </section>
+
+    <section class="latest-page-feed shell" aria-labelledby="latest-feed-heading">
+      <h2 id="latest-feed-heading" class="visually-hidden">Latest London stories</h2>
+      <p class="results-status" id="resultsStatus" aria-live="polite">{representatives.length} stories</p>
+      <div class="latest-card-grid">
+        {representatives.map((story) => (
+          <article
+            class:list={["news-card", "card-standard", "searchable", categoryClass(story.category), !story.image && "no-image"]}
+            data-source={story.source}
+            data-sources={(story.cluster_sources || [story.source]).join('|')}
+            data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
+          >
+            <div class="news-card-body">
+              <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
+                <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
+                <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
+              </div>
+              <span class="news-card-category">{story.category}</span>
+              <h3><a href={storyHref(story)}>{story.title}</a></h3>
+              {story.summary && <p class="news-card-summary">{story.summary}</p>}
+              <div class="news-card-footer">
+                <time datetime={story.cluster_latest_published || story.published}>{published(story.cluster_latest_published || story.published)}</time>
+                {Number(story.cluster_source_count || 1) > 1 && <span>{story.cluster_source_count} sources</span>}
+              </div>
+            </div>
+            {story.image && (
+              <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
+                <img
+                  src={story.image}
+                  alt={story.image_alt || ''}
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                  style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
+                />
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+      <div class="no-results card-no-results" id="noResults" hidden>
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <h2>No matching stories</h2>
+        <p>Try another search or review your hidden sources.</p>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    const headerSearch = document.getElementById('headerSearch');
+    const searchToggle = document.getElementById('searchToggle');
+    const searchClose = document.getElementById('searchClose');
+    const searchInput = document.getElementById('searchInput');
+    const cards = [...document.querySelectorAll('.latest-card-grid .searchable')];
+    const noResults = document.getElementById('noResults');
+    const resultsStatus = document.getElementById('resultsStatus');
+    let hiddenSources = new Set();
+
+    try { hiddenSources = new Set(JSON.parse(localStorage.getItem('london-news-hidden-sources') || '[]')); } catch { hiddenSources = new Set(); }
+
+    function applyLatestFilters() {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      let visible = 0;
+      cards.forEach((card) => {
+        const sources = (card.dataset.sources || card.dataset.source || '').split('|').filter(Boolean);
+        const sourceMatch = sources.length === 0 || sources.some((source) => !hiddenSources.has(source));
+        const searchMatch = !query || (card.dataset.search || '').includes(query);
+        const show = sourceMatch && searchMatch;
+        card.classList.toggle('filtered-out', !show);
+        if (show) visible += 1;
+      });
+      if (noResults) noResults.hidden = visible !== 0;
+      if (resultsStatus) resultsStatus.textContent = `${visible} ${visible === 1 ? 'story' : 'stories'}`;
+    }
+
+    function openSearch() {
+      headerSearch?.classList.add('is-open');
+      searchToggle?.setAttribute('aria-expanded', 'true');
+      requestAnimationFrame(() => searchInput?.focus());
+    }
+
+    function closeSearch() {
+      headerSearch?.classList.remove('is-open');
+      searchToggle?.setAttribute('aria-expanded', 'false');
+      if (searchInput) searchInput.value = '';
+      applyLatestFilters();
+      searchToggle?.focus();
+    }
+
+    searchToggle?.addEventListener('click', () => headerSearch?.classList.contains('is-open') ? searchInput?.focus() : openSearch());
+    searchClose?.addEventListener('click', closeSearch);
+    searchInput?.addEventListener('input', applyLatestFilters);
+    searchInput?.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeSearch(); });
+    window.addEventListener('storage', (event) => {
+      if (event.key !== 'london-news-hidden-sources') return;
+      try { hiddenSources = new Set(JSON.parse(event.newValue || '[]')); } catch { hiddenSources = new Set(); }
+      applyLatestFilters();
+    });
+    applyLatestFilters();
+  </script>
+</BaseLayout>
