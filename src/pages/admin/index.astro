@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import news from '../../../data/news.json';
+import { sourceLogoPath } from '../../lib/sourceLogos';
 
 const health = news.source_health || [];
 const stories = news.stories || [];
 const base = import.meta.env.BASE_URL;
+const logoFor = (name = '') => sourceLogoPath(name, base);
 
 const formatDate = (value) => {
   if (!value) return 'Not yet';
@@ -72,8 +74,8 @@ const statusIcon = (status) => status === 'healthy' ? 'ph-check-circle' : status
           {health.length ? health.map((source) => (
             <article class="health-row">
               <div class="health-source">
-                <span class="source-avatar source-logo-avatar" style={`--source-color:${source.accent}`}>
-                  {source.logo ? <img src={source.logo} alt="" loading="lazy" referrerpolicy="no-referrer" /> : source.source.split(' ').map((part) => part[0]).slice(0, 2).join('')}
+                <span class="admin-source-logo-wrap">
+                  {logoFor(source.source) && <img class="admin-source-logo" onerror="this.parentElement.style.display='none'" src={logoFor(source.source)} alt="" loading="lazy" />}
                 </span>
                 <div>
                   <strong>{source.source}</strong>

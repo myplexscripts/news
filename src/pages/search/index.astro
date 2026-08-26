@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import news from '../../../data/news.json';
+import { sourceLogoPath } from '../../lib/sourceLogos';
 const stories = [...(news.stories || [])]
   .filter((story) => story.cluster_representative !== false)
   .sort((a,b) => new Date(b.cluster_latest_published || b.published).getTime() - new Date(a.cluster_latest_published || a.published).getTime());
 const base = import.meta.env.BASE_URL;
+const logoFor = (name = '') => sourceLogoPath(name, base);
 const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Toronto',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(value)); } catch { return ''; } };
 ---
 <BaseLayout title="Search | London News" description="Search London News stories.">
@@ -26,7 +28,7 @@ const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{tim
       <div class="search-results" id="archiveSearchResults">
         {stories.map((story) => (
           <article class="search-result-card" data-search={`${story.title} ${story.summary || ''} ${story.source || ''} ${story.category || ''} ${(story.paragraphs || []).slice(0,4).join(' ')} ${(story.story_topics || []).join(' ')}`.toLowerCase()} hidden>
-            {story.image && <a class="search-result-media" href={`${base}story/${story.id}/`}><img src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /></a>}
+            {story.image && <a class="search-result-media" href={`${base}story/${story.id}/`}><img class="search-result-photo" src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" />{logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}</a>}
             <div class="search-result-copy">
               <span>{story.source}</span>
               <h2><a href={`${base}story/${story.id}/`}>{story.title}</a></h2>

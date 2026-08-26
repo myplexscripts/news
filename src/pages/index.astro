@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import news from '../../data/news.json';
+import { sourceLogoPath } from '../lib/sourceLogos';
 
 const allStories = news.stories || [];
 const representatives = allStories.filter((story) => story.cluster_representative !== false);
@@ -21,7 +22,7 @@ const base = import.meta.env.BASE_URL;
 
 const storyHref = (story) => `${base}story/${story.id}/`;
 const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-const initials = (name = '') => name.split(/\s+/).filter(Boolean).map((part) => part[0]).slice(0, 2).join('').toUpperCase();
+const logoFor = (name = '') => sourceLogoPath(name, base);
 
 const published = (value) => {
   try {
@@ -162,17 +163,18 @@ const generated = news.generated_at
                   {story.image && (
                     <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
                       <img
+                        class="news-card-photo"
                         src={story.card_image ? `${base}${story.card_image}` : story.image}
                         alt={story.image_alt || ''}
                         loading="lazy"
                         referrerpolicy="no-referrer"
                         style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
                       />
+                      {logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}
                     </a>
                   )}
                   <div class="news-card-body">
                     <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
-                      <span class="news-source-avatar source-logo-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{story.source_logo ? <img src={story.source_logo} alt="" loading="lazy" referrerpolicy="no-referrer" /> : initials(story.source)}</span>
                       <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
                     </div>
                     <h3><a href={storyHref(story)}>{story.title}</a></h3>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sourceLogoPath } from '../../lib/sourceLogos';
 import news from '../../../data/news.json';
 
 export function getStaticPaths() {
@@ -11,6 +12,7 @@ export function getStaticPaths() {
 
 const { story } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const logoFor = (name = '') => sourceLogoPath(name, base);
 
 const published = (value) => {
   try {
@@ -97,7 +99,6 @@ const showDeck = Boolean(
   !(firstTextBlock?.text && nearDuplicate(story.summary, firstTextBlock.text))
 );
 
-const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2).join('');
 ---
 <BaseLayout title={`${story.title} | London News`} description={story.summary || `Local reporting from ${story.source}.`}>
   <main class:list={["article-page", categoryClass]} id="main-content">
@@ -123,9 +124,7 @@ const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2
         <aside class="article-sidebar article-sidebar-refined" aria-label="Article source">
           <div class="article-source-card article-source-card-refined">
             <div class="source-card-identity">
-              <span class="source-avatar large source-avatar-square-fix source-logo-avatar" style={`--source-color:${story.source_accent}`}>
-                {story.source_logo ? <img src={story.source_logo} alt="" referrerpolicy="no-referrer" /> : sourceInitials}
-              </span>
+              {logoFor(story.source) && <img class="source-card-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" /> }
               <div>
                 <span class="source-card-label">Published by</span>
                 <h2>{story.source}</h2>
@@ -196,7 +195,8 @@ const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2
             {related.map((item) => (
               <article class="related-card">
                 <a class="related-media" href={`${base}story/${item.id}/`} aria-label={`Read ${item.title}`}>
-                  {item.image ? <img src={item.card_image ? `${base}${item.card_image}` : item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
+                  {item.image ? <img class="related-photo" src={item.card_image ? `${base}${item.card_image}` : item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
+                  {item.image && logoFor(item.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(item.source)} alt="" loading="lazy" />}
                 </a>
                 <div class="story-meta"><span>{item.source}</span></div>
                 <h3><a href={`${base}story/${item.id}/`}>{item.title}</a></h3>

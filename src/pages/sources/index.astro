@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import news from '../../../data/news.json';
+import { sourceLogoPath } from '../../lib/sourceLogos';
 
 const stories = news.stories || [];
 const base = import.meta.env.BASE_URL;
@@ -24,7 +25,7 @@ for (const story of stories) {
 }
 
 const sources = [...sourceMap.values()].sort((a, b) => a.name.localeCompare(b.name));
-const initials = (name = '') => name.split(/\s+/).filter(Boolean).map((part) => part[0]).slice(0, 2).join('').toUpperCase();
+const logoFor = (name = '') => sourceLogoPath(name, base);
 
 const latestDate = (value) => {
   try {
@@ -57,8 +58,8 @@ const latestDate = (value) => {
         {sources.map((source) => (
           <article class="source-preference-card" data-source-name={source.name}>
             <div class="source-preference-identity">
-              <span class="source-preference-avatar source-logo-avatar" style={`--source-color:${source.accent}`}>
-                {source.logo ? <img src={source.logo} alt="" loading="lazy" referrerpolicy="no-referrer" /> : initials(source.name)}
+              <span class="source-preference-logo-wrap">
+                {logoFor(source.name) && <img class="source-preference-logo" onerror="this.parentElement.style.display='none'" src={logoFor(source.name)} alt="" loading="lazy" />}
               </span>
               <div>
                 <h2>{source.name}</h2>

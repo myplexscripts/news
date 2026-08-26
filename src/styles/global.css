@@ -4586,3 +4586,116 @@ hr {
 
 .site-header { border-bottom: 0 !important; }
 .news-source-avatar.source-logo-avatar img { width:100%; height:100%; object-fit:contain; }
+
+/* Local publisher logo system */
+.news-card-media,
+.related-media,
+.search-result-media {
+  position: relative;
+}
+
+/* Only the article photograph participates in card hover zoom. */
+.news-card-photo,
+.related-photo,
+.search-result-photo {
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1) !important;
+}
+
+.news-card:hover .news-card-photo,
+.related-card:hover .related-photo,
+.search-result-card:hover .search-result-photo {
+  transform: scale(1.035) !important;
+}
+
+.card-source-logo {
+  position: absolute !important;
+  z-index: 3;
+  top: 14px;
+  left: 14px;
+  width: auto !important;
+  height: auto !important;
+  max-width: 76px !important;
+  max-height: 34px !important;
+  object-fit: contain !important;
+  object-position: left top !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transition: none !important;
+  transform: none !important;
+  pointer-events: none;
+}
+
+.news-card:hover .card-source-logo,
+.related-card:hover .card-source-logo,
+.search-result-card:hover .card-source-logo {
+  transform: none !important;
+}
+
+/* The publisher line on a card is text-only. The logo lives on the image. */
+.news-card-source {
+  gap: 0 !important;
+}
+
+/* Source directory and story attribution use the actual publisher logo,
+   never a coloured initials/avatar circle. */
+.source-preference-logo-wrap,
+.admin-source-logo-wrap {
+  width: 64px;
+  height: 44px;
+  min-width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 64px;
+}
+
+.source-preference-logo,
+.admin-source-logo,
+.source-card-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: left center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.source-card-logo {
+  width: auto;
+  height: auto;
+  max-width: 88px;
+  max-height: 42px;
+  flex: 0 0 auto;
+}
+
+.source-preference-identity {
+  align-items: center !important;
+}
+
+@media (max-width: 760px) {
+  .card-source-logo {
+    top: 12px;
+    left: 12px;
+    max-width: 66px !important;
+    max-height: 30px !important;
+  }
+
+  .source-preference-logo-wrap,
+  .admin-source-logo-wrap {
+    width: 56px;
+    height: 40px;
+    min-width: 56px;
+    flex-basis: 56px;
+  }
+
+  .source-card-logo {
+    max-width: 78px;
+    max-height: 38px;
+  }
+}
