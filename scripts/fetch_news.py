@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+from io import BytesIO
 import re
 import sys
 import time
@@ -18,6 +19,7 @@ import requests
 from bs4 import BeautifulSoup, Tag
 from dateutil import parser as date_parser
 from trafilatura import bare_extraction, extract
+from PIL import Image, ImageFilter
 
 from sources import SOURCES, Source
 
@@ -29,7 +31,7 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 12
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 4
+EXTRACTION_SCHEMA = 5
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -75,6 +77,44 @@ POSTMEDIA_BOILERPLATE = (
     "unlock more articles", "manage print subscription", "trending", "most read",
 )
 
+SOURCE_NAME_ALIASES = {
+    "CBC": "CBC News London",
+    "CBC.ca": "CBC News London",
+    "Global News": "Global News London",
+    "CTV News London": "CTV News",
+    "CTV London": "CTV News",
+    "The London Free Press": "London Free Press",
+    "London Free Press": "London Free Press",
+    "104.7 Heart FM": "104.7 Heart FM",
+    "Heart FM": "104.7 Heart FM",
+}
+
+SOURCE_ACCENTS = {
+    "Global News London": "#0088ff",
+    "CBC News London": "#ff383c",
+    "London Free Press": "#6155f5",
+    "CTV News": "#6155f5",
+    "106.9 The X": "#ff8d28",
+    "City of London Newsroom": "#cb30e0",
+    "London Police Service": "#0088ff",
+    "London Fire Department": "#ff383c",
+    "104.7 Heart FM": "#ff2d55",
+}
+
+
+def canonical_source_name(value: str | None) -> str:
+    name = clean_text(value) if 'clean_text' in globals() else (value or '').strip()
+    return SOURCE_NAME_ALIASES.get(name, name) or "Unknown source"
+
+
+def accent_for_source(name: str) -> str:
+    if name in SOURCE_ACCENTS:
+        return SOURCE_ACCENTS[name]
+    palette = ["#0088ff", "#ff383c", "#ff8d28", "#34c759", "#00c8b3", "#00c3d0", "#6155f5", "#cb30e0", "#ff2d55"]
+    digest = hashlib.sha1(name.encode("utf-8", "ignore")).digest()
+    return palette[digest[0] % len(palette)]
+
+
 SOURCE_PROFILES: dict[str, dict[str, Any]] = {
     "Global News London": {
         "profile": "global",
@@ -100,8 +140,25 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
     },
     "CTV News": {
         "profile": "ctv",
-        "roots": [".articleBody", ".article-body", "[itemprop='articleBody']", "article"],
-        "remove": [".related", ".newsletter", ".share", ".social", ".ad"],
+        "roots": [
+            "[data-testid='article-body']", "[class*='articleBody']", ".articleBody",
+            ".article-body", ".article__body", ".article-content", "[itemprop='articleBody']", "article"
+        ],
+        "remove": [
+            ".related", ".newsletter", ".share", ".social", ".ad", ".advertisement",
+            "[class*='related']", "[class*='recommend']", "[class*='advert']", "aside"
+        ],
+    },
+    "104.7 Heart FM": {
+        "profile": "heartfm",
+        "roots": [
+            ".news-article", ".article-body", ".story-body", ".entry-content",
+            ".content-body", "[itemprop='articleBody']", "article", "main"
+        ],
+        "remove": [
+            ".related", ".share", ".social", ".newsletter", ".advert", ".ad",
+            ".on-air", ".now-playing", "nav", "footer", "aside"
+        ],
     },
     "106.9 The X": {
         "profile": "wordpress",
@@ -996,6 +1053,60 @@ def resolve_google_news(raw: str, current_url: str, source: Source) -> str:
     return candidates[0] if candidates else current_url
 
 
+
+def image_focus_point(url: str) -> tuple[int, int]:
+    """Return a lightweight visual-saliency focal point for card cropping.
+
+    This deliberately avoids heavyweight computer-vision dependencies. It downsizes
+    the image, finds high-contrast edge energy, applies a gentle centre bias, and
+    returns the weighted centroid. It is not semantic face/object detection, but it
+    usually keeps the visually important region inside a square crop.
+    """
+    if not url or not valid_article_image(url):
+        return 50, 50
+    try:
+        response = SESSION.get(url, timeout=10, stream=True)
+        response.raise_for_status()
+        content_type = (response.headers.get("content-type") or "").lower()
+        if "image" not in content_type:
+            return 50, 50
+        data = response.content
+        if not data or len(data) > 5_000_000:
+            return 50, 50
+        image = Image.open(BytesIO(data)).convert("L")
+        original_w, original_h = image.size
+        if original_w < 80 or original_h < 80:
+            return 50, 50
+        image.thumbnail((96, 96))
+        edge = image.filter(ImageFilter.FIND_EDGES)
+        w, h = edge.size
+        pixels = list(edge.getdata())
+        total = 0.0
+        x_sum = 0.0
+        y_sum = 0.0
+        for y in range(h):
+            for x in range(w):
+                energy = float(pixels[y * w + x])
+                if energy < 22:
+                    continue
+                nx = (x + 0.5) / w
+                ny = (y + 0.5) / h
+                centre_bias = max(0.34, 1.0 - 0.78 * (((nx - 0.5) ** 2 + (ny - 0.46) ** 2) ** 0.5))
+                weight = (energy ** 1.25) * centre_bias
+                total += weight
+                x_sum += nx * weight
+                y_sum += ny * weight
+        if total <= 0:
+            return 50, 45 if original_h > original_w else 50
+        x_pct = round(max(18, min(82, (x_sum / total) * 100)))
+        y_pct = round(max(18, min(82, (y_sum / total) * 100)))
+        if original_h > original_w * 1.18:
+            y_pct = round((y_pct * 0.72) + (38 * 0.28))
+        return x_pct, y_pct
+    except Exception:
+        return 50, 50
+
+
 def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     url = story.get("url", "")
     if not url:
@@ -1012,6 +1123,13 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
         story["content_status"] = "failed"
         story["quality"] = extraction_quality(story, {}, "failed:request")
         return story
+
+    if story.get("discovery_via"):
+        current_home = story.get("source_home", "")
+        if not current_home or "news.google.com" in urlparse(current_home).netloc:
+            parsed_final = urlparse(final_url)
+            if parsed_final.scheme and parsed_final.netloc:
+                story["source_home"] = f"{parsed_final.scheme}://{parsed_final.netloc}/"
 
     soup = BeautifulSoup(raw, "html.parser")
     ld = article_json_ld(soup)
@@ -1117,32 +1235,74 @@ def existing_lookup(stories: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     return lookup
 
 
+def google_entry_source(entry: Any) -> tuple[str, str]:
+    raw_source = entry.get("source") or {}
+    if isinstance(raw_source, dict):
+        name = raw_source.get("title") or raw_source.get("value") or ""
+        home = raw_source.get("href") or raw_source.get("url") or ""
+    else:
+        name = getattr(raw_source, "title", "") or str(raw_source or "")
+        home = getattr(raw_source, "href", "") or ""
+    return canonical_source_name(name), clean_text(home, 500)
+
+
 def rss_items(source: Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     response = SESSION.get(source.url, timeout=REQUEST_TIMEOUT)
     response.raise_for_status()
     feed = feedparser.parse(response.content)
     items: list[dict[str, Any]] = []
+    google_discovery = source.kind == "google_topic"
 
     for entry in feed.entries[: source.max_items]:
         url = entry.get("link", "")
-        title = clean_story_title(entry.get("title"), source.name)
+        effective_source = source
+        display_source = source.name
+        source_home = source.homepage
+        source_accent = source.accent
+        if google_discovery:
+            discovered_name, discovered_home = google_entry_source(entry)
+            if discovered_name and discovered_name != "Unknown source":
+                display_source = discovered_name
+            if discovered_home:
+                source_home = discovered_home
+            source_accent = accent_for_source(display_source)
+            effective_source = Source(
+                name=display_source,
+                url=url,
+                kind="page",
+                homepage=source_home,
+                accent=source_accent,
+                max_items=1,
+            )
+
+        raw_entry_title = clean_text(entry.get("title"))
+        if google_discovery and display_source:
+            raw_entry_title = re.sub(rf"\s+-\s+{re.escape(display_source)}\s*$", "", raw_entry_title, flags=re.I)
+        title = clean_story_title(raw_entry_title, display_source)
         if not url or not title:
             continue
         summary = clean_summary_text(entry.get("summary") or entry.get("description"), title)
         published = entry.get("published") or entry.get("updated") or entry.get("created")
         basic = {
-            "id": make_id(url), "title": title, "source": source.name, "source_home": source.homepage,
-            "source_accent": source.accent, "url": canonical_url(url), "published": parse_date(published),
+            "id": make_id(url), "title": title, "source": display_source, "source_home": source_home,
+            "source_accent": source_accent, "url": canonical_url(url), "published": parse_date(published),
             "summary": summary, "image": image_from_entry(entry), "author": clean_text(entry.get("author")),
-            "category": classify(title, summary, source.name),
+            "category": classify(title, summary, display_source),
         }
+        if google_discovery:
+            basic["discovery_via"] = source.name
         old = existing.get(basic["id"]) or existing.get(basic["url"])
         if old and not stale(old):
             merged = {**basic, **old}
-            merged.update({"source": source.name, "source_home": source.homepage, "source_accent": source.accent})
+            merged.update({"source": display_source, "source_home": source_home, "source_accent": source_accent})
             items.append(merged)
         else:
-            items.append(enrich_article({**(old or {}), **basic}, source))
+            enriched = enrich_article({**(old or {}), **basic}, effective_source)
+            # If a Google News redirect resolved, replace its temporary id with the
+            # canonical article id so a direct-feed copy merges cleanly later.
+            if google_discovery and enriched.get("url") and "news.google.com" not in urlparse(enriched["url"]).netloc:
+                enriched["id"] = make_id(enriched["url"])
+            items.append(enriched)
             time.sleep(0.14)
     return items
 
@@ -1152,9 +1312,15 @@ def page_links(source: Source) -> list[str]:
     soup = BeautifulSoup(raw, "html.parser")
     host = urlparse(final_url).netloc.lower().replace("www.", "")
     links: list[str] = []
+    ctv_mode = source.name == "CTV News"
+    city_mode = source.name == "City of London Newsroom"
     selectors = (
         ["a[href*='/news/posts/']"]
         if is_police_source(source.name)
+        else ["a[href*='/london/article/']", "main a[href*='/london/article/']"]
+        if ctv_mode
+        else ["a[href*='/newsroom/']", "main a[href*='/newsroom/']"]
+        if city_mode
         else [
             "main h2 a[href]", "main h3 a[href]", "article h2 a[href]", "article h3 a[href]",
             ".news-item a[href]", ".card a[href]", "a[href*='/news/']",
@@ -1168,7 +1334,12 @@ def page_links(source: Source) -> list[str]:
             url = urljoin(final_url, href)
             if urlparse(url).netloc.lower().replace("www.", "") != host:
                 continue
-            if is_police_source(source.name) and "/news/posts/" not in urlparse(url).path.lower():
+            path = urlparse(url).path.lower()
+            if is_police_source(source.name) and "/news/posts/" not in path:
+                continue
+            if ctv_mode and "/london/article/" not in path:
+                continue
+            if city_mode and "/newsroom/" not in path:
                 continue
             if canonical_url(url) == canonical_url(source.url) or len(clean_text(anchor.get_text(" ", strip=True))) < 8:
                 continue
@@ -1311,6 +1482,33 @@ def remove_repeated_source_images(stories: list[dict[str, Any]]) -> list[dict[st
     return stories
 
 
+def add_image_focus(stories: list[dict[str, Any]], limit: int = 24) -> list[dict[str, Any]]:
+    """Calculate focal points lazily for recent card images.
+
+    Only a small number are analyzed per run so the GitHub Action remains light.
+    Existing focal points are reused until the lead image changes.
+    """
+    analyzed = 0
+    for story in stories[:90]:
+        if analyzed >= limit:
+            break
+        image = story.get("image", "")
+        if not image:
+            continue
+        if (
+            story.get("image_focus_for") == image
+            and story.get("image_focus_x") is not None
+            and story.get("image_focus_y") is not None
+        ):
+            continue
+        x, y = image_focus_point(image)
+        story["image_focus_x"] = x
+        story["image_focus_y"] = y
+        story["image_focus_for"] = image
+        analyzed += 1
+    return stories
+
+
 def backfill_missing(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
     source_by_name = {source.name: source for source in SOURCES}
     done = 0
@@ -1321,7 +1519,17 @@ def backfill_missing(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
         needs_content = story.get("content_status") not in ("full", "partial") or not story.get("content")
         if not needs_upgrade and not needs_content:
             continue
-        source = source_by_name.get(story.get("source", ""))
+        source_name = story.get("source", "")
+        source = source_by_name.get(source_name)
+        if not source and story.get("url"):
+            source = Source(
+                name=source_name or "Unknown source",
+                url=story.get("url", ""),
+                kind="page",
+                homepage=story.get("source_home", ""),
+                accent=story.get("source_accent", accent_for_source(source_name or "Unknown source")),
+                max_items=1,
+            )
         if not source or not story.get("url"):
             continue
         print(f"Backfill: {story.get('source')} | {story.get('title', '')[:70]}")
@@ -1335,7 +1543,10 @@ def build_source_health(stories: list[dict[str, Any]], run_counts: dict[str, int
     health: list[dict[str, Any]] = []
     now = datetime.now(timezone.utc).isoformat()
     for source in SOURCES:
-        recent = [story for story in stories if story.get("source") == source.name][:30]
+        recent = [
+            story for story in stories
+            if story.get("source") == source.name or story.get("discovery_via") == source.name
+        ][:30]
         scores = [int((story.get("quality") or {}).get("score") or 0) for story in recent]
         grades = [str((story.get("quality") or {}).get("grade") or "poor") for story in recent]
         full = sum(1 for story in recent if story.get("content_status") == "full")
@@ -1372,6 +1583,50 @@ def build_source_health(stories: list[dict[str, Any]], run_counts: dict[str, int
     return health
 
 
+
+def title_dedupe_key(story: dict[str, Any]) -> str:
+    title = clean_text(story.get("title", "")).lower()
+    title = re.sub(r"[^a-z0-9]+", " ", title)
+    return re.sub(r"\s+", " ", title).strip()
+
+
+def dedupe_stories(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Merge direct-feed and Google-discovered copies of the same story."""
+    best_by_url: dict[str, dict[str, Any]] = {}
+    for story in stories:
+        key = canonical_url(story.get("url", "")) or story.get("id", "")
+        current = best_by_url.get(key)
+        if not current:
+            best_by_url[key] = story
+            continue
+        current_score = int((current.get("quality") or {}).get("score") or 0)
+        new_score = int((story.get("quality") or {}).get("score") or 0)
+        if new_score > current_score or (current.get("discovery_via") and not story.get("discovery_via")):
+            best_by_url[key] = story
+
+    ordered = sorted(best_by_url.values(), key=lambda item: item.get("published", ""), reverse=True)
+    final: list[dict[str, Any]] = []
+    seen_titles: dict[str, dict[str, Any]] = {}
+    for story in ordered:
+        key = title_dedupe_key(story)
+        if len(key) < 20:
+            final.append(story)
+            continue
+        previous = seen_titles.get(key)
+        if previous:
+            try:
+                a = date_parser.parse(previous.get("published", ""))
+                b = date_parser.parse(story.get("published", ""))
+                if a.tzinfo is None: a = a.replace(tzinfo=timezone.utc)
+                if b.tzinfo is None: b = b.replace(tzinfo=timezone.utc)
+                if abs((a - b).total_seconds()) <= 7 * 86400:
+                    continue
+            except Exception:
+                continue
+        seen_titles[key] = story
+        final.append(story)
+    return final
+
 def main() -> int:
     previous = load_existing()
     lookup = existing_lookup(previous)
@@ -1382,7 +1637,10 @@ def main() -> int:
 
     for source in SOURCES:
         try:
-            items = rss_items(source, lookup) if source.kind == "rss" else page_items(source, lookup)
+            if source.kind in ("rss", "google_topic"):
+                items = rss_items(source, lookup)
+            else:
+                items = page_items(source, lookup)
             fresh.extend(items)
             run_counts[source.name] = len(items)
             full_count = sum(1 for item in items if item.get("content_status") == "full")
@@ -1399,10 +1657,11 @@ def main() -> int:
         if key:
             merged[key] = story
 
-    stories = sorted(merged.values(), key=lambda item: item.get("published", ""), reverse=True)[:HISTORY_LIMIT]
+    stories = dedupe_stories(list(merged.values()))[:HISTORY_LIMIT]
     stories = [sanitize_cached_story(story) for story in stories]
     stories = backfill_missing(stories)
     stories = remove_repeated_source_images(stories)
+    stories = add_image_focus(stories)
 
     now = datetime.now(timezone.utc).isoformat()
     full_count = sum(1 for item in stories if item.get("content_status") == "full")
@@ -1415,7 +1674,7 @@ def main() -> int:
         "full_story_count": full_count,
         "partial_story_count": partial_count,
         "average_quality": round(sum(scores) / len(scores)) if scores else 0,
-        "source_count": len(SOURCES),
+        "source_count": len({story.get("source") for story in stories if story.get("source")}),
         "errors": errors,
         "source_health": build_source_health(stories, run_counts, run_errors),
         "stories": stories,

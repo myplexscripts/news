@@ -99,14 +99,20 @@ const generated = news.generated_at
       <div class="news-card-grid" id="newsCardGrid">
         {stories.map((story) => (
           <article
-            class:list={["news-card", "searchable", categoryClass(story.category)]}
+            class:list={["news-card", "searchable", categoryClass(story.category), !story.image && "no-image"]}
             data-category={story.category}
             data-source={story.source}
             data-search={`${story.title} ${story.summary || ''} ${story.source} ${story.category || ''}`.toLowerCase()}
           >
             <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
               {story.image
-                ? <img src={story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" />
+                ? <img
+                    src={story.image}
+                    alt={story.image_alt || ''}
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                    style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
+                  />
                 : <div class="news-card-fallback"><i class="ph-fill ph-newspaper-clipping" aria-hidden="true"></i></div>}
             </a>
             <div class="news-card-body">
@@ -185,8 +191,7 @@ const generated = news.generated_at
     function assignCardLayouts(visibleCards) {
       cards.forEach((card) => card.classList.remove('card-featured', 'card-secondary', 'card-standard'));
       visibleCards.forEach((card, index) => {
-        if (index === 0) card.classList.add('card-featured');
-        else if (index <= 2) card.classList.add('card-secondary');
+        if (index <= 2) card.classList.add('card-featured');
         else card.classList.add('card-standard');
       });
     }
