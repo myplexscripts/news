@@ -104,7 +104,7 @@ const generated = news.generated_at
         <p class="masthead-label">London, Ontario</p>
         <h1>Latest local news</h1>
       </div>
-      <p class="home-update">Updated {generated} <span aria-hidden="true">·</span> {representatives.length} stories</p>
+      <p class="home-update">Updated {generated}</p>
     </section>
 
     <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
@@ -137,7 +137,7 @@ const generated = news.generated_at
     <section class="news-card-section shell" id="latest" aria-labelledby="latest-heading">
       <header class="news-card-section-header">
         <h2 id="latest-heading" class="visually-hidden">Latest London news</h2>
-        <p class="results-status" id="resultsStatus" aria-live="polite">{stories.length} stories, newest first</p>
+        <p class="results-status visually-hidden" id="resultsStatus" aria-live="polite">Newest stories shown first</p>
       </header>
 
       <div class="news-card-grid" id="newsCardGrid">
@@ -145,7 +145,6 @@ const generated = news.generated_at
           <>
             <header class="story-date-heading" data-date-heading={group.key}>
               <h2>{group.label}</h2>
-              <span>{group.stories.length} {group.stories.length === 1 ? 'story' : 'stories'}</span>
             </header>
             {group.stories.map((story) => {
               const index = storyIndex.get(story.id) ?? 99;
@@ -283,7 +282,7 @@ const generated = news.generated_at
         if (hiddenSources.size) qualifiers.push(`${hiddenSources.size} hidden ${hiddenSources.size === 1 ? 'source' : 'sources'}`);
         resultsStatus.textContent = visibleCards.length === 0
           ? 'No matching stories'
-          : `${visibleCards.length} ${visibleCards.length === 1 ? 'story' : 'stories'}, newest first${qualifiers.length ? ` · ${qualifiers.join(' · ')}` : ''}`;
+          : `Newest matching stories shown first${qualifiers.length ? ` · ${qualifiers.join(' · ')}` : ''}`;
       }
     }
 

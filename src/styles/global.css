@@ -3259,3 +3259,56 @@ html[data-theme='dark'] .card-no-results { background: var(--gray-6) !important;
   }
   .news-card.card-standard h3 { font-size: 17px !important; }
 }
+
+
+/* ========================================================================== */
+/* Mobile feed width alignment and count cleanup                              */
+/* ========================================================================== */
+
+/* Counts are intentionally omitted from visible date dividers. */
+.story-date-heading > span { display: none !important; }
+
+@media (max-width: 760px) {
+  /* Feed gutters are controlled here, rather than by a nested max-width shell.
+     This keeps date dividers and every card on exactly the same left/right edges. */
+  .news-card-section.shell,
+  .latest-page-feed.shell {
+    width: 100% !important;
+    max-width: none !important;
+    margin-inline: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  .news-card-grid,
+  .latest-card-grid {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+  }
+
+  .story-date-heading {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .news-card.card-featured,
+  .latest-card-grid .news-card.card-featured {
+    width: 100% !important;
+    max-width: none !important;
+    justify-self: stretch !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .news-card-section.shell,
+  .latest-page-feed.shell {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}

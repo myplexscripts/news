@@ -1,15 +1,14 @@
-# Scoop GitHub Action repair
+# London News mobile width and count fix
 
-Replace these two files in the repo:
+Replace these files in the repository:
 
-- `scripts/fetch_news.py`
-- `scripts/sources.py`
+- `src/pages/index.astro`
+- `src/pages/latest/index.astro`
+- `src/styles/global.css`
 
-## Fixes
-
-- Removes the Python 3.12 variable-width look-behind that crashed Heart FM/backfill.
-- A malformed story can no longer abort a source refresh.
-- A malformed backfill story can no longer abort the GitHub Action.
-- Sources that already failed in a run are skipped during backfill instead of being hammered again.
-- CBC uses a short, no-retry request path on GitHub runners. If CBC stalls, Scoop preserves cached CBC stories and continues the build.
-- CTV no longer uses its dead legacy RSS redirect. Discovery comes from `https://www.ctvnews.ca/london/` and first-party `/london/article/` pages.
+Changes:
+- mobile date section headers and story cards share one exact full-width feed gutter
+- featured mobile cards stretch to the full feed width
+- removes visible story totals from the home masthead
+- removes story totals from Today / Yesterday / Two Days Ago / Earlier headers
+- removes the visible total from Latest while retaining a screen-reader status message

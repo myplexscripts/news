@@ -77,13 +77,12 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
 
     <section class="latest-page-feed shell" aria-labelledby="latest-feed-heading">
       <h2 id="latest-feed-heading" class="visually-hidden">Latest London stories</h2>
-      <p class="results-status" id="resultsStatus" aria-live="polite">{representatives.length} stories</p>
+      <p class="results-status visually-hidden" id="resultsStatus" aria-live="polite">Newest stories shown first</p>
       <div class="latest-card-grid">
         {dateGroups.map((group) => (
           <>
             <header class="story-date-heading" data-date-heading={group.key}>
               <h2>{group.label}</h2>
-              <span>{group.stories.length} {group.stories.length === 1 ? 'story' : 'stories'}</span>
             </header>
             {group.stories.map((story) => {
               const timestamp = storyTime(story);
@@ -166,7 +165,7 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
       });
       updateDateHeadings();
       if (noResults) noResults.hidden = visible !== 0;
-      if (resultsStatus) resultsStatus.textContent = `${visible} ${visible === 1 ? 'story' : 'stories'}, newest first`;
+      if (resultsStatus) resultsStatus.textContent = visible === 0 ? 'No matching stories' : 'Newest matching stories shown first';
     }
 
     function openSearch() {
