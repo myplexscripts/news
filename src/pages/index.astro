@@ -4,16 +4,11 @@ import news from '../../data/news.json';
 
 const allStories = news.stories || [];
 const representatives = allStories.filter((story) => story.cluster_representative !== false);
-const byId = new Map(representatives.map((story) => [story.id, story]));
-const rankedTop = (news.top_story_ids || []).map((id) => byId.get(id)).filter(Boolean).slice(0, 3);
-const fallbackTop = rankedTop.length ? rankedTop : [...representatives]
-  .sort((a, b) => (Number(b.rank_score) || 0) - (Number(a.rank_score) || 0) || new Date(b.published).getTime() - new Date(a.published).getTime())
-  .slice(0, 3);
-const topIds = new Set(fallbackTop.map((story) => story.id));
-const chronological = [...representatives]
-  .filter((story) => !topIds.has(story.id))
-  .sort((a, b) => new Date(b.cluster_latest_published || b.published).getTime() - new Date(a.cluster_latest_published || a.published).getTime());
-const stories = [...fallbackTop, ...chronological].slice(0, 90);
+const storyTime = (story) => story.cluster_latest_published || story.published;
+const stories = [...representatives]
+  .sort((a, b) => new Date(storyTime(b)).getTime() - new Date(storyTime(a)).getTime())
+  .slice(0, 90);
+
 const preferredCategoryOrder = ['Local', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
 const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter(Boolean)));
 const orderedCategories = [
@@ -42,6 +37,48 @@ const published = (value) => {
   }
 };
 
+const localDateKey = (value) => {
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date(value));
+    const values = Object.fromEntries(parts.filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+    return `${values.year}-${values.month}-${values.day}`;
+  } catch {
+    return '1970-01-01';
+  }
+};
+
+const dayNumber = (key) => {
+  const [year, month, day] = key.split('-').map(Number);
+  return Math.floor(Date.UTC(year, month - 1, day) / 86400000);
+};
+
+const referenceDate = news.generated_at || new Date().toISOString();
+const referenceDay = dayNumber(localDateKey(referenceDate));
+const groupKeyFor = (value) => {
+  const diff = referenceDay - dayNumber(localDateKey(value));
+  if (diff <= 0) return 'today';
+  if (diff === 1) return 'yesterday';
+  if (diff === 2) return 'two-days-ago';
+  return 'earlier';
+};
+
+const groupLabels = {
+  today: 'Today',
+  yesterday: 'Yesterday',
+  'two-days-ago': 'Two Days Ago',
+  earlier: 'Earlier'
+};
+const groupOrder = ['today', 'yesterday', 'two-days-ago', 'earlier'];
+const dateGroups = groupOrder
+  .map((key) => ({ key, label: groupLabels[key], stories: stories.filter((story) => groupKeyFor(storyTime(story)) === key) }))
+  .filter((group) => group.stories.length > 0);
+const storyIndex = new Map(stories.map((story, index) => [story.id, index]));
+
 const generated = news.generated_at
   ? new Intl.DateTimeFormat('en-CA', {
       timeZone: 'America/Toronto',
@@ -65,7 +102,7 @@ const generated = news.generated_at
     <section class="home-intro shell">
       <div>
         <p class="masthead-label">London, Ontario</p>
-        <h1>London local news</h1>
+        <h1>Latest local news</h1>
       </div>
       <p class="home-update">Updated {generated} <span aria-hidden="true">·</span> {representatives.length} stories</p>
     </section>
@@ -100,50 +137,55 @@ const generated = news.generated_at
     <section class="news-card-section shell" id="latest" aria-labelledby="latest-heading">
       <header class="news-card-section-header">
         <h2 id="latest-heading" class="visually-hidden">Latest London news</h2>
-        <p class="results-status" id="resultsStatus" aria-live="polite">Showing top stories, then the latest London news</p>
+        <p class="results-status" id="resultsStatus" aria-live="polite">{stories.length} stories, newest first</p>
       </header>
 
       <div class="news-card-grid" id="newsCardGrid">
-        {stories.map((story, index) => (
-          <article
-            class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
-            data-category={story.category}
-            data-source={story.source}
-            data-sources={(story.cluster_sources || [story.source]).join('|')}
-            data-rank={story.rank_score || 0}
-            data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
-          >
-            <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
-              {story.image
-                ? <img
-                    src={story.image}
-                    alt={story.image_alt || ''}
-                    loading="lazy"
-                    referrerpolicy="no-referrer"
-                    style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
-                  />
-                : <div class="news-card-fallback"><i class="ph-fill ph-newspaper-clipping" aria-hidden="true"></i></div>}
-            </a>
-            <div class="news-card-body">
-              <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
-                <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
-                <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
-                {Number(story.cluster_source_count || 1) > 1 && (
-                  <span class="cluster-source-names">{(story.cluster_sources || []).slice(0, 4).join(' · ')}</span>
-                )}
-              </div>
-              <span class="news-card-category">{story.category}</span>
-              <h3><a href={storyHref(story)}>{story.title}</a></h3>
-              {story.summary && <p class="news-card-summary">{story.summary}</p>}
-              {Number(story.cluster_source_count || 1) > 1 && (
-                <span class="coverage-chip"><i class="ph ph-stack" aria-hidden="true"></i>{story.cluster_source_count} sources covering this</span>
-              )}
-              <div class="news-card-footer">
-                <time datetime={story.published}>{published(story.published)}</time>
-                {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
-              </div>
-            </div>
-          </article>
+        {dateGroups.map((group) => (
+          <>
+            <header class="story-date-heading" data-date-heading={group.key}>
+              <h2>{group.label}</h2>
+              <span>{group.stories.length} {group.stories.length === 1 ? 'story' : 'stories'}</span>
+            </header>
+            {group.stories.map((story) => {
+              const index = storyIndex.get(story.id) ?? 99;
+              const timestamp = storyTime(story);
+              return (
+                <article
+                  class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
+                  data-category={story.category}
+                  data-source={story.source}
+                  data-sources={(story.cluster_sources || [story.source]).join('|')}
+                  data-date-group={group.key}
+                  data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
+                >
+                  {story.image && (
+                    <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
+                      <img
+                        src={story.image}
+                        alt={story.image_alt || ''}
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
+                      />
+                    </a>
+                  )}
+                  <div class="news-card-body">
+                    <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
+                      <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
+                      <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
+                    </div>
+                    <h3><a href={storyHref(story)}>{story.title}</a></h3>
+                    {story.summary && <p class="news-card-summary">{story.summary}</p>}
+                    <div class="news-card-footer">
+                      <time datetime={timestamp}>{published(timestamp)}</time>
+                      {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </>
         ))}
       </div>
 
@@ -166,6 +208,7 @@ const generated = news.generated_at
     const sectionMore = document.getElementById('sectionMore');
     const moreLabel = document.getElementById('moreLabel');
     const cards = [...document.querySelectorAll('.news-card.searchable')];
+    const dateHeadings = [...document.querySelectorAll('[data-date-heading]')];
 
     let activeFilter = 'All';
     let hiddenSources = new Set();
@@ -205,9 +248,14 @@ const generated = news.generated_at
 
     function assignCardLayouts(visibleCards) {
       cards.forEach((card) => card.classList.remove('card-featured', 'card-secondary', 'card-standard'));
-      visibleCards.forEach((card, index) => {
-        if (index <= 2) card.classList.add('card-featured');
-        else card.classList.add('card-standard');
+      visibleCards.forEach((card, index) => card.classList.add(index <= 2 ? 'card-featured' : 'card-standard'));
+    }
+
+    function updateDateHeadings() {
+      dateHeadings.forEach((heading) => {
+        const key = heading.dataset.dateHeading;
+        const hasVisibleStories = cards.some((card) => card.dataset.dateGroup === key && !card.classList.contains('filtered-out'));
+        heading.hidden = !hasVisibleStories;
       });
     }
 
@@ -226,6 +274,7 @@ const generated = news.generated_at
       });
 
       assignCardLayouts(visibleCards);
+      updateDateHeadings();
       if (noResults) noResults.hidden = visibleCards.length !== 0;
       if (resultsStatus) {
         const qualifiers = [];
@@ -234,7 +283,7 @@ const generated = news.generated_at
         if (hiddenSources.size) qualifiers.push(`${hiddenSources.size} hidden ${hiddenSources.size === 1 ? 'source' : 'sources'}`);
         resultsStatus.textContent = visibleCards.length === 0
           ? 'No matching stories'
-          : `${visibleCards.length} ${visibleCards.length === 1 ? 'story' : 'stories'}${qualifiers.length ? ` · ${qualifiers.join(' · ')}` : ''}`;
+          : `${visibleCards.length} ${visibleCards.length === 1 ? 'story' : 'stories'}, newest first${qualifiers.length ? ` · ${qualifiers.join(' · ')}` : ''}`;
       }
     }
 

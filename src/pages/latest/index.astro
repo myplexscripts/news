@@ -3,13 +3,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import news from '../../../data/news.json';
 
 const base = import.meta.env.BASE_URL;
+const storyTime = (story) => story.cluster_latest_published || story.published;
 const representatives = (news.stories || [])
   .filter((story) => story.cluster_representative !== false)
-  .sort((a, b) => new Date(b.cluster_latest_published || b.published).getTime() - new Date(a.cluster_latest_published || a.published).getTime())
+  .sort((a, b) => new Date(storyTime(b)).getTime() - new Date(storyTime(a)).getTime())
   .slice(0, 140);
 
 const storyHref = (story) => `${base}story/${story.id}/`;
-const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const initials = (name = '') => name.split(/\s+/).filter(Boolean).map((part) => part[0]).slice(0, 2).join('').toUpperCase();
 
 const published = (value) => {
@@ -25,6 +25,37 @@ const published = (value) => {
     return '';
   }
 };
+
+const localDateKey = (value) => {
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date(value));
+    const values = Object.fromEntries(parts.filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+    return `${values.year}-${values.month}-${values.day}`;
+  } catch {
+    return '1970-01-01';
+  }
+};
+const dayNumber = (key) => {
+  const [year, month, day] = key.split('-').map(Number);
+  return Math.floor(Date.UTC(year, month - 1, day) / 86400000);
+};
+const referenceDay = dayNumber(localDateKey(news.generated_at || new Date().toISOString()));
+const groupKeyFor = (value) => {
+  const diff = referenceDay - dayNumber(localDateKey(value));
+  if (diff <= 0) return 'today';
+  if (diff === 1) return 'yesterday';
+  if (diff === 2) return 'two-days-ago';
+  return 'earlier';
+};
+const groupLabels = { today: 'Today', yesterday: 'Yesterday', 'two-days-ago': 'Two Days Ago', earlier: 'Earlier' };
+const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
+  .map((key) => ({ key, label: groupLabels[key], stories: representatives.filter((story) => groupKeyFor(storyTime(story)) === key) }))
+  .filter((group) => group.stories.length > 0);
 ---
 <BaseLayout title="Latest | London News" description="The latest local news from London, Ontario in chronological order.">
   <div slot="header-actions" class="header-search" id="headerSearch">
@@ -48,38 +79,49 @@ const published = (value) => {
       <h2 id="latest-feed-heading" class="visually-hidden">Latest London stories</h2>
       <p class="results-status" id="resultsStatus" aria-live="polite">{representatives.length} stories</p>
       <div class="latest-card-grid">
-        {representatives.map((story) => (
-          <article
-            class:list={["news-card", "card-standard", "searchable", categoryClass(story.category), !story.image && "no-image"]}
-            data-source={story.source}
-            data-sources={(story.cluster_sources || [story.source]).join('|')}
-            data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
-          >
-            <div class="news-card-body">
-              <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
-                <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
-                <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
-              </div>
-              <span class="news-card-category">{story.category}</span>
-              <h3><a href={storyHref(story)}>{story.title}</a></h3>
-              {story.summary && <p class="news-card-summary">{story.summary}</p>}
-              <div class="news-card-footer">
-                <time datetime={story.cluster_latest_published || story.published}>{published(story.cluster_latest_published || story.published)}</time>
-                {Number(story.cluster_source_count || 1) > 1 && <span>{story.cluster_source_count} sources</span>}
-              </div>
-            </div>
-            {story.image && (
-              <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
-                <img
-                  src={story.image}
-                  alt={story.image_alt || ''}
-                  loading="lazy"
-                  referrerpolicy="no-referrer"
-                  style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
-                />
-              </a>
-            )}
-          </article>
+        {dateGroups.map((group) => (
+          <>
+            <header class="story-date-heading" data-date-heading={group.key}>
+              <h2>{group.label}</h2>
+              <span>{group.stories.length} {group.stories.length === 1 ? 'story' : 'stories'}</span>
+            </header>
+            {group.stories.map((story) => {
+              const timestamp = storyTime(story);
+              return (
+                <article
+                  class:list={["news-card", "card-standard", "searchable", !story.image && "no-image"]}
+                  data-source={story.source}
+                  data-sources={(story.cluster_sources || [story.source]).join('|')}
+                  data-date-group={group.key}
+                  data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
+                >
+                  {story.image && (
+                    <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
+                      <img
+                        src={story.image}
+                        alt={story.image_alt || ''}
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
+                      />
+                    </a>
+                  )}
+                  <div class="news-card-body">
+                    <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
+                      <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
+                      <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
+                    </div>
+                    <h3><a href={storyHref(story)}>{story.title}</a></h3>
+                    {story.summary && <p class="news-card-summary">{story.summary}</p>}
+                    <div class="news-card-footer">
+                      <time datetime={timestamp}>{published(timestamp)}</time>
+                      {Number(story.cluster_source_count || 1) > 1 && <span>{story.cluster_source_count} sources</span>}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </>
         ))}
       </div>
       <div class="no-results card-no-results" id="noResults" hidden>
@@ -96,11 +138,20 @@ const published = (value) => {
     const searchClose = document.getElementById('searchClose');
     const searchInput = document.getElementById('searchInput');
     const cards = [...document.querySelectorAll('.latest-card-grid .searchable')];
+    const dateHeadings = [...document.querySelectorAll('[data-date-heading]')];
     const noResults = document.getElementById('noResults');
     const resultsStatus = document.getElementById('resultsStatus');
     let hiddenSources = new Set();
 
     try { hiddenSources = new Set(JSON.parse(localStorage.getItem('london-news-hidden-sources') || '[]')); } catch { hiddenSources = new Set(); }
+
+    function updateDateHeadings() {
+      dateHeadings.forEach((heading) => {
+        const key = heading.dataset.dateHeading;
+        const hasVisibleStories = cards.some((card) => card.dataset.dateGroup === key && !card.classList.contains('filtered-out'));
+        heading.hidden = !hasVisibleStories;
+      });
+    }
 
     function applyLatestFilters() {
       const query = (searchInput?.value || '').trim().toLowerCase();
@@ -113,8 +164,9 @@ const published = (value) => {
         card.classList.toggle('filtered-out', !show);
         if (show) visible += 1;
       });
+      updateDateHeadings();
       if (noResults) noResults.hidden = visible !== 0;
-      if (resultsStatus) resultsStatus.textContent = `${visible} ${visible === 1 ? 'story' : 'stories'}`;
+      if (resultsStatus) resultsStatus.textContent = `${visible} ${visible === 1 ? 'story' : 'stories'}, newest first`;
     }
 
     function openSearch() {
