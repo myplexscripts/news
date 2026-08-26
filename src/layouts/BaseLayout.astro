@@ -17,7 +17,9 @@ const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
 const onSources = path.includes('/sources/');
 const onSections = path.includes('/sections/');
-const onHome = !onSources && !onSections && !path.includes('/latest/') && !path.includes('/story/') && !path.includes('/admin/');
+const onSearch = path.includes('/search/');
+const onHome = !onSources && !onSections && !onSearch && !path.includes('/latest/') && !path.includes('/story/') && !path.includes('/admin/');
+const hasHeaderActions = Astro.slots.has('header-actions');
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="light">
@@ -29,6 +31,8 @@ const onHome = !onSources && !onSections && !path.includes('/latest/') && !path.
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
     <title>{title}</title>
+    <link rel="manifest" href={`${base}manifest.webmanifest`} />
+    <link rel="apple-touch-icon" href={`${base}icons/icon-180.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -54,6 +58,11 @@ const onHome = !onSources && !onSections && !path.includes('/latest/') && !path.
 
         <div class="header-actions">
           <slot name="header-actions" />
+          {!hasHeaderActions && (
+            <a class="icon-button header-search-link" href={`${base}search/`} aria-label="Search news" title="Search">
+              <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+            </a>
+          )}
           <a class="icon-button desktop-sources-link" href={`${base}sources/`} aria-label="Manage news sources" title="Sources">
             <i class="ph ph-buildings" aria-hidden="true"></i>
           </a>
@@ -97,6 +106,16 @@ const onHome = !onSources && !onSections && !path.includes('/latest/') && !path.
       >
         <i class={onSections ? 'ph-fill ph-squares-four' : 'ph ph-squares-four'} aria-hidden="true"></i>
         <span class="visually-hidden">Sections</span>
+      </a>
+      <a
+        class:list={["mobile-tab", onSearch && "active"]}
+        href={`${base}search/`}
+        aria-label="Search"
+        title="Search"
+        aria-current={onSearch ? 'page' : undefined}
+      >
+        <i class={onSearch ? 'ph-fill ph-magnifying-glass' : 'ph ph-magnifying-glass'} aria-hidden="true"></i>
+        <span class="visually-hidden">Search</span>
       </a>
       <a
         class:list={["mobile-tab", onSources && "active"]}
@@ -159,6 +178,11 @@ const onHome = !onSources && !onSections && !path.includes('/latest/') && !path.
       }, { passive: true });
       window.addEventListener('resize', syncMobileHomeAction, { passive: true });
       syncMobileHomeAction();
+    </script>
+      <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => navigator.serviceWorker.register(new URL('sw.js', document.querySelector('link[rel="manifest"]')?.href || location.href).href).catch(() => {}));
+      }
     </script>
   </body>
 </html>

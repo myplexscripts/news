@@ -9,6 +9,7 @@ class Source:
     homepage: str = ""
     accent: str = "#666666"
     max_items: int = 25
+    logo: str = ""
 
 
 # Direct publisher feeds/pages are the reliable core. Google News is kept as a
@@ -17,24 +18,28 @@ class Source:
 SOURCES = [
     Source(
         name="Global News London",
+        logo="https://globalnews.ca/favicon.ico",
         url="https://globalnews.ca/london/feed",
         homepage="https://globalnews.ca/london/",
         accent="#0088ff",
     ),
     Source(
         name="CBC News London",
+        logo="https://www.cbc.ca/favicon.ico",
         url="https://www.cbc.ca/webfeed/rss/rss-canada-london",
         homepage="https://www.cbc.ca/news/canada/london",
         accent="#ff383c",
     ),
     Source(
         name="London Free Press",
+        logo="https://lfpress.com/favicon.ico",
         url="https://lfpress.com/feed",
         homepage="https://lfpress.com/",
         accent="#6155f5",
     ),
     Source(
         name="CTV News",
+        logo="https://www.ctvnews.ca/favicon.ico",
         # CTV's legacy London RSS endpoint now redirects to a dead URL. Discover
         # stories from the current London landing page and scrape the first-party
         # /london/article/ pages directly instead.
@@ -46,12 +51,14 @@ SOURCES = [
     ),
     Source(
         name="106.9 The X",
+        logo="https://www.1069thex.com/favicon.ico",
         url="https://www.1069thex.com/category/news-home-page/feed/",
         homepage="https://www.1069thex.com/",
         accent="#ff8d28",
     ),
     Source(
         name="City of London Newsroom",
+        logo="https://london.ca/favicon.ico",
         url="https://london.ca/newsroom",
         kind="page",
         homepage="https://london.ca/newsroom",
@@ -60,6 +67,7 @@ SOURCES = [
     ),
     Source(
         name="London Police Service",
+        logo="https://www.londonpolice.ca/favicon.ico",
         url="https://www.londonpolice.ca/news/authors/london-police-service",
         kind="page",
         homepage="https://www.londonpolice.ca/news/authors/london-police-service",
@@ -68,12 +76,14 @@ SOURCES = [
     ),
     Source(
         name="London Fire Department",
+        logo="https://london.ca/favicon.ico",
         url="https://news.google.com/rss/search?q=site:https://x.com/LdnOntFire+when:7d&hl=en-CA&gl=CA&ceid=CA:en",
         homepage="https://x.com/LdnOntFire",
         accent="#ff383c",
     ),
     Source(
         name="104.7 Heart FM",
+        logo="https://www.heartfm.ca/favicon.ico",
         url="https://www.heartfm.ca/news/local-news/feed.xml",
         homepage="https://www.heartfm.ca/news/local-news/",
         accent="#ff2d55",
@@ -81,6 +91,7 @@ SOURCES = [
     ),
     Source(
         name="Google News London Discovery",
+        logo="https://news.google.com/favicon.ico",
         url="https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRERW9BQSowCAAqLAgKIiZDQklTRmpvSWJHOWpZV3hmZGpKNkNnb0lMMjB2TUdJeGRERW9BQVABUAE?hl=en-CA&gl=CA&ceid=CA:en",
         kind="google_topic",
         homepage="https://news.google.com/",

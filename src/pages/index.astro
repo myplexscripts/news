@@ -88,7 +88,7 @@ const generated = news.generated_at
   : 'waiting for refresh';
 ---
 <BaseLayout>
-  <div slot="header-actions" class="header-search" id="headerSearch">
+  <div slot="header-actions" class="header-search desktop-header-search" id="headerSearch">
     <button class="header-search-toggle" id="searchToggle" aria-label="Search news" title="Search news" aria-expanded="false" aria-controls="searchInput">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
     </button>
@@ -151,17 +151,18 @@ const generated = news.generated_at
               const timestamp = storyTime(story);
               return (
                 <article
-                  class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
+                  class:list={["news-card", "searchable", index < 3 && story.hero_eligible !== false ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
                   data-category={story.category}
                   data-source={story.source}
                   data-sources={(story.cluster_sources || [story.source]).join('|')}
                   data-date-group={group.key}
+                  data-hero-eligible={story.hero_eligible === false ? 'false' : 'true'}
                   data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
                 >
                   {story.image && (
                     <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
                       <img
-                        src={story.image}
+                        src={story.card_image ? `${base}${story.card_image}` : story.image}
                         alt={story.image_alt || ''}
                         loading="lazy"
                         referrerpolicy="no-referrer"
@@ -171,7 +172,7 @@ const generated = news.generated_at
                   )}
                   <div class="news-card-body">
                     <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
-                      <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
+                      <span class="news-source-avatar source-logo-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{story.source_logo ? <img src={story.source_logo} alt="" loading="lazy" referrerpolicy="no-referrer" /> : initials(story.source)}</span>
                       <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
                     </div>
                     <h3><a href={storyHref(story)}>{story.title}</a></h3>
@@ -247,7 +248,12 @@ const generated = news.generated_at
 
     function assignCardLayouts(visibleCards) {
       cards.forEach((card) => card.classList.remove('card-featured', 'card-secondary', 'card-standard'));
-      visibleCards.forEach((card, index) => card.classList.add(index <= 2 ? 'card-featured' : 'card-standard'));
+      let heroCount = 0;
+      visibleCards.forEach((card) => {
+        const eligible = card.dataset.heroEligible !== 'false';
+        if (heroCount < 3 && eligible) { card.classList.add('card-featured'); heroCount += 1; }
+        else card.classList.add('card-standard');
+      });
     }
 
     function updateDateHeadings() {
@@ -302,7 +308,9 @@ const generated = news.generated_at
       applyFilters();
     });
 
-    const requestedSection = new URLSearchParams(window.location.search).get('section');
+    const pageParams = new URLSearchParams(window.location.search);
+    const requestedSection = pageParams.get('section');
+    if (pageParams.get('search') === '1') openSearch();
     if (requestedSection && cards.some((card) => card.dataset.category === requestedSection)) {
       setFilter(requestedSection);
       document.getElementById('latest')?.scrollIntoView({ block: 'start' });

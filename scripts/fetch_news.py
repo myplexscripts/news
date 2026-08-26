@@ -28,13 +28,14 @@ from ranking import GOOGLE_DISCOVERY_MIN_LOCAL_SCORE, apply_editorial_intelligen
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "news.json"
+CARD_IMAGE_DIR = ROOT / "public" / "cache" / "news"
 HISTORY_LIMIT = 750
 REQUEST_TIMEOUT = 30
 ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 24
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 9
+EXTRACTION_SCHEMA = 10
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -84,8 +85,8 @@ GENERIC_BOILERPLATE = (
     "get email updates from your favourite authors", "get email updates from your favorite authors",
     "this advertisement has not loaded yet", "advertisement has not loaded yet",
     "story continues below", "continue reading", "download our app", "follow us on",
-    "recommended video", "related stories", "related story", "more from", "all rights reserved",
-    "back to news search subscribe", "back to news search", "trending stories", "trending now",
+    "recommended video", "related stories", "related story", "more from", "you may also like", "read more from", "all rights reserved",
+    "back to news search subscribe", "back to news search", "trending stories", "trending now", "most popular", "top stories", "watch more",
 )
 
 POSTMEDIA_BOILERPLATE = (
@@ -2021,6 +2022,7 @@ def build_source_health(stories: list[dict[str, Any]], run_counts: dict[str, int
         health.append({
             "source": source.name,
             "accent": source.accent,
+            "logo": getattr(source, "logo", ""),
             "profile": profile_for(source.name).get("profile", "generic"),
             "status": status,
             "checked_at": now,
@@ -2083,6 +2085,110 @@ def dedupe_stories(stories: list[dict[str, Any]]) -> list[dict[str, Any]]:
         final.append(story)
     return final
 
+def cache_card_images(stories: list[dict[str, Any]], limit: int = 140) -> list[dict[str, Any]]:
+    """Cache lightweight square card thumbnails locally for fast, stable feeds."""
+    CARD_IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+    wanted: set[str] = set()
+    done = 0
+    for story in sorted(stories, key=lambda item: item.get("published", ""), reverse=True):
+        if done >= limit:
+            break
+        image_url = clean_text(story.get("image"))
+        if not image_url or not image_url.startswith(("http://", "https://")):
+            continue
+        filename = hashlib.sha1(image_url.encode("utf-8", "ignore")).hexdigest()[:20] + ".webp"
+        target = CARD_IMAGE_DIR / filename
+        relative = f"cache/news/{filename}"
+        wanted.add(filename)
+        if not target.exists():
+            try:
+                response = SESSION.get(image_url, timeout=12)
+                response.raise_for_status()
+                image = Image.open(BytesIO(response.content)).convert("RGB")
+                width, height = image.size
+                if min(width, height) < 160:
+                    continue
+                focus_x = float(story.get("image_focus_x") or 50) / 100.0
+                focus_y = float(story.get("image_focus_y") or 50) / 100.0
+                side = min(width, height)
+                center_x = max(side / 2, min(width - side / 2, width * focus_x))
+                center_y = max(side / 2, min(height - side / 2, height * focus_y))
+                left = int(center_x - side / 2)
+                top = int(center_y - side / 2)
+                image = image.crop((left, top, left + side, top + side))
+                image.thumbnail((720, 720), Image.Resampling.LANCZOS)
+                image.save(target, "WEBP", quality=82, method=6)
+            except Exception:
+                continue
+        story["card_image"] = relative
+        done += 1
+
+    # Avoid unbounded repository growth. Keep cached files still referenced by the latest set.
+    for path in CARD_IMAGE_DIR.glob("*.webp"):
+        if path.name not in wanted:
+            try:
+                path.unlink()
+            except OSError:
+                pass
+    return stories
+
+
+def source_metadata_map() -> dict[str, dict[str, str]]:
+    return {
+        canonical_source_name(source.name): {
+            "logo": getattr(source, "logo", ""),
+            "homepage": source.homepage,
+            "accent": source.accent,
+        }
+        for source in SOURCES
+    }
+
+
+def story_topics(story: dict[str, Any]) -> list[str]:
+    """Small deterministic enrichment layer for browsing/search, never invented prose."""
+    topics: list[str] = []
+    category = clean_text(story.get("category"))
+    if category:
+        topics.append(category)
+    for reason in story.get("local_reasons") or []:
+        label = re.sub(r"\s+[+-]\d+$", "", clean_text(reason))
+        label = re.sub(r"^local publisher\s*", "", label, flags=re.I).strip()
+        if label and label.lower() not in {"london mention", "publisher"} and label not in topics:
+            topics.append(label)
+    if int(story.get("cluster_source_count") or 1) > 1:
+        topics.append("Multiple sources")
+    if story.get("content_status") == "full" and int((story.get("quality") or {}).get("score") or 0) >= 75:
+        topics.append("Full article")
+    return topics[:5]
+
+
+def annotate_presentation(stories: list[dict[str, Any]], source_health: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    configured = source_metadata_map()
+    health_map = {canonical_source_name(item.get("source")): item for item in source_health}
+    for story in stories:
+        source_name = canonical_source_name(story.get("source"))
+        metadata = configured.get(source_name, {})
+        story["source_logo"] = metadata.get("logo", story.get("source_logo", ""))
+        health = health_map.get(source_name)
+        if health:
+            status = health.get("status", "waiting")
+        else:
+            q = int((story.get("quality") or {}).get("score") or 0)
+            status = "healthy" if q >= 65 and not story.get("scrape_error") else "degraded"
+        story["source_health_status"] = status
+        quality = int((story.get("quality") or {}).get("score") or 0)
+        local = int(story.get("cluster_local_score") or story.get("local_score") or 0)
+        story["hero_eligible"] = bool(
+            status == "healthy"
+            and story.get("content_status") in {"full", "partial"}
+            and quality >= 55
+            and local >= 25
+            and story.get("image")
+        )
+        story["story_topics"] = story_topics(story)
+    return stories
+
+
 def main() -> int:
     previous = [story for story in load_existing() if not is_unusable_google_story(story)]
     lookup = existing_lookup(previous)
@@ -2121,6 +2227,7 @@ def main() -> int:
     stories = backfill_missing(stories, skip_sources=set(run_errors))
     stories = remove_repeated_source_images(stories)
     stories = add_image_focus(stories)
+    stories = cache_card_images(stories)
 
     # Editorial intelligence is deterministic and free: local relevance,
     # cross-publisher event clustering, and homepage ranking are calculated on
@@ -2145,6 +2252,9 @@ def main() -> int:
     stories = stories[:HISTORY_LIMIT]
     stories, editorial = apply_editorial_intelligence(stories)
 
+    source_health = build_source_health(stories, run_counts, run_errors)
+    stories = annotate_presentation(stories, source_health)
+
     now = datetime.now(timezone.utc).isoformat()
     full_count = sum(1 for item in stories if item.get("content_status") == "full")
     partial_count = sum(1 for item in stories if item.get("content_status") == "partial")
@@ -2164,7 +2274,7 @@ def main() -> int:
         "editorial_clusters": editorial.get("clusters", []),
         "google_discoveries_filtered": discovery_filtered,
         "errors": errors,
-        "source_health": build_source_health(stories, run_counts, run_errors),
+        "source_health": source_health,
         "stories": stories,
     }
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)

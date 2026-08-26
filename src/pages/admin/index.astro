@@ -34,8 +34,8 @@ const statusIcon = (status) => status === 'healthy' ? 'ph-check-circle' : status
       <div class="admin-heading">
         <div>
           <span class="eyebrow"><i class="ph ph-pulse"></i> Internal</span>
-          <h1>Collector health</h1>
-          <p>Extraction quality, source status and stories that need attention.</p>
+          <h1>Scoop health</h1>
+          <p>Scoop extraction quality, source status, clustering, locality and stories that need attention.</p>
         </div>
         <a class="admin-home-link" href={base}><i class="ph ph-arrow-left"></i> Newsroom</a>
       </div>
@@ -72,8 +72,8 @@ const statusIcon = (status) => status === 'healthy' ? 'ph-check-circle' : status
           {health.length ? health.map((source) => (
             <article class="health-row">
               <div class="health-source">
-                <span class="source-avatar" style={`--source-color:${source.accent}`}>
-                  {source.source.split(' ').map((part) => part[0]).slice(0, 2).join('')}
+                <span class="source-avatar source-logo-avatar" style={`--source-color:${source.accent}`}>
+                  {source.logo ? <img src={source.logo} alt="" loading="lazy" referrerpolicy="no-referrer" /> : source.source.split(' ').map((part) => part[0]).slice(0, 2).join('')}
                 </span>
                 <div>
                   <strong>{source.source}</strong>

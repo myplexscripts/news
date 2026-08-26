@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../../data/news.json';
+const stories = [...(news.stories || [])]
+  .filter((story) => story.cluster_representative !== false)
+  .sort((a,b) => new Date(b.cluster_latest_published || b.published).getTime() - new Date(a.cluster_latest_published || a.published).getTime());
+const base = import.meta.env.BASE_URL;
+const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Toronto',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(value)); } catch { return ''; } };
+---
+<BaseLayout title="Search | London News" description="Search London News stories.">
+  <main class="directory-page search-page" id="main-content">
+    <section class="directory-shell shell">
+      <header class="directory-heading">
+        <p class="masthead-label">Find stories</p>
+        <h1>Search</h1>
+        <p>Search headlines, publishers, locations and article text from the current London News archive.</p>
+      </header>
+
+      <div class="search-page-field">
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <input id="archiveSearch" type="search" autocomplete="off" placeholder="Search London News" aria-label="Search London News" autofocus />
+        <button id="clearArchiveSearch" class="search-clear-button" type="button" aria-label="Clear search" hidden><i class="ph ph-x-circle" aria-hidden="true"></i></button>
+      </div>
+      <p class="search-result-status" id="archiveSearchStatus" aria-live="polite">Start typing to search.</p>
+
+      <div class="search-results" id="archiveSearchResults">
+        {stories.map((story) => (
+          <article class="search-result-card" data-search={`${story.title} ${story.summary || ''} ${story.source || ''} ${story.category || ''} ${(story.paragraphs || []).slice(0,4).join(' ')} ${(story.story_topics || []).join(' ')}`.toLowerCase()} hidden>
+            {story.image && <a class="search-result-media" href={`${base}story/${story.id}/`}><img src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /></a>}
+            <div class="search-result-copy">
+              <span>{story.source}</span>
+              <h2><a href={`${base}story/${story.id}/`}>{story.title}</a></h2>
+              <time datetime={story.cluster_latest_published || story.published}>{published(story.cluster_latest_published || story.published)}</time>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+  <script is:inline>
+    const input = document.getElementById('archiveSearch');
+    const clear = document.getElementById('clearArchiveSearch');
+    const status = document.getElementById('archiveSearchStatus');
+    const cards = [...document.querySelectorAll('.search-result-card')];
+    function update() {
+      const q = (input?.value || '').trim().toLowerCase();
+      let shown = 0;
+      cards.forEach((card) => { const yes = q.length >= 2 && (card.dataset.search || '').includes(q); card.hidden = !yes; if (yes) shown++; });
+      if (clear) clear.hidden = !q;
+      if (status) status.textContent = q.length < 2 ? 'Type at least 2 characters.' : `${shown} ${shown === 1 ? 'result' : 'results'}`;
+    }
+    input?.addEventListener('input', update);
+    clear?.addEventListener('click', () => { if (input) input.value=''; update(); input?.focus(); });
+    update();
+  </script>
+</BaseLayout>

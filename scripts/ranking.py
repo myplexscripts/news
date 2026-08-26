@@ -71,9 +71,9 @@ SOURCE_PRIORS = {
     "106.9 The X": 35,
     "London Free Press": 30,
     "CBC News London": 30,
-    "Global News London": 25,
-    "CTV News": 20,
-    "104.7 Heart FM": 20,
+    "Global News London": 20,
+    "CTV News": 15,
+    "104.7 Heart FM": 10,
 }
 
 
@@ -249,11 +249,11 @@ def _should_cluster(left: dict[str, Any], right: dict[str, Any]) -> bool:
     if same_source:
         return bool(parts.get("title", 0) >= 0.86 or (parts.get("containment", 0) >= 0.82 and shared >= 5))
 
-    if parts.get("title", 0) >= 0.76 and shared >= 3:
+    if parts.get("title", 0) >= 0.80 and shared >= 3:
         return True
-    if parts.get("containment", 0) >= 0.58 and shared >= 4 and score >= 0.52:
+    if parts.get("containment", 0) >= 0.64 and shared >= 4 and score >= 0.58:
         return True
-    if parts.get("entity", 0) and shared >= 3 and score >= 0.56:
+    if parts.get("entity", 0) and shared >= 4 and score >= 0.60:
         return True
     return False
 

@@ -112,13 +112,20 @@ const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2
             {Number(story.cluster_source_count || 1) > 1 && <span>{story.cluster_source_count} sources</span>}
           </div>
           <h1>{story.title}</h1>
+          {Array.isArray(story.story_topics) && story.story_topics.length > 0 && (
+            <div class="article-topic-row" aria-label="Story topics">
+              {story.story_topics.slice(0, 4).map((topic) => <span>{topic}</span>)}
+            </div>
+          )}
           {showDeck && <p class="article-deck">{story.summary}</p>}
         </header>
 
         <aside class="article-sidebar article-sidebar-refined" aria-label="Article source">
           <div class="article-source-card article-source-card-refined">
             <div class="source-card-identity">
-              <span class="source-avatar large source-avatar-square-fix" style={`--source-color:${story.source_accent}`}>{sourceInitials}</span>
+              <span class="source-avatar large source-avatar-square-fix source-logo-avatar" style={`--source-color:${story.source_accent}`}>
+                {story.source_logo ? <img src={story.source_logo} alt="" referrerpolicy="no-referrer" /> : sourceInitials}
+              </span>
               <div>
                 <span class="source-card-label">Published by</span>
                 <h2>{story.source}</h2>
@@ -189,7 +196,7 @@ const sourceInitials = story.source.split(' ').map((part) => part[0]).slice(0, 2
             {related.map((item) => (
               <article class="related-card">
                 <a class="related-media" href={`${base}story/${item.id}/`} aria-label={`Read ${item.title}`}>
-                  {item.image ? <img src={item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
+                  {item.image ? <img src={item.card_image ? `${base}${item.card_image}` : item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
                 </a>
                 <div class="story-meta"><span>{item.source}</span></div>
                 <h3><a href={`${base}story/${item.id}/`}>{item.title}</a></h3>

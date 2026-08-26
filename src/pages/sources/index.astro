@@ -12,9 +12,13 @@ for (const story of stories) {
     name: story.source,
     accent: story.source_accent || 'var(--blue)',
     count: 0,
-    latest: story.published
+    latest: story.published,
+    logo: story.source_logo || '',
+    health: story.source_health_status || 'waiting'
   };
   existing.count += 1;
+  if (!existing.logo && story.source_logo) existing.logo = story.source_logo;
+  if (story.source_health_status) existing.health = story.source_health_status;
   if (story.published && (!existing.latest || new Date(story.published) > new Date(existing.latest))) existing.latest = story.published;
   sourceMap.set(story.source, existing);
 }
@@ -53,10 +57,12 @@ const latestDate = (value) => {
         {sources.map((source) => (
           <article class="source-preference-card" data-source-name={source.name}>
             <div class="source-preference-identity">
-              <span class="source-preference-avatar" style={`--source-color:${source.accent}`}>{initials(source.name)}</span>
+              <span class="source-preference-avatar source-logo-avatar" style={`--source-color:${source.accent}`}>
+                {source.logo ? <img src={source.logo} alt="" loading="lazy" referrerpolicy="no-referrer" /> : initials(source.name)}
+              </span>
               <div>
                 <h2>{source.name}</h2>
-                <p>{source.count} {source.count === 1 ? 'story' : 'stories'} in the current archive <span aria-hidden="true">·</span> Latest {latestDate(source.latest)}</p>
+                <p><span class:list={["source-health-dot", `source-health-${source.health}`]} aria-hidden="true"></span>{source.health === 'healthy' ? 'Healthy' : source.health === 'degraded' ? 'Limited extraction' : source.health === 'error' ? 'Temporarily unavailable' : 'Waiting'} <span aria-hidden="true">·</span> Latest {latestDate(source.latest)}</p>
               </div>
             </div>
             <label class="source-switch-row">

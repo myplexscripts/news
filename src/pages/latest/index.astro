@@ -92,12 +92,13 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
                   data-source={story.source}
                   data-sources={(story.cluster_sources || [story.source]).join('|')}
                   data-date-group={group.key}
+                data-hero-eligible={story.hero_eligible === false ? 'false' : 'true'}
                   data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
                 >
                   {story.image && (
                     <a class="news-card-media" href={storyHref(story)} aria-label={`Read ${story.title}`}>
                       <img
-                        src={story.image}
+                        src={story.card_image ? `${base}${story.card_image}` : story.image}
                         alt={story.image_alt || ''}
                         loading="lazy"
                         referrerpolicy="no-referrer"
@@ -107,7 +108,7 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
                   )}
                   <div class="news-card-body">
                     <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
-                      <span class="news-source-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{initials(story.source)}</span>
+                      <span class="news-source-avatar source-logo-avatar" style={`--source-color:${story.source_accent || 'var(--blue)'}`}>{story.source_logo ? <img src={story.source_logo} alt="" loading="lazy" referrerpolicy="no-referrer" /> : initials(story.source)}</span>
                       <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
                     </div>
                     <h3><a href={storyHref(story)}>{story.title}</a></h3>
