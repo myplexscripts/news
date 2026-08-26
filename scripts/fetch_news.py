@@ -31,10 +31,10 @@ DATA_FILE = ROOT / "data" / "news.json"
 HISTORY_LIMIT = 750
 REQUEST_TIMEOUT = 30
 ARTICLE_REFRESH_HOURS = 12
-BACKFILL_PER_RUN = 12
+BACKFILL_PER_RUN = 24
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 7
+EXTRACTION_SCHEMA = 8
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -90,6 +90,29 @@ POSTMEDIA_BOILERPLATE = (
     "enjoy additional articles per month", "get email updates from your favourite authors",
     "get email updates from your favorite authors", "sign in or create an account",
     "unlock more articles", "manage print subscription", "trending", "most read",
+    "exclusive articles from", "noon news roundup newsletter", "lfp weekender newsletter",
+)
+
+GLOBAL_BOILERPLATE = (
+    "if you get global news from instagram or facebook",
+    "find out how you can still connect with us",
+    "hide message bar",
+    "leave a comment share this item",
+    "share this item on facebook",
+    "share this item via whatsapp",
+    "send this page to someone via email",
+    "see more sharing options",
+    "decrease article font size",
+    "descrease article font size",
+    "increase article font size",
+    "get daily national news",
+    "get daily canada news delivered to your inbox",
+    "get daily national news delivered to your inbox",
+    "add global news as a preferred source on google",
+    "previous video",
+    "next video",
+    "click to play video",
+    "recommended video",
 )
 
 SOURCE_NAME_ALIASES = {
@@ -159,8 +182,21 @@ def accent_for_source(name: str) -> str:
 SOURCE_PROFILES: dict[str, dict[str, Any]] = {
     "Global News London": {
         "profile": "global",
-        "roots": [".l-article__body", ".article-content", "[itemprop='articleBody']", "article"],
-        "remove": [".l-article__related", ".c-ad", ".ad", ".newsletter", ".share"],
+        "roots": [
+            ".l-article__body", ".l-article__content", ".article-content",
+            "[data-testid='article-body']", "[itemprop='articleBody']", "article"
+        ],
+        "remove": [
+            ".l-article__related", ".l-relatedStories", ".l-inlineStories", ".c-posts",
+            ".c-readmore", "[data-shortcode='readmore']", "[data-shortcode*='video']",
+            ".c-ad", ".ad", "[class*='advert']", "[class*='sponsor']",
+            ".newsletter", "[class*='newsletter']", "[class*='email-signup']",
+            ".share", "[class*='share']", "[class*='social']",
+            "[class*='video']", "[class*='Video']", "[data-testid*='video']",
+            "[class*='player']", "[class*='playlist']", "[class*='message-bar']",
+            "[class*='recirc']", "[class*='recommended']", "[class*='preferred-source']"
+        ],
+        "strict_dom": True,
     },
     "CBC News London": {
         "profile": "cbc",
@@ -324,8 +360,11 @@ def clean_story_title(value: str, source_name: str = "") -> str:
 
 
 def source_boilerplate(source_name: str) -> tuple[str, ...]:
-    if "free press" in source_name.lower():
+    lower = source_name.lower()
+    if "free press" in lower:
         return POSTMEDIA_BOILERPLATE
+    if "global news" in lower:
+        return GLOBAL_BOILERPLATE
     return ()
 
 
@@ -403,6 +442,8 @@ def clean_article_blocks(blocks: list[str], source_name: str = "", title: str = 
         if stats is not None:
             stats["raw_text_blocks"] = stats.get("raw_text_blocks", 0) + 1
         text = clean_text(strip_title_echo(normalize_source_case(block), title))
+        if is_global_source(source_name) and global_stop_text(text):
+            break
         if len(text) < 25:
             if stats is not None:
                 stats["short_removed"] = stats.get("short_removed", 0) + 1
@@ -732,6 +773,11 @@ def has_junk_ancestor(tag: Tag, root: Tag) -> bool:
         signature = tag_signature(current)
         if any(token in signature for token in JUNK_CLASS_TOKENS):
             return True
+        if current.has_attr("hidden") or str(current.get("aria-hidden", "")).lower() == "true":
+            return True
+        style = str(current.get("style", "")).lower().replace(" ", "")
+        if "display:none" in style or "visibility:hidden" in style:
+            return True
         if current is root:
             break
         current = current.parent if isinstance(current.parent, Tag) else None
@@ -770,6 +816,19 @@ def is_police_source(source_name: str) -> bool:
 
 def is_postmedia_source(source_name: str) -> bool:
     return "free press" in source_name.lower()
+
+
+def is_global_source(source_name: str) -> bool:
+    return "global news" in source_name.lower()
+
+
+def global_stop_text(value: str) -> bool:
+    key = boilerplate_key(value)
+    return key.startswith((
+        "stick to the facts", "sponsored content", "report an error",
+        "journalistic standards", "journalistic standards comment",
+        "copyright 202", "all rights reserved",
+    ))
 
 
 def police_stop_text(value: str) -> bool:
@@ -1018,6 +1077,8 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
         if node.name in ("p", "h2", "h3", "blockquote"):
             raw_node_text = clean_text(node.get_text(" ", strip=True))
             raw_key = boilerplate_key(raw_node_text)
+            if is_global_source(source_name) and global_stop_text(raw_node_text):
+                break
             if postmedia_mode and node.name in ("h2", "h3") and (raw_key.startswith("trending") or raw_key.startswith("most read") or raw_key.startswith("most popular")):
                 postmedia_trending = True
                 continue
@@ -1106,6 +1167,31 @@ def fallback_blocks(paragraphs: list[str], images: list[dict[str, Any]]) -> list
             blocks.append({"type": "image", "url": image["url"], "alt": image.get("alt", ""), "caption": image.get("caption", "")})
             image_index += 1
     return blocks
+
+
+def json_ld_body_paragraphs(ld: dict[str, Any], source_name: str, title: str, stats: dict[str, int] | None = None) -> list[str]:
+    body = ld.get("articleBody") or ld.get("text") or ""
+    if not body:
+        return []
+    if isinstance(body, list):
+        raw = "\n\n".join(clean_text(str(item)) for item in body if clean_text(str(item)))
+    else:
+        raw = BeautifulSoup(str(body), "html.parser").get_text("\n", strip=True)
+    parts = [part for part in re.split(r"\n{2,}|\r\n{2,}", raw) if clean_text(part)]
+    if len(parts) <= 1 and len(clean_text(raw)) > 700:
+        sentences = re.split(r"(?<=[.!?][\"'’”)]?)\s+(?=[A-Z0-9\"'“‘])", clean_text(raw))
+        parts = []
+        chunk: list[str] = []
+        size = 0
+        for sentence in sentences:
+            chunk.append(sentence)
+            size += len(sentence)
+            if size >= 300:
+                parts.append(" ".join(chunk))
+                chunk, size = [], 0
+        if chunk:
+            parts.append(" ".join(chunk))
+    return clean_article_blocks(parts, source_name, title, stats)
 
 
 def extracted_article_text(raw: str, final_url: str, source_name: str = "", title: str = "") -> tuple[str, list[str], dict[str, Any]]:
@@ -1349,6 +1435,8 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
 
     dom_blocks, stats, method = extract_dom_blocks(soup, final_url, source.name, title, lead_image)
     dom_paragraphs, dom_text = text_from_blocks(dom_blocks)
+    ld_paragraphs = json_ld_body_paragraphs(ld, source.name, title, stats)
+    ld_text = "\n\n".join(ld_paragraphs)
 
     extracted_text, extracted_paragraphs, extracted_meta = extracted_article_text(raw, final_url, source.name, title)
     ctv_blocks: list[dict[str, Any]] = []
@@ -1365,6 +1453,32 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
         blocks = ctv_blocks
         paragraphs, text = text_from_blocks(blocks)
         method = "embedded-json:ctv"
+    elif is_global_source(source.name):
+        # Scoop treats Global as a strict source. Whole-page readability extraction can
+        # accidentally ingest video rails, newsletter modules and hidden recirculation.
+        # Prefer the visible article DOM, then publisher-supplied JSON-LD. If neither is
+        # trustworthy, return a partial article instead of inventing a longer one.
+        if len(dom_text) >= 160 and len(dom_paragraphs) >= 2:
+            blocks = dom_blocks
+            paragraphs, text = text_from_blocks(blocks)
+            method = f"{method}:strict"
+        elif len(ld_text) >= 160 and len(ld_paragraphs) >= 2:
+            paragraphs = ld_paragraphs
+            blocks = fallback_blocks(paragraphs, inline_candidates)
+            text = ld_text
+            method = "jsonld:global-strict"
+        elif dom_paragraphs:
+            blocks = dom_blocks
+            paragraphs, text = text_from_blocks(blocks)
+            method = f"{method}:partial-strict"
+        elif ld_paragraphs:
+            paragraphs = ld_paragraphs
+            blocks = fallback_blocks(paragraphs, inline_candidates)
+            text = ld_text
+            method = "jsonld:global-partial"
+        else:
+            paragraphs, blocks, text = [], [], ""
+            method = "global:no-trusted-body"
     elif len(dom_text) < MIN_ARTICLE_CHARS or len(dom_paragraphs) < 2:
         paragraphs = clean_article_blocks(extracted_paragraphs or initial_paragraphs, source.name, title, stats)
         blocks = fallback_blocks(paragraphs, inline_candidates)
@@ -1604,6 +1718,8 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
         if kind in ("paragraph", "heading", "quote"):
             text = clean_text(strip_title_echo(normalize_source_case(block.get("text", "")), title))
             key = boilerplate_key(text)
+            if is_global_source(source_name) and global_stop_text(text):
+                break
             if is_postmedia_source(source_name) and kind == "heading" and (key.startswith("trending") or key.startswith("most read") or key.startswith("most popular")):
                 skipping_postmedia_trending = True
                 continue
