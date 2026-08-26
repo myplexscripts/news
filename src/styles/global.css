@@ -3312,3 +3312,78 @@ html[data-theme='dark'] .card-no-results { background: var(--gray-6) !important;
     padding-right: 16px !important;
   }
 }
+
+
+/* ========================================================================== */
+/* Mobile feed geometry final authority                                       */
+/* ========================================================================== */
+/* On phones the feed is deliberately a single flex column. This avoids older
+   desktop 12-column rules ever making the first three hero cards narrower than
+   the compact cards or their date divider. */
+@media (max-width: 760px) {
+  .news-card-grid,
+  .latest-card-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    gap: 16px !important;
+  }
+
+  .story-date-heading,
+  .news-card-grid > .news-card,
+  .latest-card-grid > .news-card,
+  .news-card.card-featured,
+  .news-card.card-standard {
+    display: flex;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-self: stretch !important;
+    box-sizing: border-box !important;
+  }
+
+  .story-date-heading {
+    flex: 0 0 auto !important;
+  }
+
+  /* First three: vertical image-on-top cards, full feed width. */
+  .news-card.card-featured,
+  .latest-card-grid .news-card.card-featured {
+    flex: 0 0 auto !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .news-card.card-featured .news-card-media {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    flex: 0 0 auto !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+
+  /* Remaining cards keep the compact horizontal grid internally. */
+  .news-card.card-standard,
+  .latest-card-grid .news-card.card-standard {
+    display: grid !important;
+    grid-template-columns: 136px minmax(0, 1fr) !important;
+    height: 136px !important;
+    min-height: 136px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .news-card.card-standard,
+  .latest-card-grid .news-card.card-standard {
+    grid-template-columns: 124px minmax(0, 1fr) !important;
+    height: 124px !important;
+    min-height: 124px !important;
+  }
+}

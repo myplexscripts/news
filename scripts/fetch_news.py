@@ -34,7 +34,7 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 24
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 8
+EXTRACTION_SCHEMA = 9
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -242,7 +242,9 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
         ],
         "remove": [
             ".related", ".share", ".social", ".newsletter", ".advert", ".ad",
-            ".on-air", ".now-playing", "nav", "footer", "aside"
+            ".on-air", ".now-playing", "nav", "footer", "aside",
+            "[class*='related']", "[class*='more-from']", "[class*='morefrom']",
+            "[class*='recommend']", "[class*='comments']", "[id*='comments']"
         ],
     },
     "106.9 The X": {
@@ -834,6 +836,25 @@ def is_global_source(source_name: str) -> bool:
     return "global news" in source_name.lower()
 
 
+def is_heartfm_source(source_name: str) -> bool:
+    lower = source_name.lower()
+    return "heart fm" in lower or "104.7" in lower
+
+
+def heartfm_stop_text(value: str) -> bool:
+    key = boilerplate_key(value)
+    return any(key.startswith(prefix) for prefix in (
+        "more from local news",
+        "more local news",
+        "related stories",
+        "related news",
+        "comments",
+        "add a comment",
+        "weather",
+        "recently played",
+    ))
+
+
 def global_stop_text(value: str) -> bool:
     key = boilerplate_key(value)
     return key.startswith((
@@ -1073,6 +1094,8 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
     police_started = not police_mode
     postmedia_mode = is_postmedia_source(source_name)
     postmedia_trending = False
+    heartfm_mode = is_heartfm_source(source_name)
+    heartfm_content_started = False
 
     nodes = clone_root.find_all(["h2", "h3", "p", "blockquote", "ul", "ol", "figure", "img"], recursive=True)
     for node in nodes:
@@ -1091,6 +1114,14 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             raw_key = boilerplate_key(raw_node_text)
             if is_global_source(source_name) and global_stop_text(raw_node_text):
                 break
+            # Heart FM places a large "More from Local News" module inside the
+            # same broad page region as the article. Ignore the breadcrumb copy
+            # before the story, but once genuine article prose has started this
+            # heading marks the hard end of the article.
+            if heartfm_mode and heartfm_stop_text(raw_node_text):
+                if heartfm_content_started:
+                    break
+                continue
             if postmedia_mode and node.name in ("h2", "h3") and (raw_key.startswith("trending") or raw_key.startswith("most read") or raw_key.startswith("most popular")):
                 postmedia_trending = True
                 continue
@@ -1112,13 +1143,33 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
                 continue
             if node.name == "p":
                 blocks.append({"type": "paragraph", "text": text})
+                if heartfm_mode:
+                    heartfm_content_started = True
             elif node.name in ("h2", "h3"):
                 blocks.append({"type": "heading", "level": int(node.name[-1]), "text": text})
             else:
                 blocks.append({"type": "quote", "text": text})
+                if heartfm_mode:
+                    heartfm_content_started = True
             continue
 
         if node.name in ("ul", "ol"):
+            if heartfm_mode:
+                anchor_texts = [clean_text(a.get_text(" ", strip=True)).lower() for a in node.select("a[href]")]
+                if not heartfm_content_started and anchor_texts and all(
+                    text in {"news home", "more from local news", "more local news"} for text in anchor_texts
+                ):
+                    continue
+                related_links = []
+                for anchor in node.select("a[href]"):
+                    href = urljoin(base_url, str(anchor.get("href") or ""))
+                    if "/news/local-news/" in href and canonical_url(href) != canonical_url(base_url):
+                        related_links.append(href)
+                if len(related_links) >= 2:
+                    # This is Heart FM's related-story list, not article copy.
+                    if heartfm_content_started:
+                        break
+                    continue
             items: list[str] = []
             for li in node.find_all("li", recursive=False):
                 text = clean_text(normalize_source_case(li.get_text(" ", strip=True)))
@@ -1135,6 +1186,13 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
         if not isinstance(img, Tag):
             continue
         url = best_img_url(img, base_url)
+        if heartfm_mode:
+            linked = img.find_parent("a", href=True)
+            if isinstance(linked, Tag):
+                linked_url = urljoin(base_url, str(linked.get("href") or ""))
+                if "/news/local-news/" in linked_url and canonical_url(linked_url) != canonical_url(base_url):
+                    stats["images_rejected"] = stats.get("images_rejected", 0) + 1
+                    continue
         if not valid_article_image(url, img):
             stats["images_rejected"] = stats.get("images_rejected", 0) + 1
             continue
@@ -1752,6 +1810,8 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
     seen: list[str] = []
     seen_images: list[str] = []
     skipping_postmedia_trending = False
+    heartfm_mode = is_heartfm_source(source_name)
+    heartfm_content_started = False
     for block in blocks:
         if not isinstance(block, dict):
             continue
@@ -1761,6 +1821,10 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
             key = boilerplate_key(text)
             if is_global_source(source_name) and global_stop_text(text):
                 break
+            if heartfm_mode and heartfm_stop_text(text):
+                if heartfm_content_started:
+                    break
+                continue
             if is_postmedia_source(source_name) and kind == "heading" and (key.startswith("trending") or key.startswith("most read") or key.startswith("most popular")):
                 skipping_postmedia_trending = True
                 continue
@@ -1776,6 +1840,8 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
                 break
             seen.append(text)
             cleaned.append({**block, "text": text})
+            if heartfm_mode and kind in ("paragraph", "quote"):
+                heartfm_content_started = True
         elif kind == "list":
             items = [clean_text(normalize_source_case(item)) for item in block.get("items", [])]
             items = [item for item in items if len(item) >= 5 and not is_boilerplate_block(item, source_name)]
