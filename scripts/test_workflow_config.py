@@ -5,7 +5,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 REFRESH_WORKFLOW = ROOT / ".github" / "workflows" / "refresh.yml"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "site.yml"
-EXPECTED_CRON = "11,41 * * * *"
+EXPECTED_CRON = "7,17,27,37,47,57 * * * *"
 
 
 def main() -> int:
@@ -25,7 +25,7 @@ def main() -> int:
 
     cron_values = re.findall(r"-\s*cron:\s*['\"]([^'\"]+)['\"]", refresh)
     if EXPECTED_CRON not in cron_values:
-        errors.append(f"expected refresh cron {EXPECTED_CRON!r}, found {cron_values or 'none'}")
+        errors.append(f"expected resilient refresh cron {EXPECTED_CRON!r}, found {cron_values or 'none'}")
 
     if re.search(r"^\s+timezone\s*:", refresh, flags=re.MULTILINE):
         errors.append("unsupported 'timezone:' key found in refresh schedule")
@@ -35,6 +35,15 @@ def main() -> int:
 
     if "paths:" not in refresh or "'scripts/**'" not in refresh:
         errors.append("collector changes should trigger a refresh without making data commits recursive")
+
+    if "id: due" not in refresh or "Decide whether refresh is due" not in refresh:
+        errors.append("refresh workflow is missing the freshness gate")
+
+    if "age_minutes >= 20" not in refresh:
+        errors.append("freshness gate must prevent unnecessary retries when the feed is under 20 minutes old")
+
+    if "steps.due.outputs.run == 'true'" not in refresh:
+        errors.append("expensive refresh steps are not guarded by the freshness decision")
 
     if "python scripts/run_scoop.py" not in refresh:
         errors.append("refresh workflow is bypassing the hardened Scoop runtime")
@@ -66,7 +75,7 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"Workflow configuration OK: dedicated refresh at :11 and :41 ({EXPECTED_CRON})")
+    print(f"Workflow configuration OK: retry opportunities every 10 minutes ({EXPECTED_CRON}) with a 20-minute freshness gate")
     return 0
 
 
