@@ -1,16 +1,12 @@
-name: Refresh and deploy
+name: Deploy site
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    # Keep this away from the top of the hour, when GitHub says scheduled
-    # workflows are most likely to be delayed or dropped.
-    - cron: '17,47 * * * *'
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -24,56 +20,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Validate workflow schedule
-        run: python scripts/test_workflow_config.py
-
-      - name: Install collector dependencies
-        run: pip install -r requirements.txt
-
-      - name: Test Scoop runtime safeguards
-        run: python scripts/test_scoop_runtime.py
-
-      - name: Fetch local news
-        run: python scripts/run_scoop.py
-
-      - name: Run Scoop regression tests
-        run: python scripts/test_scraper_regressions.py
-
-      - name: Run editorial intelligence tests
-        run: python scripts/test_editorial.py
-
-      - name: Run audit rule tests
-        run: python scripts/test_audit.py
-
-      - name: Audit current Scoop output
-        run: python scripts/audit_sources.py --sample-per-source 10
-
-      - name: Upload Scoop audit report
-        uses: actions/upload-artifact@v4
-        with:
-          name: scoop-audit-report
-          path: data/audit.json
-          retention-days: 14
-
-      - name: Keep refreshed history in repository
-        if: github.event_name != 'push'
-        continue-on-error: true
-        run: |
-          if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
-            echo "No data changes"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/news.json data/audit.json public/cache/
-          git commit -m "Refresh local news [skip ci]"
-          git push
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -93,9 +39,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install site dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Report dependency audit
+        run: npm audit --json > npm-audit.json || true
 
       - name: Publish source logos
         shell: bash
@@ -105,6 +55,13 @@ jobs:
 
       - name: Build static site
         run: npm run build
+
+      - name: Upload dependency audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: npm-audit.json
+          retention-days: 7
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
