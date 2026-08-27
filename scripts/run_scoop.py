@@ -6,9 +6,8 @@ import sys
 from datetime import datetime, timezone
 from difflib import SequenceMatcher
 from typing import Any, Callable
-from urllib.parse import parse_qs, unquote, urlparse
+from urllib.parse import urlparse
 
-import feedparser
 import requests
 
 import fetch_news
@@ -20,11 +19,7 @@ CBC_FEEDS = (
     "https://www.cbc.ca/webfeed/rss/rss-canada-london",
     "https://rss.cbc.ca/lineup/canada-london.xml",
 )
-CBC_DISCOVERY_FEED = (
-    "https://www.bing.com/news/search?"
-    "q=site%3Acbc.ca%2Fnews%2Fcanada%2Flondon&"
-    "qft=sortbydate%3d%221%22&format=RSS"
-)
+CBC_PROXY_URL = "https://api.rss2json.com/v1/api.json"
 RETIRED_SOURCE_NAMES = {"London Fire Department"}
 SOURCE_JUNK_TITLES: dict[str, set[str]] = {
     "London Police Service": {
@@ -105,6 +100,15 @@ def _is_cbc_url(url: str) -> bool:
     return host in CBC_HOSTS or host.endswith(".cbc.ca")
 
 
+def _cbc_london_url(url: str) -> str:
+    candidate = fetch_news.canonical_url(str(url or "").strip())
+    if not candidate or not _is_cbc_url(candidate):
+        return ""
+    if "/news/canada/london/" not in urlparse(candidate).path.lower():
+        return ""
+    return candidate
+
+
 def _curl_response(url: str, timeout: int | float | None = None) -> requests.Response:
     max_time = max(6, min(10, int(float(timeout or 8))))
     command = [
@@ -153,68 +157,54 @@ def _resilient_cbc_get(original_get: Callable[..., requests.Response]) -> Callab
     return get
 
 
-def _cbc_direct_url(value: str) -> str:
-    """Return a canonical CBC London article URL from a direct or Bing RSS link."""
-    raw = str(value or "").strip()
-    if not raw:
-        return ""
-
-    def accept(candidate: str) -> str:
-        candidate = unquote(str(candidate or "").strip())
-        parsed = urlparse(candidate)
-        host = parsed.netloc.lower().split(":", 1)[0]
-        if not (host == "cbc.ca" or host.endswith(".cbc.ca")):
-            return ""
-        if "/news/canada/london/" not in parsed.path.lower():
-            return ""
-        return fetch_news.canonical_url(candidate)
-
-    direct = accept(raw)
-    if direct:
-        return direct
-
-    parsed = urlparse(raw)
-    if "bing.com" not in parsed.netloc.lower():
-        return ""
-    params = parse_qs(parsed.query)
-    for key in ("url", "u", "r"):
-        for candidate in params.get(key, []):
-            direct = accept(candidate)
-            if direct:
-                return direct
+def _proxy_image(item: dict[str, Any]) -> str:
+    thumbnail = str(item.get("thumbnail") or "").strip()
+    if thumbnail:
+        return thumbnail
+    enclosure = item.get("enclosure") or {}
+    if isinstance(enclosure, dict):
+        return str(enclosure.get("link") or enclosure.get("url") or "").strip()
     return ""
 
 
-def _cbc_discovery_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    """Discover CBC London stories without depending on CBC's network path.
+def _cbc_proxy_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    """Read CBC London through a feed proxy that is outside GitHub's network.
 
-    GitHub-hosted runners are intermittently unable to reach CBC's RSS and article
-    hosts. Bing News RSS is used only as a discovery index. Stories keep CBC as
-    their publisher and point directly to the CBC article URL. Existing full CBC
-    copies are preserved, while newly discovered stories degrade to a readable
-    summary instead of disappearing from the site.
+    CBC's Akamai path intermittently times out from hosted runners. The proxy only
+    transports CBC's own RSS data. Publisher attribution and article URLs remain
+    CBC. Existing full CBC extractions are preserved when the same story reappears.
     """
-    response = fetch_news.SESSION.get(CBC_DISCOVERY_FEED, timeout=8)
+    response = fetch_news.SESSION.get(
+        CBC_PROXY_URL,
+        params={"rss_url": CBC_FEEDS[0]},
+        timeout=12,
+    )
     response.raise_for_status()
-    feed = feedparser.parse(response.content)
-    items: list[dict[str, Any]] = []
+    payload = response.json()
+    if str(payload.get("status") or "").lower() != "ok":
+        raise RuntimeError(str(payload.get("message") or "RSS proxy returned a non-ok response"))
 
-    for entry in feed.entries[: max(source.max_items * 2, 30)]:
-        url = _cbc_direct_url(entry.get("link", ""))
+    raw_items = payload.get("items") or []
+    if not isinstance(raw_items, list):
+        raise RuntimeError("RSS proxy returned an invalid items payload")
+
+    items: list[dict[str, Any]] = []
+    for entry in raw_items:
+        if not isinstance(entry, dict):
+            continue
+        url = _cbc_london_url(entry.get("link") or entry.get("guid"))
         if not url:
             continue
 
         raw_title = fetch_news.clean_text(entry.get("title"))
-        raw_title = re.sub(r"\s+-\s+(CBC|CBC News)\s*$", "", raw_title, flags=re.I)
         title = fetch_news.clean_story_title(raw_title, source.name)
         if not title:
             continue
-
         summary = fetch_news.clean_summary_text(
-            entry.get("summary") or entry.get("description"),
+            entry.get("description") or entry.get("content"),
             title,
         )
-        published = entry.get("published") or entry.get("updated") or entry.get("created")
+        published = entry.get("pubDate") or entry.get("published")
         identifier = fetch_news.make_id(url)
         basic = {
             "id": identifier,
@@ -225,7 +215,7 @@ def _cbc_discovery_items(source: fetch_news.Source, existing: dict[str, dict[str
             "url": url,
             "published": fetch_news.parse_date(published),
             "summary": summary,
-            "image": fetch_news.image_from_entry(entry),
+            "image": _proxy_image(entry),
             "author": fetch_news.clean_text(entry.get("author")),
             "category": fetch_news.classify(title, summary, source.name),
         }
@@ -242,7 +232,9 @@ def _cbc_discovery_items(source: fetch_news.Source, existing: dict[str, dict[str
                 "published": basic["published"],
                 "summary": summary or old.get("summary", ""),
             })
-            merged.setdefault("ingestion_path", "cbc-bing-discovery")
+            if basic["image"]:
+                merged["image"] = basic["image"]
+            merged["ingestion_path"] = "cbc-rss-proxy"
             items.append(merged)
         else:
             basic.update({
@@ -251,34 +243,34 @@ def _cbc_discovery_items(source: fetch_news.Source, existing: dict[str, dict[str
                 "content_blocks": [],
                 "scraped_at": datetime.now(timezone.utc).isoformat(),
                 "extraction_schema": fetch_news.EXTRACTION_SCHEMA,
-                "ingestion_path": "cbc-bing-discovery",
+                "ingestion_path": "cbc-rss-proxy",
                 "word_count": len(summary.split()) if summary else 0,
             })
-            basic["quality"] = fetch_news.extraction_quality(basic, {}, "discovery:bing-rss")
+            basic["quality"] = fetch_news.extraction_quality(basic, {}, "proxy:rss2json")
             items.append(basic)
 
         if len(items) >= source.max_items:
             break
 
     if not items:
-        raise RuntimeError("Bing News RSS returned no direct CBC London article URLs")
+        raise RuntimeError("RSS proxy returned no CBC London stories")
     return items
 
 
 def _bounded_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    # The independent discovery route is primary. It avoids CBC's intermittent
-    # block/timeouts on GitHub-hosted runners and makes CBC unable to stall Scoop.
-    discovery_error: Exception | None = None
+    # Primary route: fetch CBC's own London RSS through a network-independent
+    # proxy so CBC/Akamai cannot block GitHub's runner from seeing new stories.
+    proxy_error: Exception | None = None
     try:
-        items = _cbc_discovery_items(source, existing)
-        print(f"CBC News London: {len(items)} items via independent RSS discovery", file=sys.stderr)
+        items = _cbc_proxy_items(source, existing)
+        print(f"CBC News London: {len(items)} items via RSS proxy", file=sys.stderr)
         return items
     except Exception as exc:
-        discovery_error = exc
-        print(f"CBC News London: discovery fallback unavailable: {str(exc)[:180]}", file=sys.stderr)
+        proxy_error = exc
+        print(f"CBC News London: RSS proxy unavailable: {str(exc)[:180]}", file=sys.stderr)
 
-    # If the independent index is unavailable, try the official feeds as a
-    # bounded last resort. Cached CBC stories are retained if every path fails.
+    # Last resort: try CBC directly with strict time bounds. If all routes fail,
+    # the collector retains cached CBC stories rather than dropping the source.
     attempts: list[str] = []
     for feed_url in CBC_FEEDS:
         candidate = fetch_news.Source(
@@ -297,7 +289,7 @@ def _bounded_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, 
         except Exception as exc:
             attempts.append(f"{feed_url}: {str(exc)[:140]}")
 
-    prefix = f"independent discovery failed: {discovery_error} | " if discovery_error else ""
+    prefix = f"RSS proxy failed: {proxy_error} | " if proxy_error else ""
     raise RuntimeError(prefix + "CBC first-party feeds unavailable; cached CBC stories retained: " + " | ".join(attempts))
 
 
