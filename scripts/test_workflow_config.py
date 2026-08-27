@@ -40,7 +40,7 @@ def main() -> int:
         errors.append("refresh workflow is missing the freshness gate")
 
     if "age_minutes >= 20" not in refresh:
-        errors.append("freshness gate must prevent unnecessary retries when the feed is under 20 minutes old")
+        errors.append("freshness gate must prevent unnecessary scheduled retries when the feed is under 20 minutes old")
 
     if "steps.due.outputs.run == 'true'" not in refresh:
         errors.append("expensive refresh steps are not guarded by the freshness decision")
@@ -56,6 +56,18 @@ def main() -> int:
 
     if 'git commit -m "Refresh local news"' not in refresh:
         errors.append("refresh workflow does not commit updated data")
+
+    if "Keep refresh loop alive" not in refresh:
+        errors.append("refresh workflow is missing its self-sustaining refresh loop")
+
+    if "sleep 900" not in refresh:
+        errors.append("self-sustaining refresh loop should wait 15 minutes between refresh attempts")
+
+    if "gh workflow run refresh.yml --ref main" not in refresh:
+        errors.append("refresh workflow does not dispatch its next refresh run")
+
+    if "if: always()" not in refresh:
+        errors.append("refresh loop must survive scraper or audit failures")
 
     if "schedule:" in deploy:
         errors.append("site.yml must remain deploy-only and must not have a schedule trigger")
@@ -75,7 +87,10 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"Workflow configuration OK: retry opportunities every 10 minutes ({EXPECTED_CRON}) with a 20-minute freshness gate")
+    print(
+        "Workflow configuration OK: 15-minute self-sustaining refresh loop, "
+        f"cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
+    )
     return 0
 
 
