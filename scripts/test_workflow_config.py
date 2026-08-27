@@ -4,6 +4,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 REFRESH_WORKFLOW = ROOT / ".github" / "workflows" / "refresh.yml"
+WAKE_WORKFLOW = ROOT / ".github" / "workflows" / "refresh-wake.yml"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "site.yml"
 EXPECTED_CRON = "7,17,27,37,47,57 * * * *"
 
@@ -16,6 +17,12 @@ def main() -> int:
         refresh = ""
     else:
         refresh = REFRESH_WORKFLOW.read_text(encoding="utf-8")
+
+    if not WAKE_WORKFLOW.exists():
+        errors.append("refresh-wake.yml is missing")
+        wake = ""
+    else:
+        wake = WAKE_WORKFLOW.read_text(encoding="utf-8")
 
     if not DEPLOY_WORKFLOW.exists():
         errors.append("site.yml is missing")
@@ -57,8 +64,8 @@ def main() -> int:
     if 'git commit -m "Refresh local news"' not in refresh:
         errors.append("refresh workflow does not commit updated data")
 
-    if "Keep refresh loop alive" not in refresh:
-        errors.append("refresh workflow is missing its self-sustaining refresh loop")
+    if "Schedule next refresh" not in refresh:
+        errors.append("refresh workflow is not scheduling its next wake-up")
 
     if "CYCLE_START_EPOCH=$(date +%s)" not in refresh:
         errors.append("refresh workflow is not recording the cycle start time")
@@ -66,11 +73,29 @@ def main() -> int:
     if "wait_seconds=$((900 - elapsed))" not in refresh:
         errors.append("refresh loop should target a 15-minute start-to-start cadence")
 
-    if "gh workflow run refresh.yml --ref main" not in refresh:
-        errors.append("refresh workflow does not dispatch its next refresh run")
+    if "gh workflow run refresh-wake.yml" not in refresh:
+        errors.append("refresh workflow does not dispatch the separate wake-up workflow")
 
     if "if: always()" not in refresh:
-        errors.append("refresh loop must survive scraper or audit failures")
+        errors.append("refresh scheduling must survive scraper or audit failures")
+
+    if "sleep \"$wait_seconds\"" in refresh or "sleep 900" in refresh:
+        errors.append("refresh workflow must not remain open just to wait for its next cycle")
+
+    if "workflow_dispatch:" not in wake:
+        errors.append("wake workflow must support workflow_dispatch")
+
+    if "delay_seconds:" not in wake:
+        errors.append("wake workflow is missing its delay input")
+
+    if "sleep \"$delay\"" not in wake:
+        errors.append("wake workflow does not wait for the requested refresh window")
+
+    if "gh workflow run refresh.yml --ref main" not in wake:
+        errors.append("wake workflow does not dispatch the next refresh")
+
+    if "group: refresh-wake" not in wake or "cancel-in-progress: true" not in wake:
+        errors.append("wake workflow must collapse duplicate timers into one active timer")
 
     if "schedule:" in deploy:
         errors.append("site.yml must remain deploy-only and must not have a schedule trigger")
@@ -91,8 +116,8 @@ def main() -> int:
         return 1
 
     print(
-        "Workflow configuration OK: approximately 15-minute start-to-start refresh loop, "
-        f"cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
+        "Workflow configuration OK: separate wake timer, approximately 15-minute "
+        f"start-to-start refresh loop, cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
     )
     return 0
 
