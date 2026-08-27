@@ -152,6 +152,7 @@ const generated = news.generated_at
                 <a
                   class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
                   href={storyHref(story)}
+                  data-story-id={story.id}
                   data-category={story.category}
                   data-source={story.source}
                   data-sources={(story.cluster_sources || [story.source]).join('|')}
@@ -212,12 +213,25 @@ const generated = news.generated_at
 
     let activeFilter = 'All';
     let hiddenSources = new Set();
+    let readStories = new Set();
+    let hideReadStories = false;
+
+    function loadReadingPreferences() {
+      hideReadStories = localStorage.getItem('london-news-hide-read') === 'true';
+      try {
+        const ids = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
+        readStories = new Set(Array.isArray(ids) ? ids.map(String) : []);
+      } catch {
+        readStories = new Set();
+      }
+    }
 
     try {
       hiddenSources = new Set(JSON.parse(localStorage.getItem('london-news-hidden-sources') || '[]'));
     } catch {
       hiddenSources = new Set();
     }
+    loadReadingPreferences();
 
     function openSearch() {
       headerSearch?.classList.add('is-open');
@@ -247,8 +261,6 @@ const generated = news.generated_at
     }
 
     function assignCardLayouts(visibleCards) {
-      // Layout is positional, never editorially ranked: the first three visible
-      // chronological stories are always the three full-width hero cards.
       cards.forEach((card) => card.classList.remove('card-featured', 'card-secondary', 'card-standard'));
       visibleCards.forEach((card, index) => {
         card.classList.add(index < 3 ? 'card-featured' : 'card-standard');
@@ -272,7 +284,8 @@ const generated = news.generated_at
         const queryMatch = !query || (item.dataset.search || '').includes(query);
         const clusterSources = (item.dataset.sources || item.dataset.source || '').split('|').filter(Boolean);
         const sourceMatch = clusterSources.length === 0 || clusterSources.some((source) => !hiddenSources.has(source));
-        const show = categoryMatch && queryMatch && sourceMatch;
+        const readMatch = !hideReadStories || !readStories.has(String(item.dataset.storyId || ''));
+        const show = categoryMatch && queryMatch && sourceMatch && readMatch;
         item.classList.toggle('filtered-out', !show);
         if (show) visibleCards.push(item);
       });
@@ -285,6 +298,7 @@ const generated = news.generated_at
         if (activeFilter !== 'All') qualifiers.push(activeFilter);
         if (query) qualifiers.push(`“${query}”`);
         if (hiddenSources.size) qualifiers.push(`${hiddenSources.size} hidden ${hiddenSources.size === 1 ? 'source' : 'sources'}`);
+        if (hideReadStories) qualifiers.push('read stories hidden');
         resultsStatus.textContent = visibleCards.length === 0
           ? 'No matching stories'
           : `Newest matching stories shown first${qualifiers.length ? ` · ${qualifiers.join(' · ')}` : ''}`;
@@ -302,8 +316,16 @@ const generated = news.generated_at
     });
 
     window.addEventListener('storage', (event) => {
-      if (event.key !== 'london-news-hidden-sources') return;
-      try { hiddenSources = new Set(JSON.parse(event.newValue || '[]')); } catch { hiddenSources = new Set(); }
+      if (event.key === 'london-news-hidden-sources') {
+        try { hiddenSources = new Set(JSON.parse(event.newValue || '[]')); } catch { hiddenSources = new Set(); }
+      }
+      if (['london-news-read-articles', 'london-news-hide-read'].includes(event.key || '')) loadReadingPreferences();
+      applyFilters();
+    });
+
+    window.addEventListener('london-news-read-state', (event) => {
+      readStories = new Set((event.detail?.readIds || []).map(String));
+      hideReadStories = Boolean(event.detail?.hideRead);
       applyFilters();
     });
 
