@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
+from difflib import SequenceMatcher
 from typing import Any, Callable
 from urllib.parse import urlparse
 
@@ -12,6 +14,10 @@ import ranking
 
 
 CBC_HOSTS = {"cbc.ca", "www.cbc.ca", "rss.cbc.ca"}
+CBC_HTTP_FEEDS = (
+    "http://rss.cbc.ca/lineup/canada-london.xml",
+    "http://www.cbc.ca/webfeed/rss/rss-canada-london",
+)
 
 # These publishers carry material well outside London even when the feed or
 # section is branded for the region. Dedicated London sources remain ungated.
@@ -22,8 +28,15 @@ PUBLICATION_MIN_LOCAL_SCORE: dict[str, int] = {
     "London Free Press": 35,
 }
 
+SPORTS_TERMS = (
+    "western mustangs", "mustangs quarterback", "quarterback", "running back",
+    "wide receiver", "football", "hockey", "basketball", "baseball", "soccer",
+    "london knights", "london majors", "ohl", "oua", "playoffs", "training camp",
+)
 
-_original_local_terms = ranking.LOCAL_TERMS
+_original_local_relevance = ranking.local_relevance
+_original_cbc_items = fetch_news.cbc_items
+
 if not any(label == "London airport" for _, label, _ in ranking.LOCAL_TERMS):
     ranking.LOCAL_TERMS = ranking.LOCAL_TERMS + (
         (26, "London airport", (
@@ -42,6 +55,46 @@ ranking.STOPWORDS.update({
     "investigation", "investigations", "officer", "officers",
     "suspect", "suspects", "person", "people",
 })
+
+
+def _contains_term(haystack: str, needle: str) -> bool:
+    needle = str(needle or "").strip().lower()
+    if not needle:
+        return False
+    return bool(re.search(rf"(?<![a-z0-9]){re.escape(needle)}(?![a-z0-9])", haystack))
+
+
+def _safe_classify(title: str, summary: str, source: str) -> str:
+    haystack = f"{title} {summary} {source}".lower().replace("’", "'")
+
+    # Sports language gets an explicit first pass so names such as Rancourt do
+    # not accidentally match the Public Safety keyword "court".
+    if any(_contains_term(haystack, term) for term in SPORTS_TERMS):
+        return "Sports"
+
+    for category, needles in fetch_news.CATEGORY_RULES:
+        if any(_contains_term(haystack, word) for word in needles):
+            return category
+    return "Local"
+
+
+def _locality_story(story: dict[str, Any]) -> dict[str, Any]:
+    """Remove known false geographic phrases before locality scoring."""
+    cleaned = dict(story)
+
+    def scrub(value: Any) -> str:
+        return re.sub(r"\blondon\s+bridge\b", "child care provider", str(value or ""), flags=re.I)
+
+    cleaned["title"] = scrub(story.get("title"))
+    cleaned["summary"] = scrub(story.get("summary"))
+    paragraphs = story.get("paragraphs") or []
+    if isinstance(paragraphs, list):
+        cleaned["paragraphs"] = [scrub(value) for value in paragraphs]
+    return cleaned
+
+
+def _safe_local_relevance(story: dict[str, Any]) -> tuple[int, list[str]]:
+    return _original_local_relevance(_locality_story(story))
 
 
 def _is_cbc_url(url: str) -> bool:
@@ -88,8 +141,6 @@ def _resilient_cbc_get(original_get: Callable[..., requests.Response]) -> Callab
         first_error: Exception | None = None
         try:
             response = original_get(url, *args, **kwargs)
-            # Akamai occasionally returns a transient block/error to hosted
-            # clients. Let curl try a separate HTTP stack before giving up.
             if response.status_code < 400:
                 return response
             if response.status_code not in {403, 408, 425, 429, 500, 502, 503, 504}:
@@ -108,6 +159,41 @@ def _resilient_cbc_get(original_get: Callable[..., requests.Response]) -> Callab
             raise
 
     return get
+
+
+def _http_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    attempts: list[str] = []
+    for feed_url in CBC_HTTP_FEEDS:
+        candidate = fetch_news.Source(
+            name=source.name,
+            logo=getattr(source, "logo", ""),
+            url=feed_url,
+            kind="rss",
+            homepage=source.homepage,
+            accent=source.accent,
+            max_items=source.max_items,
+        )
+        try:
+            items = fetch_news.rss_items(candidate, existing, request_timeout=8)
+            if items:
+                for item in items:
+                    item["ingestion_path"] = "cbc-http-rss-fallback"
+                print(f"CBC News London: HTTPS unavailable; using first-party HTTP feed {feed_url}", file=sys.stderr)
+                return items
+            attempts.append(f"{feed_url}: no items")
+        except Exception as exc:
+            attempts.append(f"{feed_url}: {str(exc)[:150]}")
+    raise RuntimeError("CBC HTTP fallbacks unavailable: " + " | ".join(attempts))
+
+
+def _resilient_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    try:
+        return _original_cbc_items(source, existing)
+    except Exception as primary:
+        try:
+            return _http_cbc_items(source, existing)
+        except Exception as fallback:
+            raise RuntimeError(f"{primary} | {fallback}") from primary
 
 
 def _similarity_text(story: dict[str, Any]) -> str:
@@ -130,9 +216,6 @@ def _body_aware_story_similarity(left: dict[str, Any], right: dict[str, Any]) ->
     union = left_tokens | right_tokens
     jaccard = len(shared) / max(1, len(union))
     containment = len(shared) / max(1, min(len(left_tokens), len(right_tokens)))
-
-    from difflib import SequenceMatcher
-
     title_ratio = SequenceMatcher(None, left_title, right_title).ratio()
     entity_overlap = bool(ranking._story_entities(left) & ranking._story_entities(right))
     score = (title_ratio * 0.48) + (containment * 0.36) + (jaccard * 0.16)
@@ -166,10 +249,10 @@ def _body_aware_should_cluster(left: dict[str, Any], right: dict[str, Any]) -> b
         return True
     if parts.get("entity", 0) and shared >= 4 and score >= 0.60:
         return True
-    # A short wire-style summary can use a very different headline from a full
-    # first-party report. Four distinctive shared terms within 18 hours is a
+    # Short wire-style summaries can use very different headlines from the full
+    # first-party report. Four distinctive shared terms inside 30 hours is a
     # strong same-event signal once generic crime/news words are removed.
-    if delta_hours <= 18 and shared >= 4 and parts.get("containment", 0) >= 0.60:
+    if delta_hours <= 30 and shared >= 4 and parts.get("containment", 0) >= 0.60:
         return True
     return False
 
@@ -185,7 +268,7 @@ def _publication_filter(stories: list[dict[str, Any]]) -> tuple[list[dict[str, A
             kept.append(story)
             continue
 
-        score, reasons = ranking.local_relevance(story)
+        score, reasons = _safe_local_relevance(story)
         if score >= threshold:
             kept.append(story)
             continue
@@ -226,7 +309,10 @@ def install_runtime_safeguards() -> None:
 
     fetch_news.FAST_SESSION.get = _resilient_cbc_get(fetch_news.FAST_SESSION.get)
     fetch_news.SESSION.get = _resilient_cbc_get(fetch_news.SESSION.get)
+    fetch_news.cbc_items = _resilient_cbc_items
+    fetch_news.classify = _safe_classify
 
+    ranking.local_relevance = _safe_local_relevance
     ranking.story_similarity = _body_aware_story_similarity
     ranking._should_cluster = _body_aware_should_cluster
     fetch_news.apply_editorial_intelligence = _apply_local_editorial_policy
