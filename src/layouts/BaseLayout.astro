@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/polish.css';
 
 interface Props {
   title?: string;
@@ -57,12 +58,10 @@ const showHomeMasthead = onHome && Boolean(homeDate);
 
     <header class:list={["site-header", showHomeMasthead && "site-header-home"]}>
       <div class:list={["shell", "header-inner", "header-inner-simple", showHomeMasthead && "home-header-inner"]}>
-        <div class:list={["brand-area", showHomeMasthead && "home-brand-area"]}>
+        <div class="brand-area">
           <a class="brand" href={base} aria-label="London News home">
-            <span class="brand-mark" aria-hidden="true"><i class="ph-duotone ph-newspaper-clipping"></i></span>
             <span>London News</span>
           </a>
-          {showHomeMasthead && <p class="home-header-date">{homeDate}</p>}
         </div>
 
         <div class="header-actions">
@@ -78,8 +77,14 @@ const showHomeMasthead = onHome && Boolean(homeDate);
           <button class="icon-button" id="themeToggle" aria-label="Toggle appearance" title="Toggle appearance">
             <i class="ph ph-moon" aria-hidden="true"></i>
           </button>
-          {showHomeMasthead && homeUpdated && <p class="home-header-updated">Updated {homeUpdated}</p>}
         </div>
+
+        {showHomeMasthead && (
+          <div class="home-meta-row">
+            <p class="home-header-date">{homeDate}</p>
+            {homeUpdated && <p class="home-header-updated">Updated {homeUpdated}</p>}
+          </div>
+        )}
       </div>
     </header>
 
@@ -189,7 +194,8 @@ const showHomeMasthead = onHome && Boolean(homeDate);
       window.addEventListener('resize', syncMobileHomeAction, { passive: true });
       syncMobileHomeAction();
     </script>
-      <script is:inline>
+
+    <script is:inline>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => navigator.serviceWorker.register(new URL('sw.js', document.querySelector('link[rel="manifest"]')?.href || location.href).href).catch(() => {}));
       }
