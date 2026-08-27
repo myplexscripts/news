@@ -19,6 +19,16 @@ CBC_FEEDS = (
     "https://rss.cbc.ca/lineup/canada-london.xml",
 )
 RETIRED_SOURCE_NAMES = {"London Fire Department"}
+SOURCE_JUNK_TITLES: dict[str, set[str]] = {
+    "London Police Service": {
+        "positions",
+        "recruiting events",
+        "caught on camera",
+        "general releases",
+        "london police service",
+        "news post - no banner (1)",
+    },
+}
 
 # These publishers carry material well outside London even when the feed or
 # section is branded for the region. Dedicated London sources remain ungated.
@@ -40,28 +50,19 @@ _original_local_relevance = ranking.local_relevance
 if not any(label == "London airport" for _, label, _ in ranking.LOCAL_TERMS):
     ranking.LOCAL_TERMS = ranking.LOCAL_TERMS + (
         (26, "London airport", (
-            "london international airport",
-            "london airport",
-            "yxu airport",
-            "fly yxu",
+            "london international airport", "london airport", "yxu airport", "fly yxu",
         )),
     )
 
-# Generic crime words should not be enough to merge two unrelated police
-# stories. The richer body-aware comparison below still keeps distinctive event
-# terms such as child, sexual, abuse and material.
 ranking.STOPWORDS.update({
-    "charge", "charged", "charges", "charging",
-    "investigation", "investigations", "officer", "officers",
-    "suspect", "suspects", "person", "people",
+    "charge", "charged", "charges", "charging", "investigation", "investigations",
+    "officer", "officers", "suspect", "suspects", "person", "people",
 })
 
 
 def _contains_term(haystack: str, needle: str) -> bool:
     needle = str(needle or "").strip().lower()
-    if not needle:
-        return False
-    return bool(re.search(rf"(?<![a-z0-9]){re.escape(needle)}(?![a-z0-9])", haystack))
+    return bool(needle and re.search(rf"(?<![a-z0-9]){re.escape(needle)}(?![a-z0-9])", haystack))
 
 
 def _safe_classify(title: str, summary: str, source: str) -> str:
@@ -170,8 +171,6 @@ def _similarity_text(story: dict[str, Any]) -> str:
     paragraphs = story.get("paragraphs") or []
     if not isinstance(paragraphs, list):
         paragraphs = []
-    # Some official releases introduce the distinctive event terms several
-    # paragraphs in. Eight paragraphs is still bounded, but catches those cases.
     body = " ".join(ranking._clean(value) for value in paragraphs[:8])
     return f"{story.get('title', '')} {story.get('summary', '')} {body}"
 
@@ -192,8 +191,7 @@ def _body_aware_story_similarity(left: dict[str, Any], right: dict[str, Any]) ->
     score = (title_ratio * 0.48) + (containment * 0.36) + (jaccard * 0.16)
     if entity_overlap:
         score += 0.05
-    score = min(1.0, score)
-    return score, {
+    return min(1.0, score), {
         "title": round(title_ratio, 3), "containment": round(containment, 3),
         "jaccard": round(jaccard, 3), "shared": float(len(shared)),
         "entity": 1.0 if entity_overlap else 0.0,
@@ -215,9 +213,15 @@ def _body_aware_should_cluster(left: dict[str, Any], right: dict[str, Any]) -> b
         return True
     if parts.get("entity", 0) and shared >= 4 and score >= 0.60:
         return True
-    if delta_hours <= 30 and shared >= 4 and parts.get("containment", 0) >= 0.60:
-        return True
-    return False
+    return bool(delta_hours <= 30 and shared >= 4 and parts.get("containment", 0) >= 0.60)
+
+
+def _junk_reason(story: dict[str, Any]) -> str:
+    source = str(story.get("source") or "").strip()
+    title = re.sub(r"\s+", " ", str(story.get("title") or "")).strip().lower()
+    if title in SOURCE_JUNK_TITLES.get(source, set()):
+        return "publisher navigation/template item"
+    return ""
 
 
 def _publication_filter(stories: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -225,8 +229,18 @@ def _publication_filter(stories: list[dict[str, Any]]) -> tuple[list[dict[str, A
     dropped: list[dict[str, Any]] = []
     for story in stories:
         source = str(story.get("source") or "")
+        junk_reason = _junk_reason(story)
+        if junk_reason:
+            dropped.append({
+                "id": story.get("id", ""), "source": source, "title": story.get("title", ""),
+                "local_score": 0, "threshold": "source-cleanup", "reasons": [junk_reason],
+            })
+            continue
         if source in RETIRED_SOURCE_NAMES:
-            dropped.append({"id": story.get("id", ""), "source": source, "title": story.get("title", ""), "local_score": 0, "threshold": "retired", "reasons": ["retired source"]})
+            dropped.append({
+                "id": story.get("id", ""), "source": source, "title": story.get("title", ""),
+                "local_score": 0, "threshold": "retired", "reasons": ["retired source"],
+            })
             continue
         threshold = PUBLICATION_MIN_LOCAL_SCORE.get(source)
         if threshold is None:
@@ -236,7 +250,10 @@ def _publication_filter(stories: list[dict[str, Any]]) -> tuple[list[dict[str, A
         if score >= threshold:
             kept.append(story)
             continue
-        dropped.append({"id": story.get("id", ""), "source": source, "title": story.get("title", ""), "local_score": score, "threshold": threshold, "reasons": reasons})
+        dropped.append({
+            "id": story.get("id", ""), "source": source, "title": story.get("title", ""),
+            "local_score": score, "threshold": threshold, "reasons": reasons,
+        })
     return kept, dropped
 
 
