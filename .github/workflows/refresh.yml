@@ -9,9 +9,9 @@ on:
       - '.github/workflows/refresh.yml'
   workflow_dispatch:
   schedule:
-    # Offset from common :00/:30 load and use a dedicated workflow so refresh
-    # scheduling is independent from Pages deployment.
-    - cron: '11,41 * * * *'
+    # GitHub scheduled events are best-effort. Give Scoop another opportunity
+    # every 10 minutes, while the freshness gate below prevents needless work.
+    - cron: '7,17,27,37,47,57 * * * *'
 
 permissions:
   contents: write
@@ -27,38 +27,83 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Decide whether refresh is due
+        id: due
+        shell: bash
+        run: |
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Non-scheduled run: refresh required."
+            exit 0
+          fi
+
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          due = True
+          try:
+              payload = json.loads(Path("data/news.json").read_text(encoding="utf-8"))
+              raw = str(payload.get("generated_at") or "").strip().replace("Z", "+00:00")
+              generated = datetime.fromisoformat(raw)
+              if generated.tzinfo is None:
+                  generated = generated.replace(tzinfo=timezone.utc)
+              generated = generated.astimezone(timezone.utc)
+              age_minutes = (datetime.now(timezone.utc) - generated).total_seconds() / 60
+              due = age_minutes >= 20
+              print(f"Published feed age: {age_minutes:.1f} minutes. Refresh due: {due}")
+          except Exception as exc:
+              print(f"Could not verify feed freshness, refreshing safely: {exc}")
+              due = True
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
+              handle.write(f"run={'true' if due else 'false'}\n")
+          PY
+
       - name: Set up Python
+        if: steps.due.outputs.run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
       - name: Install collector dependencies
+        if: steps.due.outputs.run == 'true'
         run: pip install -r requirements.txt
 
       - name: Validate refresh workflow
+        if: steps.due.outputs.run == 'true'
         run: python scripts/test_workflow_config.py
 
       - name: Test Scoop runtime safeguards
+        if: steps.due.outputs.run == 'true'
         run: python scripts/test_scoop_runtime.py
 
       - name: Fetch local news
+        if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
 
       - name: Run Scoop regression tests
+        if: steps.due.outputs.run == 'true'
         run: python scripts/test_scraper_regressions.py
 
       - name: Run editorial intelligence tests
+        if: steps.due.outputs.run == 'true'
         run: python scripts/test_editorial.py
 
       - name: Run audit rule tests
+        if: steps.due.outputs.run == 'true'
         run: |
           python scripts/test_audit.py
           python scripts/test_run_audit.py
 
       - name: Audit current Scoop output
+        if: steps.due.outputs.run == 'true'
         run: python scripts/run_audit.py --sample-per-source 10
 
       - name: Upload Scoop audit report
+        if: steps.due.outputs.run == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: scoop-audit-report
@@ -66,6 +111,7 @@ jobs:
           retention-days: 14
 
       - name: Commit refreshed news
+        if: steps.due.outputs.run == 'true'
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
