@@ -1,0 +1,32 @@
+name: CBC network test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/cbc-network-test.yml'
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Test official CBC London feed
+        shell: bash
+        run: |
+          set +e
+          start=$(date +%s)
+          curl --location --fail --silent --show-error --connect-timeout 5 --max-time 20 \
+            --user-agent 'LondonNews/1.0' \
+            'https://www.cbc.ca/webfeed/rss/rss-canada-london' \
+            -o cbc.xml
+          code=$?
+          elapsed=$(( $(date +%s) - start ))
+          bytes=0
+          if [ -f cbc.xml ]; then bytes=$(wc -c < cbc.xml | tr -d ' '); fi
+          echo "runner=${{ matrix.os }} curl_exit=$code elapsed=${elapsed}s bytes=$bytes"
+          if [ "$code" -ne 0 ] || [ "$bytes" -lt 1000 ]; then exit 1; fi
+          grep -q '<item' cbc.xml
