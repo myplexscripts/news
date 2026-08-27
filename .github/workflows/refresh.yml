@@ -7,9 +7,10 @@ on:
       - 'scripts/**'
       - 'requirements.txt'
       - '.github/workflows/refresh.yml'
+      - '.github/workflows/refresh-wake.yml'
   workflow_dispatch:
   schedule:
-    # Backup watchdog only. The workflow also dispatches its own next run.
+    # Backup watchdog only. A separate wake workflow normally starts each cycle.
     - cron: '7,17,27,37,47,57 * * * *'
 
 permissions:
@@ -17,7 +18,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: refresh-local-news
+  group: refresh-local-news-v2
   cancel-in-progress: true
 
 jobs:
@@ -138,7 +139,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run site.yml --ref main
 
-      - name: Keep refresh loop alive
+      - name: Schedule next refresh
         if: always()
         shell: bash
         env:
@@ -150,7 +151,8 @@ jobs:
           if [ "$wait_seconds" -lt 60 ]; then
             wait_seconds=60
           fi
-          echo "Refresh work took ${elapsed}s. Waiting ${wait_seconds}s so the next cycle starts about 15 minutes after this one began."
-          sleep "$wait_seconds"
-          echo "Dispatching next refresh run."
-          gh workflow run refresh.yml --ref main
+          if [ "$wait_seconds" -gt 900 ]; then
+            wait_seconds=900
+          fi
+          echo "Refresh work took ${elapsed}s. Scheduling the next cycle in ${wait_seconds}s."
+          gh workflow run refresh-wake.yml --ref main -f delay_seconds="$wait_seconds"
