@@ -1,14 +1,15 @@
-# Scoop audit + admin review queue
+# Scoop audit hotfix
 
-Add/replace these files in the repository:
+This repairs the GitHub Actions failure caused by `scripts/test_scraper_regressions.py` being referenced by the workflow but omitted from the previous audit ZIP.
 
+Replace the matching files in your repository.
+
+Included:
+- `.github/workflows/site.yml`
+- `scripts/fetch_news.py`
+- `scripts/test_scraper_regressions.py`
 - `scripts/audit_sources.py`
 - `scripts/test_audit.py`
 - `src/pages/admin/index.astro`
-- `.github/workflows/site.yml`
 
-The refresh job now audits the newest 10 stories from every source after Scoop finishes and writes `data/audit.json`. Scheduled runs commit that report with `news.json`, and every run also uploads it as a 14-day GitHub Actions artifact.
-
-The audit is non-blocking for newly detected story warnings. Known scraper regressions remain build-blocking through `test_scraper_regressions.py`. `test_audit.py` only verifies that the audit rules themselves continue working.
-
-Open `/admin/` after deployment to see the review queue and per-source extraction details.
+The regression test file and the Scoop version it tests are bundled together so they cannot get out of sync.

@@ -32,10 +32,10 @@ CARD_IMAGE_DIR = ROOT / "public" / "cache" / "news"
 HISTORY_LIMIT = 750
 REQUEST_TIMEOUT = 30
 ARTICLE_REFRESH_HOURS = 12
-BACKFILL_PER_RUN = 36
+BACKFILL_PER_RUN = 48
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 11
+EXTRACTION_SCHEMA = 12
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -134,9 +134,13 @@ CTV_BOILERPLATE = (
 )
 
 CTV_STOP_MARKERS = (
-    "ctv news app", "contact us", "faq", "newsletters", "team",
+    "ctv news app", "contact us", "faq", "bell media",
+    "privacy policy", "terms and conditions",
+)
+
+CTV_RECIRC_MARKERS = (
     "related stories", "more from ctv news", "recommended for you",
-    "latest videos", "watch more",
+    "latest videos", "watch more", "read more",
 )
 
 
@@ -238,6 +242,8 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
             "[class*='epaper']", "[class*='puzzle']", "[class*='comment']",
             "[class*='trending']", "[id*='trending']", "[data-testid*='trending']",
             "[class*='most-read']", "[class*='most-popular']", "[class*='popular']",
+            "[class*='read-more']", "[class*='readmore']", "[class*='recirc']",
+            "[class*='recommend']", "[data-testid*='related']", "[data-testid*='recommend']",
         ],
     },
     "CTV News": {
@@ -254,6 +260,8 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
             "[class*='related']", "[class*='recommend']", "[class*='advert']",
             "[class*='newsletter']", "[class*='recirc']", "[class*='popular']",
             "[class*='video']", "[data-testid*='video']", "[class*='player']",
+            "[class*='read-more']", "[class*='readmore']", "[class*='more-from']",
+            "[class*='morefrom']", "[data-testid*='related']", "[data-testid*='recommend']",
             "nav", "footer", "aside"
         ],
     },
@@ -305,6 +313,7 @@ GENERIC_REMOVE_SELECTORS = [
 
 JUNK_CLASS_TOKENS = (
     "caption", "related", "promo", "newsletter", "share", "social", "advert", "author-card",
+    "read-more", "readmore", "recirc",
     "footer", "nav", "subscription", "subscribe", "paywall", "registration", "register",
     "account", "epaper", "puzzle", "comment", "recommend", "most-popular", "most-read", "trending", "popular", "outbrain", "taboola",
 )
@@ -409,6 +418,20 @@ def ctv_stop_text(value: str) -> bool:
     if not key:
         return False
     return any(key == boilerplate_key(marker) or key.startswith(boilerplate_key(marker) + " ") for marker in CTV_STOP_MARKERS)
+
+
+def ctv_recirc_text(value: str) -> bool:
+    key = boilerplate_key(value)
+    if not key:
+        return False
+    return any(key == boilerplate_key(marker) or key.startswith(boilerplate_key(marker) + " ") for marker in CTV_RECIRC_MARKERS)
+
+
+def postmedia_recirc_text(value: str) -> bool:
+    key = boilerplate_key(value)
+    return key in {"read more", "more to read", "more from the london free press", "related stories"} or key.startswith((
+        "read more from", "more from london free press", "recommended for you",
+    ))
 
 
 def is_boilerplate_block(value: str, source_name: str = "") -> bool:
@@ -1191,9 +1214,11 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
     police_started = not police_mode
     postmedia_mode = is_postmedia_source(source_name)
     postmedia_trending = False
+    postmedia_recirc = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
     ctv_mode = source_name == "CTV News"
+    ctv_recirc = False
 
     nodes = clone_root.find_all(["h2", "h3", "p", "blockquote", "ul", "ol", "figure", "img"], recursive=True)
     for node in nodes:
@@ -1214,6 +1239,17 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
                 break
             if ctv_mode and ctv_stop_text(raw_node_text):
                 break
+            if ctv_mode and ctv_recirc_text(raw_node_text):
+                ctv_recirc = True
+                continue
+            if ctv_recirc:
+                # CTV sometimes injects a recommendation rail between real paragraphs.
+                # Skip linked/short recirculation copy, then resume when ordinary article
+                # prose returns instead of treating the rail as the end of the story.
+                linked = node.find_parent("a", href=True)
+                if linked is not None or node.name in ("h2", "h3") or len(raw_node_text) < 90:
+                    continue
+                ctv_recirc = False
             # Heart FM places a large "More from Local News" module inside the
             # same broad page region as the article. Ignore the breadcrumb copy
             # before the story, but once genuine article prose has started this
@@ -1222,6 +1258,17 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
                 if heartfm_content_started:
                     break
                 continue
+            if postmedia_mode and node.name in ("h2", "h3") and postmedia_recirc_text(raw_node_text):
+                postmedia_recirc = True
+                continue
+            if postmedia_recirc:
+                # Postmedia's inline Read More cards sit inside the article flow.
+                # Ignore linked headlines/teasers, but continue with the real article
+                # paragraph that follows the module.
+                linked = node.find_parent("a", href=True)
+                if linked is not None or node.name in ("h2", "h3") or len(raw_node_text) < 90:
+                    continue
+                postmedia_recirc = False
             if postmedia_mode and node.name in ("h2", "h3") and (raw_key.startswith("trending") or raw_key.startswith("most read") or raw_key.startswith("most popular")):
                 postmedia_trending = True
                 continue
@@ -1254,6 +1301,8 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             continue
 
         if node.name in ("ul", "ol"):
+            if postmedia_recirc or ctv_recirc:
+                continue
             if heartfm_mode:
                 anchor_texts = [clean_text(a.get_text(" ", strip=True)).lower() for a in node.select("a[href]")]
                 if not heartfm_content_started and anchor_texts and all(
@@ -1286,6 +1335,15 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
         if not isinstance(img, Tag):
             continue
         url = best_img_url(img, base_url)
+        if ctv_mode or postmedia_mode:
+            linked = img.find_parent("a", href=True)
+            if isinstance(linked, Tag):
+                linked_url = urljoin(base_url, str(linked.get("href") or ""))
+                linked_host = (urlparse(linked_url).netloc or "").lower()
+                same_host = linked_host == (urlparse(base_url).netloc or "").lower()
+                if same_host and canonical_url(linked_url) != canonical_url(base_url):
+                    stats["images_rejected"] = stats.get("images_rejected", 0) + 1
+                    continue
         if heartfm_mode:
             linked = img.find_parent("a", href=True)
             if isinstance(linked, Tag):
@@ -1633,26 +1691,24 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
         ctv_candidates: list[tuple[int, int, str, list[dict[str, Any]], list[str], str]] = []
 
         def add_ctv_candidate(candidate_method: str, candidate_blocks: list[dict[str, Any]], priority: int) -> None:
+            # Keep lists/headings from the publisher DOM. Sanitization removes soft
+            # recirculation without flattening legitimate charge lists into prose.
+            candidate_blocks = sanitize_content_blocks(candidate_blocks, source.name, title, lead_image)
             candidate_paragraphs, candidate_text = text_from_blocks(candidate_blocks)
-            candidate_paragraphs = clean_article_blocks(candidate_paragraphs, source.name, title)
             if len(candidate_paragraphs) < 2 or len(candidate_text) < 150:
                 return
-            # Rebuild the final CTV block list from the cleaned prose every time.
-            # This prevents a footer/related module removed from paragraphs from
-            # surviving separately inside content_blocks.
-            candidate_blocks = fallback_blocks(candidate_paragraphs, inline_candidates)
-            candidate_text = "\n\n".join(candidate_paragraphs)
-            ctv_candidates.append((len(candidate_text), priority, candidate_method, candidate_blocks, candidate_paragraphs, candidate_text))
+            structure_bonus = sum(35 for block in candidate_blocks if block.get("type") == "list")
+            ctv_candidates.append((len(candidate_text) + structure_bonus, priority, candidate_method, candidate_blocks, candidate_paragraphs, candidate_text))
 
         if ctv_blocks:
             add_ctv_candidate("embedded-json:ctv", ctv_blocks, 4)
         if ld_paragraphs:
-            add_ctv_candidate("jsonld:ctv", fallback_blocks(ld_paragraphs, inline_candidates), 3)
+            add_ctv_candidate("jsonld:ctv", fallback_blocks(ld_paragraphs, []), 3)
         if dom_blocks:
             add_ctv_candidate(method, dom_blocks, 2)
         cleaned_extracted = clean_article_blocks(extracted_paragraphs or initial_paragraphs, source.name, title)
         if cleaned_extracted:
-            add_ctv_candidate("trafilatura:ctv", fallback_blocks(cleaned_extracted, inline_candidates), 1)
+            add_ctv_candidate("trafilatura:ctv", fallback_blocks(cleaned_extracted, []), 1)
 
         if ctv_candidates:
             # Length is the strongest completeness signal; priority only breaks
@@ -1673,7 +1729,7 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
             method = f"{method}:strict"
         elif len(ld_text) >= 160 and len(ld_paragraphs) >= 2:
             paragraphs = ld_paragraphs
-            blocks = fallback_blocks(paragraphs, inline_candidates)
+            blocks = fallback_blocks(paragraphs, [])
             text = ld_text
             method = "jsonld:global-strict"
         elif dom_paragraphs:
@@ -1682,12 +1738,32 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
             method = f"{method}:partial-strict"
         elif ld_paragraphs:
             paragraphs = ld_paragraphs
-            blocks = fallback_blocks(paragraphs, inline_candidates)
+            blocks = fallback_blocks(paragraphs, [])
             text = ld_text
             method = "jsonld:global-partial"
         else:
             paragraphs, blocks, text = [], [], ""
             method = "global:no-trusted-body"
+    elif is_postmedia_source(source.name):
+        # Postmedia inserts Read More cards inside the article DOM. Whole-page
+        # readability extraction can mistake those cards for the article itself,
+        # so prefer the cleaned source DOM, then publisher JSON-LD.
+        cleaned_dom = sanitize_content_blocks(dom_blocks, source.name, title, lead_image)
+        dom_paragraphs, dom_text = text_from_blocks(cleaned_dom)
+        if len(dom_text) >= 160 and len(dom_paragraphs) >= 2:
+            blocks = cleaned_dom
+            paragraphs, text = dom_paragraphs, dom_text
+            method = f"{method}:strict"
+        elif len(ld_text) >= 160 and len(ld_paragraphs) >= 2:
+            paragraphs = ld_paragraphs
+            blocks = fallback_blocks(paragraphs, [])
+            text = ld_text
+            method = "jsonld:postmedia-strict"
+        else:
+            paragraphs = clean_article_blocks(extracted_paragraphs or initial_paragraphs, source.name, title, stats)
+            blocks = fallback_blocks(paragraphs, [])
+            text = "\n\n".join(paragraphs)
+            method = "trafilatura:postmedia-last-resort"
     elif len(dom_text) < MIN_ARTICLE_CHARS or len(dom_paragraphs) < 2:
         paragraphs = clean_article_blocks(extracted_paragraphs or initial_paragraphs, source.name, title, stats)
         blocks = fallback_blocks(paragraphs, inline_candidates)
@@ -2034,9 +2110,11 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
     seen: list[str] = []
     seen_images: list[str] = []
     skipping_postmedia_trending = False
+    skipping_postmedia_recirc = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
     ctv_mode = source_name == "CTV News"
+    skipping_ctv_recirc = False
     for block in blocks:
         if not isinstance(block, dict):
             continue
@@ -2046,6 +2124,24 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
             key = boilerplate_key(text)
             if is_global_source(source_name) and global_stop_text(text):
                 break
+            if ctv_mode and ctv_stop_text(text):
+                break
+            if ctv_mode and ctv_recirc_text(text):
+                skipping_ctv_recirc = True
+                continue
+            if skipping_ctv_recirc:
+                if kind == "paragraph" and len(text) >= 90:
+                    skipping_ctv_recirc = False
+                else:
+                    continue
+            if is_postmedia_source(source_name) and kind == "heading" and postmedia_recirc_text(text):
+                skipping_postmedia_recirc = True
+                continue
+            if skipping_postmedia_recirc:
+                if kind == "paragraph" and len(text) >= 90:
+                    skipping_postmedia_recirc = False
+                else:
+                    continue
             if heartfm_mode and heartfm_stop_text(text):
                 if heartfm_content_started:
                     break
@@ -2068,6 +2164,8 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
             if heartfm_mode and kind in ("paragraph", "quote"):
                 heartfm_content_started = True
         elif kind == "list":
+            if skipping_postmedia_recirc or skipping_ctv_recirc:
+                continue
             items = [clean_text(normalize_source_case(item)) for item in block.get("items", [])]
             items = [item for item in items if len(item) >= 5 and not is_boilerplate_block(item, source_name)]
             if items:
@@ -2187,7 +2285,7 @@ def backfill_missing(
     done = 0
     # Repair CBC/CTV first after extractor changes so stale degraded records do
     # not keep their source health orange for many scheduled refreshes.
-    priority_sources = {"CBC News London": 0, "CTV News": 0}
+    priority_sources = {"CBC News London": 0, "CTV News": 0, "London Free Press": 0, "Global News London": 0}
     # Python's sort is stable, so sorting only by priority preserves the existing
     # newest-first order within CBC/CTV and repairs the records that affect health
     # and the visible feed first.
