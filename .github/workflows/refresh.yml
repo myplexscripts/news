@@ -89,6 +89,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
 
+      - name: Normalize CBC fallback metadata
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/fix_cbc_fallback.py
+
       - name: Run Scoop regression tests
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_scraper_regressions.py
