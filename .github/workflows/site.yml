@@ -30,6 +30,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Validate workflow schedule
+        run: python scripts/test_workflow_config.py
+
       - name: Install collector dependencies
         run: pip install -r requirements.txt
 
