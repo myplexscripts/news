@@ -75,13 +75,6 @@ SOURCES = [
         max_items=25,
     ),
     Source(
-        name="London Fire Department",
-        logo="images/logos/lfd.png",
-        url="https://news.google.com/rss/search?q=site:https://x.com/LdnOntFire+when:7d&hl=en-CA&gl=CA&ceid=CA:en",
-        homepage="https://x.com/LdnOntFire",
-        accent="#ff383c",
-    ),
-    Source(
         name="104.7 Heart FM",
         logo="images/logos/heartfm.png",
         url="https://www.heartfm.ca/news/local-news/feed.xml",
