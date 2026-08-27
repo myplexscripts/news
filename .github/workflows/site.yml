@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -41,7 +41,13 @@ jobs:
           node-version: 22
 
       - name: Install site dependencies
-        run: npm install
+        shell: bash
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
 
       - name: Report dependency audit
         run: npm audit --json > npm-audit.json || true
@@ -55,19 +61,32 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Upload dependency audit and lockfile
+      - name: Upload dependency audit
         uses: actions/upload-artifact@v4
         with:
-          name: npm-build-metadata
-          path: |
-            npm-audit.json
-            package-lock.json
+          name: npm-audit-report
+          path: npm-audit.json
           retention-days: 7
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+
+      - name: Persist generated lockfile
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- package-lock.json)" ]; then
+            echo "Lockfile already committed and unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "Lock npm dependencies"
+          git pull --rebase origin main
+          git push origin HEAD:main
 
   deploy:
     environment:
