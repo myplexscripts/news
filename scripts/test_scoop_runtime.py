@@ -139,43 +139,39 @@ def test_cbc_curl_fallback() -> None:
     assert "--max-time" in command
 
 
-def test_cbc_rss_proxy() -> None:
-    payload = {
-        "status": "ok",
-        "items": [
-            {
-                "title": "London council approves a new transit plan",
-                "link": "https://www.cbc.ca/news/canada/london/london-transit-plan-9.9999999?cmp=rss",
-                "description": "London city council approved a new transit plan Wednesday.",
-                "pubDate": "2026-08-27 15:00:00",
-                "author": "CBC News",
-                "thumbnail": "https://i.cbc.ca/example.jpg",
-            }
-        ],
-    }
-    response = SimpleNamespace(raise_for_status=lambda: None, json=lambda: payload)
+def test_cbc_curl_rss_ingestion() -> None:
+    rss = b"""<?xml version='1.0' encoding='utf-8'?>
+    <rss version='2.0'><channel>
+      <item>
+        <title>London council approves a new transit plan</title>
+        <link>https://www.cbc.ca/news/canada/london/london-transit-plan-9.9999999?cmp=rss</link>
+        <description>London city council approved a new transit plan Wednesday.</description>
+        <pubDate>Thu, 27 Aug 2026 15:00:00 GMT</pubDate>
+      </item>
+    </channel></rss>"""
+    response = requests.Response()
+    response.status_code = 200
+    response._content = rss
+    response.url = run_scoop.CBC_FEEDS[0]
     source = run_scoop.fetch_news.Source(
         name="CBC News London",
-        url="https://www.cbc.ca/webfeed/rss/rss-canada-london",
+        url=run_scoop.CBC_FEEDS[0],
         homepage="https://www.cbc.ca/news/canada/london",
         accent="#ff383c",
         max_items=25,
     )
 
-    with patch.object(run_scoop.fetch_news.SESSION, "get", return_value=response) as mocked:
-        items = run_scoop._cbc_proxy_items(source, {})
+    with patch("run_scoop._curl_response", return_value=response) as mocked:
+        items = run_scoop._cbc_curl_feed_items(source, {}, run_scoop.CBC_FEEDS[0])
 
     assert len(items) == 1
     story = items[0]
     assert story["source"] == "CBC News London"
     assert story["url"].startswith("https://www.cbc.ca/news/canada/london/london-transit-plan-9.9999999")
     assert story["content_status"] == "summary"
-    assert story["ingestion_path"] == "cbc-rss-proxy"
+    assert story["ingestion_path"] == "cbc-curl-rss"
     assert "transit plan" in story["summary"].lower()
-    requested_url = mocked.call_args.args[0]
-    requested_params = mocked.call_args.kwargs["params"]
-    assert requested_url == run_scoop.CBC_PROXY_URL
-    assert requested_params["rss_url"] == run_scoop.CBC_FEEDS[0]
+    mocked.assert_called_once_with(run_scoop.CBC_FEEDS[0], timeout=10)
 
 
 def main() -> None:
@@ -187,8 +183,8 @@ def main() -> None:
     print("PASS test_body_aware_cluster_uses_deeper_release_context")
     test_cbc_curl_fallback()
     print("PASS test_cbc_curl_fallback")
-    test_cbc_rss_proxy()
-    print("PASS test_cbc_rss_proxy")
+    test_cbc_curl_rss_ingestion()
+    print("PASS test_cbc_curl_rss_ingestion")
 
 
 if __name__ == "__main__":
