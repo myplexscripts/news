@@ -13,7 +13,13 @@ const SOURCE_LOGO_FILES: Record<string, string> = {
   '104.7 heart fm': 'heartfm.png',
   'heart fm': 'heartfm.png',
   'google news london discovery': 'google.png',
-  'google news': 'google.png'
+  'google news': 'google.png',
+  'cnn': 'cnn.png',
+  'cnn news': 'cnn.png',
+  'the new york times': 'nyt.png',
+  'new york times': 'nyt.png',
+  'nyt': 'nyt.png',
+  'vox': 'vox.png'
 };
 
 export function sourceLogoFile(name = ''): string {
@@ -29,6 +35,9 @@ export function sourceLogoFile(name = ''): string {
   if (normalized.includes('london police')) return 'lps.png';
   if (normalized.includes('london fire')) return 'lfd.png';
   if (normalized.includes('google news')) return 'google.png';
+  if (normalized === 'cnn' || normalized.includes('cnn.com')) return 'cnn.png';
+  if (normalized.includes('new york times') || normalized === 'nyt') return 'nyt.png';
+  if (normalized === 'vox' || normalized.includes('vox.com')) return 'vox.png';
   return '';
 }
 
