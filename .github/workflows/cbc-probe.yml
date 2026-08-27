@@ -9,23 +9,24 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe one current CBC story
+      - name: Probe current CBC stories
         shell: bash
         run: |
           set +e
-          story_id='9.7322721'
-          headline='Missing swimmer found dead at Pinery Provincial Park'
 
           probe() {
-            name="$1"
-            url="$2"
-            file="/tmp/${name}.txt"
-            result=$(curl -L --connect-timeout 4 --max-time 18 -sS -o "$file" -w '%{http_code} %{size_download}' "$url" 2>&1)
+            label="$1"
+            story_id="$2"
+            headline="$3"
+            file="/tmp/${label}.txt"
+            result=$(curl -L --connect-timeout 4 --max-time 20 -sS -o "$file" -w '%{http_code} %{size_download}' "https://r.jina.ai/http://www.cbc.ca/lite/story/${story_id}" 2>&1)
             words=$(wc -w < "$file" 2>/dev/null || echo 0)
             if grep -Fqi "$headline" "$file" 2>/dev/null; then found=yes; else found=no; fi
-            echo "$name: curl=$result words=$words headline=$found"
+            marker=$(grep -ci '^Markdown Content:' "$file" 2>/dev/null || echo 0)
+            echo "$label: curl=$result words=$words headline=$found markdown_marker=$marker"
           }
 
-          probe jina_http "https://r.jina.ai/http://www.cbc.ca/lite/story/${story_id}"
-          probe jina_https "https://r.jina.ai/https://www.cbc.ca/lite/story/${story_id}"
-          probe google_translate "https://www-cbc-ca.translate.goog/lite/story/${story_id}?_x_tr_sl=en&_x_tr_tl=en&_x_tr_hl=en-CA"
+          probe short 9.7322721 'Missing swimmer found dead at Pinery Provincial Park'
+          probe mayor 9.7321257 "London's youngest mayoral candidate aims to reach voters through viral videos and social media"
+          probe airport 9.7321451 'airport adds Porter Airlines'
+          probe obstetrics 9.7319650 'obstetrics'
