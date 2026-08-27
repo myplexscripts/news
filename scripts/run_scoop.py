@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 
 import feedparser
 import requests
+from bs4 import BeautifulSoup
 
 import fetch_news
 import ranking
@@ -19,6 +20,11 @@ CBC_HOSTS = {"cbc.ca", "www.cbc.ca", "rss.cbc.ca"}
 CBC_FEEDS = (
     "https://www.cbc.ca/webfeed/rss/rss-canada-london",
     "https://rss.cbc.ca/lineup/canada-london.xml",
+)
+CBC_GOOGLE_NEWS_FEED = (
+    "https://news.google.com/rss/search?"
+    "q=site%3Acbc.ca%2Fnews%2Fcanada%2Flondon%20London%20Ontario%20when%3A3d&"
+    "hl=en-CA&gl=CA&ceid=CA%3Aen"
 )
 RETIRED_SOURCE_NAMES = {"London Fire Department"}
 SOURCE_JUNK_TITLES: dict[str, set[str]] = {
@@ -162,13 +168,7 @@ def _cbc_curl_feed_items(
     existing: dict[str, dict[str, Any]],
     feed_url: str,
 ) -> list[dict[str, Any]]:
-    """Read CBC London RSS with curl and do not touch CBC through requests.
-
-    CBC's current Akamai behaviour can hang Python HTTP clients on hosted
-    runners while the same feed responds immediately to curl. This path keeps
-    CBC collection simple: curl the official RSS, parse it locally, preserve
-    cached full stories, and publish RSS summaries for newly discovered items.
-    """
+    """Read CBC London RSS with curl and do not touch CBC through requests."""
     response = _curl_response(feed_url, timeout=10)
     feed = feedparser.parse(response.content)
     items: list[dict[str, Any]] = []
@@ -235,6 +235,112 @@ def _cbc_curl_feed_items(
     return items
 
 
+def _existing_cbc_story_by_title(existing: dict[str, dict[str, Any]], title: str) -> dict[str, Any] | None:
+    target = ranking._key(title)
+    if not target:
+        return None
+    seen: set[int] = set()
+    for story in existing.values():
+        if not isinstance(story, dict) or id(story) in seen:
+            continue
+        seen.add(id(story))
+        if str(story.get("source") or "") != "CBC News London":
+            continue
+        candidate = ranking._key(story.get("title"))
+        if candidate and SequenceMatcher(None, target, candidate).ratio() >= 0.94:
+            return story
+    return None
+
+
+def _cbc_google_news_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    """Discover CBC London stories without requiring any connection to cbc.ca.
+
+    Google News is only a transport and discovery fallback here. Stories retain
+    CBC attribution. The Google News article URL redirects readers to CBC.
+    """
+    response = requests.get(
+        CBC_GOOGLE_NEWS_FEED,
+        headers={"User-Agent": fetch_news.USER_AGENT, "Accept-Language": "en-CA,en;q=0.9"},
+        timeout=12,
+    )
+    response.raise_for_status()
+    feed = feedparser.parse(response.content)
+    items: list[dict[str, Any]] = []
+
+    for entry in feed.entries[: max(source.max_items * 2, 40)]:
+        source_meta = entry.get("source") or {}
+        if isinstance(source_meta, dict):
+            source_title = fetch_news.clean_text(source_meta.get("title"))
+        else:
+            source_title = fetch_news.clean_text(source_meta)
+        raw_title = fetch_news.clean_text(entry.get("title"))
+        looks_cbc = "cbc" in source_title.lower() or bool(re.search(r"\s+-\s+CBC(?: News)?\s*$", raw_title, flags=re.I))
+        if not looks_cbc:
+            continue
+
+        title = re.sub(r"\s+-\s+CBC(?: News)?\s*$", "", raw_title, flags=re.I).strip()
+        title = fetch_news.clean_story_title(title, source.name)
+        if not title:
+            continue
+
+        url = fetch_news.canonical_url(entry.get("link") or entry.get("guid") or "")
+        if not url or "news.google.com" not in urlparse(url).netloc.lower():
+            continue
+
+        raw_summary = entry.get("summary") or entry.get("description") or ""
+        summary_text = BeautifulSoup(str(raw_summary), "html.parser").get_text(" ", strip=True)
+        summary = fetch_news.clean_summary_text(summary_text, title)
+        published = entry.get("published") or entry.get("updated") or entry.get("created")
+        identifier = fetch_news.make_id(url)
+        basic = {
+            "id": identifier,
+            "title": title,
+            "source": source.name,
+            "source_home": source.homepage,
+            "source_accent": source.accent,
+            "url": url,
+            "published": fetch_news.parse_date(published),
+            "summary": summary,
+            "image": "",
+            "author": "CBC News",
+            "category": fetch_news.classify(title, summary, source.name),
+        }
+
+        old = _existing_cbc_story_by_title(existing, title)
+        if old:
+            merged = {**basic, **old}
+            merged.update({
+                "title": title,
+                "source": source.name,
+                "source_home": source.homepage,
+                "source_accent": source.accent,
+                "url": url,
+                "published": basic["published"],
+                "summary": summary or old.get("summary", ""),
+                "ingestion_path": "cbc-google-news-fallback",
+            })
+            items.append(merged)
+        else:
+            basic.update({
+                "content_status": "summary",
+                "paragraphs": [],
+                "content_blocks": [],
+                "scraped_at": datetime.now(timezone.utc).isoformat(),
+                "extraction_schema": fetch_news.EXTRACTION_SCHEMA,
+                "ingestion_path": "cbc-google-news-fallback",
+                "word_count": len(summary.split()) if summary else 0,
+            })
+            basic["quality"] = fetch_news.extraction_quality(basic, {}, "rss:google-cbc-fallback")
+            items.append(basic)
+
+        if len(items) >= source.max_items:
+            break
+
+    if not items:
+        raise RuntimeError("CBC Google News fallback returned no CBC London stories")
+    return items
+
+
 def _bounded_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     attempts: list[str] = []
     for feed_url in CBC_FEEDS:
@@ -246,7 +352,17 @@ def _bounded_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, 
         except Exception as exc:
             attempts.append(f"{feed_url}: {str(exc)[:180]}")
 
-    raise RuntimeError("CBC curl feeds unavailable; cached CBC stories retained: " + " | ".join(attempts))
+    try:
+        items = _cbc_google_news_items(source, existing)
+        print(
+            f"CBC News London: {len(items)} items via Google News fallback after CBC network failure",
+            file=sys.stderr,
+        )
+        return items
+    except Exception as exc:
+        attempts.append(f"Google News fallback: {str(exc)[:180]}")
+
+    raise RuntimeError("CBC discovery routes unavailable; cached CBC stories retained: " + " | ".join(attempts))
 
 
 def _similarity_text(story: dict[str, Any]) -> str:
