@@ -91,6 +91,7 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
                 <a
                   class:list={["news-card", "card-standard", "searchable", !story.image && "no-image"]}
                   href={storyHref(story)}
+                  data-story-id={story.id}
                   data-source={story.source}
                   data-sources={(story.cluster_sources || [story.source]).join('|')}
                   data-date-group={group.key}
@@ -144,8 +145,21 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
     const noResults = document.getElementById('noResults');
     const resultsStatus = document.getElementById('resultsStatus');
     let hiddenSources = new Set();
+    let readStories = new Set();
+    let hideReadStories = false;
 
     try { hiddenSources = new Set(JSON.parse(localStorage.getItem('london-news-hidden-sources') || '[]')); } catch { hiddenSources = new Set(); }
+
+    function loadReadingPreferences() {
+      hideReadStories = localStorage.getItem('london-news-hide-read') === 'true';
+      try {
+        const ids = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
+        readStories = new Set(Array.isArray(ids) ? ids.map(String) : []);
+      } catch {
+        readStories = new Set();
+      }
+    }
+    loadReadingPreferences();
 
     function updateDateHeadings() {
       dateHeadings.forEach((heading) => {
@@ -162,7 +176,8 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
         const sources = (card.dataset.sources || card.dataset.source || '').split('|').filter(Boolean);
         const sourceMatch = sources.length === 0 || sources.some((source) => !hiddenSources.has(source));
         const searchMatch = !query || (card.dataset.search || '').includes(query);
-        const show = sourceMatch && searchMatch;
+        const readMatch = !hideReadStories || !readStories.has(String(card.dataset.storyId || ''));
+        const show = sourceMatch && searchMatch && readMatch;
         card.classList.toggle('filtered-out', !show);
         if (show) visible += 1;
       });
@@ -190,8 +205,15 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
     searchInput?.addEventListener('input', applyLatestFilters);
     searchInput?.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeSearch(); });
     window.addEventListener('storage', (event) => {
-      if (event.key !== 'london-news-hidden-sources') return;
-      try { hiddenSources = new Set(JSON.parse(event.newValue || '[]')); } catch { hiddenSources = new Set(); }
+      if (event.key === 'london-news-hidden-sources') {
+        try { hiddenSources = new Set(JSON.parse(event.newValue || '[]')); } catch { hiddenSources = new Set(); }
+      }
+      if (['london-news-read-articles', 'london-news-hide-read'].includes(event.key || '')) loadReadingPreferences();
+      applyLatestFilters();
+    });
+    window.addEventListener('london-news-read-state', (event) => {
+      readStories = new Set((event.detail?.readIds || []).map(String));
+      hideReadStories = Boolean(event.detail?.hideRead);
       applyLatestFilters();
     });
     applyLatestFilters();
