@@ -66,12 +66,8 @@ def _contains_term(haystack: str, needle: str) -> bool:
 
 def _safe_classify(title: str, summary: str, source: str) -> str:
     haystack = f"{title} {summary} {source}".lower().replace("’", "'")
-
-    # Sports language gets an explicit first pass so names such as Rancourt do
-    # not accidentally match the Public Safety keyword "court".
     if any(_contains_term(haystack, term) for term in SPORTS_TERMS):
         return "Sports"
-
     for category, needles in fetch_news.CATEGORY_RULES:
         if any(_contains_term(haystack, word) for word in needles):
             return category
@@ -79,7 +75,6 @@ def _safe_classify(title: str, summary: str, source: str) -> str:
 
 
 def _locality_story(story: dict[str, Any]) -> dict[str, Any]:
-    """Remove known false geographic phrases before locality scoring."""
     cleaned = dict(story)
 
     def scrub(value: Any) -> str:
@@ -105,15 +100,8 @@ def _is_cbc_url(url: str) -> bool:
 def _curl_response(url: str, timeout: int | float | None = None) -> requests.Response:
     max_time = max(6, min(10, int(float(timeout or 8))))
     command = [
-        "curl",
-        "--http1.1",
-        "--location",
-        "--fail",
-        "--silent",
-        "--show-error",
-        "--compressed",
-        "--connect-timeout", "4",
-        "--max-time", str(max_time),
+        "curl", "--http1.1", "--location", "--fail", "--silent", "--show-error",
+        "--compressed", "--connect-timeout", "4", "--max-time", str(max_time),
         "--user-agent", fetch_news.USER_AGENT,
         "--header", "Accept-Language: en-CA,en;q=0.9",
         "--header", "Accept: text/html,application/xhtml+xml,application/rss+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -123,7 +111,6 @@ def _curl_response(url: str, timeout: int | float | None = None) -> requests.Res
     if result.returncode != 0:
         message = result.stderr.decode("utf-8", "replace").strip() or f"curl exited {result.returncode}"
         raise requests.ConnectionError(f"CBC curl fallback failed: {message[:240]}")
-
     response = requests.Response()
     response.status_code = 200
     response.url = url
@@ -137,7 +124,6 @@ def _resilient_cbc_get(original_get: Callable[..., requests.Response]) -> Callab
     def get(url: str, *args: Any, **kwargs: Any) -> requests.Response:
         if not _is_cbc_url(url):
             return original_get(url, *args, **kwargs)
-
         first_error: Exception | None = None
         try:
             response = original_get(url, *args, **kwargs)
@@ -148,7 +134,6 @@ def _resilient_cbc_get(original_get: Callable[..., requests.Response]) -> Callab
             first_error = requests.HTTPError(f"CBC returned HTTP {response.status_code}")
         except requests.RequestException as exc:
             first_error = exc
-
         try:
             fallback = _curl_response(url, kwargs.get("timeout"))
             print(f"CBC transport fallback: curl succeeded for {url}", file=sys.stderr)
@@ -157,22 +142,15 @@ def _resilient_cbc_get(original_get: Callable[..., requests.Response]) -> Callab
             if first_error is not None:
                 raise first_error
             raise
-
     return get
 
 
 def _bounded_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    """Try two first-party CBC feeds quickly, then let Scoop retain cached CBC stories."""
     attempts: list[str] = []
     for feed_url in CBC_FEEDS:
         candidate = fetch_news.Source(
-            name=source.name,
-            logo=getattr(source, "logo", ""),
-            url=feed_url,
-            kind="rss",
-            homepage=source.homepage,
-            accent=source.accent,
-            max_items=source.max_items,
+            name=source.name, logo=getattr(source, "logo", ""), url=feed_url, kind="rss",
+            homepage=source.homepage, accent=source.accent, max_items=source.max_items,
         )
         try:
             items = fetch_news.rss_items(candidate, existing, request_timeout=5)
@@ -185,7 +163,6 @@ def _bounded_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, 
             attempts.append(f"{feed_url}: no items")
         except Exception as exc:
             attempts.append(f"{feed_url}: {str(exc)[:140]}")
-
     raise RuntimeError("CBC first-party feeds unavailable; cached CBC stories retained: " + " | ".join(attempts))
 
 
@@ -193,7 +170,9 @@ def _similarity_text(story: dict[str, Any]) -> str:
     paragraphs = story.get("paragraphs") or []
     if not isinstance(paragraphs, list):
         paragraphs = []
-    body = " ".join(ranking._clean(value) for value in paragraphs[:3])
+    # Some official releases introduce the distinctive event terms several
+    # paragraphs in. Eight paragraphs is still bounded, but catches those cases.
+    body = " ".join(ranking._clean(value) for value in paragraphs[:8])
     return f"{story.get('title', '')} {story.get('summary', '')} {body}"
 
 
@@ -202,7 +181,6 @@ def _body_aware_story_similarity(left: dict[str, Any], right: dict[str, Any]) ->
     right_title = ranking._key(right.get("title"))
     if not left_title or not right_title:
         return 0.0, {}
-
     left_tokens = ranking._tokens(_similarity_text(left))
     right_tokens = ranking._tokens(_similarity_text(right))
     shared = left_tokens & right_tokens
@@ -216,10 +194,8 @@ def _body_aware_story_similarity(left: dict[str, Any], right: dict[str, Any]) ->
         score += 0.05
     score = min(1.0, score)
     return score, {
-        "title": round(title_ratio, 3),
-        "containment": round(containment, 3),
-        "jaccard": round(jaccard, 3),
-        "shared": float(len(shared)),
+        "title": round(title_ratio, 3), "containment": round(containment, 3),
+        "jaccard": round(jaccard, 3), "shared": float(len(shared)),
         "entity": 1.0 if entity_overlap else 0.0,
     }
 
@@ -228,23 +204,17 @@ def _body_aware_should_cluster(left: dict[str, Any], right: dict[str, Any]) -> b
     delta_hours = abs((ranking._dt(left.get("published")) - ranking._dt(right.get("published"))).total_seconds()) / 3600
     if delta_hours > ranking.CLUSTER_WINDOW_HOURS:
         return False
-
     score, parts = _body_aware_story_similarity(left, right)
     shared = int(parts.get("shared", 0))
     same_source = ranking._clean(left.get("source")) == ranking._clean(right.get("source"))
-
     if same_source:
         return bool(parts.get("title", 0) >= 0.86 or (parts.get("containment", 0) >= 0.82 and shared >= 5))
-
     if parts.get("title", 0) >= 0.80 and shared >= 3:
         return True
     if parts.get("containment", 0) >= 0.64 and shared >= 4 and score >= 0.58:
         return True
     if parts.get("entity", 0) and shared >= 4 and score >= 0.60:
         return True
-    # Short wire-style summaries can use very different headlines from the full
-    # first-party report. Four distinctive shared terms inside 30 hours is a
-    # strong same-event signal once generic crime/news words are removed.
     if delta_hours <= 30 and shared >= 4 and parts.get("containment", 0) >= 0.60:
         return True
     return False
@@ -253,39 +223,20 @@ def _body_aware_should_cluster(left: dict[str, Any], right: dict[str, Any]) -> b
 def _publication_filter(stories: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     kept: list[dict[str, Any]] = []
     dropped: list[dict[str, Any]] = []
-
     for story in stories:
         source = str(story.get("source") or "")
         if source in RETIRED_SOURCE_NAMES:
-            dropped.append({
-                "id": story.get("id", ""),
-                "source": source,
-                "title": story.get("title", ""),
-                "local_score": 0,
-                "threshold": "retired",
-                "reasons": ["retired source"],
-            })
+            dropped.append({"id": story.get("id", ""), "source": source, "title": story.get("title", ""), "local_score": 0, "threshold": "retired", "reasons": ["retired source"]})
             continue
-
         threshold = PUBLICATION_MIN_LOCAL_SCORE.get(source)
         if threshold is None:
             kept.append(story)
             continue
-
         score, reasons = _safe_local_relevance(story)
         if score >= threshold:
             kept.append(story)
             continue
-
-        dropped.append({
-            "id": story.get("id", ""),
-            "source": source,
-            "title": story.get("title", ""),
-            "local_score": score,
-            "threshold": threshold,
-            "reasons": reasons,
-        })
-
+        dropped.append({"id": story.get("id", ""), "source": source, "title": story.get("title", ""), "local_score": score, "threshold": threshold, "reasons": reasons})
     return kept, dropped
 
 
@@ -297,7 +248,6 @@ def _apply_local_editorial_policy(stories: list[dict[str, Any]], now=None):
             by_source[item["source"]] = by_source.get(item["source"], 0) + 1
         summary = ", ".join(f"{source} {count}" for source, count in sorted(by_source.items()))
         print(f"Publication gate: removed {len(dropped)} stories ({summary})", file=sys.stderr)
-
     annotated, metadata = ranking.apply_editorial_intelligence(kept, now)
     metadata["locality_filtered_count"] = len(dropped)
     metadata["locality_filtered_by_source"] = {
@@ -310,12 +260,10 @@ def _apply_local_editorial_policy(stories: list[dict[str, Any]], now=None):
 def install_runtime_safeguards() -> None:
     if getattr(fetch_news, "_runtime_safeguards_installed", False):
         return
-
     fetch_news.FAST_SESSION.get = _resilient_cbc_get(fetch_news.FAST_SESSION.get)
     fetch_news.SESSION.get = _resilient_cbc_get(fetch_news.SESSION.get)
     fetch_news.cbc_items = _bounded_cbc_items
     fetch_news.classify = _safe_classify
-
     ranking.local_relevance = _safe_local_relevance
     ranking.story_similarity = _body_aware_story_similarity
     ranking._should_cluster = _body_aware_should_cluster
