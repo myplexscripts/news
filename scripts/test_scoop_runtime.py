@@ -35,6 +35,8 @@ def test_locality_gate() -> None:
         make_story("ilderton", "Community event opens in Ilderton", "CTV News", "Residents gathered in Ilderton for the event."),
         make_story("national-lfp", "U.S. tariff policy changes again", "London Free Press", "The White House announced another tariff measure."),
         make_story("middlesex", "Driver dies after crash in Middlesex County", "London Free Press", "Police responded to a collision in Middlesex County."),
+        make_story("bridge", "London Bridge child care expands in Huron County", "CTV News", "London Bridge Child Care Services opened a site near Bayfield."),
+        make_story("retired-fire", "Fire crews respond", "London Fire Department", "A legacy Google-discovered fire post."),
     ]
 
     kept, dropped = run_scoop._publication_filter(stories)
@@ -42,7 +44,20 @@ def test_locality_gate() -> None:
     dropped_ids = {story["id"] for story in dropped}
 
     assert {"airport", "ilderton", "middlesex"} <= kept_ids
-    assert {"oshawa", "bayfield", "celebrity", "national-lfp"} <= dropped_ids
+    assert {"oshawa", "bayfield", "celebrity", "national-lfp", "bridge", "retired-fire"} <= dropped_ids
+
+
+def test_safe_classification() -> None:
+    assert run_scoop._safe_classify(
+        "Western Mustangs quarterback Rancourt ready for opener",
+        "The Mustangs football team opens its OUA season this week.",
+        "CTV News",
+    ) == "Sports"
+    assert run_scoop._safe_classify(
+        "Former councillor appears in court",
+        "The accused appeared in London court on Tuesday.",
+        "CTV News",
+    ) == "Public Safety"
 
 
 def test_body_aware_cluster() -> None:
@@ -103,7 +118,7 @@ def test_cbc_curl_fallback() -> None:
     resilient = run_scoop._resilient_cbc_get(failing_get)
 
     with patch("run_scoop.subprocess.run", return_value=completed) as mocked:
-        response = resilient("https://www.cbc.ca/webfeed/rss/rss-canada-london", timeout=8)
+        response = resilient("https://www.cbc.ca/webfeed/rss/rss-canada-london", timeout=5)
 
     assert response.status_code == 200
     assert response.content.startswith(b"<rss>")
@@ -116,6 +131,8 @@ def test_cbc_curl_fallback() -> None:
 def main() -> None:
     test_locality_gate()
     print("PASS test_locality_gate")
+    test_safe_classification()
+    print("PASS test_safe_classification")
     test_body_aware_cluster()
     print("PASS test_body_aware_cluster")
     test_cbc_curl_fallback()
