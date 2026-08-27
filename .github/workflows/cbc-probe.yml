@@ -1,0 +1,31 @@
+name: Probe CBC body routes
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cbc-probe.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe one current CBC story
+        shell: bash
+        run: |
+          set +e
+          story_id='9.7322721'
+          headline='Missing swimmer found dead at Pinery Provincial Park'
+
+          probe() {
+            name="$1"
+            url="$2"
+            file="/tmp/${name}.txt"
+            result=$(curl -L --connect-timeout 4 --max-time 18 -sS -o "$file" -w '%{http_code} %{size_download}' "$url" 2>&1)
+            words=$(wc -w < "$file" 2>/dev/null || echo 0)
+            if grep -Fqi "$headline" "$file" 2>/dev/null; then found=yes; else found=no; fi
+            echo "$name: curl=$result words=$words headline=$found"
+          }
+
+          probe jina_http "https://r.jina.ai/http://www.cbc.ca/lite/story/${story_id}"
+          probe jina_https "https://r.jina.ai/https://www.cbc.ca/lite/story/${story_id}"
+          probe google_translate "https://www-cbc-ca.translate.goog/lite/story/${story_id}?_x_tr_sl=en&_x_tr_tl=en&_x_tr_hl=en-CA"
