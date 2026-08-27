@@ -33,6 +33,9 @@ def main() -> int:
     if "workflow_dispatch:" not in refresh:
         errors.append("refresh workflow is missing manual workflow_dispatch fallback")
 
+    if "paths:" not in refresh or "'scripts/**'" not in refresh:
+        errors.append("collector changes should trigger a refresh without making data commits recursive")
+
     if "python scripts/run_scoop.py" not in refresh:
         errors.append("refresh workflow is bypassing the hardened Scoop runtime")
 
@@ -51,8 +54,11 @@ def main() -> int:
     if "python scripts/run_scoop.py" in deploy or "python scripts/fetch_news.py" in deploy:
         errors.append("site.yml must not mutate news data during deployment")
 
-    if "npm ci" not in deploy:
-        errors.append("site.yml should use deterministic npm ci installs")
+    lock_exists = (ROOT / "package-lock.json").exists() or (ROOT / "npm-shrinkwrap.json").exists()
+    if lock_exists and "npm ci" not in deploy:
+        errors.append("site.yml should use npm ci when a lockfile exists")
+    if not lock_exists and "npm install" not in deploy:
+        errors.append("site.yml needs npm install until the repository has a lockfile")
 
     if errors:
         print("Workflow configuration check failed:")
