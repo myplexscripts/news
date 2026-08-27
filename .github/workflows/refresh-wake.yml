@@ -1,0 +1,39 @@
+name: Wake next news refresh
+
+on:
+  workflow_dispatch:
+    inputs:
+      delay_seconds:
+        description: Seconds to wait before starting the next refresh
+        required: false
+        default: '900'
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: refresh-wake
+  cancel-in-progress: true
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Wait for next refresh window
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_DELAY: ${{ inputs.delay_seconds }}
+        run: |
+          delay="${REQUESTED_DELAY:-900}"
+          if ! [[ "$delay" =~ ^[0-9]+$ ]]; then
+            delay=900
+          fi
+          if [ "$delay" -lt 60 ]; then delay=60; fi
+          if [ "$delay" -gt 900 ]; then delay=900; fi
+          echo "Waiting ${delay}s before the next news refresh."
+          sleep "$delay"
+          echo "Dispatching the next refresh."
+          gh workflow run refresh.yml --ref main
