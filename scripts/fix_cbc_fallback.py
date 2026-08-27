@@ -4,15 +4,15 @@ import html
 import json
 import re
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 import feedparser
 import requests
 from bs4 import BeautifulSoup
-from googlenewsdecoder import gnewsdecoder
 from trafilatura import extract
 
 
@@ -29,15 +29,13 @@ CBC_ID = re.compile(r"(?<!\d)([19]\.\d{5,})(?!\d)")
 BOILERPLATE = (
     "sign up for", "subscribe", "download the cbc news app", "read more from cbc",
     "add cbc news as a preferred source", "related stories", "recommended for you",
-    "copyright cbc", "all rights reserved", "with files from", "this advertisement",
+    "copyright cbc", "all rights reserved", "this advertisement",
 )
-
-SESSION = requests.Session()
-SESSION.headers.update({
+HEADERS = {
     "User-Agent": USER_AGENT,
     "Accept-Language": "en-CA,en;q=0.9",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-})
+}
 
 
 def clean_text(value: Any) -> str:
@@ -56,7 +54,7 @@ def google_story_key(value: Any) -> str:
 
 
 def load_google_cbc() -> dict[str, dict[str, str]]:
-    response = SESSION.get(CBC_GOOGLE_NEWS_FEED, timeout=15)
+    response = requests.get(CBC_GOOGLE_NEWS_FEED, headers=HEADERS, timeout=(4, 10))
     response.raise_for_status()
     feed = feedparser.parse(response.content)
     lookup: dict[str, dict[str, str]] = {}
@@ -68,12 +66,13 @@ def load_google_cbc() -> dict[str, dict[str, str]]:
         if "cbc" not in source_title.lower() and not CBC_SUFFIX.search(raw_title):
             continue
         title = CBC_SUFFIX.sub("", raw_title).strip()
-        key = google_story_key(entry.get("link") or entry.get("guid"))
+        link = clean_text(entry.get("link") or entry.get("guid"))
+        key = google_story_key(link)
         if not title or not key:
             continue
         summary = clean_text(entry.get("summary") or entry.get("description"))
         published = clean_text(entry.get("published") or entry.get("updated") or entry.get("created"))
-        lookup[key] = {"title": title, "summary": summary, "published": published}
+        lookup[key] = {"title": title, "summary": summary, "published": published, "url": link}
 
     return lookup
 
@@ -125,8 +124,7 @@ def _jsonld_article_body(soup: BeautifulSoup) -> list[str]:
 
     paragraphs: list[str] = []
     for body in candidates:
-        chunks = re.split(r"(?:\r?\n){2,}|(?<=\.)\s+(?=[A-Z][^.!?]{20,})", body)
-        paragraphs.extend(chunks)
+        paragraphs.extend(re.split(r"(?:\r?\n){2,}", body))
     return paragraphs
 
 
@@ -175,19 +173,79 @@ def _extract_cbc_body(page_html: str, title: str) -> tuple[list[str], str, str]:
 
 
 def _decode_cbc_url(google_url: str) -> str:
+    parsed = urlparse(google_url)
+    parts = [part for part in parsed.path.split("/") if part]
+    if parsed.netloc.lower() != "news.google.com" or len(parts) < 2 or parts[-2] not in {"articles", "read"}:
+        return ""
+    encoded_id = parts[-1]
+
+    signature = ""
+    timestamp = ""
+    for prefix in ("articles", "rss/articles"):
+        try:
+            response = requests.get(
+                f"https://news.google.com/{prefix}/{encoded_id}",
+                headers=HEADERS,
+                timeout=(3, 6),
+            )
+            response.raise_for_status()
+            node = BeautifulSoup(response.text, "html.parser").select_one("c-wiz > div[jscontroller]")
+            if node:
+                signature = clean_text(node.get("data-n-a-sg"))
+                timestamp = clean_text(node.get("data-n-a-ts"))
+            if signature and timestamp:
+                break
+        except Exception:
+            continue
+
+    if not signature or not timestamp:
+        return ""
+
+    rpc_payload = [
+        "Fbv4je",
+        f'["garturlreq",[["X","X",["X","X"],null,null,1,1,"CA:en",null,1,null,null,null,null,null,0,1],"X","X",1,[1,1,1],1,1,null,0,0,null,0],"{encoded_id}",{timestamp},"{signature}"]',
+    ]
     try:
-        decoded = gnewsdecoder(google_url, interval=None)
-    except Exception as exc:
-        print(f"CBC hydrate: Google URL decode failed: {exc}", file=sys.stderr)
+        response = requests.post(
+            "https://news.google.com/_/DotsSplashUi/data/batchexecute",
+            headers={
+                **HEADERS,
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            },
+            data=f"f.req={quote(json.dumps([[rpc_payload]]))}",
+            timeout=(3, 6),
+        )
+        response.raise_for_status()
+    except Exception:
         return ""
-    if not isinstance(decoded, dict) or not decoded.get("status"):
-        return ""
-    url = clean_text(decoded.get("decoded_url"))
-    parsed = urlparse(url)
-    host = parsed.netloc.lower().split(":", 1)[0]
+
+    decoded_url = ""
+    for chunk in response.text.split("\n\n"):
+        try:
+            rows = json.loads(chunk)
+        except Exception:
+            continue
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if not isinstance(row, list) or len(row) < 3 or not isinstance(row[2], str):
+                continue
+            try:
+                payload = json.loads(row[2])
+            except Exception:
+                continue
+            if isinstance(payload, list) and len(payload) > 1 and isinstance(payload[1], str):
+                decoded_url = payload[1]
+                break
+        if decoded_url:
+            break
+
+    url = clean_text(decoded_url)
+    target = urlparse(url)
+    host = target.netloc.lower().split(":", 1)[0]
     if host not in {"cbc.ca", "www.cbc.ca"} and not host.endswith(".cbc.ca"):
         return ""
-    if "/news/canada/london/" not in parsed.path.lower():
+    if "/news/canada/london/" not in target.path.lower():
         return ""
     return url
 
@@ -205,22 +263,18 @@ def _hydrate_cbc_story(google_url: str, title: str) -> dict[str, Any] | None:
     article_id = _article_id(real_url)
     attempts: list[tuple[str, str]] = []
     if article_id:
-        attempts.append((
-            "amp-cache",
-            f"https://www-cbc-ca.cdn.ampproject.org/c/s/www.cbc.ca/amp/{article_id}",
-        ))
+        attempts.append(("amp-cache", f"https://www-cbc-ca.cdn.ampproject.org/c/s/www.cbc.ca/amp/{article_id}"))
     attempts.append(("direct", real_url))
     if article_id:
         attempts.append(("direct-amp", f"https://www.cbc.ca/amp/{article_id}"))
 
     for method, url in attempts:
         try:
-            response = SESSION.get(url, timeout=10)
+            response = requests.get(url, headers=HEADERS, timeout=(3, 8))
             if response.status_code >= 400 or len(response.content) < 400:
                 continue
             paragraphs, image, author = _extract_cbc_body(response.text, title)
-        except Exception as exc:
-            print(f"CBC hydrate: {method} failed for {title[:60]}: {exc}", file=sys.stderr)
+        except Exception:
             continue
 
         word_count = sum(len(p.split()) for p in paragraphs)
@@ -228,6 +282,7 @@ def _hydrate_cbc_story(google_url: str, title: str) -> dict[str, Any] | None:
             continue
         return {
             "url": real_url,
+            "full": True,
             "paragraphs": paragraphs,
             "content_blocks": [{"type": "paragraph", "text": p} for p in paragraphs],
             "content": "\n\n".join(paragraphs),
@@ -236,7 +291,8 @@ def _hydrate_cbc_story(google_url: str, title: str) -> dict[str, Any] | None:
             "author": author,
             "method": method,
         }
-    return None
+
+    return {"url": real_url, "full": False}
 
 
 def _already_full(value: dict[str, Any]) -> bool:
@@ -249,15 +305,50 @@ def _already_full(value: dict[str, Any]) -> bool:
     return value.get("content_status") == "full" and word_count >= 90 and len(paragraphs) >= 2
 
 
+def _collect_targets(value: Any, lookup: dict[str, dict[str, str]], targets: dict[str, tuple[str, str]]) -> None:
+    if isinstance(value, dict):
+        if value.get("source") == "CBC News London" and str(value.get("ingestion_path") or "").startswith("cbc-google-news"):
+            discovery_url = clean_text(value.get("discovery_url") or value.get("url"))
+            key = google_story_key(discovery_url)
+            source = lookup.get(key)
+            if key and source:
+                targets.setdefault(key, (discovery_url, source["title"]))
+        for child in value.values():
+            _collect_targets(child, lookup, targets)
+    elif isinstance(value, list):
+        for child in value:
+            _collect_targets(child, lookup, targets)
+
+
+def _hydrate_targets(targets: dict[str, tuple[str, str]]) -> dict[str, dict[str, Any] | None]:
+    cache: dict[str, dict[str, Any] | None] = {}
+    if not targets:
+        return cache
+    workers = min(4, len(targets))
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {
+            executor.submit(_hydrate_cbc_story, url, title): key
+            for key, (url, title) in targets.items()
+        }
+        for future in as_completed(futures):
+            key = futures[future]
+            try:
+                cache[key] = future.result()
+            except Exception:
+                cache[key] = None
+    return cache
+
+
 def repair_object(
     value: Any,
     lookup: dict[str, dict[str, str]],
     hydrate_cache: dict[str, dict[str, Any] | None],
-) -> tuple[int, int]:
+) -> tuple[int, int, int]:
     repaired = 0
+    resolved = 0
     hydrated = 0
     if isinstance(value, dict):
-        if value.get("source") == "CBC News London" and value.get("ingestion_path", "").startswith("cbc-google-news"):
+        if value.get("source") == "CBC News London" and str(value.get("ingestion_path") or "").startswith("cbc-google-news"):
             discovery_url = clean_text(value.get("discovery_url") or value.get("url"))
             key = google_story_key(discovery_url)
             source = lookup.get(key)
@@ -270,62 +361,66 @@ def repair_object(
                 value.pop("scrape_error", None)
                 repaired += 1
 
-                if not _already_full(value):
-                    if key not in hydrate_cache:
-                        hydrate_cache[key] = _hydrate_cbc_story(discovery_url, source["title"])
-                    body = hydrate_cache[key]
-                    if body:
-                        value["url"] = body["url"]
-                        value["paragraphs"] = body["paragraphs"]
-                        value["content_blocks"] = body["content_blocks"]
-                        value["content"] = body["content"]
-                        value["word_count"] = body["word_count"]
-                        value["content_status"] = "full"
-                        value["ingestion_path"] = f"cbc-google-news-{body['method']}"
-                        value["scraped_at"] = datetime.now(timezone.utc).isoformat()
-                        if body.get("image") and not value.get("image"):
-                            value["image"] = body["image"]
-                        if body.get("author"):
-                            value["author"] = body["author"]
-                        quality = value.get("quality") if isinstance(value.get("quality"), dict) else {}
-                        quality.update({
-                            "score": max(70, int(quality.get("score") or 0)),
-                            "grade": "good",
-                            "method": f"dom:cbc:{body['method']}",
-                            "text_blocks": len(body["paragraphs"]),
-                            "rich_blocks": 0,
-                            "image_blocks": 0,
-                        })
-                        value["quality"] = quality
-                        hydrated += 1
-                    else:
-                        value["content_status"] = "summary"
-                        value["paragraphs"] = []
-                        value["content_blocks"] = []
-                        value["content"] = ""
-                        value["word_count"] = 0
-                        value["scraped_at"] = datetime.now(timezone.utc).isoformat()
-                        quality = value.get("quality") if isinstance(value.get("quality"), dict) else {}
-                        quality.update({
-                            "score": 30,
-                            "grade": "poor",
-                            "method": "rss:google-cbc-fallback",
-                            "text_blocks": 0,
-                            "rich_blocks": 0,
-                            "image_blocks": 0,
-                        })
-                        value["quality"] = quality
+                body = hydrate_cache.get(key)
+                if body and body.get("url"):
+                    value["url"] = body["url"]
+                    resolved += 1
+
+                if _already_full(value):
+                    pass
+                elif body and body.get("full"):
+                    value["paragraphs"] = body["paragraphs"]
+                    value["content_blocks"] = body["content_blocks"]
+                    value["content"] = body["content"]
+                    value["word_count"] = body["word_count"]
+                    value["content_status"] = "full"
+                    value["ingestion_path"] = f"cbc-google-news-{body['method']}"
+                    value["scraped_at"] = datetime.now(timezone.utc).isoformat()
+                    if body.get("image") and not value.get("image"):
+                        value["image"] = body["image"]
+                    if body.get("author"):
+                        value["author"] = body["author"]
+                    quality = value.get("quality") if isinstance(value.get("quality"), dict) else {}
+                    quality.update({
+                        "score": max(70, int(quality.get("score") or 0)),
+                        "grade": "good",
+                        "method": f"dom:cbc:{body['method']}",
+                        "text_blocks": len(body["paragraphs"]),
+                        "rich_blocks": 0,
+                        "image_blocks": 0,
+                    })
+                    value["quality"] = quality
+                    hydrated += 1
+                else:
+                    value["content_status"] = "summary"
+                    value["paragraphs"] = []
+                    value["content_blocks"] = []
+                    value["content"] = ""
+                    value["word_count"] = 0
+                    value["scraped_at"] = datetime.now(timezone.utc).isoformat()
+                    quality = value.get("quality") if isinstance(value.get("quality"), dict) else {}
+                    quality.update({
+                        "score": 30,
+                        "grade": "poor",
+                        "method": "rss:google-cbc-fallback",
+                        "text_blocks": 0,
+                        "rich_blocks": 0,
+                        "image_blocks": 0,
+                    })
+                    value["quality"] = quality
 
         for child in list(value.values()):
-            child_repaired, child_hydrated = repair_object(child, lookup, hydrate_cache)
+            child_repaired, child_resolved, child_hydrated = repair_object(child, lookup, hydrate_cache)
             repaired += child_repaired
+            resolved += child_resolved
             hydrated += child_hydrated
     elif isinstance(value, list):
         for child in value:
-            child_repaired, child_hydrated = repair_object(child, lookup, hydrate_cache)
+            child_repaired, child_resolved, child_hydrated = repair_object(child, lookup, hydrate_cache)
             repaired += child_repaired
+            resolved += child_resolved
             hydrated += child_hydrated
-    return repaired, hydrated
+    return repaired, resolved, hydrated
 
 
 def main() -> int:
@@ -344,12 +439,16 @@ def main() -> int:
         return 0
 
     payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
-    repaired, hydrated = repair_object(payload, lookup, {})
+    targets: dict[str, tuple[str, str]] = {}
+    _collect_targets(payload, lookup, targets)
+    hydrate_cache = _hydrate_targets(targets)
+    repaired, resolved, hydrated = repair_object(payload, lookup, hydrate_cache)
     if repaired:
         NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"CBC fallback repair: {repaired} record(s) normalized, "
-        f"{hydrated} record(s) hydrated with full article bodies from {len(lookup)} CBC discovery entries"
+        f"{resolved} publisher URL(s) resolved, {hydrated} record(s) hydrated with full article bodies "
+        f"across {len(targets)} unique CBC fallback stories"
     )
     return 0
 
