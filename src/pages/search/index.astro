@@ -27,7 +27,7 @@ const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{tim
 
       <div class="search-results" id="archiveSearchResults">
         {stories.map((story) => (
-          <a class="search-result-card" href={`${base}story/${story.id}/`} data-search={`${story.title} ${story.summary || ''} ${story.source || ''} ${story.category || ''} ${(story.paragraphs || []).slice(0,4).join(' ')} ${(story.story_topics || []).join(' ')}`.toLowerCase()} hidden>
+          <a class="search-result-card" href={`${base}story/${story.id}/`} data-story-id={story.id} data-search={`${story.title} ${story.summary || ''} ${story.source || ''} ${story.category || ''} ${(story.paragraphs || []).slice(0,4).join(' ')} ${(story.story_topics || []).join(' ')}`.toLowerCase()} hidden>
             {story.image && <div class="search-result-media"><img class="search-result-photo" src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" />{logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}</div>}
             <div class="search-result-copy">
               <span>{story.source}</span>
@@ -44,15 +44,46 @@ const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{tim
     const clear = document.getElementById('clearArchiveSearch');
     const status = document.getElementById('archiveSearchStatus');
     const cards = [...document.querySelectorAll('.search-result-card')];
+    let readStories = new Set();
+    let hideReadStories = false;
+
+    function loadReadingPreferences() {
+      hideReadStories = localStorage.getItem('london-news-hide-read') === 'true';
+      try {
+        const ids = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
+        readStories = new Set(Array.isArray(ids) ? ids.map(String) : []);
+      } catch {
+        readStories = new Set();
+      }
+    }
+
     function update() {
       const q = (input?.value || '').trim().toLowerCase();
       let shown = 0;
-      cards.forEach((card) => { const yes = q.length >= 2 && (card.dataset.search || '').includes(q); card.hidden = !yes; if (yes) shown++; });
+      cards.forEach((card) => {
+        const matchesText = q.length >= 2 && (card.dataset.search || '').includes(q);
+        const matchesReading = !hideReadStories || !readStories.has(String(card.dataset.storyId || ''));
+        const yes = matchesText && matchesReading;
+        card.hidden = !yes;
+        if (yes) shown++;
+      });
       if (clear) clear.hidden = !q;
-      if (status) status.textContent = q.length < 2 ? 'Type at least 2 characters.' : `${shown} ${shown === 1 ? 'result' : 'results'}`;
+      if (status) status.textContent = q.length < 2 ? 'Type at least 2 characters.' : `${shown} ${shown === 1 ? 'result' : 'results'}${hideReadStories ? ' · read stories hidden' : ''}`;
     }
+
     input?.addEventListener('input', update);
     clear?.addEventListener('click', () => { if (input) input.value=''; update(); input?.focus(); });
+    window.addEventListener('storage', (event) => {
+      if (!['london-news-read-articles', 'london-news-hide-read'].includes(event.key || '')) return;
+      loadReadingPreferences();
+      update();
+    });
+    window.addEventListener('london-news-read-state', (event) => {
+      readStories = new Set((event.detail?.readIds || []).map(String));
+      hideReadStories = Boolean(event.detail?.hideRead);
+      update();
+    });
+    loadReadingPreferences();
     update();
   </script>
 </BaseLayout>
