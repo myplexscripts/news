@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const accents = [
+  ['red', 'Red'],
+  ['orange', 'Orange'],
+  ['yellow', 'Yellow'],
+  ['green', 'Green'],
+  ['mint', 'Mint'],
+  ['teal', 'Teal'],
+  ['cyan', 'Cyan'],
+  ['blue', 'Blue'],
+  ['indigo', 'Indigo'],
+  ['purple', 'Purple'],
+  ['pink', 'Pink'],
+  ['brown', 'Brown']
+];
+---
+<BaseLayout title="Settings | London News" description="Customize London News appearance and reading preferences.">
+  <main class="settings-page" id="main-content">
+    <section class="settings-shell shell">
+      <header class="settings-heading directory-heading">
+        <p class="masthead-label">Preferences</p>
+        <h1>Settings</h1>
+        <p>Choose how London News looks and how stories behave on this device.</p>
+      </header>
+
+      <div class="settings-groups">
+        <section class="settings-group" aria-labelledby="appearance-heading">
+          <h2 id="appearance-heading">Appearance</h2>
+          <div class="settings-card">
+            <div class="settings-row">
+              <div class="settings-row-copy">
+                <strong>Theme</strong>
+                <span>Choose a light or dark reading experience.</span>
+              </div>
+              <div class="settings-segmented" aria-label="Theme">
+                <button type="button" data-theme-choice="light">Light</button>
+                <button type="button" data-theme-choice="dark">Dark</button>
+              </div>
+            </div>
+
+            <div class="settings-accent-row">
+              <div class="settings-row-copy">
+                <strong>Accent colour</strong>
+                <span>Used for controls, publisher names and interface highlights.</span>
+              </div>
+              <div class="accent-grid" aria-label="Accent colour">
+                {accents.map(([key, label]) => (
+                  <button
+                    type="button"
+                    class="accent-choice"
+                    data-accent-choice={key}
+                    aria-label={`${label} accent`}
+                    title={label}
+                    style={`--swatch: var(--${key})`}
+                  >
+                    <i class="ph ph-check" aria-hidden="true"></i>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="settings-group" aria-labelledby="reading-heading">
+          <h2 id="reading-heading">Reading</h2>
+          <div class="settings-card">
+            <div class="settings-row settings-toggle-row">
+              <div class="settings-row-copy">
+                <strong>Hide read articles</strong>
+                <span>Stories you open will disappear from article lists on this device.</span>
+              </div>
+              <label class="settings-switch">
+                <input id="hideReadToggle" type="checkbox" aria-label="Hide read articles" />
+                <span class="settings-switch-track" aria-hidden="true"></span>
+              </label>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-row-copy">
+                <strong>Read history</strong>
+                <span id="readHistoryStatus">No articles marked as read.</span>
+              </div>
+              <button class="settings-action-button" id="clearReadHistory" type="button">Clear history</button>
+            </div>
+          </div>
+          <p class="settings-footnote">Reading history and these preferences are stored only in this browser. They are not tied to an account.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script is:inline>
+    const root = document.documentElement;
+    const themeChoices = [...document.querySelectorAll('[data-theme-choice]')];
+    const accentChoices = [...document.querySelectorAll('[data-accent-choice]')];
+    const hideReadToggle = document.getElementById('hideReadToggle');
+    const readHistoryStatus = document.getElementById('readHistoryStatus');
+    const clearReadHistory = document.getElementById('clearReadHistory');
+
+    function readIds() {
+      try {
+        const value = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
+        return Array.isArray(value) ? value.map(String) : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function syncSettings() {
+      const theme = localStorage.getItem('london-news-theme') || root.dataset.theme || 'light';
+      const accent = localStorage.getItem('london-news-accent') || root.dataset.accent || 'green';
+      const hideRead = localStorage.getItem('london-news-hide-read') === 'true';
+      const reads = readIds();
+
+      root.dataset.theme = theme;
+      root.dataset.accent = accent;
+      root.dataset.hideRead = hideRead ? 'true' : 'false';
+
+      themeChoices.forEach((button) => {
+        const selected = button.dataset.themeChoice === theme;
+        button.classList.toggle('selected', selected);
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+      accentChoices.forEach((button) => {
+        const selected = button.dataset.accentChoice === accent;
+        button.classList.toggle('selected', selected);
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+
+      if (hideReadToggle) hideReadToggle.checked = hideRead;
+      if (readHistoryStatus) {
+        readHistoryStatus.textContent = reads.length
+          ? `${reads.length} ${reads.length === 1 ? 'article' : 'articles'} marked as read on this device.`
+          : 'No articles marked as read.';
+      }
+      if (clearReadHistory) clearReadHistory.disabled = reads.length === 0;
+    }
+
+    themeChoices.forEach((button) => button.addEventListener('click', () => {
+      const value = button.dataset.themeChoice;
+      if (!value) return;
+      localStorage.setItem('london-news-theme', value);
+      root.dataset.theme = value;
+      syncSettings();
+    }));
+
+    accentChoices.forEach((button) => button.addEventListener('click', () => {
+      const value = button.dataset.accentChoice;
+      if (!value) return;
+      localStorage.setItem('london-news-accent', value);
+      root.dataset.accent = value;
+      syncSettings();
+    }));
+
+    hideReadToggle?.addEventListener('change', () => {
+      localStorage.setItem('london-news-hide-read', hideReadToggle.checked ? 'true' : 'false');
+      root.dataset.hideRead = hideReadToggle.checked ? 'true' : 'false';
+      window.dispatchEvent(new CustomEvent('london-news-read-history-changed'));
+      syncSettings();
+    });
+
+    clearReadHistory?.addEventListener('click', () => {
+      localStorage.removeItem('london-news-read-articles');
+      window.dispatchEvent(new CustomEvent('london-news-read-history-changed'));
+      syncSettings();
+    });
+
+    syncSettings();
+  </script>
+</BaseLayout>
