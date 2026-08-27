@@ -139,6 +139,39 @@ def test_cbc_curl_fallback() -> None:
     assert "--max-time" in command
 
 
+def test_cbc_independent_discovery() -> None:
+    rss = b"""<?xml version='1.0' encoding='utf-8'?>
+    <rss version='2.0'><channel>
+      <item>
+        <title>London council approves a new transit plan - CBC News</title>
+        <link>https://www.cbc.ca/news/canada/london/london-transit-plan-9.9999999?cmp=rss</link>
+        <description>London city council approved a new transit plan Wednesday.</description>
+        <pubDate>Thu, 27 Aug 2026 15:00:00 GMT</pubDate>
+      </item>
+    </channel></rss>"""
+    response = SimpleNamespace(content=rss, raise_for_status=lambda: None)
+    source = run_scoop.fetch_news.Source(
+        name="CBC News London",
+        url="https://www.cbc.ca/webfeed/rss/rss-canada-london",
+        homepage="https://www.cbc.ca/news/canada/london",
+        accent="#ff383c",
+        max_items=25,
+    )
+
+    with patch.object(run_scoop.fetch_news.SESSION, "get", return_value=response) as mocked:
+        items = run_scoop._cbc_discovery_items(source, {})
+
+    assert len(items) == 1
+    story = items[0]
+    assert story["source"] == "CBC News London"
+    assert story["url"].startswith("https://www.cbc.ca/news/canada/london/london-transit-plan-9.9999999")
+    assert story["content_status"] == "summary"
+    assert story["ingestion_path"] == "cbc-bing-discovery"
+    assert "transit plan" in story["summary"].lower()
+    requested_url = mocked.call_args.args[0]
+    assert "bing.com/news/search" in requested_url
+
+
 def main() -> None:
     test_locality_and_source_gate()
     print("PASS test_locality_and_source_gate")
@@ -148,6 +181,8 @@ def main() -> None:
     print("PASS test_body_aware_cluster_uses_deeper_release_context")
     test_cbc_curl_fallback()
     print("PASS test_cbc_curl_fallback")
+    test_cbc_independent_discovery()
+    print("PASS test_cbc_independent_discovery")
 
 
 if __name__ == "__main__":
