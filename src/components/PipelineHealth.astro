@@ -1,0 +1,327 @@
+---
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+let generatedAt = '';
+try {
+  const news = JSON.parse(readFileSync(resolve(process.cwd(), 'data/news.json'), 'utf8'));
+  generatedAt = String(news.generated_at || '');
+} catch {
+  generatedAt = '';
+}
+---
+
+<section
+  class="pipeline-health"
+  id="pipelineHealth"
+  data-generated-at={generatedAt}
+  aria-labelledby="pipelineHealthTitle"
+>
+  <div class="pipeline-health-inner shell">
+    <div class="pipeline-status-icon" id="pipelineStatusIcon" aria-hidden="true">
+      <i class="ph ph-clock"></i>
+    </div>
+
+    <div class="pipeline-status-copy">
+      <div class="pipeline-status-heading">
+        <p>Feed status</p>
+        <span class="pipeline-status-badge" id="pipelineStatusBadge">Checking</span>
+      </div>
+      <h2 id="pipelineHealthTitle">Scoop refresh health</h2>
+      <p id="pipelineStatusMessage">Checking the age of the latest published feed.</p>
+    </div>
+
+    <dl class="pipeline-facts">
+      <div>
+        <dt>Last refresh</dt>
+        <dd id="pipelineLastRefresh">Checking</dd>
+      </div>
+      <div>
+        <dt>Age</dt>
+        <dd id="pipelineAge">Checking</dd>
+      </div>
+      <div>
+        <dt>Next slot</dt>
+        <dd id="pipelineNextSlot">Checking</dd>
+      </div>
+      <div>
+        <dt>Schedule</dt>
+        <dd>:17 / :47</dd>
+      </div>
+    </dl>
+
+    <a
+      class="pipeline-actions-link"
+      href="https://github.com/myplexscripts/news/actions"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <i class="ph ph-github-logo" aria-hidden="true"></i>
+      Open Actions
+    </a>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.getElementById('pipelineHealth');
+    if (!root) return;
+
+    const badge = document.getElementById('pipelineStatusBadge');
+    const message = document.getElementById('pipelineStatusMessage');
+    const lastRefresh = document.getElementById('pipelineLastRefresh');
+    const age = document.getElementById('pipelineAge');
+    const nextSlot = document.getElementById('pipelineNextSlot');
+    const statusIcon = document.getElementById('pipelineStatusIcon');
+    const icon = statusIcon?.querySelector('i');
+    const generatedAt = root.dataset.generatedAt || '';
+    const generatedDate = new Date(generatedAt);
+    const formatter = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    });
+
+    function durationLabel(minutes) {
+      if (!Number.isFinite(minutes) || minutes < 0) return 'Unknown';
+      if (minutes < 60) return `${Math.floor(minutes)} min`;
+      const hours = Math.floor(minutes / 60);
+      const remainder = Math.floor(minutes % 60);
+      if (!remainder) return `${hours} hr`;
+      return `${hours} hr ${remainder} min`;
+    }
+
+    function nextScheduledDate(now) {
+      const next = new Date(now);
+      const minute = now.getMinutes();
+      if (minute < 17) {
+        next.setMinutes(17, 0, 0);
+      } else if (minute < 47) {
+        next.setMinutes(47, 0, 0);
+      } else {
+        next.setHours(next.getHours() + 1, 17, 0, 0);
+      }
+      return next;
+    }
+
+    function render() {
+      const now = new Date();
+      const valid = !Number.isNaN(generatedDate.getTime());
+      const ageMinutes = valid ? Math.max(0, (now.getTime() - generatedDate.getTime()) / 60000) : Infinity;
+      const next = nextScheduledDate(now);
+
+      if (lastRefresh) lastRefresh.textContent = valid ? formatter.format(generatedDate) : 'Unavailable';
+      if (age) age.textContent = valid ? durationLabel(ageMinutes) : 'Unknown';
+      if (nextSlot) nextSlot.textContent = formatter.format(next);
+
+      let state = 'fresh';
+      let label = 'Fresh';
+      let copy = 'The feed is refreshing within its expected window.';
+      let iconClass = 'ph ph-check-circle';
+
+      if (!valid) {
+        state = 'stale';
+        label = 'Unavailable';
+        copy = 'London News could not determine when Scoop last published the feed.';
+        iconClass = 'ph ph-warning-octagon';
+      } else if (ageMinutes > 70) {
+        state = 'stale';
+        label = 'Stale';
+        copy = `No successful feed refresh has been published for ${durationLabel(ageMinutes)}. Check GitHub Actions.`;
+        iconClass = 'ph ph-warning-octagon';
+      } else if (ageMinutes > 50) {
+        state = 'late';
+        label = 'Late';
+        copy = `The feed is ${durationLabel(ageMinutes)} old and has missed its normal refresh window.`;
+        iconClass = 'ph ph-warning-circle';
+      }
+
+      root.dataset.state = state;
+      if (badge) badge.textContent = label;
+      if (message) message.textContent = copy;
+      if (icon) icon.className = iconClass;
+    }
+
+    render();
+    window.setInterval(render, 60000);
+  })();
+</script>
+
+<style>
+  .pipeline-health {
+    margin-top: 28px;
+  }
+
+  .pipeline-health-inner {
+    display: grid;
+    grid-template-columns: 52px minmax(240px, 1.25fr) minmax(420px, 1fr) auto;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: var(--surface-subtle);
+  }
+
+  .pipeline-status-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--green) 14%, transparent);
+    color: var(--green);
+  }
+
+  .pipeline-status-icon i {
+    font-size: 26px;
+  }
+
+  .pipeline-status-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .pipeline-status-heading p {
+    margin: 0;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 750;
+  }
+
+  .pipeline-status-badge {
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 15px;
+    background: color-mix(in srgb, var(--green) 14%, transparent);
+    color: var(--green);
+    font-size: 16px;
+    font-weight: 750;
+  }
+
+  .pipeline-status-copy h2 {
+    margin: 0;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .pipeline-status-copy > p:last-child {
+    margin: 6px 0 0;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .pipeline-facts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
+  }
+
+  .pipeline-facts div {
+    min-width: 0;
+    display: grid;
+    gap: 3px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: var(--bg);
+  }
+
+  .pipeline-facts dt {
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .pipeline-facts dd {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .pipeline-actions-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .pipeline-actions-link i {
+    font-size: 20px;
+  }
+
+  .pipeline-health[data-state='late'] .pipeline-status-icon,
+  .pipeline-health[data-state='late'] .pipeline-status-badge {
+    background: color-mix(in srgb, var(--orange) 14%, transparent);
+    color: var(--orange);
+  }
+
+  .pipeline-health[data-state='stale'] .pipeline-health-inner {
+    border-color: color-mix(in srgb, var(--red) 38%, var(--line));
+    background: color-mix(in srgb, var(--red) 7%, var(--surface-subtle));
+  }
+
+  .pipeline-health[data-state='stale'] .pipeline-status-icon,
+  .pipeline-health[data-state='stale'] .pipeline-status-badge {
+    background: color-mix(in srgb, var(--red) 14%, transparent);
+    color: var(--red);
+  }
+
+  @media (max-width: 1100px) {
+    .pipeline-health-inner {
+      grid-template-columns: 52px minmax(0, 1fr) auto;
+    }
+
+    .pipeline-facts {
+      grid-column: 2 / -1;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .pipeline-health {
+      margin-top: 18px;
+    }
+
+    .pipeline-health-inner {
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+    }
+
+    .pipeline-status-icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .pipeline-status-icon i {
+      font-size: 22px;
+    }
+
+    .pipeline-facts,
+    .pipeline-actions-link {
+      grid-column: 1 / -1;
+    }
+
+    .pipeline-facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pipeline-actions-link {
+      width: 100%;
+    }
+  }
+</style>
