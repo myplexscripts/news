@@ -1,0 +1,74 @@
+name: Refresh local news
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Offset from common :00/:30 load and use a dedicated workflow so refresh
+    # scheduling is independent from Pages deployment.
+    - cron: '11,41 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-local-news
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install collector dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate refresh workflow
+        run: python scripts/test_workflow_config.py
+
+      - name: Test Scoop runtime safeguards
+        run: python scripts/test_scoop_runtime.py
+
+      - name: Fetch local news
+        run: python scripts/run_scoop.py
+
+      - name: Run Scoop regression tests
+        run: python scripts/test_scraper_regressions.py
+
+      - name: Run editorial intelligence tests
+        run: python scripts/test_editorial.py
+
+      - name: Run audit rule tests
+        run: |
+          python scripts/test_audit.py
+          python scripts/test_run_audit.py
+
+      - name: Audit current Scoop output
+        run: python scripts/run_audit.py --sample-per-source 10
+
+      - name: Upload Scoop audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: scoop-audit-report
+          path: data/audit.json
+          retention-days: 14
+
+      - name: Commit refreshed news
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
+            echo "No data changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news.json data/audit.json public/cache/
+          git commit -m "Refresh local news"
+          git pull --rebase origin main
+          git push origin HEAD:main
