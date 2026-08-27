@@ -1,188 +1,437 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import news from '../../../data/news.json';
-import { sourceLogoPath } from '../../lib/sourceLogos';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
-const health = news.source_health || [];
-const stories = news.stories || [];
 const base = import.meta.env.BASE_URL;
-const logoFor = (name = '') => sourceLogoPath(name, base);
 
-const formatDate = (value) => {
-  if (!value) return 'Not yet';
+function readJson(relativePath: string) {
   try {
-    return new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Toronto', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
-    }).format(new Date(value));
+    return JSON.parse(readFileSync(resolve(process.cwd(), relativePath), 'utf8'));
   } catch {
-    return 'Unknown';
+    return {};
   }
+}
+
+const audit = readJson('data/audit.json');
+const news = readJson('data/news.json');
+const overview = audit.overview || {};
+const sourceReports = Array.isArray(audit.source_reports) ? audit.source_reports : [];
+const allIssues = Array.isArray(audit.issues) ? audit.issues : [];
+const reviewIssues = allIssues.filter((issue: any) => issue.severity === 'critical' || issue.severity === 'warning');
+const infoIssues = allIssues.filter((issue: any) => issue.severity === 'info');
+const generatedAt = audit.generated_at || '';
+const newsGeneratedAt = audit.news_generated_at || news.generated_at || '';
+
+const formatDateTime = (value: string) => {
+  if (!value) return 'Not available';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Not available';
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Toronto',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit'
+  }).format(date);
 };
 
-const averageQuality = news.average_quality || 0;
-
-const storyById = new Map(stories.map((story) => [story.id, story]));
-const topStories = (news.top_story_ids || []).map((id) => storyById.get(id)).filter(Boolean);
-const multiSourceClusters = (news.editorial_clusters || []).filter((cluster) => Number(cluster.source_count) > 1).slice(0, 12);
-const needsAttention = stories
-  .filter((story) => ['partial', 'summary', 'failed'].includes(story.content_status) || (story.quality?.score || 0) < 55)
-  .slice(0, 16);
-
-const statusIcon = (status) => status === 'healthy' ? 'ph-check-circle' : status === 'error' ? 'ph-warning-circle' : status === 'waiting' ? 'ph-clock' : 'ph-info';
+const formatPercent = (value: number) => `${Number(value || 0)}%`;
+const severityIcon = (severity: string) => severity === 'critical' ? 'ph-warning-octagon' : severity === 'warning' ? 'ph-warning' : 'ph-info';
+const sourceStatusIcon = (status: string) => status === 'healthy' ? 'ph-check-circle' : status === 'error' ? 'ph-x-circle' : status === 'waiting' ? 'ph-clock' : 'ph-warning-circle';
+const sources = [...new Set(reviewIssues.map((issue: any) => issue.source).filter(Boolean))].sort();
 ---
-<BaseLayout title="Collector Health | London News" description="Internal collector health for London News." noindex={true}>
-  <main class="admin-page">
-    <div class="shell admin-shell">
-      <div class="admin-heading">
-        <div>
-          <span class="eyebrow"><i class="ph ph-pulse"></i> Internal</span>
-          <h1>Scoop health</h1>
-          <p>Scoop extraction quality, source status, clustering, locality and stories that need attention.</p>
-        </div>
-        <a class="admin-home-link" href={base}><i class="ph ph-arrow-left"></i> Newsroom</a>
+
+<BaseLayout title="Scoop Audit • London News" description="Internal Scoop extraction audit" noindex={true}>
+  <main class="audit-page shell">
+    <header class="audit-hero">
+      <p class="audit-eyebrow">Internal tools</p>
+      <h1>Scoop audit</h1>
+      <p class="audit-intro">Checks the newest stories from every publisher after Scoop finishes, then surfaces extraction problems that need a human look.</p>
+      <div class="audit-run-meta">
+        <span><i class="ph ph-clock" aria-hidden="true"></i> Audit {formatDateTime(generatedAt)}</span>
+        <span><i class="ph ph-newspaper" aria-hidden="true"></i> News refresh {formatDateTime(newsGeneratedAt)}</span>
+        <span><i class="ph ph-flask" aria-hidden="true"></i> {audit.sample_per_source || 10} recent stories per source</span>
       </div>
+    </header>
 
-      <section class="admin-stats" aria-label="Collector summary">
-        <div class="admin-stat">
-          <span>Last refresh</span>
-          <strong>{formatDate(news.generated_at)}</strong>
-        </div>
-        <div class="admin-stat">
-          <span>Stories tracked</span>
-          <strong>{news.story_count || stories.length}</strong>
-        </div>
-        <div class="admin-stat">
-          <span>Full articles</span>
-          <strong>{news.full_story_count || 0}</strong>
-        </div>
-        <div class="admin-stat">
-          <span>Average quality</span>
-          <strong>{averageQuality}<small>/100</small></strong>
-        </div>
-      </section>
+    {generatedAt ? (
+      <>
+        <section class="audit-summary" aria-label="Audit summary">
+          <article class="audit-stat">
+            <span class="audit-stat-label">Audited</span>
+            <strong>{overview.audited_story_count || 0}</strong>
+            <span>of {overview.archive_story_count || 0} archived stories</span>
+          </article>
+          <article class="audit-stat audit-stat-good">
+            <span class="audit-stat-label">Clean</span>
+            <strong>{overview.pass_story_count || 0}</strong>
+            <span>{overview.healthy_source_count || 0} healthy sources</span>
+          </article>
+          <article class="audit-stat audit-stat-review">
+            <span class="audit-stat-label">Review</span>
+            <strong>{overview.review_story_count || 0}</strong>
+            <span>{overview.warning_issue_count || 0} warnings</span>
+          </article>
+          <article class="audit-stat audit-stat-fail">
+            <span class="audit-stat-label">Failed</span>
+            <strong>{overview.fail_story_count || 0}</strong>
+            <span>{overview.critical_issue_count || 0} critical issues</span>
+          </article>
+        </section>
 
-      <section class="admin-section">
-        <header class="admin-section-header">
-          <div>
-            <span class="eyebrow">Sources</span>
-            <h2>Current extraction status</h2>
+        <section class="audit-section" aria-labelledby="review-heading">
+          <div class="audit-section-heading">
+            <div>
+              <p class="audit-eyebrow">Review queue</p>
+              <h2 id="review-heading">Needs a look</h2>
+              <p>Only critical problems and meaningful warnings are shown here. Missing authors, missing images and low local scores stay informational.</p>
+            </div>
+            <span class="audit-count">{reviewIssues.length}</span>
           </div>
-          <span>{health.length} configured</span>
-        </header>
 
-        <div class="health-list">
-          {health.length ? health.map((source) => (
-            <article class="health-row">
-              <div class="health-source">
-                <span class="admin-source-logo-wrap">
-                  {logoFor(source.source) && <img class="admin-source-logo" onerror="this.parentElement.style.display='none'" src={logoFor(source.source)} alt="" loading="lazy" />}
-                </span>
-                <div>
-                  <strong>{source.source}</strong>
-                  <span>{source.profile} extractor</span>
-                </div>
+          {reviewIssues.length > 0 ? (
+            <>
+              <div class="audit-filters" aria-label="Review queue filters">
+                <label>
+                  <span>Source</span>
+                  <select id="auditSourceFilter">
+                    <option value="all">All sources</option>
+                    {sources.map((source) => <option value={source}>{source}</option>)}
+                  </select>
+                </label>
+                <label>
+                  <span>Severity</span>
+                  <select id="auditSeverityFilter">
+                    <option value="all">All severities</option>
+                    <option value="critical">Critical</option>
+                    <option value="warning">Warning</option>
+                  </select>
+                </label>
+                <label class="audit-search-field">
+                  <span>Find</span>
+                  <input id="auditTextFilter" type="search" placeholder="Headline or issue" autocomplete="off" />
+                </label>
               </div>
 
-              <div class="health-metric">
-                <span>Found</span>
-                <strong>{source.found_this_run}</strong>
+              <div class="audit-issue-list" id="auditIssueList">
+                {reviewIssues.map((issue: any) => (
+                  <article
+                    class:list={["audit-issue", `severity-${issue.severity}`]}
+                    data-source={issue.source}
+                    data-severity={issue.severity}
+                    data-search={`${issue.source} ${issue.title} ${issue.message} ${issue.detail}`.toLowerCase()}
+                  >
+                    <div class="audit-issue-topline">
+                      <span class:list={["audit-badge", `badge-${issue.severity}`]}>
+                        <i class={`ph ${severityIcon(issue.severity)}`} aria-hidden="true"></i>
+                        {issue.severity === 'critical' ? 'Critical' : 'Review'}
+                      </span>
+                      <span class="audit-source-name">{issue.source}</span>
+                    </div>
+                    <h3>{issue.title}</h3>
+                    <p class="audit-issue-message">{issue.message}</p>
+                    {issue.detail && <p class="audit-issue-detail">{issue.detail}</p>}
+                    <div class="audit-story-meta">
+                      <span>{issue.word_count || 0} words</span>
+                      <span>{issue.content_status || 'unknown'}</span>
+                      <span>quality {issue.quality_score || 0}</span>
+                      <span>{issue.extraction_method || 'unknown extractor'}</span>
+                      <span>{formatDateTime(issue.published)}</span>
+                    </div>
+                    <div class="audit-actions">
+                      {issue.story_id && (
+                        <a class="audit-button audit-button-primary" href={`${base}story/${issue.story_id}/`}>
+                          <i class="ph ph-article" aria-hidden="true"></i> Open London News story
+                        </a>
+                      )}
+                      {issue.url && (
+                        <a class="audit-button" href={issue.url} target="_blank" rel="noopener noreferrer">
+                          <i class="ph ph-arrow-square-out" aria-hidden="true"></i> Open publisher
+                        </a>
+                      )}
+                    </div>
+                  </article>
+                ))}
               </div>
-              <div class="health-metric">
-                <span>Full</span>
-                <strong>{source.full}</strong>
-              </div>
-              <div class="health-metric">
-                <span>Partial</span>
-                <strong>{source.partial}</strong>
-              </div>
-              <div class="health-metric">
-                <span>Quality</span>
-                <strong>{source.average_quality}</strong>
-              </div>
-              <div class:list={["health-status", `status-${source.status}`]}>
-                <i class={`ph ${statusIcon(source.status)}`}></i>
-                <span>{source.status}</span>
-              </div>
-              {source.last_error && <p class="health-error">{source.last_error}</p>}
-            </article>
-          )) : (
-            <div class="admin-empty">Source health appears after the next collector run.</div>
+              <p class="audit-empty-filter" id="auditEmptyFilter" hidden>No audit issues match those filters.</p>
+            </>
+          ) : (
+            <div class="audit-empty-state">
+              <i class="ph-duotone ph-check-circle" aria-hidden="true"></i>
+              <div><strong>No review items</strong><span>The sampled stories passed the current Scoop checks.</span></div>
+            </div>
           )}
-        </div>
-      </section>
+        </section>
 
-      <section class="admin-section">
-        <header class="admin-section-header">
-          <div>
-            <span class="eyebrow">Editorial intelligence</span>
-            <h2>Why stories are being promoted</h2>
+        <section class="audit-section" aria-labelledby="sources-heading">
+          <div class="audit-section-heading">
+            <div>
+              <p class="audit-eyebrow">Publishers</p>
+              <h2 id="sources-heading">Source health</h2>
+              <p>Combines this refresh’s collector status with the newest post-extraction story samples.</p>
+            </div>
+            <span class="audit-count">{sourceReports.length}</span>
           </div>
-          <span>{news.multi_source_cluster_count || 0} multi-source clusters</span>
-        </header>
 
-        <div class="ranking-list">
-          {topStories.length ? topStories.map((story, index) => (
-            <article class="ranking-row">
-              <span class="ranking-position">#{index + 1}</span>
-              <div class="ranking-main">
-                <span class="review-source">{story.source} · {story.category}</span>
-                <h3><a href={`${base}story/${story.id}/`}>{story.title}</a></h3>
-                <div class="ranking-reasons">
-                  {(story.ranking_reasons || []).map((reason) => <span>{reason}</span>)}
+          <div class="audit-source-grid">
+            {sourceReports.map((source: any) => (
+              <details class="audit-source-card">
+                <summary>
+                  <div class="audit-source-summary-main">
+                    <strong>{source.source}</strong>
+                    <span>{source.profile || 'generic'} extractor</span>
+                  </div>
+                  <span class:list={["audit-badge", `source-${source.status}`]}>
+                    <i class={`ph ${sourceStatusIcon(source.status)}`} aria-hidden="true"></i>
+                    {source.status === 'healthy' ? 'Healthy' : source.status === 'error' ? 'Error' : source.status === 'waiting' ? 'Waiting' : 'Review'}
+                  </span>
+                  <i class="ph ph-caret-down audit-disclosure" aria-hidden="true"></i>
+                </summary>
+                <div class="audit-source-detail">
+                  <div class="audit-source-metrics">
+                    <span><strong>{source.sample_size || 0}</strong> sampled</span>
+                    <span><strong>{formatPercent(source.pass_rate)}</strong> clean</span>
+                    <span><strong>{formatPercent(source.usable_body_rate)}</strong> usable body</span>
+                    <span><strong>{source.average_quality || 0}</strong> avg quality</span>
+                    <span><strong>{source.average_words || 0}</strong> avg words</span>
+                    <span><strong>{source.found_this_run || 0}</strong> found this run</span>
+                  </div>
+                  <dl class="audit-source-facts">
+                    <div><dt>Primary extraction</dt><dd>{source.primary_method || 'unknown'}</dd></div>
+                    <div><dt>Latest sampled story</dt><dd>{formatDateTime(source.latest_published)}</dd></div>
+                    <div><dt>Collector</dt><dd>{source.collector_status || 'unknown'}</dd></div>
+                    <div><dt>Last scrape</dt><dd>{formatDateTime(source.last_scrape)}</dd></div>
+                  </dl>
+                  {source.last_error && (
+                    <div class="audit-error-box"><strong>Collector error</strong><span>{source.last_error}</span></div>
+                  )}
+                  {source.method_counts && Object.keys(source.method_counts).length > 0 && (
+                    <div class="audit-methods">
+                      <strong>Methods used</strong>
+                      <div>{Object.entries(source.method_counts).map(([method, count]: [string, any]) => <span>{method} · {count}</span>)}</div>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div class="ranking-scores">
-                <span><small>Rank</small><strong>{story.rank_score || 0}</strong></span>
-                <span><small>Local</small><strong>{story.cluster_local_score || story.local_score || 0}</strong></span>
-                <span><small>Sources</small><strong>{story.cluster_source_count || 1}</strong></span>
-              </div>
-            </article>
-          )) : <div class="admin-empty">Ranking metadata appears after the next collector run.</div>}
-        </div>
-
-        {multiSourceClusters.length > 0 && (
-          <div class="cluster-admin-list">
-            <h3>Recent clustered coverage</h3>
-            {multiSourceClusters.map((cluster) => (
-              <article class="cluster-admin-row">
-                <div>
-                  <strong>{cluster.title}</strong>
-                  <span>{(cluster.sources || []).join(' · ')}</span>
-                </div>
-                <span>{cluster.source_count} sources</span>
-              </article>
+              </details>
             ))}
           </div>
-        )}
-      </section>
+        </section>
 
-      <section class="admin-section">
-        <header class="admin-section-header">
-          <div>
-            <span class="eyebrow">Review queue</span>
-            <h2>Stories needing attention</h2>
+        <section class="audit-section audit-information" aria-labelledby="info-heading">
+          <div class="audit-section-heading">
+            <div>
+              <p class="audit-eyebrow">Information</p>
+              <h2 id="info-heading">Non-blocking notes</h2>
+              <p>Useful signals that are not strong enough to call a scraper problem on their own.</p>
+            </div>
+            <span class="audit-count">{infoIssues.length}</span>
           </div>
-          <span>{needsAttention.length} shown</span>
-        </header>
+          {infoIssues.length > 0 ? (
+            <div class="audit-info-list">
+              {infoIssues.slice(0, 30).map((issue: any) => (
+                <div class="audit-info-item">
+                  <i class="ph ph-info" aria-hidden="true"></i>
+                  <div><strong>{issue.source} · {issue.title}</strong><span>{issue.message}{issue.detail ? ` ${issue.detail}` : ''}</span></div>
+                </div>
+              ))}
+            </div>
+          ) : <p class="audit-muted">No informational notes in the current sample.</p>}
+        </section>
 
-        <div class="review-list">
-          {needsAttention.length ? needsAttention.map((story) => (
-            <article class="review-row">
-              <div class="review-main">
-                <span class="review-source">{story.source}</span>
-                <h3><a href={`${base}story/${story.id}/`}>{story.title}</a></h3>
-                <span>{formatDate(story.published)} · {story.quality?.method || 'legacy extraction'}</span>
-              </div>
-              <div class="review-score">
-                <strong>{story.quality?.score || 0}</strong>
-                <span>{story.quality?.grade || story.content_status || 'unknown'}</span>
-              </div>
-            </article>
-          )) : (
-            <div class="admin-empty">No recent stories are below the review threshold.</div>
-          )}
+        <details class="audit-rules">
+          <summary>What the audit checks</summary>
+          <div>
+            <p>Scoop checks article shape after extraction rather than comparing publishers by article length alone.</p>
+            <ul>
+              <li>scrape failures, invalid story URLs and impossible dates</li>
+              <li>suspiciously short or oversized article bodies</li>
+              <li>publisher modules such as Read More, related stories, sponsored content and newsletter furniture</li>
+              <li>duplicate paragraphs and suspicious image galleries</li>
+              <li>broken inline image URLs and extraction-quality mismatches</li>
+              <li>collector health and which extraction method won for each source</li>
+            </ul>
+          </div>
+        </details>
+      </>
+    ) : (
+      <div class="audit-empty-state audit-empty-large">
+        <i class="ph-duotone ph-flask" aria-hidden="true"></i>
+        <div>
+          <strong>No audit report yet</strong>
+          <span>The next GitHub Actions refresh will generate <code>data/audit.json</code>. You can also run <code>python scripts/audit_sources.py</code> locally.</span>
         </div>
-      </section>
-    </div>
+      </div>
+    )}
   </main>
+
+  <script is:inline>
+    const sourceFilter = document.getElementById('auditSourceFilter');
+    const severityFilter = document.getElementById('auditSeverityFilter');
+    const textFilter = document.getElementById('auditTextFilter');
+    const issueCards = [...document.querySelectorAll('.audit-issue')];
+    const emptyFilter = document.getElementById('auditEmptyFilter');
+
+    function filterAuditIssues() {
+      const source = sourceFilter?.value || 'all';
+      const severity = severityFilter?.value || 'all';
+      const query = (textFilter?.value || '').trim().toLowerCase();
+      let visible = 0;
+      issueCards.forEach((card) => {
+        const matchesSource = source === 'all' || card.dataset.source === source;
+        const matchesSeverity = severity === 'all' || card.dataset.severity === severity;
+        const matchesText = !query || (card.dataset.search || '').includes(query);
+        const show = matchesSource && matchesSeverity && matchesText;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (emptyFilter) emptyFilter.hidden = visible !== 0;
+    }
+
+    sourceFilter?.addEventListener('change', filterAuditIssues);
+    severityFilter?.addEventListener('change', filterAuditIssues);
+    textFilter?.addEventListener('input', filterAuditIssues);
+  </script>
+
+  <style>
+    .audit-page { padding-block: 56px 140px; }
+    .audit-hero { max-width: 840px; margin-bottom: 40px; }
+    .audit-eyebrow { margin: 0 0 8px; color: var(--blue); font-size: 16px; font-weight: 750; }
+    .audit-hero h1, .audit-section h2 { margin: 0; letter-spacing: -0.045em; line-height: 1.02; }
+    .audit-hero h1 { font-size: clamp(44px, 6vw, 72px); }
+    .audit-intro { max-width: 720px; margin: 16px 0 0; color: var(--muted); font-size: 19px; line-height: 1.55; }
+    .audit-run-meta { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 20px; color: var(--muted); }
+    .audit-run-meta span { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; font-size: 16px; }
+    .audit-run-meta i { font-size: 18px; }
+
+    .audit-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 64px; }
+    .audit-stat { min-height: 146px; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface-subtle); }
+    .audit-stat-label { margin-bottom: auto; color: var(--muted); font-weight: 650; }
+    .audit-stat strong { font-size: 40px; line-height: 1; letter-spacing: -0.045em; }
+    .audit-stat > span:last-child { margin-top: 8px; color: var(--muted); }
+    .audit-stat-good strong { color: var(--green); }
+    .audit-stat-review strong { color: var(--orange); }
+    .audit-stat-fail strong { color: var(--red); }
+
+    .audit-section { margin-top: 72px; }
+    .audit-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+    .audit-section-heading > div { max-width: 760px; }
+    .audit-section h2 { font-size: clamp(32px, 4vw, 48px); }
+    .audit-section-heading p:last-child { margin: 10px 0 0; color: var(--muted); font-size: 17px; }
+    .audit-count { flex: none; min-width: 44px; height: 44px; display: grid; place-items: center; padding-inline: 12px; border-radius: 22px; background: var(--gray-6); color: var(--muted); font-weight: 700; }
+
+    .audit-filters { display: grid; grid-template-columns: 220px 220px minmax(260px, 1fr); gap: 12px; margin-bottom: 18px; }
+    .audit-filters label { display: grid; gap: 7px; color: var(--muted); font-weight: 650; }
+    .audit-filters select, .audit-filters input { width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 14px; background: var(--surface); color: var(--ink); font-size: 16px; }
+
+    .audit-issue-list { display: grid; gap: 14px; }
+    .audit-issue { padding: 22px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface-subtle); }
+    .audit-issue-topline { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .audit-source-name { color: var(--muted); font-weight: 650; }
+    .audit-issue h3 { margin: 0; max-width: 900px; font-size: 23px; line-height: 1.22; letter-spacing: -0.025em; }
+    .audit-issue-message { margin: 12px 0 0; font-size: 17px; font-weight: 650; }
+    .audit-issue-detail { margin: 6px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+    .audit-story-meta { display: flex; flex-wrap: wrap; gap: 7px 16px; margin-top: 16px; color: var(--muted); font-size: 16px; }
+    .audit-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .audit-button { min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 14px; font-weight: 700; }
+    .audit-button i { font-size: 18px; }
+    .audit-button-primary { border-color: transparent; background: var(--blue); color: white; }
+
+    .audit-badge { min-height: 34px; display: inline-flex; align-items: center; gap: 7px; padding: 0 11px; border-radius: 17px; font-weight: 750; white-space: nowrap; }
+    .audit-badge i { font-size: 18px; }
+    .badge-critical, .source-error { color: var(--red); background: color-mix(in srgb, var(--red) 14%, transparent); }
+    .badge-warning, .source-review { color: var(--orange); background: color-mix(in srgb, var(--orange) 14%, transparent); }
+    .source-healthy { color: var(--green); background: color-mix(in srgb, var(--green) 14%, transparent); }
+    .source-waiting { color: var(--muted); background: var(--gray-6); }
+
+    .audit-source-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .audit-source-card { border: 1px solid var(--line); border-radius: 20px; background: var(--surface-subtle); overflow: clip; }
+    .audit-source-card summary { min-height: 92px; display: grid; grid-template-columns: minmax(0, 1fr) auto 24px; align-items: center; gap: 14px; padding: 18px 20px; cursor: pointer; list-style: none; }
+    .audit-source-card summary::-webkit-details-marker { display: none; }
+    .audit-source-summary-main { min-width: 0; display: grid; gap: 3px; }
+    .audit-source-summary-main strong { font-size: 19px; }
+    .audit-source-summary-main span { color: var(--muted); }
+    .audit-disclosure { font-size: 20px; color: var(--muted); transition: transform 180ms ease; }
+    .audit-source-card[open] .audit-disclosure { transform: rotate(180deg); }
+    .audit-source-detail { padding: 0 20px 20px; }
+    .audit-source-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .audit-source-metrics span { min-height: 76px; display: flex; flex-direction: column; justify-content: center; padding: 12px; border-radius: 14px; background: var(--bg); color: var(--muted); }
+    .audit-source-metrics strong { color: var(--ink); font-size: 21px; }
+    .audit-source-facts { display: grid; gap: 10px; margin: 18px 0 0; }
+    .audit-source-facts div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; }
+    .audit-source-facts dt { color: var(--muted); }
+    .audit-source-facts dd { margin: 0; overflow-wrap: anywhere; }
+    .audit-error-box { display: grid; gap: 4px; margin-top: 16px; padding: 14px; border-radius: 14px; background: color-mix(in srgb, var(--red) 10%, transparent); color: var(--red); overflow-wrap: anywhere; }
+    .audit-methods { margin-top: 18px; }
+    .audit-methods > div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .audit-methods span { padding: 7px 10px; border-radius: 12px; background: var(--bg); color: var(--muted); }
+
+    .audit-info-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .audit-info-item { min-height: 82px; display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; padding: 16px; border-radius: 16px; background: var(--surface-subtle); }
+    .audit-info-item > i { margin-top: 2px; color: var(--blue); font-size: 20px; }
+    .audit-info-item div { display: grid; gap: 3px; min-width: 0; }
+    .audit-info-item strong { line-height: 1.3; }
+    .audit-info-item span { color: var(--muted); }
+    .audit-muted { color: var(--muted); }
+
+    .audit-empty-state { min-height: 108px; display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 20px; background: var(--surface-subtle); }
+    .audit-empty-state > i { flex: none; font-size: 36px; color: var(--green); }
+    .audit-empty-state > div { display: grid; gap: 4px; }
+    .audit-empty-state strong { font-size: 19px; }
+    .audit-empty-state span { color: var(--muted); }
+    .audit-empty-large { margin-top: 30px; }
+    .audit-empty-filter { padding: 24px; border-radius: 18px; background: var(--surface-subtle); color: var(--muted); }
+
+    .audit-rules { margin-top: 64px; border-radius: 20px; background: var(--surface-subtle); overflow: clip; }
+    .audit-rules summary { min-height: 64px; display: flex; align-items: center; padding: 0 20px; cursor: pointer; font-weight: 750; }
+    .audit-rules > div { padding: 0 20px 20px; color: var(--muted); }
+    .audit-rules p { margin-top: 0; }
+    .audit-rules ul { margin-bottom: 0; padding-left: 24px; }
+    .audit-rules li + li { margin-top: 8px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.95em; }
+
+    @media (max-width: 900px) {
+      .audit-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .audit-filters { grid-template-columns: 1fr 1fr; }
+      .audit-search-field { grid-column: 1 / -1; }
+      .audit-source-grid, .audit-info-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .audit-page { padding-block: 30px 130px; }
+      .audit-hero { margin-bottom: 30px; }
+      .audit-hero h1 { font-size: 44px; }
+      .audit-intro { font-size: 17px; }
+      .audit-summary { gap: 10px; margin-bottom: 48px; }
+      .audit-stat { min-height: 126px; padding: 16px; border-radius: 18px; }
+      .audit-stat strong { font-size: 34px; }
+      .audit-section { margin-top: 54px; }
+      .audit-section-heading { align-items: flex-start; }
+      .audit-section h2 { font-size: 34px; }
+      .audit-filters { grid-template-columns: 1fr; }
+      .audit-search-field { grid-column: auto; }
+      .audit-issue { padding: 18px; border-radius: 18px; }
+      .audit-issue h3 { font-size: 21px; }
+      .audit-actions { display: grid; grid-template-columns: 1fr; }
+      .audit-button { justify-content: center; }
+      .audit-source-card summary { grid-template-columns: minmax(0, 1fr) auto 20px; padding: 16px; }
+      .audit-source-detail { padding: 0 16px 16px; }
+      .audit-source-metrics { grid-template-columns: repeat(2, 1fr); }
+      .audit-source-facts div { grid-template-columns: 1fr; gap: 2px; }
+    }
+
+    @media (max-width: 430px) {
+      .audit-summary { grid-template-columns: 1fr 1fr; }
+      .audit-stat > span:last-child { font-size: 16px; }
+      .audit-section-heading { gap: 12px; }
+      .audit-count { min-width: 40px; height: 40px; }
+      .audit-source-card summary { grid-template-columns: minmax(0, 1fr) 20px; }
+      .audit-source-card summary .audit-badge { grid-column: 1; width: max-content; }
+      .audit-source-card summary .audit-disclosure { grid-column: 2; grid-row: 1 / span 2; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .audit-disclosure { transition: none; }
+    }
+  </style>
 </BaseLayout>

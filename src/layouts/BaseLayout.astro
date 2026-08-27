@@ -5,12 +5,16 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  homeDate?: string;
+  homeUpdated?: string;
 }
 
 const {
   title = 'London News',
   description = 'A fast local news reader for London, Ontario, gathering reporting from across the city.',
-  noindex = false
+  noindex = false,
+  homeDate,
+  homeUpdated
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
@@ -20,6 +24,7 @@ const onSections = path.includes('/sections/');
 const onSearch = path.includes('/search/');
 const onHome = !onSources && !onSections && !onSearch && !path.includes('/latest/') && !path.includes('/story/') && !path.includes('/admin/');
 const hasHeaderActions = Astro.slots.has('header-actions');
+const showHomeMasthead = onHome && Boolean(homeDate);
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="light">
@@ -38,6 +43,7 @@ const hasHeaderActions = Astro.slots.has('header-actions');
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
     <script is:inline>
       (() => {
         const saved = localStorage.getItem('london-news-theme');
@@ -49,12 +55,15 @@ const hasHeaderActions = Astro.slots.has('header-actions');
   <body>
     <a class="skip-link" href="#page-content">Skip to content</a>
 
-    <header class="site-header">
-      <div class="shell header-inner header-inner-simple">
-        <a class="brand" href={base} aria-label="London News home">
-          <span class="brand-mark" aria-hidden="true"><i class="ph-fill ph-newspaper-clipping"></i></span>
-          <span>London News</span>
-        </a>
+    <header class:list={["site-header", showHomeMasthead && "site-header-home"]}>
+      <div class:list={["shell", "header-inner", "header-inner-simple", showHomeMasthead && "home-header-inner"]}>
+        <div class:list={["brand-area", showHomeMasthead && "home-brand-area"]}>
+          <a class="brand" href={base} aria-label="London News home">
+            <span class="brand-mark" aria-hidden="true"><i class="ph-duotone ph-newspaper-clipping"></i></span>
+            <span>London News</span>
+          </a>
+          {showHomeMasthead && <p class="home-header-date">{homeDate}</p>}
+        </div>
 
         <div class="header-actions">
           <slot name="header-actions" />
@@ -69,6 +78,7 @@ const hasHeaderActions = Astro.slots.has('header-actions');
           <button class="icon-button" id="themeToggle" aria-label="Toggle appearance" title="Toggle appearance">
             <i class="ph ph-moon" aria-hidden="true"></i>
           </button>
+          {showHomeMasthead && homeUpdated && <p class="home-header-updated">Updated {homeUpdated}</p>}
         </div>
       </div>
     </header>

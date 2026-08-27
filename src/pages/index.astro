@@ -80,6 +80,12 @@ const dateGroups = groupOrder
   .filter((group) => group.stories.length > 0);
 const storyIndex = new Map(stories.map((story, index) => [story.id, index]));
 
+const todayLabel = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'America/Toronto',
+  month: 'long',
+  day: 'numeric'
+}).format(new Date(referenceDate));
+
 const generated = news.generated_at
   ? new Intl.DateTimeFormat('en-CA', {
       timeZone: 'America/Toronto',
@@ -88,7 +94,7 @@ const generated = news.generated_at
     }).format(new Date(news.generated_at))
   : 'waiting for refresh';
 ---
-<BaseLayout>
+<BaseLayout homeDate={todayLabel} homeUpdated={generated}>
   <div slot="header-actions" class="header-search desktop-header-search" id="headerSearch">
     <button class="header-search-toggle" id="searchToggle" aria-label="Search news" title="Search news" aria-expanded="false" aria-controls="searchInput">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
@@ -100,14 +106,6 @@ const generated = news.generated_at
   </div>
 
   <main class="home-page card-home" id="main-content">
-    <section class="home-intro shell">
-      <div>
-        <p class="masthead-label">London, Ontario</p>
-        <h1>Latest local news</h1>
-      </div>
-      <p class="home-update">Updated {generated}</p>
-    </section>
-
     <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
       <div class="shell section-nav-inner card-filter-inner">
         <div class="section-tabs" role="group" aria-label="Filter by section">
