@@ -1,6 +1,12 @@
 name: Refresh local news
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'requirements.txt'
+      - '.github/workflows/refresh.yml'
   workflow_dispatch:
   schedule:
     # Offset from common :00/:30 load and use a dedicated workflow so refresh
@@ -12,7 +18,7 @@ permissions:
 
 concurrency:
   group: refresh-local-news
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   refresh:
