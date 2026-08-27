@@ -60,8 +60,11 @@ def main() -> int:
     if "Keep refresh loop alive" not in refresh:
         errors.append("refresh workflow is missing its self-sustaining refresh loop")
 
-    if "sleep 900" not in refresh:
-        errors.append("self-sustaining refresh loop should wait 15 minutes between refresh attempts")
+    if "CYCLE_START_EPOCH=$(date +%s)" not in refresh:
+        errors.append("refresh workflow is not recording the cycle start time")
+
+    if "wait_seconds=$((900 - elapsed))" not in refresh:
+        errors.append("refresh loop should target a 15-minute start-to-start cadence")
 
     if "gh workflow run refresh.yml --ref main" not in refresh:
         errors.append("refresh workflow does not dispatch its next refresh run")
@@ -88,7 +91,7 @@ def main() -> int:
         return 1
 
     print(
-        "Workflow configuration OK: 15-minute self-sustaining refresh loop, "
+        "Workflow configuration OK: approximately 15-minute start-to-start refresh loop, "
         f"cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
     )
     return 0
