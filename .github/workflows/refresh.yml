@@ -27,6 +27,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Record refresh cycle start
+        shell: bash
+        run: echo "CYCLE_START_EPOCH=$(date +%s)" >> "$GITHUB_ENV"
+
       - name: Decide whether refresh is due
         id: due
         shell: bash
@@ -140,7 +144,13 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "Waiting 15 minutes before starting the next refresh run."
-          sleep 900
+          now=$(date +%s)
+          elapsed=$((now - CYCLE_START_EPOCH))
+          wait_seconds=$((900 - elapsed))
+          if [ "$wait_seconds" -lt 60 ]; then
+            wait_seconds=60
+          fi
+          echo "Refresh work took ${elapsed}s. Waiting ${wait_seconds}s so the next cycle starts about 15 minutes after this one began."
+          sleep "$wait_seconds"
           echo "Dispatching next refresh run."
           gh workflow run refresh.yml --ref main
