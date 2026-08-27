@@ -9,8 +9,7 @@ on:
       - '.github/workflows/refresh.yml'
   workflow_dispatch:
   schedule:
-    # GitHub scheduled events are best-effort. Give Scoop another opportunity
-    # every 10 minutes, while the freshness gate below prevents needless work.
+    # Backup watchdog only. The workflow also dispatches its own next run.
     - cron: '7,17,27,37,47,57 * * * *'
 
 permissions:
@@ -134,3 +133,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run site.yml --ref main
+
+      - name: Keep refresh loop alive
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Waiting 15 minutes before starting the next refresh run."
+          sleep 900
+          echo "Dispatching next refresh run."
+          gh workflow run refresh.yml --ref main
