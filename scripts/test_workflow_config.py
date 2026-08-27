@@ -27,6 +27,17 @@ def main() -> int:
     if "workflow_dispatch:" not in text:
         errors.append("manual workflow_dispatch fallback is missing")
 
+    if "python scripts/run_scoop.py" not in text:
+        errors.append("workflow is bypassing the hardened Scoop runtime runner")
+
+    if "python scripts/test_scoop_runtime.py" not in text:
+        errors.append("Scoop runtime safeguard tests are missing from the workflow")
+
+    # Scheduled runs commit refreshed JSON/cache back to main. That bot commit
+    # must not spawn another push-triggered copy of the same expensive workflow.
+    if 'git commit -m "Refresh local news [skip ci]"' not in text:
+        errors.append("refresh bot commit must contain [skip ci] to prevent duplicate runs")
+
     if errors:
         print("Workflow configuration check failed:")
         for error in errors:
