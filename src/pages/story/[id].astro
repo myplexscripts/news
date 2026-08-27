@@ -129,7 +129,7 @@ const showDeck = Boolean(
 
 ---
 <BaseLayout title={`${story.title} | London News`} description={story.summary || `Local reporting from ${story.source}.`}>
-  <main class:list={["article-page", categoryClass]} id="main-content">
+  <main class:list={["article-page", categoryClass]} id="main-content" data-current-story-id={story.id}>
     <div class="article-shell shell article-shell-refined">
       <article class="article-layout article-layout-refined">
         <header class="article-header article-header-refined">
@@ -217,7 +217,7 @@ const showDeck = Boolean(
       </article>
 
       {related.length > 0 && (
-        <section class="related-section related-section-refined">
+        <section class="related-section related-section-refined" id="relatedStoriesSection">
           <header class="editorial-section-heading">
             <div>
               <p class="section-eyebrow">Keep reading</p>
@@ -230,7 +230,7 @@ const showDeck = Boolean(
               const relatedMinutes = relatedWords > 0 ? Math.max(1, Math.round(relatedWords / 220)) : 1;
               const relatedPublished = item.cluster_latest_published || item.published;
               return (
-                <a class="related-card" href={`${base}story/${item.id}/`}>
+                <a class="related-card" href={`${base}story/${item.id}/`} data-story-id={item.id}>
                   <div class="related-media">
                     {item.image ? <img class="related-photo" src={item.card_image ? `${base}${item.card_image}` : item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
                     {item.image && logoFor(item.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(item.source)} alt="" loading="lazy" />}
@@ -249,4 +249,46 @@ const showDeck = Boolean(
       )}
     </div>
   </main>
+
+  <script is:inline>
+    const articlePage = document.querySelector('[data-current-story-id]');
+    const currentStoryId = String(articlePage?.dataset.currentStoryId || '');
+    const relatedSection = document.getElementById('relatedStoriesSection');
+
+    function markCurrentStoryRead() {
+      if (!currentStoryId) return;
+      let ids = [];
+      try {
+        const stored = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
+        ids = Array.isArray(stored) ? stored.map(String) : [];
+      } catch {
+        ids = [];
+      }
+      const next = [currentStoryId, ...ids.filter((id) => id !== currentStoryId)].slice(0, 1000);
+      localStorage.setItem('london-news-read-articles', JSON.stringify(next));
+      window.dispatchEvent(new CustomEvent('london-news-read-history-changed'));
+    }
+
+    function syncRelatedVisibility() {
+      if (!relatedSection) return;
+      const cards = [...relatedSection.querySelectorAll('[data-story-id]')];
+      const hideRead = document.documentElement.dataset.hideRead === 'true';
+      const hasVisible = cards.some((card) => !hideRead || !card.classList.contains('is-read-story'));
+      relatedSection.hidden = !hasVisible;
+    }
+
+    window.addEventListener('london-news-read-state', syncRelatedVisibility);
+
+    let readTimer = 0;
+    function scheduleReadMark() {
+      if (!currentStoryId || readTimer || document.visibilityState !== 'visible') return;
+      readTimer = window.setTimeout(() => {
+        readTimer = 0;
+        if (document.visibilityState === 'visible') markCurrentStoryRead();
+      }, 1200);
+    }
+
+    document.addEventListener('visibilitychange', scheduleReadMark);
+    scheduleReadMark();
+  </script>
 </BaseLayout>
