@@ -23,12 +23,13 @@ const path = Astro.url.pathname;
 const onSources = path.includes('/sources/');
 const onSections = path.includes('/sections/');
 const onSearch = path.includes('/search/');
-const onHome = !onSources && !onSections && !onSearch && !path.includes('/latest/') && !path.includes('/story/') && !path.includes('/admin/');
+const onSettings = path.includes('/settings/');
+const onHome = !onSources && !onSections && !onSearch && !onSettings && !path.includes('/latest/') && !path.includes('/story/') && !path.includes('/admin/');
 const hasHeaderActions = Astro.slots.has('header-actions');
 const showHomeMasthead = onHome && Boolean(homeDate);
 ---
 <!doctype html>
-<html lang="en-CA" data-theme="light">
+<html lang="en-CA" data-theme="light" data-accent="green" data-hide-read="false">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -47,9 +48,13 @@ const showHomeMasthead = onHome && Boolean(homeDate);
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
     <script is:inline>
       (() => {
-        const saved = localStorage.getItem('london-news-theme');
-        const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.dataset.theme = saved || preferred;
+        const savedTheme = localStorage.getItem('london-news-theme');
+        const preferredTheme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const savedAccent = localStorage.getItem('london-news-accent') || 'green';
+        const hideRead = localStorage.getItem('london-news-hide-read') === 'true';
+        document.documentElement.dataset.theme = savedTheme || preferredTheme;
+        document.documentElement.dataset.accent = savedAccent;
+        document.documentElement.dataset.hideRead = hideRead ? 'true' : 'false';
       })();
     </script>
   </head>
@@ -74,9 +79,9 @@ const showHomeMasthead = onHome && Boolean(homeDate);
           <a class="icon-button desktop-sources-link" href={`${base}sources/`} aria-label="Manage news sources" title="Sources">
             <i class="ph ph-buildings" aria-hidden="true"></i>
           </a>
-          <button class="icon-button" id="themeToggle" aria-label="Toggle appearance" title="Toggle appearance">
-            <i class="ph ph-moon" aria-hidden="true"></i>
-          </button>
+          <a class:list={["icon-button", "settings-link", onSettings && "active"]} href={`${base}settings/`} aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
+            <i class={onSettings ? 'ph-fill ph-gear-six' : 'ph ph-gear-six'} aria-hidden="true"></i>
+          </a>
         </div>
 
         {showHomeMasthead && (
@@ -145,23 +150,6 @@ const showHomeMasthead = onHome && Boolean(homeDate);
     </nav>
 
     <script is:inline>
-      const root = document.documentElement;
-      const themeToggle = document.getElementById('themeToggle');
-      const themeIcon = themeToggle?.querySelector('i');
-
-      function updateThemeIcon() {
-        if (!themeIcon) return;
-        themeIcon.className = root.dataset.theme === 'dark' ? 'ph ph-sun' : 'ph ph-moon';
-      }
-
-      updateThemeIcon();
-
-      themeToggle?.addEventListener('click', () => {
-        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-        localStorage.setItem('london-news-theme', root.dataset.theme);
-        updateThemeIcon();
-      });
-
       const mobileHomeTab = document.getElementById('mobileHomeTab');
       const mobileHomeIcon = document.getElementById('mobileHomeIcon');
       const homeIconClass = mobileHomeIcon?.className || 'ph ph-house';
@@ -193,6 +181,39 @@ const showHomeMasthead = onHome && Boolean(homeDate);
       }, { passive: true });
       window.addEventListener('resize', syncMobileHomeAction, { passive: true });
       syncMobileHomeAction();
+    </script>
+
+    <script is:inline>
+      const preferenceRoot = document.documentElement;
+
+      function getReadStoryIds() {
+        try {
+          const value = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
+          return Array.isArray(value) ? value.map(String) : [];
+        } catch {
+          return [];
+        }
+      }
+
+      function syncReadStoryState() {
+        const readIds = getReadStoryIds();
+        const readSet = new Set(readIds);
+        const hideRead = localStorage.getItem('london-news-hide-read') === 'true';
+        preferenceRoot.dataset.hideRead = hideRead ? 'true' : 'false';
+        document.querySelectorAll('[data-story-id]').forEach((item) => {
+          item.classList.toggle('is-read-story', readSet.has(String(item.dataset.storyId || '')));
+        });
+        window.dispatchEvent(new CustomEvent('london-news-read-state', {
+          detail: { readIds, hideRead }
+        }));
+      }
+
+      window.addEventListener('storage', (event) => {
+        if (!['london-news-read-articles', 'london-news-hide-read'].includes(event.key || '')) return;
+        syncReadStoryState();
+      });
+      window.addEventListener('london-news-read-history-changed', syncReadStoryState);
+      syncReadStoryState();
     </script>
 
     <script is:inline>
