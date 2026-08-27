@@ -36,11 +36,17 @@ jobs:
       - name: Install collector dependencies
         run: pip install -r requirements.txt
 
+      - name: Test Scoop runtime safeguards
+        run: python scripts/test_scoop_runtime.py
+
       - name: Fetch local news
-        run: python scripts/fetch_news.py
+        run: python scripts/run_scoop.py
 
       - name: Run Scoop regression tests
         run: python scripts/test_scraper_regressions.py
+
+      - name: Run editorial intelligence tests
+        run: python scripts/test_editorial.py
 
       - name: Run audit rule tests
         run: python scripts/test_audit.py
@@ -66,7 +72,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/news.json data/audit.json public/cache/
-          git commit -m "Refresh local news"
+          git commit -m "Refresh local news [skip ci]"
           git push
 
       - name: Configure Pages
