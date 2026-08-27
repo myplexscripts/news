@@ -86,6 +86,12 @@ jobs:
       - name: Install site dependencies
         run: npm install
 
+      - name: Publish source logos
+        shell: bash
+        run: |
+          mkdir -p public/images/logos
+          cp -a images/logos/. public/images/logos/
+
       - name: Build static site
         run: npm run build
 
