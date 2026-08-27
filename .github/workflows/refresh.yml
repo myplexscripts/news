@@ -93,6 +93,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/fix_cbc_fallback.py
 
+      - name: Hydrate CBC article bodies from Lite
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/hydrate_cbc_lite.py
+
       - name: Run Scoop regression tests
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_scraper_regressions.py
