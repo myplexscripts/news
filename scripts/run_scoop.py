@@ -14,10 +14,11 @@ import ranking
 
 
 CBC_HOSTS = {"cbc.ca", "www.cbc.ca", "rss.cbc.ca"}
-CBC_HTTP_FEEDS = (
-    "http://rss.cbc.ca/lineup/canada-london.xml",
-    "http://www.cbc.ca/webfeed/rss/rss-canada-london",
+CBC_FEEDS = (
+    "https://www.cbc.ca/webfeed/rss/rss-canada-london",
+    "https://rss.cbc.ca/lineup/canada-london.xml",
 )
+RETIRED_SOURCE_NAMES = {"London Fire Department"}
 
 # These publishers carry material well outside London even when the feed or
 # section is branded for the region. Dedicated London sources remain ungated.
@@ -35,7 +36,6 @@ SPORTS_TERMS = (
 )
 
 _original_local_relevance = ranking.local_relevance
-_original_cbc_items = fetch_news.cbc_items
 
 if not any(label == "London airport" for _, label, _ in ranking.LOCAL_TERMS):
     ranking.LOCAL_TERMS = ranking.LOCAL_TERMS + (
@@ -103,7 +103,7 @@ def _is_cbc_url(url: str) -> bool:
 
 
 def _curl_response(url: str, timeout: int | float | None = None) -> requests.Response:
-    max_time = max(8, min(20, int(float(timeout or 15))))
+    max_time = max(6, min(10, int(float(timeout or 8))))
     command = [
         "curl",
         "--http1.1",
@@ -112,7 +112,7 @@ def _curl_response(url: str, timeout: int | float | None = None) -> requests.Res
         "--silent",
         "--show-error",
         "--compressed",
-        "--connect-timeout", "5",
+        "--connect-timeout", "4",
         "--max-time", str(max_time),
         "--user-agent", fetch_news.USER_AGENT,
         "--header", "Accept-Language: en-CA,en;q=0.9",
@@ -161,9 +161,10 @@ def _resilient_cbc_get(original_get: Callable[..., requests.Response]) -> Callab
     return get
 
 
-def _http_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+def _bounded_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    """Try two first-party CBC feeds quickly, then let Scoop retain cached CBC stories."""
     attempts: list[str] = []
-    for feed_url in CBC_HTTP_FEEDS:
+    for feed_url in CBC_FEEDS:
         candidate = fetch_news.Source(
             name=source.name,
             logo=getattr(source, "logo", ""),
@@ -174,26 +175,18 @@ def _http_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any
             max_items=source.max_items,
         )
         try:
-            items = fetch_news.rss_items(candidate, existing, request_timeout=8)
+            items = fetch_news.rss_items(candidate, existing, request_timeout=5)
             if items:
                 for item in items:
-                    item["ingestion_path"] = "cbc-http-rss-fallback"
-                print(f"CBC News London: HTTPS unavailable; using first-party HTTP feed {feed_url}", file=sys.stderr)
+                    item["ingestion_path"] = "cbc-rss" if feed_url == CBC_FEEDS[0] else "cbc-rss-fallback"
+                if feed_url != CBC_FEEDS[0]:
+                    print(f"CBC News London: primary feed unavailable; using {feed_url}", file=sys.stderr)
                 return items
             attempts.append(f"{feed_url}: no items")
         except Exception as exc:
-            attempts.append(f"{feed_url}: {str(exc)[:150]}")
-    raise RuntimeError("CBC HTTP fallbacks unavailable: " + " | ".join(attempts))
+            attempts.append(f"{feed_url}: {str(exc)[:140]}")
 
-
-def _resilient_cbc_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
-    try:
-        return _original_cbc_items(source, existing)
-    except Exception as primary:
-        try:
-            return _http_cbc_items(source, existing)
-        except Exception as fallback:
-            raise RuntimeError(f"{primary} | {fallback}") from primary
+    raise RuntimeError("CBC first-party feeds unavailable; cached CBC stories retained: " + " | ".join(attempts))
 
 
 def _similarity_text(story: dict[str, Any]) -> str:
@@ -263,6 +256,17 @@ def _publication_filter(stories: list[dict[str, Any]]) -> tuple[list[dict[str, A
 
     for story in stories:
         source = str(story.get("source") or "")
+        if source in RETIRED_SOURCE_NAMES:
+            dropped.append({
+                "id": story.get("id", ""),
+                "source": source,
+                "title": story.get("title", ""),
+                "local_score": 0,
+                "threshold": "retired",
+                "reasons": ["retired source"],
+            })
+            continue
+
         threshold = PUBLICATION_MIN_LOCAL_SCORE.get(source)
         if threshold is None:
             kept.append(story)
@@ -292,7 +296,7 @@ def _apply_local_editorial_policy(stories: list[dict[str, Any]], now=None):
         for item in dropped:
             by_source[item["source"]] = by_source.get(item["source"], 0) + 1
         summary = ", ".join(f"{source} {count}" for source, count in sorted(by_source.items()))
-        print(f"Locality gate: removed {len(dropped)} non-London stories ({summary})", file=sys.stderr)
+        print(f"Publication gate: removed {len(dropped)} stories ({summary})", file=sys.stderr)
 
     annotated, metadata = ranking.apply_editorial_intelligence(kept, now)
     metadata["locality_filtered_count"] = len(dropped)
@@ -309,7 +313,7 @@ def install_runtime_safeguards() -> None:
 
     fetch_news.FAST_SESSION.get = _resilient_cbc_get(fetch_news.FAST_SESSION.get)
     fetch_news.SESSION.get = _resilient_cbc_get(fetch_news.SESSION.get)
-    fetch_news.cbc_items = _resilient_cbc_items
+    fetch_news.cbc_items = _bounded_cbc_items
     fetch_news.classify = _safe_classify
 
     ranking.local_relevance = _safe_local_relevance
