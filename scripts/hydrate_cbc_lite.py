@@ -16,12 +16,21 @@ ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
 CBC_ID = re.compile(r"(?<!\d)([19]\.\d{5,})(?!\d)")
 MARKDOWN_CONTENT = re.compile(r"^Markdown Content:\s*$", re.I | re.M)
+MARKDOWN_IMAGE = re.compile(r"!\[[^\]]*\]\((https?://[^)]+)\)", re.I)
 HEADERS = {
     "User-Agent": "LondonNews/1.0 (+https://myplexscripts.github.io/news/)",
     "Accept": "text/plain",
     "X-Retain-Links": "text",
     "X-Retain-Images": "alt",
     "X-Retain-Media": "none",
+}
+IMAGE_HEADERS = {
+    "User-Agent": "LondonNews/1.0 (+https://myplexscripts.github.io/news/)",
+    "Accept": "text/plain",
+    "X-Retain-Links": "text",
+    "X-Retain-Images": "all",
+    "X-Retain-Media": "none",
+    "X-With-Images-Summary": "all",
 }
 BOILERPLATE = (
     "more from cbc",
@@ -49,6 +58,16 @@ def clean_text(value: Any) -> str:
 def article_id(url: str) -> str:
     matches = CBC_ID.findall(urlparse(url).path)
     return matches[-1] if matches else ""
+
+
+def is_cbc_article_url(url: str) -> bool:
+    parsed = urlparse(clean_text(url))
+    host = parsed.netloc.lower().split(":", 1)[0]
+    return (
+        (host == "cbc.ca" or host == "www.cbc.ca" or host.endswith(".cbc.ca"))
+        and "/news/" in parsed.path.lower()
+        and bool(article_id(url))
+    )
 
 
 def strip_markdown(value: str) -> str:
@@ -135,6 +154,64 @@ def fetch_reader(story_id: str, title: str) -> dict[str, Any] | None:
         return None
 
 
+def image_score(url: str) -> int:
+    parsed = urlparse(url)
+    host = parsed.netloc.lower().split(":", 1)[0]
+    path = parsed.path.lower()
+    lowered = url.lower()
+    if any(marker in lowered for marker in ("texttospeech", "nojsimg", "logo_", "/akam/", "pixel_")):
+        return -1000
+    if path.endswith((".svg", ".gif")):
+        return -1000
+
+    score = 0
+    if host == "i.cbc.ca":
+        score += 100
+    elif host.endswith(".cbc.ca"):
+        score += 25
+    else:
+        return -1000
+    if path.endswith((".jpg", ".jpeg", ".png", ".webp")):
+        score += 20
+    if "/ais/" in path:
+        score += 15
+    return score
+
+
+def fetch_image(story_url: str, story_id: str) -> str:
+    if not is_cbc_article_url(story_url):
+        return ""
+    parsed = urlparse(story_url)
+    target = f"{parsed.netloc}{parsed.path}"
+    if parsed.query:
+        target += f"?{parsed.query}"
+    reader_url = f"https://r.jina.ai/http://{target}"
+    try:
+        response = requests.get(reader_url, headers=IMAGE_HEADERS, timeout=(4, 24))
+        if response.status_code != 200 or len(response.content) < 500:
+            print(
+                f"CBC image miss {story_id}: {response.status_code}/{len(response.content)}B",
+                file=sys.stderr,
+            )
+            return ""
+        candidates: list[str] = []
+        seen: set[str] = set()
+        for raw_url in MARKDOWN_IMAGE.findall(response.text):
+            image_url = html.unescape(raw_url.strip())
+            if image_url in seen:
+                continue
+            seen.add(image_url)
+            if image_score(image_url) > 0:
+                candidates.append(image_url)
+        if not candidates:
+            print(f"CBC image miss {story_id}: no usable CBC image URL", file=sys.stderr)
+            return ""
+        return max(candidates, key=image_score)
+    except Exception as exc:
+        print(f"CBC image miss {story_id}: {type(exc).__name__}: {exc}", file=sys.stderr)
+        return ""
+
+
 def collect_targets(value: Any, targets: dict[str, tuple[str, str]]) -> None:
     if isinstance(value, dict):
         if value.get("source") == "CBC News London" and value.get("content_status") != "full":
@@ -148,6 +225,20 @@ def collect_targets(value: Any, targets: dict[str, tuple[str, str]]) -> None:
     elif isinstance(value, list):
         for child in value:
             collect_targets(child, targets)
+
+
+def collect_image_targets(value: Any, targets: dict[str, str]) -> None:
+    if isinstance(value, dict):
+        if value.get("source") == "CBC News London" and not clean_text(value.get("image")):
+            url = clean_text(value.get("url"))
+            story_id = article_id(url)
+            if story_id and is_cbc_article_url(url):
+                targets.setdefault(story_id, url)
+        for child in value.values():
+            collect_image_targets(child, targets)
+    elif isinstance(value, list):
+        for child in value:
+            collect_image_targets(child, targets)
 
 
 def apply_bodies(value: Any, bodies: dict[str, dict[str, Any] | None]) -> int:
@@ -185,39 +276,75 @@ def apply_bodies(value: Any, bodies: dict[str, dict[str, Any] | None]) -> int:
     return hydrated
 
 
+def apply_images(value: Any, images: dict[str, str]) -> int:
+    updated = 0
+    if isinstance(value, dict):
+        if value.get("source") == "CBC News London" and not clean_text(value.get("image")):
+            story_id = article_id(clean_text(value.get("url")))
+            image_url = images.get(story_id, "")
+            if image_url:
+                value["image"] = image_url
+                updated += 1
+        for child in list(value.values()):
+            updated += apply_images(child, images)
+    elif isinstance(value, list):
+        for child in value:
+            updated += apply_images(child, images)
+    return updated
+
+
 def main() -> int:
     if not NEWS_PATH.exists():
         return 0
 
     payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
+
     targets: dict[str, tuple[str, str]] = {}
     collect_targets(payload, targets)
-    if not targets:
-        print("CBC Reader hydration: no summary-only CBC stories to hydrate")
-        return 0
-
     bodies: dict[str, dict[str, Any] | None] = {}
-    with ThreadPoolExecutor(max_workers=min(4, len(targets))) as executor:
-        futures = {
-            executor.submit(fetch_reader, story_id, title): story_id
-            for story_id, (title, _) in targets.items()
-        }
-        for future in as_completed(futures):
-            story_id = futures[future]
-            try:
-                bodies[story_id] = future.result()
-            except Exception as exc:
-                print(f"CBC Reader worker failed {story_id}: {exc}", file=sys.stderr)
-                bodies[story_id] = None
+    if targets:
+        with ThreadPoolExecutor(max_workers=min(4, len(targets))) as executor:
+            futures = {
+                executor.submit(fetch_reader, story_id, title): story_id
+                for story_id, (title, _) in targets.items()
+            }
+            for future in as_completed(futures):
+                story_id = futures[future]
+                try:
+                    bodies[story_id] = future.result()
+                except Exception as exc:
+                    print(f"CBC Reader worker failed {story_id}: {exc}", file=sys.stderr)
+                    bodies[story_id] = None
+
+    image_targets: dict[str, str] = {}
+    collect_image_targets(payload, image_targets)
+    images: dict[str, str] = {}
+    if image_targets:
+        with ThreadPoolExecutor(max_workers=min(4, len(image_targets))) as executor:
+            futures = {
+                executor.submit(fetch_image, url, story_id): story_id
+                for story_id, url in image_targets.items()
+            }
+            for future in as_completed(futures):
+                story_id = futures[future]
+                try:
+                    images[story_id] = future.result()
+                except Exception as exc:
+                    print(f"CBC image worker failed {story_id}: {exc}", file=sys.stderr)
+                    images[story_id] = ""
 
     hydrated = apply_bodies(payload, bodies)
-    if hydrated:
+    image_updates = apply_images(payload, images)
+    if hydrated or image_updates:
         NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     unique_full = sum(1 for body in bodies.values() if body)
+    unique_images = sum(1 for image_url in images.values() if image_url)
     print(
         f"CBC Reader hydration: {unique_full}/{len(targets)} unique CBC stories received full bodies; "
-        f"{hydrated} CBC record(s) updated"
+        f"{hydrated} CBC record(s) updated. "
+        f"CBC image hydration: {unique_images}/{len(image_targets)} unique CBC stories received images; "
+        f"{image_updates} CBC record(s) updated."
     )
     return 0
 
