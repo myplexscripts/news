@@ -101,6 +101,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/hydrate_cbc_lite.py
 
+      - name: Repair CBC image references
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/repair_cbc_image_refs.py
+
       - name: Cache CBC article images locally
         if: steps.due.outputs.run == 'true'
         run: python scripts/cache_cbc_images.py
