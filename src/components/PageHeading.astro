@@ -1,0 +1,25 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  className?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  className = ''
+} = Astro.props;
+
+const hasActions = Astro.slots.has('actions');
+---
+<header class:list={['page-heading', className, hasActions && 'page-heading-with-actions']}>
+  <div class="page-heading-copy">
+    {eyebrow && <p class="masthead-label">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {description && <p class="page-heading-description">{description}</p>}
+  </div>
+  {hasActions && <div class="page-heading-actions"><slot name="actions" /></div>}
+</header>
