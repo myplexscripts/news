@@ -22,11 +22,13 @@
   -webkit-line-clamp: unset !important;
   white-space: normal !important;
   text-align: left !important;
+  order: 1 !important;
 }
 
 .news-card-summary {
   grid-column: auto !important;
   grid-row: auto !important;
+  order: 2 !important;
 }
 
 .news-card-footer {
@@ -40,9 +42,11 @@
   justify-content: flex-start !important;
   flex-wrap: wrap !important;
   gap: 4px 10px !important;
-  margin: 0 !important;
+  margin: auto 0 0 !important;
+  padding-top: 12px !important;
   color: var(--muted) !important;
   text-align: left !important;
+  order: 3 !important;
 }
 
 .news-card-footer-source {
@@ -60,8 +64,8 @@
 }
 
 .news-card.card-featured .news-card-footer {
-  margin-top: 14px !important;
-  padding-top: 0 !important;
+  margin-top: auto !important;
+  padding-top: 14px !important;
 }
 
 .news-card.card-featured .news-card-summary {
@@ -69,8 +73,8 @@
 }
 
 .news-card.card-standard .news-card-footer {
-  margin-top: 10px !important;
-  padding-top: 0 !important;
+  margin-top: auto !important;
+  padding-top: 10px !important;
 }
 
 @media (max-width: 760px) {
@@ -95,8 +99,8 @@
   .news-card.card-featured .news-card-footer,
   .latest-card-grid .news-card.card-featured .news-card-footer {
     width: 100% !important;
-    margin: 10px 0 0 !important;
-    padding: 0 !important;
+    margin: auto 0 0 !important;
+    padding: 10px 0 0 !important;
     align-self: stretch !important;
     justify-content: flex-start !important;
     text-align: left !important;
@@ -143,7 +147,7 @@
     width: 100% !important;
     min-width: 0 !important;
     min-height: 132px !important;
-    height: auto !important;
+    height: 100% !important;
     padding: 13px 14px 12px !important;
     align-items: stretch !important;
     justify-content: flex-start !important;
@@ -164,14 +168,14 @@
     text-align: left !important;
   }
 
-  /* Metadata always follows the title, never occupies or centres its own row. */
+  /* Metadata is the final flex item and is pushed to the card's bottom edge. */
   .news-card-footer,
   .news-card.card-standard .news-card-footer,
   .latest-card-grid .news-card.card-standard .news-card-footer {
     width: 100% !important;
     min-width: 0 !important;
-    margin: 8px 0 0 !important;
-    padding: 0 !important;
+    margin: auto 0 0 !important;
+    padding: 8px 0 0 !important;
     display: flex !important;
     align-items: baseline !important;
     align-self: stretch !important;
@@ -180,6 +184,7 @@
     flex-wrap: nowrap !important;
     white-space: nowrap !important;
     text-align: left !important;
+    order: 3 !important;
   }
 
   .news-card-footer,
