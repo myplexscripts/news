@@ -6,7 +6,6 @@ import { sourceLogoPath } from '../../lib/sourceLogos';
 const base = import.meta.env.BASE_URL;
 const storyTime = (story) => story.cluster_latest_published || story.published;
 const representatives = (news.stories || [])
-  .filter((story) => story.cluster_representative !== false)
   .sort((a, b) => new Date(storyTime(b)).getTime() - new Date(storyTime(a)).getTime())
   .slice(0, 140);
 
