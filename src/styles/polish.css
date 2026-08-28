@@ -362,12 +362,15 @@ html[data-hide-read='true'] [data-story-id].is-read-story {
 
 /* Mobile editorial refinements */
 
-/* Move publisher attribution into the same bottom metadata row as the date. */
+/* Publisher and date share one metadata row that is pinned to the card bottom. */
 .news-card-body {
   display: grid !important;
   grid-template-columns: auto minmax(0, 1fr);
-  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   align-content: stretch;
+  align-self: stretch !important;
+  height: 100% !important;
+  box-sizing: border-box;
 }
 
 .news-card h3 {
@@ -378,20 +381,21 @@ html[data-hide-read='true'] [data-story-id].is-read-story {
 .news-card-summary {
   grid-column: 1 / -1;
   grid-row: 2;
+  align-self: start;
 }
 
 .news-card-source {
   grid-column: 1;
-  grid-row: 4;
-  align-self: center;
+  grid-row: 3;
+  align-self: end;
   margin: 0 !important;
   padding: 0 !important;
 }
 
 .news-card-footer {
   grid-column: 2;
-  grid-row: 4;
-  align-self: center;
+  grid-row: 3;
+  align-self: end;
   justify-content: flex-start;
   margin: 0 !important;
   padding: 0 !important;
@@ -444,7 +448,15 @@ html[data-hide-read='true'] [data-story-id].is-read-story {
   .news-card.card-standard .news-card-body,
   .latest-card-grid .news-card.card-standard .news-card-body {
     min-height: 132px !important;
+    height: 100% !important;
+    align-self: stretch !important;
     padding: 13px 14px 12px !important;
+  }
+
+  .news-card.card-featured .news-card-body,
+  .latest-card-grid .news-card.card-featured .news-card-body {
+    height: 100% !important;
+    align-self: stretch !important;
   }
 
   .news-card.card-standard h3,
