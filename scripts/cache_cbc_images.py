@@ -9,7 +9,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 import requests
 
@@ -111,9 +111,9 @@ def fetch_bytes_with_curl(url: str) -> bytes:
         "--silent",
         "--show-error",
         "--connect-timeout",
-        "5",
+        "4",
         "--max-time",
-        "25",
+        "12",
         "--user-agent",
         USER_AGENT,
         "--header",
@@ -123,7 +123,7 @@ def fetch_bytes_with_curl(url: str) -> bytes:
         url,
     ]
     try:
-        result = subprocess.run(command, capture_output=True, check=False, timeout=30)
+        result = subprocess.run(command, capture_output=True, check=False, timeout=15)
     except Exception:
         return b""
     if result.returncode == 0 and len(result.stdout) >= 1000:
@@ -140,13 +140,40 @@ def fetch_bytes_with_requests(url: str) -> bytes:
                 "Referer": "https://www.cbc.ca/",
                 "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
             },
-            timeout=(5, 25),
+            timeout=(4, 12),
             allow_redirects=True,
         )
         if response.status_code == 200 and len(response.content) >= 1000:
             return response.content
     except Exception:
         pass
+    return b""
+
+
+def fetch_bytes_via_proxy(url: str) -> bytes:
+    # GitHub-hosted runners intermittently cannot reach CBC's image CDN. wsrv.nl
+    # fetches the origin image from a different network, then this workflow saves
+    # the returned bytes into our own GitHub Pages cache. The live site never
+    # depends on the proxy URL.
+    proxy_url = f"https://wsrv.nl/?url={quote(url, safe='')}"
+    try:
+        response = requests.get(
+            proxy_url,
+            headers={
+                "User-Agent": USER_AGENT,
+                "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+            },
+            timeout=(5, 20),
+            allow_redirects=True,
+        )
+        if response.status_code == 200 and len(response.content) >= 1000:
+            return response.content
+        print(
+            f"CBC image proxy miss: HTTP {response.status_code} for {url}",
+            file=sys.stderr,
+        )
+    except Exception as exc:
+        print(f"CBC image proxy miss: {type(exc).__name__} for {url}", file=sys.stderr)
     return b""
 
 
@@ -161,7 +188,11 @@ def cache_image(url: str) -> str:
         if existing.exists() and existing.stat().st_size >= 1000:
             return f"{CACHE_REL_ROOT}{existing.name}"
 
-    data = fetch_bytes_with_curl(url)
+    # Try the cache proxy first because CBC's image CDN is the path known to
+    # stall on GitHub-hosted runners. Direct fetches remain as fallbacks.
+    data = fetch_bytes_via_proxy(url)
+    if not data:
+        data = fetch_bytes_with_curl(url)
     if not data:
         data = fetch_bytes_with_requests(url)
     if not data:
