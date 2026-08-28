@@ -16,6 +16,12 @@ const displayTitle = (value = '') => {
   const words = String(value).trim().split(/\s+/).filter(Boolean);
   return words.length > 15 ? `${words.slice(0, 15).join(' ')}…` : words.join(' ');
 };
+const coverageLabel = (story) => {
+  const sources = [...new Set(story.cluster_sources || [story.source])].filter((source) => source && source !== story.source);
+  if (!sources.length) return '';
+  const more = sources.length - 1;
+  return `Also reported by ${sources[0]}${more > 0 ? ` + ${more} ${more === 1 ? 'other' : 'others'}` : ''}`;
+};
 
 const published = (value) => {
   try {
@@ -93,7 +99,7 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
             </header>
             {group.stories.map((story) => {
               const timestamp = storyTime(story);
-              const sourceLabel = Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source;
+              const coverage = coverageLabel(story);
               return (
                 <a
                   class:list={["news-card", "card-standard", "searchable", !story.image && "no-image"]}
@@ -120,10 +126,11 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
                   <div class="news-card-body">
                     <h3 title={story.title}>{displayTitle(story.title)}</h3>
                     <div class="news-card-footer">
-                      <strong class="news-card-footer-source">{sourceLabel}</strong>
+                      <strong class="news-card-footer-source">{story.source}</strong>
                       <time datetime={timestamp}>{published(timestamp)}</time>
                       {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
                     </div>
+                    {coverage && <p class="news-card-coverage"><i class="ph ph-stack-simple" aria-hidden="true"></i><span>{coverage}</span></p>}
                     {story.summary && <p class="news-card-summary">{story.summary}</p>}
                   </div>
                 </a>
@@ -140,7 +147,9 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
     </section>
   </main>
 
-  <script is:inline>
+  <script>
+    import { initialiseUserState, onUserStateChange } from '../../lib/userState';
+
     const headerSearch = document.getElementById('headerSearch');
     const searchToggle = document.getElementById('searchToggle');
     const searchClose = document.getElementById('searchClose');
@@ -153,18 +162,12 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
     let readStories = new Set();
     let hideReadStories = false;
 
-    try { hiddenSources = new Set(JSON.parse(localStorage.getItem('london-news-hidden-sources') || '[]')); } catch { hiddenSources = new Set(); }
-
-    function loadReadingPreferences() {
-      hideReadStories = localStorage.getItem('london-news-hide-read') === 'true';
-      try {
-        const ids = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
-        readStories = new Set(Array.isArray(ids) ? ids.map(String) : []);
-      } catch {
-        readStories = new Set();
-      }
+    function applyUserState(state) {
+      hiddenSources = new Set(state.hiddenSources || []);
+      readStories = new Set((state.readIds || []).map(String));
+      hideReadStories = Boolean(state.hideRead);
+      applyLatestFilters();
     }
-    loadReadingPreferences();
 
     function updateDateHeadings() {
       dateHeadings.forEach((heading) => {
@@ -175,7 +178,7 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
     }
 
     function applyLatestFilters() {
-      const query = (searchInput?.value || '').trim().toLowerCase();
+      const query = (searchInput instanceof HTMLInputElement ? searchInput.value : '').trim().toLowerCase();
       let visible = 0;
       cards.forEach((card) => {
         const sources = (card.dataset.sources || card.dataset.source || '').split('|').filter(Boolean);
@@ -200,7 +203,7 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
     function closeSearch() {
       headerSearch?.classList.remove('is-open');
       searchToggle?.setAttribute('aria-expanded', 'false');
-      if (searchInput) searchInput.value = '';
+      if (searchInput instanceof HTMLInputElement) searchInput.value = '';
       applyLatestFilters();
       searchToggle?.focus();
     }
@@ -209,18 +212,9 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
     searchClose?.addEventListener('click', closeSearch);
     searchInput?.addEventListener('input', applyLatestFilters);
     searchInput?.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeSearch(); });
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'london-news-hidden-sources') {
-        try { hiddenSources = new Set(JSON.parse(event.newValue || '[]')); } catch { hiddenSources = new Set(); }
-      }
-      if (['london-news-read-articles', 'london-news-hide-read'].includes(event.key || '')) loadReadingPreferences();
-      applyLatestFilters();
-    });
-    window.addEventListener('london-news-read-state', (event) => {
-      readStories = new Set((event.detail?.readIds || []).map(String));
-      hideReadStories = Boolean(event.detail?.hideRead);
-      applyLatestFilters();
-    });
+
+    initialiseUserState().then(applyUserState).catch(() => {});
+    onUserStateChange(applyUserState);
     applyLatestFilters();
   </script>
 </BaseLayout>

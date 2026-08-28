@@ -3,6 +3,7 @@ import '../styles/global.css';
 import '../styles/polish.css';
 import '../styles/mobile-card-fixes.css';
 import PipelineHealth from '../components/PipelineHealth.astro';
+import UserStateBridge from '../components/UserStateBridge.astro';
 
 interface Props {
   title?: string;
@@ -43,6 +44,7 @@ const showHomeMasthead = onHome && Boolean(homeDate);
     <title>{title}</title>
     <link rel="manifest" href={`${base}manifest.webmanifest`} />
     <link rel="apple-touch-icon" href={`${base}icons/icon-180.png`} />
+    <link rel="stylesheet" href={`${base}smart-features.css`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -152,6 +154,8 @@ const showHomeMasthead = onHome && Boolean(homeDate);
         <span class="visually-hidden">Sources</span>
       </a>
     </nav>
+
+    <UserStateBridge />
 
     <script is:inline>
       const mobileHomeTab = document.getElementById('mobileHomeTab');

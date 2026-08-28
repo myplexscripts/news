@@ -257,23 +257,16 @@ const showDeck = Boolean(
     </div>
   </main>
 
-  <script is:inline>
+  <script>
+    import { markStoryRead } from '../../lib/userState';
+
     const articlePage = document.querySelector('[data-current-story-id]');
     const currentStoryId = String(articlePage?.dataset.currentStoryId || '');
     const relatedSection = document.getElementById('relatedStoriesSection');
 
     function markCurrentStoryRead() {
       if (!currentStoryId) return;
-      let ids = [];
-      try {
-        const stored = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
-        ids = Array.isArray(stored) ? stored.map(String) : [];
-      } catch {
-        ids = [];
-      }
-      const next = [currentStoryId, ...ids.filter((id) => id !== currentStoryId)].slice(0, 1000);
-      localStorage.setItem('london-news-read-articles', JSON.stringify(next));
-      window.dispatchEvent(new CustomEvent('london-news-read-history-changed'));
+      markStoryRead(currentStoryId).catch(() => {});
     }
 
     function syncRelatedVisibility() {

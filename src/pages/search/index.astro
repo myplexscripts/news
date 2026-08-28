@@ -8,6 +8,16 @@ const stories = [...(news.stories || [])]
 const base = import.meta.env.BASE_URL;
 const logoFor = (name = '') => sourceLogoPath(name, base);
 const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Toronto',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(value)); } catch { return ''; } };
+const searchDocuments = stories.map((story) => ({
+  id: String(story.id),
+  title: story.title || '',
+  summary: story.summary || '',
+  source: story.source || '',
+  category: story.category || '',
+  topics: Array.isArray(story.story_topics) ? story.story_topics.join(' ') : '',
+  body: Array.isArray(story.paragraphs) ? story.paragraphs.slice(0, 10).join(' ') : (story.content || '')
+}));
+const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
 ---
 <BaseLayout title="Search | London News" description="Search London News stories.">
   <main class="directory-page search-page" id="main-content">
@@ -27,7 +37,7 @@ const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{tim
 
       <div class="search-results" id="archiveSearchResults">
         {stories.map((story) => (
-          <a class="search-result-card" href={`${base}story/${story.id}/`} data-story-id={story.id} data-search={`${story.title} ${story.summary || ''} ${story.source || ''} ${story.category || ''} ${(story.paragraphs || []).slice(0,4).join(' ')} ${(story.story_topics || []).join(' ')}`.toLowerCase()} hidden>
+          <a class="search-result-card" href={`${base}story/${story.id}/`} data-story-id={story.id} data-source={story.source} hidden>
             {story.image && <div class="search-result-media"><img class="search-result-photo" src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" />{logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}</div>}
             <div class="search-result-copy">
               <span>{story.source}</span>
@@ -37,53 +47,94 @@ const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{tim
           </a>
         ))}
       </div>
+      <script id="archiveSearchData" type="application/json" set:html={searchData}></script>
     </section>
   </main>
-  <script is:inline>
+  <script>
+    import MiniSearch from 'minisearch';
+    import { initialiseUserState, onUserStateChange } from '../../lib/userState';
+
     const input = document.getElementById('archiveSearch');
     const clear = document.getElementById('clearArchiveSearch');
     const status = document.getElementById('archiveSearchStatus');
+    const dataElement = document.getElementById('archiveSearchData');
     const cards = [...document.querySelectorAll('.search-result-card')];
-    let readStories = new Set();
-    let hideReadStories = false;
+    const cardsById = new Map(cards.map((card) => [String(card.dataset.storyId || ''), card]));
+    let state = { readIds: [], hideRead: false, hiddenSources: [] };
+    let documents = [];
 
-    function loadReadingPreferences() {
-      hideReadStories = localStorage.getItem('london-news-hide-read') === 'true';
-      try {
-        const ids = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
-        readStories = new Set(Array.isArray(ids) ? ids.map(String) : []);
-      } catch {
-        readStories = new Set();
+    try {
+      documents = JSON.parse(dataElement?.textContent || '[]');
+    } catch {
+      documents = [];
+    }
+
+    const miniSearch = new MiniSearch({
+      fields: ['title', 'summary', 'source', 'category', 'topics', 'body'],
+      storeFields: ['id'],
+      searchOptions: {
+        boost: { title: 5, source: 2.5, category: 2, topics: 2, summary: 1.7 },
+        fuzzy: 0.2,
+        prefix: true,
+        combineWith: 'AND'
+      }
+    });
+    miniSearch.addAll(documents);
+
+    function update() {
+      const q = (input instanceof HTMLInputElement ? input.value : '').trim();
+      const readStories = new Set((state.readIds || []).map(String));
+      const hiddenSources = new Set(state.hiddenSources || []);
+      const hideReadStories = Boolean(state.hideRead);
+
+      cards.forEach((card) => {
+        card.hidden = true;
+        card.style.order = '';
+      });
+
+      if (clear instanceof HTMLElement) clear.hidden = !q;
+      if (q.length < 2) {
+        if (status) status.textContent = q.length ? 'Type at least 2 characters.' : 'Start typing to search.';
+        return;
+      }
+
+      const fuzzy = q.length >= 5 ? 0.22 : 0.12;
+      const results = miniSearch.search(q, { fuzzy, prefix: true, combineWith: 'AND' });
+      let shown = 0;
+      results.forEach((result, index) => {
+        const card = cardsById.get(String(result.id));
+        if (!card) return;
+        const source = String(card.dataset.source || '');
+        if (hiddenSources.has(source)) return;
+        if (hideReadStories && readStories.has(String(card.dataset.storyId || ''))) return;
+        card.hidden = false;
+        card.style.order = String(index);
+        shown += 1;
+      });
+
+      if (status) {
+        const qualifiers = [];
+        if (hideReadStories) qualifiers.push('read stories hidden');
+        if (hiddenSources.size) qualifiers.push(`${hiddenSources.size} hidden ${hiddenSources.size === 1 ? 'source' : 'sources'}`);
+        status.textContent = `${shown} ${shown === 1 ? 'result' : 'results'}${qualifiers.length ? ` · ${qualifiers.join(' · ')}` : ''}`;
       }
     }
 
-    function update() {
-      const q = (input?.value || '').trim().toLowerCase();
-      let shown = 0;
-      cards.forEach((card) => {
-        const matchesText = q.length >= 2 && (card.dataset.search || '').includes(q);
-        const matchesReading = !hideReadStories || !readStories.has(String(card.dataset.storyId || ''));
-        const yes = matchesText && matchesReading;
-        card.hidden = !yes;
-        if (yes) shown++;
-      });
-      if (clear) clear.hidden = !q;
-      if (status) status.textContent = q.length < 2 ? 'Type at least 2 characters.' : `${shown} ${shown === 1 ? 'result' : 'results'}${hideReadStories ? ' · read stories hidden' : ''}`;
-    }
-
     input?.addEventListener('input', update);
-    clear?.addEventListener('click', () => { if (input) input.value=''; update(); input?.focus(); });
-    window.addEventListener('storage', (event) => {
-      if (!['london-news-read-articles', 'london-news-hide-read'].includes(event.key || '')) return;
-      loadReadingPreferences();
+    clear?.addEventListener('click', () => {
+      if (input instanceof HTMLInputElement) input.value = '';
+      update();
+      input?.focus();
+    });
+
+    initialiseUserState().then((next) => {
+      state = next;
+      update();
+    }).catch(update);
+    onUserStateChange((next) => {
+      state = next;
       update();
     });
-    window.addEventListener('london-news-read-state', (event) => {
-      readStories = new Set((event.detail?.readIds || []).map(String));
-      hideReadStories = Boolean(event.detail?.hideRead);
-      update();
-    });
-    loadReadingPreferences();
     update();
   </script>
 </BaseLayout>

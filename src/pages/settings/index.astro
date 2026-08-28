@@ -91,28 +91,21 @@ const accents = [
     </section>
   </main>
 
-  <script is:inline>
+  <script>
+    import { clearReadHistory, initialiseUserState, onUserStateChange, setPreference } from '../../lib/userState';
+
     const root = document.documentElement;
     const themeChoices = [...document.querySelectorAll('[data-theme-choice]')];
     const accentChoices = [...document.querySelectorAll('[data-accent-choice]')];
     const hideReadToggle = document.getElementById('hideReadToggle');
     const readHistoryStatus = document.getElementById('readHistoryStatus');
-    const clearReadHistory = document.getElementById('clearReadHistory');
+    const clearReadHistoryButton = document.getElementById('clearReadHistory');
 
-    function readIds() {
-      try {
-        const value = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
-        return Array.isArray(value) ? value.map(String) : [];
-      } catch {
-        return [];
-      }
-    }
-
-    function syncSettings() {
-      const theme = localStorage.getItem('london-news-theme') || root.dataset.theme || 'light';
-      const accent = localStorage.getItem('london-news-accent') || root.dataset.accent || 'green';
-      const hideRead = localStorage.getItem('london-news-hide-read') === 'true';
-      const reads = readIds();
+    function syncSettings(state) {
+      const theme = state.theme || root.dataset.theme || 'light';
+      const accent = state.accent || root.dataset.accent || 'green';
+      const hideRead = Boolean(state.hideRead);
+      const reads = Array.isArray(state.readIds) ? state.readIds : [];
 
       root.dataset.theme = theme;
       root.dataset.accent = accent;
@@ -129,44 +122,40 @@ const accents = [
         button.setAttribute('aria-pressed', selected ? 'true' : 'false');
       });
 
-      if (hideReadToggle) hideReadToggle.checked = hideRead;
+      if (hideReadToggle instanceof HTMLInputElement) hideReadToggle.checked = hideRead;
       if (readHistoryStatus) {
         readHistoryStatus.textContent = reads.length
           ? `${reads.length} ${reads.length === 1 ? 'article' : 'articles'} marked as read on this device.`
           : 'No articles marked as read.';
       }
-      if (clearReadHistory) clearReadHistory.disabled = reads.length === 0;
+      if (clearReadHistoryButton instanceof HTMLButtonElement) clearReadHistoryButton.disabled = reads.length === 0;
     }
 
     themeChoices.forEach((button) => button.addEventListener('click', () => {
       const value = button.dataset.themeChoice;
-      if (!value) return;
-      localStorage.setItem('london-news-theme', value);
+      if (value !== 'light' && value !== 'dark') return;
       root.dataset.theme = value;
-      syncSettings();
+      setPreference('theme', value).catch(() => {});
     }));
 
     accentChoices.forEach((button) => button.addEventListener('click', () => {
       const value = button.dataset.accentChoice;
       if (!value) return;
-      localStorage.setItem('london-news-accent', value);
       root.dataset.accent = value;
-      syncSettings();
+      setPreference('accent', value).catch(() => {});
     }));
 
     hideReadToggle?.addEventListener('change', () => {
-      localStorage.setItem('london-news-hide-read', hideReadToggle.checked ? 'true' : 'false');
+      if (!(hideReadToggle instanceof HTMLInputElement)) return;
       root.dataset.hideRead = hideReadToggle.checked ? 'true' : 'false';
-      window.dispatchEvent(new CustomEvent('london-news-read-history-changed'));
-      syncSettings();
+      setPreference('hideRead', hideReadToggle.checked).catch(() => {});
     });
 
-    clearReadHistory?.addEventListener('click', () => {
-      localStorage.removeItem('london-news-read-articles');
-      window.dispatchEvent(new CustomEvent('london-news-read-history-changed'));
-      syncSettings();
+    clearReadHistoryButton?.addEventListener('click', () => {
+      clearReadHistory().catch(() => {});
     });
 
-    syncSettings();
+    initialiseUserState().then(syncSettings).catch(() => {});
+    onUserStateChange(syncSettings);
   </script>
 </BaseLayout>

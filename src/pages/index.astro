@@ -27,6 +27,12 @@ const displayTitle = (value = '') => {
   const words = String(value).trim().split(/\s+/).filter(Boolean);
   return words.length > 15 ? `${words.slice(0, 15).join(' ')}…` : words.join(' ');
 };
+const coverageLabel = (story) => {
+  const sources = [...new Set(story.cluster_sources || [story.source])].filter((source) => source && source !== story.source);
+  if (!sources.length) return '';
+  const more = sources.length - 1;
+  return `Also reported by ${sources[0]}${more > 0 ? ` + ${more} ${more === 1 ? 'other' : 'others'}` : ''}`;
+};
 
 const published = (value) => {
   try {
@@ -154,7 +160,7 @@ const generated = news.generated_at
             {group.stories.map((story) => {
               const index = storyIndex.get(story.id) ?? 99;
               const timestamp = storyTime(story);
-              const sourceLabel = Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source;
+              const coverage = coverageLabel(story);
               return (
                 <a
                   class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
@@ -182,10 +188,11 @@ const generated = news.generated_at
                   <div class="news-card-body">
                     <h3 title={story.title}>{displayTitle(story.title)}</h3>
                     <div class="news-card-footer">
-                      <strong class="news-card-footer-source">{sourceLabel}</strong>
+                      <strong class="news-card-footer-source">{story.source}</strong>
                       <time datetime={timestamp}>{published(timestamp)}</time>
                       {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
                     </div>
+                    {coverage && <p class="news-card-coverage"><i class="ph ph-stack-simple" aria-hidden="true"></i><span>{coverage}</span></p>}
                     {story.summary && <p class="news-card-summary">{story.summary}</p>}
                   </div>
                 </a>
@@ -204,7 +211,9 @@ const generated = news.generated_at
     </section>
   </main>
 
-  <script is:inline>
+  <script>
+    import { initialiseUserState, onUserStateChange } from '../lib/userState';
+
     const headerSearch = document.getElementById('headerSearch');
     const searchToggle = document.getElementById('searchToggle');
     const searchClose = document.getElementById('searchClose');
@@ -221,22 +230,12 @@ const generated = news.generated_at
     let readStories = new Set();
     let hideReadStories = false;
 
-    function loadReadingPreferences() {
-      hideReadStories = localStorage.getItem('london-news-hide-read') === 'true';
-      try {
-        const ids = JSON.parse(localStorage.getItem('london-news-read-articles') || '[]');
-        readStories = new Set(Array.isArray(ids) ? ids.map(String) : []);
-      } catch {
-        readStories = new Set();
-      }
+    function applyUserState(state) {
+      hiddenSources = new Set(state.hiddenSources || []);
+      readStories = new Set((state.readIds || []).map(String));
+      hideReadStories = Boolean(state.hideRead);
+      applyFilters();
     }
-
-    try {
-      hiddenSources = new Set(JSON.parse(localStorage.getItem('london-news-hidden-sources') || '[]'));
-    } catch {
-      hiddenSources = new Set();
-    }
-    loadReadingPreferences();
 
     function openSearch() {
       headerSearch?.classList.add('is-open');
@@ -247,7 +246,7 @@ const generated = news.generated_at
     function closeSearch() {
       headerSearch?.classList.remove('is-open');
       searchToggle?.setAttribute('aria-expanded', 'false');
-      if (searchInput) searchInput.value = '';
+      if (searchInput instanceof HTMLInputElement) searchInput.value = '';
       applyFilters();
       searchToggle?.focus();
     }
@@ -281,7 +280,7 @@ const generated = news.generated_at
     }
 
     function applyFilters() {
-      const query = (searchInput?.value || '').trim().toLowerCase();
+      const query = (searchInput instanceof HTMLInputElement ? searchInput.value : '').trim().toLowerCase();
       const visibleCards = [];
 
       cards.forEach((item) => {
@@ -320,20 +319,6 @@ const generated = news.generated_at
       if (sectionMore?.hasAttribute('open') && !sectionMore.contains(event.target)) sectionMore.removeAttribute('open');
     });
 
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'london-news-hidden-sources') {
-        try { hiddenSources = new Set(JSON.parse(event.newValue || '[]')); } catch { hiddenSources = new Set(); }
-      }
-      if (['london-news-read-articles', 'london-news-hide-read'].includes(event.key || '')) loadReadingPreferences();
-      applyFilters();
-    });
-
-    window.addEventListener('london-news-read-state', (event) => {
-      readStories = new Set((event.detail?.readIds || []).map(String));
-      hideReadStories = Boolean(event.detail?.hideRead);
-      applyFilters();
-    });
-
     const pageParams = new URLSearchParams(window.location.search);
     const requestedSection = pageParams.get('section');
     if (pageParams.get('search') === '1') openSearch();
@@ -343,5 +328,8 @@ const generated = news.generated_at
     } else {
       applyFilters();
     }
+
+    initialiseUserState().then(applyUserState).catch(() => {});
+    onUserStateChange(applyUserState);
   </script>
 </BaseLayout>

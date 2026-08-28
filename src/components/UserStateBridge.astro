@@ -1,0 +1,30 @@
+<script>
+  import { importLegacyUserState, initialiseUserState, onUserStateChange, type LondonNewsUserState } from '../lib/userState';
+
+  const root = document.documentElement;
+
+  function applyState(state: LondonNewsUserState) {
+    root.dataset.theme = state.theme;
+    root.dataset.accent = state.accent;
+    root.dataset.hideRead = state.hideRead ? 'true' : 'false';
+
+    const readSet = new Set(state.readIds.map(String));
+    document.querySelectorAll<HTMLElement>('[data-story-id]').forEach((item) => {
+      item.classList.toggle('is-read-story', readSet.has(String(item.dataset.storyId || '')));
+    });
+
+    window.dispatchEvent(new CustomEvent('london-news-read-state', {
+      detail: { readIds: state.readIds, hideRead: state.hideRead }
+    }));
+  }
+
+  initialiseUserState().then(applyState).catch(() => {});
+  onUserStateChange(applyState);
+
+  // Older page scripts still emit this event after touching their legacy mirror.
+  // Import it into IndexedDB so the migration is lossless while those pages are
+  // progressively moved to direct Dexie calls.
+  window.addEventListener('london-news-read-history-changed', () => {
+    importLegacyUserState().then(applyState).catch(() => {});
+  });
+</script>

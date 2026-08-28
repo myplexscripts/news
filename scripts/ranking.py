@@ -3,10 +3,10 @@ from __future__ import annotations
 import hashlib
 import re
 from datetime import datetime, timezone
-from difflib import SequenceMatcher
 from typing import Any
 
 from dateutil import parser as date_parser
+from rapidfuzz import fuzz
 
 CLUSTER_WINDOW_HOURS = 36
 GOOGLE_DISCOVERY_MIN_LOCAL_SCORE = 25
@@ -217,17 +217,26 @@ def story_similarity(left: dict[str, Any], right: dict[str, Any]) -> tuple[float
     union = left_tokens | right_tokens
     jaccard = len(shared) / max(1, len(union))
     containment = len(shared) / max(1, min(len(left_tokens), len(right_tokens)))
-    title_ratio = SequenceMatcher(None, left_title, right_title).ratio()
+
+    # RapidFuzz handles punctuation, reordered phrases and newsroom-specific
+    # headline wording more robustly than SequenceMatcher. Keep both the literal
+    # ratio and token-set ratio so similar vocabulary does not automatically mean
+    # the stories describe the same event.
+    literal_title_ratio = fuzz.ratio(left_title, right_title) / 100.0
+    token_title_ratio = fuzz.token_set_ratio(left_title, right_title) / 100.0
+    title_ratio = max(literal_title_ratio, token_title_ratio * 0.96)
     entity_overlap = bool(_story_entities(left) & _story_entities(right))
 
     # Title wording varies substantially across newsrooms. Containment catches
     # headlines that share the distinctive event terms even when one is longer.
-    score = (title_ratio * 0.48) + (containment * 0.36) + (jaccard * 0.16)
+    score = (title_ratio * 0.48) + (containment * 0.34) + (jaccard * 0.13) + (token_title_ratio * 0.05)
     if entity_overlap:
         score += 0.05
     score = min(1.0, score)
     return score, {
         "title": round(title_ratio, 3),
+        "literal_title": round(literal_title_ratio, 3),
+        "token_title": round(token_title_ratio, 3),
         "containment": round(containment, 3),
         "jaccard": round(jaccard, 3),
         "shared": float(len(shared)),
@@ -247,9 +256,14 @@ def _should_cluster(left: dict[str, Any], right: dict[str, Any]) -> bool:
     # Same-publisher follow-ups are kept separate unless they are effectively
     # duplicate headlines. Cross-publisher coverage can cluster at a lower bar.
     if same_source:
-        return bool(parts.get("title", 0) >= 0.86 or (parts.get("containment", 0) >= 0.82 and shared >= 5))
+        return bool(
+            parts.get("literal_title", 0) >= 0.88
+            or (parts.get("title", 0) >= 0.90 and parts.get("containment", 0) >= 0.78 and shared >= 5)
+        )
 
-    if parts.get("title", 0) >= 0.80 and shared >= 3:
+    if parts.get("literal_title", 0) >= 0.78 and shared >= 3:
+        return True
+    if parts.get("token_title", 0) >= 0.86 and parts.get("containment", 0) >= 0.60 and shared >= 4:
         return True
     if parts.get("containment", 0) >= 0.64 and shared >= 4 and score >= 0.58:
         return True

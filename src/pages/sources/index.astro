@@ -82,48 +82,42 @@ const latestDate = (value) => {
     </section>
   </main>
 
-  <script is:inline>
-    const storageKey = 'london-news-hidden-sources';
+  <script>
+    import { initialiseUserState, onUserStateChange, setSourceHidden, showAllSources } from '../../lib/userState';
+
     const toggles = [...document.querySelectorAll('[data-source-toggle]')];
     const status = document.getElementById('sourcePreferenceStatus');
     const showAllButton = document.getElementById('showAllSources');
+    const knownSources = new Set(toggles.map((toggle) => toggle.dataset.sourceToggle || '').filter(Boolean));
     let hidden = new Set();
 
-    try { hidden = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch { hidden = new Set(); }
-    const knownSources = new Set(toggles.map((toggle) => toggle.dataset.sourceToggle || '').filter(Boolean));
-    hidden = new Set([...hidden].filter((name) => knownSources.has(name)));
-
-    function syncUI() {
+    function syncUI(state) {
+      hidden = new Set((state.hiddenSources || []).filter((name) => knownSources.has(name)));
       toggles.forEach((toggle) => {
-        const isShown = !hidden.has(toggle.dataset.sourceToggle || '');
-        toggle.checked = isShown;
+        const name = toggle.dataset.sourceToggle || '';
+        const isShown = !hidden.has(name);
+        if (toggle instanceof HTMLInputElement) toggle.checked = isShown;
         toggle.closest('.source-preference-card')?.classList.toggle('source-hidden', !isShown);
       });
       const shown = toggles.length - hidden.size;
       if (status) status.textContent = `${Math.max(0, shown)} of ${toggles.length} sources shown`;
-      if (showAllButton) showAllButton.disabled = hidden.size === 0;
-    }
-
-    function save() {
-      localStorage.setItem(storageKey, JSON.stringify([...hidden]));
-      syncUI();
+      if (showAllButton instanceof HTMLButtonElement) showAllButton.disabled = hidden.size === 0;
     }
 
     toggles.forEach((toggle) => {
       toggle.addEventListener('change', () => {
+        if (!(toggle instanceof HTMLInputElement)) return;
         const name = toggle.dataset.sourceToggle || '';
         if (!name) return;
-        if (toggle.checked) hidden.delete(name);
-        else hidden.add(name);
-        save();
+        setSourceHidden(name, !toggle.checked).catch(() => {});
       });
     });
 
     showAllButton?.addEventListener('click', () => {
-      hidden.clear();
-      save();
+      showAllSources().catch(() => {});
     });
 
-    syncUI();
+    initialiseUserState().then(syncUI).catch(() => {});
+    onUserStateChange(syncUI);
   </script>
 </BaseLayout>
