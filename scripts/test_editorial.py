@@ -62,6 +62,31 @@ def main() -> None:
     assert reordered_score >= 0.58
     assert reordered_parts["token_title"] >= reordered_parts["literal_title"]
 
+    # Regression: publishers can write very different summaries even when their
+    # headlines clearly describe the same local event. The headline signal must
+    # not be diluted enough to split this coverage into separate timeline cards.
+    stabbing = [
+        story(
+            "stab-global",
+            "Woman, 73, dies after being stabbed in London, Ont., home invasion",
+            "Global News London",
+            "Police allege a man broke into a London home on Saturday morning and then stabbed and assaulted a 73-year-old woman.",
+        ),
+        story(
+            "stab-lfp",
+            "Woman, 73, dies after being stabbed during break-in at London home",
+            "London Free Press",
+            "A 73-year-old woman has died after she was stabbed during a break-in at a south London home.",
+            hours=1.1,
+        ),
+    ]
+    stabbing_annotated, _ = apply_editorial_intelligence(stabbing, now)
+    stabbing_lookup = {item["id"]: item for item in stabbing_annotated}
+    assert stabbing_lookup["stab-global"]["cluster_id"] == stabbing_lookup["stab-lfp"]["cluster_id"]
+    _, stabbing_parts = story_similarity(stabbing[0], stabbing[1])
+    assert stabbing_parts["title_containment"] >= 0.75
+    assert stabbing_parts["title_shared"] >= 4
+
     print("Editorial intelligence tests passed.")
 
 
