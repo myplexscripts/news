@@ -197,6 +197,66 @@
   .mobile-tab-bar[data-active-index='-1'] .mobile-tab-indicator {
     opacity: 0;
   }
+
+  /* Apple News-inspired Home masthead: title/update share the first row,
+     with a larger, tightly set date directly beneath. */
+  .site-header-home .home-header-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 16px !important;
+    row-gap: 0 !important;
+    align-items: end !important;
+    padding-top: 18px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .site-header-home .brand-area {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: end !important;
+  }
+
+  .site-header-home .brand {
+    min-height: 0 !important;
+    font-size: 30px !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.05em !important;
+    font-weight: 800 !important;
+  }
+
+  /* Mobile header actions already live in the bottom nav. Free this cell for Updated. */
+  .site-header-home .header-actions {
+    display: none !important;
+  }
+
+  .site-header-home .home-meta-row {
+    display: contents !important;
+  }
+
+  .site-header-home .home-header-updated {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    align-self: end !important;
+    justify-self: end !important;
+    min-height: 0 !important;
+    margin: 0 0 1px !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+  }
+
+  .site-header-home .home-header-date {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    margin: 2px 0 0 !important;
+    color: var(--muted) !important;
+    font-size: clamp(44px, 12vw, 54px) !important;
+    line-height: 0.92 !important;
+    letter-spacing: -0.055em !important;
+    font-weight: 800 !important;
+  }
 }
 
 @media (max-width: 390px) {
@@ -207,6 +267,18 @@
   .news-card.card-standard .news-card-media,
   .latest-card-grid .news-card.card-standard .news-card-media {
     min-height: 124px !important;
+  }
+
+  .site-header-home .brand {
+    font-size: 28px !important;
+  }
+
+  .site-header-home .home-header-updated {
+    font-size: 15px !important;
+  }
+
+  .site-header-home .home-header-date {
+    font-size: clamp(42px, 12vw, 50px) !important;
   }
 }
 
