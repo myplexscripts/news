@@ -1,0 +1,168 @@
+/* Home + Latest card refinements */
+
+.news-card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+  align-content: initial !important;
+  justify-content: flex-start !important;
+}
+
+.news-card h3 {
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+
+.news-card-summary {
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+
+.news-card-footer {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: flex-start !important;
+  flex-wrap: wrap !important;
+  gap: 4px 10px !important;
+  margin: 0 !important;
+  color: var(--muted) !important;
+}
+
+.news-card-footer-source {
+  min-width: 0;
+  color: var(--accent) !important;
+  font-weight: 750 !important;
+  line-height: inherit !important;
+}
+
+.news-card.card-featured .news-card-body {
+  justify-content: flex-start !important;
+}
+
+.news-card.card-featured .news-card-footer {
+  margin-top: 14px !important;
+  padding-top: 0 !important;
+}
+
+.news-card.card-featured .news-card-summary {
+  margin-top: 15px !important;
+}
+
+.news-card.card-standard .news-card-footer {
+  margin-top: auto !important;
+  padding-top: 10px !important;
+}
+
+@media (max-width: 760px) {
+  .news-card.card-featured .news-card-body,
+  .latest-card-grid .news-card.card-featured .news-card-body {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .news-card.card-featured h3,
+  .latest-card-grid .news-card.card-featured h3 {
+    margin: 0 !important;
+    text-align: left !important;
+  }
+
+  .news-card.card-featured .news-card-footer,
+  .latest-card-grid .news-card.card-featured .news-card-footer {
+    margin-top: 10px !important;
+    padding-top: 0 !important;
+  }
+
+  .news-card.card-standard,
+  .latest-card-grid .news-card.card-standard {
+    height: auto !important;
+    min-height: 132px !important;
+    grid-template-columns: 132px minmax(0, 1fr) !important;
+    align-items: stretch !important;
+  }
+
+  .news-card.card-standard .news-card-media,
+  .latest-card-grid .news-card.card-standard .news-card-media {
+    width: 132px !important;
+    height: 100% !important;
+    min-width: 132px !important;
+    min-height: 132px !important;
+    align-self: stretch !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .news-card.card-standard .news-card-media img,
+  .latest-card-grid .news-card.card-standard .news-card-media img {
+    height: 100% !important;
+    min-height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .news-card.card-standard .news-card-body,
+  .latest-card-grid .news-card.card-standard .news-card-body {
+    min-height: 132px !important;
+    padding: 13px 14px 12px !important;
+  }
+
+  .news-card.card-standard h3,
+  .latest-card-grid .news-card.card-standard h3 {
+    margin: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
+  .news-card-footer,
+  .news-card-footer-source,
+  .news-card-footer time,
+  .news-card-footer span {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  .news-card-footer {
+    align-items: baseline !important;
+    gap: 0 8px !important;
+    flex-wrap: nowrap !important;
+    white-space: nowrap;
+  }
+
+  .news-card-footer-source {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .news-card-footer time {
+    flex: 0 0 auto;
+    align-self: baseline !important;
+  }
+
+  .news-card-footer span {
+    display: none !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .news-card.card-standard,
+  .latest-card-grid .news-card.card-standard {
+    height: auto !important;
+    min-height: 124px !important;
+    grid-template-columns: 124px minmax(0, 1fr) !important;
+  }
+
+  .news-card.card-standard .news-card-media,
+  .latest-card-grid .news-card.card-standard .news-card-media {
+    width: 124px !important;
+    height: 100% !important;
+    min-width: 124px !important;
+    min-height: 124px !important;
+  }
+
+  .news-card.card-standard .news-card-body,
+  .latest-card-grid .news-card.card-standard .news-card-body {
+    min-height: 124px !important;
+  }
+}
