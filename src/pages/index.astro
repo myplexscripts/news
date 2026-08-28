@@ -23,6 +23,10 @@ const base = import.meta.env.BASE_URL;
 const storyHref = (story) => `${base}story/${story.id}/`;
 const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const logoFor = (name = '') => sourceLogoPath(name, base);
+const displayTitle = (value = '') => {
+  const words = String(value).trim().split(/\s+/).filter(Boolean);
+  return words.length > 15 ? `${words.slice(0, 15).join(' ')}…` : words.join(' ');
+};
 
 const published = (value) => {
   try {
@@ -95,6 +99,8 @@ const generated = news.generated_at
   : 'waiting for refresh';
 ---
 <BaseLayout homeDate={todayLabel} homeUpdated={generated}>
+  <link rel="stylesheet" href={`${base}card-refinements.css`} />
+
   <div slot="header-actions" class="header-search desktop-header-search" id="headerSearch">
     <button class="header-search-toggle" id="searchToggle" aria-label="Search news" title="Search news" aria-expanded="false" aria-controls="searchInput">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
@@ -148,6 +154,7 @@ const generated = news.generated_at
             {group.stories.map((story) => {
               const index = storyIndex.get(story.id) ?? 99;
               const timestamp = storyTime(story);
+              const sourceLabel = Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source;
               return (
                 <a
                   class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
@@ -173,15 +180,13 @@ const generated = news.generated_at
                     </div>
                   )}
                   <div class="news-card-body">
-                    <div class:list={["news-card-source", Number(story.cluster_source_count || 1) > 1 && "news-card-source-cluster"]}>
-                      <strong>{Number(story.cluster_source_count || 1) > 1 ? `${story.cluster_source_count} sources` : story.source}</strong>
-                    </div>
-                    <h3>{story.title}</h3>
-                    {story.summary && <p class="news-card-summary">{story.summary}</p>}
+                    <h3 title={story.title}>{displayTitle(story.title)}</h3>
                     <div class="news-card-footer">
+                      <strong class="news-card-footer-source">{sourceLabel}</strong>
                       <time datetime={timestamp}>{published(timestamp)}</time>
                       {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
                     </div>
+                    {story.summary && <p class="news-card-summary">{story.summary}</p>}
                   </div>
                 </a>
               );
