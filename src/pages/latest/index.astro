@@ -2,24 +2,18 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import news from '../../../data/news.json';
 import { sourceLogoPath } from '../../lib/sourceLogos';
+import { collapseTimelineStories } from '../../lib/timelineStories';
 
 const base = import.meta.env.BASE_URL;
-const storyTime = (story) => story.cluster_latest_published || story.published;
-const representatives = (news.stories || [])
-  .sort((a, b) => new Date(storyTime(b)).getTime() - new Date(storyTime(a)).getTime())
-  .slice(0, 140);
+const storyTime = (story) => story.published;
+const representatives = collapseTimelineStories(news.stories || []).slice(0, 140);
+const storyIndex = new Map(representatives.map((story, index) => [story.id, index]));
 
 const storyHref = (story) => `${base}story/${story.id}/`;
 const logoFor = (name = '') => sourceLogoPath(name, base);
 const displayTitle = (value = '') => {
   const words = String(value).trim().split(/\s+/).filter(Boolean);
-  return words.length > 15 ? `${words.slice(0, 15).join(' ')}…` : words.join(' ');
-};
-const coverageLabel = (story) => {
-  const sources = [...new Set(story.cluster_sources || [story.source])].filter((source) => source && source !== story.source);
-  if (!sources.length) return '';
-  const more = sources.length - 1;
-  return `Also reported by ${sources[0]}${more > 0 ? ` + ${more} ${more === 1 ? 'other' : 'others'}` : ''}`;
+  return words.length > 20 ? `${words.slice(0, 20).join(' ')}…` : words.join(' ');
 };
 
 const published = (value) => {
@@ -98,7 +92,7 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
             </header>
             {group.stories.map((story) => {
               const timestamp = storyTime(story);
-              const coverage = coverageLabel(story);
+              const index = storyIndex.get(story.id) ?? 99;
               return (
                 <a
                   class:list={["news-card", "card-standard", "searchable", !story.image && "no-image"]}
@@ -115,11 +109,13 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
                         class="news-card-photo"
                         src={story.card_image ? `${base}${story.card_image}` : story.image}
                         alt={story.image_alt || ''}
-                        loading="lazy"
+                        loading={index < 3 ? 'eager' : 'lazy'}
+                        fetchpriority={index < 3 ? 'high' : 'auto'}
+                        decoding="async"
                         referrerpolicy="no-referrer"
                         style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
                       />
-                      {logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}
+                      {logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" decoding="async" />}
                     </div>
                   )}
                   <div class="news-card-body">
@@ -129,7 +125,6 @@ const dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
                       <time datetime={timestamp}>{published(timestamp)}</time>
                       {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
                     </div>
-                    {coverage && <p class="news-card-coverage"><i class="ph ph-stack-simple" aria-hidden="true"></i><span>{coverage}</span></p>}
                     {story.summary && <p class="news-card-summary">{story.summary}</p>}
                   </div>
                 </a>
