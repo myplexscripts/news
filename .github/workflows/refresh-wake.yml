@@ -36,4 +36,4 @@ jobs:
           echo "Waiting ${delay}s before the next news refresh."
           sleep "$delay"
           echo "Dispatching the next refresh."
-          gh workflow run refresh.yml --ref main
+          gh workflow run refresh.yml --repo myplexscripts/news --ref main
