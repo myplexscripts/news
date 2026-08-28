@@ -31,6 +31,7 @@ const onAdmin = path.includes('/admin/');
 const onHome = !onSources && !onSections && !onSearch && !onSettings && !onAdmin && !path.includes('/latest/') && !path.includes('/story/');
 const hasHeaderActions = Astro.slots.has('header-actions');
 const showHomeMasthead = onHome && Boolean(homeDate);
+const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 3 : onSettings ? 4 : -1;
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="light" data-accent="green" data-hide-read="false">
@@ -111,11 +112,13 @@ const showHomeMasthead = onHome && Boolean(homeDate);
       <span>Times shown in London, Ontario</span>
     </footer>
 
-    <nav class="mobile-tab-bar" aria-label="Primary navigation">
+    <nav class="mobile-tab-bar" aria-label="Primary navigation" data-active-index={String(mobileTabIndex)}>
+      <span class="mobile-tab-indicator" aria-hidden="true"></span>
       <a
         id="mobileHomeTab"
         class:list={["mobile-tab", "mobile-home-tab", onHome && "active"]}
         href={base}
+        data-mobile-tab-index="0"
         aria-label="Home"
         title="Home"
         aria-current={onHome ? 'page' : undefined}
@@ -126,6 +129,7 @@ const showHomeMasthead = onHome && Boolean(homeDate);
       <a
         class:list={["mobile-tab", onSections && "active"]}
         href={`${base}sections/`}
+        data-mobile-tab-index="1"
         aria-label="Sections"
         title="Sections"
         aria-current={onSections ? 'page' : undefined}
@@ -136,6 +140,7 @@ const showHomeMasthead = onHome && Boolean(homeDate);
       <a
         class:list={["mobile-tab", onSearch && "active"]}
         href={`${base}search/`}
+        data-mobile-tab-index="2"
         aria-label="Search"
         title="Search"
         aria-current={onSearch ? 'page' : undefined}
@@ -146,6 +151,7 @@ const showHomeMasthead = onHome && Boolean(homeDate);
       <a
         class:list={["mobile-tab", onSources && "active"]}
         href={`${base}sources/`}
+        data-mobile-tab-index="3"
         aria-label="Sources"
         title="Sources"
         aria-current={onSources ? 'page' : undefined}
@@ -153,15 +159,51 @@ const showHomeMasthead = onHome && Boolean(homeDate);
         <i class={onSources ? 'ph-fill ph-buildings' : 'ph ph-buildings'} aria-hidden="true"></i>
         <span class="visually-hidden">Sources</span>
       </a>
+      <a
+        class:list={["mobile-tab", onSettings && "active"]}
+        href={`${base}settings/`}
+        data-mobile-tab-index="4"
+        aria-label="Settings"
+        title="Settings"
+        aria-current={onSettings ? 'page' : undefined}
+      >
+        <i class={onSettings ? 'ph-fill ph-gear-six' : 'ph ph-gear-six'} aria-hidden="true"></i>
+        <span class="visually-hidden">Settings</span>
+      </a>
     </nav>
 
     <UserStateBridge />
 
     <script is:inline>
+      const mobileTabBar = document.querySelector('.mobile-tab-bar');
+      const mobileTabs = [...document.querySelectorAll('[data-mobile-tab-index]')];
       const mobileHomeTab = document.getElementById('mobileHomeTab');
       const mobileHomeIcon = document.getElementById('mobileHomeIcon');
       const homeIconClass = mobileHomeIcon?.className || 'ph ph-house';
       const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+
+      if (mobileTabBar) {
+        const serverIndex = Number(mobileTabBar.dataset.activeIndex ?? -1);
+        const storedIndex = Number(sessionStorage.getItem('london-news-mobile-tab-index'));
+        const storedIsValid = Number.isInteger(storedIndex) && storedIndex >= 0 && storedIndex < mobileTabs.length;
+        const targetIndex = serverIndex >= 0 ? serverIndex : storedIsValid ? storedIndex : 0;
+        const startIndex = storedIsValid ? storedIndex : targetIndex;
+
+        mobileTabBar.dataset.activeIndex = String(targetIndex);
+        mobileTabBar.style.setProperty('--indicator-index', String(startIndex));
+
+        if (serverIndex < 0 && mobileTabs[targetIndex]) {
+          mobileTabs[targetIndex].classList.add('context-active');
+        }
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            mobileTabBar.style.setProperty('--indicator-index', String(targetIndex));
+          });
+        });
+
+        sessionStorage.setItem('london-news-mobile-tab-index', String(targetIndex));
+      }
 
       function syncMobileHomeAction() {
         if (!mobileHomeTab || !mobileHomeIcon) return;
