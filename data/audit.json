@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 12,
-  "generated_at": "2026-08-28T12:01:57.980969+00:00",
-  "generated_at_london": "2026-08-28T08:01:57.980969-04:00",
-  "news_generated_at": "2026-08-28T11:58:44.624100+00:00",
+  "generated_at": "2026-08-28T12:25:27.146635+00:00",
+  "generated_at_london": "2026-08-28T08:25:27.146635-04:00",
+  "news_generated_at": "2026-08-28T12:22:36.389300+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 121,
     "source_count": 9,
     "audited_story_count": 61,
-    "pass_story_count": 59,
-    "review_story_count": 2,
+    "pass_story_count": 58,
+    "review_story_count": 3,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 2,
+    "warning_issue_count": 3,
     "info_issue_count": 21,
     "healthy_source_count": 6,
     "review_source_count": 1,
@@ -27,10 +27,10 @@
       "collector_status": "healthy",
       "profile": "cbc",
       "sample_size": 10,
-      "pass": 8,
-      "review": 2,
+      "pass": 7,
+      "review": 3,
       "fail": 0,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
       "average_words": 445,
       "average_quality": 75,
@@ -39,12 +39,12 @@
         "reader:cbc:lite": 10
       },
       "critical_issues": 0,
-      "warning_issues": 2,
+      "warning_issues": 3,
       "info_issues": 0,
       "latest_published": "2026-08-28T11:50:02+00:00",
       "found_this_run": 17,
       "tracked": 18,
-      "last_scrape": "2026-08-28T11:58:22.189007+00:00",
+      "last_scrape": "2026-08-28T12:00:33.533982+00:00",
       "last_error": ""
     },
     {
@@ -172,7 +172,7 @@
       "latest_published": "2026-08-28T10:00:01+00:00",
       "found_this_run": 30,
       "tracked": 28,
-      "last_scrape": "2026-08-28T11:58:30.543569+00:00",
+      "last_scrape": "2026-08-28T12:22:22.166922+00:00",
       "last_error": ""
     },
     {
@@ -250,7 +250,7 @@
       "latest_published": "2026-08-28T04:00:00+00:00",
       "found_this_run": 10,
       "tracked": 13,
-      "last_scrape": "2026-08-28T11:43:29.213977+00:00",
+      "last_scrape": "2026-08-28T11:58:49.705432+00:00",
       "last_error": ""
     }
   ],
@@ -282,6 +282,21 @@
       "published": "2026-08-28T09:00:00+00:00",
       "content_status": "full",
       "word_count": 403,
+      "quality_score": 75,
+      "extraction_method": "reader:cbc:lite"
+    },
+    {
+      "severity": "warning",
+      "code": "invalid_hero_image",
+      "message": "Hero image URL is invalid.",
+      "detail": "cache/news/25cfa12eeb2e0e911177.webp",
+      "story_id": "ef69eae2548ca201",
+      "source": "CBC News London",
+      "title": "Morning fog advisory in London and region",
+      "url": "https://www.cbc.ca/news/canada/london/morning-fog-advisory-in-london-and-region-9.7323832",
+      "published": "2026-08-28T11:50:02+00:00",
+      "content_status": "full",
+      "word_count": 130,
       "quality_score": 75,
       "extraction_method": "reader:cbc:lite"
     },
@@ -608,21 +623,28 @@
       "title": "Morning fog advisory in London and region",
       "url": "https://www.cbc.ca/news/canada/london/morning-fog-advisory-in-london-and-region-9.7323832",
       "published": "2026-08-28T11:50:02+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
+      "audit_status": "review",
+      "audit_score": 88,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 1,
       "info_count": 0,
       "content_status": "full",
-      "word_count": 131,
+      "word_count": 130,
       "paragraph_count": 8,
       "inline_image_count": 0,
       "quality_score": 75,
       "quality_grade": "good",
       "extraction_method": "reader:cbc:lite",
       "extraction_profile": "cbc",
-      "local_score": 30,
-      "issues": []
+      "local_score": 100,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "invalid_hero_image",
+          "message": "Hero image URL is invalid.",
+          "detail": "cache/news/25cfa12eeb2e0e911177.webp"
+        }
+      ]
     },
     {
       "id": "2d0e8057b8a75a1f",
