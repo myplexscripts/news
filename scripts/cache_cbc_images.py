@@ -151,10 +151,6 @@ def fetch_bytes_with_requests(url: str) -> bytes:
 
 
 def fetch_bytes_via_proxy(url: str) -> bytes:
-    # GitHub-hosted runners intermittently cannot reach CBC's image CDN. wsrv.nl
-    # fetches the origin image from a different network, then this workflow saves
-    # the returned bytes into our own GitHub Pages cache. The live site never
-    # depends on the proxy URL.
     proxy_url = f"https://wsrv.nl/?url={quote(url, safe='')}"
     try:
         response = requests.get(
@@ -168,10 +164,7 @@ def fetch_bytes_via_proxy(url: str) -> bytes:
         )
         if response.status_code == 200 and len(response.content) >= 1000:
             return response.content
-        print(
-            f"CBC image proxy miss: HTTP {response.status_code} for {url}",
-            file=sys.stderr,
-        )
+        print(f"CBC image proxy miss: HTTP {response.status_code} for {url}", file=sys.stderr)
     except Exception as exc:
         print(f"CBC image proxy miss: {type(exc).__name__} for {url}", file=sys.stderr)
     return b""
@@ -188,8 +181,6 @@ def cache_image(url: str) -> str:
         if existing.exists() and existing.stat().st_size >= 1000:
             return f"{CACHE_REL_ROOT}{existing.name}"
 
-    # Try the cache proxy first because CBC's image CDN is the path known to
-    # stall on GitHub-hosted runners. Direct fetches remain as fallbacks.
     data = fetch_bytes_via_proxy(url)
     if not data:
         data = fetch_bytes_with_curl(url)
@@ -233,6 +224,8 @@ def image_score(url: str) -> int:
         score += 20
     if "/ais/" in path:
         score += 15
+    if "resize%3d76" in lowered or "resize=76" in lowered:
+        score -= 80
     return score
 
 
@@ -319,8 +312,13 @@ def prepare_record(record: dict[str, Any]) -> bool:
         changed = True
 
     if not image and card:
-        record["image"] = card
-        image = card
+        if is_remote_url(card):
+            record["image"] = card
+            record["card_image"] = ""
+            image = card
+        else:
+            record["image"] = card
+            image = card
         changed = True
     if not card and image and not is_remote_url(image):
         record["card_image"] = image
@@ -357,10 +355,13 @@ def rewrite_record(record: dict[str, Any], cached: dict[str, str], discovered: s
             card = replacement
             rewritten += 1
             changed = True
-        elif is_remote_cbc_image(image):
-            # Avoid the homepage treating an absolute card URL as a local path.
+        else:
+            if not clean_text(record.get("image")):
+                record["image"] = card
             record["card_image"] = ""
+            image = clean_text(record.get("image"))
             card = ""
+            record["cbc_image_hotlink"] = True
             changed = True
 
     if not usable_hero(record) and discovered:
@@ -371,7 +372,16 @@ def rewrite_record(record: dict[str, Any], cached: dict[str, str], discovered: s
             image = replacement
             card = replacement
             rewritten += 1
-            changed = True
+        else:
+            # The runner may be unable to copy i.cbc.ca even though the URL is
+            # valid. Keep the discovered origin URL so the visitor's browser can
+            # render it directly rather than publishing an image-less story.
+            record["image"] = discovered
+            record["card_image"] = ""
+            image = discovered
+            card = ""
+            record["cbc_image_hotlink"] = True
+        changed = True
 
     blocks = record.get("content_blocks")
     if isinstance(blocks, list):
@@ -396,12 +406,14 @@ def rewrite_record(record: dict[str, Any], cached: dict[str, str], discovered: s
                 rewritten += 1
                 changed = True
             else:
-                removed += 1
-                changed = True
+                # Keep the origin URL as a browser fallback. Dropping the block
+                # guarantees a missing image, while a direct CBC URL can still
+                # render normally for visitors outside GitHub's runner network.
+                rewritten_blocks.append(block)
+                record["cbc_image_hotlink"] = True
         if rewritten_blocks != blocks:
             record["content_blocks"] = rewritten_blocks
 
-    # One final synchronization pass after cache/discovery rewrites.
     if prepare_record(record):
         changed = True
 
@@ -497,8 +509,6 @@ def main() -> int:
         images_rewritten += rewritten
         images_removed += removed
 
-    # A record can be touched in both preparation and rewrite; report unique changed records approximately,
-    # but always write whenever either phase changed anything.
     if records_updated:
         NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -506,10 +516,12 @@ def main() -> int:
     failed_count = len(urls) - cached_count
     discovered_count = sum(1 for value in discovered_by_record.values() if value)
     hero_count = sum(1 for record in records if usable_hero(record))
+    hotlink_count = sum(1 for record in records if record.get("cbc_image_hotlink") and usable_hero(record))
     print(
         f"CBC image cache: {cached_count}/{len(urls)} remote image(s) cached; "
         f"{discovered_count}/{len(discovery_targets)} missing hero(s) rediscovered; "
         f"{hero_count}/{len(records)} CBC record(s) now have a hero; "
+        f"{hotlink_count} browser fallback hero(s); "
         f"{images_rewritten} image reference(s) rewritten; "
         f"{images_removed} broken inline image block(s) removed; {failed_count} download(s) failed"
     )
