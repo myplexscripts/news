@@ -1,0 +1,31 @@
+@media (max-width: 760px) {
+  /* Keep source + date anchored to the left edge under every headline. */
+  .news-card .news-card-body,
+  .latest-card-grid .news-card .news-card-body {
+    grid-template-columns: max-content max-content minmax(0, 1fr) !important;
+    justify-content: start !important;
+    text-align: left !important;
+  }
+
+  .news-card .news-card-source,
+  .latest-card-grid .news-card .news-card-source {
+    grid-column: 1 !important;
+    justify-self: start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .news-card .news-card-footer,
+  .latest-card-grid .news-card .news-card-footer {
+    grid-column: 2 !important;
+    justify-self: start !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  /* Publisher logos are reserved for the first three large mobile cards. */
+  .news-card.card-standard .card-source-logo,
+  .latest-card-grid .news-card.card-standard .card-source-logo {
+    display: none !important;
+  }
+}
