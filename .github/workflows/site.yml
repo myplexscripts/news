@@ -61,6 +61,29 @@ jobs:
       - name: Build static site
         run: npm run build
 
+      - name: Stamp deploy version
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          run_number = int(os.environ.get("GITHUB_RUN_NUMBER", "0"))
+          version = f"v{run_number:03d}"
+          marker = f'<span class="site-footer-version">update {version}</span>'
+
+          updated = 0
+          for path in Path("dist").rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              if "site-footer-version" in text or "</footer>" not in text:
+                  continue
+              text = text.replace("</footer>", f"{marker}</footer>", 1)
+              path.write_text(text, encoding="utf-8")
+              updated += 1
+
+          print(f"Stamped update {version} into {updated} page(s)")
+          PY
+
       - name: Upload dependency audit
         uses: actions/upload-artifact@v4
         with:
