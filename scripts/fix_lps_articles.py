@@ -92,15 +92,20 @@ def strip_title_prefix(text: str, title: str) -> str:
     title = clean_text(title)
     if not text or not title:
         return text
-    normalized_text = key(text)
-    normalized_title = key(title)
-    if normalized_text == normalized_title:
-        return ""
-    if normalized_text.startswith(normalized_title + " "):
-        title_words = len(normalized_title.split())
-        words = text.split()
-        return clean_text(" ".join(words[title_words:]))
-    return text
+
+    token_pattern = re.compile(r"[A-Za-z0-9]+(?:[’'][A-Za-z0-9]+)?")
+    text_tokens = list(token_pattern.finditer(text))
+    title_tokens = [match.group(0).lower() for match in token_pattern.finditer(title)]
+    if not title_tokens or len(text_tokens) < len(title_tokens):
+        return text
+
+    leading = [match.group(0).lower() for match in text_tokens[: len(title_tokens)]]
+    if leading != title_tokens:
+        return text
+
+    end = text_tokens[len(title_tokens) - 1].end()
+    remainder = text[end:].lstrip(" \t|:;,.!?-–—")
+    return clean_text(remainder)
 
 
 def parse_article(html: str, url: str) -> dict[str, Any] | None:
@@ -144,9 +149,6 @@ def parse_article(html: str, url: str) -> dict[str, Any] | None:
                 elif node.name in {"h2", "h3"}:
                     candidate = strip_title_prefix(text, title)
                     if candidate and not is_taxonomy(candidate):
-                        # Police releases often put a useful subheading such as
-                        # "Seeking the public's assistance" immediately above the
-                        # first LONDON, ON paragraph. Keep it, but never a category.
                         if len(candidate) <= 140:
                             blocks.append({"type": "heading", "level": 3, "text": candidate})
                     continue
@@ -190,8 +192,6 @@ def parse_article(html: str, url: str) -> dict[str, Any] | None:
             continue
         seen_images.add(photo_url)
         photos.append({"url": photo_url, "alt": alt, "caption": ""})
-        # First publisher photo becomes the hero. Additional photos retain their
-        # article position as inline blocks.
         if len(photos) > 1 and started:
             blocks.append({"type": "image", "url": photo_url, "alt": alt, "caption": ""})
 
