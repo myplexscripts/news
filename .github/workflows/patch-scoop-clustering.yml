@@ -1,0 +1,180 @@
+name: Patch Scoop clustering once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-scoop-clustering.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Patch production clustering and regression test
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          scoop_path = Path('scripts/run_scoop.py')
+          text = scoop_path.read_text(encoding='utf-8')
+          old_similarity = '''    left_tokens = ranking._tokens(_similarity_text(left))
+              right_tokens = ranking._tokens(_similarity_text(right))
+              shared = left_tokens & right_tokens
+              union = left_tokens | right_tokens
+              jaccard = len(shared) / max(1, len(union))
+              containment = len(shared) / max(1, min(len(left_tokens), len(right_tokens)))
+              title_ratio = SequenceMatcher(None, left_title, right_title).ratio()
+              entity_overlap = bool(ranking._story_entities(left) & ranking._story_entities(right))
+              score = (title_ratio * 0.48) + (containment * 0.36) + (jaccard * 0.16)
+              if entity_overlap:
+                  score += 0.05
+              return min(1.0, score), {
+                  "title": round(title_ratio, 3), "containment": round(containment, 3),
+                  "jaccard": round(jaccard, 3), "shared": float(len(shared)),
+                  "entity": 1.0 if entity_overlap else 0.0,
+              }
+          '''
+          new_similarity = '''    left_tokens = ranking._tokens(_similarity_text(left))
+              right_tokens = ranking._tokens(_similarity_text(right))
+              shared = left_tokens & right_tokens
+              union = left_tokens | right_tokens
+              jaccard = len(shared) / max(1, len(union))
+              containment = len(shared) / max(1, min(len(left_tokens), len(right_tokens)))
+
+              # Preserve a headline-only signal so very different article bodies do
+              # not erase an otherwise distinctive cross-publisher event match.
+              left_title_tokens = ranking._tokens(str(left.get("title") or ""))
+              right_title_tokens = ranking._tokens(str(right.get("title") or ""))
+              title_shared = left_title_tokens & right_title_tokens
+              title_containment = len(title_shared) / max(1, min(len(left_title_tokens), len(right_title_tokens)))
+              literal_title_ratio = SequenceMatcher(None, left_title, right_title).ratio()
+              token_title_ratio = ranking.fuzz.token_set_ratio(left_title, right_title) / 100.0
+              title_ratio = max(literal_title_ratio, token_title_ratio * 0.96)
+              entity_overlap = bool(ranking._story_entities(left) & ranking._story_entities(right))
+              score = (title_ratio * 0.48) + (containment * 0.36) + (jaccard * 0.16)
+              if entity_overlap:
+                  score += 0.05
+              return min(1.0, score), {
+                  "title": round(title_ratio, 3),
+                  "literal_title": round(literal_title_ratio, 3),
+                  "token_title": round(token_title_ratio, 3),
+                  "containment": round(containment, 3),
+                  "jaccard": round(jaccard, 3),
+                  "shared": float(len(shared)),
+                  "title_containment": round(title_containment, 3),
+                  "title_shared": float(len(title_shared)),
+                  "entity": 1.0 if entity_overlap else 0.0,
+              }
+          '''
+          old_should = '''    score, parts = _body_aware_story_similarity(left, right)
+              shared = int(parts.get("shared", 0))
+              same_source = ranking._clean(left.get("source")) == ranking._clean(right.get("source"))
+              if same_source:
+                  return bool(parts.get("title", 0) >= 0.86 or (parts.get("containment", 0) >= 0.82 and shared >= 5))
+              if parts.get("title", 0) >= 0.80 and shared >= 3:
+                  return True
+              if parts.get("containment", 0) >= 0.64 and shared >= 4 and score >= 0.58:
+                  return True
+              if parts.get("entity", 0) and shared >= 4 and score >= 0.60:
+                  return True
+              return bool(delta_hours <= 30 and shared >= 4 and parts.get("containment", 0) >= 0.60)
+          '''
+          new_should = '''    score, parts = _body_aware_story_similarity(left, right)
+              shared = int(parts.get("shared", 0))
+              title_shared = int(parts.get("title_shared", 0))
+              same_source = ranking._clean(left.get("source")) == ranking._clean(right.get("source"))
+              if same_source:
+                  return bool(parts.get("literal_title", 0) >= 0.86 or (parts.get("containment", 0) >= 0.82 and shared >= 5))
+              if parts.get("literal_title", 0) >= 0.80 and shared >= 3:
+                  return True
+              if (
+                  parts.get("token_title", 0) >= 0.84
+                  and parts.get("title_containment", 0) >= 0.72
+                  and title_shared >= 4
+              ):
+                  return True
+              if parts.get("containment", 0) >= 0.64 and shared >= 4 and score >= 0.58:
+                  return True
+              if parts.get("entity", 0) and shared >= 4 and score >= 0.60:
+                  return True
+              return bool(delta_hours <= 30 and shared >= 4 and parts.get("containment", 0) >= 0.60)
+          '''
+          if old_similarity not in text or old_should not in text:
+              raise SystemExit('Expected Scoop clustering blocks not found')
+          text = text.replace(old_similarity, new_similarity, 1).replace(old_should, new_should, 1)
+          scoop_path.write_text(text, encoding='utf-8')
+
+          test_path = Path('scripts/test_scoop_runtime.py')
+          tests = test_path.read_text(encoding='utf-8')
+          anchor = '\ndef test_cbc_curl_fallback() -> None:\n'
+          regression = '''
+          def test_body_aware_cluster_keeps_strong_cross_publisher_headlines() -> None:
+              global_story = make_story(
+                  "stab-global",
+                  "Woman, 73, dies after being stabbed in London, Ont., home invasion",
+                  "Global News London",
+                  "Police allege a man broke into a London home on Saturday morning and then stabbed and assaulted a 73-year-old woman.",
+                  paragraphs=[
+                      "Police allege a man broke into a London home Saturday morning.",
+                      "The 73-year-old woman later died after being stabbed and assaulted.",
+                  ],
+                  hours=1,
+              )
+              lfp_story = make_story(
+                  "stab-lfp",
+                  "Woman, 73, dies after being stabbed during break-in at London home: Police",
+                  "London Free Press",
+                  "A woman died after a south London break-in, according to police.",
+                  paragraphs=[
+                      "A 73-year-old woman died following a break-in at a London home.",
+                      "Police said the investigation remains ongoing.",
+                  ],
+                  hours=1.2,
+              )
+              _, parts = run_scoop._body_aware_story_similarity(global_story, lfp_story)
+              assert parts["token_title"] >= 0.84
+              assert parts["title_containment"] >= 0.72
+              assert parts["title_shared"] >= 4
+              assert run_scoop._body_aware_should_cluster(global_story, lfp_story)
+
+
+          '''
+          if 'def test_body_aware_cluster_keeps_strong_cross_publisher_headlines' not in tests:
+              if anchor not in tests:
+                  raise SystemExit('Expected test insertion point not found')
+              tests = tests.replace(anchor, '\n' + regression + 'def test_cbc_curl_fallback() -> None:\n', 1)
+              main_anchor = '''    test_body_aware_cluster_uses_deeper_release_context()\n    print("PASS test_body_aware_cluster_uses_deeper_release_context")\n'''
+              main_insert = main_anchor + '''    test_body_aware_cluster_keeps_strong_cross_publisher_headlines()\n    print("PASS test_body_aware_cluster_keeps_strong_cross_publisher_headlines")\n'''
+              if main_anchor not in tests:
+                  raise SystemExit('Expected test main block not found')
+              tests = tests.replace(main_anchor, main_insert, 1)
+          test_path.write_text(tests, encoding='utf-8')
+          PY
+
+      - name: Run clustering safeguards
+        run: |
+          python scripts/test_scoop_runtime.py
+          python scripts/test_editorial.py
+
+      - name: Commit production fix and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/patch-scoop-clustering.yml
+          git add scripts/run_scoop.py scripts/test_scoop_runtime.py
+          git commit -m "Fix production cross-publisher clustering"
+          git push origin HEAD:main
