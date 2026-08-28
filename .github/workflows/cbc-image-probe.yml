@@ -1,4 +1,4 @@
-name: Probe CBC image URL variants
+name: Validate CBC image repair
 
 on:
   push:
@@ -9,41 +9,44 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect CBC image variants
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Repair stale CBC image refs
+        run: python scripts/repair_cbc_image_refs.py
+
+      - name: Run CBC cache
+        run: python scripts/cache_cbc_images.py
+
+      - name: Verify noise complaint story image
         shell: bash
         run: |
-          set -euo pipefail
           python3 - <<'PY'
-          import html, re, urllib.parse, urllib.request
+          import json
+          from pathlib import Path
+          from urllib.parse import urlparse
 
-          story='https://www.cbc.ca/news/canada/london/londoners-will-be-able-to-file-noise-complaints-online-starting-next-week-9.7323135'
-          reader='https://r.jina.ai/http://' + story.removeprefix('https://')
-          req=urllib.request.Request(reader, headers={'User-Agent':'LondonNews/1.0','X-Retain-Images':'all','X-With-Images-Summary':'all'})
-          text=urllib.request.urlopen(req, timeout=30).read().decode('utf-8','replace')
-          urls=[]
-          for raw in re.findall(r'!\[[^\]]*\]\((https?://[^)]+)\)', text, re.I):
-              u=html.unescape(raw.strip())
-              if urllib.parse.urlparse(u).netloc.lower()=='i.cbc.ca' and u not in urls:
-                  urls.append(u)
-          print('CBC URLS', len(urls))
-          for i,u in enumerate(urls[:8]):
-              print(f'URL{i}: {u}')
-
-          def test(label, url):
-              try:
-                  r=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.cbc.ca/','Accept':'image/*,*/*;q=0.8'})
-                  with urllib.request.urlopen(r, timeout=20) as resp:
-                      data=resp.read(2048)
-                      print(label, 'OK', resp.status, resp.headers.get('Content-Type'), 'sample=',len(data), 'final=',resp.geturl())
-              except Exception as exc:
-                  print(label, 'FAIL', type(exc).__name__, str(exc)[:180])
-
-          if urls:
-              original=urls[0]
-              parsed=urllib.parse.urlparse(original)
-              clean=urllib.parse.urlunparse(parsed._replace(query='',fragment=''))
-              proxy='https://wsrv.nl/?url='+urllib.parse.quote(clean,safe='')
-              test('ORIGINAL', original)
-              test('CLEAN', clean)
-              test('PROXY-CLEAN', proxy)
+          payload=json.loads(Path('data/news.json').read_text(encoding='utf-8'))
+          story=next(s for s in payload.get('stories',[]) if s.get('id')=='36b41022df70e1e7')
+          image=str(story.get('image') or '')
+          card=str(story.get('card_image') or '')
+          print('IMAGE:', image)
+          print('CARD:', card)
+          print('CACHED:', story.get('cbc_images_cached'))
+          print('HOTLINK:', story.get('cbc_image_hotlink'))
+          assert image != 'cache/news/25cfa12eeb2e0e911177.webp'
+          assert image, 'CBC story still has no hero image'
+          if image.startswith(('http://','https://')):
+              assert urlparse(image).netloc.lower() == 'i.cbc.ca', image
+          else:
+              local=image
+              if local.startswith('/news/'):
+                  local=local[len('/news/'):]
+              local=local.lstrip('/')
+              path=Path('public') / local
+              print('LOCAL PATH:', path, 'exists=', path.exists(), 'size=', path.stat().st_size if path.exists() else 0)
+              assert path.exists() and path.stat().st_size >= 1000
           PY
