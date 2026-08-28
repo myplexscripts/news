@@ -25,9 +25,6 @@ STOPWORDS = {
     "report", "reports", "reported", "official", "officials", "former", "downtown", "area",
 }
 
-# Strong London / Middlesex identifiers. We intentionally score phrases instead of
-# relying on the word "London" alone so Google-discovered generic Ontario stories
-# do not dominate the local feed.
 LOCAL_TERMS: tuple[tuple[int, str, tuple[str, ...]], ...] = (
     (35, "London, Ontario", ("london ontario", "london ont", "london on", "london-area", "london area", "londoner", "londoners")),
     (30, "City of London", ("city of london", "london city council", "london city hall", "london mayor")),
@@ -63,8 +60,6 @@ NEGATIVE_TERMS: tuple[tuple[int, str, tuple[str, ...]], ...] = (
 )
 
 SOURCE_PRIORS = {
-    # Publisher identity is a prior, not proof that every story is London-specific.
-    # Explicit London entities in the article still do most of the scoring work.
     "London Police Service": 55,
     "London Fire Department": 55,
     "City of London Newsroom": 55,
@@ -119,9 +114,6 @@ def _phrase_hits(text: str, phrases: tuple[str, ...]) -> list[str]:
 def local_relevance(story: dict[str, Any]) -> tuple[int, list[str]]:
     title = _clean(story.get("title"))
     summary = _clean(story.get("summary"))
-    # First article paragraphs help identify local stories whose headline assumes
-    # the reader already knows the geography, but do not let a long article spam
-    # the score with repeated place names.
     body = " ".join(_clean(p) for p in (story.get("paragraphs") or [])[:5])
     text = f"{title} {summary} {body}"
 
@@ -135,17 +127,15 @@ def local_relevance(story: dict[str, Any]) -> tuple[int, list[str]]:
     for weight, label, phrases in LOCAL_TERMS:
         if label in seen_labels:
             continue
-        hits = _phrase_hits(text, phrases)
-        if hits:
-            # Multiple aliases for the same entity do not compound the score.
+        if _phrase_hits(text, phrases):
             positive_total += weight
             seen_labels.add(label)
             reasons.append((weight, f"{label} +{weight}"))
 
-    # A bare "London" is useful only when no stronger London phrase was found.
-    # It gets a modest boost because Google News can surface London, England too.
     lowered = _key(text)
-    if "london" in lowered.split() and not any(label in seen_labels for label in ("London, Ontario", "City of London", "London Police", "London Fire")):
+    if "london" in lowered.split() and not any(
+        label in seen_labels for label in ("London, Ontario", "City of London", "London Police", "London Fire")
+    ):
         positive_total += 12
         reasons.append((12, "London mention +12"))
 
@@ -189,8 +179,6 @@ def image_quality_score(story: dict[str, Any]) -> int:
     score = 72
     if story.get("image_focus_x") is not None and story.get("image_focus_y") is not None:
         score += 14
-    # Publisher default images are already removed by the collector. A real alt
-    # description is a small signal that the image came from article markup.
     if _clean(story.get("image_alt")):
         score += 8
     return min(100, score)
@@ -218,17 +206,18 @@ def story_similarity(left: dict[str, Any], right: dict[str, Any]) -> tuple[float
     jaccard = len(shared) / max(1, len(union))
     containment = len(shared) / max(1, min(len(left_tokens), len(right_tokens)))
 
-    # RapidFuzz handles punctuation, reordered phrases and newsroom-specific
-    # headline wording more robustly than SequenceMatcher. Keep both the literal
-    # ratio and token-set ratio so similar vocabulary does not automatically mean
-    # the stories describe the same event.
+    # Keep a headline-only overlap signal. Summaries often use very different
+    # wording between publishers and must not erase an otherwise distinctive match.
+    left_title_tokens = _tokens(str(left.get("title") or ""))
+    right_title_tokens = _tokens(str(right.get("title") or ""))
+    title_shared = left_title_tokens & right_title_tokens
+    title_containment = len(title_shared) / max(1, min(len(left_title_tokens), len(right_title_tokens)))
+
     literal_title_ratio = fuzz.ratio(left_title, right_title) / 100.0
     token_title_ratio = fuzz.token_set_ratio(left_title, right_title) / 100.0
     title_ratio = max(literal_title_ratio, token_title_ratio * 0.96)
     entity_overlap = bool(_story_entities(left) & _story_entities(right))
 
-    # Title wording varies substantially across newsrooms. Containment catches
-    # headlines that share the distinctive event terms even when one is longer.
     score = (title_ratio * 0.48) + (containment * 0.34) + (jaccard * 0.13) + (token_title_ratio * 0.05)
     if entity_overlap:
         score += 0.05
@@ -240,6 +229,8 @@ def story_similarity(left: dict[str, Any], right: dict[str, Any]) -> tuple[float
         "containment": round(containment, 3),
         "jaccard": round(jaccard, 3),
         "shared": float(len(shared)),
+        "title_containment": round(title_containment, 3),
+        "title_shared": float(len(title_shared)),
         "entity": 1.0 if entity_overlap else 0.0,
     }
 
@@ -251,10 +242,9 @@ def _should_cluster(left: dict[str, Any], right: dict[str, Any]) -> bool:
 
     score, parts = story_similarity(left, right)
     shared = int(parts.get("shared", 0))
+    title_shared = int(parts.get("title_shared", 0))
     same_source = _clean(left.get("source")) == _clean(right.get("source"))
 
-    # Same-publisher follow-ups are kept separate unless they are effectively
-    # duplicate headlines. Cross-publisher coverage can cluster at a lower bar.
     if same_source:
         return bool(
             parts.get("literal_title", 0) >= 0.88
@@ -262,6 +252,13 @@ def _should_cluster(left: dict[str, Any], right: dict[str, Any]) -> bool:
         )
 
     if parts.get("literal_title", 0) >= 0.78 and shared >= 3:
+        return True
+    # Strong cross-publisher headline matches should survive unrelated summary prose.
+    if (
+        parts.get("token_title", 0) >= 0.84
+        and parts.get("title_containment", 0) >= 0.72
+        and title_shared >= 4
+    ):
         return True
     if parts.get("token_title", 0) >= 0.86 and parts.get("containment", 0) >= 0.60 and shared >= 4:
         return True
@@ -303,18 +300,14 @@ def _ranking(story: dict[str, Any], source_count: int, now: datetime) -> tuple[i
     return max(0, min(100, score)), reasons
 
 
-def apply_editorial_intelligence(stories: list[dict[str, Any]], now: datetime | None = None) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    """Annotate stories with local relevance, event clusters and ranking metadata.
-
-    Stories remain independent records. Clustering only adds metadata, which means
-    article permalinks and source-specific content are never discarded.
-    """
+def apply_editorial_intelligence(
+    stories: list[dict[str, Any]], now: datetime | None = None
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Annotate stories with local relevance, event clusters and ranking metadata."""
     now = now or datetime.now(timezone.utc)
     if not stories:
         return stories, {"clusters": [], "top_story_ids": [], "cluster_count": 0, "multi_source_cluster_count": 0}
 
-    # Always calculate local/image scores before clustering so representative
-    # selection can prefer the best local, readable version of an event.
     for story in stories:
         local, local_reasons = local_relevance(story)
         story["local_score"] = local
@@ -335,7 +328,6 @@ def apply_editorial_intelligence(stories: list[dict[str, Any]], now: datetime | 
         if a != b:
             parent[b] = a
 
-    # Sorted newest-first lets us stop comparing as soon as the time window is exceeded.
     for pos, left_idx in enumerate(ordered_indices):
         left = stories[left_idx]
         left_dt = _dt(left.get("published"))
@@ -359,15 +351,16 @@ def apply_editorial_intelligence(stories: list[dict[str, Any]], now: datetime | 
         oldest = min(member_stories, key=lambda item: (_dt(item.get("published")), str(item.get("id", ""))))
         cluster_seed = str(oldest.get("id") or _key(oldest.get("title")))
         cluster_id = "cluster-" + hashlib.sha1(cluster_seed.encode("utf-8", "ignore")).hexdigest()[:12]
-        sources = list(dict.fromkeys(_clean(item.get("source")) for item in sorted(member_stories, key=lambda item: _dt(item.get("published")), reverse=True) if _clean(item.get("source"))))
+        ordered_members = sorted(member_stories, key=lambda item: _dt(item.get("published")), reverse=True)
+        sources = list(dict.fromkeys(_clean(item.get("source")) for item in ordered_members if _clean(item.get("source"))))
         source_count = len(sources)
-        member_ids = [str(item.get("id")) for item in sorted(member_stories, key=lambda item: _dt(item.get("published")), reverse=True) if item.get("id")]
+        member_ids = [str(item.get("id")) for item in ordered_members if item.get("id")]
 
-        # Ranking is event-level. Use the freshest report and strongest local
-        # evidence in the cluster, while retaining the best-readable article as
-        # the representative that people actually open.
         cluster_local = max(int(item.get("local_score") or 0) for item in member_stories)
-        cluster_published = max((_dt(item.get("published")) for item in member_stories), default=datetime(1970, 1, 1, tzinfo=timezone.utc))
+        cluster_published = max(
+            (_dt(item.get("published")) for item in member_stories),
+            default=datetime(1970, 1, 1, tzinfo=timezone.utc),
+        )
         ranking_proxy = dict(representative)
         ranking_proxy["local_score"] = cluster_local
         ranking_proxy["published"] = cluster_published.isoformat()
@@ -405,10 +398,11 @@ def apply_editorial_intelligence(stories: list[dict[str, Any]], now: datetime | 
 
     cluster_summaries.sort(key=lambda item: (item["rank_score"], _dt(item["published"])), reverse=True)
 
-    # Only representatives compete for the editorial top three. Require a useful
-    # local score so a broadly provincial Google discovery cannot become the lead.
     representative_stories = [story for story in stories if story.get("cluster_representative")]
-    eligible = [story for story in representative_stories if int(story.get("cluster_local_score") or story.get("local_score") or 0) >= TOP_STORY_MIN_LOCAL_SCORE]
+    eligible = [
+        story for story in representative_stories
+        if int(story.get("cluster_local_score") or story.get("local_score") or 0) >= TOP_STORY_MIN_LOCAL_SCORE
+    ]
     eligible.sort(key=lambda item: (int(item.get("rank_score") or 0), _dt(item.get("published"))), reverse=True)
     top_story_ids = [str(story.get("id")) for story in eligible[:3] if story.get("id")]
 
