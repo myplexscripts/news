@@ -13,6 +13,13 @@ export function getStaticPaths() {
 const { story } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const logoFor = (name = '') => sourceLogoPath(name, base);
+const resolveImageSrc = (value = '') => {
+  const src = String(value || '').trim();
+  if (!src) return '';
+  if (/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
+  return `${base}${src}`;
+};
+const heroImage = resolveImageSrc(story.card_image || story.image);
 
 const published = (value) => {
   try {
@@ -184,9 +191,9 @@ const showDeck = Boolean(
           </div>
         </aside>
 
-        {story.image && (
+        {heroImage && (
           <figure class="article-hero article-hero-refined">
-            <img src={story.image} alt={story.image_alt || ''} referrerpolicy="no-referrer" />
+            <img src={heroImage} alt={story.image_alt || ''} referrerpolicy="no-referrer" />
           </figure>
         )}
 
@@ -203,7 +210,7 @@ const showDeck = Boolean(
                   {block.type === 'list' && !block.ordered && <ul>{(block.items || []).map((item) => <li>{item}</li>)}</ul>}
                   {block.type === 'image' && block.url && (
                     <figure class="inline-article-image">
-                      <img src={block.url} alt={block.alt || ''} loading="lazy" referrerpolicy="no-referrer" />
+                      <img src={resolveImageSrc(block.url)} alt={block.alt || ''} loading="lazy" referrerpolicy="no-referrer" />
                       {block.caption && <figcaption>{block.caption}</figcaption>}
                     </figure>
                   )}
