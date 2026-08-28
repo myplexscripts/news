@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v3';
-const ASSET_CACHE = 'london-news-assets-v3';
+const SHELL_CACHE = 'london-news-shell-v4';
+const ASSET_CACHE = 'london-news-assets-v4';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
@@ -16,9 +16,7 @@ self.addEventListener('install', (event) => {
       scopePath('search/'),
       scopePath('latest/'),
       scopePath('settings/'),
-      scopePath('manifest.webmanifest'),
-      scopePath('smart-features.css'),
-      scopePath('card-refinements.css')
+      scopePath('manifest.webmanifest')
     ];
     const cache = await caches.open(SHELL_CACHE);
     await Promise.all(urls.map((url) => cache.add(url).catch(() => null)));
@@ -95,22 +93,15 @@ async function cacheFirst(request) {
   }
 }
 
-async function staleWhileRevalidate(request) {
+async function assetNetworkFirst(request, timeoutMs = 1800) {
   const cache = await caches.open(ASSET_CACHE);
-  const cached = await cache.match(request);
-  const network = fetch(request, { cache: 'no-cache' })
-    .then((response) => {
-      if (response.ok) cache.put(request, response.clone()).catch(() => {});
-      return response;
-    })
-    .catch(() => null);
-
-  if (cached) {
-    network.catch(() => {});
-    return cached;
+  try {
+    const response = await fetchNetwork(request, timeoutMs);
+    if (response?.ok) cache.put(request, response.clone()).catch(() => {});
+    return response;
+  } catch {
+    return (await cache.match(request)) || Response.error();
   }
-
-  return (await network) || Response.error();
 }
 
 self.addEventListener('fetch', (event) => {
@@ -118,9 +109,8 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Never let a feed payload become stale behind the service worker. The current
-  // Astro site bakes news into HTML, but this guard keeps a future JSON endpoint
-  // network-only too.
+  // Feed data is always network-only so a service worker can never hold the
+  // timeline on an older refresh.
   if (/\/(?:data\/)?news\.json$/i.test(url.pathname)) {
     event.respondWith(fetch(event.request, { cache: 'no-store' }));
     return;
@@ -137,6 +127,13 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (event.request.destination === 'style' || event.request.destination === 'script') {
-    event.respondWith(staleWhileRevalidate(event.request));
+    // Astro's hashed bundles are immutable by URL and safe to serve cache-first.
+    // Stable public CSS/JS names must check the network first so layout changes
+    // are visible on the first visit after a deploy instead of one refresh later.
+    if (url.pathname.includes('/_astro/')) {
+      event.respondWith(cacheFirst(event.request));
+    } else {
+      event.respondWith(assetNetworkFirst(event.request));
+    }
   }
 });
