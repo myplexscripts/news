@@ -1,0 +1,49 @@
+name: Probe CBC image URL variants
+
+on:
+  push:
+    paths:
+      - '.github/workflows/cbc-image-probe.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect CBC image variants
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import html, re, urllib.parse, urllib.request
+
+          story='https://www.cbc.ca/news/canada/london/londoners-will-be-able-to-file-noise-complaints-online-starting-next-week-9.7323135'
+          reader='https://r.jina.ai/http://' + story.removeprefix('https://')
+          req=urllib.request.Request(reader, headers={'User-Agent':'LondonNews/1.0','X-Retain-Images':'all','X-With-Images-Summary':'all'})
+          text=urllib.request.urlopen(req, timeout=30).read().decode('utf-8','replace')
+          urls=[]
+          for raw in re.findall(r'!\[[^\]]*\]\((https?://[^)]+)\)', text, re.I):
+              u=html.unescape(raw.strip())
+              if urllib.parse.urlparse(u).netloc.lower()=='i.cbc.ca' and u not in urls:
+                  urls.append(u)
+          print('CBC URLS', len(urls))
+          for i,u in enumerate(urls[:8]):
+              print(f'URL{i}: {u}')
+
+          def test(label, url):
+              try:
+                  r=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0','Referer':'https://www.cbc.ca/','Accept':'image/*,*/*;q=0.8'})
+                  with urllib.request.urlopen(r, timeout=20) as resp:
+                      data=resp.read(2048)
+                      print(label, 'OK', resp.status, resp.headers.get('Content-Type'), 'sample=',len(data), 'final=',resp.geturl())
+              except Exception as exc:
+                  print(label, 'FAIL', type(exc).__name__, str(exc)[:180])
+
+          if urls:
+              original=urls[0]
+              parsed=urllib.parse.urlparse(original)
+              clean=urllib.parse.urlunparse(parsed._replace(query='',fragment=''))
+              proxy='https://wsrv.nl/?url='+urllib.parse.quote(clean,safe='')
+              test('ORIGINAL', original)
+              test('CLEAN', clean)
+              test('PROXY-CLEAN', proxy)
+          PY
