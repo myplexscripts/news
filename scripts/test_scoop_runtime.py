@@ -119,6 +119,37 @@ def test_body_aware_cluster_uses_deeper_release_context() -> None:
     assert lookup["lps-unrelated"]["cluster_id"] != lookup["ctv-case"]["cluster_id"]
 
 
+
+def test_body_aware_cluster_keeps_strong_cross_publisher_headlines() -> None:
+    global_story = make_story(
+        "stab-global",
+        "Woman, 73, dies after being stabbed in London, Ont., home invasion",
+        "Global News London",
+        "Police allege a man broke into a London home on Saturday morning and then stabbed and assaulted a 73-year-old woman.",
+        paragraphs=[
+            "Police allege a man broke into a London home Saturday morning.",
+            "The 73-year-old woman later died after being stabbed and assaulted.",
+        ],
+        hours=1,
+    )
+    lfp_story = make_story(
+        "stab-lfp",
+        "Woman, 73, dies after being stabbed during break-in at London home: Police",
+        "London Free Press",
+        "A woman died after a south London break-in, according to police.",
+        paragraphs=[
+            "A 73-year-old woman died following a break-in at a London home.",
+            "Police said the investigation remains ongoing.",
+        ],
+        hours=1.2,
+    )
+    _, parts = run_scoop._body_aware_story_similarity(global_story, lfp_story)
+    assert parts["token_title"] >= 0.84
+    assert parts["title_containment"] >= 0.72
+    assert parts["title_shared"] >= 4
+    assert run_scoop._body_aware_should_cluster(global_story, lfp_story)
+
+
 def test_cbc_curl_fallback() -> None:
     timeout_error = requests.ConnectTimeout("CBC request timed out")
 
@@ -181,6 +212,8 @@ def main() -> None:
     print("PASS test_safe_classification")
     test_body_aware_cluster_uses_deeper_release_context()
     print("PASS test_body_aware_cluster_uses_deeper_release_context")
+    test_body_aware_cluster_keeps_strong_cross_publisher_headlines()
+    print("PASS test_body_aware_cluster_keeps_strong_cross_publisher_headlines")
     test_cbc_curl_fallback()
     print("PASS test_cbc_curl_fallback")
     test_cbc_curl_rss_ingestion()

@@ -384,14 +384,29 @@ def _body_aware_story_similarity(left: dict[str, Any], right: dict[str, Any]) ->
     union = left_tokens | right_tokens
     jaccard = len(shared) / max(1, len(union))
     containment = len(shared) / max(1, min(len(left_tokens), len(right_tokens)))
-    title_ratio = SequenceMatcher(None, left_title, right_title).ratio()
+
+    # Preserve a headline-only signal so very different article bodies do
+    # not erase an otherwise distinctive cross-publisher event match.
+    left_title_tokens = ranking._tokens(str(left.get("title") or ""))
+    right_title_tokens = ranking._tokens(str(right.get("title") or ""))
+    title_shared = left_title_tokens & right_title_tokens
+    title_containment = len(title_shared) / max(1, min(len(left_title_tokens), len(right_title_tokens)))
+    literal_title_ratio = SequenceMatcher(None, left_title, right_title).ratio()
+    token_title_ratio = ranking.fuzz.token_set_ratio(left_title, right_title) / 100.0
+    title_ratio = max(literal_title_ratio, token_title_ratio * 0.96)
     entity_overlap = bool(ranking._story_entities(left) & ranking._story_entities(right))
     score = (title_ratio * 0.48) + (containment * 0.36) + (jaccard * 0.16)
     if entity_overlap:
         score += 0.05
     return min(1.0, score), {
-        "title": round(title_ratio, 3), "containment": round(containment, 3),
-        "jaccard": round(jaccard, 3), "shared": float(len(shared)),
+        "title": round(title_ratio, 3),
+        "literal_title": round(literal_title_ratio, 3),
+        "token_title": round(token_title_ratio, 3),
+        "containment": round(containment, 3),
+        "jaccard": round(jaccard, 3),
+        "shared": float(len(shared)),
+        "title_containment": round(title_containment, 3),
+        "title_shared": float(len(title_shared)),
         "entity": 1.0 if entity_overlap else 0.0,
     }
 
@@ -402,10 +417,17 @@ def _body_aware_should_cluster(left: dict[str, Any], right: dict[str, Any]) -> b
         return False
     score, parts = _body_aware_story_similarity(left, right)
     shared = int(parts.get("shared", 0))
+    title_shared = int(parts.get("title_shared", 0))
     same_source = ranking._clean(left.get("source")) == ranking._clean(right.get("source"))
     if same_source:
-        return bool(parts.get("title", 0) >= 0.86 or (parts.get("containment", 0) >= 0.82 and shared >= 5))
-    if parts.get("title", 0) >= 0.80 and shared >= 3:
+        return bool(parts.get("literal_title", 0) >= 0.86 or (parts.get("containment", 0) >= 0.82 and shared >= 5))
+    if parts.get("literal_title", 0) >= 0.80 and shared >= 3:
+        return True
+    if (
+        parts.get("token_title", 0) >= 0.84
+        and parts.get("title_containment", 0) >= 0.72
+        and title_shared >= 4
+    ):
         return True
     if parts.get("containment", 0) >= 0.64 and shared >= 4 and score >= 0.58:
         return True
