@@ -1,0 +1,110 @@
+---
+import { sourceLogoPath } from '../lib/sourceLogos';
+
+interface Props {
+  story: any;
+  variant?: 'featured' | 'standard';
+  index?: number;
+  href?: string;
+  searchable?: boolean;
+  hidden?: boolean;
+  dateGroup?: string;
+  dataSearch?: string;
+  className?: string;
+  showSummary?: boolean;
+}
+
+const {
+  story,
+  variant = 'standard',
+  index = 99,
+  href,
+  searchable = false,
+  hidden = false,
+  dateGroup,
+  dataSearch,
+  className = '',
+  showSummary = true
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const storyHref = href || `${base}story/${story.id}/`;
+const logoFor = (name = '') => sourceLogoPath(name, base);
+const timestamp = story.cluster_latest_published || story.published;
+const categoryClass = `category-${String(story.category || 'Local').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const words = String(story.title || '').trim().split(/\s+/).filter(Boolean);
+const title = words.length > 20 ? `${words.slice(0, 20).join(' ')}…` : words.join(' ');
+const imageSrc = (() => {
+  const value = String(story.card_image || story.image || '').trim();
+  if (!value) return '';
+  if (/^https?:\/\//i.test(value) || value.startsWith('/')) return value;
+  return `${base}${value}`;
+})();
+const published = (value) => {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit'
+    }).format(new Date(value));
+  } catch {
+    return '';
+  }
+};
+const readMinutes = Number(story.word_count) > 0 ? Math.max(1, Math.round(Number(story.word_count) / 220)) : null;
+const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sources.length ? story.cluster_sources : [story.source].filter(Boolean);
+---
+<a
+  class:list={[
+    'news-card',
+    `card-${variant}`,
+    searchable && 'searchable',
+    categoryClass,
+    !imageSrc && 'no-image',
+    className
+  ]}
+  href={storyHref}
+  data-story-id={story.id}
+  data-category={story.category}
+  data-source={story.source}
+  data-sources={clusterSources.join('|')}
+  data-date-group={dateGroup}
+  data-search={dataSearch}
+  hidden={hidden}
+>
+  {imageSrc && (
+    <div class="news-card-media">
+      <img
+        class="news-card-photo"
+        src={imageSrc}
+        alt={story.image_alt || ''}
+        loading={index < 3 ? 'eager' : 'lazy'}
+        fetchpriority={index < 3 ? 'high' : 'auto'}
+        decoding="async"
+        referrerpolicy="no-referrer"
+        style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
+      />
+      {logoFor(story.source) && (
+        <img
+          class="card-source-logo"
+          onerror="this.style.display='none'"
+          src={logoFor(story.source)}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+    </div>
+  )}
+  <div class="news-card-body">
+    <h3 title={story.title}>{title}</h3>
+    <div class="news-card-footer">
+      <strong class="news-card-footer-source">{story.source}</strong>
+      <time datetime={timestamp}>{published(timestamp)}</time>
+      {readMinutes && <span>{readMinutes} min read</span>}
+    </div>
+    {showSummary && story.summary && <p class="news-card-summary">{story.summary}</p>}
+  </div>
+</a>
