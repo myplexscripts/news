@@ -359,3 +359,191 @@ html[data-hide-read='true'] [data-story-id].is-read-story {
   .settings-segmented { width: 100%; }
   .settings-segmented button { flex: 1; }
 }
+
+/* Mobile editorial refinements */
+
+/* Move publisher attribution into the same bottom metadata row as the date. */
+.news-card-body {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  align-content: stretch;
+}
+
+.news-card h3 {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.news-card-summary {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.news-card-source {
+  grid-column: 1;
+  grid-row: 4;
+  align-self: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.news-card-footer {
+  grid-column: 2;
+  grid-row: 4;
+  align-self: center;
+  justify-content: flex-start;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.news-card-source strong {
+  color: var(--accent) !important;
+}
+
+/* Card outlines were making the feed feel boxed-in. */
+.news-card,
+.section-directory-card,
+.source-preference-card,
+.related-card,
+.card-no-results,
+.search-result-card,
+.settings-card,
+.admin-card,
+.health-card,
+.review-card {
+  border: 0 !important;
+}
+
+@media (max-width: 760px) {
+  /* Tighten the two-line home masthead. */
+  .site-header-home .home-header-inner {
+    padding-top: 12px !important;
+    padding-bottom: 8px !important;
+  }
+
+  .home-meta-row {
+    margin-top: -8px !important;
+  }
+
+  /* Let compact cards grow with the headline instead of clipping at 132px. */
+  .news-card.card-standard,
+  .latest-card-grid .news-card.card-standard {
+    height: auto !important;
+    min-height: 132px !important;
+    align-items: stretch !important;
+  }
+
+  .news-card.card-standard .news-card-media,
+  .latest-card-grid .news-card.card-standard .news-card-media {
+    height: 100% !important;
+    min-height: 132px !important;
+    align-self: stretch !important;
+  }
+
+  .news-card.card-standard .news-card-body,
+  .latest-card-grid .news-card.card-standard .news-card-body {
+    min-height: 132px !important;
+    padding: 13px 14px 12px !important;
+  }
+
+  .news-card.card-standard h3,
+  .latest-card-grid .news-card.card-standard h3 {
+    margin: 0 !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
+  .news-card-source,
+  .news-card-source strong,
+  .news-card-footer,
+  .news-card-footer time,
+  .news-card-footer span {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  .news-card-source {
+    min-width: 0;
+    margin-right: 7px !important;
+  }
+
+  .news-card-source strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .news-card-footer {
+    gap: 0 !important;
+    flex-wrap: nowrap !important;
+  }
+
+  /* Keep the mobile metadata row to publisher + date only. */
+  .news-card-footer span {
+    display: none !important;
+  }
+
+  /* More translucent, higher-contrast Liquid Glass inspired tab bar. */
+  .mobile-tab-bar {
+    border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent) !important;
+    background: color-mix(in srgb, var(--surface) 58%, transparent) !important;
+    box-shadow:
+      0 16px 42px rgb(0 0 0 / 0.24),
+      inset 0 1px 0 rgb(255 255 255 / 0.16),
+      inset 0 -1px 0 rgb(0 0 0 / 0.08) !important;
+    backdrop-filter: blur(34px) saturate(210%) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(210%) !important;
+  }
+
+  html[data-theme='dark'] .mobile-tab-bar {
+    background: rgb(28 28 30 / 0.68) !important;
+    border-color: rgb(255 255 255 / 0.14) !important;
+    box-shadow:
+      0 18px 46px rgb(0 0 0 / 0.52),
+      inset 0 1px 0 rgb(255 255 255 / 0.15),
+      inset 0 -1px 0 rgb(0 0 0 / 0.34) !important;
+  }
+
+  .mobile-tab {
+    margin: 0 !important;
+    background: transparent !important;
+    color: color-mix(in srgb, var(--ink) 56%, transparent) !important;
+    transition: background 180ms ease, color 180ms ease, transform 180ms ease !important;
+  }
+
+  .mobile-tab.active {
+    background: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+    color: var(--accent) !important;
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 18%, transparent),
+      0 1px 10px color-mix(in srgb, var(--accent) 16%, transparent) !important;
+  }
+
+  .mobile-tab.is-back-to-top {
+    color: var(--accent) !important;
+  }
+
+  .mobile-tab:active {
+    transform: scale(0.94) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .news-card.card-standard,
+  .latest-card-grid .news-card.card-standard {
+    height: auto !important;
+    min-height: 124px !important;
+  }
+
+  .news-card.card-standard .news-card-media,
+  .latest-card-grid .news-card.card-standard .news-card-media {
+    height: 100% !important;
+    min-height: 124px !important;
+  }
+
+  .news-card.card-standard .news-card-body,
+  .latest-card-grid .news-card.card-standard .news-card-body {
+    min-height: 124px !important;
+  }
+}
