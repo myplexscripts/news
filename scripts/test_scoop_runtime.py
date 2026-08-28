@@ -119,8 +119,8 @@ def test_body_aware_cluster_uses_deeper_release_context() -> None:
     assert lookup["lps-unrelated"]["cluster_id"] != lookup["ctv-case"]["cluster_id"]
 
 
-
 def test_body_aware_cluster_keeps_strong_cross_publisher_headlines() -> None:
+    # Keep this production-shaped regression case tied to the real London stabbing coverage.
     global_story = make_story(
         "stab-global",
         "Woman, 73, dies after being stabbed in London, Ont., home invasion",
