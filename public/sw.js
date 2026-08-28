@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v2';
-const ASSET_CACHE = 'london-news-assets-v2';
+const SHELL_CACHE = 'london-news-shell-v3';
+const ASSET_CACHE = 'london-news-assets-v3';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
@@ -17,7 +17,8 @@ self.addEventListener('install', (event) => {
       scopePath('latest/'),
       scopePath('settings/'),
       scopePath('manifest.webmanifest'),
-      scopePath('smart-features.css')
+      scopePath('smart-features.css'),
+      scopePath('card-refinements.css')
     ];
     const cache = await caches.open(SHELL_CACHE);
     await Promise.all(urls.map((url) => cache.add(url).catch(() => null)));
@@ -30,11 +31,14 @@ self.addEventListener('activate', (event) => {
     const keep = new Set([SHELL_CACHE, ASSET_CACHE]);
     const keys = await caches.keys();
     await Promise.all(keys.filter((key) => key.startsWith(CACHE_PREFIX) && !keep.has(key)).map((key) => caches.delete(key)));
+    if (self.registration.navigationPreload) {
+      await self.registration.navigationPreload.enable().catch(() => {});
+    }
     await self.clients.claim();
   })());
 });
 
-async function fetchNetwork(request, timeoutMs = 5000) {
+async function fetchNetwork(request, timeoutMs = 4000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -47,13 +51,27 @@ async function fetchNetwork(request, timeoutMs = 5000) {
   }
 }
 
-async function networkFirst(request, cacheName, timeoutMs = 5000, fallbackToHome = false) {
-  const cache = await caches.open(cacheName);
+async function navigationNetworkFirst(event, fallbackToHome = false) {
+  const request = event.request;
+  const cache = await caches.open(SHELL_CACHE);
+  let timer;
+
   try {
-    const response = await fetchNetwork(request, timeoutMs);
-    if (response.ok) cache.put(request, response.clone()).catch(() => {});
+    const response = await Promise.race([
+      (async () => {
+        const preloaded = await event.preloadResponse;
+        return preloaded || fetchNetwork(request, 2800);
+      })(),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(new Error('navigation timeout')), 2800);
+      })
+    ]);
+
+    clearTimeout(timer);
+    if (response?.ok) cache.put(request, response.clone()).catch(() => {});
     return response;
   } catch {
+    clearTimeout(timer);
     const cached = await cache.match(request);
     if (cached) return cached;
     if (fallbackToHome) {
@@ -77,6 +95,24 @@ async function cacheFirst(request) {
   }
 }
 
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(ASSET_CACHE);
+  const cached = await cache.match(request);
+  const network = fetch(request, { cache: 'no-cache' })
+    .then((response) => {
+      if (response.ok) cache.put(request, response.clone()).catch(() => {});
+      return response;
+    })
+    .catch(() => null);
+
+  if (cached) {
+    network.catch(() => {});
+    return cached;
+  }
+
+  return (await network) || Response.error();
+}
+
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
@@ -91,7 +127,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (event.request.mode === 'navigate') {
-    event.respondWith(networkFirst(event.request, SHELL_CACHE, 4500, true));
+    event.respondWith(navigationNetworkFirst(event, true));
     return;
   }
 
@@ -101,6 +137,6 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (event.request.destination === 'style' || event.request.destination === 'script') {
-    event.respondWith(networkFirst(event.request, ASSET_CACHE, 4500));
+    event.respondWith(staleWhileRevalidate(event.request));
   }
 });
