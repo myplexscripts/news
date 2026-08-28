@@ -7,6 +7,7 @@ REFRESH_WORKFLOW = ROOT / ".github" / "workflows" / "refresh.yml"
 WAKE_WORKFLOW = ROOT / ".github" / "workflows" / "refresh-wake.yml"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "site.yml"
 EXPECTED_CRON = "7,17,27,37,47,57 * * * *"
+EXPECTED_WAKE_DISPATCH = "gh workflow run refresh.yml --repo myplexscripts/news --ref main"
 
 
 def main() -> int:
@@ -91,8 +92,8 @@ def main() -> int:
     if "sleep \"$delay\"" not in wake:
         errors.append("wake workflow does not wait for the requested refresh window")
 
-    if "gh workflow run refresh.yml --ref main" not in wake:
-        errors.append("wake workflow does not dispatch the next refresh")
+    if EXPECTED_WAKE_DISPATCH not in wake:
+        errors.append("wake workflow does not explicitly dispatch the next refresh in myplexscripts/news")
 
     if "group: refresh-wake" not in wake or "cancel-in-progress: true" not in wake:
         errors.append("wake workflow must collapse duplicate timers into one active timer")
