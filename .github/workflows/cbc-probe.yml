@@ -1,4 +1,4 @@
-name: Probe CBC body routes
+name: Probe CBC image routes
 
 on:
   push:
@@ -9,24 +9,26 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe current CBC stories
+      - name: Probe CBC image URLs through Jina Reader
         shell: bash
         run: |
           set +e
+          story_id='9.7321257'
+          slug='london-s-youngest-mayoral-candidate-aims-to-reach-voters-through-viral-videos-and-social-media-9.7321257'
 
           probe() {
             label="$1"
-            story_id="$2"
-            headline="$3"
+            target="$2"
             file="/tmp/${label}.txt"
-            result=$(curl -L --connect-timeout 4 --max-time 20 -sS -o "$file" -w '%{http_code} %{size_download}' "https://r.jina.ai/http://www.cbc.ca/lite/story/${story_id}" 2>&1)
-            words=$(wc -w < "$file" 2>/dev/null || echo 0)
-            if grep -Fqi "$headline" "$file" 2>/dev/null; then found=yes; else found=no; fi
-            marker=$(grep -ci '^Markdown Content:' "$file" 2>/dev/null || echo 0)
-            echo "$label: curl=$result words=$words headline=$found markdown_marker=$marker"
+            result=$(curl -L --connect-timeout 4 --max-time 25 -sS \
+              -H 'X-Retain-Images: all' \
+              -H 'X-With-Images-Summary: all' \
+              -o "$file" -w '%{http_code} %{size_download}' \
+              "https://r.jina.ai/http://${target}" 2>&1)
+            image_count=$(grep -Eo '!\[[^]]*\]\(https?://[^)]+\)' "$file" 2>/dev/null | wc -l | tr -d ' ')
+            echo "$label: curl=$result image_count=$image_count"
+            grep -Eo '!\[[^]]*\]\(https?://[^)]+\)' "$file" 2>/dev/null | head -n 8 || true
           }
 
-          probe short 9.7322721 'Missing swimmer found dead at Pinery Provincial Park'
-          probe mayor 9.7321257 "London's youngest mayoral candidate aims to reach voters through viral videos and social media"
-          probe airport 9.7321451 'airport adds Porter Airlines'
-          probe obstetrics 9.7319650 'obstetrics'
+          probe lite "www.cbc.ca/lite/story/${story_id}"
+          probe full "www.cbc.ca/news/canada/london/${slug}"
