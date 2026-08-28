@@ -1,0 +1,58 @@
+name: Probe London Police article markup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/lps-probe.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect current London Police story
+        shell: bash
+        run: |
+          set -euo pipefail
+          listing=/tmp/lps-listing.html
+          curl -L --connect-timeout 5 --max-time 25 -sS 'https://www.londonpolice.ca/news/authors/london-police-service' -o "$listing"
+          echo "listing bytes=$(wc -c < "$listing")"
+          echo '--- matching links ---'
+          grep -Eoi 'href="[^"]+"[^>]*>[^<]*(Cole Rioux|MISSING PERSON)|href="[^"]*(cole|rioux)[^"]*"' "$listing" | head -20 || true
+          article=$(python3 - <<'PY'
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin
+          html=open('/tmp/lps-listing.html',encoding='utf-8').read()
+          soup=BeautifulSoup(html,'html.parser')
+          for a in soup.find_all('a', href=True):
+              text=' '.join(a.stripped_strings)
+              href=a.get('href','')
+              if 'cole rioux' in text.lower() or 'cole' in href.lower() or 'rioux' in href.lower():
+                  print(urljoin('https://www.londonpolice.ca/', href)); break
+          PY
+          )
+          echo "article=$article"
+          test -n "$article"
+          curl -L --connect-timeout 5 --max-time 25 -sS "$article" -o /tmp/lps-article.html
+          echo "article bytes=$(wc -c < /tmp/lps-article.html)"
+          python3 - <<'PY'
+          from bs4 import BeautifulSoup
+          from urllib.parse import urljoin
+          html=open('/tmp/lps-article.html',encoding='utf-8').read()
+          soup=BeautifulSoup(html,'html.parser')
+          print('TITLE:', soup.title.get_text(' ',strip=True) if soup.title else '')
+          print('OG IMAGE:', (soup.find('meta',property='og:image') or {}).get('content',''))
+          print('TW IMAGE:', (soup.find('meta',attrs={'name':'twitter:image'}) or {}).get('content',''))
+          print('ARTICLE ROOTS:')
+          sels=['.news-article-content','.news-post-content','.news-post__content','.field--name-body','.article-content','[itemprop="articleBody"]','article','main']
+          for sel in sels:
+              nodes=soup.select(sel)
+              if nodes:
+                  print(sel, len(nodes), [len(n.get_text(' ',strip=True)) for n in nodes[:3]], 'imgs=', [len(n.select('img')) for n in nodes[:3]])
+          print('IMAGES:')
+          for i,img in enumerate(soup.find_all('img')[:40]):
+              print(i, 'src=',img.get('src'), 'data-src=',img.get('data-src'), 'srcset=',img.get('srcset'), 'alt=',img.get('alt'), 'class=',img.get('class'), 'parent=',img.parent.name, img.parent.get('class') if img.parent else None)
+          print('HEADINGS/TAGS:')
+          for node in soup.find_all(['h1','h2','h3','p'])[:45]:
+              text=' '.join(node.stripped_strings)
+              if text: print(node.name, node.get('class'), repr(text[:220]))
+          PY
