@@ -89,6 +89,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
 
+      - name: Normalize London Police articles
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/fix_lps_articles.py
+
       - name: Normalize CBC fallback metadata
         if: steps.due.outputs.run == 'true'
         run: python scripts/fix_cbc_fallback.py
