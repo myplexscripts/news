@@ -4,9 +4,8 @@ import news from '../../data/news.json';
 import { sourceLogoPath } from '../lib/sourceLogos';
 
 const allStories = news.stories || [];
-const representatives = allStories.filter((story) => story.cluster_representative !== false);
 const storyTime = (story) => story.cluster_latest_published || story.published;
-const stories = [...representatives]
+const stories = [...allStories]
   .sort((a, b) => new Date(storyTime(b)).getTime() - new Date(storyTime(a)).getTime())
   .slice(0, 90);
 
