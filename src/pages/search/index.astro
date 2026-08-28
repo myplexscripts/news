@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import PageHeading from '../../components/PageHeading.astro';
 import news from '../../../data/news.json';
-import { sourceLogoPath } from '../../lib/sourceLogos';
 const stories = [...(news.stories || [])]
   .sort((a,b) => new Date(b.cluster_latest_published || b.published).getTime() - new Date(a.cluster_latest_published || a.published).getTime());
 const base = import.meta.env.BASE_URL;
-const logoFor = (name = '') => sourceLogoPath(name, base);
-const published = (value) => { try { return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Toronto',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(value)); } catch { return ''; } };
 const searchDocuments = stories.map((story) => ({
   id: String(story.id),
   title: story.title || '',
@@ -21,11 +20,7 @@ const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
 <BaseLayout title="Search | London News" description="Search London News stories.">
   <main class="directory-page search-page" id="main-content">
     <section class="directory-shell shell">
-      <header class="directory-heading">
-        <p class="masthead-label">Find stories</p>
-        <h1>Search</h1>
-        <p>Search headlines, publishers, locations and article text from the current London News archive.</p>
-      </header>
+      <PageHeading className="directory-heading" eyebrow="Find stories" title="Search" description="Search headlines, publishers, locations and article text from the current London News archive." />
 
       <div class="search-page-field">
         <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
@@ -36,14 +31,7 @@ const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
 
       <div class="search-results" id="archiveSearchResults">
         {stories.map((story) => (
-          <a class="search-result-card" href={`${base}story/${story.id}/`} data-story-id={story.id} data-source={story.source} hidden>
-            {story.image && <div class="search-result-media"><img class="search-result-photo" src={story.card_image ? `${base}${story.card_image}` : story.image} alt={story.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" />{logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" />}</div>}
-            <div class="search-result-copy">
-              <span>{story.source}</span>
-              <h2>{story.title}</h2>
-              <time datetime={story.cluster_latest_published || story.published}>{published(story.cluster_latest_published || story.published)}</time>
-            </div>
-          </a>
+          <NewsCard story={story} variant="standard" hidden={true} className="search-result-item" />
         ))}
       </div>
       <script id="archiveSearchData" type="application/json" set:html={searchData}></script>
@@ -57,7 +45,7 @@ const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
     const clear = document.getElementById('clearArchiveSearch');
     const status = document.getElementById('archiveSearchStatus');
     const dataElement = document.getElementById('archiveSearchData');
-    const cards = [...document.querySelectorAll('.search-result-card')];
+    const cards = [...document.querySelectorAll('.search-result-item')];
     const cardsById = new Map(cards.map((card) => [String(card.dataset.storyId || ''), card]));
     let state = { readIds: [], hideRead: false, hiddenSources: [] };
     let documents = [];

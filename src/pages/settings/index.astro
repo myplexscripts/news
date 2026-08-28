@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeading from '../../components/PageHeading.astro';
 
 const accents = [
   ['red', 'Red'],
@@ -19,11 +20,7 @@ const accents = [
 <BaseLayout title="Settings | London News" description="Customize London News appearance and reading preferences.">
   <main class="settings-page" id="main-content">
     <section class="settings-shell shell">
-      <header class="settings-heading directory-heading">
-        <p class="masthead-label">Preferences</p>
-        <h1>Settings</h1>
-        <p>Choose how London News looks and how stories behave on this device.</p>
-      </header>
+      <PageHeading className="settings-heading directory-heading" eyebrow="Preferences" title="Settings" description="Choose how London News looks and how stories behave on this device." />
 
       <div class="settings-groups">
         <section class="settings-group" aria-labelledby="appearance-heading">

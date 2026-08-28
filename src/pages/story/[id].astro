@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsCard from '../../components/NewsCard.astro';
 import { sourceLogoPath } from '../../lib/sourceLogos';
 import news from '../../../data/news.json';
 
@@ -68,20 +69,6 @@ const readerWordCount = Number(story.word_count) || readerBlocks.reduce((total, 
   return total + String(text || '').trim().split(/\s+/).filter(Boolean).length;
 }, 0);
 const readMinutes = readerWordCount > 0 ? Math.max(1, Math.round(readerWordCount / 220)) : null;
-const compactPublished = (value) => {
-  try {
-    return new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Toronto',
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit'
-    }).format(new Date(value));
-  } catch {
-    return '';
-  }
-};
 const sidebarTagKeys = new Set();
 const sidebarTags = [story.category, ...(Array.isArray(story.story_topics) ? story.story_topics : [])]
   .map((tag) => String(tag || '').trim())
@@ -232,25 +219,7 @@ const showDeck = Boolean(
             </div>
           </header>
           <div class="related-grid">
-            {related.map((item) => {
-              const relatedWords = Number(item.word_count) || String((item.paragraphs || []).join(' ') || item.content || item.summary || '').trim().split(/\s+/).filter(Boolean).length;
-              const relatedMinutes = relatedWords > 0 ? Math.max(1, Math.round(relatedWords / 220)) : 1;
-              const relatedPublished = item.cluster_latest_published || item.published;
-              return (
-                <a class="related-card" href={`${base}story/${item.id}/`} data-story-id={item.id}>
-                  <div class="related-media">
-                    {item.image ? <img class="related-photo" src={item.card_image ? `${base}${item.card_image}` : item.image} alt={item.image_alt || ''} loading="lazy" referrerpolicy="no-referrer" /> : <div class="card-fallback"><i class="ph ph-newspaper" aria-hidden="true"></i></div>}
-                    {item.image && logoFor(item.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(item.source)} alt="" loading="lazy" />}
-                  </div>
-                  <div class="story-meta"><span>{item.source}</span></div>
-                  <h3>{item.title}</h3>
-                  <div class="related-card-footer">
-                    <time datetime={relatedPublished}>{compactPublished(relatedPublished)}</time>
-                    {relatedMinutes && <span>{relatedMinutes} min read</span>}
-                  </div>
-                </a>
-              );
-            })}
+            {related.map((item) => <NewsCard story={item} variant="standard" />)}
           </div>
         </section>
       )}

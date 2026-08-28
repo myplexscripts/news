@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeading from '../../components/PageHeading.astro';
 import news from '../../../data/news.json';
 import { sourceLogoPath } from '../../lib/sourceLogos';
 
@@ -42,17 +43,12 @@ const latestDate = (value) => {
 <BaseLayout title="Sources | London News" description="Choose which London news sources appear in your feed.">
   <main class="sources-page" id="main-content">
     <section class="sources-shell shell">
-      <header class="sources-heading">
-        <div>
-          <p class="masthead-label">Your feed</p>
-          <h1>Sources</h1>
-          <p>Choose which publishers and local organizations appear in London News. Your choices are saved on this device.</p>
-        </div>
-        <div class="sources-heading-actions">
+      <PageHeading className="sources-heading" eyebrow="Your feed" title="Sources" description="Choose which publishers and local organizations appear in London News. Your choices are saved on this device.">
+        <div slot="actions" class="sources-heading-actions">
           <span id="sourcePreferenceStatus" aria-live="polite">{sources.length} sources shown</span>
           <button class="bordered-button" id="showAllSources" type="button">Show all</button>
         </div>
-      </header>
+      </PageHeading>
 
       <div class="source-preference-list" id="sourcePreferenceList">
         {sources.map((source) => (

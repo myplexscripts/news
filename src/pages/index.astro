@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsCard from '../components/NewsCard.astro';
 import news from '../../data/news.json';
-import { sourceLogoPath } from '../lib/sourceLogos';
 import { collapseTimelineStories } from '../lib/timelineStories';
 
 const allStories = news.stories || [];
@@ -18,27 +18,6 @@ const primaryCategories = orderedCategories.slice(0, 4);
 const moreCategories = orderedCategories.slice(4);
 const base = import.meta.env.BASE_URL;
 
-const storyHref = (story) => `${base}story/${story.id}/`;
-const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-const logoFor = (name = '') => sourceLogoPath(name, base);
-const displayTitle = (value = '') => {
-  const words = String(value).trim().split(/\s+/).filter(Boolean);
-  return words.length > 20 ? `${words.slice(0, 20).join(' ')}…` : words.join(' ');
-};
-
-const published = (value) => {
-  try {
-    return new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Toronto',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit'
-    }).format(new Date(value));
-  } catch {
-    return '';
-  }
-};
 
 const localDateKey = (value) => {
   try {
@@ -97,8 +76,6 @@ const generated = news.generated_at
   : 'waiting for refresh';
 ---
 <BaseLayout homeDate={todayLabel} homeUpdated={generated}>
-  <link rel="stylesheet" href={`${base}card-refinements.css`} />
-
   <div slot="header-actions" class="header-search desktop-header-search" id="headerSearch">
     <button class="header-search-toggle" id="searchToggle" aria-label="Search news" title="Search news" aria-expanded="false" aria-controls="searchInput">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
@@ -153,41 +130,14 @@ const generated = news.generated_at
               const index = storyIndex.get(story.id) ?? 99;
               const timestamp = storyTime(story);
               return (
-                <a
-                  class:list={["news-card", "searchable", index < 3 ? "card-featured" : "card-standard", categoryClass(story.category), !story.image && "no-image"]}
-                  href={storyHref(story)}
-                  data-story-id={story.id}
-                  data-category={story.category}
-                  data-source={story.source}
-                  data-sources={(story.cluster_sources || [story.source]).join('|')}
-                  data-date-group={group.key}
-                  data-search={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
-                >
-                  {story.image && (
-                    <div class="news-card-media">
-                      <img
-                        class="news-card-photo"
-                        src={story.card_image ? `${base}${story.card_image}` : story.image}
-                        alt={story.image_alt || ''}
-                        loading={index < 3 ? 'eager' : 'lazy'}
-                        fetchpriority={index < 3 ? 'high' : 'auto'}
-                        decoding="async"
-                        referrerpolicy="no-referrer"
-                        style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
-                      />
-                      {logoFor(story.source) && <img class="card-source-logo" onerror="this.style.display='none'" src={logoFor(story.source)} alt="" loading="lazy" decoding="async" />}
-                    </div>
-                  )}
-                  <div class="news-card-body">
-                    <h3 title={story.title}>{displayTitle(story.title)}</h3>
-                    <div class="news-card-footer">
-                      <strong class="news-card-footer-source">{story.source}</strong>
-                      <time datetime={timestamp}>{published(timestamp)}</time>
-                      {Number(story.word_count) > 0 && <span>{Math.max(1, Math.round(Number(story.word_count) / 220))} min read</span>}
-                    </div>
-                    {story.summary && <p class="news-card-summary">{story.summary}</p>}
-                  </div>
-                </a>
+                <NewsCard
+                  story={story}
+                  index={index}
+                  variant={index < 3 ? 'featured' : 'standard'}
+                  searchable={true}
+                  dateGroup={group.key}
+                  dataSearch={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
+                />
               );
             })}
           </>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeading from '../../components/PageHeading.astro';
 import news from '../../../data/news.json';
 
 const stories = (news.stories || []).filter((story) => story.cluster_representative !== false);
@@ -29,11 +30,7 @@ const hrefFor = (category) => `${base}?section=${encodeURIComponent(category)}#l
 <BaseLayout title="Sections | London News" description="Browse London News by section.">
   <main class="sections-page" id="main-content">
     <section class="sections-shell shell">
-      <header class="sections-heading">
-        <p class="masthead-label">Browse</p>
-        <h1>Sections</h1>
-        <p>Choose a section to see its newest stories first.</p>
-      </header>
+      <PageHeading className="sections-heading" eyebrow="Browse" title="Sections" description="Choose a section to see its newest stories first." />
 
       <div class="section-directory-grid" aria-label="News sections">
         <a class="section-directory-card section-all" href={`${base}latest/`}>
