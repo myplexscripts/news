@@ -149,6 +149,33 @@
   transform: none !important;
 }
 
+/* Story pages use the publisher mark as a true masthead above the headline. */
+.article-header-refined .article-source-heading-logo {
+  display: block !important;
+  width: 100% !important;
+  height: clamp(92px, 12vw, 160px) !important;
+  margin: 0 0 30px !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  filter: grayscale(1) brightness(0) !important;
+  opacity: 0.94 !important;
+}
+
+html[data-theme='dark'] .article-header-refined .article-source-heading-logo {
+  filter: grayscale(1) brightness(0) invert(1) !important;
+  opacity: 0.98 !important;
+}
+
+/* The sidebar keeps the source card details, but the publisher name itself is
+   no longer repeated now that the masthead identifies the source. */
+.article-source-card-refined .source-card-logo {
+  filter: grayscale(1) brightness(0) !important;
+}
+
+html[data-theme='dark'] .article-source-card-refined .source-card-logo {
+  filter: grayscale(1) brightness(0) invert(1) !important;
+}
+
 @media (max-width: 760px) {
   .site-header-home .home-header-inner {
     grid-template-columns: minmax(0, 1fr) auto !important;
@@ -163,5 +190,10 @@
     left: 25px !important;
     max-width: min(62%, 230px) !important;
     max-height: 64px !important;
+  }
+
+  .article-header-refined .article-source-heading-logo {
+    height: clamp(74px, 24vw, 112px) !important;
+    margin-bottom: 24px !important;
   }
 }
