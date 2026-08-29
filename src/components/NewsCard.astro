@@ -30,6 +30,7 @@ const {
 const base = import.meta.env.BASE_URL;
 const storyHref = href || `${base}story/${story.id}/`;
 const logoFor = (name = '') => sourceLogoPath(name, base);
+const sourceLogo = logoFor(story.source);
 const timestamp = story.cluster_latest_published || story.published;
 const categoryClass = `category-${String(story.category || 'Local').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const words = String(story.title || '').trim().split(/\s+/).filter(Boolean);
@@ -88,22 +89,21 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
         referrerpolicy="no-referrer"
         style={`--focus-x:${story.image_focus_x ?? 50}%;--focus-y:${story.image_focus_y ?? 50}%`}
       />
-      {logoFor(story.source) && (
-        <img
-          class="card-source-logo"
-          onerror="this.style.display='none'"
-          src={logoFor(story.source)}
-          alt=""
-          loading="lazy"
-          decoding="async"
-        />
-      )}
     </div>
   )}
   <div class="news-card-body">
+    {sourceLogo && (
+      <img
+        class="card-source-mark"
+        onerror="this.style.display='none'"
+        src={sourceLogo}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+    )}
     <h3 title={story.title}>{title}</h3>
     <div class="news-card-footer">
-      <strong class="news-card-footer-source">{story.source}</strong>
       <time datetime={timestamp}>{published(timestamp)}</time>
       {readMinutes && <span>{readMinutes} min read</span>}
     </div>
@@ -113,7 +113,7 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
 
 <script>
   function initialiseSourceLogoSizing() {
-    const logos = [...document.querySelectorAll('.card-source-logo')];
+    const logos = [...document.querySelectorAll('.card-source-mark')];
 
     logos.forEach((item) => {
       if (!(item instanceof HTMLImageElement)) return;
