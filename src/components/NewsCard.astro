@@ -112,6 +112,24 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
 </a>
 
 <script>
+  function initialiseSourceLogoSizing() {
+    const logos = [...document.querySelectorAll('.card-source-logo')];
+
+    logos.forEach((item) => {
+      if (!(item instanceof HTMLImageElement)) return;
+
+      const classify = () => {
+        if (!item.naturalWidth || !item.naturalHeight) return;
+        const isLandscape = item.naturalWidth > item.naturalHeight;
+        item.classList.toggle('is-landscape-logo', isLandscape);
+        item.classList.toggle('is-portrait-logo', !isLandscape);
+      };
+
+      if (item.complete) classify();
+      else item.addEventListener('load', classify, { once: true });
+    });
+  }
+
   function initialiseHomeCardLookahead() {
     const home = document.querySelector('.home-page');
     if (!home) return;
@@ -153,9 +171,14 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
     cards.forEach((card) => observer.observe(card));
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialiseHomeCardLookahead, { once: true });
-  } else {
+  function initialiseNewsCards() {
+    initialiseSourceLogoSizing();
     initialiseHomeCardLookahead();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialiseNewsCards, { once: true });
+  } else {
+    initialiseNewsCards();
   }
 </script>
