@@ -11,6 +11,40 @@
   text-align: left !important;
 }
 
+/* Publisher marks now live inside the card, directly above the headline. */
+.card-source-mark {
+  display: block !important;
+  flex: 0 0 auto !important;
+  align-self: flex-start !important;
+  order: 0 !important;
+  width: auto !important;
+  height: 18px !important;
+  max-width: 110px !important;
+  max-height: none !important;
+  margin: 0 0 10px !important;
+  object-fit: contain !important;
+  object-position: left center !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+
+/* Same sizing rule as before, at a much smaller card scale. */
+.card-source-mark.is-landscape-logo {
+  width: auto !important;
+  height: 18px !important;
+  max-width: 110px !important;
+  max-height: none !important;
+}
+
+.card-source-mark.is-portrait-logo {
+  width: 22px !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: 28px !important;
+}
+
 .news-card h3 {
   grid-column: auto !important;
   grid-row: auto !important;
@@ -168,6 +202,23 @@
     text-align: left !important;
   }
 
+  .news-card.card-standard .card-source-mark,
+  .latest-card-grid .news-card.card-standard .card-source-mark {
+    margin-bottom: 7px !important;
+  }
+
+  .news-card.card-standard .card-source-mark.is-landscape-logo,
+  .latest-card-grid .news-card.card-standard .card-source-mark.is-landscape-logo {
+    height: 16px !important;
+    max-width: 92px !important;
+  }
+
+  .news-card.card-standard .card-source-mark.is-portrait-logo,
+  .latest-card-grid .news-card.card-standard .card-source-mark.is-portrait-logo {
+    width: 20px !important;
+    max-height: 24px !important;
+  }
+
   /* Metadata is the final flex item and is pushed to the card's bottom edge. */
   .news-card-footer,
   .news-card.card-standard .news-card-footer,
@@ -227,12 +278,6 @@
   .news-card.card-standard.no-image .news-card-body,
   .latest-card-grid .news-card.card-standard.no-image .news-card-body {
     grid-column: 1 !important;
-  }
-
-  /* Publisher logos are reserved for the first three featured mobile cards. */
-  .news-card.card-standard .card-source-logo,
-  .latest-card-grid .news-card.card-standard .card-source-logo {
-    display: none !important;
   }
 }
 
