@@ -105,6 +105,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_source_profiles.py
 
+      - name: Test article presentation sanitation
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_article_sanitizer.py
+
       - name: Fetch local news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
@@ -148,6 +152,10 @@ jobs:
       - name: Preserve article audio and video
         if: steps.due.outputs.run == 'true'
         run: python scripts/enrich_article_media.py
+
+      - name: Sanitize article presentation artifacts
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/sanitize_article_blocks.py
 
       - name: Cache CBC article images locally
         if: steps.due.outputs.run == 'true'
