@@ -28,7 +28,8 @@ def test_dom_strips_unsafe_inline_markup() -> None:
     raw = """
     <article>
       <p>A paragraph with <script>alert('x')</script><span style="font-weight: 700">safe bold text</span> and <a href="javascript:alert(1)">unsafe link text</a>.</p>
-      <p>A second complete paragraph ensures the article root has enough real prose to extract correctly.</p>
+      <p>A second complete paragraph ensures the article root has enough real prose to extract correctly, while also giving the test article the same approximate body density that a normal publisher story would contain.</p>
+      <p>The article then continues with another ordinary sentence so the extractor has no reason to reject the body as a tiny fragment or navigation shell.</p>
     </article>
     """
     blocks = extract_dom_blocks(raw, "https://example.test/story", "Example story")
@@ -42,12 +43,12 @@ def test_dom_strips_unsafe_inline_markup() -> None:
 def test_dom_list_items_keep_inline_formatting() -> None:
     raw = """
     <article>
-      <p>Officials outlined the following changes for residents in the neighbourhood this week.</p>
+      <p>Officials outlined the following changes for residents in the neighbourhood this week, with work expected to continue through several overnight construction windows.</p>
       <ul>
         <li><strong>Tuesday:</strong> overnight road closure</li>
         <li><em>Wednesday:</em> one lane remains open</li>
       </ul>
-      <p>The city said regular traffic is expected to resume by Thursday morning after the work is complete.</p>
+      <p>The city said regular traffic is expected to resume by Thursday morning after the work is complete, although crews may return for finishing work if weather causes delays.</p>
     </article>
     """
     blocks = extract_dom_blocks(raw, "https://example.test/story", "Road work")
