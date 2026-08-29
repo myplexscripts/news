@@ -231,6 +231,43 @@ const showDeck = Boolean(
                       {block.caption && <figcaption>{block.caption}</figcaption>}
                     </figure>
                   )}
+                  {block.type === 'media' && block.media_type === 'audio' && block.url && (
+                    <figure class="article-media article-media-audio">
+                      {block.title && <figcaption>{block.title}</figcaption>}
+                      <audio controls preload="none" src={block.url} />
+                    </figure>
+                  )}
+                  {block.type === 'media' && block.media_type === 'video' && block.url && (
+                    <figure class="article-media article-media-video">
+                      {block.title && <figcaption>{block.title}</figcaption>}
+                      <video controls playsinline preload="metadata" poster={block.poster || undefined} src={block.url} />
+                    </figure>
+                  )}
+                  {block.type === 'media' && block.media_type === 'embed' && block.url && (
+                    <figure class="article-media article-media-embed">
+                      {block.title && <figcaption>{block.title}</figcaption>}
+                      <div class="article-media-frame">
+                        <iframe
+                          src={block.url}
+                          title={block.title || 'Embedded media'}
+                          loading="lazy"
+                          referrerpolicy="no-referrer"
+                          allow="autoplay; encrypted-media; picture-in-picture"
+                          allowfullscreen
+                        ></iframe>
+                      </div>
+                    </figure>
+                  )}
+                  {block.type === 'media' && block.media_type === 'link' && block.url && (
+                    <a class="article-media article-media-link" href={block.url} target="_blank" rel="noopener noreferrer">
+                      <i class="ph ph-play-circle" aria-hidden="true"></i>
+                      <span>
+                        <strong>{block.title || 'Open media at source'}</strong>
+                        <small>Open media from {story.source}</small>
+                      </span>
+                      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                  )}
                 </>
               ))}
             </div>
