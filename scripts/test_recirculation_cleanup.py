@@ -35,6 +35,34 @@ def test_promoted_story_list_is_removed() -> None:
     assert any(block.get("text") == "But not everything can be backward-looking." for block in blocks)
 
 
+def test_promoted_story_list_is_removed_even_when_titles_are_not_in_feed() -> None:
+    payload = {
+        "stories": [
+            {
+                "id": "main",
+                "title": "Railway City Brewing looks back and ahead",
+                "content_blocks": [
+                    {"type": "paragraph", "text": "Witty Traveller, a Belgian wheat beer, is a contender."},
+                    {
+                        "type": "list",
+                        "ordered": True,
+                        "items": [
+                            "Brews News: A sour suite for summer's end",
+                            "Brews News: Anderson marks 10 years with anniversary bash",
+                        ],
+                    },
+                    {"type": "paragraph", "text": "But not everything can be backward-looking."},
+                ],
+            }
+        ]
+    }
+
+    assert clean_payload(payload) == 1
+    blocks = payload["stories"][0]["content_blocks"]
+    assert not any(block.get("type") == "list" for block in blocks)
+    assert any(block.get("text") == "But not everything can be backward-looking." for block in blocks)
+
+
 def test_real_numbered_list_is_preserved() -> None:
     payload = {
         "stories": [
@@ -63,6 +91,7 @@ def test_real_numbered_list_is_preserved() -> None:
 
 def main() -> int:
     test_promoted_story_list_is_removed()
+    test_promoted_story_list_is_removed_even_when_titles_are_not_in_feed()
     test_real_numbered_list_is_preserved()
     print("PASS recirculation cleanup regressions")
     return 0
