@@ -189,7 +189,9 @@ const showDeck = Boolean(
             <div class="article-copy article-copy-refined">
               {filteredReaderBlocks.map((block) => (
                 <>
-                  {block.type === 'paragraph' && block.text && <p>{block.text}</p>}
+                  {block.type === 'paragraph' && block.text && (
+                    <p>{block.emphasis === 'strong' ? <strong>{block.text}</strong> : block.text}</p>
+                  )}
                   {block.type === 'heading' && block.text && block.level === 3 && <h3>{block.text}</h3>}
                   {block.type === 'heading' && block.text && block.level !== 3 && <h2>{block.text}</h2>}
                   {block.type === 'quote' && block.text && <blockquote>{block.text}</blockquote>}
