@@ -85,9 +85,17 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_scoop_runtime.py
 
+      - name: Test publication roundup filters
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_publication_roundups.py
+
       - name: Fetch local news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
+
+      - name: Remove redundant publisher roundups
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/filter_publication_roundups.py
 
       - name: Normalize London Police articles
         if: steps.due.outputs.run == 'true'
