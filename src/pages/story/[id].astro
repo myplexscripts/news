@@ -64,8 +64,9 @@ const readerBlocks = extractionUsable
   : story.summary ? [{ type: 'paragraph', text: story.summary }] : contentBlocks;
 
 const firstTextBlock = readerBlocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
+const listItemText = (item) => typeof item === 'string' ? item : String(item?.text || '');
 const readerWordCount = Number(story.word_count) || readerBlocks.reduce((total, block) => {
-  const text = block.text || (Array.isArray(block.items) ? block.items.join(' ') : '');
+  const text = block.text || (Array.isArray(block.items) ? block.items.map(listItemText).join(' ') : '');
   return total + String(text || '').trim().split(/\s+/).filter(Boolean).length;
 }, 0);
 const readMinutes = readerWordCount > 0 ? Math.max(1, Math.round(readerWordCount / 220)) : null;
@@ -189,14 +190,41 @@ const showDeck = Boolean(
             <div class="article-copy article-copy-refined">
               {filteredReaderBlocks.map((block) => (
                 <>
-                  {block.type === 'paragraph' && block.text && (
+                  {block.type === 'paragraph' && block.html && <p set:html={block.html} />}
+                  {block.type === 'paragraph' && !block.html && block.text && (
                     <p>{block.emphasis === 'strong' ? <strong>{block.text}</strong> : block.text}</p>
                   )}
-                  {block.type === 'heading' && block.text && block.level === 3 && <h3>{block.text}</h3>}
-                  {block.type === 'heading' && block.text && block.level !== 3 && <h2>{block.text}</h2>}
-                  {block.type === 'quote' && block.text && <blockquote>{block.text}</blockquote>}
-                  {block.type === 'list' && block.ordered && <ol>{(block.items || []).map((item) => <li>{item}</li>)}</ol>}
-                  {block.type === 'list' && !block.ordered && <ul>{(block.items || []).map((item) => <li>{item}</li>)}</ul>}
+                  {block.type === 'heading' && block.text && block.level === 3 && (
+                    block.html ? <h3 set:html={block.html} /> : <h3>{block.text}</h3>
+                  )}
+                  {block.type === 'heading' && block.text && block.level !== 3 && (
+                    block.html ? <h2 set:html={block.html} /> : <h2>{block.text}</h2>
+                  )}
+                  {block.type === 'quote' && block.text && (
+                    block.html ? <blockquote set:html={block.html} /> : <blockquote>{block.text}</blockquote>
+                  )}
+                  {block.type === 'list' && block.ordered && (
+                    <ol>
+                      {(block.items || []).map((item) => (
+                        typeof item === 'string'
+                          ? <li>{item}</li>
+                          : item?.html
+                            ? <li set:html={item.html} />
+                            : <li>{item?.text}</li>
+                      ))}
+                    </ol>
+                  )}
+                  {block.type === 'list' && !block.ordered && (
+                    <ul>
+                      {(block.items || []).map((item) => (
+                        typeof item === 'string'
+                          ? <li>{item}</li>
+                          : item?.html
+                            ? <li set:html={item.html} />
+                            : <li>{item?.text}</li>
+                      ))}
+                    </ul>
+                  )}
                   {block.type === 'image' && block.url && (
                     <figure class="inline-article-image">
                       <img src={resolveImageSrc(block.url)} alt={block.alt || ''} loading="lazy" referrerpolicy="no-referrer" />
