@@ -63,7 +63,97 @@
   gap: 12px;
 }
 
+/*
+ * CANONICAL UI SCALE
+ * These selectors intentionally have higher specificity than legacy page CSS.
+ * Same element = same typography and placement everywhere.
+ */
+:root {
+  --canonical-site-title: 32px;
+  --canonical-page-title: 42px;
+  --canonical-section-title: 30px;
+  --canonical-page-top: 34px;
+}
+
+html body .site-header.site-header .header-inner .brand,
+html body .site-header.site-header-home .header-inner .brand {
+  font-size: var(--canonical-site-title) !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.045em !important;
+}
+
+html body .site-header.site-header-home .home-header-date {
+  font-size: var(--canonical-site-title) !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.045em !important;
+}
+
+html body #page-content main .page-heading.page-heading {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+}
+
+html body #page-content main .page-heading.page-heading h1 {
+  margin: 0 !important;
+  font-size: var(--canonical-page-title) !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.04em !important;
+}
+
+html body #page-content main .page-heading.page-heading .masthead-label {
+  margin: 0 0 6px !important;
+  font-size: 16px !important;
+  line-height: 1.1 !important;
+  font-weight: 700 !important;
+}
+
+html body #page-content main .page-heading.page-heading .page-heading-description {
+  margin: 9px 0 0 !important;
+  max-width: 680px !important;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+}
+
+/* Every non-home public page begins at the same vertical position. */
+html body #page-content .latest-page-heading.shell,
+html body #page-content .directory-shell.shell,
+html body #page-content .sections-shell.shell,
+html body #page-content .sources-shell.shell,
+html body #page-content .settings-shell.shell {
+  padding-top: var(--canonical-page-top) !important;
+}
+
+html body #page-content .latest-page-heading.shell {
+  padding-bottom: 0 !important;
+}
+
+/* Section-level headings are one step larger than the old feed scale. */
+html body #page-content .story-date-heading h2,
+html body #page-content .editorial-section-heading h2 {
+  font-size: var(--canonical-section-title) !important;
+  line-height: 1.08 !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+}
+
 @media (max-width: 760px) {
+  :root {
+    --canonical-site-title: 30px;
+    --canonical-page-title: 36px;
+    --canonical-section-title: 28px;
+    --canonical-page-top: 18px;
+  }
+
   .search-results,
   .related-grid {
     display: grid !important;
@@ -71,37 +161,65 @@
     gap: 16px !important;
   }
 
-  .page-heading {
+  html body .site-header.site-header .header-inner,
+  html body .site-header.site-header-home .header-inner {
+    padding-top: 18px !important;
+    padding-bottom: 14px !important;
+  }
+
+  html body .site-header.site-header .header-inner .brand,
+  html body .site-header.site-header-home .header-inner .brand,
+  html body .site-header.site-header-home .home-header-date {
+    font-size: var(--canonical-site-title) !important;
+    line-height: 1 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  html body .site-header.site-header-home .home-header-date {
+    margin-top: 2px !important;
+  }
+
+  html body #page-content main .page-heading.page-heading {
     display: block !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 18px !important;
   }
 
-  .page-heading .masthead-label {
-    margin-bottom: 5px !important;
-  }
-
-  .page-heading h1 {
-    font-size: 36px !important;
+  html body #page-content main .page-heading.page-heading h1 {
+    font-size: var(--canonical-page-title) !important;
     line-height: 1 !important;
     font-weight: 800 !important;
     letter-spacing: -0.04em !important;
   }
 
-  .page-heading-description {
+  html body #page-content main .page-heading.page-heading .masthead-label {
+    margin-bottom: 5px !important;
+  }
+
+  html body #page-content main .page-heading.page-heading .page-heading-description {
     margin-top: 7px !important;
     font-size: 16px !important;
     line-height: 1.4 !important;
   }
 
-  .page-heading-actions {
+  html body #page-content main .page-heading-actions {
     margin-top: 12px !important;
     justify-content: flex-start !important;
+  }
+
+  html body #page-content .latest-page-heading.shell,
+  html body #page-content .directory-shell.shell,
+  html body #page-content .sections-shell.shell,
+  html body #page-content .sources-shell.shell,
+  html body #page-content .settings-shell.shell {
+    padding-top: var(--canonical-page-top) !important;
   }
 }
 
 @media (max-width: 390px) {
-  .page-heading h1 {
-    font-size: 34px !important;
+  :root {
+    --canonical-site-title: 28px;
+    --canonical-page-title: 36px;
   }
 }
 
