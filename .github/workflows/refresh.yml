@@ -113,6 +113,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/repair_cbc_image_refs.py
 
+      - name: Preserve source article structure
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/enrich_article_structure.py
+
       - name: Cache CBC article images locally
         if: steps.due.outputs.run == 'true'
         run: python scripts/cache_cbc_images.py
