@@ -318,3 +318,75 @@ html body .card-source-logo.is-portrait-logo {
 }
 
 /* Consistency audit: Home is the source of truth for shared UI elements. */
+
+/* Publisher marks now live on the card surface. They are deliberately
+   monochrome so they adapt cleanly to the active light or dark appearance. */
+html body .card-source-mark {
+  filter: grayscale(1) brightness(0) !important;
+  opacity: 0.9 !important;
+}
+
+html[data-theme='dark'] body .card-source-mark {
+  filter: grayscale(1) brightness(0) invert(1) !important;
+  opacity: 0.94 !important;
+}
+
+/* Keep the same aspect-ratio sizing rule, but at a more legible card scale. */
+html body .card-source-mark.is-landscape-logo {
+  width: auto !important;
+  height: 24px !important;
+  max-width: 145px !important;
+  max-height: none !important;
+}
+
+html body .card-source-mark.is-portrait-logo {
+  width: 28px !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: 34px !important;
+}
+
+/* Inter is designed to read well at its natural spacing. Keep running text
+   neutral, and use only modest tightening for large display headings. */
+html body {
+  letter-spacing: normal !important;
+}
+
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .brand,
+html body .home-header-date {
+  letter-spacing: -0.015em !important;
+}
+
+html body p,
+html body li,
+html body a,
+html body button,
+html body input,
+html body select,
+html body textarea,
+html body label,
+html body time,
+html body small,
+html body summary {
+  letter-spacing: normal !important;
+}
+
+@media (max-width: 760px) {
+  html body .news-card.card-standard .card-source-mark.is-landscape-logo,
+  html body .latest-card-grid .news-card.card-standard .card-source-mark.is-landscape-logo {
+    height: 22px !important;
+    max-width: 128px !important;
+  }
+
+  html body .news-card.card-standard .card-source-mark.is-portrait-logo,
+  html body .latest-card-grid .news-card.card-standard .card-source-mark.is-portrait-logo {
+    width: 26px !important;
+    max-height: 32px !important;
+  }
+}
