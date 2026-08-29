@@ -12,7 +12,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from fetch_news import (
     clean_text,
@@ -24,7 +24,7 @@ from fetch_news import (
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-STRUCTURE_SCHEMA = 2
+STRUCTURE_SCHEMA = 3
 MAX_PER_RUN = max(8, int(os.getenv("STRUCTURE_MAX_PER_RUN", "36")))
 RECENT_HOURS = max(24, int(os.getenv("STRUCTURE_RECENT_HOURS", "120")))
 WORKERS = max(2, min(8, int(os.getenv("STRUCTURE_WORKERS", "6"))))
@@ -36,6 +36,7 @@ MARKDOWN_UL = re.compile(r"^\s{0,3}[-*+]\s+(.+)$")
 MARKDOWN_OL = re.compile(r"^\s{0,3}\d+[.)]\s+(.+)$")
 MARKDOWN_QUOTE = re.compile(r"^\s{0,3}>\s?(.*)$")
 MARKDOWN_STRONG = re.compile(r"^\s*\*\*(.+?)\*\*\s*$")
+MARKDOWN_LINK_ONLY = re.compile(r"^\s*\[[^\]]+\]\(https?://[^)]+\)\s*$", re.I)
 
 CBC_HEADERS = {
     "User-Agent": "LondonNews/1.0 (+https://myplexscripts.github.io/news/)",
@@ -63,6 +64,17 @@ BOILERPLATE = (
     "contact cbc",
     "accessibility",
     "report an error",
+)
+
+RECIRCULATION_LABELS = (
+    "read more",
+    "related stories",
+    "related story",
+    "more from",
+    "recommended for you",
+    "you may also like",
+    "also read",
+    "keep reading",
 )
 
 
@@ -108,7 +120,11 @@ def richness(blocks: list[dict[str, Any]]) -> tuple[int, int, int, int]:
 
 def has_rich_structure(blocks: list[dict[str, Any]]) -> bool:
     headings, images, quotes, lists = richness(blocks)
-    return headings > 0 or images > 0 or quotes > 0 or lists > 0
+    strong_paragraphs = sum(
+        1 for block in blocks
+        if block.get("type") == "paragraph" and block.get("emphasis") == "strong" and block.get("text")
+    )
+    return headings > 0 or images > 0 or quotes > 0 or lists > 0 or strong_paragraphs > 0
 
 
 def clean_markdown_text(value: str) -> str:
@@ -133,6 +149,13 @@ def near_duplicate(left: str, right: str) -> bool:
         return True
     shorter, longer = (a, b) if len(a) <= len(b) else (b, a)
     return len(shorter) >= 34 and longer.startswith(shorter) and len(shorter) / len(longer) >= 0.72
+
+
+def is_recirculation_label(value: str) -> bool:
+    key = text_key(value)
+    if not key:
+        return False
+    return any(key == label or key.startswith(f"{label} ") for label in RECIRCULATION_LABELS)
 
 
 def is_boilerplate(value: str, title: str = "") -> bool:
@@ -165,6 +188,7 @@ def append_text_block(
     title: str,
     seen_text: list[str],
     level: int | None = None,
+    emphasis: str | None = None,
 ) -> None:
     text = clean_markdown_text(raw_text)
     min_len = 4 if kind == "heading" else 12
@@ -176,7 +200,18 @@ def append_text_block(
     block: dict[str, Any] = {"type": kind, "text": text}
     if kind == "heading":
         block["level"] = 3 if level == 3 else 2
+    if kind == "paragraph" and emphasis:
+        block["emphasis"] = emphasis
     blocks.append(block)
+
+
+def markdown_list_is_recirculation(raw_items: list[str], recirculation_pending: bool) -> bool:
+    if len(raw_items) < 2:
+        return False
+    if recirculation_pending:
+        return True
+    linked = sum(1 for item in raw_items if MARKDOWN_LINK_ONLY.match(item.strip()))
+    return linked == len(raw_items)
 
 
 def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[str, Any]]:
@@ -187,18 +222,22 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
     seen_images: set[str] = set()
     hero_key = normalize_image_key(hero_url)
     pending_image_index: int | None = None
+    recirculation_pending = False
 
     lines = body.splitlines()
     index = 0
     paragraph_lines: list[str] = []
 
     def flush_paragraph() -> None:
-        nonlocal paragraph_lines
+        nonlocal paragraph_lines, recirculation_pending
         if not paragraph_lines:
             return
         text = " ".join(line.strip() for line in paragraph_lines if line.strip())
         paragraph_lines = []
+        if recirculation_pending and MARKDOWN_LINK_ONLY.match(text):
+            return
         append_text_block(blocks, "paragraph", text, title, seen_text)
+        recirculation_pending = False
 
     while index < len(lines):
         line = lines[index].rstrip()
@@ -211,8 +250,15 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
         heading = MARKDOWN_HEADING.match(stripped)
         if heading:
             flush_paragraph()
+            heading_text = clean_markdown_text(heading.group(2))
+            if is_recirculation_label(heading_text):
+                recirculation_pending = True
+                pending_image_index = None
+                index += 1
+                continue
             level = len(heading.group(1))
             append_text_block(blocks, "heading", heading.group(2), title, seen_text, level=level)
+            recirculation_pending = False
             pending_image_index = None
             index += 1
             continue
@@ -220,7 +266,21 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
         strong = MARKDOWN_STRONG.match(stripped)
         if strong and len(clean_markdown_text(strong.group(1))) <= 260:
             flush_paragraph()
-            append_text_block(blocks, "heading", strong.group(1), title, seen_text, level=2)
+            strong_text = clean_markdown_text(strong.group(1))
+            if is_recirculation_label(strong_text):
+                recirculation_pending = True
+                pending_image_index = None
+                index += 1
+                continue
+            append_text_block(
+                blocks,
+                "paragraph",
+                strong.group(1),
+                title,
+                seen_text,
+                emphasis="strong",
+            )
+            recirculation_pending = False
             pending_image_index = None
             index += 1
             continue
@@ -239,6 +299,7 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
                 seen_images.add(key)
                 blocks.append({"type": "image", "url": url, "alt": alt, "caption": ""})
                 pending_image_index = len(blocks) - 1
+            recirculation_pending = False
             index += 1
             continue
 
@@ -273,6 +334,7 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
                 quote_lines.append(qmatch.group(1))
                 index += 1
             append_text_block(blocks, "quote", " ".join(quote_lines), title, seen_text)
+            recirculation_pending = False
             pending_image_index = None
             continue
 
@@ -282,25 +344,37 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
             flush_paragraph()
             ordered = bool(ol)
             items: list[str] = []
+            raw_items: list[str] = []
             while index < len(lines):
                 current = lines[index].strip()
                 match = MARKDOWN_OL.match(current) if ordered else MARKDOWN_UL.match(current)
                 if not match:
                     break
-                item = clean_markdown_text(match.group(1))
+                raw_item = match.group(1).strip()
+                raw_items.append(raw_item)
+                item = clean_markdown_text(raw_item)
                 if len(item) >= 2 and not is_boilerplate(item, title):
                     items.append(item)
                 index += 1
+            if markdown_list_is_recirculation(raw_items, recirculation_pending):
+                recirculation_pending = False
+                pending_image_index = None
+                continue
             if items:
                 joined = " ".join(items)
                 if not any(near_duplicate(joined, prior) for prior in seen_text[-18:]):
                     seen_text.append(joined)
                     blocks.append({"type": "list", "ordered": ordered, "items": items})
+            recirculation_pending = False
             pending_image_index = None
             continue
 
         if stripped.startswith(("---", "___")) and len(stripped.replace("-", "").replace("_", "")) == 0:
             flush_paragraph()
+            index += 1
+            continue
+
+        if recirculation_pending and MARKDOWN_LINK_ONLY.match(stripped):
             index += 1
             continue
 
@@ -318,6 +392,40 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
     return blocks
 
 
+def prune_recirculation_modules(soup: BeautifulSoup) -> None:
+    candidates = list(soup.find_all(["h2", "h3", "h4", "strong"]))
+    for label in candidates:
+        if not isinstance(label, Tag) or label.parent is None:
+            continue
+        if not is_recirculation_label(label.get_text(" ", strip=True)):
+            continue
+
+        module: Tag | None = None
+        for parent in label.parents:
+            if not isinstance(parent, Tag):
+                continue
+            if parent.name in {"article", "main", "body", "html"}:
+                break
+            links = parent.find_all("a", href=True)
+            parent_words = words(parent.get_text(" ", strip=True))
+            if parent.name in {"section", "aside", "div", "ul", "ol"} and 2 <= len(links) <= 12 and parent_words <= 220:
+                module = parent
+                break
+
+        if module is not None and module.parent is not None:
+            module.decompose()
+            continue
+
+        sibling = label.find_next_sibling()
+        if isinstance(sibling, Tag):
+            links = sibling.find_all("a", href=True)
+            sibling_words = words(sibling.get_text(" ", strip=True))
+            if 2 <= len(links) <= 12 and sibling_words <= 180:
+                sibling.decompose()
+        if label.parent is not None:
+            label.decompose()
+
+
 def fetch_cbc_blocks(story: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
     story_id = cbc_story_id(story.get("url", ""))
     if not story_id:
@@ -331,7 +439,7 @@ def fetch_cbc_blocks(story: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
     if len(response.text) < 500:
         return [], "cbc:short-response"
     blocks = parse_cbc_markdown(response.text, clean_text(story.get("title", "")), clean_text(story.get("image", "")))
-    return blocks, "cbc:jina-lite-structured"
+    return blocks, "cbc:jina-lite-structured-v3"
 
 
 def fetch_dom_structure(story: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
@@ -343,11 +451,12 @@ def fetch_dom_structure(story: dict[str, Any]) -> tuple[list[dict[str, Any]], st
     except Exception as exc:
         return [], f"dom:{type(exc).__name__}"
     soup = BeautifulSoup(raw, "html.parser")
+    prune_recirculation_modules(soup)
     title = clean_text(story.get("title", ""))
     lead_image = clean_text(story.get("image", ""))
     blocks, _stats, method = extract_dom_blocks(soup, final_url, clean_text(story.get("source", "")), title, lead_image)
     blocks = sanitize_content_blocks(blocks, clean_text(story.get("source", "")), title, lead_image)
-    return blocks, method
+    return blocks, f"{method}:structure-v3"
 
 
 def body_coverage_ok(story: dict[str, Any], blocks: list[dict[str, Any]]) -> bool:
