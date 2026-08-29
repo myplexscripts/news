@@ -101,6 +101,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_article_media.py
 
+      - name: Test source specific article profiles
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_source_profiles.py
+
       - name: Fetch local news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
@@ -132,6 +136,10 @@ jobs:
       - name: Preserve inline article formatting
         if: steps.due.outputs.run == 'true'
         run: python scripts/refine_article_formatting.py
+
+      - name: Apply source specific extraction profiles
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/refine_source_articles.py
 
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
