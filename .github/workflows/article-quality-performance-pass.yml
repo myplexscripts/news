@@ -1,0 +1,133 @@
+name: Article quality and image performance pass
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/article-quality-performance-pass.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Apply scraper and image changes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(text: str, old: str, new: str, label: str) -> str:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected exactly one match, found {count}")
+              return text.replace(old, new, 1)
+
+          fetch_path = Path('scripts/fetch_news.py')
+          text = fetch_path.read_text(encoding='utf-8')
+
+          text = replace_once(text, 'EXTRACTION_SCHEMA = 12', 'EXTRACTION_SCHEMA = 13', 'extraction schema')
+          text = replace_once(
+              text,
+              '    "MPP", "MP", "CA", "US", "USA",\n',
+              '    "MPP", "MP", "CA", "USA",\n',
+              'US acronym normalization',
+          )
+
+          text = replace_once(
+              text,
+              '''def postmedia_recirc_text(value: str) -> bool:\n    key = boilerplate_key(value)\n    return key in {"read more", "more to read", "more from the london free press", "related stories"} or key.startswith((\n        "read more from", "more from london free press", "recommended for you",\n    ))\n''',
+              '''def postmedia_recirc_text(value: str) -> bool:\n    key = boilerplate_key(value)\n    return key in {"read more", "more to read", "more from the london free press", "related stories"} or key.startswith((\n        "read more from", "more from london free press", "recommended for you",\n    ))\n\n\ndef postmedia_resume_text(value: str) -> bool:\n    """Only leave a Postmedia recirculation module when genuine prose resumes."""\n    text = clean_text(value)\n    if len(text) < 80:\n        return False\n    if postmedia_recirc_text(text) or is_boilerplate_block(text, "London Free Press"):\n        return False\n    return bool(re.search(r'[.!?]["\\'’)]?$', text))\n''',
+              'Postmedia resume helper',
+          )
+
+          text = replace_once(
+              text,
+              '''                if linked is not None or node.name in ("h2", "h3") or len(raw_node_text) < 90:\n                    continue\n                postmedia_recirc = False\n''',
+              '''                if linked is not None or node.name in ("h2", "h3") or not postmedia_resume_text(raw_node_text):\n                    continue\n                postmedia_recirc = False\n''',
+              'DOM recirculation resume',
+          )
+
+          text = replace_once(
+              text,
+              '''            if skipping_postmedia_recirc:\n                if kind == "paragraph" and len(text) >= 90:\n                    skipping_postmedia_recirc = False\n                else:\n                    continue\n''',
+              '''            if skipping_postmedia_recirc:\n                if kind == "paragraph" and postmedia_resume_text(text):\n                    skipping_postmedia_recirc = False\n                else:\n                    continue\n''',
+              'structured recirculation resume',
+          )
+
+          text = replace_once(
+              text,
+              '''        filename = hashlib.sha1(image_url.encode("utf-8", "ignore")).hexdigest()[:20] + ".webp"\n        target = CARD_IMAGE_DIR / filename\n        relative = f"cache/news/{filename}"\n        wanted.add(filename)\n        if not target.exists():\n''',
+              '''        stem = hashlib.sha1(image_url.encode("utf-8", "ignore")).hexdigest()[:20]\n        filename = stem + ".webp"\n        small_filename = stem + "-sm.webp"\n        target = CARD_IMAGE_DIR / filename\n        small_target = CARD_IMAGE_DIR / small_filename\n        relative = f"cache/news/{filename}"\n        small_relative = f"cache/news/{small_filename}"\n        wanted.update({filename, small_filename})\n        if not target.exists():\n''',
+              'card thumbnail filenames',
+          )
+
+          text = replace_once(
+              text,
+              '''                image.thumbnail((720, 720), Image.Resampling.LANCZOS)\n                image.save(target, "WEBP", quality=82, method=6)\n            except Exception:\n                continue\n        story["card_image"] = relative\n        done += 1\n''',
+              '''                image.thumbnail((720, 720), Image.Resampling.LANCZOS)\n                image.save(target, "WEBP", quality=82, method=6)\n            except Exception:\n                continue\n        if target.exists() and not small_target.exists():\n            try:\n                small_image = Image.open(target).convert("RGB")\n                small_image.thumbnail((420, 420), Image.Resampling.LANCZOS)\n                small_image.save(small_target, "WEBP", quality=76, method=6)\n            except Exception:\n                pass\n        story["card_image"] = relative\n        if small_target.exists():\n            story["card_image_small"] = small_relative\n        else:\n            story.pop("card_image_small", None)\n        done += 1\n''',
+              'small card thumbnail generation',
+          )
+
+          fetch_path.write_text(text, encoding='utf-8')
+
+          card_path = Path('src/components/NewsCard.astro')
+          card = card_path.read_text(encoding='utf-8')
+          card = replace_once(
+              card,
+              "  const value = String(story.card_image || story.image || '').trim();",
+              "  const value = String(variant === 'standard' ? (story.card_image_small || story.card_image || story.image || '') : (story.card_image || story.image || '')).trim();",
+              'compact card image selection',
+          )
+          card = replace_once(
+              card,
+              '''        alt={story.image_alt || ''}\n        loading={index < 3 ? 'eager' : 'lazy'}\n''',
+              '''        alt={story.image_alt || ''}\n        width={variant === 'standard' ? 420 : 720}\n        height={variant === 'standard' ? 420 : 720}\n        loading={index < 3 ? 'eager' : 'lazy'}\n''',
+              'card image dimensions',
+          )
+          card = card.rstrip() + '''\n\n<script>\n  function initialiseHomeCardLookahead() {\n    const home = document.querySelector('.home-page');\n    if (!home) return;\n\n    const cards = [...home.querySelectorAll('.news-card')];\n    if (!cards.length) return;\n\n    const warmed = new Set();\n    const warmNextThree = (startIndex) => {\n      let remaining = 3;\n      for (let index = Math.max(3, startIndex); index < cards.length && remaining > 0; index += 1) {\n        const image = cards[index].querySelector('.news-card-photo');\n        if (!(image instanceof HTMLImageElement)) continue;\n        const src = image.currentSrc || image.src;\n        if (!src) continue;\n        if (image.complete || warmed.has(src)) {\n          remaining -= 1;\n          continue;\n        }\n        const preload = new Image();\n        preload.decoding = 'async';\n        preload.fetchPriority = 'low';\n        preload.src = src;\n        warmed.add(src);\n        remaining -= 1;\n      }\n    };\n\n    warmNextThree(3);\n\n    const observer = new IntersectionObserver((entries) => {\n      for (const entry of entries) {\n        if (!entry.isIntersecting) continue;\n        const index = cards.indexOf(entry.target);\n        if (index >= 0) warmNextThree(index + 1);\n      }\n    }, { rootMargin: '75% 0px 75% 0px', threshold: 0.01 });\n\n    cards.forEach((card) => observer.observe(card));\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', initialiseHomeCardLookahead, { once: true });\n  } else {\n    initialiseHomeCardLookahead();\n  }\n</script>\n'''
+          card_path.write_text(card, encoding='utf-8')
+          PY
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate scraper syntax and existing regressions
+        run: |
+          python -m py_compile scripts/fetch_news.py
+          python scripts/test_scraper_regressions.py
+          python scripts/test_editorial.py
+
+      - name: Validate site build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit changes and remove temporary workflow
+        shell: bash
+        run: |
+          rm .github/workflows/article-quality-performance-pass.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/fetch_news.py src/components/NewsCard.astro .github/workflows/article-quality-performance-pass.yml
+          git commit -m "Fix article extraction and optimize card images"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Refresh feed and deploy patched site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run refresh.yml --ref main
+          gh workflow run site.yml --ref main
