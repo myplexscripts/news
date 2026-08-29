@@ -37,7 +37,6 @@ def title_match(item: Any, titles: set[str]) -> bool:
         return False
     if key in titles:
         return True
-    # Publisher cards sometimes prepend a section label or trim a few words.
     for title in titles:
         if len(title) < 18:
             continue
@@ -49,6 +48,41 @@ def title_match(item: Any, titles: set[str]) -> bool:
     return False
 
 
+def shared_headline_prefix(items: list[str]) -> bool:
+    prefixes: list[str] = []
+    for item in items:
+        if ":" not in item:
+            return False
+        prefix = text_key(item.split(":", 1)[0])
+        if len(prefix) < 4 or len(prefix.split()) > 5:
+            return False
+        prefixes.append(prefix)
+    return len(set(prefixes)) == 1
+
+
+def headline_like(value: str) -> bool:
+    text = str(value or "").strip()
+    count = len(re.findall(r"\b\w+[’'-]?\w*\b", text))
+    if count < 4 or count > 22:
+        return False
+    if re.search(r"[.!?][\"'’”)]?$", text):
+        return False
+    if re.match(r"(?i)^(?:step|tip|reason|rule|item)\s+\d+\b", text):
+        return False
+    return True
+
+
+def looks_like_promoted_headline_run(items: list[str], ordered: bool) -> bool:
+    if len(items) < 2 or len(items) > 6:
+        return False
+    if shared_headline_prefix(items):
+        return True
+    if not ordered:
+        return False
+    headline_count = sum(1 for item in items if headline_like(item))
+    return headline_count == len(items) and all(len(item) >= 24 for item in items)
+
+
 def list_is_story_promo(block: dict[str, Any], other_titles: set[str]) -> bool:
     if block.get("type") != "list":
         return False
@@ -56,7 +90,9 @@ def list_is_story_promo(block: dict[str, Any], other_titles: set[str]) -> bool:
     if len(items) < 2:
         return False
     matches = sum(1 for item in items if title_match(item, other_titles))
-    return matches >= 2 and matches / len(items) >= 0.67
+    if matches >= 2 and matches / len(items) >= 0.67:
+        return True
+    return looks_like_promoted_headline_run(items, bool(block.get("ordered")))
 
 
 def prune_story(story: dict[str, Any], all_stories: list[dict[str, Any]]) -> bool:
@@ -73,8 +109,6 @@ def prune_story(story: dict[str, Any], all_stories: list[dict[str, Any]]) -> boo
         for key in [text_key(candidate.get("title"))]
         if key and key != current_title
     }
-    if not other_titles:
-        return False
 
     cleaned: list[dict[str, Any]] = []
     changed = False
@@ -86,8 +120,6 @@ def prune_story(story: dict[str, Any], all_stories: list[dict[str, Any]]) -> boo
             continue
         cleaned.append(block)
 
-    # Also remove a recirculation label that was left immediately before a run of
-    # publisher-card titles represented as ordinary paragraphs/headings.
     index = 0
     final: list[dict[str, Any]] = []
     while index < len(cleaned):
