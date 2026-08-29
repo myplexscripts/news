@@ -93,6 +93,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_recirculation_cleanup.py
 
+      - name: Test inline article formatting
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_article_formatting.py
+
       - name: Fetch local news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
@@ -120,6 +124,10 @@ jobs:
       - name: Preserve source article structure
         if: steps.due.outputs.run == 'true'
         run: python scripts/enrich_article_structure.py
+
+      - name: Preserve inline article formatting
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/refine_article_formatting.py
 
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
