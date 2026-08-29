@@ -89,6 +89,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_publication_roundups.py
 
+      - name: Test article recirculation cleanup
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_recirculation_cleanup.py
+
       - name: Fetch local news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
@@ -116,6 +120,10 @@ jobs:
       - name: Preserve source article structure
         if: steps.due.outputs.run == 'true'
         run: python scripts/enrich_article_structure.py
+
+      - name: Remove inline promoted-story modules
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/cleanup_article_recirculation.py
 
       - name: Cache CBC article images locally
         if: steps.due.outputs.run == 'true'
