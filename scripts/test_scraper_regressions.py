@@ -3,6 +3,7 @@ from __future__ import annotations
 from bs4 import BeautifulSoup
 
 import fetch_news as scoop
+from enrich_article_structure import parse_cbc_markdown, prune_recirculation_modules
 
 
 def text_dump(blocks: list[dict]) -> str:
@@ -132,6 +133,67 @@ def test_ctv_linked_promo_image_is_rejected() -> None:
     assert stats.get("images_rejected", 0) >= 1
 
 
+def test_cbc_standalone_bold_is_not_promoted_to_heading() -> None:
+    raw = """
+Markdown Content:
+
+Guikema spoke with the host a short time after Thursday's announcement and discussed the move to Canada.
+
+**Nav Nanwa: What made you decide to leave the U.S. and come to Canada and Western University at this particular point of your career?**
+
+Seth Guikema: Well, when looking at where things are going in my future career, I think Western offers an incredibly strong environment for doing this sort of research.
+"""
+    blocks = parse_cbc_markdown(raw, "Western recruits leading researcher")
+    question = next(block for block in blocks if block.get("text", "").startswith("Nav Nanwa:"))
+    assert question.get("type") == "paragraph"
+    assert question.get("emphasis") == "strong"
+    assert not any(block.get("type") == "heading" and block.get("text", "").startswith("Nav Nanwa:") for block in blocks)
+
+
+def test_cbc_related_story_list_is_not_article_copy() -> None:
+    raw = """
+Markdown Content:
+
+The judge heard testimony from several witnesses before delivering the decision in the case.
+
+## Read More
+
+1. [Why a judge rejected self-defence in police officer stabbing case](https://www.cbc.ca/news/canada/london/story-one-1.1234567)
+2. [Youth who murdered 11-year-old girl could be sentenced in October](https://www.cbc.ca/news/canada/london/story-two-1.1234568)
+
+Jeff Chapman, a neighbourhood resident, said the case has had a lasting effect on people who live nearby.
+"""
+    blocks = parse_cbc_markdown(raw, "Court case continues in London")
+    dumped = text_dump(blocks)
+    assert "judge rejected self-defence" not in dumped
+    assert "Youth who murdered" not in dumped
+    assert "Jeff Chapman" in dumped
+    assert not any(block.get("type") == "list" for block in blocks)
+
+
+def test_generic_read_more_card_module_is_pruned_before_extraction() -> None:
+    html = """
+    <article>
+      <p>The brewery is considering bringing back several older beers for a limited time as part of its relaunch.</p>
+      <div>
+        <h2>Read More</h2>
+        <div>
+          <a href="/news/local-news/sour-suite">Brews News: A sour suite for summer's end</a>
+          <a href="/news/local-news/anniversary">Brews News: Anderson marks 10 years with anniversary bash</a>
+        </div>
+      </div>
+      <p>But not everything can be backward-looking, and the current brewers are introducing new recipes as well.</p>
+    </article>
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    prune_recirculation_modules(soup)
+    text = soup.get_text(" ", strip=True)
+    assert "sour suite" not in text
+    assert "Anderson marks" not in text
+    assert "bringing back several older beers" in text
+    assert "current brewers are introducing" in text
+
+
 def main() -> int:
     tests = [
         test_normal_us_is_not_forced_to_country_acronym,
@@ -139,6 +201,9 @@ def main() -> int:
         test_postmedia_long_read_more_headline_does_not_resume_copy,
         test_ctv_inline_recirculation_does_not_truncate_story,
         test_ctv_linked_promo_image_is_rejected,
+        test_cbc_standalone_bold_is_not_promoted_to_heading,
+        test_cbc_related_story_list_is_not_article_copy,
+        test_generic_read_more_card_module_is_pruned_before_extraction,
     ]
     for test in tests:
         test()
