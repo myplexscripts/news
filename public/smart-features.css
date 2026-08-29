@@ -146,6 +146,73 @@ html body #page-content .editorial-section-heading h2 {
   letter-spacing: -0.035em !important;
 }
 
+/* Home masthead: title and update stamp share a real baseline row. */
+html body .site-header.site-header-home .home-header-inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 20px !important;
+  row-gap: 2px !important;
+  align-items: baseline !important;
+}
+
+html body .site-header.site-header-home .brand-area {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  align-self: baseline !important;
+}
+
+html body .site-header.site-header-home .brand {
+  min-height: 0 !important;
+  align-items: baseline !important;
+}
+
+html body .site-header.site-header-home .home-meta-row {
+  display: contents !important;
+}
+
+html body .site-header.site-header-home .home-header-updated {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-self: baseline !important;
+  justify-self: end !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+html body .site-header.site-header-home .home-header-date {
+  grid-column: 1 !important;
+  grid-row: 2 !important;
+  margin: 0 !important;
+}
+
+html body .site-header.site-header-home .header-actions {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  align-self: center !important;
+  justify-self: end !important;
+}
+
+/* Publisher marks on story photography. Preserve each SVG's aspect ratio. */
+html body .news-card-media .card-source-logo,
+html body .related-media .card-source-logo,
+html body .search-result-media .card-source-logo {
+  position: absolute !important;
+  z-index: 3 !important;
+  top: 25px !important;
+  left: 25px !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: min(42%, 220px) !important;
+  max-height: 64px !important;
+  object-fit: contain !important;
+  object-position: left top !important;
+  filter: drop-shadow(0 0 35px rgb(0 0 0 / 1)) !important;
+  transform: none !important;
+  pointer-events: none !important;
+}
+
 @media (max-width: 760px) {
   :root {
     --canonical-site-title: 30px;
@@ -213,6 +280,19 @@ html body #page-content .editorial-section-heading h2 {
   html body #page-content .sources-shell.shell,
   html body #page-content .settings-shell.shell {
     padding-top: var(--canonical-page-top) !important;
+  }
+
+  html body .site-header.site-header-home .header-actions {
+    display: none !important;
+  }
+
+  html body .news-card-media .card-source-logo,
+  html body .related-media .card-source-logo,
+  html body .search-result-media .card-source-logo {
+    top: 25px !important;
+    left: 25px !important;
+    max-width: min(48%, 190px) !important;
+    max-height: 58px !important;
   }
 }
 
