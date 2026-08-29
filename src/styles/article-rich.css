@@ -148,6 +148,11 @@
   transform: none !important;
 }
 
+/* The story-header publisher mark is mobile only. Desktop uses the sidebar mark. */
+.article-source-heading-logo {
+  display: none;
+}
+
 /* On desktop the publisher mark is a separate full-width element above the
    source card. It lives inside the sticky sidebar group, so it moves with the
    source card while the article is scrolled. */
@@ -170,6 +175,10 @@ html[data-theme='dark'] .article-sidebar-source-logo {
   display: none !important;
 }
 
+.article-source-card-refined .source-card-name {
+  margin-left: 0.28em;
+}
+
 @media (max-width: 760px) {
   .site-header-home .home-header-inner {
     grid-template-columns: minmax(0, 1fr) auto !important;
@@ -188,5 +197,19 @@ html[data-theme='dark'] .article-sidebar-source-logo {
 
   .article-sidebar-source-logo {
     display: none !important;
+  }
+
+  .article-source-heading-logo {
+    display: block !important;
+    width: 100% !important;
+    height: 64px !important;
+    margin: 0 0 26px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+    filter: grayscale(1) brightness(0) !important;
+  }
+
+  html[data-theme='dark'] .article-source-heading-logo {
+    filter: grayscale(1) brightness(0) invert(1) !important;
   }
 }
