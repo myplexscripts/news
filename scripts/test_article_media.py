@@ -62,10 +62,15 @@ def test_media_is_inserted_after_matching_cue() -> None:
     assert merged[2]["media_type"] == "audio"
 
 
-def test_media_cue_link_becomes_source_media_card() -> None:
-    block = media_block("https://www.cbc.ca/player/play/video/123", "Listen to the full interview")
+def test_non_playable_media_link_is_rejected() -> None:
+    block = media_block("https://example.test/article", "Listen to the full interview")
+    assert block is None
+
+
+def test_safe_cbc_player_url_can_embed() -> None:
+    block = media_block("https://www.cbc.ca/player/play/video/123", "Watch the report")
     assert block is not None
-    assert block["media_type"] in {"embed", "link"}
+    assert block["media_type"] == "embed"
 
 
 def main() -> int:
@@ -74,7 +79,8 @@ def main() -> int:
         test_dom_video_keeps_poster,
         test_safe_embed_is_preserved_and_unknown_embed_is_rejected,
         test_media_is_inserted_after_matching_cue,
-        test_media_cue_link_becomes_source_media_card,
+        test_non_playable_media_link_is_rejected,
+        test_safe_cbc_player_url_can_embed,
     ]
     for test in tests:
         test()
