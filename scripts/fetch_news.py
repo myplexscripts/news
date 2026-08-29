@@ -35,7 +35,7 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 48
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 12
+EXTRACTION_SCHEMA = 13
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -327,7 +327,7 @@ IMAGE_JUNK = (
 ACRONYMS = {
     "CBC", "CTV", "LPS", "OPP", "RCMP", "SIU", "EMS", "LHSC", "MLHU", "TVDSB",
     "LDCSB", "NHL", "OHL", "CFL", "NBA", "MLB", "COVID", "DNA", "CEO", "CFO",
-    "MPP", "MP", "CA", "US", "USA",
+    "MPP", "MP", "CA", "USA",
 }
 
 PROPER_WORDS = {
@@ -432,6 +432,16 @@ def postmedia_recirc_text(value: str) -> bool:
     return key in {"read more", "more to read", "more from the london free press", "related stories"} or key.startswith((
         "read more from", "more from london free press", "recommended for you",
     ))
+
+
+def postmedia_resume_text(value: str) -> bool:
+    """Only leave a Postmedia recirculation module when genuine prose resumes."""
+    text = clean_text(value)
+    if len(text) < 80:
+        return False
+    if postmedia_recirc_text(text) or is_boilerplate_block(text, "London Free Press"):
+        return False
+    return bool(re.search(r'[.!?]["\'’)]?$', text))
 
 
 def is_boilerplate_block(value: str, source_name: str = "") -> bool:
@@ -1266,7 +1276,7 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
                 # Ignore linked headlines/teasers, but continue with the real article
                 # paragraph that follows the module.
                 linked = node.find_parent("a", href=True)
-                if linked is not None or node.name in ("h2", "h3") or len(raw_node_text) < 90:
+                if linked is not None or node.name in ("h2", "h3") or not postmedia_resume_text(raw_node_text):
                     continue
                 postmedia_recirc = False
             if postmedia_mode and node.name in ("h2", "h3") and (raw_key.startswith("trending") or raw_key.startswith("most read") or raw_key.startswith("most popular")):
@@ -2138,7 +2148,7 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
                 skipping_postmedia_recirc = True
                 continue
             if skipping_postmedia_recirc:
-                if kind == "paragraph" and len(text) >= 90:
+                if kind == "paragraph" and postmedia_resume_text(text):
                     skipping_postmedia_recirc = False
                 else:
                     continue
@@ -2435,10 +2445,14 @@ def cache_card_images(stories: list[dict[str, Any]], limit: int = 140) -> list[d
         image_url = clean_text(story.get("image"))
         if not image_url or not image_url.startswith(("http://", "https://")):
             continue
-        filename = hashlib.sha1(image_url.encode("utf-8", "ignore")).hexdigest()[:20] + ".webp"
+        stem = hashlib.sha1(image_url.encode("utf-8", "ignore")).hexdigest()[:20]
+        filename = stem + ".webp"
+        small_filename = stem + "-sm.webp"
         target = CARD_IMAGE_DIR / filename
+        small_target = CARD_IMAGE_DIR / small_filename
         relative = f"cache/news/{filename}"
-        wanted.add(filename)
+        small_relative = f"cache/news/{small_filename}"
+        wanted.update({filename, small_filename})
         if not target.exists():
             try:
                 response = SESSION.get(image_url, timeout=12)
@@ -2459,7 +2473,18 @@ def cache_card_images(stories: list[dict[str, Any]], limit: int = 140) -> list[d
                 image.save(target, "WEBP", quality=82, method=6)
             except Exception:
                 continue
+        if target.exists() and not small_target.exists():
+            try:
+                small_image = Image.open(target).convert("RGB")
+                small_image.thumbnail((420, 420), Image.Resampling.LANCZOS)
+                small_image.save(small_target, "WEBP", quality=76, method=6)
+            except Exception:
+                pass
         story["card_image"] = relative
+        if small_target.exists():
+            story["card_image_small"] = small_relative
+        else:
+            story.pop("card_image_small", None)
         done += 1
 
     # Avoid unbounded repository growth. Keep cached files still referenced by the latest set.

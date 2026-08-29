@@ -35,7 +35,7 @@ const categoryClass = `category-${String(story.category || 'Local').toLowerCase(
 const words = String(story.title || '').trim().split(/\s+/).filter(Boolean);
 const title = words.length > 20 ? `${words.slice(0, 20).join(' ')}…` : words.join(' ');
 const imageSrc = (() => {
-  const value = String(story.card_image || story.image || '').trim();
+  const value = String(variant === 'standard' ? (story.card_image_small || story.card_image || story.image || '') : (story.card_image || story.image || '')).trim();
   if (!value) return '';
   if (/^https?:\/\//i.test(value) || value.startsWith('/')) return value;
   return `${base}${value}`;
@@ -80,6 +80,8 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
         class="news-card-photo"
         src={imageSrc}
         alt={story.image_alt || ''}
+        width={variant === 'standard' ? 420 : 720}
+        height={variant === 'standard' ? 420 : 720}
         loading={index < 3 ? 'eager' : 'lazy'}
         fetchpriority={index < 3 ? 'high' : 'auto'}
         decoding="async"
@@ -108,3 +110,52 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
     {showSummary && story.summary && <p class="news-card-summary">{story.summary}</p>}
   </div>
 </a>
+
+<script>
+  function initialiseHomeCardLookahead() {
+    const home = document.querySelector('.home-page');
+    if (!home) return;
+
+    const cards = [...home.querySelectorAll('.news-card')];
+    if (!cards.length) return;
+
+    const warmed = new Set();
+    const warmNextThree = (startIndex) => {
+      let remaining = 3;
+      for (let index = Math.max(3, startIndex); index < cards.length && remaining > 0; index += 1) {
+        const image = cards[index].querySelector('.news-card-photo');
+        if (!(image instanceof HTMLImageElement)) continue;
+        const src = image.currentSrc || image.src;
+        if (!src) continue;
+        if (image.complete || warmed.has(src)) {
+          remaining -= 1;
+          continue;
+        }
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.fetchPriority = 'low';
+        preload.src = src;
+        warmed.add(src);
+        remaining -= 1;
+      }
+    };
+
+    warmNextThree(3);
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const index = cards.indexOf(entry.target);
+        if (index >= 0) warmNextThree(index + 1);
+      }
+    }, { rootMargin: '75% 0px 75% 0px', threshold: 0.01 });
+
+    cards.forEach((card) => observer.observe(card));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialiseHomeCardLookahead, { once: true });
+  } else {
+    initialiseHomeCardLookahead();
+  }
+</script>
