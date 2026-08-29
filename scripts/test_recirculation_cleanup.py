@@ -8,6 +8,7 @@ def test_promoted_story_list_is_removed() -> None:
         "stories": [
             {
                 "id": "main",
+                "source": "London Free Press",
                 "title": "Railway City Brewing looks back and ahead",
                 "content_blocks": [
                     {"type": "paragraph", "text": "With the brewery back in local hands, several old favourites could return for a short while."},
@@ -40,6 +41,7 @@ def test_promoted_story_list_is_removed_even_when_titles_are_not_in_feed() -> No
         "stories": [
             {
                 "id": "main",
+                "source": "London Free Press",
                 "title": "Railway City Brewing looks back and ahead",
                 "content_blocks": [
                     {"type": "paragraph", "text": "Witty Traveller, a Belgian wheat beer, is a contender."},
@@ -63,20 +65,74 @@ def test_promoted_story_list_is_removed_even_when_titles_are_not_in_feed() -> No
     assert any(block.get("text") == "But not everything can be backward-looking." for block in blocks)
 
 
+def test_labelled_publisher_cards_are_removed_without_feed_matches() -> None:
+    payload = {
+        "stories": [
+            {
+                "id": "main",
+                "source": "CTV News",
+                "title": "Main article",
+                "content_blocks": [
+                    {"type": "paragraph", "text": "The main article continues with a complete sentence before the inserted module."},
+                    {"type": "heading", "level": 2, "text": "Recommended for you"},
+                    {"type": "paragraph", "text": "London council approves major downtown housing proposal"},
+                    {"type": "image", "url": "https://example.test/promo.jpg", "alt": ""},
+                    {"type": "paragraph", "text": "Police identify driver in Highway 401 collision near London"},
+                    {"type": "paragraph", "text": "Officials said the project will return to council next month for a final vote."},
+                ],
+            }
+        ]
+    }
+
+    assert clean_payload(payload) == 1
+    blocks = payload["stories"][0]["content_blocks"]
+    dumped = " | ".join(str(block.get("text") or block.get("url") or "") for block in blocks)
+    assert "Recommended for you" not in dumped
+    assert "downtown housing proposal" not in dumped
+    assert "Highway 401 collision" not in dumped
+    assert "return to council next month" in dumped
+
+
+def test_newsletter_module_is_removed() -> None:
+    payload = {
+        "stories": [
+            {
+                "id": "main",
+                "source": "Global News London",
+                "title": "Main article",
+                "content_blocks": [
+                    {"type": "paragraph", "text": "Residents described the meeting as productive and said more discussion is expected."},
+                    {"type": "heading", "level": 2, "text": "Newsletter"},
+                    {"type": "paragraph", "text": "Get the day's top stories delivered to your inbox"},
+                    {"type": "paragraph", "text": "The committee will meet again on Tuesday to consider the revised proposal."},
+                ],
+            }
+        ]
+    }
+
+    assert clean_payload(payload) == 1
+    blocks = payload["stories"][0]["content_blocks"]
+    dumped = " | ".join(str(block.get("text") or "") for block in blocks)
+    assert "Newsletter" not in dumped
+    assert "delivered to your inbox" not in dumped
+    assert "meet again on Tuesday" in dumped
+
+
 def test_real_numbered_list_is_preserved() -> None:
     payload = {
         "stories": [
             {
                 "id": "main",
+                "source": "London Free Press",
                 "title": "Three road projects begin next week",
                 "content_blocks": [
                     {
                         "type": "list",
                         "ordered": True,
                         "items": [
-                            "Commissioners Road will close overnight on Tuesday",
-                            "Richmond Street will have one lane closed on Wednesday",
-                            "Oxford Street work begins Thursday morning",
+                            "Commissioners Road will close overnight on Tuesday.",
+                            "Richmond Street will have one lane closed on Wednesday.",
+                            "Oxford Street work begins Thursday morning.",
                         ],
                     }
                 ],
@@ -92,6 +148,8 @@ def test_real_numbered_list_is_preserved() -> None:
 def main() -> int:
     test_promoted_story_list_is_removed()
     test_promoted_story_list_is_removed_even_when_titles_are_not_in_feed()
+    test_labelled_publisher_cards_are_removed_without_feed_matches()
+    test_newsletter_module_is_removed()
     test_real_numbered_list_is_preserved()
     print("PASS recirculation cleanup regressions")
     return 0
