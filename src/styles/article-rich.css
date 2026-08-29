@@ -116,9 +116,9 @@
 .site-header-home .home-header-updated {
   grid-column: 2 !important;
   grid-row: 1 !important;
-  align-self: end !important;
+  align-self: baseline !important;
   justify-self: end !important;
-  margin: 0 0 2px !important;
+  margin: 0 !important;
   line-height: 1 !important;
 }
 
@@ -134,8 +134,7 @@
   justify-self: end !important;
 }
 
-/* Publisher marks sit inside the image with one consistent visual bounding box.
-   Width stays intrinsic so wide and tall SVGs preserve their native aspect ratio. */
+/* Publisher marks sit inside story-card imagery with one consistent visual bounding box. */
 .card-source-logo {
   top: 25px !important;
   left: 25px !important;
@@ -149,31 +148,26 @@
   transform: none !important;
 }
 
-/* Story pages use the publisher mark as a true masthead above the headline. */
-.article-header-refined .article-source-heading-logo {
-  display: block !important;
+/* On desktop the publisher mark is a separate full-width element above the
+   source card. It lives inside the sticky sidebar group, so it moves with the
+   source card while the article is scrolled. */
+.article-sidebar-source-logo {
+  display: block;
   width: 100% !important;
-  height: clamp(92px, 12vw, 160px) !important;
-  margin: 0 0 30px !important;
-  object-fit: contain !important;
-  object-position: left center !important;
-  filter: grayscale(1) brightness(0) !important;
-  opacity: 0.94 !important;
+  height: auto !important;
+  max-height: 110px;
+  margin: 0 0 22px;
+  object-fit: contain;
+  object-position: left center;
+  filter: grayscale(1) brightness(0);
 }
 
-html[data-theme='dark'] .article-header-refined .article-source-heading-logo {
-  filter: grayscale(1) brightness(0) invert(1) !important;
-  opacity: 0.98 !important;
+html[data-theme='dark'] .article-sidebar-source-logo {
+  filter: grayscale(1) brightness(0) invert(1);
 }
 
-/* The sidebar keeps the source card details, but the publisher name itself is
-   no longer repeated now that the masthead identifies the source. */
 .article-source-card-refined .source-card-logo {
-  filter: grayscale(1) brightness(0) !important;
-}
-
-html[data-theme='dark'] .article-source-card-refined .source-card-logo {
-  filter: grayscale(1) brightness(0) invert(1) !important;
+  display: none !important;
 }
 
 @media (max-width: 760px) {
@@ -192,8 +186,7 @@ html[data-theme='dark'] .article-source-card-refined .source-card-logo {
     max-height: 64px !important;
   }
 
-  .article-header-refined .article-source-heading-logo {
-    height: clamp(74px, 24vw, 112px) !important;
-    margin-bottom: 24px !important;
+  .article-sidebar-source-logo {
+    display: none !important;
   }
 }
