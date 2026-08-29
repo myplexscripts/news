@@ -56,12 +56,18 @@ PROMO_METADATA_MARKERS = (
 )
 
 
+def item_text(value: Any) -> str:
+    if isinstance(value, dict):
+        return str(value.get("text") or "").strip()
+    return str(value or "").strip()
+
+
 def text_key(value: Any) -> str:
-    return re.sub(r"[^a-z0-9]+", " ", str(value or "").lower()).strip()
+    return re.sub(r"[^a-z0-9]+", " ", item_text(value).lower()).strip()
 
 
 def word_count(value: Any) -> int:
-    return len(re.findall(r"\b\w+[’'-]?\w*\b", str(value or "")))
+    return len(re.findall(r"\b\w+[’'-]?\w*\b", item_text(value)))
 
 
 def is_recirculation_label(value: Any) -> bool:
@@ -112,7 +118,7 @@ def shared_headline_prefix(items: list[str]) -> bool:
 
 
 def headline_like(value: Any) -> bool:
-    text = str(value or "").strip()
+    text = item_text(value)
     count = word_count(text)
     if count < 4 or count > 22:
         return False
@@ -124,7 +130,7 @@ def headline_like(value: Any) -> bool:
 
 
 def sentence_like(value: Any) -> bool:
-    text = str(value or "").strip()
+    text = item_text(value)
     return word_count(text) >= 8 and bool(re.search(r"[.!?][\"'’”)]?$", text))
 
 
@@ -149,7 +155,7 @@ def looks_like_promoted_headline_run(items: list[str], ordered: bool, source: st
 def list_is_story_promo(block: dict[str, Any], other_titles: set[str], source: str = "") -> bool:
     if block.get("type") != "list":
         return False
-    items = [str(item or "").strip() for item in block.get("items", []) if str(item or "").strip()]
+    items = [text for item in block.get("items", []) if (text := item_text(item))]
     if len(items) < 2:
         return False
     matches = sum(1 for item in items if title_match(item, other_titles))
@@ -231,7 +237,7 @@ def rebuild_story_text(story: dict[str, Any], blocks: list[dict[str, Any]]) -> N
         if kind in {"paragraph", "quote"} and block.get("text"):
             paragraphs.append(str(block["text"]).strip())
         elif kind == "list":
-            paragraphs.extend(str(item).strip() for item in block.get("items", []) if str(item).strip())
+            paragraphs.extend(text for item in block.get("items", []) if (text := item_text(item)))
     story["content_blocks"] = blocks
     story["paragraphs"] = paragraphs
     story["content"] = "\n\n".join(paragraphs)
