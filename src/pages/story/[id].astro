@@ -129,6 +129,14 @@ const showDeck = Boolean(
     <div class="article-shell shell article-shell-refined">
       <article class="article-layout article-layout-refined">
         <header class="article-header article-header-refined">
+          {sourceLogo && (
+            <img
+              class="article-source-heading-logo"
+              src={sourceLogo}
+              alt={`${story.source} logo`}
+              decoding="async"
+            />
+          )}
           <h1>{story.title}</h1>
           {showDeck && <p class="article-deck">{story.summary}</p>}
         </header>
@@ -146,8 +154,7 @@ const showDeck = Boolean(
             <div class="article-source-card article-source-card-refined">
               <div class="source-card-identity" aria-label={`Published by ${story.source}`}>
                 <div>
-                  <span class="source-card-label">Published by</span>
-                  <strong class="source-card-name">{story.source}</strong>
+                  <span class="source-card-label">Published by</span>{' '}<strong class="source-card-name">{story.source}</strong>
                 </div>
               </div>
               <div class="source-card-details">
