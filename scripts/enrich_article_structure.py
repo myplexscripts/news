@@ -35,6 +35,7 @@ MARKDOWN_HEADING = re.compile(r"^\s{0,3}(#{1,6})\s+(.+?)\s*#*\s*$")
 MARKDOWN_UL = re.compile(r"^\s{0,3}[-*+]\s+(.+)$")
 MARKDOWN_OL = re.compile(r"^\s{0,3}\d+[.)]\s+(.+)$")
 MARKDOWN_QUOTE = re.compile(r"^\s{0,3}>\s?(.*)$")
+MARKDOWN_STRONG = re.compile(r"^\s*\*\*(.+?)\*\*\s*$")
 
 CBC_HEADERS = {
     "User-Agent": "LondonNews/1.0 (+https://myplexscripts.github.io/news/)",
@@ -216,6 +217,14 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
             index += 1
             continue
 
+        strong = MARKDOWN_STRONG.match(stripped)
+        if strong and len(clean_markdown_text(strong.group(1))) <= 260:
+            flush_paragraph()
+            append_text_block(blocks, "heading", strong.group(1), title, seen_text, level=2)
+            pending_image_index = None
+            index += 1
+            continue
+
         image_matches = list(MARKDOWN_IMAGE.finditer(stripped))
         if image_matches and clean_markdown_text(stripped) in {clean_markdown_text(m.group(1)) for m in image_matches}:
             flush_paragraph()
@@ -241,6 +250,17 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
                 blocks[pending_image_index]["caption"] = caption
             index += 1
             continue
+
+        if pending_image_index is not None and len(stripped) <= 320 and re.search(
+            r"(?:submitted by|photo by|photograph by|courtesy of|image credit|\(cbc|\(submitted|\(photo|\(courtesy)",
+            stripped,
+            flags=re.I,
+        ):
+            caption = clean_markdown_text(stripped)
+            if caption:
+                blocks[pending_image_index]["caption"] = caption
+                index += 1
+                continue
 
         quote = MARKDOWN_QUOTE.match(stripped)
         if quote:
