@@ -97,6 +97,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_article_formatting.py
 
+      - name: Test article media preservation
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_article_media.py
+
       - name: Fetch local news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
@@ -132,6 +136,10 @@ jobs:
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
         run: python scripts/cleanup_article_recirculation.py
+
+      - name: Preserve article audio and video
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/enrich_article_media.py
 
       - name: Cache CBC article images locally
         if: steps.due.outputs.run == 'true'
