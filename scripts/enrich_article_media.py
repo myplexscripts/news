@@ -18,7 +18,7 @@ from fetch_news import clean_text, fetch_html
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-MEDIA_SCHEMA = 1
+MEDIA_SCHEMA = 2
 MAX_PER_RUN = max(8, int(os.getenv("MEDIA_MAX_PER_RUN", "36")))
 RECENT_HOURS = max(24, int(os.getenv("MEDIA_RECENT_HOURS", "120")))
 WORKERS = max(2, min(8, int(os.getenv("MEDIA_WORKERS", "6"))))
@@ -124,13 +124,6 @@ def media_block(url: str, title: str = "", poster: str = "", media_type: str = "
             "url": embed,
             "title": clean_text(title, 180) or "Embedded media",
         }
-    if MEDIA_CUE.search(title or ""):
-        return {
-            "type": "media",
-            "media_type": "link",
-            "url": safe,
-            "title": clean_text(title, 180) or "Open media at source",
-        }
     return None
 
 
@@ -163,8 +156,11 @@ def node_media(node: Tag, base_url: str) -> dict[str, Any] | None:
         if not url:
             return None
         kind = classify_media_url(url)
-        if kind or MEDIA_CUE.search(title):
+        if kind:
             return media_block(url, title, media_type=kind)
+        embed = safe_embed_url(url)
+        if embed and MEDIA_CUE.search(title):
+            return media_block(embed, title, media_type="embed")
     return None
 
 
@@ -227,9 +223,10 @@ def extract_cbc_media(story: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]
             url = safe_http_url(raw_url)
             title = clean_text(label, 180)
             kind = classify_media_url(url)
-            if not kind and not MEDIA_CUE.search(title) and not cue:
+            embed = safe_embed_url(url)
+            if not kind and not embed:
                 continue
-            block = media_block(url, cue or title, media_type=kind)
+            block = media_block(url, cue or title, media_type=kind or "embed")
             if not block:
                 continue
             key = media_key(block)
@@ -296,7 +293,7 @@ def process_story(story: dict[str, Any]) -> tuple[list[tuple[str, dict[str, Any]
     if source == "CBC News London":
         media = extract_cbc_media(story)
         if media:
-            return media, "cbc:jina-media-v1"
+            return media, "cbc:jina-media-v2"
     url = clean_text(story.get("url", ""))
     if not url:
         return [], "dom:no-url"
@@ -304,7 +301,7 @@ def process_story(story: dict[str, Any]) -> tuple[list[tuple[str, dict[str, Any]
         raw, final_url = fetch_html(url)
     except Exception as exc:
         return [], f"dom:{type(exc).__name__}"
-    return extract_dom_media(raw, final_url), "dom:media-v1"
+    return extract_dom_media(raw, final_url), "dom:media-v2"
 
 
 def story_needs_work(story: dict[str, Any], now: datetime) -> bool:
@@ -365,7 +362,7 @@ def main() -> int:
     payload["media_schema"] = MEDIA_SCHEMA
     payload["media_enriched_at"] = utc_now().isoformat()
     NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Article media: {inserted_total} blocks inserted across {attempted} attempted stories")
+    print(f"Article media: {inserted_total} playable blocks inserted across {attempted} attempted stories")
     return 0
 
 
