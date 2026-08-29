@@ -1,22 +1,106 @@
+@import url("./card-refinements.css");
 @import url("./layout-fixes.css");
 
+/* Shared story cards are the only story-card system. */
+.news-card[hidden] {
+  display: none !important;
+}
+
 .news-card-coverage {
+  display: none !important;
+}
+
+.search-results .news-card,
+.related-grid .news-card {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Shared page-heading component. */
+.page-heading {
+  width: 100%;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.page-heading-copy {
+  min-width: 0;
+}
+
+.page-heading .masthead-label {
+  margin: 0 0 6px;
+  font-size: 16px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.page-heading-description {
+  max-width: 680px;
+  margin: 9px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.page-heading-actions {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin: 0.55rem 0 0;
-  font-size: 1rem;
-  line-height: 1.35;
-  font-weight: 600;
-  opacity: 0.72;
+  gap: 12px;
 }
 
-.news-card-coverage i {
-  flex: 0 0 auto;
-  font-size: 1rem;
-  color: var(--accent, currentColor);
+@media (max-width: 760px) {
+  .search-results,
+  .related-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .page-heading {
+    display: block !important;
+    margin-bottom: 14px !important;
+  }
+
+  .page-heading .masthead-label {
+    margin-bottom: 5px !important;
+  }
+
+  .page-heading h1 {
+    font-size: 36px !important;
+    line-height: 1 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .page-heading-description {
+    margin-top: 7px !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+  }
+
+  .page-heading-actions {
+    margin-top: 12px !important;
+    justify-content: flex-start !important;
+  }
 }
 
-.search-result-card[hidden] {
-  display: none !important;
+@media (max-width: 390px) {
+  .page-heading h1 {
+    font-size: 34px !important;
+  }
 }

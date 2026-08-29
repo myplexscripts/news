@@ -1,4 +1,19 @@
+/* Canonical mobile layout. This file is the final authority for shared headers and spacing. */
 @media (max-width: 760px) {
+  html body .site-header .header-inner {
+    padding-top: 14px !important;
+    padding-bottom: 10px !important;
+    align-items: end !important;
+  }
+
+  html body .site-header .brand {
+    min-height: 0 !important;
+    font-size: 30px !important;
+    font-weight: 800 !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.045em !important;
+  }
+
   html body .site-header.site-header-home .home-header-inner {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) auto !important;
@@ -24,18 +39,6 @@
     display: contents !important;
   }
 
-  html body .site-header.site-header-home .brand,
-  html body .site-header.site-header-home .home-header-date {
-    font-size: 30px !important;
-    font-weight: 800 !important;
-    line-height: 0.98 !important;
-    letter-spacing: -0.045em !important;
-  }
-
-  html body .site-header.site-header-home .brand {
-    min-height: 0 !important;
-  }
-
   html body .site-header.site-header-home .home-header-updated {
     grid-column: 2 !important;
     grid-row: 1 !important;
@@ -54,21 +57,14 @@
     grid-row: 2 !important;
     margin: 1px 0 0 !important;
     color: var(--muted) !important;
+    font-size: 30px !important;
+    font-weight: 800 !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.045em !important;
   }
 
   html body .site-header:not(.site-header-home) .header-inner {
-    min-height: 52px !important;
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
-    align-items: center !important;
-  }
-
-  html body .site-header:not(.site-header-home) .brand {
-    min-height: 44px !important;
-    font-size: 28px !important;
-    font-weight: 800 !important;
-    line-height: 1 !important;
-    letter-spacing: -0.04em !important;
+    min-height: 0 !important;
   }
 
   html body .directory-page,
@@ -89,61 +85,11 @@
   }
 
   html body .latest-page-heading {
-    padding-bottom: 14px !important;
-  }
-
-  html body .directory-heading,
-  html body .sections-heading,
-  html body .sources-heading,
-  html body .settings-heading {
-    margin-top: 0 !important;
-    margin-bottom: 14px !important;
-    padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
 
-  html body .directory-heading .masthead-label,
-  html body .sections-heading .masthead-label,
-  html body .sources-heading .masthead-label,
-  html body .settings-heading .masthead-label,
-  html body .latest-page-heading .masthead-label {
-    margin: 0 0 5px !important;
-    font-size: 16px !important;
-    line-height: 1.1 !important;
-    font-weight: 700 !important;
-  }
-
-  html body .directory-heading h1,
-  html body .sections-heading h1,
-  html body .sources-heading h1,
-  html body .settings-heading h1,
-  html body .latest-page-heading h1 {
-    margin: 0 !important;
-    font-size: 36px !important;
-    font-weight: 800 !important;
-    line-height: 1 !important;
-    letter-spacing: -0.04em !important;
-  }
-
-  html body .directory-heading > p:last-child,
-  html body .sections-heading > p:last-child,
-  html body .sources-heading > div:first-child > p:last-child,
-  html body .settings-heading > p:last-child,
-  html body .latest-page-heading > p:last-child {
-    margin: 7px 0 0 !important;
-    max-width: 680px !important;
-    color: var(--muted) !important;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-    line-height: 1.4 !important;
-  }
-
-  html body .sources-heading {
-    display: block !important;
-  }
-
   html body .sources-heading-actions {
-    margin-top: 12px !important;
+    margin: 0 !important;
     padding: 0 !important;
   }
 
@@ -165,7 +111,8 @@
     margin-top: 0 !important;
   }
 
-  html body .story-date-heading h2 {
+  html body .story-date-heading h2,
+  html body .editorial-section-heading h2 {
     font-size: 30px !important;
     font-weight: 800 !important;
     line-height: 1.05 !important;
@@ -179,20 +126,12 @@
 }
 
 @media (max-width: 390px) {
-  html body .site-header.site-header-home .brand,
+  html body .site-header .brand,
   html body .site-header.site-header-home .home-header-date {
     font-size: 28px !important;
   }
 
   html body .site-header.site-header-home .home-header-updated {
     font-size: 15px !important;
-  }
-
-  html body .directory-heading h1,
-  html body .sections-heading h1,
-  html body .sources-heading h1,
-  html body .settings-heading h1,
-  html body .latest-page-heading h1 {
-    font-size: 34px !important;
   }
 }
