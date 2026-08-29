@@ -38,17 +38,20 @@ def test_dictionary_string_list_item_is_normalized() -> None:
     assert "<strong>Richmond Street</strong>" in item["html"]
 
 
-def test_cbc_markdown_and_embed_placeholder_are_cleaned() -> None:
+def test_cbc_markdown_embed_placeholder_and_fake_player_are_cleaned() -> None:
+    article_url = "https://www.cbc.ca/news/canada/london/example-1.2345"
     payload = {
         "stories": [{
             "id": "cbc",
             "source": "CBC News London",
-            "url": "https://www.cbc.ca/news/canada/london/example-1.2345",
+            "url": article_url,
             "content_blocks": [
                 {"type": "paragraph", "text": "_This interview has been edited for length and clarity._"},
+                {"type": "paragraph", "text": "Guikema spoke with interim _Afternoon Drive_ host Nav Nanwa a short time after Thursday's announcement."},
                 {"type": "paragraph", "text": "Nav Nanwa: What made you decide to move to Canada?"},
                 {"type": "paragraph", "text": "The researcher said Western offered a strong environment for the work."},
                 {"type": "paragraph", "text": "_LISTEN | Seth Guikema on why he's continuing his research in Canada:_"},
+                {"type": "media", "media_type": "link", "url": article_url, "title": "LISTEN | Seth Guikema on why he's continuing his research in Canada:"},
                 {"type": "paragraph", "text": "Open full embed in new tab Loading external pages May require significantly more data usage than loading CBC Lite story pages."},
             ],
         }]
@@ -57,17 +60,38 @@ def test_cbc_markdown_and_embed_placeholder_are_cleaned() -> None:
     blocks = payload["stories"][0]["content_blocks"]
     assert blocks[0]["text"] == "This interview has been edited for length and clarity."
     assert "<em>" in blocks[0]["html"]
+    inline = next(block for block in blocks if block.get("text", "").startswith("Guikema spoke"))
+    assert "_Afternoon Drive_" not in inline["text"]
+    assert "<em>Afternoon Drive</em>" in inline["html"]
     question = next(block for block in blocks if block.get("text", "").startswith("Nav Nanwa:"))
     assert "<strong>" in question["html"]
     assert not any("Open full embed" in block.get("text", "") for block in blocks)
-    media = next(block for block in blocks if block.get("type") == "media")
-    assert media["media_type"] == "link"
+    assert not any(block.get("type") == "media" for block in blocks)
+
+
+def test_real_audio_media_is_preserved() -> None:
+    payload = {
+        "stories": [{
+            "id": "cbc-real-audio",
+            "source": "CBC News London",
+            "url": "https://www.cbc.ca/news/canada/london/example-1.2345",
+            "content_blocks": [
+                {"type": "paragraph", "text": "_LISTEN | Interview clip:_"},
+                {"type": "media", "media_type": "audio", "url": "https://example.test/interview.mp3", "title": "Interview clip"},
+            ],
+        }]
+    }
+    assert sanitize_payload(payload) == 1
+    media = next(block for block in payload["stories"][0]["content_blocks"] if block.get("type") == "media")
+    assert media["media_type"] == "audio"
+    assert media["url"].endswith("interview.mp3")
 
 
 def main() -> int:
     test_share_dictionary_string_is_removed()
     test_dictionary_string_list_item_is_normalized()
-    test_cbc_markdown_and_embed_placeholder_are_cleaned()
+    test_cbc_markdown_embed_placeholder_and_fake_player_are_cleaned()
+    test_real_audio_media_is_preserved()
     print("PASS article presentation sanitizer regressions")
     return 0
 
