@@ -9,7 +9,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-SANITIZE_SCHEMA = 1
+SANITIZE_SCHEMA = 2
 
 JUNK_TEXT_MARKERS = (
     "open full embed in new tab loading external pages",
@@ -40,12 +40,22 @@ def item_text(value: Any) -> str:
     return raw
 
 
-def clean_outer_markdown(value: str) -> tuple[str, str]:
-    text = str(value or "").strip()
-    if len(text) >= 2 and text.startswith("_") and text.endswith("_") and not text.startswith("__"):
-        inner = text[1:-1].strip()
-        return inner, f"<em>{html.escape(inner)}</em>"
-    return text, ""
+def markdown_inline(value: str) -> tuple[str, str]:
+    raw = str(value or "").strip()
+    if not raw:
+        return "", ""
+
+    rendered = html.escape(raw, quote=False)
+    rendered = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", rendered)
+    rendered = re.sub(r"__(.+?)__", r"<strong>\1</strong>", rendered)
+    rendered = re.sub(r"(?<!\*)\*([^*\n]+?)\*(?!\*)", r"<em>\1</em>", rendered)
+    rendered = re.sub(r"(?<!\w)_([^_\n]+?)_(?!\w)", r"<em>\1</em>", rendered)
+
+    plain = re.sub(r"\*\*(.+?)\*\*", r"\1", raw)
+    plain = re.sub(r"__(.+?)__", r"\1", plain)
+    plain = re.sub(r"(?<!\*)\*([^*\n]+?)\*(?!\*)", r"\1", plain)
+    plain = re.sub(r"(?<!\w)_([^_\n]+?)_(?!\w)", r"\1", plain)
+    return plain.strip(), rendered.strip()
 
 
 def is_junk_text(value: Any) -> bool:
@@ -99,11 +109,9 @@ def sanitize_story(story: dict[str, Any]) -> bool:
 
     source = str(story.get("source") or "")
     is_cbc = source == "CBC News London"
+    story_url = str(story.get("url") or "").strip()
     changed = False
     cleaned: list[dict[str, Any]] = []
-    has_media = any(isinstance(block, dict) and block.get("type") == "media" for block in blocks)
-    listen_index: int | None = None
-    listen_title = ""
 
     for raw_block in blocks:
         if not isinstance(raw_block, dict):
@@ -111,6 +119,16 @@ def sanitize_story(story: dict[str, Any]) -> bool:
             continue
         block = dict(raw_block)
         kind = block.get("type")
+
+        if kind == "media":
+            media_type = str(block.get("media_type") or "")
+            media_url = str(block.get("url") or "").strip()
+            title = item_text(block.get("title"))
+            if media_type == "link" and story_url and media_url == story_url and title.upper().startswith("LISTEN |"):
+                changed = True
+                continue
+            cleaned.append(block)
+            continue
 
         if kind == "list":
             items = normalize_list_items(block.get("items") if isinstance(block.get("items"), list) else [])
@@ -132,11 +150,10 @@ def sanitize_story(story: dict[str, Any]) -> bool:
                 changed = True
                 continue
 
-            plain, markdown_html = clean_outer_markdown(text)
+            plain, rendered = markdown_inline(text)
             if plain != text:
                 block["text"] = plain
-                if not block.get("html"):
-                    block["html"] = markdown_html
+                block["html"] = rendered
                 changed = True
             else:
                 block["text"] = text
@@ -153,23 +170,11 @@ def sanitize_story(story: dict[str, Any]) -> bool:
                 if block.get("html") != desired:
                     block["html"] = desired
                     changed = True
-                listen_index = len(cleaned)
-                listen_title = plain
 
             cleaned.append(block)
             continue
 
         cleaned.append(block)
-
-    if is_cbc and listen_index is not None and not has_media and story.get("url"):
-        insert_at = min(len(cleaned), listen_index + 1)
-        cleaned.insert(insert_at, {
-            "type": "media",
-            "media_type": "link",
-            "url": str(story["url"]),
-            "title": listen_title or "Listen at CBC",
-        })
-        changed = True
 
     paragraphs: list[str] = []
     for block in cleaned:
@@ -179,7 +184,7 @@ def sanitize_story(story: dict[str, Any]) -> bool:
         elif kind == "list":
             paragraphs.extend(text for item in block.get("items", []) if (text := item_text(item)))
 
-    if changed or story.get("paragraphs") != paragraphs:
+    if changed or story.get("paragraphs") != paragraphs or int(story.get("sanitize_schema") or 0) < SANITIZE_SCHEMA:
         story["content_blocks"] = cleaned
         story["paragraphs"] = paragraphs
         story["content"] = "\n\n".join(paragraphs)
