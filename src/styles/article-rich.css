@@ -104,7 +104,7 @@
 
 /* Keep the home title and refresh time on the same visual row at every width. */
 .site-header-home .home-header-inner {
-  grid-template-columns: minmax(0, 1fr) auto !important;
+  grid-template-columns: minmax(0, 1fr) auto auto !important;
   grid-template-rows: auto auto !important;
   align-items: end !important;
 }
@@ -128,8 +128,8 @@
 }
 
 .site-header-home .header-actions {
-  grid-column: 2 !important;
-  grid-row: 2 !important;
+  grid-column: 3 !important;
+  grid-row: 1 !important;
   align-self: center !important;
   justify-self: end !important;
 }
@@ -150,6 +150,14 @@
 }
 
 @media (max-width: 760px) {
+  .site-header-home .home-header-inner {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+  }
+
+  .site-header-home .home-header-updated {
+    grid-column: 2 !important;
+  }
+
   .card-source-logo {
     top: 25px !important;
     left: 25px !important;
