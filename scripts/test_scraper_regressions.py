@@ -12,6 +12,11 @@ def text_dump(blocks: list[dict]) -> str:
     )
 
 
+def test_normal_us_is_not_forced_to_country_acronym() -> None:
+    assert scoop.normalize_source_case("Contact us if you can help.") == "Contact us if you can help."
+    assert scoop.normalize_source_case("US officials visited London.") == "US officials visited London."
+
+
 def test_postmedia_read_more_is_not_article_copy() -> None:
     html = """
     <article>
@@ -38,6 +43,37 @@ def test_postmedia_read_more_is_not_article_copy() -> None:
     assert "Windsor man wanted" not in dumped
     assert "Stunning video captures" not in dumped
     assert "investigation remains ongoing" in dumped.lower()
+
+
+def test_postmedia_long_read_more_headline_does_not_resume_copy() -> None:
+    blocks = [
+        {
+            "type": "paragraph",
+            "text": "Sydney requires cranio-cervical fusion surgery and her family is raising money while pursuing medical coverage.",
+        },
+        {"type": "heading", "level": 2, "text": "Read More"},
+        {
+            "type": "paragraph",
+            "text": "London dad pushing daughter's wheelchair 200 km in fight for $493K surgery as family appeals for out-of-country funding",
+        },
+        {
+            "type": "paragraph",
+            "text": "Union analysis warns of hospital woes ahead without jacked-up funding as Ontario health-care pressures continue",
+        },
+        {
+            "type": "paragraph",
+            "text": "Sydney has so far been denied out-of-country OHIP coverage. Her family says the appeal continues while they raise money for the surgery.",
+        },
+    ]
+    cleaned = scoop.sanitize_content_blocks(
+        blocks,
+        "London Free Press",
+        "London dad pushes wheelchair to raise money for daughter's surgery",
+    )
+    dumped = text_dump(cleaned)
+    assert "wheelchair 200 km" not in dumped
+    assert "hospital woes ahead" not in dumped
+    assert "Sydney has so far been denied" in dumped
 
 
 def test_ctv_inline_recirculation_does_not_truncate_story() -> None:
@@ -98,7 +134,9 @@ def test_ctv_linked_promo_image_is_rejected() -> None:
 
 def main() -> int:
     tests = [
+        test_normal_us_is_not_forced_to_country_acronym,
         test_postmedia_read_more_is_not_article_copy,
+        test_postmedia_long_read_more_headline_does_not_resume_copy,
         test_ctv_inline_recirculation_does_not_truncate_story,
         test_ctv_linked_promo_image_is_rejected,
     ]
