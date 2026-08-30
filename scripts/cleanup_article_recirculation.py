@@ -55,6 +55,25 @@ PROMO_METADATA_MARKERS = (
     "read-more",
 )
 
+TITLE_TOKEN_STOPWORDS = {
+    "about",
+    "after",
+    "amid",
+    "from",
+    "have",
+    "into",
+    "london",
+    "more",
+    "news",
+    "over",
+    "that",
+    "their",
+    "this",
+    "with",
+    "will",
+    "your",
+}
+
 
 def item_text(value: Any) -> str:
     if isinstance(value, dict):
@@ -88,14 +107,32 @@ def metadata_marks_promo(block: dict[str, Any]) -> bool:
     return bool(values) and any(marker in values for marker in PROMO_METADATA_MARKERS)
 
 
-def title_match(item: Any, titles: set[str]) -> bool:
+def title_tokens(key: str) -> set[str]:
+    return {token for token in key.split() if len(token) >= 4 and token not in TITLE_TOKEN_STOPWORDS}
+
+
+def build_title_index(stories: list[dict[str, Any]]) -> tuple[set[str], dict[str, set[str]]]:
+    titles = {key for story in stories if (key := text_key(story.get("title")))}
+    by_token: dict[str, set[str]] = {}
+    for title in titles:
+        for token in title_tokens(title):
+            by_token.setdefault(token, set()).add(title)
+    return titles, by_token
+
+
+def title_match(item: Any, titles: set[str], title_index: dict[str, set[str]], current_title: str = "") -> bool:
     key = text_key(item)
     if len(key) < 18:
         return False
-    if key in titles:
+    if key in titles and key != current_title:
         return True
-    for title in titles:
-        if len(title) < 18:
+
+    candidates: set[str] = set()
+    for token in title_tokens(key):
+        candidates.update(title_index.get(token, ()))
+
+    for title in candidates:
+        if title == current_title or len(title) < 18:
             continue
         shorter, longer = (key, title) if len(key) <= len(title) else (title, key)
         if len(shorter) >= 24 and shorter in longer and len(shorter) / len(longer) >= 0.72:
@@ -152,29 +189,37 @@ def looks_like_promoted_headline_run(items: list[str], ordered: bool, source: st
     return False
 
 
-def list_is_story_promo(block: dict[str, Any], other_titles: set[str], source: str = "") -> bool:
+def list_is_story_promo(
+    block: dict[str, Any],
+    titles: set[str],
+    title_index: dict[str, set[str]],
+    current_title: str,
+    source: str = "",
+) -> bool:
     if block.get("type") != "list":
         return False
     items = [text for item in block.get("items", []) if (text := item_text(item))]
     if len(items) < 2:
         return False
-    matches = sum(1 for item in items if title_match(item, other_titles))
+    matches = sum(1 for item in items if title_match(item, titles, title_index, current_title))
     if matches >= 2 and matches / len(items) >= 0.67:
         return True
     return looks_like_promoted_headline_run(items, bool(block.get("ordered")), source)
 
 
-def headline_block(block: dict[str, Any], other_titles: set[str]) -> bool:
+def headline_block(block: dict[str, Any], titles: set[str], title_index: dict[str, set[str]], current_title: str) -> bool:
     if block.get("type") not in {"paragraph", "heading"}:
         return False
     text = str(block.get("text") or "").strip()
-    return title_match(text, other_titles) or headline_like(text)
+    return title_match(text, titles, title_index, current_title) or headline_like(text)
 
 
 def skip_labelled_module(
     blocks: list[dict[str, Any]],
     start: int,
-    other_titles: set[str],
+    titles: set[str],
+    title_index: dict[str, set[str]],
+    current_title: str,
     source: str,
 ) -> int | None:
     label = blocks[start]
@@ -198,7 +243,7 @@ def skip_labelled_module(
             consumed += 1
             continue
 
-        if kind == "list" and list_is_story_promo(block, other_titles, source):
+        if kind == "list" and list_is_story_promo(block, titles, title_index, current_title, source):
             return cursor + 1
 
         if kind == "image" and (recirc or utility):
@@ -207,7 +252,7 @@ def skip_labelled_module(
             consumed += 1
             continue
 
-        if headline_block(block, other_titles):
+        if headline_block(block, titles, title_index, current_title):
             headlines += 1
             saw_promo_content = True
             cursor += 1
@@ -245,21 +290,13 @@ def rebuild_story_text(story: dict[str, Any], blocks: list[dict[str, Any]]) -> N
     story["recirculation_cleaned"] = True
 
 
-def prune_story(story: dict[str, Any], all_stories: list[dict[str, Any]]) -> bool:
+def prune_story(story: dict[str, Any], titles: set[str], title_index: dict[str, set[str]]) -> bool:
     blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
     if not blocks:
         return False
 
-    current_id = str(story.get("id") or "")
     current_title = text_key(story.get("title"))
     source = str(story.get("source") or "")
-    other_titles = {
-        key
-        for candidate in all_stories
-        if str(candidate.get("id") or "") != current_id
-        for key in [text_key(candidate.get("title"))]
-        if key and key != current_title
-    }
 
     changed = False
     cleaned: list[dict[str, Any]] = []
@@ -267,7 +304,7 @@ def prune_story(story: dict[str, Any], all_stories: list[dict[str, Any]]) -> boo
         if metadata_marks_promo(block):
             changed = True
             continue
-        if list_is_story_promo(block, other_titles, source):
+        if list_is_story_promo(block, titles, title_index, current_title, source):
             changed = True
             if cleaned and cleaned[-1].get("type") in {"heading", "paragraph"} and (
                 is_recirculation_label(cleaned[-1].get("text")) or is_utility_label(cleaned[-1].get("text"))
@@ -279,7 +316,7 @@ def prune_story(story: dict[str, Any], all_stories: list[dict[str, Any]]) -> boo
     final: list[dict[str, Any]] = []
     index = 0
     while index < len(cleaned):
-        end = skip_labelled_module(cleaned, index, other_titles, source)
+        end = skip_labelled_module(cleaned, index, titles, title_index, current_title, source)
         if end is not None and end > index + 1:
             changed = True
             index = end
@@ -296,7 +333,9 @@ def prune_story(story: dict[str, Any], all_stories: list[dict[str, Any]]) -> boo
 
 def clean_payload(payload: dict[str, Any]) -> int:
     stories = payload.get("stories") if isinstance(payload.get("stories"), list) else []
-    return sum(1 for story in stories if isinstance(story, dict) and prune_story(story, stories))
+    dict_stories = [story for story in stories if isinstance(story, dict)]
+    titles, title_index = build_title_index(dict_stories)
+    return sum(1 for story in dict_stories if prune_story(story, titles, title_index))
 
 
 def main() -> int:

@@ -63,6 +63,9 @@ def main() -> int:
     if "python scripts/test_scoop_runtime.py" not in refresh:
         errors.append("Scoop runtime safeguard tests are missing from refresh workflow")
 
+    if "Remove inline promoted-story modules" not in refresh or "timeout-minutes: 3" not in refresh:
+        errors.append("recirculation cleanup must have a short timeout so it cannot block later refreshes")
+
     if 'git commit -m "Refresh news"' not in refresh:
         errors.append("refresh workflow does not commit updated data with the current feed name")
 
@@ -138,7 +141,7 @@ def main() -> int:
     print(
         "Workflow configuration OK: queued deploys, queued refreshes, explicit deploy after changed data commits, "
         "separate wake timer, approximately 15-minute start-to-start refresh loop, "
-        f"cron backup ({EXPECTED_CRON}), 20-minute scheduled freshness gate, and public feed data"
+        f"cron backup ({EXPECTED_CRON}), 20-minute scheduled freshness gate, bounded cleanup, and public feed data"
     )
     return 0
 

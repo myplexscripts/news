@@ -161,6 +161,7 @@ jobs:
 
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
+        timeout-minutes: 3
         run: python scripts/cleanup_article_recirculation.py
 
       - name: Preserve article audio and video
