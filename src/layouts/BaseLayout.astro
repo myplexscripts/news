@@ -55,6 +55,31 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onSettings 
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
+    <style is:inline>
+      .brand::after,
+      .brand > span::after {
+        content: none !important;
+        display: none !important;
+      }
+
+      .brand-beta {
+        display: inline-block !important;
+        margin-left: 0.35em !important;
+        color: var(--accent) !important;
+        font-size: 0.42em !important;
+        line-height: 1 !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.06em !important;
+        vertical-align: super !important;
+      }
+
+      @media (max-width: 760px) {
+        .mobile-tab-bar {
+          --mobile-tab-count: 4 !important;
+          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        }
+      }
+    </style>
     <script is:inline>
       (() => {
         const savedTheme = localStorage.getItem('london-news-theme');
@@ -74,7 +99,7 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onSettings 
       <div class:list={["shell", "header-inner", "header-inner-simple", showHomeMasthead && "home-header-inner"]}>
         <div class="brand-area">
           <a class="brand" href={base} aria-label="London News home">
-            <span>London News <sup style="font-size:16px; margin-left:4px; color:var(--muted); letter-spacing:.05em; font-weight:700; vertical-align:super;">BETA</sup></span>
+            <span>London News<sup class="brand-beta">BETA</sup></span>
           </a>
         </div>
 
@@ -86,7 +111,7 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onSettings 
             </a>
           )}
           <a class:list={["icon-button", "desktop-sources-link", onDirectory && "active"]} href={`${base}sections/`} aria-label="Browse sections and sources" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-            <i class={onDirectory ? 'ph-fill ph-hard-drive' : 'ph ph-hard-drive'} aria-hidden="true"></i>
+            <i class={onDirectory ? 'ph-fill ph-hard-drives' : 'ph ph-hard-drives'} aria-hidden="true"></i>
           </a>
           <a class:list={["icon-button", "settings-link", onSettings && "active"]} href={`${base}settings/`} aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
             <i class={onSettings ? 'ph-fill ph-gear-six' : 'ph ph-gear-six'} aria-hidden="true"></i>
@@ -137,7 +162,7 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onSettings 
         title="Sections"
         aria-current={onDirectory ? 'page' : undefined}
       >
-        <i class={onDirectory ? 'ph-fill ph-hard-drive' : 'ph ph-hard-drive'} aria-hidden="true"></i>
+        <i class={onDirectory ? 'ph-fill ph-hard-drives' : 'ph ph-hard-drives'} aria-hidden="true"></i>
         <span class="visually-hidden">Sections</span>
       </a>
       <a
