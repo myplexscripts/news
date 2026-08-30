@@ -227,6 +227,26 @@ def linked_headline_block(block: dict[str, Any]) -> bool:
     return "<a " in markup and "href=" in markup and headline_like(block.get("text"))
 
 
+def html_is_single_link(block: dict[str, Any]) -> bool:
+    markup = str(block.get("html") or "").strip()
+    return bool(re.fullmatch(r"<a\b[^>]*>.*</a>", markup, flags=re.IGNORECASE | re.DOTALL))
+
+
+def standalone_linked_story(
+    block: dict[str, Any],
+    titles: set[str],
+    title_index: dict[str, set[str]],
+    current_title: str,
+    source: str,
+) -> bool:
+    if not linked_headline_block(block) or not html_is_single_link(block):
+        return False
+    if title_match(block.get("text"), titles, title_index, current_title):
+        return True
+    lower = source.lower()
+    return any(name in lower for name in ("globe and mail", "national post", "toronto star"))
+
+
 def skip_linked_card_run(blocks: list[dict[str, Any]], start: int) -> int | None:
     if start >= len(blocks) or not linked_headline_block(blocks[start]):
         return None
@@ -402,6 +422,12 @@ def prune_story(story: dict[str, Any], titles: set[str], title_index: dict[str, 
         if end is not None and end > index:
             changed = True
             index = end
+            continue
+        if standalone_linked_story(labelled[index], titles, title_index, current_title, source):
+            changed = True
+            index += 1
+            if index < len(labelled) and labelled[index].get("type") == "image":
+                index += 1
             continue
         final.append(labelled[index])
         index += 1
