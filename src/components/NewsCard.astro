@@ -76,9 +76,6 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
   hidden={hidden}
 >
   <a class="news-card-link" href={storyHref} aria-label={story.title}></a>
-  <button class="news-card-save" type="button" data-read-later-toggle={story.id} aria-label="Save to Read Later" aria-pressed="false" title="Save to Read Later">
-    <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
-  </button>
   {imageSrc && (
     <div class="news-card-media">
       <img
@@ -113,6 +110,9 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
       {readMinutes && <span>{readMinutes} min read</span>}
     </div>
     {showSummary && story.summary && <p class="news-card-summary">{story.summary}</p>}
+    <button class="news-card-save" type="button" data-read-later-toggle={story.id} aria-label="Save to Read Later" aria-pressed="false" title="Save to Read Later">
+      <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
+    </button>
   </div>
 </article>
 
@@ -133,30 +133,41 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
     outline-offset: 3px;
   }
 
+  .news-card-body {
+    position: relative;
+    padding-bottom: 56px !important;
+  }
+
   .news-card-save {
     position: absolute;
     z-index: 4;
-    top: 10px;
     right: 10px;
+    bottom: 8px;
     width: 44px;
     height: 44px;
     display: grid;
     place-items: center;
-    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--surface) 78%, transparent);
-    color: var(--ink);
-    backdrop-filter: blur(16px) saturate(150%);
-    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--muted);
     cursor: pointer;
   }
 
   .news-card-save i {
-    font-size: 20px;
+    font-size: 22px;
   }
 
+  .news-card-save:hover,
+  .news-card-save:focus-visible,
   .news-card-save.is-saved {
     color: var(--accent);
+  }
+
+  .news-card-save:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   .news-card-save:disabled {
