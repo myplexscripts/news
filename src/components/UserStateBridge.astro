@@ -1,5 +1,5 @@
 <script>
-  import { importLegacyUserState, initialiseUserState, onUserStateChange, type LondonNewsUserState } from '../lib/userState';
+  import { importLegacyUserState, initialiseUserState, onUserStateChange, toggleStorySaved, type LondonNewsUserState } from '../lib/userState';
 
   const root = document.documentElement;
 
@@ -9,14 +9,45 @@
     root.dataset.hideRead = state.hideRead ? 'true' : 'false';
 
     const readSet = new Set(state.readIds.map(String));
+    const savedSet = new Set(state.savedIds.map(String));
+
     document.querySelectorAll<HTMLElement>('[data-story-id]').forEach((item) => {
-      item.classList.toggle('is-read-story', readSet.has(String(item.dataset.storyId || '')));
+      const id = String(item.dataset.storyId || '');
+      item.classList.toggle('is-read-story', readSet.has(id));
+      item.classList.toggle('is-saved-story', savedSet.has(id));
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-read-later-toggle]').forEach((button) => {
+      const id = String(button.dataset.readLaterToggle || '');
+      const saved = savedSet.has(id);
+      button.classList.toggle('is-saved', saved);
+      button.setAttribute('aria-pressed', saved ? 'true' : 'false');
+      button.setAttribute('aria-label', saved ? 'Remove from Read Later' : 'Save to Read Later');
+      button.setAttribute('title', saved ? 'Remove from Read Later' : 'Save to Read Later');
+      const icon = button.querySelector('i');
+      if (icon) icon.className = saved ? 'ph-fill ph-bookmark-simple' : 'ph ph-bookmark-simple';
     });
 
     window.dispatchEvent(new CustomEvent('london-news-read-state', {
       detail: { readIds: state.readIds, hideRead: state.hideRead }
     }));
+    window.dispatchEvent(new CustomEvent('london-news-saved-state', {
+      detail: { savedIds: state.savedIds }
+    }));
   }
+
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target.closest('[data-read-later-toggle]') : null;
+    if (!(target instanceof HTMLButtonElement)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const id = String(target.dataset.readLaterToggle || '').trim();
+    if (!id || target.disabled) return;
+    target.disabled = true;
+    toggleStorySaved(id).catch(() => {}).finally(() => {
+      target.disabled = false;
+    });
+  });
 
   initialiseUserState().then(applyState).catch(() => {});
   onUserStateChange(applyState);
