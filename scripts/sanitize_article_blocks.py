@@ -9,7 +9,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-SANITIZE_SCHEMA = 3
+SANITIZE_SCHEMA = 4
 
 JUNK_TEXT_MARKERS = (
     "open full embed in new tab loading external pages",
@@ -22,6 +22,12 @@ JUNK_TEXT_MARKERS = (
     "authors and topics you follow will be added to your personal news feed",
     "you must be logged in to follow",
     "postmedia is committed to maintaining a lively but civil forum for discussion",
+    "story continues below advertisement",
+    "get daily national news",
+    "get daily canada news delivered to your inbox",
+    "never miss the day's top stories",
+    "never miss the day’s top stories",
+    "a division of corus entertainment inc",
 )
 
 SHARE_MARKERS = (
@@ -47,6 +53,26 @@ SHARE_EXACT_MARKERS = {
     "bluesky",
     "threads",
 }
+
+LOCATION_SELECTOR_PREFIX_RE = re.compile(r"^(?:state|country|province|region|territory)\b", re.I)
+LOCATION_SELECTOR_MARKERS = (
+    "alabama",
+    "alaska",
+    "arizona",
+    "california",
+    "florida",
+    "new york",
+    "north carolina",
+    "texas",
+    "washington",
+    "wisconsin",
+    "wyoming",
+    "canada",
+    "mexico",
+    "afghanistan",
+    "albania",
+    "algeria",
+)
 
 
 def item_text(value: Any) -> str:
@@ -88,9 +114,23 @@ def normalized_key(value: Any) -> str:
     return re.sub(r"\s+", " ", item_text(value).lower()).strip()
 
 
+def looks_like_location_selector_dump(value: Any) -> bool:
+    text = item_text(value)
+    key = normalized_key(text)
+    if len(key) < 260 or len(re.findall(r"\b\w+\b", key)) < 40:
+        return False
+    if not LOCATION_SELECTOR_PREFIX_RE.search(key):
+        return False
+    marker_count = sum(1 for marker in LOCATION_SELECTOR_MARKERS if marker in key)
+    return marker_count >= 6
+
+
 def is_junk_text(value: Any) -> bool:
     key = normalized_key(value)
-    return bool(key) and any(marker in key for marker in JUNK_TEXT_MARKERS)
+    return bool(key) and (
+        any(marker in key for marker in JUNK_TEXT_MARKERS)
+        or looks_like_location_selector_dump(value)
+    )
 
 
 def is_share_text(value: Any) -> bool:
@@ -141,6 +181,7 @@ def sanitize_story(story: dict[str, Any]) -> bool:
     is_cbc = source == "CBC News London"
     story_url = str(story.get("url") or "").strip()
     changed = False
+    selector_removed = False
     cleaned: list[dict[str, Any]] = []
 
     for raw_block in blocks:
@@ -160,8 +201,26 @@ def sanitize_story(story: dict[str, Any]) -> bool:
             cleaned.append(block)
             continue
 
+        if kind == "image":
+            image_text = " ".join(
+                part for part in (
+                    item_text(block.get("alt")),
+                    item_text(block.get("caption")),
+                    item_text(block.get("title")),
+                ) if part
+            )
+            if image_text and (is_junk_text(image_text) or is_share_text(image_text)):
+                changed = True
+                selector_removed = selector_removed or looks_like_location_selector_dump(image_text)
+                continue
+            cleaned.append(block)
+            continue
+
         if kind == "list":
-            items = normalize_list_items(block.get("items") if isinstance(block.get("items"), list) else [])
+            original_items = block.get("items") if isinstance(block.get("items"), list) else []
+            if any(looks_like_location_selector_dump(item) for item in original_items):
+                selector_removed = True
+            items = normalize_list_items(original_items)
             if not items:
                 changed = True
                 continue
@@ -176,6 +235,10 @@ def sanitize_story(story: dict[str, Any]) -> bool:
 
         if kind in {"paragraph", "heading", "quote"}:
             text = item_text(block.get("text"))
+            if looks_like_location_selector_dump(text):
+                selector_removed = True
+                changed = True
+                continue
             if not text or is_junk_text(text) or is_share_text(text):
                 changed = True
                 continue
@@ -213,6 +276,20 @@ def sanitize_story(story: dict[str, Any]) -> bool:
             paragraphs.append(str(block["text"]).strip())
         elif kind == "list":
             paragraphs.extend(text for item in block.get("items", []) if (text := item_text(item)))
+
+    if selector_removed:
+        story["reader_schema"] = 0
+        story.pop("reader_attempted_at", None)
+        flags = [str(flag) for flag in story.get("article_hygiene_flags", []) if flag]
+        if "form-selector-dump" not in flags:
+            flags.append("form-selector-dump")
+        story["article_hygiene_flags"] = flags
+        story["article_format_state"] = "flat"
+        if not paragraphs:
+            story["content_status"] = "summary"
+            story["content_truncated_reason"] = "publisher-form-chrome"
+        elif story.get("content_truncated_reason") == "publisher-form-chrome":
+            story.pop("content_truncated_reason", None)
 
     if changed or story.get("paragraphs") != paragraphs or int(story.get("sanitize_schema") or 0) < SANITIZE_SCHEMA:
         story["content_blocks"] = cleaned
