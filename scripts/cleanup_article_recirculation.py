@@ -25,6 +25,7 @@ RECIRCULATION_LABELS = (
     "trending",
     "most read",
     "most popular",
+    "more news",
 )
 
 UTILITY_LABELS = (
@@ -39,6 +40,11 @@ UTILITY_LABELS = (
     "follow us",
     "advertisement",
     "sponsored content",
+    "follow related authors and topics",
+    "interact with the globe",
+    "report an editorial error",
+    "report a technical issue",
+    "editorial code of conduct",
 )
 
 PROMO_METADATA_MARKERS = (
@@ -173,7 +179,7 @@ def sentence_like(value: Any) -> bool:
 
 def source_is_publisher_with_inline_cards(source: str) -> bool:
     lower = source.lower()
-    return any(name in lower for name in ("free press", "postmedia", "ctv", "global news", "cbc"))
+    return any(name in lower for name in ("free press", "postmedia", "national post", "ctv", "global news", "cbc", "toronto star"))
 
 
 def looks_like_promoted_headline_run(items: list[str], ordered: bool, source: str = "") -> bool:
@@ -212,6 +218,66 @@ def headline_block(block: dict[str, Any], titles: set[str], title_index: dict[st
         return False
     text = str(block.get("text") or "").strip()
     return title_match(text, titles, title_index, current_title) or headline_like(text)
+
+
+def linked_headline_block(block: dict[str, Any]) -> bool:
+    if block.get("type") not in {"heading", "paragraph"}:
+        return False
+    markup = str(block.get("html") or "").lower()
+    return "<a " in markup and "href=" in markup and headline_like(block.get("text"))
+
+
+def skip_linked_card_run(blocks: list[dict[str, Any]], start: int) -> int | None:
+    if start >= len(blocks) or not linked_headline_block(blocks[start]):
+        return None
+
+    cursor = start
+    headlines = 0
+    consumed = 0
+    while cursor < len(blocks) and consumed < 18:
+        block = blocks[cursor]
+        kind = block.get("type")
+        if linked_headline_block(block):
+            headlines += 1
+            cursor += 1
+            consumed += 1
+            continue
+        if kind == "image" and headlines:
+            cursor += 1
+            consumed += 1
+            continue
+        if kind == "list" and headlines:
+            items = [item_text(item) for item in block.get("items", []) if item_text(item)]
+            if items and all(word_count(item) <= 8 for item in items):
+                cursor += 1
+                consumed += 1
+                continue
+        break
+
+    return cursor if headlines >= 2 else None
+
+
+def terminal_cut_index(story: dict[str, Any], blocks: list[dict[str, Any]]) -> int | None:
+    source = str(story.get("source") or "").lower()
+    for index, block in enumerate(blocks):
+        key = text_key(block.get("text"))
+        kind = block.get("type")
+
+        if "globe and mail" in source and key in {
+            "report an editorial error",
+            "report a technical issue",
+            "follow related authors and topics",
+            "interact with the globe",
+        }:
+            return index
+
+        if "toronto star" in source and kind == "heading" and key in {"trending", "more news"}:
+            return index
+
+        if "national post" in source and key.startswith("postmedia is committed to maintaining a lively but civil forum for discussion"):
+            return index
+
+    return None
 
 
 def skip_labelled_module(
@@ -313,7 +379,12 @@ def prune_story(story: dict[str, Any], titles: set[str], title_index: dict[str, 
             continue
         cleaned.append(block)
 
-    final: list[dict[str, Any]] = []
+    cut = terminal_cut_index(story, cleaned)
+    if cut is not None:
+        cleaned = cleaned[:cut]
+        changed = True
+
+    labelled: list[dict[str, Any]] = []
     index = 0
     while index < len(cleaned):
         end = skip_labelled_module(cleaned, index, titles, title_index, current_title, source)
@@ -321,7 +392,18 @@ def prune_story(story: dict[str, Any], titles: set[str], title_index: dict[str, 
             changed = True
             index = end
             continue
-        final.append(cleaned[index])
+        labelled.append(cleaned[index])
+        index += 1
+
+    final: list[dict[str, Any]] = []
+    index = 0
+    while index < len(labelled):
+        end = skip_linked_card_run(labelled, index)
+        if end is not None and end > index:
+            changed = True
+            index = end
+            continue
+        final.append(labelled[index])
         index += 1
 
     if not changed:
