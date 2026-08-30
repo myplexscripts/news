@@ -109,9 +109,13 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_article_sanitizer.py
 
-      - name: Fetch local news
+      - name: Fetch local and Canadian news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
+
+      - name: Annotate Local and Canada feed scopes
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/annotate_scopes.py
 
       - name: Remove redundant publisher roundups
         if: steps.due.outputs.run == 'true'
