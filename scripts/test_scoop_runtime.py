@@ -33,6 +33,8 @@ def test_locality_and_source_gate() -> None:
         make_story("celebrity", "Actor dies at 80", "104.7 Heart FM", "The performer died at age 80."),
         make_story("airport", "Porter launches flights from London International Airport", "CTV News", "New routes will depart London International Airport."),
         make_story("ilderton", "Community event opens in Ilderton", "CTV News", "Residents gathered in Ilderton for the event."),
+        make_story("ausable", "OPP search for missing swimmer in Ausable River", "CTV News", "Police are searching the Ausable River after a swimmer was reported missing."),
+        make_story("ltc-acronym", "LTC seeks additional $2M for 2027 budget", "CTV News", "The transit commission is seeking additional funding in its 2027 budget."),
         make_story("national-lfp", "U.S. tariff policy changes again", "London Free Press", "The White House announced another tariff measure."),
         make_story("middlesex", "Driver dies after crash in Middlesex County", "London Free Press", "Police responded to a collision in Middlesex County."),
         make_story("bridge", "London Bridge child care expands in Huron County", "CTV News", "London Bridge Child Care Services opened a site near Bayfield."),
@@ -45,7 +47,7 @@ def test_locality_and_source_gate() -> None:
     kept_ids = {story["id"] for story in kept}
     dropped_ids = {story["id"] for story in dropped}
 
-    assert {"airport", "ilderton", "middlesex"} <= kept_ids
+    assert {"airport", "ilderton", "ausable", "ltc-acronym", "middlesex"} <= kept_ids
     assert {
         "oshawa", "bayfield", "celebrity", "national-lfp", "bridge",
         "retired-fire", "lps-nav", "lps-template",
