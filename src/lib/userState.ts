@@ -5,6 +5,7 @@ export type LondonNewsUserState = {
   accent: string;
   hideRead: boolean;
   readIds: string[];
+  savedIds: string[];
   hiddenSources: string[];
 };
 
@@ -19,6 +20,11 @@ type ReadStoryRecord = {
   readAt: number;
 };
 
+type SavedStoryRecord = {
+  id: string;
+  savedAt: number;
+};
+
 type HiddenSourceRecord = {
   name: string;
   hiddenAt: number;
@@ -27,6 +33,7 @@ type HiddenSourceRecord = {
 class LondonNewsDatabase extends Dexie {
   preferences!: Table<PreferenceRecord, string>;
   readStories!: Table<ReadStoryRecord, string>;
+  savedStories!: Table<SavedStoryRecord, string>;
   hiddenSources!: Table<HiddenSourceRecord, string>;
 
   constructor() {
@@ -34,6 +41,12 @@ class LondonNewsDatabase extends Dexie {
     this.version(1).stores({
       preferences: '&key,updatedAt',
       readStories: '&id,readAt',
+      hiddenSources: '&name,hiddenAt'
+    });
+    this.version(2).stores({
+      preferences: '&key,updatedAt',
+      readStories: '&id,readAt',
+      savedStories: '&id,savedAt',
       hiddenSources: '&name,hiddenAt'
     });
   }
@@ -46,6 +59,7 @@ const LEGACY = {
   accent: 'london-news-accent',
   hideRead: 'london-news-hide-read',
   reads: 'london-news-read-articles',
+  saved: 'london-news-read-later',
   hiddenSources: 'london-news-hidden-sources'
 };
 
@@ -67,9 +81,10 @@ function preferredTheme(): 'light' | 'dark' {
 }
 
 async function snapshot(): Promise<LondonNewsUserState> {
-  const [preferenceRows, readRows, hiddenRows] = await Promise.all([
+  const [preferenceRows, readRows, savedRows, hiddenRows] = await Promise.all([
     db.preferences.toArray(),
     db.readStories.orderBy('readAt').reverse().toArray(),
+    db.savedStories.orderBy('savedAt').reverse().toArray(),
     db.hiddenSources.toArray()
   ]);
   const preferences = new Map(preferenceRows.map((row) => [row.key, row.value]));
@@ -81,6 +96,7 @@ async function snapshot(): Promise<LondonNewsUserState> {
     accent,
     hideRead,
     readIds: readRows.map((row) => row.id),
+    savedIds: savedRows.map((row) => row.id),
     hiddenSources: hiddenRows.map((row) => row.name).sort((a, b) => a.localeCompare(b))
   };
 }
@@ -91,6 +107,7 @@ function syncLegacyMirrors(state: LondonNewsUserState) {
   localStorage.setItem(LEGACY.accent, state.accent);
   localStorage.setItem(LEGACY.hideRead, state.hideRead ? 'true' : 'false');
   localStorage.setItem(LEGACY.reads, JSON.stringify(state.readIds));
+  localStorage.setItem(LEGACY.saved, JSON.stringify(state.savedIds));
   localStorage.setItem(LEGACY.hiddenSources, JSON.stringify(state.hiddenSources));
 }
 
@@ -109,9 +126,10 @@ async function reconcileLegacyState() {
   const accent = localStorage.getItem(LEGACY.accent);
   const hideRead = localStorage.getItem(LEGACY.hideRead);
   const readIds = safeArray(LEGACY.reads);
+  const savedIds = safeArray(LEGACY.saved);
   const hiddenSources = safeArray(LEGACY.hiddenSources);
 
-  await db.transaction('rw', db.preferences, db.readStories, db.hiddenSources, async () => {
+  await db.transaction('rw', db.preferences, db.readStories, db.savedStories, db.hiddenSources, async () => {
     const preferences: PreferenceRecord[] = [];
     if (theme === 'light' || theme === 'dark') preferences.push({ key: 'theme', value: theme, updatedAt: now });
     if (accent) preferences.push({ key: 'accent', value: accent, updatedAt: now });
@@ -128,6 +146,14 @@ async function reconcileLegacyState() {
         .filter((id) => !existingReads.has(id))
         .map((id, index) => ({ id, readAt: now - index }));
       if (missing.length) await db.readStories.bulkPut(missing);
+    }
+
+    if (savedIds.length) {
+      const existingSaved = new Set((await db.savedStories.bulkGet(savedIds)).map((row) => row?.id).filter(Boolean));
+      const missing = savedIds
+        .filter((id) => !existingSaved.has(id))
+        .map((id, index) => ({ id, savedAt: now - index }));
+      if (missing.length) await db.savedStories.bulkPut(missing);
     }
 
     if (hiddenSources.length) {
@@ -152,6 +178,7 @@ export async function initialiseUserState(): Promise<LondonNewsUserState> {
       accent: typeof localStorage !== 'undefined' ? localStorage.getItem(LEGACY.accent) || 'green' : 'green',
       hideRead: typeof localStorage !== 'undefined' && localStorage.getItem(LEGACY.hideRead) === 'true',
       readIds: safeArray(LEGACY.reads),
+      savedIds: safeArray(LEGACY.saved),
       hiddenSources: safeArray(LEGACY.hiddenSources)
     };
     emit(fallback, false);
@@ -198,6 +225,30 @@ export async function markStoryRead(id: string) {
 
 export async function clearReadHistory() {
   await db.readStories.clear();
+  const state = await snapshot();
+  emit(state);
+  return state;
+}
+
+export async function setStorySaved(id: string, saved: boolean) {
+  const storyId = String(id || '').trim();
+  if (!storyId) return getUserState();
+  if (saved) await db.savedStories.put({ id: storyId, savedAt: Date.now() });
+  else await db.savedStories.delete(storyId);
+  const state = await snapshot();
+  emit(state);
+  return state;
+}
+
+export async function toggleStorySaved(id: string) {
+  const storyId = String(id || '').trim();
+  if (!storyId) return getUserState();
+  const existing = await db.savedStories.get(storyId);
+  return setStorySaved(storyId, !existing);
+}
+
+export async function clearSavedStories() {
+  await db.savedStories.clear();
   const state = await snapshot();
   emit(state);
   return state;
