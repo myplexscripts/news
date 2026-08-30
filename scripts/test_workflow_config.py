@@ -8,6 +8,7 @@ WAKE_WORKFLOW = ROOT / ".github" / "workflows" / "refresh-wake.yml"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "site.yml"
 EXPECTED_CRON = "7,17,27,37,47,57 * * * *"
 EXPECTED_WAKE_DISPATCH = "gh workflow run refresh.yml --repo myplexscripts/news --ref main"
+EXPECTED_SITE_DISPATCH = "gh workflow run site.yml --repo myplexscripts/news --ref main"
 
 
 def main() -> int:
@@ -68,8 +69,11 @@ def main() -> int:
     if "group: refresh-news-v3" not in refresh or "cancel-in-progress: false" not in refresh:
         errors.append("refresh workflow must queue overlapping runs instead of cancelling valid commits")
 
-    if "gh workflow run site.yml" in refresh:
-        errors.append("refresh workflow must not dispatch a duplicate Pages deployment; the data push already triggers site.yml")
+    if EXPECTED_SITE_DISPATCH not in refresh:
+        errors.append("refresh workflow must explicitly deploy bot-authored data commits because GITHUB_TOKEN pushes do not trigger site.yml")
+
+    if "steps.commit.outputs.changed == 'true'" not in refresh:
+        errors.append("Pages deployment should only be dispatched when refreshed data was committed")
 
     if "Schedule next refresh" not in refresh:
         errors.append("refresh workflow is not scheduling its next wake-up")
@@ -126,7 +130,7 @@ def main() -> int:
         return 1
 
     print(
-        "Workflow configuration OK: queued deploys, queued refreshes, one deploy per data push, "
+        "Workflow configuration OK: queued deploys, queued refreshes, explicit deploy after changed data commits, "
         "separate wake timer, approximately 15-minute start-to-start refresh loop, "
         f"cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
     )

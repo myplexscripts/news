@@ -211,8 +211,14 @@ jobs:
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      # site.yml already deploys every push to main, including the refresh commit.
-      # Do not dispatch a second duplicate Pages deployment here.
+      # Commits pushed with GITHUB_TOKEN intentionally do not trigger other
+      # workflows. Explicitly deploy the refreshed feed so Pages follows main.
+      - name: Deploy refreshed site
+        if: steps.commit.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run site.yml --repo myplexscripts/news --ref main
 
       - name: Schedule next refresh
         if: always()
