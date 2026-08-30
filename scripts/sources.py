@@ -89,7 +89,11 @@ SOURCES = [
     Source(
         name="CBC News Canada",
         logo="images/logos/CBC_News_Logo.svg",
-        url="https://www.cbc.ca/webfeed/rss/rss-canada",
+        # CBC's general Canada RSS endpoint intermittently times out behind its
+        # CDN. The first-party Canada landing page is substantially more reliable
+        # and still lets Scoop resolve and scrape the canonical CBC articles.
+        url="https://www.cbc.ca/news/canada",
+        kind="page",
         homepage="https://www.cbc.ca/news/canada",
         accent="#ff383c",
         max_items=15,
