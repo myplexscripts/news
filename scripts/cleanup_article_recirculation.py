@@ -30,9 +30,10 @@ RECIRCULATION_RE = re.compile(
 
 UTILITY_RE = re.compile(
     r"^(?:advertisement|advertising|story continues below advertisement|sponsored(?: content)?|"
-    r"promoted|newsletter|newsletters|sign up|subscribe|download (?:our |the )?app|get the app|"
-    r"follow us|follow related authors and topics|interact with .+|report an? editorial error|"
-    r"report a technical issue|editorial code of conduct|comments?)(?:\b|$)",
+    r"promoted|newsletter|newsletters|get daily .{0,80} news|sign up|subscribe|"
+    r"download (?:our |the )?app|get the app|follow us|follow related authors and topics|"
+    r"interact with .+|report an? editorial error|report a technical issue|"
+    r"editorial code of conduct|comments?)(?:\b|$)",
     re.I,
 )
 
@@ -94,14 +95,14 @@ def word_count(value: Any) -> int:
 
 def sentence_like(value: Any) -> bool:
     text = item_text(value)
-    return word_count(text) >= 8 and bool(re.search(r"[.!?][\"'’”)]?$", text))
+    return word_count(text) >= 5 and bool(re.search(r"[.!?][\"'’”)]?$", text))
 
 
 def substantive_prose(block: dict[str, Any]) -> bool:
     if block.get("type") not in {"paragraph", "quote"}:
         return False
     text = item_text(block.get("text"))
-    if word_count(text) < 10 or len(text) < 65:
+    if word_count(text) < 5 or len(text) < 32:
         return False
     if is_utility_text(text) or is_recirculation_label(text) or is_paywall_text(text):
         return False
@@ -332,7 +333,7 @@ def strip_contextual_modules(
     while index < len(prelim):
         block = prelim[index]
 
-        if terminal_marker(story, block) and real_words >= 20:
+        if terminal_marker(story, block):
             changed = True
             terminal_reason = "publisher-paywall" if is_paywall_text(block_text(block)) else "publisher-chrome"
             break
@@ -352,6 +353,11 @@ def strip_contextual_modules(
 
         if module_start(block):
             changed = True
+            module_text = block_text(block)
+            if is_utility_text(module_text) and out and out[-1].get("type") == "image":
+                prior_media_text = block_text(out[-1])
+                if word_count(prior_media_text) <= 6:
+                    out.pop()
             index += 1
             consumed = 0
             while index < len(prelim) and consumed < 16:
