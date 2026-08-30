@@ -87,6 +87,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_scoop_runtime.py
 
+      - name: Test CTV London source repair
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_ctv_locality.py
+
       - name: Test publication roundup filters
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_publication_roundups.py
@@ -114,6 +118,10 @@ jobs:
       - name: Fetch local and Canadian news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
+
+      - name: Repair CTV London freshness and scope
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/repair_ctv_locality.py
 
       - name: Annotate Local and Canada feed scopes
         if: steps.due.outputs.run == 'true'
