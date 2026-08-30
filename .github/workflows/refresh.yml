@@ -115,9 +115,9 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_article_sanitizer.py
 
-      - name: Test universal article quality sweep
+      - name: Test reader-mode article extraction
         if: steps.due.outputs.run == 'true'
-        run: python scripts/test_article_sweep.py
+        run: python scripts/test_reader_mode_articles.py
 
       - name: Fetch local and Canadian news
         if: steps.due.outputs.run == 'true'
@@ -163,10 +163,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/refine_source_articles.py
 
-      - name: Sweep all article sources for quality
+      - name: Extract articles with reader mode
         if: steps.due.outputs.run == 'true'
         timeout-minutes: 12
-        run: python scripts/sweep_article_quality.py
+        run: python scripts/reader_mode_articles.py
 
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
@@ -198,13 +198,10 @@ jobs:
         run: |
           python scripts/test_audit.py
           python scripts/test_run_audit.py
-          python scripts/test_article_sweep_audit.py
 
       - name: Audit current Scoop output
         if: steps.due.outputs.run == 'true'
-        run: |
-          python scripts/run_audit.py --sample-per-source 10
-          python scripts/audit_article_sweep.py
+        run: python scripts/run_audit.py --sample-per-source 10
 
       - name: Upload Scoop audit report
         if: steps.due.outputs.run == 'true'
