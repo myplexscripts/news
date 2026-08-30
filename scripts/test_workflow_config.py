@@ -9,6 +9,7 @@ DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "site.yml"
 EXPECTED_CRON = "7,17,27,37,47,57 * * * *"
 EXPECTED_WAKE_DISPATCH = "gh workflow run refresh.yml --repo myplexscripts/news --ref main"
 EXPECTED_SITE_DISPATCH = "gh workflow run site.yml --repo myplexscripts/news --ref main"
+WATCHDOG_WAKE_GUARD = "github.event_name != 'schedule' || steps.due.outputs.run == 'true'"
 
 
 def main() -> int:
@@ -93,6 +94,9 @@ def main() -> int:
     if "if: always()" not in refresh:
         errors.append("refresh scheduling must survive scraper or audit failures")
 
+    if WATCHDOG_WAKE_GUARD not in refresh:
+        errors.append("fresh watchdog checks must not reset and cancel the active wake timer")
+
     if "sleep \"$wait_seconds\"" in refresh or "sleep 900" in refresh:
         errors.append("refresh workflow must not remain open just to wait for its next cycle")
 
@@ -140,7 +144,7 @@ def main() -> int:
 
     print(
         "Workflow configuration OK: queued deploys, queued refreshes, explicit deploy after changed data commits, "
-        "separate wake timer, approximately 15-minute start-to-start refresh loop, "
+        "separate wake timer, watchdog-safe wake scheduling, approximately 15-minute start-to-start refresh loop, "
         f"cron backup ({EXPECTED_CRON}), 20-minute scheduled freshness gate, bounded cleanup, and public feed data"
     )
     return 0
