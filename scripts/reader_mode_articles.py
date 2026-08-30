@@ -52,6 +52,26 @@ TRACKER_IMAGE_TOKENS = (
     "doubleclick", "adservice", "tracking", "pixel", "spacer", "sprite", "favicon", "logo",
 )
 
+LOCATION_SELECTOR_PREFIX_RE = re.compile(r"^(?:state|country|province|region|territory)\b", re.I)
+LOCATION_SELECTOR_MARKERS = (
+    "alabama",
+    "alaska",
+    "arizona",
+    "california",
+    "florida",
+    "new york",
+    "north carolina",
+    "texas",
+    "washington",
+    "wisconsin",
+    "wyoming",
+    "canada",
+    "mexico",
+    "afghanistan",
+    "albania",
+    "algeria",
+)
+
 
 def compact(value: Any) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()
@@ -63,6 +83,16 @@ def text_key(value: Any) -> str:
 
 def word_count(value: Any) -> int:
     return len(re.findall(r"\b\w+[’'-]?\w*\b", compact(value)))
+
+
+def looks_like_location_selector_dump(value: Any) -> bool:
+    key = compact(value).lower()
+    if len(key) < 260 or word_count(key) < 40:
+        return False
+    if not LOCATION_SELECTOR_PREFIX_RE.search(key):
+        return False
+    marker_count = sum(1 for marker in LOCATION_SELECTOR_MARKERS if marker in key)
+    return marker_count >= 6
 
 
 def parse_datetime(value: Any) -> datetime | None:
@@ -325,7 +355,8 @@ def obvious_chrome_count(blocks: list[dict[str, Any]]) -> int:
     for block in blocks:
         kind = block.get("type")
         if kind in {"paragraph", "heading", "quote"}:
-            if OBVIOUS_CHROME.match(compact(block.get("text"))):
+            text = compact(block.get("text"))
+            if OBVIOUS_CHROME.match(text) or looks_like_location_selector_dump(text):
                 count += 1
         elif kind == "list":
             items = block.get("items", []) or []
