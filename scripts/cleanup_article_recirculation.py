@@ -61,6 +61,12 @@ PROMO_METADATA_MARKERS = (
     "read-more",
 )
 
+POSTMEDIA_CARD_SIGNALS = re.compile(
+    r"(?:\bcomments?\b|\bwith\s+video\b|\b\d+\s+(?:minutes?|hours?|days?)\s+ago\b|"
+    r"\b(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},\s+\d{4}\b)",
+    flags=re.I,
+)
+
 TITLE_TOKEN_STOPWORDS = {
     "about",
     "after",
@@ -182,6 +188,29 @@ def source_is_publisher_with_inline_cards(source: str) -> bool:
     return any(name in lower for name in ("free press", "postmedia", "national post", "ctv", "global news", "cbc", "toronto star"))
 
 
+def source_is_postmedia(source: str) -> bool:
+    lower = source.lower()
+    return any(name in lower for name in ("free press", "postmedia", "national post"))
+
+
+def postmedia_card_list(items: list[str], source: str) -> bool:
+    if not source_is_postmedia(source) or len(items) < 2:
+        return False
+    signalled = sum(1 for item in items if POSTMEDIA_CARD_SIGNALS.search(item))
+    return signalled >= 2 and signalled / len(items) >= 0.4
+
+
+def publisher_promo_image(block: dict[str, Any], source: str) -> bool:
+    if block.get("type") != "image":
+        return False
+    lower = source.lower()
+    if "toronto star" not in lower:
+        return False
+    alt = item_text(block.get("alt"))
+    caption = item_text(block.get("caption"))
+    return not caption and headline_like(alt)
+
+
 def looks_like_promoted_headline_run(items: list[str], ordered: bool, source: str = "") -> bool:
     if len(items) < 2 or len(items) > 8:
         return False
@@ -207,6 +236,8 @@ def list_is_story_promo(
     items = [text for item in block.get("items", []) if (text := item_text(item))]
     if len(items) < 2:
         return False
+    if postmedia_card_list(items, source):
+        return True
     matches = sum(1 for item in items if title_match(item, titles, title_index, current_title))
     if matches >= 2 and matches / len(items) >= 0.67:
         return True
@@ -387,7 +418,7 @@ def prune_story(story: dict[str, Any], titles: set[str], title_index: dict[str, 
     changed = False
     cleaned: list[dict[str, Any]] = []
     for block in blocks:
-        if metadata_marks_promo(block):
+        if metadata_marks_promo(block) or publisher_promo_image(block, source):
             changed = True
             continue
         if list_is_story_promo(block, titles, title_index, current_title, source):
