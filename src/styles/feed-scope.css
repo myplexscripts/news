@@ -47,8 +47,21 @@
 }
 
 @media (max-width: 760px) {
+  /* The home filters are two deliberate rows on phones: feed scope first,
+     section filters second. Do not inherit the desktop single-row scroller. */
+  .card-filter-inner {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch !important;
+    gap: 8px;
+    min-height: 0 !important;
+    padding: 10px 14px 8px !important;
+    overflow: visible !important;
+  }
+
   .feed-scope-row {
-    margin-bottom: 10px;
+    min-width: 0;
+    margin: 0;
   }
 
   .feed-scope-switch {
@@ -59,5 +72,25 @@
     min-width: 0;
     width: 100%;
     padding-inline: 10px;
+  }
+
+  .card-filter-inner .section-tabs {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-inline: contain;
+  }
+
+  .card-filter-inner .section-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-filter-inner .section-tab,
+  .card-filter-inner .control-menu {
+    flex: 0 0 auto;
   }
 }
