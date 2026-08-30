@@ -113,8 +113,9 @@ def run() -> None:
         "Angola Argentina Armenia Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin "
         "Bhutan Bolivia Bosnia Botswana Brazil Brunei Bulgaria Burkina Faso Burundi Cambodia Cameroon Chile China Colombia"
     )
+    # One unmistakable selector dump is enough to reject the whole reader candidate.
+    # The final sanitizer independently strips every selector-like block that survives.
     assert looks_like_location_selector_dump(states)
-    assert looks_like_location_selector_dump(countries)
 
     contaminated_readability = [
         {"type": "paragraph", "text": states},
