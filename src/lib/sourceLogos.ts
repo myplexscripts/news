@@ -1,14 +1,17 @@
 const SOURCE_LOGO_FILES: Record<string, string> = {
   'global news london': 'Global_News.svg',
+  'global news canada': 'Global_News.svg',
   'global news': 'Global_News.svg',
   'cbc news london': 'CBC_News_Logo.svg',
+  'cbc news canada': 'CBC_News_Logo.svg',
   'cbc news': 'CBC_News_Logo.svg',
   'london free press': 'The_London_Free_Press_Logo.svg',
+  'ctv news canada': 'CTVNews_horizontal_logo.svg',
   'ctv news': 'CTVNews_horizontal_logo.svg',
   '106.9 the x': '1069thex.png',
   'city of london newsroom': 'CoL.png',
   'city of london': 'CoL.png',
-  'london police service': 'lps.png',
+  'london police service': 'lps.svg',
   'london fire department': 'lfd.png',
   '104.7 heart fm': 'heartfm.png',
   'heart fm': 'heartfm.png',
@@ -32,7 +35,7 @@ export function sourceLogoFile(name = ''): string {
   if (normalized.includes('106.9') || normalized.includes('the x')) return '1069thex.png';
   if (normalized.includes('heart fm')) return 'heartfm.png';
   if (normalized.includes('city of london')) return 'CoL.png';
-  if (normalized.includes('london police')) return 'lps.png';
+  if (normalized.includes('london police')) return 'lps.svg';
   if (normalized.includes('london fire')) return 'lfd.png';
   if (normalized.includes('google news')) return 'google.png';
   if (normalized === 'cnn' || normalized.includes('cnn.com')) return 'cnn.png';

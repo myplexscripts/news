@@ -10,9 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# Never mark an otherwise-valid commit as failed just because a newer push landed.
+# Deploys are queued and run in order instead of cancelling the in-progress run.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -57,6 +59,13 @@ jobs:
         run: |
           mkdir -p public/images/logos
           cp -a images/logos/. public/images/logos/
+
+      - name: Publish feed data
+        shell: bash
+        run: |
+          mkdir -p public/data
+          cp data/news.json public/data/news.json
+          cp data/audit.json public/data/audit.json
 
       - name: Build static site
         run: npm run build

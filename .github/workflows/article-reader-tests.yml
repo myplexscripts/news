@@ -1,0 +1,39 @@
+name: Article reader tests
+
+on:
+  pull_request:
+    paths:
+      - 'requirements.txt'
+      - 'scripts/reader_mode_articles.py'
+      - 'scripts/test_reader_mode_articles.py'
+      - 'scripts/cleanup_article_recirculation.py'
+      - 'scripts/test_recirculation_cleanup.py'
+      - '.github/workflows/article-reader-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reader-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install extractor dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test reader-mode extraction
+        run: python scripts/test_reader_mode_articles.py
+
+      - name: Test contextual article cleanup
+        run: python scripts/test_recirculation_cleanup.py
+
+      - name: Compile article extractors
+        run: python -m py_compile scripts/reader_mode_articles.py scripts/cleanup_article_recirculation.py

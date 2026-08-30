@@ -1,4 +1,4 @@
-name: Refresh local news
+name: Refresh news
 
 on:
   push:
@@ -17,9 +17,11 @@ permissions:
   contents: write
   actions: write
 
+# A newer push should not turn a valid in-progress refresh into a red X.
+# Queue the next refresh behind the active one instead.
 concurrency:
-  group: refresh-local-news-v2
-  cancel-in-progress: true
+  group: refresh-news-v3
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -85,6 +87,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_scoop_runtime.py
 
+      - name: Test CTV London source repair
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_ctv_locality.py
+
       - name: Test publication roundup filters
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_publication_roundups.py
@@ -109,9 +115,21 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_article_sanitizer.py
 
-      - name: Fetch local news
+      - name: Test reader-mode article extraction
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_reader_mode_articles.py
+
+      - name: Fetch local and Canadian news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
+
+      - name: Repair CTV London freshness and scope
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/repair_ctv_locality.py
+
+      - name: Annotate Local and Canada feed scopes
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/annotate_scopes.py
 
       - name: Remove redundant publisher roundups
         if: steps.due.outputs.run == 'true'
@@ -145,8 +163,14 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/refine_source_articles.py
 
+      - name: Extract articles with reader mode
+        if: steps.due.outputs.run == 'true'
+        timeout-minutes: 12
+        run: python scripts/reader_mode_articles.py
+
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
+        timeout-minutes: 3
         run: python scripts/cleanup_article_recirculation.py
 
       - name: Preserve article audio and video
@@ -197,22 +221,55 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+
+          # Save the generated feed before syncing to the newest main. A code push
+          # can land while Scoop is scraping, and rebasing two generated JSON files
+          # produces avoidable conflicts. Restore the finished output on top of the
+          # newest code instead.
+          rm -rf /tmp/scoop-output
+          mkdir -p /tmp/scoop-output/cache
+          cp data/news.json /tmp/scoop-output/news.json
+          cp data/audit.json /tmp/scoop-output/audit.json
+          rsync -a public/cache/ /tmp/scoop-output/cache/
+
+          restore_output() {
+            cp /tmp/scoop-output/news.json data/news.json
+            cp /tmp/scoop-output/audit.json data/audit.json
+            mkdir -p public/cache
+            rsync -a --delete /tmp/scoop-output/cache/ public/cache/
+          }
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          restore_output
           git add data/news.json data/audit.json public/cache/
-          git commit -m "Refresh local news"
-          git pull --rebase origin main
+
+          if git diff --cached --quiet; then
+            echo "Latest main already contains this refresh"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "Refresh news"
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
+      # Commits pushed with GITHUB_TOKEN intentionally do not trigger other
+      # workflows. Explicitly deploy the refreshed feed so Pages follows main.
       - name: Deploy refreshed site
         if: steps.commit.outputs.changed == 'true'
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run site.yml --ref main
+        run: gh workflow run site.yml --repo myplexscripts/news --ref main
 
       - name: Schedule next refresh
-        if: always()
+        # A fresh watchdog check must not reset the active wake timer. If it does,
+        # each 10-minute watchdog can cancel a nearly-finished 15-minute wake and
+        # leave the site dependent on GitHub's occasionally delayed cron scheduler.
+        if: always() && (github.event_name != 'schedule' || steps.due.outputs.run == 'true')
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}

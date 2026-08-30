@@ -135,19 +135,30 @@ const showDeck = Boolean(
               src={sourceLogo}
               alt={`${story.source} logo`}
               decoding="async"
+              onerror="this.style.display='none';this.nextElementSibling?.removeAttribute('hidden')"
             />
           )}
+          {story.source && <span class="article-source-heading-name" hidden={Boolean(sourceLogo)}>{story.source}</span>}
           <h1>{story.title}</h1>
           {showDeck && <p class="article-deck">{story.summary}</p>}
         </header>
 
         <aside class="article-sidebar article-sidebar-refined" aria-label="Article source and details">
           <div class="article-sidebar-sticky">
+            {sourceLogo && (
+              <img
+                class="article-sidebar-source-logo"
+                src={sourceLogo}
+                alt={`${story.source} logo`}
+                decoding="async"
+                onerror="this.style.display='none';this.nextElementSibling?.removeAttribute('hidden')"
+              />
+            )}
+            {story.source && <span class="article-sidebar-source-name" hidden={Boolean(sourceLogo)}>{story.source}</span>}
             <div class="article-source-card article-source-card-refined">
               <div class="source-card-identity" aria-label={`Published by ${story.source}`}>
-                {sourceLogo && <img class="source-card-logo" onerror="this.style.display='none'" src={sourceLogo} alt="" /> }
                 <div>
-                  <span class="source-card-label">Published by</span>
+                  <span class="source-card-label">Published by</span>{' '}<strong class="source-card-name">{story.source}</strong>
                 </div>
               </div>
               <div class="source-card-details">

@@ -4,12 +4,41 @@ import NewsCard from '../components/NewsCard.astro';
 import news from '../../data/news.json';
 import { collapseTimelineStories } from '../lib/timelineStories';
 
-const allStories = news.stories || [];
 const storyTime = (story) => story.published;
-const stories = collapseTimelineStories(allStories).slice(0, 90);
+const sourceScopeByName = new Map(
+  (news.source_health || []).map((source) => [
+    String(source.source || '').trim(),
+    String(source.scope || '').trim().toLowerCase()
+  ])
+);
+const scopeOf = (story) => {
+  const explicit = String(story.scope || '').trim().toLowerCase();
+  if (explicit === 'canada') return 'canada';
 
-const preferredCategoryOrder = ['Local', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
-const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter(Boolean)));
+  const source = String(story.source || '').trim();
+  if (sourceScopeByName.get(source) === 'canada') return 'canada';
+
+  const discovery = String(story.discovery_via || '').trim();
+  if (sourceScopeByName.get(discovery) === 'canada') return 'canada';
+
+  return 'local';
+};
+const allStories = (news.stories || []).map((story) => ({ ...story, scope: scopeOf(story) }));
+
+// Keep a full local window even after national sources are added. Each scope is
+// collapsed independently so a newer national report can never hide a London
+// report from the Local feed simply because both belong to the same event cluster.
+const localStories = collapseTimelineStories(allStories.filter((story) => story.scope === 'local')).slice(0, 90);
+const canadaStories = collapseTimelineStories(allStories.filter((story) => story.scope === 'canada')).slice(0, 90);
+const stories = [...localStories, ...canadaStories]
+  .sort((a, b) => Date.parse(storyTime(b) || '') - Date.parse(storyTime(a) || ''))
+  .slice(0, 180);
+
+// Local and Canada are feed scopes, not article sections. Keeping them out of the
+// section tabs prevents contradictory combinations such as Canada feed + Local.
+const scopeCategories = new Set(['Local', 'Canada']);
+const preferredCategoryOrder = ['Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
+const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter((category) => category && !scopeCategories.has(category))));
 const orderedCategories = [
   ...preferredCategoryOrder.filter((category) => discoveredCategories.includes(category)),
   ...discoveredCategories.filter((category) => !preferredCategoryOrder.includes(category)).sort()
@@ -18,7 +47,6 @@ const primaryCategories = orderedCategories.slice(0, 4);
 const moreCategories = orderedCategories.slice(4);
 const base = import.meta.env.BASE_URL;
 const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-
 
 const localDateKey = (value) => {
   try {
@@ -90,6 +118,14 @@ const generated = news.generated_at
   <main class="home-page card-home" id="main-content">
     <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
       <div class="shell section-nav-inner card-filter-inner">
+        <div class="feed-scope-row">
+          <div class="feed-scope-switch" role="group" aria-label="Choose home feed">
+            <button class="feed-scope-button active" type="button" data-scope-filter="local" aria-pressed="true">Local</button>
+            <button class="feed-scope-button" type="button" data-scope-filter="canada" aria-pressed="false">Canada</button>
+            <button class="feed-scope-button" type="button" data-scope-filter="all" aria-pressed="false">All</button>
+          </div>
+        </div>
+
         <div class="section-tabs" role="group" aria-label="Filter by section">
           <button class="section-tab active" data-filter="All" aria-pressed="true">Latest</button>
           {primaryCategories.map((category) => (
@@ -117,8 +153,8 @@ const generated = news.generated_at
 
     <section class="news-card-section shell" id="latest" aria-labelledby="latest-heading">
       <header class="news-card-section-header">
-        <h2 id="latest-heading" class="visually-hidden">Latest London news</h2>
-        <p class="results-status visually-hidden" id="resultsStatus" aria-live="polite">Newest stories shown first</p>
+        <h2 id="latest-heading" class="visually-hidden">Latest news</h2>
+        <p class="results-status visually-hidden" id="resultsStatus" aria-live="polite">Newest local stories shown first</p>
       </header>
 
       <div class="news-card-grid" id="newsCardGrid">
@@ -148,7 +184,7 @@ const generated = news.generated_at
       <div class="no-results card-no-results" id="noResults" hidden>
         <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
         <h2>No matching stories</h2>
-        <p>Try another section or search term, or review your hidden sources.</p>
+        <p>Try another feed, section, or search term, or review your hidden sources.</p>
         <a class="bordered-button" href={`${base}sources/`}>Manage sources</a>
       </div>
     </section>
@@ -157,6 +193,8 @@ const generated = news.generated_at
   <script>
     import { initialiseUserState, onUserStateChange } from '../lib/userState';
 
+    const FEED_SCOPE_KEY = 'london-news-home-feed';
+    const VALID_SCOPES = new Set(['local', 'canada', 'all']);
     const headerSearch = document.getElementById('headerSearch');
     const searchToggle = document.getElementById('searchToggle');
     const searchClose = document.getElementById('searchClose');
@@ -167,8 +205,10 @@ const generated = news.generated_at
     const moreLabel = document.getElementById('moreLabel');
     const cards = [...document.querySelectorAll('.news-card.searchable')];
     const dateHeadings = [...document.querySelectorAll('[data-date-heading]')];
+    const scopeButtons = [...document.querySelectorAll('[data-scope-filter]')];
 
     let activeFilter = 'All';
+    let activeScope = 'local';
     let hiddenSources = new Set();
     let readStories = new Set();
     let hideReadStories = false;
@@ -192,6 +232,27 @@ const generated = news.generated_at
       if (searchInput instanceof HTMLInputElement) searchInput.value = '';
       applyFilters();
       searchToggle?.focus();
+    }
+
+    function setScope(value, persist = true) {
+      const next = VALID_SCOPES.has(value) ? value : 'local';
+      activeScope = next;
+      scopeButtons.forEach((item) => {
+        const selected = item.dataset.scopeFilter === next;
+        item.classList.toggle('active', selected);
+        item.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+      if (persist) {
+        try { localStorage.setItem(FEED_SCOPE_KEY, next); } catch {}
+      }
+
+      // A feed choice should always mean the complete feed. Reset any narrower
+      // section filter so Local -> Canada can never result in an empty intersection.
+      if (persist && activeFilter !== 'All') {
+        setFilter('All');
+        return;
+      }
+      applyFilters();
     }
 
     function setFilter(value) {
@@ -227,12 +288,14 @@ const generated = news.generated_at
       const visibleCards = [];
 
       cards.forEach((item) => {
+        const itemScope = String(item.dataset.scope || '').toLowerCase() === 'canada' ? 'canada' : 'local';
+        const scopeMatch = activeScope === 'all' || itemScope === activeScope;
         const categoryMatch = activeFilter === 'All' || item.dataset.category === activeFilter;
         const queryMatch = !query || (item.dataset.search || '').includes(query);
         const clusterSources = (item.dataset.sources || item.dataset.source || '').split('|').filter(Boolean);
         const sourceMatch = clusterSources.length === 0 || clusterSources.some((source) => !hiddenSources.has(source));
         const readMatch = !hideReadStories || !readStories.has(String(item.dataset.storyId || ''));
-        const show = categoryMatch && queryMatch && sourceMatch && readMatch;
+        const show = scopeMatch && categoryMatch && queryMatch && sourceMatch && readMatch;
         item.classList.toggle('filtered-out', !show);
         if (show) visibleCards.push(item);
       });
@@ -241,14 +304,14 @@ const generated = news.generated_at
       updateDateHeadings();
       if (noResults) noResults.hidden = visibleCards.length !== 0;
       if (resultsStatus) {
-        const qualifiers = [];
+        const qualifiers = [activeScope === 'local' ? 'Local' : activeScope === 'canada' ? 'Canada' : 'All'];
         if (activeFilter !== 'All') qualifiers.push(activeFilter);
         if (query) qualifiers.push(`“${query}”`);
         if (hiddenSources.size) qualifiers.push(`${hiddenSources.size} hidden ${hiddenSources.size === 1 ? 'source' : 'sources'}`);
         if (hideReadStories) qualifiers.push('read stories hidden');
         resultsStatus.textContent = visibleCards.length === 0
           ? 'No matching stories'
-          : `Newest matching stories shown first${qualifiers.length ? ` · ${qualifiers.join(' · ')}` : ''}`;
+          : `Newest matching stories shown first · ${qualifiers.join(' · ')}`;
       }
     }
 
@@ -257,6 +320,7 @@ const generated = news.generated_at
     searchInput?.addEventListener('input', applyFilters);
     searchInput?.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeSearch(); });
     document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => setFilter(button.dataset.filter || 'All')));
+    scopeButtons.forEach((button) => button.addEventListener('click', () => setScope(button.dataset.scopeFilter || 'local')));
 
     document.addEventListener('click', (event) => {
       if (sectionMore?.hasAttribute('open') && !sectionMore.contains(event.target)) sectionMore.removeAttribute('open');
@@ -264,6 +328,11 @@ const generated = news.generated_at
 
     const pageParams = new URLSearchParams(window.location.search);
     const requestedSection = pageParams.get('section');
+    const requestedScope = pageParams.get('scope');
+    let storedScope = 'local';
+    try { storedScope = localStorage.getItem(FEED_SCOPE_KEY) || 'local'; } catch {}
+    setScope(requestedScope && VALID_SCOPES.has(requestedScope) ? requestedScope : storedScope, false);
+
     if (pageParams.get('search') === '1') openSearch();
     if (requestedSection && cards.some((card) => card.dataset.category === requestedSection)) {
       setFilter(requestedSection);

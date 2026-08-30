@@ -9,18 +9,44 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-SANITIZE_SCHEMA = 2
+SANITIZE_SCHEMA = 3
 
 JUNK_TEXT_MARKERS = (
     "open full embed in new tab loading external pages",
     "may require significantly more data usage than loading cbc lite story pages",
+    "report an editorial error",
+    "report a technical issue",
+    "editorial code of conduct",
+    "follow related authors and topics",
+    "interact with the globe",
+    "authors and topics you follow will be added to your personal news feed",
+    "you must be logged in to follow",
+    "postmedia is committed to maintaining a lively but civil forum for discussion",
 )
 
 SHARE_MARKERS = (
     "share this story",
     "copy link email x reddit pinterest linkedin tumblr",
     "copy link email facebook x reddit pinterest linkedin tumblr",
+    "share on x",
+    "share on linkedin",
+    "share on reddit",
+    "share on whatsapp",
+    "share on bluesky",
+    "share on threads",
 )
+
+SHARE_EXACT_MARKERS = {
+    "email",
+    "copy link",
+    "facebook",
+    "x",
+    "reddit",
+    "linkedin",
+    "whatsapp",
+    "bluesky",
+    "threads",
+}
 
 
 def item_text(value: Any) -> str:
@@ -58,14 +84,18 @@ def markdown_inline(value: str) -> tuple[str, str]:
     return plain.strip(), rendered.strip()
 
 
+def normalized_key(value: Any) -> str:
+    return re.sub(r"\s+", " ", item_text(value).lower()).strip()
+
+
 def is_junk_text(value: Any) -> bool:
-    key = re.sub(r"\s+", " ", item_text(value).lower()).strip()
+    key = normalized_key(value)
     return bool(key) and any(marker in key for marker in JUNK_TEXT_MARKERS)
 
 
 def is_share_text(value: Any) -> bool:
-    key = re.sub(r"\s+", " ", item_text(value).lower()).strip()
-    return bool(key) and any(marker in key for marker in SHARE_MARKERS)
+    key = normalized_key(value)
+    return bool(key) and (key in SHARE_EXACT_MARKERS or any(marker in key for marker in SHARE_MARKERS))
 
 
 def normalize_list_items(items: list[Any]) -> list[Any]:

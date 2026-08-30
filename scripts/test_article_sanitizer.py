@@ -20,6 +20,49 @@ def test_share_dictionary_string_is_removed() -> None:
     assert not any(block.get("type") == "list" for block in blocks)
 
 
+def test_separate_share_controls_are_removed() -> None:
+    payload = {
+        "stories": [{
+            "id": "star-share",
+            "source": "Toronto Star",
+            "content_blocks": [
+                {"type": "list", "ordered": False, "items": [
+                    {"text": "Email", "html": "Email"},
+                    {"text": "Copy Link", "html": "Copy Link"},
+                    {"text": "Share on X", "html": "<a href='https://example.test/share'>Share on X</a>"},
+                    {"text": "Share on Reddit", "html": "<a href='https://example.test/share'>Share on Reddit</a>"},
+                ]},
+                {"type": "paragraph", "text": "The real article begins here with useful reporting."},
+            ],
+        }]
+    }
+    assert sanitize_payload(payload) == 1
+    blocks = payload["stories"][0]["content_blocks"]
+    assert not any(block.get("type") == "list" for block in blocks)
+    assert blocks[0]["text"].startswith("The real article")
+
+
+def test_globe_utility_text_is_removed() -> None:
+    payload = {
+        "stories": [{
+            "id": "globe-chrome",
+            "source": "The Globe and Mail",
+            "content_blocks": [
+                {"type": "paragraph", "text": "The real article ends here."},
+                {"type": "paragraph", "text": "Report an editorial error"},
+                {"type": "paragraph", "text": "Report a technical issue"},
+                {"type": "heading", "text": "Follow related authors and topics", "level": 2},
+                {"type": "list", "ordered": False, "items": ["Jason Tchir You must be logged in to follow. Log In Create free account"]},
+                {"type": "paragraph", "text": "Authors and topics you follow will be added to your personal news feed in Following."},
+                {"type": "heading", "text": "Interact with The Globe", "level": 2},
+            ],
+        }]
+    }
+    assert sanitize_payload(payload) == 1
+    blocks = payload["stories"][0]["content_blocks"]
+    assert [block.get("text") for block in blocks] == ["The real article ends here."]
+
+
 def test_dictionary_string_list_item_is_normalized() -> None:
     payload = {
         "stories": [{
@@ -89,6 +132,8 @@ def test_real_audio_media_is_preserved() -> None:
 
 def main() -> int:
     test_share_dictionary_string_is_removed()
+    test_separate_share_controls_are_removed()
+    test_globe_utility_text_is_removed()
     test_dictionary_string_list_item_is_normalized()
     test_cbc_markdown_embed_placeholder_and_fake_player_are_cleaned()
     test_real_audio_media_is_preserved()

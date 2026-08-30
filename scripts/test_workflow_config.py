@@ -8,6 +8,8 @@ WAKE_WORKFLOW = ROOT / ".github" / "workflows" / "refresh-wake.yml"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "site.yml"
 EXPECTED_CRON = "7,17,27,37,47,57 * * * *"
 EXPECTED_WAKE_DISPATCH = "gh workflow run refresh.yml --repo myplexscripts/news --ref main"
+EXPECTED_SITE_DISPATCH = "gh workflow run site.yml --repo myplexscripts/news --ref main"
+WATCHDOG_WAKE_GUARD = "github.event_name != 'schedule' || steps.due.outputs.run == 'true'"
 
 
 def main() -> int:
@@ -62,8 +64,20 @@ def main() -> int:
     if "python scripts/test_scoop_runtime.py" not in refresh:
         errors.append("Scoop runtime safeguard tests are missing from refresh workflow")
 
-    if 'git commit -m "Refresh local news"' not in refresh:
-        errors.append("refresh workflow does not commit updated data")
+    if "Remove inline promoted-story modules" not in refresh or "timeout-minutes: 3" not in refresh:
+        errors.append("recirculation cleanup must have a short timeout so it cannot block later refreshes")
+
+    if 'git commit -m "Refresh news"' not in refresh:
+        errors.append("refresh workflow does not commit updated data with the current feed name")
+
+    if "group: refresh-news-v3" not in refresh or "cancel-in-progress: false" not in refresh:
+        errors.append("refresh workflow must queue overlapping runs instead of cancelling valid commits")
+
+    if EXPECTED_SITE_DISPATCH not in refresh:
+        errors.append("refresh workflow must explicitly deploy bot-authored data commits because GITHUB_TOKEN pushes do not trigger site.yml")
+
+    if "steps.commit.outputs.changed == 'true'" not in refresh:
+        errors.append("Pages deployment should only be dispatched when refreshed data was committed")
 
     if "Schedule next refresh" not in refresh:
         errors.append("refresh workflow is not scheduling its next wake-up")
@@ -79,6 +93,9 @@ def main() -> int:
 
     if "if: always()" not in refresh:
         errors.append("refresh scheduling must survive scraper or audit failures")
+
+    if WATCHDOG_WAKE_GUARD not in refresh:
+        errors.append("fresh watchdog checks must not reset and cancel the active wake timer")
 
     if "sleep \"$wait_seconds\"" in refresh or "sleep 900" in refresh:
         errors.append("refresh workflow must not remain open just to wait for its next cycle")
@@ -104,6 +121,15 @@ def main() -> int:
     if "python scripts/run_scoop.py" in deploy or "python scripts/fetch_news.py" in deploy:
         errors.append("site.yml must not mutate news data during deployment")
 
+    if "cp data/news.json public/data/news.json" not in deploy:
+        errors.append("site.yml must publish data/news.json into the Pages artifact for freshness checks")
+
+    if "cp data/audit.json public/data/audit.json" not in deploy:
+        errors.append("site.yml must publish data/audit.json into the Pages artifact for diagnostics")
+
+    if "group: pages" not in deploy or "cancel-in-progress: false" not in deploy:
+        errors.append("site deploys must queue instead of cancelling an in-progress commit deployment")
+
     lock_exists = (ROOT / "package-lock.json").exists() or (ROOT / "npm-shrinkwrap.json").exists()
     if lock_exists and "npm ci" not in deploy:
         errors.append("site.yml should use npm ci when a lockfile exists")
@@ -117,8 +143,9 @@ def main() -> int:
         return 1
 
     print(
-        "Workflow configuration OK: separate wake timer, approximately 15-minute "
-        f"start-to-start refresh loop, cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
+        "Workflow configuration OK: queued deploys, queued refreshes, explicit deploy after changed data commits, "
+        "separate wake timer, watchdog-safe wake scheduling, approximately 15-minute start-to-start refresh loop, "
+        f"cron backup ({EXPECTED_CRON}), 20-minute scheduled freshness gate, bounded cleanup, and public feed data"
     )
     return 0
 

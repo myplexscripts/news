@@ -1,0 +1,117 @@
+.feed-scope-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 0 12px;
+}
+
+.feed-scope-switch {
+  display: inline-grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-subtle);
+}
+
+.feed-scope-button {
+  min-width: 92px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.feed-scope-button:hover {
+  color: var(--ink);
+}
+
+.feed-scope-button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.feed-scope-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Small release-status mark without reducing the text below the site's 16px type floor. */
+.brand::after {
+  content: 'BETA';
+  align-self: flex-start;
+  margin-left: -5px;
+  transform: translateY(4px);
+  color: var(--accent);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.055em;
+}
+
+.card-source-name,
+.article-source-heading-name,
+.article-sidebar-source-name {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.card-source-name {
+  margin: 0 0 10px;
+}
+
+.article-source-heading-name {
+  margin: 0 0 14px;
+}
+
+.article-sidebar-source-name {
+  margin: 0 0 12px;
+}
+
+@media (max-width: 760px) {
+  /* Global mobile styles hide the desktop filter toolbar. Restore its shell only
+     for the feed selector, while keeping category navigation on Sections. */
+  .home-page .card-filter-wrap.section-nav-wrap {
+    display: block !important;
+  }
+
+  .card-filter-inner {
+    display: block !important;
+    min-height: 0 !important;
+    padding: 10px 14px 8px !important;
+    overflow: visible !important;
+  }
+
+  .feed-scope-row {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .feed-scope-switch {
+    width: 100%;
+  }
+
+  .feed-scope-button {
+    min-width: 0;
+    width: 100%;
+    padding-inline: 10px;
+  }
+
+  .card-filter-inner .section-tabs {
+    display: none !important;
+  }
+}
