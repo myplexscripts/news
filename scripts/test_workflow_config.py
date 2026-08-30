@@ -114,6 +114,12 @@ def main() -> int:
     if "python scripts/run_scoop.py" in deploy or "python scripts/fetch_news.py" in deploy:
         errors.append("site.yml must not mutate news data during deployment")
 
+    if "cp data/news.json public/data/news.json" not in deploy:
+        errors.append("site.yml must publish data/news.json into the Pages artifact for freshness checks")
+
+    if "cp data/audit.json public/data/audit.json" not in deploy:
+        errors.append("site.yml must publish data/audit.json into the Pages artifact for diagnostics")
+
     if "group: pages" not in deploy or "cancel-in-progress: false" not in deploy:
         errors.append("site deploys must queue instead of cancelling an in-progress commit deployment")
 
@@ -132,7 +138,7 @@ def main() -> int:
     print(
         "Workflow configuration OK: queued deploys, queued refreshes, explicit deploy after changed data commits, "
         "separate wake timer, approximately 15-minute start-to-start refresh loop, "
-        f"cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
+        f"cron backup ({EXPECTED_CRON}), 20-minute scheduled freshness gate, and public feed data"
     )
     return 0
 

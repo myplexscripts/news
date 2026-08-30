@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v4';
-const ASSET_CACHE = 'london-news-assets-v4';
+const SHELL_CACHE = 'london-news-shell-v5';
+const ASSET_CACHE = 'london-news-assets-v5';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
@@ -58,10 +58,10 @@ async function navigationNetworkFirst(event, fallbackToHome = false) {
     const response = await Promise.race([
       (async () => {
         const preloaded = await event.preloadResponse;
-        return preloaded || fetchNetwork(request, 2800);
+        return preloaded || fetchNetwork(request, 8000);
       })(),
       new Promise((_, reject) => {
-        timer = setTimeout(() => reject(new Error('navigation timeout')), 2800);
+        timer = setTimeout(() => reject(new Error('navigation timeout')), 8000);
       })
     ]);
 

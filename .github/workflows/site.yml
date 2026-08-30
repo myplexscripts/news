@@ -60,6 +60,13 @@ jobs:
           mkdir -p public/images/logos
           cp -a images/logos/. public/images/logos/
 
+      - name: Publish feed data
+        shell: bash
+        run: |
+          mkdir -p public/data
+          cp data/news.json public/data/news.json
+          cp data/audit.json public/data/audit.json
+
       - name: Build static site
         run: npm run build
 
