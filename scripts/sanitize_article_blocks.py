@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""Final source-agnostic article guard before refreshed data is published."""
+
 import ast
 import html
 import json
