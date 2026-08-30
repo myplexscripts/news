@@ -84,8 +84,90 @@ SOURCES = [
         max_items=30,
     ),
 
+    # Direct institutional and public-service sources. These catch important local
+    # information before it is necessarily rewritten by a newsroom.
+    Source(
+        name="Middlesex-London Health Unit",
+        url="https://www.healthunit.com/news/",
+        kind="page",
+        homepage="https://www.healthunit.com/news/",
+        accent="#007a78",
+        max_items=12,
+    ),
+    Source(
+        name="London Health Sciences Centre",
+        url="https://www.lhsc.on.ca/news?page=0",
+        kind="page",
+        homepage="https://www.lhsc.on.ca/news",
+        accent="#005596",
+        max_items=12,
+    ),
+    Source(
+        name="St. Joseph's Health Care London",
+        url="https://www.sjhc.london.on.ca/news-and-media/news",
+        kind="page",
+        homepage="https://www.sjhc.london.on.ca/news-and-media/news",
+        accent="#006b54",
+        max_items=10,
+    ),
+    Source(
+        name="Western News",
+        url="https://news.westernu.ca/allnews/",
+        kind="page",
+        homepage="https://news.westernu.ca/",
+        accent="#4f2683",
+        max_items=12,
+    ),
+    Source(
+        name="Fanshawe College Newsroom",
+        url="https://www.fanshawec.ca/about-fanshawe/news",
+        kind="page",
+        homepage="https://www.fanshawec.ca/about-fanshawe/news",
+        accent="#d71920",
+        max_items=10,
+    ),
+    Source(
+        name="Thames Valley District School Board",
+        url="https://www.tvdsb.ca/news/",
+        kind="page",
+        homepage="https://www.tvdsb.ca/news/",
+        accent="#006fba",
+        max_items=12,
+    ),
+    Source(
+        name="London District Catholic School Board",
+        url="https://www.ldcsb.ca/apps/news/category/11195?pageIndex=1",
+        kind="page",
+        homepage="https://www.ldcsb.ca/apps/news/category/11195",
+        accent="#2b5797",
+        max_items=12,
+    ),
+    Source(
+        name="London Transit Commission",
+        url="https://www.londontransit.ca/",
+        kind="page",
+        homepage="https://www.londontransit.ca/",
+        accent="#00694a",
+        max_items=12,
+    ),
+    Source(
+        name="Middlesex County",
+        url="https://www.middlesex.ca/news",
+        kind="page",
+        homepage="https://www.middlesex.ca/news",
+        accent="#315f43",
+        max_items=12,
+    ),
+    Source(
+        name="Environment Canada London Alerts",
+        url="https://weather.gc.ca/rss/battleboard/onrm117_e.xml",
+        homepage="https://weather.gc.ca/",
+        accent="#2459a9",
+        max_items=10,
+    ),
+
     # National Canadian coverage. Keep each source deliberately bounded so a
-    # first national refresh does not overwhelm the London-first feed or action.
+    # national refresh does not overwhelm the London-first feed or action.
     Source(
         name="CBC News Canada",
         logo="images/logos/CBC_News_Logo.svg",
@@ -154,7 +236,27 @@ SOURCES = [
         max_items=15,
         scope="canada",
     ),
+    Source(
+        name="Ontario Newsroom",
+        url="https://news.ontario.ca/releases/en",
+        kind="page",
+        homepage="https://news.ontario.ca/en",
+        accent="#1f5f38",
+        max_items=15,
+        scope="canada",
+    ),
+    Source(
+        name="Government of Canada News",
+        url="https://www.canada.ca/en/news.html?lang=en",
+        kind="page",
+        homepage="https://www.canada.ca/en/news.html",
+        accent="#26374a",
+        max_items=15,
+        scope="canada",
+    ),
 
+    # Broad London discovery remains a safety net for smaller outlets and one-off
+    # sources that are not practical to maintain as permanent direct collectors.
     Source(
         name="Google News London Discovery",
         logo="images/logos/google.png",
