@@ -1,119 +1,20 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeading from '../../components/PageHeading.astro';
-import news from '../../../data/news.json';
-import { sourceLogoPath } from '../../lib/sourceLogos';
-
-const stories = news.stories || [];
 const base = import.meta.env.BASE_URL;
-const sourceMap = new Map();
-
-for (const story of stories) {
-  if (!story.source) continue;
-  const existing = sourceMap.get(story.source) || {
-    name: story.source,
-    accent: story.source_accent || 'var(--blue)',
-    count: 0,
-    latest: story.published,
-    logo: story.source_logo || '',
-    health: story.source_health_status || 'waiting'
-  };
-  existing.count += 1;
-  if (!existing.logo && story.source_logo) existing.logo = story.source_logo;
-  if (story.source_health_status) existing.health = story.source_health_status;
-  if (story.published && (!existing.latest || new Date(story.published) > new Date(existing.latest))) existing.latest = story.published;
-  sourceMap.set(story.source, existing);
-}
-
-const sources = [...sourceMap.values()].sort((a, b) => a.name.localeCompare(b.name));
-const logoFor = (name = '') => sourceLogoPath(name, base);
-
-const latestDate = (value) => {
-  try {
-    return new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Toronto',
-      month: 'short',
-      day: 'numeric'
-    }).format(new Date(value));
-  } catch {
-    return '';
-  }
-};
+const target = `${base}sections/?tab=sources`;
 ---
-<BaseLayout title="Sources | London News" description="Choose which London news sources appear in your feed.">
-  <main class="sources-page" id="main-content">
-    <section class="sources-shell shell">
-      <PageHeading className="sources-heading" eyebrow="Your feed" title="Sources" description="Choose which publishers and local organizations appear in London News. Your choices are saved on this device.">
-        <div slot="actions" class="sources-heading-actions">
-          <span id="sourcePreferenceStatus" aria-live="polite">{sources.length} sources shown</span>
-          <button class="bordered-button" id="showAllSources" type="button">Show all</button>
-        </div>
-      </PageHeading>
-
-      <div class="source-preference-list" id="sourcePreferenceList">
-        {sources.map((source) => (
-          <article class="source-preference-card" data-source-name={source.name}>
-            <div class="source-preference-identity">
-              <span class="source-preference-logo-wrap">
-                {logoFor(source.name) && <img class="source-preference-logo" onerror="this.parentElement.style.display='none'" src={logoFor(source.name)} alt="" loading="lazy" />}
-              </span>
-              <div>
-                <h2>{source.name}</h2>
-                <p><span class:list={["source-health-dot", `source-health-${source.health}`]} aria-hidden="true"></span>{source.health === 'healthy' ? 'Healthy' : source.health === 'degraded' ? 'Limited extraction' : source.health === 'error' ? 'Temporarily unavailable' : 'Waiting'} <span aria-hidden="true">·</span> Latest {latestDate(source.latest)}</p>
-              </div>
-            </div>
-            <label class="source-switch-row">
-              <span class="visually-hidden">Show {source.name}</span>
-              <input class="source-switch-input" type="checkbox" data-source-toggle={source.name} checked />
-              <span class="source-switch" aria-hidden="true"><span></span></span>
-            </label>
-          </article>
-        ))}
-      </div>
-
-      <div class="sources-footer-note">
-        <i class="ph ph-device-mobile" aria-hidden="true"></i>
-        <p>These preferences only affect what London News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    import { initialiseUserState, onUserStateChange, setSourceHidden, showAllSources } from '../../lib/userState';
-
-    const toggles = [...document.querySelectorAll('[data-source-toggle]')];
-    const status = document.getElementById('sourcePreferenceStatus');
-    const showAllButton = document.getElementById('showAllSources');
-    const knownSources = new Set(toggles.map((toggle) => toggle.dataset.sourceToggle || '').filter(Boolean));
-    let hidden = new Set();
-
-    function syncUI(state) {
-      hidden = new Set((state.hiddenSources || []).filter((name) => knownSources.has(name)));
-      toggles.forEach((toggle) => {
-        const name = toggle.dataset.sourceToggle || '';
-        const isShown = !hidden.has(name);
-        if (toggle instanceof HTMLInputElement) toggle.checked = isShown;
-        toggle.closest('.source-preference-card')?.classList.toggle('source-hidden', !isShown);
-      });
-      const shown = toggles.length - hidden.size;
-      if (status) status.textContent = `${Math.max(0, shown)} of ${toggles.length} sources shown`;
-      if (showAllButton instanceof HTMLButtonElement) showAllButton.disabled = hidden.size === 0;
-    }
-
-    toggles.forEach((toggle) => {
-      toggle.addEventListener('change', () => {
-        if (!(toggle instanceof HTMLInputElement)) return;
-        const name = toggle.dataset.sourceToggle || '';
-        if (!name) return;
-        setSourceHidden(name, !toggle.checked).catch(() => {});
-      });
-    });
-
-    showAllButton?.addEventListener('click', () => {
-      showAllSources().catch(() => {});
-    });
-
-    initialiseUserState().then(syncUI).catch(() => {});
-    onUserStateChange(syncUI);
-  </script>
-</BaseLayout>
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Sources | London News</title>
+  </head>
+  <body>
+    <p><a href={target}>Open Sources</a></p>
+    <script is:inline define:vars={{ target }}>
+      location.replace(target);
+    </script>
+  </body>
+</html>

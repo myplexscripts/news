@@ -33,7 +33,8 @@ const onAdmin = path.includes('/admin/');
 const onHome = !onSources && !onSections && !onSearch && !onSettings && !onAdmin && !path.includes('/latest/') && !path.includes('/story/');
 const hasHeaderActions = Astro.slots.has('header-actions');
 const showHomeMasthead = onHome && Boolean(homeDate);
-const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 3 : onSettings ? 4 : -1;
+const onDirectory = onSections || onSources;
+const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onSettings ? 3 : -1;
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="light" data-accent="green" data-hide-read="false">
@@ -73,7 +74,7 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
       <div class:list={["shell", "header-inner", "header-inner-simple", showHomeMasthead && "home-header-inner"]}>
         <div class="brand-area">
           <a class="brand" href={base} aria-label="London News home">
-            <span>London News</span>
+            <span>London News <sup style="font-size:16px; margin-left:4px; color:var(--muted); letter-spacing:.05em; font-weight:700; vertical-align:super;">BETA</sup></span>
           </a>
         </div>
 
@@ -84,8 +85,8 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
               <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
             </a>
           )}
-          <a class="icon-button desktop-sources-link" href={`${base}sources/`} aria-label="Manage news sources" title="Sources">
-            <i class="ph ph-buildings" aria-hidden="true"></i>
+          <a class:list={["icon-button", "desktop-sources-link", onDirectory && "active"]} href={`${base}sections/`} aria-label="Browse sections and sources" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
+            <i class={onDirectory ? 'ph-fill ph-hard-drive' : 'ph ph-hard-drive'} aria-hidden="true"></i>
           </a>
           <a class:list={["icon-button", "settings-link", onSettings && "active"]} href={`${base}settings/`} aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
             <i class={onSettings ? 'ph-fill ph-gear-six' : 'ph ph-gear-six'} aria-hidden="true"></i>
@@ -129,14 +130,14 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
         <span class="visually-hidden">Home</span>
       </a>
       <a
-        class:list={["mobile-tab", onSections && "active"]}
+        class:list={["mobile-tab", onDirectory && "active"]}
         href={`${base}sections/`}
         data-mobile-tab-index="1"
         aria-label="Sections"
         title="Sections"
-        aria-current={onSections ? 'page' : undefined}
+        aria-current={onDirectory ? 'page' : undefined}
       >
-        <i class={onSections ? 'ph-fill ph-squares-four' : 'ph ph-squares-four'} aria-hidden="true"></i>
+        <i class={onDirectory ? 'ph-fill ph-hard-drive' : 'ph ph-hard-drive'} aria-hidden="true"></i>
         <span class="visually-hidden">Sections</span>
       </a>
       <a
@@ -151,20 +152,9 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
         <span class="visually-hidden">Search</span>
       </a>
       <a
-        class:list={["mobile-tab", onSources && "active"]}
-        href={`${base}sources/`}
-        data-mobile-tab-index="3"
-        aria-label="Sources"
-        title="Sources"
-        aria-current={onSources ? 'page' : undefined}
-      >
-        <i class={onSources ? 'ph-fill ph-buildings' : 'ph ph-buildings'} aria-hidden="true"></i>
-        <span class="visually-hidden">Sources</span>
-      </a>
-      <a
         class:list={["mobile-tab", onSettings && "active"]}
         href={`${base}settings/`}
-        data-mobile-tab-index="4"
+        data-mobile-tab-index="3"
         aria-label="Settings"
         title="Settings"
         aria-current={onSettings ? 'page' : undefined}
