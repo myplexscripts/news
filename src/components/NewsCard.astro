@@ -57,7 +57,7 @@ const published = (value) => {
 const readMinutes = Number(story.word_count) > 0 ? Math.max(1, Math.round(Number(story.word_count) / 220)) : null;
 const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sources.length ? story.cluster_sources : [story.source].filter(Boolean);
 ---
-<a
+<article
   class:list={[
     'news-card',
     `card-${variant}`,
@@ -66,7 +66,6 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
     !imageSrc && 'no-image',
     className
   ]}
-  href={storyHref}
   data-story-id={story.id}
   data-category={story.category}
   data-source={story.source}
@@ -76,6 +75,10 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
   data-search={dataSearch}
   hidden={hidden}
 >
+  <a class="news-card-link" href={storyHref} aria-label={story.title}></a>
+  <button class="news-card-save" type="button" data-read-later-toggle={story.id} aria-label="Save to Read Later" aria-pressed="false" title="Save to Read Later">
+    <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
+  </button>
   {imageSrc && (
     <div class="news-card-media">
       <img
@@ -111,7 +114,56 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
     </div>
     {showSummary && story.summary && <p class="news-card-summary">{story.summary}</p>}
   </div>
-</a>
+</article>
+
+<style is:global>
+  .news-card {
+    position: relative;
+  }
+
+  .news-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+  }
+
+  .news-card-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .news-card-save {
+    position: absolute;
+    z-index: 4;
+    top: 10px;
+    right: 10px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--surface) 78%, transparent);
+    color: var(--ink);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    cursor: pointer;
+  }
+
+  .news-card-save i {
+    font-size: 20px;
+  }
+
+  .news-card-save.is-saved {
+    color: var(--accent);
+  }
+
+  .news-card-save:disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+</style>
 
 <script>
   function initialiseSourceLogoSizing() {
