@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v7';
-const ASSET_CACHE = 'london-news-assets-v7';
+const SHELL_CACHE = 'london-news-shell-v8';
+const ASSET_CACHE = 'london-news-assets-v8';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
