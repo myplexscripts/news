@@ -1,4 +1,4 @@
-name: Refresh local news
+name: Refresh news
 
 on:
   push:
@@ -17,9 +17,11 @@ permissions:
   contents: write
   actions: write
 
+# A newer push should not turn a valid in-progress refresh into a red X.
+# Queue the next refresh behind the active one instead.
 concurrency:
-  group: refresh-local-news-v2
-  cancel-in-progress: true
+  group: refresh-news-v3
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -204,16 +206,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/news.json data/audit.json public/cache/
-          git commit -m "Refresh local news"
+          git commit -m "Refresh news"
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      - name: Deploy refreshed site
-        if: steps.commit.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run site.yml --ref main
+      # site.yml already deploys every push to main, including the refresh commit.
+      # Do not dispatch a second duplicate Pages deployment here.
 
       - name: Schedule next refresh
         if: always()
