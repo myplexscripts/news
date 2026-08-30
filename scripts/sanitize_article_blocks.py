@@ -124,7 +124,7 @@ def looks_like_location_selector_dump(value: Any) -> bool:
     if not LOCATION_SELECTOR_PREFIX_RE.search(key):
         return False
     marker_count = sum(1 for marker in LOCATION_SELECTOR_MARKERS if marker in key)
-    return marker_count >= 6
+    return marker_count >= 5
 
 
 def is_junk_text(value: Any) -> bool:
