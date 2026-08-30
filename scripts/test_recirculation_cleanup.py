@@ -151,6 +151,26 @@ def test_globe_terminal_chrome_is_removed() -> None:
     assert [block.get("text") for block in blocks] == ["The final real paragraph of the article ends here."]
 
 
+def test_single_linked_globe_related_story_is_removed_mid_article() -> None:
+    headline = "B.C. ends provincial state of emergency as wildfires continue to burn"
+    payload = {
+        "stories": [{
+            "id": "globe-inline",
+            "source": "The Globe and Mail",
+            "title": "Main wildfire article",
+            "content_blocks": [
+                {"type": "paragraph", "text": "The first real paragraph explains the wildfire situation in British Columbia."},
+                {"type": "paragraph", "text": headline, "html": f"<a href='https://example.test/other'>{headline}</a>"},
+                {"type": "paragraph", "text": "The article resumes here with another complete sentence from the original report."},
+            ],
+        }]
+    }
+    assert clean_payload(payload) == 1
+    texts = [str(block.get("text") or "") for block in payload["stories"][0]["content_blocks"]]
+    assert headline not in texts
+    assert any("article resumes here" in text for text in texts)
+
+
 def test_toronto_star_trending_rail_is_terminal() -> None:
     payload = {
         "stories": [{
@@ -225,6 +245,7 @@ def main() -> int:
     test_labelled_publisher_cards_are_removed_without_feed_matches()
     test_newsletter_module_is_removed()
     test_globe_terminal_chrome_is_removed()
+    test_single_linked_globe_related_story_is_removed_mid_article()
     test_toronto_star_trending_rail_is_terminal()
     test_unlabelled_linked_story_card_run_is_removed_mid_article()
     test_real_numbered_list_is_preserved()
