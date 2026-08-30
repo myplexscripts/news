@@ -203,11 +203,38 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+
+          # Save the generated feed before syncing to the newest main. A code push
+          # can land while Scoop is scraping, and rebasing two generated JSON files
+          # produces avoidable conflicts. Restore the finished output on top of the
+          # newest code instead.
+          rm -rf /tmp/scoop-output
+          mkdir -p /tmp/scoop-output/cache
+          cp data/news.json /tmp/scoop-output/news.json
+          cp data/audit.json /tmp/scoop-output/audit.json
+          rsync -a public/cache/ /tmp/scoop-output/cache/
+
+          restore_output() {
+            cp /tmp/scoop-output/news.json data/news.json
+            cp /tmp/scoop-output/audit.json data/audit.json
+            mkdir -p public/cache
+            rsync -a --delete /tmp/scoop-output/cache/ public/cache/
+          }
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          restore_output
           git add data/news.json data/audit.json public/cache/
+
+          if git diff --cached --quiet; then
+            echo "Latest main already contains this refresh"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
           git commit -m "Refresh news"
-          git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
