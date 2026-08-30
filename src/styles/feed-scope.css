@@ -46,6 +46,20 @@
   outline-offset: 2px;
 }
 
+/* Small release-status mark without reducing the text below the site's 16px type floor. */
+.brand::after {
+  content: 'BETA';
+  align-self: flex-start;
+  margin-left: -5px;
+  transform: translateY(4px);
+  color: var(--accent);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.055em;
+}
+
 .card-source-name,
 .article-source-heading-name,
 .article-sidebar-source-name {
