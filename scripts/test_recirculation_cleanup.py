@@ -130,6 +130,70 @@ def test_newsletter_module_is_removed() -> None:
     assert "meet again on Tuesday" in dumped
 
 
+def test_globe_terminal_chrome_is_removed() -> None:
+    payload = {
+        "stories": [{
+            "id": "globe",
+            "source": "The Globe and Mail",
+            "title": "Main article",
+            "content_blocks": [
+                {"type": "paragraph", "text": "The final real paragraph of the article ends here."},
+                {"type": "paragraph", "text": "Report an editorial error", "html": "<a href='https://example.test/error'>Report an editorial error</a>"},
+                {"type": "paragraph", "text": "Report a technical issue"},
+                {"type": "heading", "level": 2, "text": "Follow related authors and topics"},
+                {"type": "paragraph", "text": "Authors and topics you follow will be added to your personal news feed in Following."},
+                {"type": "heading", "level": 2, "text": "Interact with The Globe"},
+            ],
+        }]
+    }
+    assert clean_payload(payload) == 1
+    blocks = payload["stories"][0]["content_blocks"]
+    assert [block.get("text") for block in blocks] == ["The final real paragraph of the article ends here."]
+
+
+def test_toronto_star_trending_rail_is_terminal() -> None:
+    payload = {
+        "stories": [{
+            "id": "star",
+            "source": "Toronto Star",
+            "title": "Main article",
+            "content_blocks": [
+                {"type": "paragraph", "text": "The Canadian Press reported the main story from Toronto."},
+                {"type": "heading", "level": 3, "text": "Trending"},
+                {"type": "image", "url": "https://example.test/lake.jpg"},
+                {"type": "heading", "level": 3, "text": "A sign for the times: Doug Ford unveils Lake Ontario sign", "html": "<a href='https://example.test/other'>A sign for the times</a>"},
+            ],
+        }]
+    }
+    assert clean_payload(payload) == 1
+    blocks = payload["stories"][0]["content_blocks"]
+    assert len(blocks) == 1
+    assert blocks[0]["type"] == "paragraph"
+
+
+def test_unlabelled_linked_story_card_run_is_removed_mid_article() -> None:
+    payload = {
+        "stories": [{
+            "id": "post",
+            "source": "National Post",
+            "title": "Main article",
+            "content_blocks": [
+                {"type": "paragraph", "text": "The first half of the article explains the issue in detail."},
+                {"type": "heading", "level": 3, "text": "First unrelated linked headline here", "html": "<a href='https://example.test/a'>First unrelated linked headline here</a>"},
+                {"type": "image", "url": "https://example.test/a.jpg"},
+                {"type": "heading", "level": 3, "text": "Second unrelated linked headline here", "html": "<a href='https://example.test/b'>Second unrelated linked headline here</a>"},
+                {"type": "image", "url": "https://example.test/b.jpg"},
+                {"type": "paragraph", "text": "The article resumes here with another complete sentence after the inserted rail."},
+            ],
+        }]
+    }
+    assert clean_payload(payload) == 1
+    dumped = " | ".join(str(block.get("text") or block.get("url") or "") for block in payload["stories"][0]["content_blocks"])
+    assert "First unrelated linked headline" not in dumped
+    assert "Second unrelated linked headline" not in dumped
+    assert "article resumes here" in dumped
+
+
 def test_real_numbered_list_is_preserved() -> None:
     payload = {
         "stories": [
@@ -160,6 +224,9 @@ def main() -> int:
     test_rich_promoted_story_list_is_removed()
     test_labelled_publisher_cards_are_removed_without_feed_matches()
     test_newsletter_module_is_removed()
+    test_globe_terminal_chrome_is_removed()
+    test_toronto_star_trending_rail_is_terminal()
+    test_unlabelled_linked_story_card_run_is_removed_mid_article()
     test_real_numbered_list_is_preserved()
     print("PASS recirculation cleanup regressions")
     return 0
