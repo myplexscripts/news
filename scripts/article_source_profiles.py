@@ -22,7 +22,12 @@ DEFAULT_PROFILE: dict[str, Any] = {
         "[class*='advert']", "[class*='newsletter']", "[class*='subscribe']",
         "[class*='related']", "[class*='recommend']", "[class*='recirc']",
         "[class*='read-more']", "[class*='readmore']", "[class*='outbrain']",
-        "[class*='taboola']", "[data-testid*='related']", "[data-testid*='recommend']",
+        "[class*='taboola']", "[class*='trending']", "[class*='most-read']",
+        "[class*='most-popular']", "[class*='more-news']", "[class*='more-stories']",
+        "[class*='follow-author']", "[class*='author-follow']", "[class*='feedback']",
+        "[class*='comment-module']", "[class*='comments-module']",
+        "[data-testid*='related']", "[data-testid*='recommend']", "[data-testid*='recirc']",
+        "[id*='related']", "[id*='recirc']", "[id*='advert']",
     ],
 }
 
@@ -91,6 +96,32 @@ PROFILES: dict[str, dict[str, Any]] = {
             "[class*='recirc']", "[class*='recommended']", "[class*='preferred-source']",
         ],
     },
+    "globe": {
+        "name": "globe",
+        "roots": [
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".c-article-body", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='advert']", "[class*='related']", "[class*='recirc']",
+            "[class*='recommend']", "[class*='follow']", "[class*='feedback']",
+            "[class*='error-report']", "[class*='editorial-code']", "[class*='interact']",
+            "[class*='comment']", "[data-testid*='follow']", "[data-testid*='related']",
+        ],
+    },
+    "star": {
+        "name": "star",
+        "roots": [
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".asset-content", ".story-body", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='trending']", "[id*='trending']", "[class*='more-news']",
+            "[class*='related']", "[class*='recommend']", "[class*='recirc']",
+            "[class*='share']", "[class*='social']", "[class*='comment']",
+            "[class*='advert']", "[data-testid*='related']", "[data-testid*='trending']",
+        ],
+    },
     "western": {
         "name": "western",
         "roots": [
@@ -135,12 +166,16 @@ def profile_for(source: str = "", url: str = "") -> dict[str, Any]:
 
     if "cbc" in source_key or host.endswith("cbc.ca"):
         selected = PROFILES["cbc"]
-    elif "free press" in source_key or "postmedia" in source_key or host.endswith("lfpress.com") or host.endswith("postmedia.com"):
+    elif "free press" in source_key or "postmedia" in source_key or "national post" in source_key or host.endswith("lfpress.com") or host.endswith("postmedia.com") or host.endswith("nationalpost.com"):
         selected = PROFILES["postmedia"]
     elif "ctv" in source_key or host.endswith("ctvnews.ca"):
         selected = PROFILES["ctv"]
     elif "global news" in source_key or host.endswith("globalnews.ca"):
         selected = PROFILES["global"]
+    elif "globe and mail" in source_key or host.endswith("theglobeandmail.com"):
+        selected = PROFILES["globe"]
+    elif "toronto star" in source_key or host.endswith("thestar.com"):
+        selected = PROFILES["star"]
     elif "western" in source_key or host.endswith("uwo.ca") or "westernu.ca" in host or host.endswith("westernnews.ca") or host.endswith("westerngazette.ca"):
         selected = PROFILES["western"]
     elif "london police" in source_key or host.endswith("londonpolice.ca"):
