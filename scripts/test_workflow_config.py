@@ -62,8 +62,14 @@ def main() -> int:
     if "python scripts/test_scoop_runtime.py" not in refresh:
         errors.append("Scoop runtime safeguard tests are missing from refresh workflow")
 
-    if 'git commit -m "Refresh local news"' not in refresh:
-        errors.append("refresh workflow does not commit updated data")
+    if 'git commit -m "Refresh news"' not in refresh:
+        errors.append("refresh workflow does not commit updated data with the current feed name")
+
+    if "group: refresh-news-v3" not in refresh or "cancel-in-progress: false" not in refresh:
+        errors.append("refresh workflow must queue overlapping runs instead of cancelling valid commits")
+
+    if "gh workflow run site.yml" in refresh:
+        errors.append("refresh workflow must not dispatch a duplicate Pages deployment; the data push already triggers site.yml")
 
     if "Schedule next refresh" not in refresh:
         errors.append("refresh workflow is not scheduling its next wake-up")
@@ -104,6 +110,9 @@ def main() -> int:
     if "python scripts/run_scoop.py" in deploy or "python scripts/fetch_news.py" in deploy:
         errors.append("site.yml must not mutate news data during deployment")
 
+    if "group: pages" not in deploy or "cancel-in-progress: false" not in deploy:
+        errors.append("site deploys must queue instead of cancelling an in-progress commit deployment")
+
     lock_exists = (ROOT / "package-lock.json").exists() or (ROOT / "npm-shrinkwrap.json").exists()
     if lock_exists and "npm ci" not in deploy:
         errors.append("site.yml should use npm ci when a lockfile exists")
@@ -117,8 +126,9 @@ def main() -> int:
         return 1
 
     print(
-        "Workflow configuration OK: separate wake timer, approximately 15-minute "
-        f"start-to-start refresh loop, cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
+        "Workflow configuration OK: queued deploys, queued refreshes, one deploy per data push, "
+        "separate wake timer, approximately 15-minute start-to-start refresh loop, "
+        f"cron backup ({EXPECTED_CRON}), and 20-minute scheduled freshness gate"
     )
     return 0
 
