@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import PageHeading from '../../components/PageHeading.astro';
+import news from '../../../data/news.json';
+
+const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published || 0).getTime() - new Date(a.published || 0).getTime());
+---
+<BaseLayout title="Read Later | London News" description="Articles saved to read later on this device." noindex={true}>
+  <main class="read-later-page" id="main-content">
+    <section class="read-later-shell shell">
+      <PageHeading eyebrow="Saved" title="Read Later" description="Articles you bookmark are saved on this device until you remove them." />
+
+      <p class="read-later-status" id="readLaterStatus" aria-live="polite">Loading saved articles…</p>
+
+      <div class="read-later-grid" id="readLaterGrid" aria-label="Saved articles" hidden></div>
+
+      <template id="readLaterCardTemplates">
+        {stories.map((story) => (
+          <NewsCard story={story} variant="standard" className="read-later-card" />
+        ))}
+      </template>
+
+      <div class="read-later-empty" id="readLaterEmpty">
+        <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
+        <h2>Nothing saved yet</h2>
+        <p>Tap the bookmark on any article to keep it here for later.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    import { initialiseUserState, onUserStateChange } from '../../lib/userState';
+
+    const grid = document.getElementById('readLaterGrid');
+    const empty = document.getElementById('readLaterEmpty');
+    const status = document.getElementById('readLaterStatus');
+    const template = document.getElementById('readLaterCardTemplates');
+    const templateCards = template instanceof HTMLTemplateElement
+      ? [...template.content.querySelectorAll('.read-later-card')]
+      : [];
+    const cardById = new Map(templateCards.map((card) => [String(card.dataset.storyId || ''), card]));
+
+    function markSavedButton(card) {
+      const button = card.querySelector('[data-read-later-toggle]');
+      if (!(button instanceof HTMLButtonElement)) return;
+      button.classList.add('is-saved');
+      button.setAttribute('aria-pressed', 'true');
+      button.setAttribute('aria-label', 'Remove from Read Later');
+      button.setAttribute('title', 'Remove from Read Later');
+      const icon = button.querySelector('i');
+      if (icon) icon.className = 'ph-fill ph-bookmark-simple';
+    }
+
+    function applySavedState(state) {
+      if (!grid) return;
+
+      const savedIds = (state.savedIds || []).map(String);
+      const readSet = new Set((state.readIds || []).map(String));
+      const fragment = document.createDocumentFragment();
+      let available = 0;
+
+      savedIds.forEach((id) => {
+        const sourceCard = cardById.get(id);
+        if (!sourceCard) return;
+        const card = sourceCard.cloneNode(true);
+        if (!(card instanceof HTMLElement)) return;
+        card.classList.add('is-saved-story');
+        card.classList.toggle('is-read-story', readSet.has(id));
+        markSavedButton(card);
+        fragment.append(card);
+        available += 1;
+      });
+
+      grid.replaceChildren(fragment);
+      grid.hidden = available === 0;
+
+      const unavailable = Math.max(0, savedIds.length - available);
+      if (empty) empty.hidden = available !== 0;
+      if (status) {
+        if (available === 0 && unavailable === 0) status.textContent = 'No saved articles';
+        else if (unavailable > 0) status.textContent = `${available} saved ${available === 1 ? 'article' : 'articles'} shown · ${unavailable} no longer in the current archive`;
+        else status.textContent = `${available} saved ${available === 1 ? 'article' : 'articles'}`;
+      }
+    }
+
+    initialiseUserState().then(applySavedState).catch(() => {
+      if (grid) grid.hidden = true;
+      if (empty) empty.hidden = false;
+      if (status) status.textContent = 'Saved articles could not be loaded';
+    });
+    onUserStateChange(applySavedState);
+  </script>
+
+  <style is:global>
+    .read-later-page {
+      padding-bottom: 80px;
+    }
+
+    .read-later-shell {
+      padding-top: 34px;
+    }
+
+    .read-later-status {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .read-later-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .read-later-grid[hidden],
+    #readLaterCardTemplates {
+      display: none !important;
+    }
+
+    html[data-hide-read='true'] .read-later-page .news-card.is-read-story {
+      display: grid !important;
+    }
+
+    .read-later-empty {
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 8px;
+      padding: 36px 20px;
+      border-radius: 24px;
+      background: var(--surface-subtle);
+      text-align: center;
+    }
+
+    .read-later-empty[hidden] {
+      display: none !important;
+    }
+
+    .read-later-empty > i {
+      color: var(--accent);
+      font-size: 34px;
+    }
+
+    .read-later-empty h2,
+    .read-later-empty p {
+      margin: 0;
+    }
+
+    .read-later-empty h2 {
+      font-size: 24px;
+    }
+
+    .read-later-empty p {
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    @media (max-width: 760px) {
+      .read-later-shell {
+        padding-top: 18px;
+      }
+
+      .read-later-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+      }
+    }
+  </style>
+</BaseLayout>

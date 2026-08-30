@@ -28,12 +28,14 @@ const path = Astro.url.pathname;
 const onSources = path.includes('/sources/');
 const onSections = path.includes('/sections/');
 const onSearch = path.includes('/search/');
+const onReadLater = path.includes('/read-later/');
 const onSettings = path.includes('/settings/');
 const onAdmin = path.includes('/admin/');
-const onHome = !onSources && !onSections && !onSearch && !onSettings && !onAdmin && !path.includes('/latest/') && !path.includes('/story/');
+const onHome = !onSources && !onSections && !onSearch && !onReadLater && !onSettings && !onAdmin && !path.includes('/latest/') && !path.includes('/story/');
 const hasHeaderActions = Astro.slots.has('header-actions');
 const showHomeMasthead = onHome && Boolean(homeDate);
-const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 3 : onSettings ? 4 : -1;
+const onDirectory = onSections || onSources;
+const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater ? 3 : onSettings ? 4 : -1;
 ---
 <!doctype html>
 <html lang="en-CA" data-theme="light" data-accent="green" data-hide-read="false">
@@ -54,6 +56,31 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
+    <style is:inline>
+      .brand::after,
+      .brand > span::after {
+        content: none !important;
+        display: none !important;
+      }
+
+      .brand-beta {
+        display: inline-block !important;
+        margin-left: 0.35em !important;
+        color: var(--accent) !important;
+        font-size: 0.42em !important;
+        line-height: 1 !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.06em !important;
+        vertical-align: super !important;
+      }
+
+      @media (max-width: 760px) {
+        .mobile-tab-bar {
+          --mobile-tab-count: 5 !important;
+          grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+        }
+      }
+    </style>
     <script is:inline>
       (() => {
         const savedTheme = localStorage.getItem('london-news-theme');
@@ -73,7 +100,7 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
       <div class:list={["shell", "header-inner", "header-inner-simple", showHomeMasthead && "home-header-inner"]}>
         <div class="brand-area">
           <a class="brand" href={base} aria-label="London News home">
-            <span>London News</span>
+            <span>London News<sup class="brand-beta">BETA</sup></span>
           </a>
         </div>
 
@@ -84,8 +111,8 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
               <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
             </a>
           )}
-          <a class="icon-button desktop-sources-link" href={`${base}sources/`} aria-label="Manage news sources" title="Sources">
-            <i class="ph ph-buildings" aria-hidden="true"></i>
+          <a class:list={["icon-button", "desktop-sources-link", onDirectory && "active"]} href={`${base}sections/`} aria-label="Browse sections and sources" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
+            <i class={onDirectory ? 'ph-fill ph-hard-drives' : 'ph ph-hard-drives'} aria-hidden="true"></i>
           </a>
           <a class:list={["icon-button", "settings-link", onSettings && "active"]} href={`${base}settings/`} aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
             <i class={onSettings ? 'ph-fill ph-gear-six' : 'ph ph-gear-six'} aria-hidden="true"></i>
@@ -129,14 +156,14 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
         <span class="visually-hidden">Home</span>
       </a>
       <a
-        class:list={["mobile-tab", onSections && "active"]}
+        class:list={["mobile-tab", onDirectory && "active"]}
         href={`${base}sections/`}
         data-mobile-tab-index="1"
         aria-label="Sections"
         title="Sections"
-        aria-current={onSections ? 'page' : undefined}
+        aria-current={onDirectory ? 'page' : undefined}
       >
-        <i class={onSections ? 'ph-fill ph-squares-four' : 'ph ph-squares-four'} aria-hidden="true"></i>
+        <i class={onDirectory ? 'ph-fill ph-hard-drives' : 'ph ph-hard-drives'} aria-hidden="true"></i>
         <span class="visually-hidden">Sections</span>
       </a>
       <a
@@ -151,15 +178,15 @@ const mobileTabIndex = onHome ? 0 : onSections ? 1 : onSearch ? 2 : onSources ? 
         <span class="visually-hidden">Search</span>
       </a>
       <a
-        class:list={["mobile-tab", onSources && "active"]}
-        href={`${base}sources/`}
+        class:list={["mobile-tab", onReadLater && "active"]}
+        href={`${base}read-later/`}
         data-mobile-tab-index="3"
-        aria-label="Sources"
-        title="Sources"
-        aria-current={onSources ? 'page' : undefined}
+        aria-label="Read Later"
+        title="Read Later"
+        aria-current={onReadLater ? 'page' : undefined}
       >
-        <i class={onSources ? 'ph-fill ph-buildings' : 'ph ph-buildings'} aria-hidden="true"></i>
-        <span class="visually-hidden">Sources</span>
+        <i class={onReadLater ? 'ph-fill ph-bookmark-simple' : 'ph ph-bookmark-simple'} aria-hidden="true"></i>
+        <span class="visually-hidden">Read Later</span>
       </a>
       <a
         class:list={["mobile-tab", onSettings && "active"]}

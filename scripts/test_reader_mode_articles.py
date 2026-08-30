@@ -4,6 +4,7 @@ from reader_mode_articles import (
     article_format_state,
     choose_reader_result,
     html_to_blocks,
+    looks_like_location_selector_dump,
     normalize_ctv_attribution,
     obvious_chrome_count,
     reader_candidate,
@@ -100,6 +101,48 @@ def run() -> None:
     assert "advertisement" not in text
     assert "related stories" not in text
     assert "another city story makes headlines" not in text
+
+    states = (
+        "State Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois "
+        "Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana "
+        "Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon "
+        "Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington Wisconsin Wyoming"
+    )
+    countries = (
+        "Country United States of America US Virgin Islands Canada Mexico Afghanistan Albania Algeria American Samoa Andorra "
+        "Angola Argentina Armenia Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin "
+        "Bhutan Bolivia Bosnia Botswana Brazil Brunei Bulgaria Burkina Faso Burundi Cambodia Cameroon Chile China Colombia"
+    )
+    # One unmistakable selector dump is enough to reject the whole reader candidate.
+    # The final sanitizer independently strips every selector-like block that survives.
+    assert looks_like_location_selector_dump(states)
+
+    contaminated_readability = [
+        {"type": "paragraph", "text": states},
+        {"type": "paragraph", "text": countries},
+    ]
+    clean_trafilatura = [
+        {"type": "paragraph", "text": "CHCH has cancelled its Saturday evening newscast as the station shifts more resources toward digital reporting and podcasts."},
+        {"type": "paragraph", "text": "The station says no full-time jobs are being eliminated, although some part-time shifts are affected by the programming change."},
+        {"type": "paragraph", "text": "News director Greg O'Brien said viewers will continue to receive breaking coverage on television and through the station's online platforms."},
+    ]
+    star_story = {
+        "title": "CHCH TV changes Saturday evening news",
+        "word_count": 843,
+        "content_status": "full",
+        "article_hygiene_flags": ["form-selector-dump"],
+    }
+    selected, method, metrics = choose_reader_result(
+        star_story,
+        [
+            (contaminated_readability, "readability-lxml"),
+            (clean_trafilatura, "trafilatura-html"),
+        ],
+    )
+    assert selected == clean_trafilatura
+    assert method == "trafilatura-html"
+    assert metrics["chrome"] == 0
+    assert obvious_chrome_count(contaminated_readability) >= 1
 
     print("Reader-mode article tests passed")
 

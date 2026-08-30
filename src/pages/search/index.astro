@@ -29,7 +29,7 @@ const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
       </div>
       <p class="search-result-status" id="archiveSearchStatus" aria-live="polite">Start typing to search.</p>
 
-      <div class="search-results" id="archiveSearchResults">
+      <div class="search-results" id="archiveSearchResults" hidden>
         {stories.map((story) => (
           <NewsCard story={story} variant="standard" hidden={true} className="search-result-item" />
         ))}
@@ -44,6 +44,7 @@ const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
     const input = document.getElementById('archiveSearch');
     const clear = document.getElementById('clearArchiveSearch');
     const status = document.getElementById('archiveSearchStatus');
+    const resultsContainer = document.getElementById('archiveSearchResults');
     const dataElement = document.getElementById('archiveSearchData');
     const cards = [...document.querySelectorAll('.search-result-item')];
     const cardsById = new Map(cards.map((card) => [String(card.dataset.storyId || ''), card]));
@@ -81,10 +82,12 @@ const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
 
       if (clear instanceof HTMLElement) clear.hidden = !q;
       if (q.length < 2) {
+        if (resultsContainer instanceof HTMLElement) resultsContainer.hidden = true;
         if (status) status.textContent = q.length ? 'Type at least 2 characters.' : 'Start typing to search.';
         return;
       }
 
+      if (resultsContainer instanceof HTMLElement) resultsContainer.hidden = false;
       const fuzzy = q.length >= 5 ? 0.22 : 0.12;
       const results = miniSearch.search(q, { fuzzy, prefix: true, combineWith: 'AND' });
       let shown = 0;
@@ -124,4 +127,11 @@ const searchData = JSON.stringify(searchDocuments).replace(/</g, '\\u003c');
     });
     update();
   </script>
+
+  <style is:global>
+    .search-results[hidden],
+    .search-result-item[hidden] {
+      display: none !important;
+    }
+  </style>
 </BaseLayout>

@@ -130,6 +130,63 @@ def test_real_audio_media_is_preserved() -> None:
     assert media["url"].endswith("interview.mp3")
 
 
+def test_global_newsletter_image_and_copy_are_removed() -> None:
+    story = {
+        "id": "global-newsletter-live-shape",
+        "source": "Global News Canada",
+        "content_status": "full",
+        "content_blocks": [
+            {"type": "paragraph", "text": "The professor said place names often change when governments change official terminology."},
+            {"type": "image", "url": "https://example.test/national.jpg", "alt": "Get daily Canada news delivered to your inbox so you'll never miss the day's top stories."},
+            {"type": "heading", "level": 2, "text": "Get daily National news"},
+            {"type": "paragraph", "text": "Get daily Canada news delivered to your inbox so you'll never miss the day's top stories."},
+            {"type": "paragraph", "text": "There is a long history of using place names as an assertion of political power."},
+            {"type": "paragraph", "text": "© 2026 Global News, a division of Corus Entertainment Inc."},
+        ],
+    }
+    payload = {"stories": [story]}
+    assert sanitize_payload(payload) == 1
+    dumped = " | ".join(str(block.get("text") or block.get("alt") or block.get("url") or "") for block in story["content_blocks"])
+    assert "daily National news" not in dumped
+    assert "delivered to your inbox" not in dumped
+    assert "national.jpg" not in dumped
+    assert "Corus Entertainment" not in dumped
+    assert "assertion of political power" in dumped
+
+
+def test_location_selector_dump_is_removed_and_forces_reader_retry() -> None:
+    states = (
+        "State Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois "
+        "Indiana Iowa Kansas Kentucky Louisiana Maine Maryland Massachusetts Michigan Minnesota Mississippi Missouri Montana "
+        "Nebraska Nevada New Hampshire New Jersey New Mexico New York North Carolina North Dakota Ohio Oklahoma Oregon "
+        "Pennsylvania Rhode Island South Carolina South Dakota Tennessee Texas Utah Vermont Virginia Washington Wisconsin Wyoming"
+    )
+    countries = (
+        "Country United States of America US Virgin Islands Canada Mexico Afghanistan Albania Algeria American Samoa Andorra "
+        "Angola Argentina Armenia Australia Austria Azerbaijan Bahamas Bahrain Bangladesh Barbados Belarus Belgium Belize Benin "
+        "Bhutan Bolivia Bosnia Botswana Brazil Brunei Bulgaria Burkina Faso Burundi Cambodia Cameroon Chile China Colombia"
+    )
+    story = {
+        "id": "star-location-selector",
+        "source": "Toronto Star",
+        "content_status": "full",
+        "reader_schema": 1,
+        "reader_attempted_at": "2026-08-30T18:36:20+00:00",
+        "content_blocks": [
+            {"type": "paragraph", "text": states},
+            {"type": "paragraph", "text": countries},
+        ],
+    }
+    payload = {"stories": [story]}
+    assert sanitize_payload(payload) == 1
+    assert story["content_blocks"] == []
+    assert story["content_status"] == "summary"
+    assert story["content_truncated_reason"] == "publisher-form-chrome"
+    assert story["reader_schema"] == 0
+    assert "reader_attempted_at" not in story
+    assert "form-selector-dump" in story["article_hygiene_flags"]
+
+
 def main() -> int:
     test_share_dictionary_string_is_removed()
     test_separate_share_controls_are_removed()
@@ -137,6 +194,8 @@ def main() -> int:
     test_dictionary_string_list_item_is_normalized()
     test_cbc_markdown_embed_placeholder_and_fake_player_are_cleaned()
     test_real_audio_media_is_preserved()
+    test_global_newsletter_image_and_copy_are_removed()
+    test_location_selector_dump_is_removed_and_forces_reader_retry()
     print("PASS article presentation sanitizer regressions")
     return 0
 

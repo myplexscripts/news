@@ -2,8 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeading from '../../components/PageHeading.astro';
 import news from '../../../data/news.json';
+import { sourceLogoPath } from '../../lib/sourceLogos';
 
-const stories = (news.stories || []).filter((story) => story.cluster_representative !== false);
+const allStories = news.stories || [];
+const stories = allStories.filter((story) => story.cluster_representative !== false);
 const base = import.meta.env.BASE_URL;
 const preferredOrder = ['Local', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
 const discovered = Array.from(new Set(stories.map((story) => story.category).filter(Boolean)));
@@ -26,33 +28,389 @@ const iconFor = (category) => ({
 
 const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const hrefFor = (category) => `${base}?section=${encodeURIComponent(category)}#latest`;
+
+const sourceMap = new Map();
+for (const story of allStories) {
+  if (!story.source) continue;
+  const existing = sourceMap.get(story.source) || {
+    name: story.source,
+    accent: story.source_accent || 'var(--blue)',
+    count: 0,
+    latest: story.published,
+    logo: story.source_logo || '',
+    health: story.source_health_status || 'waiting'
+  };
+  existing.count += 1;
+  if (!existing.logo && story.source_logo) existing.logo = story.source_logo;
+  if (story.source_health_status) existing.health = story.source_health_status;
+  if (story.published && (!existing.latest || new Date(story.published) > new Date(existing.latest))) existing.latest = story.published;
+  sourceMap.set(story.source, existing);
+}
+
+const sources = [...sourceMap.values()].sort((a, b) => a.name.localeCompare(b.name));
+const logoFor = (name = '') => sourceLogoPath(name, base);
+const latestDate = (value) => {
+  try {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Toronto',
+      month: 'short',
+      day: 'numeric'
+    }).format(new Date(value));
+  } catch {
+    return '';
+  }
+};
 ---
-<BaseLayout title="Sections | London News" description="Browse London News by section.">
-  <main class="sections-page" id="main-content">
+<BaseLayout title="Sections | London News" description="Browse London News by section or choose which sources appear in your feed.">
+  <main class="sections-page combined-directory-page" id="main-content">
     <section class="sections-shell shell">
-      <PageHeading className="sections-heading" eyebrow="Browse" title="Sections" description="Choose a section to see its newest stories first." />
+      <PageHeading className="sections-heading" eyebrow="Browse" title="Sections" description="Browse by topic or choose which publishers appear in your feed." />
 
-      <div class="section-directory-grid" aria-label="News sections">
-        <a class="section-directory-card section-all" href={`${base}latest/`}>
-          <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
-          <div>
-            <strong>Latest</strong>
-            <span>Everything, newest first</span>
-          </div>
-          <i class="ph ph-caret-right" aria-hidden="true"></i>
-        </a>
+      <div class="directory-tabs" role="tablist" aria-label="Browse London News">
+        <button class="directory-tab active" type="button" role="tab" id="sectionsTab" aria-selected="true" aria-controls="sectionsPanel" data-directory-tab="sections">
+          Sections
+        </button>
+        <button class="directory-tab" type="button" role="tab" id="sourcesTab" aria-selected="false" aria-controls="sourcesPanel" data-directory-tab="sources">
+          Sources
+        </button>
+      </div>
 
-        {categories.map((category) => (
-          <a class:list={["section-directory-card", categoryClass(category)]} href={hrefFor(category)}>
-            <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
+      <section class="directory-panel" id="sectionsPanel" role="tabpanel" aria-labelledby="sectionsTab" data-directory-panel="sections">
+        <div class="section-directory-grid" aria-label="News sections">
+          <a class="section-directory-card section-all" href={`${base}latest/`}>
+            <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
             <div>
-              <strong>{category}</strong>
-              <span>View {category.toLowerCase()} stories</span>
+              <strong>Latest</strong>
             </div>
             <i class="ph ph-caret-right" aria-hidden="true"></i>
           </a>
-        ))}
-      </div>
+
+          {categories.map((category) => (
+            <a class:list={["section-directory-card", categoryClass(category)]} href={hrefFor(category)}>
+              <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
+              <div>
+                <strong>{category}</strong>
+              </div>
+              <i class="ph ph-caret-right" aria-hidden="true"></i>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="directory-panel" id="sourcesPanel" role="tabpanel" aria-labelledby="sourcesTab" data-directory-panel="sources" hidden>
+        <div class="combined-sources-toolbar">
+          <span id="sourcePreferenceStatus" aria-live="polite">{sources.length} sources shown</span>
+          <button class="bordered-button" id="showAllSources" type="button">Show all</button>
+        </div>
+
+        <div class="source-preference-list" id="sourcePreferenceList">
+          {sources.map((source) => (
+            <article class="source-preference-card" data-source-name={source.name}>
+              <div class="source-preference-identity">
+                <span class="source-preference-logo-wrap">
+                  {logoFor(source.name) && <img class="source-preference-logo" onerror="this.parentElement.style.display='none'" src={logoFor(source.name)} alt="" loading="lazy" />}
+                </span>
+                <div>
+                  <h2>{source.name}</h2>
+                  <p><span class:list={["source-health-dot", `source-health-${source.health}`]} aria-hidden="true"></span>{source.health === 'healthy' ? 'Healthy' : source.health === 'degraded' ? 'Limited extraction' : source.health === 'error' ? 'Temporarily unavailable' : 'Waiting'} <span aria-hidden="true">·</span> Latest {latestDate(source.latest)}</p>
+                </div>
+              </div>
+              <label class="source-switch-row">
+                <span class="visually-hidden">Show {source.name}</span>
+                <input class="source-switch-input" type="checkbox" data-source-toggle={source.name} checked />
+                <span class="source-switch" aria-hidden="true"><span></span></span>
+              </label>
+            </article>
+          ))}
+        </div>
+
+        <div class="sources-footer-note">
+          <i class="ph ph-device-mobile" aria-hidden="true"></i>
+          <p>These preferences only affect what London News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
+        </div>
+      </section>
     </section>
   </main>
+
+  <script>
+    import { initialiseUserState, onUserStateChange, setSourceHidden, showAllSources } from '../../lib/userState';
+
+    const tabs = [...document.querySelectorAll('[data-directory-tab]')];
+    const panels = [...document.querySelectorAll('[data-directory-panel]')];
+    const toggles = [...document.querySelectorAll('[data-source-toggle]')];
+    const status = document.getElementById('sourcePreferenceStatus');
+    const showAllButton = document.getElementById('showAllSources');
+    const knownSources = new Set(toggles.map((toggle) => toggle.dataset.sourceToggle || '').filter(Boolean));
+    let hidden = new Set();
+
+    function setDirectoryTab(value, updateUrl = true) {
+      const next = value === 'sources' ? 'sources' : 'sections';
+      tabs.forEach((tab) => {
+        const active = tab.dataset.directoryTab === next;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.directoryPanel !== next;
+      });
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        if (next === 'sources') url.searchParams.set('tab', 'sources');
+        else url.searchParams.delete('tab');
+        history.replaceState({}, '', url);
+      }
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => setDirectoryTab(tab.dataset.directoryTab || 'sections'));
+    });
+
+    function syncUI(state) {
+      hidden = new Set((state.hiddenSources || []).filter((name) => knownSources.has(name)));
+      toggles.forEach((toggle) => {
+        const name = toggle.dataset.sourceToggle || '';
+        const isShown = !hidden.has(name);
+        if (toggle instanceof HTMLInputElement) toggle.checked = isShown;
+        toggle.closest('.source-preference-card')?.classList.toggle('source-hidden', !isShown);
+      });
+      const shown = toggles.length - hidden.size;
+      if (status) status.textContent = `${Math.max(0, shown)} of ${toggles.length} sources shown`;
+      if (showAllButton instanceof HTMLButtonElement) showAllButton.disabled = hidden.size === 0;
+    }
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener('change', () => {
+        if (!(toggle instanceof HTMLInputElement)) return;
+        const name = toggle.dataset.sourceToggle || '';
+        if (!name) return;
+        setSourceHidden(name, !toggle.checked).catch(() => {});
+      });
+    });
+
+    showAllButton?.addEventListener('click', () => {
+      showAllSources().catch(() => {});
+    });
+
+    const requestedTab = new URLSearchParams(window.location.search).get('tab');
+    setDirectoryTab(requestedTab === 'sources' ? 'sources' : 'sections', false);
+    initialiseUserState().then(syncUI).catch(() => {});
+    onUserStateChange(syncUI);
+  </script>
+
+  <style is:global>
+    .combined-directory-page .sections-heading {
+      margin-bottom: 20px;
+    }
+
+    .directory-tabs {
+      display: inline-grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      margin: 0 0 28px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-subtle);
+    }
+
+    .directory-tab {
+      min-width: 132px;
+      min-height: 44px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .directory-tab.active {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
+    }
+
+    html[data-theme='dark'] .directory-tab.active {
+      background: var(--gray-5);
+    }
+
+    .combined-directory-page .section-directory-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 10px !important;
+    }
+
+    .combined-directory-page .section-directory-card {
+      position: relative !important;
+      aspect-ratio: 1 / 1 !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      gap: 10px !important;
+      padding: 12px !important;
+      overflow: hidden !important;
+    }
+
+    .combined-directory-page .section-directory-card .section-directory-icon {
+      width: 42px !important;
+      height: 42px !important;
+      min-width: 42px !important;
+    }
+
+    .combined-directory-page .section-directory-card > div {
+      width: calc(100% - 22px) !important;
+      min-width: 0 !important;
+    }
+
+    .combined-directory-page .section-directory-card strong {
+      display: block !important;
+      width: 100% !important;
+      font-size: 16px !important;
+      line-height: 1.15 !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      overflow-wrap: anywhere;
+    }
+
+    .combined-directory-page .section-directory-card > i.ph-caret-right {
+      position: absolute !important;
+      right: 12px !important;
+      bottom: 12px !important;
+      display: block !important;
+      color: var(--muted) !important;
+      font-size: 18px !important;
+    }
+
+    .combined-sources-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 52px;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .directory-tabs {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .directory-tab {
+        min-width: 0;
+        width: 100%;
+        padding-inline: 12px;
+      }
+
+      .combined-directory-page .section-directory-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      .combined-directory-page .section-directory-card {
+        padding: 10px !important;
+        gap: 8px !important;
+      }
+
+      .combined-directory-page .section-directory-card .section-directory-icon {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+      }
+
+      .combined-directory-page .section-directory-card > i.ph-caret-right {
+        right: 10px !important;
+        bottom: 10px !important;
+        font-size: 16px !important;
+      }
+
+      .combined-sources-toolbar {
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .combined-directory-page .source-preference-list {
+        width: 100% !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 12px !important;
+      }
+
+      .combined-directory-page .source-preference-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        min-height: 96px !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 52px !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 14px !important;
+        overflow: hidden !important;
+      }
+
+      .combined-directory-page .source-preference-identity {
+        width: 100% !important;
+        min-width: 0 !important;
+        gap: 10px !important;
+      }
+
+      .combined-directory-page .source-preference-logo-wrap {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        max-width: 44px !important;
+        overflow: hidden !important;
+      }
+
+      .combined-directory-page .source-preference-logo {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+      }
+
+      .combined-directory-page .source-preference-identity > div {
+        min-width: 0 !important;
+      }
+
+      .combined-directory-page .source-preference-identity h2 {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+
+      .combined-directory-page .source-preference-identity p {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin-top: 4px !important;
+        font-size: 16px !important;
+        line-height: 1.25 !important;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        -webkit-line-clamp: 2 !important;
+      }
+
+      .combined-directory-page .source-switch-row {
+        width: 52px !important;
+        min-width: 52px !important;
+        max-width: 52px !important;
+        justify-self: end !important;
+      }
+    }
+  </style>
 </BaseLayout>

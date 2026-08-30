@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v6';
-const ASSET_CACHE = 'london-news-assets-v6';
+const SHELL_CACHE = 'london-news-shell-v8';
+const ASSET_CACHE = 'london-news-assets-v8';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
@@ -14,6 +14,7 @@ self.addEventListener('install', (event) => {
       scopePath('sections/'),
       scopePath('sources/'),
       scopePath('search/'),
+      scopePath('read-later/'),
       scopePath('latest/'),
       scopePath('settings/'),
       scopePath('manifest.webmanifest')
