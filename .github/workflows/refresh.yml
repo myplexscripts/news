@@ -115,6 +115,10 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: python scripts/test_article_sanitizer.py
 
+      - name: Test universal article quality sweep
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/test_article_sweep.py
+
       - name: Fetch local and Canadian news
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
@@ -158,6 +162,11 @@ jobs:
       - name: Apply source specific extraction profiles
         if: steps.due.outputs.run == 'true'
         run: python scripts/refine_source_articles.py
+
+      - name: Sweep all article sources for quality
+        if: steps.due.outputs.run == 'true'
+        timeout-minutes: 12
+        run: python scripts/sweep_article_quality.py
 
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
