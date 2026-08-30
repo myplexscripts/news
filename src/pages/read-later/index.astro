@@ -13,13 +13,15 @@ const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published ||
 
       <p class="read-later-status" id="readLaterStatus" aria-live="polite">Loading saved articles…</p>
 
-      <div class="read-later-grid" id="readLaterGrid" aria-label="Saved articles">
-        {stories.map((story) => (
-          <NewsCard story={story} variant="standard" hidden={true} className="read-later-card" />
-        ))}
-      </div>
+      <div class="read-later-grid" id="readLaterGrid" aria-label="Saved articles" hidden></div>
 
-      <div class="read-later-empty" id="readLaterEmpty" hidden>
+      <template id="readLaterCardTemplates">
+        {stories.map((story) => (
+          <NewsCard story={story} variant="standard" className="read-later-card" />
+        ))}
+      </template>
+
+      <div class="read-later-empty" id="readLaterEmpty">
         <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
         <h2>Nothing saved yet</h2>
         <p>Tap the bookmark on any article to keep it here for later.</p>
@@ -33,25 +35,46 @@ const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published ||
     const grid = document.getElementById('readLaterGrid');
     const empty = document.getElementById('readLaterEmpty');
     const status = document.getElementById('readLaterStatus');
-    const cards = [...document.querySelectorAll('.read-later-card')];
-    const cardById = new Map(cards.map((card) => [String(card.dataset.storyId || ''), card]));
+    const template = document.getElementById('readLaterCardTemplates');
+    const templateCards = template instanceof HTMLTemplateElement
+      ? [...template.content.querySelectorAll('.read-later-card')]
+      : [];
+    const cardById = new Map(templateCards.map((card) => [String(card.dataset.storyId || ''), card]));
+
+    function markSavedButton(card) {
+      const button = card.querySelector('[data-read-later-toggle]');
+      if (!(button instanceof HTMLButtonElement)) return;
+      button.classList.add('is-saved');
+      button.setAttribute('aria-pressed', 'true');
+      button.setAttribute('aria-label', 'Remove from Read Later');
+      button.setAttribute('title', 'Remove from Read Later');
+      const icon = button.querySelector('i');
+      if (icon) icon.className = 'ph-fill ph-bookmark-simple';
+    }
 
     function applySavedState(state) {
-      const savedIds = (state.savedIds || []).map(String);
-      const savedSet = new Set(savedIds);
+      if (!grid) return;
 
-      cards.forEach((card) => {
-        card.hidden = !savedSet.has(String(card.dataset.storyId || ''));
+      const savedIds = (state.savedIds || []).map(String);
+      const readSet = new Set((state.readIds || []).map(String));
+      const fragment = document.createDocumentFragment();
+      let available = 0;
+
+      savedIds.forEach((id) => {
+        const sourceCard = cardById.get(id);
+        if (!sourceCard) return;
+        const card = sourceCard.cloneNode(true);
+        if (!(card instanceof HTMLElement)) return;
+        card.classList.add('is-saved-story');
+        card.classList.toggle('is-read-story', readSet.has(id));
+        markSavedButton(card);
+        fragment.append(card);
+        available += 1;
       });
 
-      if (grid) {
-        savedIds.forEach((id) => {
-          const card = cardById.get(id);
-          if (card) grid.append(card);
-        });
-      }
+      grid.replaceChildren(fragment);
+      grid.hidden = available === 0;
 
-      const available = savedIds.filter((id) => cardById.has(id)).length;
       const unavailable = Math.max(0, savedIds.length - available);
       if (empty) empty.hidden = available !== 0;
       if (status) {
@@ -62,6 +85,7 @@ const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published ||
     }
 
     initialiseUserState().then(applySavedState).catch(() => {
+      if (grid) grid.hidden = true;
       if (empty) empty.hidden = false;
       if (status) status.textContent = 'Saved articles could not be loaded';
     });
@@ -90,11 +114,12 @@ const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published ||
       gap: 18px;
     }
 
-    .read-later-card[hidden] {
+    .read-later-grid[hidden],
+    #readLaterCardTemplates {
       display: none !important;
     }
 
-    html[data-hide-read='true'] .read-later-page .news-card.is-read-story:not([hidden]) {
+    html[data-hide-read='true'] .read-later-page .news-card.is-read-story {
       display: grid !important;
     }
 
