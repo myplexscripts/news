@@ -81,7 +81,6 @@ const latestDate = (value) => {
             <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
             <div>
               <strong>Latest</strong>
-              <span>Everything, newest first</span>
             </div>
             <i class="ph ph-caret-right" aria-hidden="true"></i>
           </a>
@@ -91,7 +90,6 @@ const latestDate = (value) => {
               <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
               <div>
                 <strong>{category}</strong>
-                <span>View {category.toLowerCase()} stories</span>
               </div>
               <i class="ph ph-caret-right" aria-hidden="true"></i>
             </a>
@@ -238,20 +236,21 @@ const latestDate = (value) => {
       background: var(--gray-5);
     }
 
-    /* One Sections layout everywhere: exactly three columns of the same tiles. */
     .combined-directory-page .section-directory-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
       gap: 10px !important;
     }
 
     .combined-directory-page .section-directory-card {
+      position: relative !important;
+      aspect-ratio: 1 / 1 !important;
       min-width: 0 !important;
-      min-height: 138px !important;
+      min-height: 0 !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: flex-start !important;
       justify-content: flex-start !important;
-      gap: 8px !important;
+      gap: 10px !important;
       padding: 12px !important;
       overflow: hidden !important;
     }
@@ -263,7 +262,7 @@ const latestDate = (value) => {
     }
 
     .combined-directory-page .section-directory-card > div {
-      width: 100% !important;
+      width: calc(100% - 22px) !important;
       min-width: 0 !important;
     }
 
@@ -278,16 +277,13 @@ const latestDate = (value) => {
       overflow-wrap: anywhere;
     }
 
-    .combined-directory-page .section-directory-card span:not(.section-directory-icon) {
-      display: block !important;
-      margin-top: 4px !important;
-      font-size: 16px !important;
-      line-height: 1.2 !important;
-      overflow-wrap: anywhere;
-    }
-
     .combined-directory-page .section-directory-card > i.ph-caret-right {
-      display: none !important;
+      position: absolute !important;
+      right: 12px !important;
+      bottom: 12px !important;
+      display: block !important;
+      color: var(--muted) !important;
+      font-size: 18px !important;
     }
 
     .combined-sources-toolbar {
@@ -319,12 +315,28 @@ const latestDate = (value) => {
         gap: 8px !important;
       }
 
+      .combined-directory-page .section-directory-card {
+        padding: 10px !important;
+        gap: 8px !important;
+      }
+
+      .combined-directory-page .section-directory-card .section-directory-icon {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+      }
+
+      .combined-directory-page .section-directory-card > i.ph-caret-right {
+        right: 10px !important;
+        bottom: 10px !important;
+        font-size: 16px !important;
+      }
+
       .combined-sources-toolbar {
         align-items: center;
         margin-bottom: 12px;
       }
 
-      /* Sources remain full-width rows on mobile, with the switch inside the card. */
       .combined-directory-page .source-preference-list {
         width: 100% !important;
         grid-template-columns: minmax(0, 1fr) !important;
