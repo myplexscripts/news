@@ -10,9 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# Never mark an otherwise-valid commit as failed just because a newer push landed.
+# Deploys are queued and run in order instead of cancelling the in-progress run.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
