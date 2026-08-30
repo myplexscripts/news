@@ -4,21 +4,41 @@ import NewsCard from '../components/NewsCard.astro';
 import news from '../../data/news.json';
 import { collapseTimelineStories } from '../lib/timelineStories';
 
-const allStories = news.stories || [];
 const storyTime = (story) => story.published;
-const scopeOf = (story) => story.scope === 'canada' ? 'canada' : 'local';
+const sourceScopeByName = new Map(
+  (news.source_health || []).map((source) => [
+    String(source.source || '').trim(),
+    String(source.scope || '').trim().toLowerCase()
+  ])
+);
+const scopeOf = (story) => {
+  const explicit = String(story.scope || '').trim().toLowerCase();
+  if (explicit === 'canada') return 'canada';
+
+  const source = String(story.source || '').trim();
+  if (sourceScopeByName.get(source) === 'canada') return 'canada';
+
+  const discovery = String(story.discovery_via || '').trim();
+  if (sourceScopeByName.get(discovery) === 'canada') return 'canada';
+
+  return 'local';
+};
+const allStories = (news.stories || []).map((story) => ({ ...story, scope: scopeOf(story) }));
 
 // Keep a full local window even after national sources are added. Each scope is
 // collapsed independently so a newer national report can never hide a London
 // report from the Local feed simply because both belong to the same event cluster.
-const localStories = collapseTimelineStories(allStories.filter((story) => scopeOf(story) === 'local')).slice(0, 90);
-const canadaStories = collapseTimelineStories(allStories.filter((story) => scopeOf(story) === 'canada')).slice(0, 90);
+const localStories = collapseTimelineStories(allStories.filter((story) => story.scope === 'local')).slice(0, 90);
+const canadaStories = collapseTimelineStories(allStories.filter((story) => story.scope === 'canada')).slice(0, 90);
 const stories = [...localStories, ...canadaStories]
   .sort((a, b) => Date.parse(storyTime(b) || '') - Date.parse(storyTime(a) || ''))
   .slice(0, 180);
 
-const preferredCategoryOrder = ['Local', 'Canada', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
-const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter(Boolean)));
+// Local and Canada are feed scopes, not article sections. Keeping them out of the
+// section tabs prevents contradictory combinations such as Canada feed + Local.
+const scopeCategories = new Set(['Local', 'Canada']);
+const preferredCategoryOrder = ['Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
+const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter((category) => category && !scopeCategories.has(category))));
 const orderedCategories = [
   ...preferredCategoryOrder.filter((category) => discoveredCategories.includes(category)),
   ...discoveredCategories.filter((category) => !preferredCategoryOrder.includes(category)).sort()
@@ -225,6 +245,13 @@ const generated = news.generated_at
       if (persist) {
         try { localStorage.setItem(FEED_SCOPE_KEY, next); } catch {}
       }
+
+      // A feed choice should always mean the complete feed. Reset any narrower
+      // section filter so Local -> Canada can never result in an empty intersection.
+      if (persist && activeFilter !== 'All') {
+        setFilter('All');
+        return;
+      }
       applyFilters();
     }
 
@@ -261,7 +288,7 @@ const generated = news.generated_at
       const visibleCards = [];
 
       cards.forEach((item) => {
-        const itemScope = item.dataset.scope === 'canada' ? 'canada' : 'local';
+        const itemScope = String(item.dataset.scope || '').toLowerCase() === 'canada' ? 'canada' : 'local';
         const scopeMatch = activeScope === 'all' || itemScope === activeScope;
         const categoryMatch = activeFilter === 'All' || item.dataset.category === activeFilter;
         const queryMatch = !query || (item.dataset.search || '').includes(query);
