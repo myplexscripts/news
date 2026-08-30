@@ -47,13 +47,14 @@
 }
 
 @media (max-width: 760px) {
-  /* The home filters are two deliberate rows on phones: feed scope first,
-     section filters second. Do not inherit the desktop single-row scroller. */
+  /* Global mobile styles hide the desktop filter toolbar. Restore its shell only
+     for the feed selector, while keeping category navigation on Sections. */
+  .home-page .card-filter-wrap.section-nav-wrap {
+    display: block !important;
+  }
+
   .card-filter-inner {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: stretch !important;
-    gap: 8px;
+    display: block !important;
     min-height: 0 !important;
     padding: 10px 14px 8px !important;
     overflow: visible !important;
@@ -75,22 +76,6 @@
   }
 
   .card-filter-inner .section-tabs {
-    width: 100%;
-    min-width: 0;
-    overflow-x: auto;
-    overflow-y: visible;
-    padding-bottom: 2px;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-inline: contain;
-  }
-
-  .card-filter-inner .section-tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .card-filter-inner .section-tab,
-  .card-filter-inner .control-menu {
-    flex: 0 0 auto;
+    display: none !important;
   }
 }
