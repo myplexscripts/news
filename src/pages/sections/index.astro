@@ -238,9 +238,26 @@ const latestDate = (value) => {
       background: var(--gray-5);
     }
 
+    /* Sections are always exactly three columns, on every viewport. */
     .combined-directory-page .section-directory-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-      gap: 16px !important;
+      gap: 12px !important;
+    }
+
+    .combined-directory-page .section-directory-card {
+      min-width: 0 !important;
+      grid-template-columns: auto minmax(0, 1fr) auto !important;
+      gap: 10px !important;
+      padding: 14px !important;
+    }
+
+    .combined-directory-page .section-directory-card > div {
+      min-width: 0 !important;
+    }
+
+    .combined-directory-page .section-directory-card strong,
+    .combined-directory-page .section-directory-card span:not(.section-directory-icon) {
+      overflow-wrap: anywhere;
     }
 
     .combined-sources-toolbar {
@@ -253,12 +270,6 @@ const latestDate = (value) => {
       color: var(--muted);
       font-size: 16px;
       font-weight: 600;
-    }
-
-    @media (max-width: 1100px) and (min-width: 761px) {
-      .combined-directory-page .section-directory-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-      }
     }
 
     @media (max-width: 760px) {
@@ -274,13 +285,133 @@ const latestDate = (value) => {
       }
 
       .combined-directory-page .section-directory-grid {
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+      }
+
+      /* Keep the same three-column structure, but make each tile fit its narrow column. */
+      .combined-directory-page .section-directory-card {
+        min-height: 132px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        gap: 7px !important;
+        padding: 10px !important;
+        overflow: hidden !important;
+      }
+
+      .combined-directory-page .section-directory-card .section-directory-icon {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+      }
+
+      .combined-directory-page .section-directory-card > div {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+
+      .combined-directory-page .section-directory-card strong {
+        display: block !important;
+        width: 100% !important;
+        font-size: 16px !important;
+        line-height: 1.15 !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
+
+      .combined-directory-page .section-directory-card span:not(.section-directory-icon) {
+        display: block !important;
+        margin-top: 4px !important;
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+      }
+
+      .combined-directory-page .section-directory-card > i.ph-caret-right {
+        display: none !important;
       }
 
       .combined-sources-toolbar {
         align-items: center;
         margin-bottom: 12px;
+      }
+
+      /* Sources are rows, not columns. Keep every control inside the viewport. */
+      .combined-directory-page .source-preference-list {
+        width: 100% !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 12px !important;
+      }
+
+      .combined-directory-page .source-preference-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        min-height: 96px !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 52px !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 14px !important;
+        overflow: hidden !important;
+      }
+
+      .combined-directory-page .source-preference-identity {
+        width: 100% !important;
+        min-width: 0 !important;
+        gap: 10px !important;
+      }
+
+      .combined-directory-page .source-preference-logo-wrap {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        max-width: 44px !important;
+        overflow: hidden !important;
+      }
+
+      .combined-directory-page .source-preference-logo {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+      }
+
+      .combined-directory-page .source-preference-identity > div {
+        min-width: 0 !important;
+      }
+
+      .combined-directory-page .source-preference-identity h2 {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+      }
+
+      .combined-directory-page .source-preference-identity p {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin-top: 4px !important;
+        font-size: 16px !important;
+        line-height: 1.25 !important;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        -webkit-line-clamp: 2 !important;
+      }
+
+      .combined-directory-page .source-switch-row {
+        width: 52px !important;
+        min-width: 52px !important;
+        max-width: 52px !important;
+        justify-self: end !important;
       }
     }
   </style>
