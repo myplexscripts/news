@@ -49,17 +49,31 @@ class LondonNewsDatabase extends Dexie {
       savedStories: '&id,savedAt',
       hiddenSources: '&name,hiddenAt'
     });
+    // Read Later launched with an unsafe legacy-key import that could pull
+    // unrelated browser data into savedStories. Version 3 resets only that
+    // brand-new table once, then all future entries come from explicit saves.
+    this.version(3).stores({
+      preferences: '&key,updatedAt',
+      readStories: '&id,readAt',
+      savedStories: '&id,savedAt',
+      hiddenSources: '&name,hiddenAt'
+    }).upgrade(async (transaction) => {
+      await transaction.table('savedStories').clear();
+    });
   }
 }
 
 const db = new LondonNewsDatabase();
 const CHANNEL_NAME = 'london-news-user-state';
+const BAD_READ_LATER_KEY = 'london-news-read-later';
 const LEGACY = {
   theme: 'london-news-theme',
   accent: 'london-news-accent',
   hideRead: 'london-news-hide-read',
   reads: 'london-news-read-articles',
-  saved: 'london-news-read-later',
+  // This is a new fallback key, not a legacy migration source. The original
+  // key was already present in some browsers and must never be imported.
+  saved: 'london-news-read-later-v1',
   hiddenSources: 'london-news-hidden-sources'
 };
 
@@ -126,10 +140,13 @@ async function reconcileLegacyState() {
   const accent = localStorage.getItem(LEGACY.accent);
   const hideRead = localStorage.getItem(LEGACY.hideRead);
   const readIds = safeArray(LEGACY.reads);
-  const savedIds = safeArray(LEGACY.saved);
   const hiddenSources = safeArray(LEGACY.hiddenSources);
 
-  await db.transaction('rw', db.preferences, db.readStories, db.savedStories, db.hiddenSources, async () => {
+  // Never import Read Later from the pre-launch key. Saved stories are new state
+  // and may only be created by an explicit bookmark action.
+  localStorage.removeItem(BAD_READ_LATER_KEY);
+
+  await db.transaction('rw', db.preferences, db.readStories, db.hiddenSources, async () => {
     const preferences: PreferenceRecord[] = [];
     if (theme === 'light' || theme === 'dark') preferences.push({ key: 'theme', value: theme, updatedAt: now });
     if (accent) preferences.push({ key: 'accent', value: accent, updatedAt: now });
@@ -146,14 +163,6 @@ async function reconcileLegacyState() {
         .filter((id) => !existingReads.has(id))
         .map((id, index) => ({ id, readAt: now - index }));
       if (missing.length) await db.readStories.bulkPut(missing);
-    }
-
-    if (savedIds.length) {
-      const existingSaved = new Set((await db.savedStories.bulkGet(savedIds)).map((row) => row?.id).filter(Boolean));
-      const missing = savedIds
-        .filter((id) => !existingSaved.has(id))
-        .map((id, index) => ({ id, savedAt: now - index }));
-      if (missing.length) await db.savedStories.bulkPut(missing);
     }
 
     if (hiddenSources.length) {
