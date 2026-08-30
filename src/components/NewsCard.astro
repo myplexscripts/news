@@ -96,13 +96,14 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
     {sourceLogo && (
       <img
         class="card-source-mark"
-        onerror="this.style.display='none'"
+        onerror="this.style.display='none';this.nextElementSibling?.removeAttribute('hidden')"
         src={sourceLogo}
         alt=""
         loading="lazy"
         decoding="async"
       />
     )}
+    {story.source && <span class="card-source-name" hidden={Boolean(sourceLogo)}>{story.source}</span>}
     <h3 title={story.title}>{title}</h3>
     <div class="news-card-footer">
       <time datetime={timestamp}>{published(timestamp)}</time>
