@@ -198,10 +198,13 @@ jobs:
         run: |
           python scripts/test_audit.py
           python scripts/test_run_audit.py
+          python scripts/test_article_sweep_audit.py
 
       - name: Audit current Scoop output
         if: steps.due.outputs.run == 'true'
-        run: python scripts/run_audit.py --sample-per-source 10
+        run: |
+          python scripts/run_audit.py --sample-per-source 10
+          python scripts/audit_article_sweep.py
 
       - name: Upload Scoop audit report
         if: steps.due.outputs.run == 'true'
