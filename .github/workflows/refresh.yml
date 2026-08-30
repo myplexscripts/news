@@ -257,7 +257,10 @@ jobs:
         run: gh workflow run site.yml --repo myplexscripts/news --ref main
 
       - name: Schedule next refresh
-        if: always()
+        # A fresh watchdog check must not reset the active wake timer. If it does,
+        # each 10-minute watchdog can cancel a nearly-finished 15-minute wake and
+        # leave the site dependent on GitHub's occasionally delayed cron scheduler.
+        if: always() && (github.event_name != 'schedule' || steps.due.outputs.run == 'true')
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
