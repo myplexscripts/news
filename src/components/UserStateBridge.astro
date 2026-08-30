@@ -1,7 +1,59 @@
+<style is:global>
+  .article-header-refined {
+    position: relative;
+    padding-right: 58px;
+  }
+
+  .article-read-later-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface-subtle);
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .article-read-later-button i {
+    font-size: 20px;
+  }
+
+  .article-read-later-button.is-saved {
+    color: var(--accent);
+  }
+
+  .article-read-later-button:disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+</style>
+
 <script>
   import { importLegacyUserState, initialiseUserState, onUserStateChange, toggleStorySaved, type LondonNewsUserState } from '../lib/userState';
 
   const root = document.documentElement;
+
+  function ensureArticleReadLaterButton() {
+    const article = document.querySelector<HTMLElement>('[data-current-story-id]');
+    const header = article?.querySelector<HTMLElement>('.article-header-refined');
+    const id = String(article?.dataset.currentStoryId || '').trim();
+    if (!header || !id || header.querySelector('[data-read-later-toggle]')) return;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'article-read-later-button';
+    button.dataset.readLaterToggle = id;
+    button.setAttribute('aria-label', 'Save to Read Later');
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('title', 'Save to Read Later');
+    button.innerHTML = '<i class="ph ph-bookmark-simple" aria-hidden="true"></i>';
+    header.append(button);
+  }
 
   function applyState(state: LondonNewsUserState) {
     root.dataset.theme = state.theme;
@@ -49,6 +101,7 @@
     });
   });
 
+  ensureArticleReadLaterButton();
   initialiseUserState().then(applyState).catch(() => {});
   onUserStateChange(applyState);
 
