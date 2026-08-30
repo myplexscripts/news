@@ -410,10 +410,7 @@ def rebuild_story_text(story: dict[str, Any], blocks: list[dict[str, Any]], term
 
     if terminal_reason:
         story["content_truncated_reason"] = terminal_reason
-        if story["word_count"] >= 30:
-            story["content_status"] = "partial"
-        else:
-            story["content_status"] = "summary"
+        story["content_status"] = "partial" if story["word_count"] > 0 else "summary"
     elif story.get("content_truncated_reason") in {"publisher-paywall", "publisher-chrome"}:
         story.pop("content_truncated_reason", None)
 
