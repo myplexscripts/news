@@ -10,8 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Never mark an otherwise-valid commit as failed just because a newer push landed.
-# Deploys are queued and run in order instead of cancelling the in-progress run.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -22,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -42,6 +42,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Install site dependencies
         shell: bash
         run: |
@@ -60,12 +65,13 @@ jobs:
           mkdir -p public/images/logos
           cp -a images/logos/. public/images/logos/
 
-      - name: Publish feed data
+      - name: Publish feed data and search index
         shell: bash
         run: |
           mkdir -p public/data
           cp data/news.json public/data/news.json
           cp data/audit.json public/data/audit.json
+          python scripts/build_search_index.py
 
       - name: Build static site
         run: npm run build
@@ -106,11 +112,10 @@ jobs:
           path: dist
 
       - name: Persist generated lockfile
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref_name == 'main'
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- package-lock.json)" ]; then
-            echo "Lockfile already committed and unchanged"
             exit 0
           fi
           git config user.name "github-actions[bot]"
