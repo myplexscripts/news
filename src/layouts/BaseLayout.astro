@@ -63,18 +63,35 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater
         display: none !important;
       }
 
-      .brand-beta {
-        display: inline-block !important;
-        margin-left: 0.35em !important;
-        color: var(--accent) !important;
-        font-size: 0.42em !important;
+      .brand-news {
+        gap: 8px !important;
+        font-size: 28px !important;
         line-height: 1 !important;
         font-weight: 800 !important;
-        letter-spacing: 0.06em !important;
-        vertical-align: super !important;
+        letter-spacing: -0.045em !important;
+      }
+
+      .brand-news-icon {
+        flex: 0 0 auto;
+        font-size: 34px !important;
+        line-height: 1 !important;
+      }
+
+      .brand-news-wordmark {
+        display: inline-block;
+        transform: translateY(-1px);
       }
 
       @media (max-width: 760px) {
+        .brand-news {
+          gap: 7px !important;
+          font-size: 26px !important;
+        }
+
+        .brand-news-icon {
+          font-size: 32px !important;
+        }
+
         .mobile-tab-bar {
           --mobile-tab-count: 5 !important;
           grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
@@ -99,8 +116,9 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater
     <header class:list={["site-header", showHomeMasthead && "site-header-home"]}>
       <div class:list={["shell", "header-inner", "header-inner-simple", showHomeMasthead && "home-header-inner"]}>
         <div class="brand-area">
-          <a class="brand" href={base} aria-label="London News home">
-            <span>London News<sup class="brand-beta">BETA</sup></span>
+          <a class="brand brand-news" href={base} aria-label="News home">
+            <i class="ph-fill ph-tree brand-news-icon" aria-hidden="true"></i>
+            <span class="brand-news-wordmark">News</span>
           </a>
         </div>
 
