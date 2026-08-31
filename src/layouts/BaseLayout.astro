@@ -16,13 +16,17 @@ interface Props {
 }
 
 const {
-  title = 'London News',
+  title = 'Forest City News',
   description = 'A fast local news reader for London, Ontario, gathering reporting from across the city.',
   noindex = false,
   homeDate,
   homeUpdated
 } = Astro.props;
 
+const BRAND_NAME = 'Forest City News';
+const LEGACY_BRAND_NAME = 'London News';
+const resolvedTitle = String(title || BRAND_NAME).split(LEGACY_BRAND_NAME).join(BRAND_NAME);
+const resolvedDescription = String(description || '').split(LEGACY_BRAND_NAME).join(BRAND_NAME);
 const base = import.meta.env.BASE_URL;
 const path = Astro.url.pathname;
 const onSources = path.includes('/sources/');
@@ -42,11 +46,11 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="description" content={description} />
+    <meta name="description" content={resolvedDescription} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050505" />
-    <title>{title}</title>
+    <title>{resolvedTitle}</title>
     <link rel="manifest" href={`${base}manifest.webmanifest`} />
     <link rel="apple-touch-icon" href={`${base}icons/icon-180.png`} />
     <link rel="stylesheet" href={`${base}smart-features.css`} />
@@ -116,7 +120,7 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater
     <header class:list={["site-header", showHomeMasthead && "site-header-home"]}>
       <div class:list={["shell", "header-inner", "header-inner-simple", showHomeMasthead && "home-header-inner"]}>
         <div class="brand-area">
-          <a class="brand brand-news" href={base} aria-label="News home">
+          <a class="brand brand-news" href={base} aria-label="Forest City News home">
             <i class="ph-fill ph-tree brand-news-icon" aria-hidden="true"></i>
             <span class="brand-news-wordmark">News</span>
           </a>
@@ -153,7 +157,7 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater
 
     <footer class="site-footer shell">
       <div>
-        <strong>London News</strong>
+        <strong>Forest City News</strong>
         <span>Local reporting from across London, Ontario</span>
       </div>
       <span>Times shown in London, Ontario</span>
@@ -311,6 +315,33 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater
       });
       window.addEventListener('london-news-read-history-changed', syncReadStoryState);
       syncReadStoryState();
+    </script>
+
+    <script is:inline>
+      (() => {
+        const oldName = 'London News';
+        const newName = 'Forest City News';
+        const replaceBrand = (value) => typeof value === 'string' ? value.split(oldName).join(newName) : value;
+
+        document.title = replaceBrand(document.title);
+        document.querySelectorAll('[placeholder], [aria-label], [title]').forEach((element) => {
+          ['placeholder', 'aria-label', 'title'].forEach((attribute) => {
+            if (!element.hasAttribute(attribute)) return;
+            element.setAttribute(attribute, replaceBrand(element.getAttribute(attribute)));
+          });
+        });
+
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            const parent = node.parentElement;
+            if (!parent || ['SCRIPT', 'STYLE', 'TEMPLATE'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+            return node.nodeValue?.includes(oldName) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+          }
+        });
+        const matches = [];
+        while (walker.nextNode()) matches.push(walker.currentNode);
+        matches.forEach((node) => { node.nodeValue = replaceBrand(node.nodeValue); });
+      })();
     </script>
 
     <script is:inline>
