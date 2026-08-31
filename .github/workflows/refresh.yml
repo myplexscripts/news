@@ -2,7 +2,7 @@ name: Refresh news
 
 on:
   push:
-    branches: [main, test/editorial-fast-search]
+    branches: [main]
     paths:
       - 'scripts/**'
       - 'requirements.txt'
@@ -139,11 +139,11 @@ jobs:
         run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main
 
       - name: Start deferred article enrichment
-        if: steps.commit.outputs.changed == 'true'
+        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run enrich.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME"
+        run: gh workflow run enrich.yml --repo "$GITHUB_REPOSITORY" --ref main
 
       - name: Schedule next refresh
         if: always() && github.ref_name == 'main' && (github.event_name != 'schedule' || steps.due.outputs.run == 'true')
