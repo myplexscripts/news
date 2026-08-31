@@ -1,25 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import NewsCard from '../../components/NewsCard.astro';
 import PageHeading from '../../components/PageHeading.astro';
-import news from '../../../data/news.json';
 
-const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published || 0).getTime() - new Date(a.published || 0).getTime());
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Read Later | London News" description="Articles saved to read later on this device." noindex={true}>
-  <main class="read-later-page" id="main-content">
+  <main class="read-later-page" id="main-content" data-base={base}>
     <section class="read-later-shell shell">
       <PageHeading eyebrow="Saved" title="Read Later" description="Articles you bookmark are saved on this device until you remove them." />
 
       <p class="read-later-status" id="readLaterStatus" aria-live="polite">Loading saved articles…</p>
 
       <div class="read-later-grid" id="readLaterGrid" aria-label="Saved articles" hidden></div>
-
-      <template id="readLaterCardTemplates">
-        {stories.map((story) => (
-          <NewsCard story={story} variant="standard" className="read-later-card" />
-        ))}
-      </template>
 
       <div class="read-later-empty" id="readLaterEmpty">
         <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
@@ -32,43 +24,163 @@ const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published ||
   <script>
     import { initialiseUserState, onUserStateChange } from '../../lib/userState';
 
+    const main = document.getElementById('main-content');
+    const base = main?.dataset.base || '/';
     const grid = document.getElementById('readLaterGrid');
     const empty = document.getElementById('readLaterEmpty');
     const status = document.getElementById('readLaterStatus');
-    const template = document.getElementById('readLaterCardTemplates');
-    const templateCards = template instanceof HTMLTemplateElement
-      ? [...template.content.querySelectorAll('.read-later-card')]
-      : [];
-    const cardById = new Map(templateCards.map((card) => [String(card.dataset.storyId || ''), card]));
+    let cardsById = null;
+    let cardIndexPromise = null;
 
-    function markSavedButton(card) {
-      const button = card.querySelector('[data-read-later-toggle]');
-      if (!(button instanceof HTMLButtonElement)) return;
-      button.classList.add('is-saved');
-      button.setAttribute('aria-pressed', 'true');
-      button.setAttribute('aria-label', 'Remove from Read Later');
-      button.setAttribute('title', 'Remove from Read Later');
-      const icon = button.querySelector('i');
-      if (icon) icon.className = 'ph-fill ph-bookmark-simple';
+    function resolveAsset(value = '') {
+      const src = String(value || '').trim();
+      if (!src) return '';
+      if (/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
+      return `${base}${src}`;
     }
 
-    function applySavedState(state) {
+    function formatDate(value) {
+      try {
+        return new Intl.DateTimeFormat('en-CA', {
+          timeZone: 'America/Toronto',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: '2-digit'
+        }).format(new Date(value));
+      } catch {
+        return '';
+      }
+    }
+
+    function shortTitle(value = '') {
+      const words = String(value || '').trim().split(/\s+/).filter(Boolean);
+      return words.length > 20 ? `${words.slice(0, 20).join(' ')}...` : words.join(' ');
+    }
+
+    async function loadCardIndex() {
+      if (cardsById) return cardsById;
+      if (!cardIndexPromise) {
+        cardIndexPromise = fetch(`${base}data/story-card-index.json`, { cache: 'force-cache' })
+          .then((response) => {
+            if (!response.ok) throw new Error(`Story card index returned ${response.status}`);
+            return response.json();
+          })
+          .then((payload) => {
+            const cards = Array.isArray(payload.cards) ? payload.cards : [];
+            cardsById = new Map(cards.map((card) => [String(card.id || ''), card]));
+            return cardsById;
+          });
+      }
+      return cardIndexPromise;
+    }
+
+    function createSavedCard(story, isRead) {
+      const article = document.createElement('article');
+      article.className = 'news-card card-standard read-later-card is-saved-story';
+      article.dataset.storyId = String(story.id || '');
+      article.dataset.category = story.category || 'Local';
+      article.dataset.source = story.source || '';
+      article.classList.toggle('is-read-story', isRead);
+
+      const link = document.createElement('a');
+      link.className = 'news-card-link';
+      link.href = `${base}story/${encodeURIComponent(story.id)}/`;
+      link.setAttribute('aria-label', story.title || 'Saved story');
+      article.append(link);
+
+      const imageSrc = resolveAsset(story.image);
+      if (imageSrc) {
+        const media = document.createElement('div');
+        media.className = 'news-card-media';
+        const image = document.createElement('img');
+        image.className = 'news-card-photo';
+        image.src = imageSrc;
+        image.alt = story.imageAlt || '';
+        image.width = 420;
+        image.height = 420;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        image.referrerPolicy = 'no-referrer';
+        media.append(image);
+        article.append(media);
+      } else {
+        article.classList.add('no-image');
+      }
+
+      const body = document.createElement('div');
+      body.className = 'news-card-body';
+
+      if (story.source) {
+        const source = document.createElement('span');
+        source.className = 'card-source-name';
+        source.textContent = story.source;
+        body.append(source);
+      }
+
+      const heading = document.createElement('h3');
+      heading.title = story.title || '';
+      heading.textContent = shortTitle(story.title || 'Untitled story');
+      body.append(heading);
+
+      const footer = document.createElement('div');
+      footer.className = 'news-card-footer';
+      const time = document.createElement('time');
+      time.dateTime = story.published || '';
+      time.textContent = formatDate(story.published);
+      footer.append(time);
+      if (story.readMinutes) {
+        const readTime = document.createElement('span');
+        readTime.textContent = `${story.readMinutes} min read`;
+        footer.append(readTime);
+      }
+      body.append(footer);
+
+      if (story.summary) {
+        const summary = document.createElement('p');
+        summary.className = 'news-card-summary';
+        summary.textContent = story.summary;
+        body.append(summary);
+      }
+
+      const button = document.createElement('button');
+      button.className = 'news-card-save is-saved';
+      button.type = 'button';
+      button.dataset.readLaterToggle = String(story.id || '');
+      button.setAttribute('aria-label', 'Remove from Read Later');
+      button.setAttribute('aria-pressed', 'true');
+      button.setAttribute('title', 'Remove from Read Later');
+      button.innerHTML = '<i class="ph-fill ph-bookmark-simple" aria-hidden="true"></i>';
+      body.append(button);
+
+      article.append(body);
+      return article;
+    }
+
+    async function applySavedState(state) {
       if (!grid) return;
 
       const savedIds = (state.savedIds || []).map(String);
       const readSet = new Set((state.readIds || []).map(String));
+
+      if (!savedIds.length) {
+        grid.replaceChildren();
+        grid.hidden = true;
+        if (empty) empty.hidden = false;
+        if (status) status.textContent = 'No saved articles';
+        return;
+      }
+
+      if (status) status.textContent = 'Loading saved articles...';
+
+      const index = await loadCardIndex();
       const fragment = document.createDocumentFragment();
       let available = 0;
 
       savedIds.forEach((id) => {
-        const sourceCard = cardById.get(id);
-        if (!sourceCard) return;
-        const card = sourceCard.cloneNode(true);
-        if (!(card instanceof HTMLElement)) return;
-        card.classList.add('is-saved-story');
-        card.classList.toggle('is-read-story', readSet.has(id));
-        markSavedButton(card);
-        fragment.append(card);
+        const story = index.get(id);
+        if (!story) return;
+        fragment.append(createSavedCard(story, readSet.has(id)));
         available += 1;
       });
 
@@ -115,7 +227,7 @@ const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published ||
     }
 
     .read-later-grid[hidden],
-    #readLaterCardTemplates {
+    .read-later-empty[hidden] {
       display: none !important;
     }
 
@@ -133,10 +245,6 @@ const stories = [...(news.stories || [])].sort((a, b) => new Date(b.published ||
       border-radius: 24px;
       background: var(--surface-subtle);
       text-align: center;
-    }
-
-    .read-later-empty[hidden] {
-      display: none !important;
     }
 
     .read-later-empty > i {

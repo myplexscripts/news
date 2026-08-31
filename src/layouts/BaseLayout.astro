@@ -272,6 +272,42 @@ const mobileTabIndex = onHome ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater
         window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
       });
 
+      mobileTabBar?.addEventListener('pointerdown', (event) => {
+        const tab = event.target instanceof Element ? event.target.closest('[data-mobile-tab-index]') : null;
+        if (!(tab instanceof HTMLAnchorElement)) return;
+        if (tab === mobileHomeTab && mobileHomeTab.classList.contains('is-back-to-top')) return;
+
+        const index = Number(tab.dataset.mobileTabIndex);
+        if (!Number.isInteger(index) || index < 0 || index >= mobileTabs.length) return;
+
+        mobileTabBar.dataset.activeIndex = String(index);
+        mobileTabBar.style.setProperty('--indicator-index', String(index));
+        mobileTabs.forEach((item) => item.classList.toggle('active', item === tab));
+        sessionStorage.setItem('london-news-mobile-tab-index', String(index));
+      }, { passive: true });
+
+      function prefetchMobileTabPages() {
+        if (!mobileTabBar) return;
+        const seen = new Set();
+        mobileTabs.forEach((tab) => {
+          if (!(tab instanceof HTMLAnchorElement)) return;
+          const href = tab.href;
+          if (!href || href === location.href || seen.has(href)) return;
+          seen.add(href);
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = href;
+          link.as = 'document';
+          document.head.append(link);
+        });
+      }
+
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(prefetchMobileTabPages, { timeout: 2400 });
+      } else {
+        window.setTimeout(prefetchMobileTabPages, 900);
+      }
+
       let scrollFrame = 0;
       window.addEventListener('scroll', () => {
         if (scrollFrame) return;

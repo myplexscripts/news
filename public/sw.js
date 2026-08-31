@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v8';
-const ASSET_CACHE = 'london-news-assets-v8';
+const SHELL_CACHE = 'london-news-shell-v9';
+const ASSET_CACHE = 'london-news-assets-v9';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
@@ -17,6 +17,7 @@ self.addEventListener('install', (event) => {
       scopePath('read-later/'),
       scopePath('latest/'),
       scopePath('settings/'),
+      scopePath('data/story-card-index.json'),
       scopePath('manifest.webmanifest')
     ];
     const cache = await caches.open(SHELL_CACHE);
@@ -50,29 +51,27 @@ async function fetchNetwork(request, timeoutMs = 4000) {
   }
 }
 
-async function navigationNetworkFirst(event, fallbackToHome = false) {
+async function refreshNavigationCache(event, cache, request) {
+  const preloaded = await event.preloadResponse;
+  const response = preloaded || await fetchNetwork(request, 8000);
+  if (response?.ok) cache.put(request, response.clone()).catch(() => {});
+  return response;
+}
+
+async function navigationStaleWhileRevalidate(event, fallbackToHome = false) {
   const request = event.request;
   const cache = await caches.open(SHELL_CACHE);
-  let timer;
+  const cached = await cache.match(request);
+  const refresh = refreshNavigationCache(event, cache, request);
+
+  if (cached) {
+    event.waitUntil(refresh.catch(() => null));
+    return cached;
+  }
 
   try {
-    const response = await Promise.race([
-      (async () => {
-        const preloaded = await event.preloadResponse;
-        return preloaded || fetchNetwork(request, 8000);
-      })(),
-      new Promise((_, reject) => {
-        timer = setTimeout(() => reject(new Error('navigation timeout')), 8000);
-      })
-    ]);
-
-    clearTimeout(timer);
-    if (response?.ok) cache.put(request, response.clone()).catch(() => {});
-    return response;
+    return await refresh;
   } catch {
-    clearTimeout(timer);
-    const cached = await cache.match(request);
-    if (cached) return cached;
     if (fallbackToHome) {
       const home = await caches.match(scopePath());
       if (home) return home;
@@ -118,7 +117,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (event.request.mode === 'navigate') {
-    event.respondWith(navigationNetworkFirst(event, true));
+    event.respondWith(navigationStaleWhileRevalidate(event, true));
     return;
   }
 

@@ -9,6 +9,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_FILE = ROOT / "data" / "news.json"
 OUTPUT_FILE = ROOT / "public" / "data" / "search-index.json"
+CARD_INDEX_FILE = ROOT / "public" / "data" / "story-card-index.json"
 MAX_BODY_CHARS = 1800
 
 
@@ -49,6 +50,7 @@ def main() -> int:
     }
 
     documents = []
+    cards = []
     for story in payload.get("stories") or []:
         if not isinstance(story, dict) or not story.get("id") or not story.get("title"):
             continue
@@ -68,14 +70,31 @@ def main() -> int:
             "image": _clean(story.get("card_image_small") or story.get("card_image") or story.get("image")),
             "readMinutes": max(1, round(int(story.get("word_count") or 0) / 220)) if int(story.get("word_count") or 0) > 0 else None,
         })
+        cards.append({
+            "id": str(story.get("id")),
+            "title": _clean(story.get("title")),
+            "summary": _clean(story.get("summary")),
+            "source": source,
+            "category": _clean(story.get("category")) or "Local",
+            "published": _clean(story.get("cluster_latest_published") or story.get("published")),
+            "image": _clean(story.get("card_image_small") or story.get("card_image") or story.get("image")),
+            "imageAlt": _clean(story.get("image_alt")),
+            "readMinutes": max(1, round(int(story.get("word_count") or 0) / 220)) if int(story.get("word_count") or 0) > 0 else None,
+        })
 
     documents.sort(key=lambda item: item.get("published") or "", reverse=True)
+    cards.sort(key=lambda item: item.get("published") or "", reverse=True)
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(
         json.dumps({"generated_at": payload.get("generated_at"), "documents": documents}, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8",
     )
+    CARD_INDEX_FILE.write_text(
+        json.dumps({"generated_at": payload.get("generated_at"), "cards": cards}, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
     print(f"Search index: {len(documents)} documents -> {OUTPUT_FILE.relative_to(ROOT)}")
+    print(f"Story card index: {len(cards)} cards -> {CARD_INDEX_FILE.relative_to(ROOT)}")
     return 0
 
 
