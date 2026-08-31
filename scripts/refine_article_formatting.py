@@ -18,7 +18,7 @@ from fetch_news import clean_text, fetch_html
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-FORMAT_SCHEMA = 1
+FORMAT_SCHEMA = 2
 MAX_PER_RUN = max(8, int(os.getenv("FORMAT_MAX_PER_RUN", "36")))
 RECENT_HOURS = max(24, int(os.getenv("FORMAT_RECENT_HOURS", "120")))
 WORKERS = max(2, min(8, int(os.getenv("FORMAT_WORKERS", "6"))))
@@ -191,25 +191,45 @@ def normalize_image_key(url: str) -> str:
         return str(url or "").split("?", 1)[0].lower().rstrip("/")
 
 
+def srcset_candidates(value: Any) -> list[tuple[int, str]]:
+    candidates: list[tuple[int, str]] = []
+    for part in str(value or "").split(","):
+        bits = part.strip().split()
+        if not bits:
+            continue
+        score = 1
+        if len(bits) > 1:
+            raw_score = re.sub(r"[^0-9.]", "", bits[1])
+            try:
+                score = int(float(raw_score) * (1000 if bits[1].endswith("x") else 1))
+            except Exception:
+                score = 1
+        candidates.append((score, bits[0]))
+    return candidates
+
+
+def int_attr(value: Any) -> int:
+    try:
+        return int(re.sub(r"\D", "", str(value or "0")) or "0")
+    except Exception:
+        return 0
+
+
 def best_img_url(img: Tag, base_url: str) -> str:
     candidates: list[tuple[int, str]] = []
-    for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+    picture = img.find_parent("picture")
+    if isinstance(picture, Tag):
+        for source in picture.find_all("source"):
+            if not isinstance(source, Tag):
+                continue
+            candidates.extend(srcset_candidates(source.get("srcset") or source.get("data-srcset")))
+            for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+                if source.get(attr):
+                    candidates.append((1, str(source.get(attr))))
+    for attr in ("data-src", "data-lazy-src", "data-original", "data-full-src", "data-zoom-src", "data-image", "data-image-src", "data-img-url", "src"):
         if img.get(attr):
             candidates.append((1, str(img.get(attr))))
-    srcset = img.get("srcset") or img.get("data-srcset")
-    if srcset:
-        for part in str(srcset).split(","):
-            bits = part.strip().split()
-            if not bits:
-                continue
-            score = 1
-            if len(bits) > 1:
-                raw_score = re.sub(r"[^0-9.]", "", bits[1])
-                try:
-                    score = int(float(raw_score) * (1000 if bits[1].endswith("x") else 1))
-                except Exception:
-                    score = 1
-            candidates.append((score, bits[0]))
+    candidates.extend(srcset_candidates(img.get("srcset") or img.get("data-srcset")))
     for _, candidate in sorted(candidates, key=lambda item: item[0], reverse=True):
         if candidate and not candidate.startswith(("data:", "blob:")):
             return urljoin(base_url, candidate)
@@ -322,6 +342,8 @@ def extract_dom_blocks(raw: str, final_url: str, title: str, hero_url: str = "")
             "url": url,
             "alt": clean_text(img.get("alt") or "", 180),
             "caption": caption,
+            **({"width": int_attr(img.get("width"))} if int_attr(img.get("width")) else {}),
+            **({"height": int_attr(img.get("height"))} if int_attr(img.get("height")) else {}),
         })
 
     return blocks
