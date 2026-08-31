@@ -122,3 +122,95 @@
     display: none !important;
   }
 }
+
+/* Liquid Glass treatment for the existing mobile navigation. */
+:root {
+  --nav-glass: #bbbbbc;
+  --nav-glass-light: #fff;
+  --nav-glass-dark: #000;
+  --nav-glass-reflex-light: 1;
+  --nav-glass-reflex-dark: 1;
+  --nav-glass-saturation: 150%;
+}
+
+html[data-theme='dark'] {
+  --nav-glass-reflex-light: 0.3;
+  --nav-glass-reflex-dark: 2;
+}
+
+@media (max-width: 760px) {
+  .mobile-tab-bar {
+    border: 0 !important;
+    background-color: color-mix(in srgb, var(--nav-glass) 12%, transparent) !important;
+    backdrop-filter: blur(8px) saturate(var(--nav-glass-saturation)) !important;
+    -webkit-backdrop-filter: blur(8px) saturate(var(--nav-glass-saturation)) !important;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 10%), transparent),
+      inset 1.8px 3px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
+      inset -2px -2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
+      inset -3px -8px 1px -6px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
+      inset -0.3px -1px 4px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 12%), transparent),
+      inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 0 3px 4px -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 2px -6.5px 1px -4px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+      0 1px 5px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+      0 6px 16px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 8%), transparent) !important;
+    transition: background-color 400ms cubic-bezier(1, 0, 0.4, 1), box-shadow 400ms cubic-bezier(1, 0, 0.4, 1) !important;
+  }
+
+  html[data-theme='dark'] .mobile-tab-bar {
+    background-color: color-mix(in srgb, var(--nav-glass) 12%, transparent) !important;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 10%), transparent),
+      inset 1.8px 3px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
+      inset -2px -2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
+      inset -3px -8px 1px -6px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
+      inset -0.3px -1px 4px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 12%), transparent),
+      inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 0 3px 4px -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 2px -6.5px 1px -4px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+      0 1px 5px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+      0 6px 16px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 8%), transparent) !important;
+  }
+
+  .mobile-tab-indicator {
+    background-color: color-mix(in srgb, var(--nav-glass) 36%, transparent) !important;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 10%), transparent),
+      inset 2px 1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
+      inset -1.5px -1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
+      inset -2px -6px 1px -5px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
+      inset -1px 2px 3px -1px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 0 -4px 1px -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+      0 3px 6px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 8%), transparent) !important;
+    transition:
+      transform 400ms cubic-bezier(1, 0, 0.4, 1),
+      background-color 400ms cubic-bezier(1, 0, 0.4, 1),
+      box-shadow 400ms cubic-bezier(1, 0, 0.4, 1),
+      opacity 180ms ease !important;
+  }
+
+  .mobile-tab i {
+    transition: transform 200ms cubic-bezier(0.5, 0, 0, 1), opacity 160ms ease !important;
+  }
+
+  .mobile-tab:hover i {
+    transform: scale(1.12);
+  }
+
+  .mobile-tab.active i {
+    transform: scale(1);
+  }
+
+  .mobile-tab:active i {
+    transform: scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-tab-bar,
+  .mobile-tab-indicator,
+  .mobile-tab i {
+    transition: none !important;
+  }
+}
