@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v9';
-const ASSET_CACHE = 'london-news-assets-v9';
+const SHELL_CACHE = 'london-news-shell-v10';
+const ASSET_CACHE = 'london-news-assets-v10';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
@@ -58,24 +58,24 @@ async function refreshNavigationCache(event, cache, request) {
   return response;
 }
 
-async function navigationStaleWhileRevalidate(event, fallbackToHome = false) {
+async function navigationNetworkFirst(event, fallbackToHome = false) {
   const request = event.request;
   const cache = await caches.open(SHELL_CACHE);
-  const cached = await cache.match(request);
-  const refresh = refreshNavigationCache(event, cache, request);
-
-  if (cached) {
-    event.waitUntil(refresh.catch(() => null));
-    return cached;
-  }
 
   try {
-    return await refresh;
+    // The feed and its "Updated" timestamp are baked into the static HTML at
+    // deploy time. Always prefer the network while online so the installed PWA
+    // cannot remain several refresh cycles behind the live site.
+    return await refreshNavigationCache(event, cache, request);
   } catch {
+    const cached = await cache.match(request);
+    if (cached) return cached;
+
     if (fallbackToHome) {
-      const home = await caches.match(scopePath());
+      const home = await cache.match(scopePath());
       if (home) return home;
     }
+
     return Response.error();
   }
 }
@@ -109,15 +109,15 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Feed data is always network-only so a service worker can never hold the
-  // timeline on an older refresh.
+  // Feed data is always network-only. The static page navigation is also
+  // network-first below because the rendered timeline is baked into its HTML.
   if (/\/(?:data\/)?news\.json$/i.test(url.pathname)) {
     event.respondWith(fetch(event.request, { cache: 'no-store' }));
     return;
   }
 
   if (event.request.mode === 'navigate') {
-    event.respondWith(navigationStaleWhileRevalidate(event, true));
+    event.respondWith(navigationNetworkFirst(event, true));
     return;
   }
 
