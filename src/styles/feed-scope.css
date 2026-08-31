@@ -131,11 +131,19 @@
   --nav-glass-reflex-light: 1;
   --nav-glass-reflex-dark: 1;
   --nav-glass-saturation: 150%;
+  --glass-outline: rgb(60 60 67 / 0.18);
+  --glass-control-bg: color-mix(in srgb, var(--nav-glass) 14%, transparent);
+  --glass-control-selected: color-mix(in srgb, var(--nav-glass) 38%, transparent);
+  --glass-control-accent: color-mix(in srgb, var(--accent) 16%, var(--nav-glass) 30%);
 }
 
 html[data-theme='dark'] {
   --nav-glass-reflex-light: 0.3;
   --nav-glass-reflex-dark: 2;
+  --glass-outline: rgb(255 255 255 / 0.18);
+  --glass-control-bg: color-mix(in srgb, var(--nav-glass) 18%, transparent);
+  --glass-control-selected: color-mix(in srgb, var(--nav-glass) 46%, transparent);
+  --glass-control-accent: color-mix(in srgb, var(--accent) 18%, var(--nav-glass) 38%);
 }
 
 @media (max-width: 760px) {
@@ -207,10 +215,190 @@ html[data-theme='dark'] {
   }
 }
 
+/* Shared Liquid Glass material for segmented controls, filters, buttons and switches. */
+.feed-scope-switch,
+.archive-scope-switch,
+.directory-tabs,
+.settings-segmented {
+  border: 0 !important;
+  background: var(--glass-control-bg) !important;
+  backdrop-filter: blur(12px) saturate(var(--nav-glass-saturation)) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(var(--nav-glass-saturation)) !important;
+  box-shadow:
+    inset 0 0 0 1px var(--glass-outline),
+    inset 1.8px 3px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 72%), transparent),
+    inset -2px -2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 54%), transparent),
+    inset -0.3px -1px 4px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+    0 2px 7px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 7%), transparent) !important;
+}
+
+.feed-scope-button,
+.archive-scope-switch button,
+.directory-tab,
+.settings-segmented button {
+  background: transparent !important;
+  color: var(--muted) !important;
+  box-shadow: none !important;
+  transition: background-color 240ms cubic-bezier(1, 0, 0.4, 1), color 180ms ease, box-shadow 240ms cubic-bezier(1, 0, 0.4, 1), transform 160ms ease !important;
+}
+
+.feed-scope-button:hover,
+.archive-scope-switch button:hover,
+.directory-tab:hover,
+.settings-segmented button:hover {
+  color: var(--ink) !important;
+}
+
+.feed-scope-button.active,
+.archive-scope-switch button.active,
+.directory-tab.active,
+.settings-segmented button.selected {
+  background: var(--glass-control-accent) !important;
+  color: var(--accent) !important;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 12%), transparent),
+    inset 2px 1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
+    inset -1.5px -1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 64%), transparent),
+    inset -1px 2px 3px -1px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 16%), transparent),
+    0 2px 6px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 8%), transparent) !important;
+}
+
+.feed-scope-button:active,
+.archive-scope-switch button:active,
+.directory-tab:active,
+.settings-segmented button:active,
+.bordered-button:active,
+.settings-action-button:active {
+  transform: scale(0.97);
+}
+
+/* Search field, select filters and secondary actions use the same material family. */
+.search-page-field,
+.archive-search-controls select,
+.bordered-button,
+.settings-action-button {
+  border: 0 !important;
+  background: color-mix(in srgb, var(--nav-glass) 12%, transparent) !important;
+  color: var(--ink) !important;
+  backdrop-filter: blur(10px) saturate(var(--nav-glass-saturation)) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(var(--nav-glass-saturation)) !important;
+  box-shadow:
+    inset 0 0 0 1px var(--glass-outline),
+    inset 1.4px 2.4px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 68%), transparent),
+    inset -1.5px -1.5px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 46%), transparent),
+    inset 0 -1px 3px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 8%), transparent),
+    0 2px 6px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 6%), transparent) !important;
+}
+
+.archive-search-controls select {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] .archive-search-controls select {
+  color-scheme: dark;
+}
+
+.bordered-button,
+.settings-action-button {
+  color: var(--accent) !important;
+}
+
+/* Settings and source switches share one glass track and one glass thumb. */
+.settings-switch-track,
+.source-switch {
+  background: var(--glass-control-bg) !important;
+  box-shadow:
+    inset 0 0 0 1px var(--glass-outline),
+    inset 1.2px 2px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 58%), transparent),
+    inset 0 -2px 3px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent) !important;
+}
+
+.settings-switch-track::after,
+.source-switch > span {
+  background: var(--glass-control-selected) !important;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 18%), transparent),
+    inset 1px 1px 0 color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 62%), transparent),
+    inset -1px -1px 2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 12%), transparent),
+    0 2px 5px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 18%), transparent) !important;
+}
+
+.settings-switch input:checked + .settings-switch-track,
+.source-switch-input:checked + .source-switch {
+  background: color-mix(in srgb, var(--accent) 60%, transparent) !important;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--accent) 46%, var(--glass-outline)),
+    inset 1.2px 2px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 58%), transparent),
+    inset 0 -2px 3px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+    0 2px 7px color-mix(in srgb, var(--accent) 14%, transparent) !important;
+}
+
+.settings-switch input:checked + .settings-switch-track::after,
+.source-switch-input:checked + .source-switch > span {
+  background: color-mix(in srgb, var(--nav-glass-light) 72%, var(--nav-glass) 28%) !important;
+}
+
+/* Accent colour tiles keep their swatches but use the same control shell. */
+.accent-choice {
+  border: 0 !important;
+  background: var(--glass-control-bg) !important;
+  box-shadow:
+    inset 0 0 0 1px var(--glass-outline),
+    inset 1.4px 2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
+    inset 0 -1px 3px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 8%), transparent) !important;
+}
+
+.accent-choice.selected {
+  outline-color: var(--accent) !important;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--accent) 54%, transparent),
+    inset 1.4px 2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 66%), transparent),
+    0 2px 8px color-mix(in srgb, var(--accent) 16%, transparent) !important;
+}
+
+/* Dark appearance keeps every glass control distinct from the black canvas. */
+html[data-theme='dark'] .feed-scope-switch,
+html[data-theme='dark'] .archive-scope-switch,
+html[data-theme='dark'] .directory-tabs,
+html[data-theme='dark'] .settings-segmented,
+html[data-theme='dark'] .search-page-field,
+html[data-theme='dark'] .archive-search-controls select,
+html[data-theme='dark'] .bordered-button,
+html[data-theme='dark'] .settings-action-button,
+html[data-theme='dark'] .settings-switch-track,
+html[data-theme='dark'] .source-switch,
+html[data-theme='dark'] .accent-choice {
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.18),
+    inset 1.5px 2.5px 0 -2px rgb(255 255 255 / 0.22),
+    inset -1.5px -2px 0 -2px rgb(255 255 255 / 0.12),
+    inset 0 -2px 4px rgb(0 0 0 / 0.34),
+    0 3px 8px rgb(0 0 0 / 0.22) !important;
+}
+
+html[data-theme='dark'] .feed-scope-button.active,
+html[data-theme='dark'] .archive-scope-switch button.active,
+html[data-theme='dark'] .directory-tab.active,
+html[data-theme='dark'] .settings-segmented button.selected {
+  background: var(--glass-control-accent) !important;
+  color: var(--accent) !important;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.22),
+    inset 2px 1px 0 -1px rgb(255 255 255 / 0.28),
+    inset -1px -2px 3px rgb(0 0 0 / 0.24),
+    0 2px 8px rgb(0 0 0 / 0.18) !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mobile-tab-bar,
   .mobile-tab-indicator,
-  .mobile-tab i {
+  .mobile-tab i,
+  .feed-scope-button,
+  .archive-scope-switch button,
+  .directory-tab,
+  .settings-segmented button,
+  .bordered-button,
+  .settings-action-button {
     transition: none !important;
   }
 }
