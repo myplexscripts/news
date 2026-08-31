@@ -36,8 +36,6 @@ def _metadata_first_enrich(story: dict[str, Any], source: fetch_news.Source) -> 
         enriched["enriched_at"] = datetime.now(timezone.utc).isoformat()
         return enriched
 
-    # Existing fully extracted stories should remain fully extracted. The fast
-    # refresh only updates their feed metadata and leaves the reader body intact.
     if _has_reader_body(story):
         story["refresh_stage"] = "enriched"
         return story
@@ -56,8 +54,14 @@ def _metadata_first_enrich(story: dict[str, Any], source: fetch_news.Source) -> 
     return story
 
 
+def _skip_backfill(stories, skip_sources=None):
+    """Full article backfill belongs to the deferred enrichment workflow."""
+    return stories
+
+
 def main() -> int:
     fetch_news.enrich_article = _metadata_first_enrich
+    fetch_news.backfill_missing = _skip_backfill
     return run_scoop.main()
 
 
