@@ -90,10 +90,19 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin "$GITHUB_REF_NAME"
           git reset --hard "origin/$GITHUB_REF_NAME"
-          cp /tmp/scoop-enriched-output/news.json data/news.json
+
+          # A new fast refresh may have landed while article extraction was running.
+          # Merge reader improvements into that newest feed instead of restoring an
+          # older news.json snapshot over fresher headlines and timestamps.
+          python scripts/merge_enriched_output.py \
+            /tmp/scoop-enriched-output/news.json \
+            data/news.json \
+            /tmp/news-merged.json
+          mv /tmp/news-merged.json data/news.json
           cp /tmp/scoop-enriched-output/audit.json data/audit.json
           mkdir -p public/cache
-          rsync -a --delete /tmp/scoop-enriched-output/cache/ public/cache/
+          # Overlay newly enriched media, but never delete files a newer fast refresh added.
+          rsync -a /tmp/scoop-enriched-output/cache/ public/cache/
           git add data/news.json data/audit.json public/cache/
 
           if git diff --cached --quiet; then
