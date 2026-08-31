@@ -280,6 +280,45 @@ export async function showAllSources() {
   return state;
 }
 
+export async function clearAllUserData(): Promise<LondonNewsUserState> {
+  await db.transaction('rw', db.preferences, db.readStories, db.savedStories, db.hiddenSources, async () => {
+    await Promise.all([
+      db.preferences.clear(),
+      db.readStories.clear(),
+      db.savedStories.clear(),
+      db.hiddenSources.clear()
+    ]);
+  });
+
+  if (typeof localStorage !== 'undefined') {
+    for (const key of Object.keys(localStorage)) {
+      if (key.startsWith('london-news-')) localStorage.removeItem(key);
+    }
+    localStorage.removeItem(BAD_READ_LATER_KEY);
+  }
+
+  if (typeof sessionStorage !== 'undefined') {
+    for (const key of Object.keys(sessionStorage)) {
+      if (key.startsWith('london-news-')) sessionStorage.removeItem(key);
+    }
+  }
+
+  const state: LondonNewsUserState = {
+    theme: preferredTheme(),
+    accent: 'green',
+    hideRead: false,
+    readIds: [],
+    savedIds: [],
+    hiddenSources: []
+  };
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('london-news-user-state', { detail: state }));
+  }
+  channel?.postMessage(state);
+  return state;
+}
+
 export function onUserStateChange(listener: (state: LondonNewsUserState) => void) {
   const localHandler = (event: Event) => listener((event as CustomEvent<LondonNewsUserState>).detail);
   const channelHandler = (event: MessageEvent<LondonNewsUserState>) => {
