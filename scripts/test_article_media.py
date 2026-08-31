@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from enrich_article_media import extract_dom_media, media_block, merge_media, safe_embed_url
+from enrich_article_media import extract_dom_images, extract_dom_media, media_block, merge_media, safe_embed_url
 
 
 def test_dom_audio_is_preserved() -> None:
@@ -62,6 +62,47 @@ def test_media_is_inserted_after_matching_cue() -> None:
     assert merged[2]["media_type"] == "audio"
 
 
+def test_inline_article_images_are_recovered_and_deduped() -> None:
+    raw = """
+    <article>
+      <p>City officials opened the updated park after months of construction and neighbourhood consultation.</p>
+      <figure>
+        <picture>
+          <source srcset="/photos/park-640.jpg 640w, /photos/park-1600.jpg 1600w">
+          <img src="/photos/park-placeholder.jpg" width="1200" height="800" alt="The updated park entrance">
+        </picture>
+        <figcaption>The updated park entrance opened Tuesday.</figcaption>
+      </figure>
+      <p>Residents said the new paths and lighting make the space easier to use in the evening.</p>
+    </article>
+    """
+    images = extract_dom_images(
+        raw,
+        "https://example.test/news/park",
+        "Example Source",
+        "Park opens",
+        "",
+    )
+    assert len(images) == 1
+    anchor, image = images[0]
+    assert "City officials opened" in anchor
+    assert image["url"] == "https://example.test/photos/park-1600.jpg"
+    assert image["width"] == 1200
+    assert image["height"] == 800
+
+    blocks = [
+        {"type": "paragraph", "text": "City officials opened the updated park after months of construction and neighbourhood consultation."},
+        {"type": "paragraph", "text": "Residents said the new paths and lighting make the space easier to use in the evening."},
+    ]
+    merged, inserted = merge_media(blocks, images)
+    assert inserted == 1
+    assert merged[1]["type"] == "image"
+
+    merged_again, inserted_again = merge_media(merged, images)
+    assert inserted_again == 0
+    assert merged_again == merged
+
+
 def test_non_playable_media_link_is_rejected() -> None:
     block = media_block("https://example.test/article", "Listen to the full interview")
     assert block is None
@@ -79,6 +120,7 @@ def main() -> int:
         test_dom_video_keeps_poster,
         test_safe_embed_is_preserved_and_unknown_embed_is_rejected,
         test_media_is_inserted_after_matching_cue,
+        test_inline_article_images_are_recovered_and_deduped,
         test_non_playable_media_link_is_rejected,
         test_safe_cbc_player_url_can_embed,
     ]

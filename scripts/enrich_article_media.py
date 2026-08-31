@@ -15,10 +15,17 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 from fetch_news import clean_text, fetch_html
+from fetch_news import (
+    extract_dom_blocks as extract_article_dom_blocks,
+    image_dedupe_key,
+    same_image,
+    valid_article_image,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-MEDIA_SCHEMA = 2
+MEDIA_SCHEMA = 3
+MAX_INLINE_IMAGES = max(4, int(os.getenv("MEDIA_MAX_INLINE_IMAGES", "10")))
 MAX_PER_RUN = max(8, int(os.getenv("MEDIA_MAX_PER_RUN", "36")))
 RECENT_HOURS = max(24, int(os.getenv("MEDIA_RECENT_HOURS", "120")))
 WORKERS = max(2, min(8, int(os.getenv("MEDIA_WORKERS", "6"))))
@@ -97,6 +104,16 @@ def safe_embed_url(url: str) -> str:
 
 def media_key(block: dict[str, Any]) -> str:
     return f"{block.get('media_type', '')}:{str(block.get('url') or '').split('#', 1)[0]}"
+
+
+def image_key(block: dict[str, Any]) -> str:
+    return image_dedupe_key(str(block.get("url") or ""))
+
+
+def block_key(block: dict[str, Any]) -> str:
+    if block.get("type") == "image":
+        return f"image:{image_key(block)}"
+    return f"media:{media_key(block)}"
 
 
 def media_block(url: str, title: str = "", poster: str = "", media_type: str = "") -> dict[str, Any] | None:
@@ -192,6 +209,37 @@ def extract_dom_media(raw: str, final_url: str) -> list[tuple[str, dict[str, Any
     return found[:8]
 
 
+def extract_dom_images(
+    raw: str,
+    final_url: str,
+    source: str,
+    title: str,
+    hero_url: str = "",
+) -> list[tuple[str, dict[str, Any]]]:
+    soup = BeautifulSoup(raw, "html.parser")
+    blocks, _stats, _method = extract_article_dom_blocks(soup, final_url, source, title, hero_url)
+    found: list[tuple[str, dict[str, Any]]] = []
+    seen: list[str] = []
+    anchor = ""
+    for block in blocks:
+        kind = block.get("type")
+        if kind in {"paragraph", "heading", "quote"} and block.get("text"):
+            anchor = clean_text(block.get("text"), 240)
+            continue
+        if kind != "image" or not block.get("url"):
+            continue
+        url = str(block.get("url") or "")
+        if same_image(url, hero_url) or any(same_image(url, prior) for prior in seen):
+            continue
+        if not valid_article_image(url):
+            continue
+        seen.append(url)
+        found.append((anchor, block))
+        if len(found) >= MAX_INLINE_IMAGES:
+            break
+    return found
+
+
 def cbc_story_id(url: str) -> str:
     matches = CBC_ID.findall(urlparse(str(url or "")).path)
     return matches[-1] if matches else ""
@@ -267,15 +315,29 @@ def match_anchor(blocks: list[dict[str, Any]], anchor: str) -> int | None:
     return best_index if best_score >= 0.68 else None
 
 
-def merge_media(blocks: list[dict[str, Any]], media: list[tuple[str, dict[str, Any]]]) -> tuple[list[dict[str, Any]], int]:
+def duplicate_image(block: dict[str, Any], existing_blocks: list[dict[str, Any]], hero_url: str = "") -> bool:
+    url = str(block.get("url") or "")
+    if not url:
+        return True
+    if hero_url and same_image(url, hero_url):
+        return True
+    return any(
+        existing.get("type") == "image" and same_image(url, str(existing.get("url") or ""))
+        for existing in existing_blocks
+    )
+
+
+def merge_media(blocks: list[dict[str, Any]], media: list[tuple[str, dict[str, Any]]], hero_url: str = "") -> tuple[list[dict[str, Any]], int]:
     if not media:
         return blocks, 0
     result = list(blocks)
-    existing = {media_key(block) for block in result if block.get("type") == "media"}
+    existing = {block_key(block) for block in result if block.get("type") in {"image", "media"}}
     inserted = 0
     offset = 0
     for anchor, block in media:
-        key = media_key(block)
+        if block.get("type") == "image" and duplicate_image(block, result, hero_url):
+            continue
+        key = block_key(block)
         if key in existing:
             continue
         index = match_anchor(result, anchor)
@@ -301,7 +363,15 @@ def process_story(story: dict[str, Any]) -> tuple[list[tuple[str, dict[str, Any]
         raw, final_url = fetch_html(url)
     except Exception as exc:
         return [], f"dom:{type(exc).__name__}"
-    return extract_dom_media(raw, final_url), "dom:media-v2"
+    media = extract_dom_media(raw, final_url)
+    images = extract_dom_images(
+        raw,
+        final_url,
+        source,
+        clean_text(story.get("title", "")),
+        clean_text(story.get("image", "")),
+    )
+    return [*media, *images], "dom:media-images-v3"
 
 
 def story_needs_work(story: dict[str, Any], now: datetime) -> bool:
@@ -350,19 +420,20 @@ def main() -> int:
                 story["media_method"] = f"error:{type(exc).__name__}"
                 continue
             blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
-            merged, inserted = merge_media(blocks, media)
+            merged, inserted = merge_media(blocks, media, clean_text(story.get("image", "")))
             if inserted:
                 story["content_blocks"] = merged
                 inserted_total += inserted
             story["media_schema"] = MEDIA_SCHEMA
             story["media_method"] = method
             story["media_blocks"] = sum(1 for block in merged if block.get("type") == "media")
+            story["image_blocks"] = sum(1 for block in merged if block.get("type") == "image")
             story["media_enriched_at"] = utc_now().isoformat()
 
     payload["media_schema"] = MEDIA_SCHEMA
     payload["media_enriched_at"] = utc_now().isoformat()
     NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Article media: {inserted_total} playable blocks inserted across {attempted} attempted stories")
+    print(f"Article media: {inserted_total} media/image blocks inserted across {attempted} attempted stories")
     return 0
 
 

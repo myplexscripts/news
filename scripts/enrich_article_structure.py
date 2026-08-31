@@ -24,7 +24,7 @@ from fetch_news import (
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-STRUCTURE_SCHEMA = 3
+STRUCTURE_SCHEMA = 4
 MAX_PER_RUN = max(8, int(os.getenv("STRUCTURE_MAX_PER_RUN", "36")))
 RECENT_HOURS = max(24, int(os.getenv("STRUCTURE_RECENT_HOURS", "120")))
 WORKERS = max(2, min(8, int(os.getenv("STRUCTURE_WORKERS", "6"))))

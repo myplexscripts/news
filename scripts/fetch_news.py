@@ -35,7 +35,7 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 48
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 13
+EXTRACTION_SCHEMA = 14
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -722,29 +722,50 @@ def json_ld_image_objects(value: Any) -> list[dict[str, Any]]:
     return found
 
 
+def srcset_candidates(value: Any) -> list[tuple[int, str]]:
+    candidates: list[tuple[int, str]] = []
+    for part in str(value or "").split(","):
+        bits = part.strip().split()
+        if not bits:
+            continue
+        score = 1
+        if len(bits) > 1:
+            raw_score = re.sub(r"[^0-9.]", "", bits[1])
+            try:
+                score = int(float(raw_score) * (1000 if bits[1].endswith("x") else 1))
+            except Exception:
+                score = 1
+        candidates.append((score, bits[0]))
+    return candidates
+
+
 def best_img_url(img: Tag, base_url: str) -> str:
     candidates: list[tuple[int, str]] = []
-    for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+    picture = img.find_parent("picture")
+    if isinstance(picture, Tag):
+        for source in picture.find_all("source"):
+            if not isinstance(source, Tag):
+                continue
+            srcset = source.get("srcset") or source.get("data-srcset")
+            candidates.extend(srcset_candidates(srcset))
+            for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+                if source.get(attr):
+                    candidates.append((1, str(source.get(attr))))
+    for attr in ("data-src", "data-lazy-src", "data-original", "data-full-src", "data-zoom-src", "data-image", "data-image-src", "data-img-url", "src"):
         if img.get(attr):
             candidates.append((1, str(img.get(attr))))
-    srcset = img.get("srcset") or img.get("data-srcset")
-    if srcset:
-        for part in str(srcset).split(","):
-            bits = part.strip().split()
-            if not bits:
-                continue
-            score = 1
-            if len(bits) > 1:
-                raw_score = re.sub(r"[^0-9.]", "", bits[1])
-                try:
-                    score = int(float(raw_score) * (1000 if bits[1].endswith("x") else 1))
-                except Exception:
-                    score = 1
-            candidates.append((score, bits[0]))
+    candidates.extend(srcset_candidates(img.get("srcset") or img.get("data-srcset")))
     for _, candidate in sorted(candidates, key=lambda item: item[0], reverse=True):
         if candidate and not candidate.startswith(("data:", "blob:")):
             return normalize_image_url(candidate, base_url)
     return ""
+
+
+def responsive_image_source(img: Tag) -> bool:
+    if img.get("srcset") or img.get("data-srcset"):
+        return True
+    picture = img.find_parent("picture")
+    return isinstance(picture, Tag) and bool(picture.find("source", srcset=True) or picture.find("source", attrs={"data-srcset": True}))
 
 
 def int_attr(value: Any) -> int:
@@ -766,11 +787,12 @@ def valid_article_image(url: str, img: Tag | None = None) -> bool:
         if any(token in f"{alt} {classes}" for token in IMAGE_JUNK):
             return False
         width, height = int_attr(img.get("width")), int_attr(img.get("height"))
-        if width and width < 240:
+        has_responsive_source = responsive_image_source(img)
+        if width and width < 240 and not has_responsive_source:
             return False
-        if height and height < 160:
+        if height and height < 160 and not has_responsive_source:
             return False
-        if width and height and width * height < 60000:
+        if width and height and width * height < 60000 and not has_responsive_source:
             return False
     return True
 
@@ -1373,6 +1395,8 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             "url": url,
             "alt": clean_text(img.get("alt") or "", 180),
             "caption": figure_caption(img),
+            **({"width": int_attr(img.get("width"))} if int_attr(img.get("width")) else {}),
+            **({"height": int_attr(img.get("height"))} if int_attr(img.get("height")) else {}),
         })
 
     if is_postmedia_source(source_name):
@@ -1402,7 +1426,14 @@ def fallback_blocks(paragraphs: list[str], images: list[dict[str, Any]]) -> list
         blocks.append({"type": "paragraph", "text": paragraph})
         if images and image_index < len(images) and interval and (index + 1) % interval == 0:
             image = images[image_index]
-            blocks.append({"type": "image", "url": image["url"], "alt": image.get("alt", ""), "caption": image.get("caption", "")})
+            blocks.append({
+                "type": "image",
+                "url": image["url"],
+                "alt": image.get("alt", ""),
+                "caption": image.get("caption", ""),
+                **({"width": image.get("width")} if image.get("width") else {}),
+                **({"height": image.get("height")} if image.get("height") else {}),
+            })
             image_index += 1
     return blocks
 
@@ -1816,7 +1847,13 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
         "paragraphs": paragraphs,
         "content_blocks": blocks,
         "article_images": [
-            {"url": item["url"], "alt": item.get("alt", ""), "caption": item.get("caption", "")}
+            {
+                "url": item["url"],
+                "alt": item.get("alt", ""),
+                "caption": item.get("caption", ""),
+                **({"width": item.get("width")} if item.get("width") else {}),
+                **({"height": item.get("height")} if item.get("height") else {}),
+            }
             for item in inline_candidates
         ],
         "word_count": word_count,
@@ -2188,6 +2225,8 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
             cleaned.append({
                 "type": "image", "url": url,
                 "alt": clean_text(block.get("alt", ""), 180), "caption": clean_text(block.get("caption", ""), 320),
+                **({"width": int_attr(block.get("width"))} if int_attr(block.get("width")) else {}),
+                **({"height": int_attr(block.get("height"))} if int_attr(block.get("height")) else {}),
             })
     return cleaned
 
