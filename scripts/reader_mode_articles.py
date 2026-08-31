@@ -32,7 +32,7 @@ from fetch_news import fetch_html, same_image, valid_article_image
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-READER_SCHEMA = 1
+READER_SCHEMA = 2
 MAX_FETCH = max(40, int(os.getenv("READER_MAX_FETCH", "180")))
 WORKERS = max(2, min(12, int(os.getenv("READER_WORKERS", "10"))))
 RETRY_HOURS = max(3, int(os.getenv("READER_RETRY_HOURS", "8")))
@@ -210,26 +210,40 @@ def inline_html(node: Tag, base_url: str) -> str:
     return "".join(render_inline(child, base_url) for child in node.children).strip()
 
 
+def srcset_candidates(value: Any) -> list[tuple[int, str]]:
+    candidates: list[tuple[int, str]] = []
+    for part in str(value or "").split(","):
+        bits = part.strip().split()
+        if not bits:
+            continue
+        weight = 1
+        if len(bits) > 1:
+            raw = re.sub(r"[^0-9.]", "", bits[1])
+            try:
+                weight = int(float(raw) * (1000 if bits[1].endswith("x") else 1))
+            except Exception:
+                pass
+        candidates.append((weight, bits[0]))
+    return candidates
+
+
 def best_img_url(img: Tag, base_url: str) -> str:
     candidates: list[tuple[int, str]] = []
-    for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+    picture = img.find_parent("picture")
+    if isinstance(picture, Tag):
+        for source in picture.find_all("source"):
+            if not isinstance(source, Tag):
+                continue
+            candidates.extend(srcset_candidates(source.get("srcset") or source.get("data-srcset")))
+            for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+                value = source.get(attr)
+                if value:
+                    candidates.append((1, str(value)))
+    for attr in ("data-src", "data-lazy-src", "data-original", "data-full-src", "data-zoom-src", "data-image", "data-image-src", "data-img-url", "src"):
         value = img.get(attr)
         if value:
             candidates.append((1, str(value)))
-    srcset = img.get("srcset") or img.get("data-srcset")
-    if srcset:
-        for part in str(srcset).split(","):
-            bits = part.strip().split()
-            if not bits:
-                continue
-            weight = 1
-            if len(bits) > 1:
-                raw = re.sub(r"[^0-9.]", "", bits[1])
-                try:
-                    weight = int(float(raw) * (1000 if bits[1].endswith("x") else 1))
-                except Exception:
-                    pass
-            candidates.append((weight, bits[0]))
+    candidates.extend(srcset_candidates(img.get("srcset") or img.get("data-srcset")))
     for _, candidate in sorted(candidates, reverse=True):
         url = safe_url(candidate, base_url)
         if url:
@@ -255,6 +269,8 @@ def image_block(img: Tag, base_url: str, hero: str = "") -> dict[str, Any] | Non
         "url": url,
         "alt": compact(img.get("alt"))[:180],
         "caption": caption,
+        **({"width": int(str(img.get("width") or "0"))} if str(img.get("width") or "").isdigit() else {}),
+        **({"height": int(str(img.get("height") or "0"))} if str(img.get("height") or "").isdigit() else {}),
     }
 
 
