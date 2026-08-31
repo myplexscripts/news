@@ -33,6 +33,7 @@ jobs:
           python -m py_compile scripts/enrich_pending.py
           python -m py_compile scripts/merge_enriched_output.py
           python -m py_compile scripts/build_search_index.py
+          python scripts/test_merge_enriched_output.py
 
       - name: Set up Node
         uses: actions/setup-node@v4
