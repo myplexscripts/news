@@ -259,38 +259,141 @@
   }
 }
 
-@media (max-width: 390px) {
-  .news-card.card-standard,
-  .latest-card-grid .news-card.card-standard,
-  .news-card.card-standard .news-card-body,
-  .latest-card-grid .news-card.card-standard .news-card-body,
-  .news-card.card-standard .news-card-media,
-  .latest-card-grid .news-card.card-standard .news-card-media {
-    min-height: 124px !important;
+/* Graceful motion: card reveals, icon morphing and page transitions. */
+@supports (animation-timeline: view()) {
+  .news-card:not([hidden]) {
+    animation-name: news-card-reveal;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(.22, 1, .36, 1);
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
   }
+}
 
-  .site-header-home .brand {
-    font-size: 28px !important;
+@keyframes news-card-reveal {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+    scale: 0.985;
   }
-
-  .site-header-home .home-header-updated {
-    font-size: 15px !important;
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
   }
+}
 
-  .site-header-home .home-header-date {
-    font-size: clamp(42px, 12vw, 50px) !important;
+@media (max-width: 760px) {
+  @supports ((-webkit-mask: url("")) or (mask: url(""))) {
+    .mobile-home-tab #mobileHomeIcon {
+      opacity: 0 !important;
+    }
+
+    .mobile-home-tab::before,
+    .mobile-home-tab::after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      width: 25px;
+      height: 25px;
+      background: currentColor;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      pointer-events: none;
+      transition:
+        opacity 220ms ease,
+        transform 320ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .mobile-home-tab::before {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5H15v-6H9v6H3.5a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 10.8 12 3l9 7.8v9.7a.5.5 0 0 1-.5.5H15v-6H9v6H3.5a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+
+    .mobile-home-tab::after {
+      -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round' d='M12 20V4M6 10l6-6 6 6'/%3E%3C/svg%3E");
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.3' stroke-linecap='round' stroke-linejoin='round' d='M12 20V4M6 10l6-6 6 6'/%3E%3C/svg%3E");
+      opacity: 0;
+      transform: translate(-50%, -42%) scale(0.72) rotate(24deg);
+    }
+
+    .mobile-home-tab.is-back-to-top::before {
+      opacity: 0;
+      transform: translate(-50%, -58%) scale(0.72) rotate(-24deg);
+    }
+
+    .mobile-home-tab.is-back-to-top::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+  }
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+#page-content {
+  view-transition-name: app-content;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(app-content) {
+  animation: app-content-out 140ms ease both;
+}
+
+::view-transition-new(app-content) {
+  animation: app-content-in 300ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes app-content-out {
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.997);
+  }
+}
+
+@keyframes app-content-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mobile-tab-indicator,
-  .mobile-tab {
+  .news-card {
+    animation: none !important;
+    opacity: 1 !important;
+    translate: none !important;
+    scale: 1 !important;
+  }
+
+  .mobile-home-tab::before,
+  .mobile-home-tab::after {
     transition: none !important;
   }
-}
 
-/* Softer dark-mode canvas and primary text for reduced eye strain. */
-html[data-theme='dark'] {
-  --bg: #050505;
-  --ink: #ececec;
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-old(app-content),
+  ::view-transition-new(app-content) {
+    animation: none !important;
+  }
 }
