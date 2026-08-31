@@ -3,8 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import NewsCard from '../components/NewsCard.astro';
 import news from '../../data/news.json';
 import { collapseTimelineStories } from '../lib/timelineStories';
+import '../styles/editorial-home.css';
 
-const storyTime = (story) => story.published;
+const storyTime = (story) => story.cluster_latest_published || story.published;
 const sourceScopeByName = new Map(
   (news.source_health || []).map((source) => [
     String(source.source || '').trim(),
@@ -24,18 +25,12 @@ const scopeOf = (story) => {
   return 'local';
 };
 const allStories = (news.stories || []).map((story) => ({ ...story, scope: scopeOf(story) }));
-
-// Keep a full local window even after national sources are added. Each scope is
-// collapsed independently so a newer national report can never hide a London
-// report from the Local feed simply because both belong to the same event cluster.
 const localStories = collapseTimelineStories(allStories.filter((story) => story.scope === 'local')).slice(0, 90);
 const canadaStories = collapseTimelineStories(allStories.filter((story) => story.scope === 'canada')).slice(0, 90);
 const stories = [...localStories, ...canadaStories]
   .sort((a, b) => Date.parse(storyTime(b) || '') - Date.parse(storyTime(a) || ''))
   .slice(0, 180);
 
-// Local and Canada are feed scopes, not article sections. Keeping them out of the
-// section tabs prevents contradictory combinations such as Canada feed + Local.
 const scopeCategories = new Set(['Local', 'Canada']);
 const preferredCategoryOrder = ['Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
 const discoveredCategories = Array.from(new Set(stories.map((story) => story.category).filter((category) => category && !scopeCategories.has(category))));
@@ -46,7 +41,40 @@ const orderedCategories = [
 const primaryCategories = orderedCategories.slice(0, 4);
 const moreCategories = orderedCategories.slice(4);
 const base = import.meta.env.BASE_URL;
-const categoryClass = (category = 'Local') => `category-${category.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const categoryClass = (category = 'Local') => `category-${String(category).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const dataSearchFor = (story) => `${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase();
+
+const topStoryIds = new Set((news.top_story_ids || []).map(String));
+const editorialRank = [...localStories].sort((a, b) => {
+  const aTop = topStoryIds.has(String(a.id)) ? 1 : 0;
+  const bTop = topStoryIds.has(String(b.id)) ? 1 : 0;
+  if (aTop !== bTop) return bTop - aTop;
+  const rankDiff = Number(b.rank_score || 0) - Number(a.rank_score || 0);
+  if (rankDiff) return rankDiff;
+  return Date.parse(storyTime(b) || '') - Date.parse(storyTime(a) || '');
+});
+const leadStory = editorialRank.find((story) => story.card_image || story.image) || editorialRank[0];
+const usedEditorialIds = new Set(leadStory?.id ? [String(leadStory.id)] : []);
+const supportStories = editorialRank.filter((story) => !usedEditorialIds.has(String(story.id))).slice(0, 2);
+supportStories.forEach((story) => usedEditorialIds.add(String(story.id)));
+const justInStories = [...localStories]
+  .sort((a, b) => Date.parse(storyTime(b) || '') - Date.parse(storyTime(a) || ''))
+  .filter((story) => !usedEditorialIds.has(String(story.id)))
+  .slice(0, 6);
+justInStories.forEach((story) => usedEditorialIds.add(String(story.id)));
+
+const sectionGroups = [];
+for (const category of orderedCategories.slice(0, 4)) {
+  const items = editorialRank
+    .filter((story) => story.category === category && !usedEditorialIds.has(String(story.id)))
+    .slice(0, 2);
+  if (!items.length) continue;
+  items.forEach((story) => usedEditorialIds.add(String(story.id)));
+  sectionGroups.push({ category, stories: items });
+}
+
+const timelineStories = stories.filter((story) => !usedEditorialIds.has(String(story.id)));
+const storyIndex = new Map(stories.map((story, index) => [story.id, index]));
 
 const localDateKey = (value) => {
   try {
@@ -86,9 +114,8 @@ const groupLabels = {
 };
 const groupOrder = ['today', 'yesterday', 'two-days-ago', 'earlier'];
 const dateGroups = groupOrder
-  .map((key) => ({ key, label: groupLabels[key], stories: stories.filter((story) => groupKeyFor(storyTime(story)) === key) }))
+  .map((key) => ({ key, label: groupLabels[key], stories: timelineStories.filter((story) => groupKeyFor(storyTime(story)) === key) }))
   .filter((group) => group.stories.length > 0);
-const storyIndex = new Map(stories.map((story, index) => [story.id, index]));
 
 const todayLabel = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Toronto',
@@ -115,7 +142,7 @@ const generated = news.generated_at
     </button>
   </div>
 
-  <main class="home-page card-home" id="main-content">
+  <main class="home-page card-home editorial-home" id="main-content">
     <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
       <div class="shell section-nav-inner card-filter-inner">
         <div class="feed-scope-row">
@@ -151,9 +178,105 @@ const generated = news.generated_at
       </div>
     </section>
 
-    <section class="news-card-section shell" id="latest" aria-labelledby="latest-heading">
-      <header class="news-card-section-header">
-        <h2 id="latest-heading" class="visually-hidden">Latest news</h2>
+    {(leadStory || supportStories.length > 0) && (
+      <section class="editorial-front shell" data-editorial-section="front">
+        <div class="editorial-home-heading">
+          <div><h2>Top Stories</h2></div>
+          <p>Selected by relevance, freshness and coverage</p>
+        </div>
+        <div class="editorial-front-grid">
+          {leadStory && (
+            <div class="editorial-lead-slot">
+              <NewsCard
+                story={leadStory}
+                index={0}
+                variant="featured"
+                searchable={true}
+                dateGroup={groupKeyFor(storyTime(leadStory))}
+                dataSearch={dataSearchFor(leadStory)}
+                className="editorial-lead-card"
+              />
+            </div>
+          )}
+          {supportStories.length > 0 && (
+            <div class="editorial-support-stack">
+              {supportStories.map((story, index) => (
+                <NewsCard
+                  story={story}
+                  index={index + 1}
+                  variant="featured"
+                  searchable={true}
+                  dateGroup={groupKeyFor(storyTime(story))}
+                  dataSearch={dataSearchFor(story)}
+                  className="editorial-support-card"
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    {justInStories.length > 0 && (
+      <section class="editorial-just-in shell" data-editorial-section="just-in">
+        <div class="editorial-home-heading">
+          <div><h2>Just In</h2></div>
+          <p>The newest local reporting</p>
+        </div>
+        <div class="editorial-just-in-grid">
+          {justInStories.map((story, index) => (
+            <NewsCard
+              story={story}
+              index={index + 3}
+              variant="standard"
+              searchable={true}
+              dateGroup={groupKeyFor(storyTime(story))}
+              dataSearch={dataSearchFor(story)}
+              className="editorial-just-in-card"
+              showSummary={false}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {sectionGroups.length > 0 && (
+      <section class="editorial-sections shell" data-editorial-section="sections">
+        <div class="editorial-home-heading">
+          <div><h2>Across London</h2></div>
+          <p>Leading stories by section</p>
+        </div>
+        <div class="editorial-section-grid">
+          {sectionGroups.map((group) => (
+            <section class:list={["editorial-section-block", categoryClass(group.category)]} data-editorial-block>
+              <header class="editorial-section-block-heading">
+                <h3>{group.category}</h3>
+                <a href={`${base}?section=${encodeURIComponent(group.category)}&scope=local`}>
+                  View all <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                </a>
+              </header>
+              <div class="editorial-section-stories">
+                {group.stories.map((story) => (
+                  <NewsCard
+                    story={story}
+                    variant="standard"
+                    searchable={true}
+                    dateGroup={groupKeyFor(storyTime(story))}
+                    dataSearch={dataSearchFor(story)}
+                    className="editorial-section-card"
+                    showSummary={false}
+                  />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="news-card-section shell editorial-timeline" id="latest" aria-labelledby="latest-heading">
+      <header class="news-card-section-header editorial-home-heading">
+        <div><h2 id="latest-heading">Latest</h2></div>
         <p class="results-status visually-hidden" id="resultsStatus" aria-live="polite">Newest local stories shown first</p>
       </header>
 
@@ -165,15 +288,14 @@ const generated = news.generated_at
             </header>
             {group.stories.map((story) => {
               const index = storyIndex.get(story.id) ?? 99;
-              const timestamp = storyTime(story);
               return (
                 <NewsCard
                   story={story}
                   index={index}
-                  variant={index < 3 ? 'featured' : 'standard'}
+                  variant="standard"
                   searchable={true}
                   dateGroup={group.key}
-                  dataSearch={`${story.title} ${story.summary || ''} ${(story.cluster_sources || [story.source]).join(' ')} ${story.category || ''}`.toLowerCase()}
+                  dataSearch={dataSearchFor(story)}
                 />
               );
             })}
@@ -204,8 +326,11 @@ const generated = news.generated_at
     const sectionMore = document.getElementById('sectionMore');
     const moreLabel = document.getElementById('moreLabel');
     const cards = [...document.querySelectorAll('.news-card.searchable')];
+    const timelineCards = [...document.querySelectorAll('#newsCardGrid .news-card.searchable')];
     const dateHeadings = [...document.querySelectorAll('[data-date-heading]')];
     const scopeButtons = [...document.querySelectorAll('[data-scope-filter]')];
+    const editorialSections = [...document.querySelectorAll('[data-editorial-section]')];
+    const editorialBlocks = [...document.querySelectorAll('[data-editorial-block]')];
 
     let activeFilter = 'All';
     let activeScope = 'local';
@@ -245,9 +370,6 @@ const generated = news.generated_at
       if (persist) {
         try { localStorage.setItem(FEED_SCOPE_KEY, next); } catch {}
       }
-
-      // A feed choice should always mean the complete feed. Reset any narrower
-      // section filter so Local -> Canada can never result in an empty intersection.
       if (persist && activeFilter !== 'All') {
         setFilter('All');
         return;
@@ -268,18 +390,22 @@ const generated = news.generated_at
       applyFilters();
     }
 
-    function assignCardLayouts(visibleCards) {
-      cards.forEach((card) => card.classList.remove('card-featured', 'card-secondary', 'card-standard'));
-      visibleCards.forEach((card, index) => {
-        card.classList.add(index < 3 ? 'card-featured' : 'card-standard');
-      });
-    }
-
     function updateDateHeadings() {
       dateHeadings.forEach((heading) => {
         const key = heading.dataset.dateHeading;
-        const hasVisibleStories = cards.some((card) => card.dataset.dateGroup === key && !card.classList.contains('filtered-out'));
+        const hasVisibleStories = timelineCards.some((card) => card.dataset.dateGroup === key && !card.classList.contains('filtered-out'));
         heading.hidden = !hasVisibleStories;
+      });
+    }
+
+    function updateEditorialVisibility() {
+      editorialBlocks.forEach((block) => {
+        const blockCards = [...block.querySelectorAll('.news-card.searchable')];
+        block.hidden = !blockCards.some((card) => !card.classList.contains('filtered-out'));
+      });
+      editorialSections.forEach((section) => {
+        const sectionCards = [...section.querySelectorAll('.news-card.searchable')];
+        section.hidden = !sectionCards.some((card) => !card.classList.contains('filtered-out'));
       });
     }
 
@@ -300,8 +426,8 @@ const generated = news.generated_at
         if (show) visibleCards.push(item);
       });
 
-      assignCardLayouts(visibleCards);
       updateDateHeadings();
+      updateEditorialVisibility();
       if (noResults) noResults.hidden = visibleCards.length !== 0;
       if (resultsStatus) {
         const qualifiers = [activeScope === 'local' ? 'Local' : activeScope === 'canada' ? 'Canada' : 'All'];
