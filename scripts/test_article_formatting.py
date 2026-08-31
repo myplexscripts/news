@@ -58,6 +58,28 @@ def test_dom_list_items_keep_inline_formatting() -> None:
     assert "<em>Wednesday:</em>" in listing["items"][1]["html"]
 
 
+def test_dom_picture_source_image_is_preserved() -> None:
+    raw = """
+    <article>
+      <p>The article begins with enough real body copy to make this a normal publisher story and avoid tiny fragment rejection.</p>
+      <figure>
+        <picture>
+          <source srcset="/images/story-640.jpg 640w, /images/story-1600.jpg 1600w">
+          <img src="/images/placeholder.jpg" width="800" height="500" alt="Crews working downtown">
+        </picture>
+        <figcaption>Crews worked downtown Tuesday.</figcaption>
+      </figure>
+      <p>The next paragraph continues the report with more details from officials and residents affected by the work.</p>
+    </article>
+    """
+    blocks = extract_dom_blocks(raw, "https://example.test/news/story", "Downtown work")
+    image = next(block for block in blocks if block.get("type") == "image")
+    assert image["url"] == "https://example.test/images/story-1600.jpg"
+    assert image["width"] == 800
+    assert image["height"] == 500
+    assert image["caption"] == "Crews worked downtown Tuesday."
+
+
 def test_markdown_inline_preserves_emphasis_and_link() -> None:
     rendered = markdown_inline_html(
         "This *interview* includes **important context** and a [source](https://example.test/source).",
@@ -96,6 +118,7 @@ def main() -> int:
         test_dom_preserves_strong_emphasis_and_links,
         test_dom_strips_unsafe_inline_markup,
         test_dom_list_items_keep_inline_formatting,
+        test_dom_picture_source_image_is_preserved,
         test_markdown_inline_preserves_emphasis_and_link,
         test_cbc_strong_question_stays_paragraph,
     ]
