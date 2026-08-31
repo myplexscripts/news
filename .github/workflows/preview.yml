@@ -1,0 +1,60 @@
+name: Build test preview
+
+on:
+  push:
+    branches:
+      - test/editorial-fast-search
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out test branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate new Python workers
+        run: |
+          python -m py_compile scripts/fast_refresh.py
+          python -m py_compile scripts/enrich_pending.py
+          python -m py_compile scripts/build_search_index.py
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install site dependencies
+        run: npm ci
+
+      - name: Prepare static assets
+        run: |
+          mkdir -p public/images/logos public/data
+          cp -a images/logos/. public/images/logos/
+          cp data/news.json public/data/news.json
+          cp data/audit.json public/data/audit.json
+          python scripts/build_search_index.py
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Upload test build
+        uses: actions/upload-artifact@v4
+        with:
+          name: london-news-test-preview
+          path: dist
+          retention-days: 7
