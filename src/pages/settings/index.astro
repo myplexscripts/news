@@ -84,12 +84,25 @@ const accents = [
           </div>
           <p class="settings-footnote">Reading history and these preferences are stored only in this browser. They are not tied to an account.</p>
         </section>
+
+        <section class="settings-group" aria-labelledby="data-heading">
+          <h2 id="data-heading">Data</h2>
+          <div class="settings-card">
+            <div class="settings-row">
+              <div class="settings-row-copy">
+                <strong>Clear all data</strong>
+                <span>Reset preferences and remove read history, Read Later items and hidden sources from this device.</span>
+              </div>
+              <button class="settings-action-button" id="clearAllData" type="button">Clear all data</button>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </main>
 
   <script>
-    import { clearReadHistory, initialiseUserState, onUserStateChange, setPreference } from '../../lib/userState';
+    import { clearAllUserData, clearReadHistory, initialiseUserState, onUserStateChange, setPreference } from '../../lib/userState';
 
     const root = document.documentElement;
     const themeChoices = [...document.querySelectorAll('[data-theme-choice]')];
@@ -97,6 +110,7 @@ const accents = [
     const hideReadToggle = document.getElementById('hideReadToggle');
     const readHistoryStatus = document.getElementById('readHistoryStatus');
     const clearReadHistoryButton = document.getElementById('clearReadHistory');
+    const clearAllDataButton = document.getElementById('clearAllData');
 
     function syncSettings(state) {
       const theme = state.theme || root.dataset.theme || 'light';
@@ -150,6 +164,20 @@ const accents = [
 
     clearReadHistoryButton?.addEventListener('click', () => {
       clearReadHistory().catch(() => {});
+    });
+
+    clearAllDataButton?.addEventListener('click', async () => {
+      if (!(clearAllDataButton instanceof HTMLButtonElement)) return;
+      const confirmed = window.confirm('Clear all Forest City News data from this device? This cannot be undone.');
+      if (!confirmed) return;
+
+      clearAllDataButton.disabled = true;
+      try {
+        await clearAllUserData();
+        window.location.reload();
+      } catch {
+        clearAllDataButton.disabled = false;
+      }
     });
 
     initialiseUserState().then(syncSettings).catch(() => {});
