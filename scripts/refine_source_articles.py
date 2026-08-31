@@ -17,7 +17,7 @@ from refine_article_formatting import extract_dom_blocks
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-PROFILE_SCHEMA = 1
+PROFILE_SCHEMA = 2
 MAX_PER_RUN = max(8, int(os.getenv("PROFILE_MAX_PER_RUN", "42")))
 RECENT_HOURS = max(24, int(os.getenv("PROFILE_RECENT_HOURS", "168")))
 WORKERS = max(2, min(8, int(os.getenv("PROFILE_WORKERS", "6"))))
