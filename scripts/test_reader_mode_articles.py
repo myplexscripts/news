@@ -61,6 +61,25 @@ def run() -> None:
     assert any('href="https://example.com/background"' in block.get("html", "") for block in blocks)
     assert article_format_state(blocks) == "structured"
 
+    responsive_fragment = """
+    <article>
+      <p>The article includes a responsive photo between normal paragraphs so the image should survive reader-mode cleanup.</p>
+      <figure>
+        <picture>
+          <source srcset="/photos/local-640.webp 640w, /photos/local-1400.webp 1400w">
+          <img src="/photos/placeholder.webp" width="700" height="467" alt="A local streetscape">
+        </picture>
+        <figcaption>A local streetscape was photographed Tuesday.</figcaption>
+      </figure>
+      <p>The second paragraph continues with enough detail to keep the candidate complete.</p>
+    </article>
+    """
+    responsive_blocks = html_to_blocks(responsive_fragment, "https://example.com/story", "Different title", "")
+    responsive_image = next(block for block in responsive_blocks if block.get("type") == "image")
+    assert responsive_image["url"] == "https://example.com/photos/local-1400.webp"
+    assert responsive_image["width"] == 700
+    assert responsive_image["height"] == 467
+
     page = """
     <!doctype html><html><body>
       <header><nav><a href="/">Home</a><a href="/sports">Sports</a></nav></header>
