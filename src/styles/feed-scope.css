@@ -130,30 +130,35 @@
   --nav-glass-dark: #000;
   --nav-glass-reflex-light: 1;
   --nav-glass-reflex-dark: 1;
-  --nav-glass-saturation: 150%;
-  --glass-outline: rgb(60 60 67 / 0.18);
-  --glass-control-bg: color-mix(in srgb, var(--nav-glass) 14%, transparent);
-  --glass-control-selected: color-mix(in srgb, var(--nav-glass) 38%, transparent);
-  --glass-control-accent: color-mix(in srgb, var(--accent) 16%, var(--nav-glass) 30%);
+  --nav-glass-saturation: 140%;
+  --glass-outline: rgb(60 60 67 / 0.22);
+  --glass-control-bg: rgb(118 118 128 / 0.16);
+  --glass-control-selected: rgb(118 118 128 / 0.28);
+  --glass-control-accent: color-mix(in srgb, var(--accent) 18%, rgb(118 118 128 / 0.24));
+  --glass-backdrop-filter: blur(7px) saturate(140%) contrast(1.18);
+  --glass-control-filter: blur(9px) saturate(138%) contrast(1.16);
 }
 
 html[data-theme='dark'] {
-  --nav-glass-reflex-light: 0.3;
+  --nav-glass-reflex-light: 0.34;
   --nav-glass-reflex-dark: 2;
-  --glass-outline: rgb(255 255 255 / 0.18);
-  --glass-control-bg: color-mix(in srgb, var(--nav-glass) 18%, transparent);
-  --glass-control-selected: color-mix(in srgb, var(--nav-glass) 46%, transparent);
-  --glass-control-accent: color-mix(in srgb, var(--accent) 18%, var(--nav-glass) 38%);
+  --nav-glass-saturation: 145%;
+  --glass-outline: rgb(255 255 255 / 0.2);
+  --glass-control-bg: rgb(44 44 46 / 0.3);
+  --glass-control-selected: rgb(99 99 102 / 0.32);
+  --glass-control-accent: color-mix(in srgb, var(--accent) 20%, rgb(58 58 60 / 0.36));
+  --glass-backdrop-filter: blur(7px) saturate(145%) contrast(1.28) brightness(0.82);
+  --glass-control-filter: blur(9px) saturate(145%) contrast(1.24) brightness(0.86);
 }
 
 @media (max-width: 760px) {
   .mobile-tab-bar {
     border: 0 !important;
-    background-color: color-mix(in srgb, var(--nav-glass) 12%, transparent) !important;
-    backdrop-filter: blur(8px) saturate(var(--nav-glass-saturation)) !important;
-    -webkit-backdrop-filter: blur(8px) saturate(var(--nav-glass-saturation)) !important;
+    background-color: var(--glass-control-bg) !important;
+    backdrop-filter: var(--glass-backdrop-filter) !important;
+    -webkit-backdrop-filter: var(--glass-backdrop-filter) !important;
     box-shadow:
-      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 10%), transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 12%), transparent),
       inset 1.8px 3px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
       inset -2px -2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
       inset -3px -8px 1px -6px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
@@ -165,9 +170,9 @@ html[data-theme='dark'] {
   }
 
   html[data-theme='dark'] .mobile-tab-bar {
-    background-color: color-mix(in srgb, var(--nav-glass) 12%, transparent) !important;
+    background-color: var(--glass-control-bg) !important;
     box-shadow:
-      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 10%), transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 12%), transparent),
       inset 1.8px 3px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
       inset -2px -2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
       inset -3px -8px 1px -6px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
@@ -178,15 +183,17 @@ html[data-theme='dark'] {
   }
 
   .mobile-tab-indicator {
-    background-color: color-mix(in srgb, var(--nav-glass) 36%, transparent) !important;
+    background-color: var(--glass-control-selected) !important;
+    backdrop-filter: var(--glass-backdrop-filter) !important;
+    -webkit-backdrop-filter: var(--glass-backdrop-filter) !important;
     box-shadow:
-      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 10%), transparent),
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 14%), transparent),
       inset 2px 1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
       inset -1.5px -1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
       inset -2px -6px 1px -5px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
       inset -1px 2px 3px -1px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
       inset 0 -4px 1px -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
-      0 3px 6px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 8%), transparent) !important;
+      0 2px 5px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 6%), transparent) !important;
     transition:
       transform 400ms cubic-bezier(1, 0, 0.4, 1),
       background-color 400ms cubic-bezier(1, 0, 0.4, 1),
@@ -218,8 +225,8 @@ html[data-theme='dark'] {
 .settings-segmented {
   border: 0 !important;
   background: var(--glass-control-bg) !important;
-  backdrop-filter: blur(12px) saturate(var(--nav-glass-saturation)) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(var(--nav-glass-saturation)) !important;
+  backdrop-filter: var(--glass-control-filter) !important;
+  -webkit-backdrop-filter: var(--glass-control-filter) !important;
   box-shadow:
     inset 0 0 0 1px var(--glass-outline),
     inset 1.8px 3px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 72%), transparent),
@@ -251,6 +258,8 @@ html[data-theme='dark'] {
 .settings-segmented button.selected {
   background: var(--glass-control-accent) !important;
   color: var(--accent) !important;
+  backdrop-filter: var(--glass-control-filter) !important;
+  -webkit-backdrop-filter: var(--glass-control-filter) !important;
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 12%), transparent),
     inset 2px 1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
@@ -274,10 +283,10 @@ html[data-theme='dark'] {
 .bordered-button,
 .settings-action-button {
   border: 0 !important;
-  background: color-mix(in srgb, var(--nav-glass) 12%, transparent) !important;
+  background: var(--glass-control-bg) !important;
   color: var(--ink) !important;
-  backdrop-filter: blur(10px) saturate(var(--nav-glass-saturation)) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(var(--nav-glass-saturation)) !important;
+  backdrop-filter: var(--glass-control-filter) !important;
+  -webkit-backdrop-filter: var(--glass-control-filter) !important;
   box-shadow:
     inset 0 0 0 1px var(--glass-outline),
     inset 1.4px 2.4px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 68%), transparent),
@@ -303,6 +312,8 @@ html[data-theme='dark'] .archive-search-controls select {
 .settings-switch-track,
 .source-switch {
   background: var(--glass-control-bg) !important;
+  backdrop-filter: var(--glass-control-filter) !important;
+  -webkit-backdrop-filter: var(--glass-control-filter) !important;
   box-shadow:
     inset 0 0 0 1px var(--glass-outline),
     inset 1.2px 2px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 58%), transparent),
@@ -338,6 +349,8 @@ html[data-theme='dark'] .archive-search-controls select {
 .accent-choice {
   border: 0 !important;
   background: var(--glass-control-bg) !important;
+  backdrop-filter: var(--glass-control-filter) !important;
+  -webkit-backdrop-filter: var(--glass-control-filter) !important;
   box-shadow:
     inset 0 0 0 1px var(--glass-outline),
     inset 1.4px 2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
