@@ -1,0 +1,360 @@
+/* Forest City News UI rules.
+   Liquid Glass is permitted only on the floating mobile navigation.
+   Controls follow the established HIG sizing and accessibility rules. */
+
+:root {
+  --ui-control-height: 52px;
+  --ui-touch-min: 44px;
+  --ui-radius: 14px;
+  --ui-fill: var(--gray-6);
+  --ui-choice-fill: var(--gray-6);
+  --ui-tab-line: var(--line);
+}
+
+html[data-theme='dark'] {
+  --ui-fill: var(--gray-6);
+  --ui-choice-fill: var(--gray-5);
+  --ui-tab-line: var(--line-strong);
+}
+
+/* No Liquid Glass outside the floating mobile navigation. */
+html body *:not(.mobile-tab-bar):not(.mobile-tab-indicator),
+html body *:not(.mobile-tab-bar):not(.mobile-tab-indicator)::before,
+html body *:not(.mobile-tab-bar):not(.mobile-tab-indicator)::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body .site-header,
+html body .card-filter-wrap,
+html body .card-filter-inner {
+  background: var(--bg) !important;
+  box-shadow: none !important;
+}
+
+html body .control-popover,
+html body .section-menu,
+html body [role='menu'] {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.14) !important;
+}
+
+html[data-theme='dark'] body .control-popover,
+html[data-theme='dark'] body .section-menu,
+html[data-theme='dark'] body [role='menu'] {
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.38) !important;
+}
+
+/* HIG-sized fields. */
+html body select,
+html body .archive-search-controls select {
+  width: 100% !important;
+  min-height: var(--ui-control-height) !important;
+  height: var(--ui-control-height) !important;
+  padding: 0 46px 0 16px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--ui-radius) !important;
+  background-color: var(--ui-fill) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M4.5 6.75 9 11.25l4.5-4.5' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+  color: var(--ink) !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+html body .search-page-field,
+html body .search-page-field-refined {
+  min-height: var(--ui-control-height) !important;
+  background: var(--ui-fill) !important;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+
+html body .bordered-button,
+html body .manage-sources-button,
+html body .settings-action-button,
+html body .control-menu-item,
+html body .section-menu button,
+html body [role='menuitem'] {
+  min-height: var(--ui-touch-min) !important;
+  font-size: 16px !important;
+}
+
+html body .bordered-button,
+html body .manage-sources-button,
+html body .settings-action-button {
+  background: var(--ui-fill) !important;
+  border-color: var(--line) !important;
+  box-shadow: none !important;
+}
+
+/* The old shared segmented-control treatment is removed.
+   Feed and directory selectors are plain tab bars with no enclosing capsule. */
+html body .feed-scope-switch,
+html body .archive-scope-switch,
+html body .directory-tabs {
+  position: relative !important;
+  display: grid !important;
+  width: max-content !important;
+  min-height: var(--ui-control-height) !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 20px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--ui-tab-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+html body .feed-scope-switch,
+html body .archive-scope-switch {
+  grid-template-columns: repeat(3, minmax(84px, 1fr)) !important;
+}
+
+html body .directory-tabs {
+  grid-template-columns: repeat(2, minmax(120px, 1fr)) !important;
+}
+
+html body .feed-scope-button,
+html body .archive-scope-switch button,
+html body .directory-tab {
+  position: relative !important;
+  min-width: 0 !important;
+  min-height: var(--ui-control-height) !important;
+  height: var(--ui-control-height) !important;
+  margin: 0 !important;
+  padding: 0 4px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--muted) !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  font-weight: 650 !important;
+  line-height: 1 !important;
+  transform: none !important;
+  cursor: pointer;
+}
+
+html body .feed-scope-button::before,
+html body .archive-scope-switch button::before,
+html body .directory-tab::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body .feed-scope-button::after,
+html body .archive-scope-switch button::after,
+html body .directory-tab::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -1px !important;
+  top: auto !important;
+  width: auto !important;
+  height: 3px !important;
+  border-radius: 3px 3px 0 0 !important;
+  background: var(--accent) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+html body .feed-scope-button:hover,
+html body .archive-scope-switch button:hover,
+html body .directory-tab:hover {
+  color: var(--ink) !important;
+}
+
+html body .feed-scope-button.active,
+html body .feed-scope-button[aria-pressed='true'],
+html body .archive-scope-switch button.active,
+html body .archive-scope-switch button[aria-pressed='true'],
+html body .directory-tab.active,
+html body .directory-tab[aria-selected='true'] {
+  background: transparent !important;
+  color: var(--accent) !important;
+  box-shadow: none !important;
+}
+
+html body .feed-scope-button.active::after,
+html body .feed-scope-button[aria-pressed='true']::after,
+html body .archive-scope-switch button.active::after,
+html body .archive-scope-switch button[aria-pressed='true']::after,
+html body .directory-tab.active::after,
+html body .directory-tab[aria-selected='true']::after {
+  opacity: 1 !important;
+}
+
+/* Theme is a choice list, not a segmented control. */
+html body .settings-segmented {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  grid-auto-flow: row !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 8px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+html body .settings-segmented button {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: var(--ui-control-height) !important;
+  height: var(--ui-control-height) !important;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: var(--ui-radius) !important;
+  background: var(--ui-choice-fill) !important;
+  color: var(--ink) !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-align: left !important;
+  transform: none !important;
+}
+
+html body .settings-segmented button::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body .settings-segmented button::after {
+  content: '' !important;
+  position: static !important;
+  display: inline-flex !important;
+  width: 22px !important;
+  height: 22px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  color: var(--accent) !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  opacity: 0 !important;
+}
+
+html body .settings-segmented button.selected,
+html body .settings-segmented button[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--accent) 10%, var(--ui-choice-fill)) !important;
+  color: var(--ink) !important;
+}
+
+html body .settings-segmented button.selected::after,
+html body .settings-segmented button[aria-pressed='true']::after {
+  content: '✓' !important;
+  opacity: 1 !important;
+}
+
+/* Flat system switches, with a 44px touch area around the 51x31 control. */
+html body .settings-switch,
+html body .source-switch-row {
+  min-width: 51px !important;
+  min-height: var(--ui-touch-min) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+html body .settings-switch-track,
+html body .source-switch {
+  width: 51px !important;
+  height: 31px !important;
+  min-width: 51px !important;
+  min-height: 31px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--gray-4) !important;
+  box-shadow: none !important;
+}
+
+html body .settings-switch-track::after,
+html body .source-switch > span {
+  width: 27px !important;
+  height: 27px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.28) !important;
+}
+
+html body .settings-switch input:checked + .settings-switch-track,
+html body .source-switch-input:checked + .source-switch {
+  background: var(--accent) !important;
+  box-shadow: none !important;
+}
+
+/* Accent choices stay flat and keep full touch targets. */
+html body .accent-choice,
+html[data-theme='dark'] body .accent-choice {
+  min-width: var(--ui-touch-min) !important;
+  min-height: var(--ui-touch-min) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Liquid Glass is restored only for the floating mobile navigation. */
+@media (max-width: 760px) {
+  html body .feed-scope-switch,
+  html body .archive-scope-switch,
+  html body .directory-tabs {
+    width: 100% !important;
+  }
+
+  html body .feed-scope-switch,
+  html body .archive-scope-switch {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  html body .directory-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  html body .mobile-tab-bar {
+    background: color-mix(in srgb, var(--surface) 58%, transparent) !important;
+    border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent) !important;
+    box-shadow: 0 16px 42px rgb(0 0 0 / 0.24), inset 0 1px 0 rgb(255 255 255 / 0.16), inset 0 -1px 0 rgb(0 0 0 / 0.08) !important;
+    backdrop-filter: blur(34px) saturate(210%) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(210%) !important;
+  }
+
+  html[data-theme='dark'] body .mobile-tab-bar {
+    background: color-mix(in srgb, var(--surface) 52%, transparent) !important;
+  }
+
+  html body .mobile-tab-indicator {
+    background: color-mix(in srgb, var(--surface) 72%, transparent) !important;
+    backdrop-filter: blur(18px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body .feed-scope-button,
+  html body .archive-scope-switch button,
+  html body .directory-tab,
+  html body .settings-segmented button {
+    transition: none !important;
+  }
+}
