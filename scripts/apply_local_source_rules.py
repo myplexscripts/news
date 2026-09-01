@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""Apply the explicit London-source contract after story-level scope annotation.
+"""Apply the explicit Forest City News source-scope contract.
 
-The Local feed is the union of:
-1. stories published by a defined London-area source, and
-2. stories from any other publisher that the existing locality scorer identifies
-   as being from or about London, Ontario.
+Local is a strict publisher whitelist. Story text, discovery source, locality score,
+and article topic do not promote a national publisher into Local.
 """
 from __future__ import annotations
 
@@ -12,15 +10,12 @@ import json
 from collections import Counter
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_FILE = ROOT / "data" / "news.json"
 
-SOURCE_ALIASES = {
-    "CTV News": "CTV News London",
-}
-
-# Direct local publishers and institutions confirmed for the Local feed.
+# Exact London-area publishers/institutions confirmed for the Local feed.
 LOCAL_SOURCES = {
     "104.7 Heart FM",
     "106.9 The X",
@@ -31,6 +26,7 @@ LOCAL_SOURCES = {
     "Fanshawe College Newsroom",
     "Global News London",
     "London District Catholic School Board",
+    "London Fire Department",
     "London Free Press",
     "London Health Sciences Centre",
     "London Police Service",
@@ -40,31 +36,52 @@ LOCAL_SOURCES = {
     "St. Joseph's Health Care London",
     "Thames Valley District School Board",
     "Western News",
-    # Keep this if it is discovered even though it is not currently a direct source.
-    "London Fire Department",
 }
 
 
-def canonical_source(value: Any) -> str:
+def _record_urls(record: dict[str, Any]) -> list[str]:
+    values: list[str] = []
+    for key in ("url", "link", "canonical_url", "original_url", "homepage", "source_url"):
+        value = str(record.get(key) or "").strip()
+        if value:
+            values.append(value)
+    return values
+
+
+def is_ctv_london_record(record: dict[str, Any]) -> bool:
+    """Only CTV's London edition is Local."""
+    for value in _record_urls(record):
+        try:
+            parsed = urlparse(value)
+        except Exception:
+            continue
+        host = parsed.netloc.lower().split(":", 1)[0]
+        path = parsed.path.lower()
+        if host in {"ctvnews.ca", "www.ctvnews.ca"} and (path == "/london" or path.startswith("/london/")):
+            return True
+    return False
+
+
+def canonical_source(value: Any, record: dict[str, Any] | None = None) -> str:
     name = str(value or "").strip()
-    return SOURCE_ALIASES.get(name, name)
+    if name == "CTV News" and record and is_ctv_london_record(record):
+        return "CTV News London"
+    return name
 
 
 def normalise_story_names(story: dict[str, Any]) -> None:
-    source = canonical_source(story.get("source"))
+    source = canonical_source(story.get("source"), story)
     if source:
         story["source"] = source
-
-    discovery = canonical_source(story.get("discovery_via"))
-    if discovery:
-        story["discovery_via"] = discovery
 
     cluster_sources = story.get("cluster_sources")
     if isinstance(cluster_sources, list):
         seen: set[str] = set()
         normalised: list[str] = []
         for value in cluster_sources:
-            name = canonical_source(value)
+            name = str(value or "").strip()
+            if name == "CTV News" and is_ctv_london_record(story):
+                name = "CTV News London"
             if not name or name in seen:
                 continue
             seen.add(name)
@@ -74,34 +91,45 @@ def normalise_story_names(story: dict[str, Any]) -> None:
             story["cluster_source_count"] = len(normalised)
 
 
+def scope_for_story(story: dict[str, Any]) -> str:
+    source = canonical_source(story.get("source"), story)
+    return "local" if source in LOCAL_SOURCES else "canada"
+
+
 def apply_rules(payload: dict[str, Any]) -> dict[str, Any]:
     counts: Counter[str] = Counter()
 
     for story in payload.get("stories") or []:
         if not isinstance(story, dict):
             continue
+
         normalise_story_names(story)
-
-        # Direct London-area sources are always Local. For every other publisher,
-        # keep the story-level result produced by annotate_scopes.py.
-        if canonical_source(story.get("source")) in LOCAL_SOURCES:
-            story["scope"] = "local"
-            if str(story.get("category") or "").strip() == "Canada":
-                story["category"] = "Local"
-
-        scope = "local" if str(story.get("scope") or "").lower() == "local" else "canada"
+        scope = scope_for_story(story)
         story["scope"] = scope
         counts[scope] += 1
+
+        category = str(story.get("category") or "").strip()
+        if scope == "local" and category == "Canada":
+            story["category"] = "Local"
+        elif scope == "canada" and category in {"", "Local"}:
+            story["category"] = "Canada"
 
     for health in payload.get("source_health") or []:
         if not isinstance(health, dict):
             continue
-        source = canonical_source(health.get("source"))
-        health["source"] = source
-        if source in LOCAL_SOURCES:
-            health["scope"] = "local"
 
-    payload["scope_schema_version"] = max(int(payload.get("scope_schema_version") or 0), 4)
+        source = str(health.get("source") or "").strip()
+        # Old source-health snapshots called the London collector "CTV News".
+        # Only migrate that legacy health record when it was the local collector.
+        if source == "CTV News" and (
+            is_ctv_london_record(health)
+            or str(health.get("scope") or "").strip().lower() == "local"
+        ):
+            source = "CTV News London"
+        health["source"] = source
+        health["scope"] = "local" if source in LOCAL_SOURCES else "canada"
+
+    payload["scope_schema_version"] = 5
     payload["scope_counts"] = {
         "local": counts.get("local", 0),
         "canada": counts.get("canada", 0),
@@ -121,7 +149,7 @@ def main() -> int:
 
     counts = payload.get("scope_counts") or {}
     print(
-        "Explicit local-source rules applied: "
+        "Strict local-source whitelist applied: "
         f"local={counts.get('local', 0)} "
         f"canada={counts.get('canada', 0)}"
     )
