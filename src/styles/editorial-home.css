@@ -25,6 +25,13 @@
   height: 100%;
 }
 
+/* Homepage filtering is driven by the filtered-out class in index.astro.
+   This must remain authoritative so scope, section, search, hidden-source, and
+   read-state filters affect every card in the timeline, not only the featured row. */
+.home-page .news-card.filtered-out {
+  display: none !important;
+}
+
 .editorial-lead-card .news-card-media {
   aspect-ratio: 16 / 9;
 }
