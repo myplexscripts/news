@@ -14,7 +14,7 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from fetch_news import clean_text, fetch_html
+from fetch_news import author_image_text, clean_text, fetch_html, valid_article_image
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
@@ -416,6 +416,8 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
                     url = html.unescape(match.group(2).strip())
                     key = normalize_image_key(url)
                     if not key or key == hero_key or key in seen_images:
+                        continue
+                    if not valid_article_image(url) or author_image_text(match.group(1)):
                         continue
                     seen_images.add(key)
                     blocks.append({"type": "image", "url": url, "alt": clean_text(match.group(1)), "caption": ""})

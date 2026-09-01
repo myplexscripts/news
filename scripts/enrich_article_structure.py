@@ -15,11 +15,13 @@ import requests
 from bs4 import BeautifulSoup, Tag
 
 from fetch_news import (
+    author_image_text,
     clean_text,
     extract_dom_blocks,
     fetch_html,
     sanitize_content_blocks,
     text_from_blocks,
+    valid_article_image,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -295,6 +297,8 @@ def parse_cbc_markdown(raw: str, title: str, hero_url: str = "") -> list[dict[st
                 if not key or key == hero_key or key in seen_images:
                     continue
                 if not url.lower().startswith(("http://", "https://")):
+                    continue
+                if not valid_article_image(url) or author_image_text(alt):
                     continue
                 seen_images.add(key)
                 blocks.append({"type": "image", "url": url, "alt": alt, "caption": ""})
