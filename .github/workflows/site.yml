@@ -71,14 +71,12 @@ jobs:
       - name: Report dependency audit
         run: npm audit --json > npm-audit.json || true
 
-      - name: Publish source logos
+      - name: Publish site images
         shell: bash
         run: |
           mkdir -p public/images/logos
           cp -a images/logos/. public/images/logos/
-
-      - name: Generate social share image
-        run: python scripts/write_social_card.py
+          cp images/social.png public/social.png
 
       - name: Publish feed data and search index
         shell: bash
@@ -103,7 +101,7 @@ jobs:
           owner = os.environ.get("GITHUB_REPOSITORY", "myplexscripts/news").split("/", 1)[0]
           base = os.environ.get("BASE_PATH", "/").rstrip("/")
           origin = f"https://{owner}.github.io"
-          image_url = f"{origin}{base}/social-card.png" if base else f"{origin}/social-card.png"
+          image_url = f"{origin}{base}/social.png" if base else f"{origin}/social.png"
           site_title = "Forest City News"
           description = "Local reporting from across London, Ontario."
 
@@ -128,14 +126,14 @@ jobs:
           <meta property="og:image" content="{image}">
           <meta property="og:image:secure_url" content="{image}">
           <meta property="og:image:type" content="image/png">
-          <meta property="og:image:width" content="1200">
-          <meta property="og:image:height" content="630">
-          <meta property="og:image:alt" content="Forest City News tree logo on a green background">
+          <meta property="og:image:width" content="1536">
+          <meta property="og:image:height" content="1024">
+          <meta property="og:image:alt" content="Forest City News social image">
           <meta name="twitter:card" content="summary_large_image">
           <meta name="twitter:title" content="{title}">
           <meta name="twitter:description" content="{description}">
           <meta name="twitter:image" content="{image}">
-          <meta name="twitter:image:alt" content="Forest City News tree logo on a green background">
+          <meta name="twitter:image:alt" content="Forest City News social image">
           '''
 
           updated = 0
