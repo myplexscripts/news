@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail CI if explicit London source handling regresses."""
+"""Fail CI if the explicit London source whitelist regresses."""
 from __future__ import annotations
 
 from apply_local_source_rules import LOCAL_SOURCES, apply_rules
@@ -35,28 +35,56 @@ def main() -> None:
 
     payload = {
         "stories": [
-            {"source": "CTV News", "scope": "canada", "category": "Canada"},
+            {
+                "source": "CTV News",
+                "url": "https://www.ctvnews.ca/london/article/example/",
+                "scope": "canada",
+                "category": "Canada",
+            },
+            {
+                "source": "CTV News",
+                "url": "https://www.ctvnews.ca/canada/article/example/",
+                "scope": "local",
+                "category": "Local",
+            },
             {"source": "London Free Press", "scope": "canada", "category": "Canada"},
-            {"source": "Toronto Star", "scope": "local", "category": "Local"},
-            {"source": "Toronto Star", "scope": "canada", "category": "Canada"},
+            {
+                "source": "The Globe and Mail",
+                "scope": "local",
+                "category": "Local",
+                "local_score": 100,
+                "local_reasons": ["London, Ontario +35"],
+            },
+            {
+                "source": "Toronto Star",
+                "scope": "local",
+                "category": "Local",
+                "local_score": 100,
+                "local_reasons": ["London, Ontario +35"],
+            },
         ],
         "source_health": [
             {"source": "CTV News", "scope": "local"},
             {"source": "CTV News Canada", "scope": "canada"},
+            {"source": "The Globe and Mail", "scope": "local"},
         ],
     }
+
     result = apply_rules(payload)
     stories = result["stories"]
 
-    require(stories[0]["source"] == "CTV News London", "legacy CTV local name must become CTV News London")
-    require(stories[0]["scope"] == "local", "CTV News London must always be Local")
-    require(stories[1]["scope"] == "local", "London Free Press must always be Local")
-    require(stories[2]["scope"] == "local", "story-level London matches from broader publishers must stay Local")
-    require(stories[3]["scope"] == "canada", "non-London broader stories must stay Canada")
-    require(result["source_health"][0]["source"] == "CTV News London", "Sources screen must show CTV News London")
+    require(stories[0]["source"] == "CTV News London", "legacy London CTV URL must become CTV News London")
+    require(stories[0]["scope"] == "local", "CTV News London must be Local")
+    require(stories[1]["source"] == "CTV News", "non-London CTV must not be renamed to CTV News London")
+    require(stories[1]["scope"] == "canada", "non-London CTV must be Canada")
+    require(stories[2]["scope"] == "local", "London Free Press must be Local")
+    require(stories[3]["scope"] == "canada", "The Globe and Mail must not be Local")
+    require(stories[4]["scope"] == "canada", "Toronto Star must not be Local")
+    require(result["source_health"][0]["source"] == "CTV News London", "legacy local CTV health record must become CTV News London")
     require(result["source_health"][1]["source"] == "CTV News Canada", "CTV News Canada name must remain distinct")
+    require(result["source_health"][2]["scope"] == "canada", "The Globe and Mail health record must be Canada")
 
-    print("Local-source contracts passed: confirmed London sources are always Local and CTV editions stay distinct.")
+    print("Local-source contracts passed: only the confirmed London source whitelist is Local.")
 
 
 if __name__ == "__main__":
