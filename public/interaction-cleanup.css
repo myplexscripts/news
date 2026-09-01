@@ -1,0 +1,52 @@
+/* Forest City News: calm touch interaction states.
+   Touch should not paint browser focus/tap rectangles over app controls. */
+
+html,
+html body,
+html body * {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Text-entry controls keep their normal field geometry while focused. */
+html body input:focus,
+html body textarea:focus,
+html body select:focus {
+  outline: none !important;
+}
+
+html body .search-page-field:focus-within,
+html body .search-page-field-refined:focus-within,
+html body .header-search.is-open:focus-within {
+  border-color: var(--line-strong) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Segmented controls behave like native controls rather than selectable text. */
+html body .settings-segmented,
+html body .archive-scope-switch,
+html body .directory-tabs,
+html body [data-segmented-control],
+html body .settings-segmented button,
+html body .archive-scope-switch button,
+html body .directory-tab,
+html body [data-segmented-control] > button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* On touch devices, remove persistent focus rings after a tap. Keyboard focus
+   remains available on desktop/fine-pointer environments through the base HIG layer. */
+@media (hover: none), (pointer: coarse) {
+  html body button:focus-visible,
+  html body a:focus-visible,
+  html body input:focus-visible,
+  html body select:focus-visible,
+  html body textarea:focus-visible,
+  html body summary:focus-visible,
+  html body [role='button']:focus-visible,
+  html body [role='tab']:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
