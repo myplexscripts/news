@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from unittest.mock import patch
+
 from bs4 import BeautifulSoup
 
 import fetch_news as scoop
@@ -133,6 +135,171 @@ def test_ctv_linked_promo_image_is_rejected() -> None:
     assert stats.get("images_rejected", 0) >= 1
 
 
+def test_ctv_embedded_content_elements_keep_article_images() -> None:
+    html = """
+    <script id="fusion-metadata" type="application/javascript">
+    Fusion.globalContent={
+      "content_elements": [
+        {"type": "text", "content": "The first paragraph has enough reporting about a local event to be useful, including where it happened, who attended, and why organizers said the gathering mattered to the surrounding neighbourhood."},
+        {
+          "type": "image",
+          "url": "https://cloudfront.example.test/story-photo.jpg",
+          "width": 1600,
+          "height": 900,
+          "subtitle": "The local event",
+          "caption": "People gathered for the local event Tuesday."
+        },
+        {"type": "text", "content": "The second paragraph adds another useful detail from officials at the scene, including comments about next steps and how residents can expect the work to continue over the coming weeks."}
+      ]
+    };Fusion.arcSite="ctvnews";
+    </script>
+    """
+    blocks, _ = scoop.extract_ctv_embedded_blocks(
+        BeautifulSoup(html, "html.parser"),
+        "Local event draws crowd",
+        "https://www.ctvnews.ca/london/article/local-event/",
+    )
+    images = [block for block in blocks if block.get("type") == "image"]
+    assert len(images) == 1
+    assert images[0]["url"] == "https://cloudfront.example.test/story-photo.jpg"
+    assert images[0]["width"] == 1600
+    assert images[0]["height"] == 900
+
+
+def test_ctv_canada_page_links_stay_in_canada_section() -> None:
+    html = """
+    <main>
+      <a href="/canada/article/national-story-alpha">National story alpha</a>
+      <a href="/london/article/local-story-beta">Local story beta</a>
+    </main>
+    """
+    source = scoop.Source(
+        name="CTV News Canada",
+        url="https://www.ctvnews.ca/canada/",
+        kind="page",
+        homepage="https://www.ctvnews.ca/canada/",
+        max_items=10,
+    )
+
+    with patch("fetch_news.fetch_html", return_value=(html, source.url)):
+        links = scoop.page_links(source)
+
+    assert links == ["https://www.ctvnews.ca/canada/article/national-story-alpha"]
+
+
+def test_ctv_canada_enrich_uses_structured_embedded_body() -> None:
+    html = """
+    <html>
+      <head>
+        <meta property="og:title" content="National CTV story keeps its paragraphs">
+        <meta property="og:description" content="A national story description.">
+      </head>
+      <body>
+        <script id="fusion-metadata" type="application/javascript">
+        Fusion.globalContent={
+          "content_elements": [
+            {"type": "text", "content": "The first paragraph explains the national story with enough detail about where it happened, who was involved, and why readers should understand the broader context."},
+            {"type": "text", "content": "The second paragraph adds another full piece of reporting from officials and witnesses, keeping the article readable instead of merging every sentence into one long block."},
+            {"type": "text", "content": "The third paragraph closes with practical next steps and additional background that belongs in the body, not in a flattened summary fallback."}
+          ]
+        };Fusion.arcSite="ctvnews";
+        </script>
+      </body>
+    </html>
+    """
+    url = "https://www.ctvnews.ca/canada/article/national-story-alpha"
+    source = scoop.Source(
+        name="CTV News Canada",
+        url="https://www.ctvnews.ca/canada/",
+        kind="page",
+        homepage="https://www.ctvnews.ca/canada/",
+    )
+    story = {
+        "id": scoop.make_id(url),
+        "title": "National CTV story keeps its paragraphs",
+        "source": source.name,
+        "source_home": source.homepage,
+        "source_accent": source.accent,
+        "url": url,
+        "published": "2026-09-01T12:00:00+00:00",
+        "summary": "A national story description.",
+        "image": "",
+        "author": "",
+        "category": "Local",
+    }
+
+    with patch("fetch_news.fetch_html", return_value=(html, url)):
+        enriched = scoop.enrich_article(story, source)
+
+    assert enriched["quality"]["method"] == "embedded-json:ctv"
+    assert len(enriched["paragraphs"]) == 3
+    assert len(enriched["content_blocks"]) == 3
+    assert all(block["type"] == "paragraph" for block in enriched["content_blocks"])
+    assert all(len(paragraph) < 220 for paragraph in enriched["paragraphs"])
+
+
+def test_author_images_are_rejected_from_article_blocks() -> None:
+    html = """
+    <article>
+      <div class="article-body">
+        <p>The article begins with real reporting from city hall about a budget update.</p>
+        <figure>
+          <img src="https://images.example.test/jane-smith.jpg" width="900" height="600" alt="Reporter Jane Smith headshot">
+        </figure>
+        <p>The article continues with more details about councillors and the public consultation process.</p>
+      </div>
+    </article>
+    """
+    blocks, _, _ = scoop.extract_dom_blocks(
+        BeautifulSoup(html, "html.parser"),
+        "https://example.test/story",
+        "CBC News London",
+        "Budget update",
+    )
+    assert not any(block.get("type") == "image" for block in blocks)
+
+
+def test_ctv_embedded_author_image_is_rejected() -> None:
+    html = """
+    <script id="fusion-metadata" type="application/javascript">
+    Fusion.globalContent={
+      "content_elements": [
+        {"type": "text", "content": "The first paragraph has enough reporting about a local event to be useful, including where it happened, who attended, and why organizers said the gathering mattered to the surrounding neighbourhood."},
+        {
+          "type": "image",
+          "url": "https://cloudfront.example.test/reporter.jpg",
+          "width": 1200,
+          "height": 800,
+          "subtitle": "Jane Smith",
+          "caption": "CTV News reporter Jane Smith"
+        },
+        {"type": "text", "content": "The second paragraph adds another useful detail from officials at the scene, including comments about next steps and how residents can expect the work to continue over the coming weeks."}
+      ]
+    };Fusion.arcSite="ctvnews";
+    </script>
+    """
+    blocks, _ = scoop.extract_ctv_embedded_blocks(
+        BeautifulSoup(html, "html.parser"),
+        "Local event draws crowd",
+        "https://www.ctvnews.ca/london/article/local-event/",
+    )
+    assert not any(block.get("type") == "image" for block in blocks)
+
+
+def test_cbc_markdown_author_image_is_rejected() -> None:
+    raw = """
+Markdown Content:
+
+![Reporter Jane Smith headshot](https://images.example.test/jane-smith.jpg)
+
+City officials said a budget update will be discussed at next week's council meeting, with transit and infrastructure spending both expected to be part of the debate.
+
+Residents who spoke to CBC News said they want clearer timelines before councillors make a final decision on the proposal.
+"""
+    blocks = parse_cbc_markdown(raw, "Budget update heads to council")
+    assert not any(block.get("type") == "image" for block in blocks)
+
+
 def test_cbc_standalone_bold_is_not_promoted_to_heading() -> None:
     raw = """
 Markdown Content:
@@ -201,6 +368,12 @@ def main() -> int:
         test_postmedia_long_read_more_headline_does_not_resume_copy,
         test_ctv_inline_recirculation_does_not_truncate_story,
         test_ctv_linked_promo_image_is_rejected,
+        test_ctv_embedded_content_elements_keep_article_images,
+        test_ctv_canada_page_links_stay_in_canada_section,
+        test_ctv_canada_enrich_uses_structured_embedded_body,
+        test_author_images_are_rejected_from_article_blocks,
+        test_ctv_embedded_author_image_is_rejected,
+        test_cbc_markdown_author_image_is_rejected,
         test_cbc_standalone_bold_is_not_promoted_to_heading,
         test_cbc_related_story_list_is_not_article_copy,
         test_generic_read_more_card_module_is_pruned_before_extraction,

@@ -1,5 +1,5 @@
-const SHELL_CACHE = 'london-news-shell-v8';
-const ASSET_CACHE = 'london-news-assets-v8';
+const SHELL_CACHE = 'london-news-shell-v10';
+const ASSET_CACHE = 'london-news-assets-v10';
 const CACHE_PREFIX = 'london-news-';
 
 function scopePath(path = '') {
@@ -17,6 +17,7 @@ self.addEventListener('install', (event) => {
       scopePath('read-later/'),
       scopePath('latest/'),
       scopePath('settings/'),
+      scopePath('data/story-card-index.json'),
       scopePath('manifest.webmanifest')
     ];
     const cache = await caches.open(SHELL_CACHE);
@@ -50,33 +51,31 @@ async function fetchNetwork(request, timeoutMs = 4000) {
   }
 }
 
+async function refreshNavigationCache(event, cache, request) {
+  const preloaded = await event.preloadResponse;
+  const response = preloaded || await fetchNetwork(request, 8000);
+  if (response?.ok) cache.put(request, response.clone()).catch(() => {});
+  return response;
+}
+
 async function navigationNetworkFirst(event, fallbackToHome = false) {
   const request = event.request;
   const cache = await caches.open(SHELL_CACHE);
-  let timer;
 
   try {
-    const response = await Promise.race([
-      (async () => {
-        const preloaded = await event.preloadResponse;
-        return preloaded || fetchNetwork(request, 8000);
-      })(),
-      new Promise((_, reject) => {
-        timer = setTimeout(() => reject(new Error('navigation timeout')), 8000);
-      })
-    ]);
-
-    clearTimeout(timer);
-    if (response?.ok) cache.put(request, response.clone()).catch(() => {});
-    return response;
+    // The feed and its "Updated" timestamp are baked into the static HTML at
+    // deploy time. Always prefer the network while online so the installed PWA
+    // cannot remain several refresh cycles behind the live site.
+    return await refreshNavigationCache(event, cache, request);
   } catch {
-    clearTimeout(timer);
     const cached = await cache.match(request);
     if (cached) return cached;
+
     if (fallbackToHome) {
-      const home = await caches.match(scopePath());
+      const home = await cache.match(scopePath());
       if (home) return home;
     }
+
     return Response.error();
   }
 }
@@ -110,8 +109,8 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Feed data is always network-only so a service worker can never hold the
-  // timeline on an older refresh.
+  // Feed data is always network-only. The static page navigation is also
+  // network-first below because the rendered timeline is baked into its HTML.
   if (/\/(?:data\/)?news\.json$/i.test(url.pathname)) {
     event.respondWith(fetch(event.request, { cache: 'no-store' }));
     return;

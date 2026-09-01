@@ -1,0 +1,492 @@
+/* Forest City News: final global HIG component layer.
+   This file intentionally loads after legacy/page CSS so shared controls have one
+   geometry, one touch model, and one interaction language everywhere. */
+
+:root {
+  --ui-touch: 44px;
+  --ui-control-height: 48px;
+  --ui-field-height: 52px;
+
+  --ui-card-radius: 22px;
+  --ui-card-inset: 6px;
+  --ui-card-inner-radius: calc(var(--ui-card-radius) - var(--ui-card-inset));
+
+  --ui-field-radius: 16px;
+  --ui-menu-radius: 20px;
+  --ui-menu-inset: 6px;
+  --ui-menu-item-radius: calc(var(--ui-menu-radius) - var(--ui-menu-inset));
+
+  --ui-segment-height: 52px;
+  --ui-segment-inset: 4px;
+  --ui-segment-radius: 26px;
+  --ui-segment-item-radius: 22px;
+
+  --ui-switch-width: 51px;
+  --ui-switch-height: 31px;
+  --ui-switch-thumb: 27px;
+  --ui-switch-inset: 2px;
+
+  --ui-tab-height: 66px;
+  --ui-tab-inset: 5px;
+  --ui-tab-radius: 33px;
+  --ui-tab-item-radius: 28px;
+
+  --ui-selected-fill: color-mix(in srgb, var(--accent) 18%, var(--surface));
+  --ui-selected-border: color-mix(in srgb, var(--accent) 38%, var(--line-strong));
+  --ui-control-fill: color-mix(in srgb, var(--surface) 90%, var(--gray-6));
+}
+
+html[data-theme='dark'] {
+  --ui-selected-fill: color-mix(in srgb, var(--accent) 25%, var(--surface));
+  --ui-selected-border: color-mix(in srgb, var(--accent) 42%, var(--line-strong));
+  --ui-control-fill: color-mix(in srgb, var(--surface) 92%, var(--gray-5));
+}
+
+/* -------------------------------------------------------------------------- */
+/* Universal interaction and accessibility                                    */
+/* -------------------------------------------------------------------------- */
+
+html body button,
+html body summary,
+html body select,
+html body [role='button'] {
+  min-height: var(--ui-touch);
+}
+
+html body input[type='search'],
+html body input[type='text'],
+html body input[type='email'],
+html body input[type='url'],
+html body input[type='tel'],
+html body input[type='number'],
+html body input[type='password'] {
+  min-height: var(--ui-touch);
+}
+
+html body button,
+html body summary,
+html body select,
+html body input,
+html body textarea,
+html body [role='button'] {
+  touch-action: manipulation;
+}
+
+html body button:focus-visible,
+html body a:focus-visible,
+html body input:focus-visible,
+html body select:focus-visible,
+html body textarea:focus-visible,
+html body summary:focus-visible,
+html body [role='button']:focus-visible {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+html body button:disabled,
+html body select:disabled,
+html body input:disabled,
+html body textarea:disabled {
+  cursor: default !important;
+  opacity: 0.48 !important;
+}
+
+html body input[type='checkbox'],
+html body input[type='radio'] {
+  accent-color: var(--accent);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Text fields and search fields                                               */
+/* -------------------------------------------------------------------------- */
+
+html body .search-page-field,
+html body .search-page-field-refined,
+html body .header-search.is-open {
+  min-height: var(--ui-field-height) !important;
+  border-radius: var(--ui-field-radius) !important;
+  border: 1px solid var(--line-strong) !important;
+  background: var(--ui-control-fill) !important;
+  box-shadow: none !important;
+}
+
+html body .search-page-field input,
+html body .search-page-field-refined input,
+html body .header-search input {
+  min-height: var(--ui-touch) !important;
+  color: var(--ink) !important;
+}
+
+html body .search-clear-button,
+html body .header-search-toggle,
+html body .header-search-close,
+html body .icon-button {
+  width: var(--ui-touch) !important;
+  height: var(--ui-touch) !important;
+  min-width: var(--ui-touch) !important;
+  min-height: var(--ui-touch) !important;
+  border-radius: 50% !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Selects / pickers                                                           */
+/* -------------------------------------------------------------------------- */
+
+html body select,
+html body .archive-search-controls select {
+  width: 100%;
+  min-height: var(--ui-field-height) !important;
+  padding: 0 48px 0 16px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--ui-field-radius) !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-color: var(--ui-control-fill) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M4.5 6.75 9 11.25l4.5-4.5' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+  color: var(--ink) !important;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  cursor: pointer;
+}
+
+html body select:focus-visible {
+  border-color: var(--accent) !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Segmented controls                                                          */
+/* Outer and selected radii are mathematically concentric.                     */
+/* -------------------------------------------------------------------------- */
+
+html body .settings-segmented,
+html body .archive-scope-switch,
+html body [data-segmented-control] {
+  box-sizing: border-box !important;
+  min-height: var(--ui-segment-height) !important;
+  padding: var(--ui-segment-inset) !important;
+  gap: 0 !important;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: var(--ui-segment-radius) !important;
+  background: var(--ui-control-fill) !important;
+  overflow: hidden;
+}
+
+html body .settings-segmented button,
+html body .archive-scope-switch button,
+html body [data-segmented-control] > button {
+  min-height: calc(var(--ui-segment-height) - (var(--ui-segment-inset) * 2)) !important;
+  border: 0 !important;
+  border-radius: var(--ui-segment-item-radius) !important;
+  padding-inline: 16px !important;
+  background: transparent !important;
+  color: var(--muted) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, transform 120ms ease;
+}
+
+html body .settings-segmented button.selected,
+html body .settings-segmented button[aria-pressed='true'],
+html body .archive-scope-switch button.active,
+html body .archive-scope-switch button[aria-pressed='true'],
+html body [data-segmented-control] > button[aria-pressed='true'] {
+  background: var(--ui-selected-fill) !important;
+  color: var(--accent) !important;
+  box-shadow: inset 0 0 0 1px var(--ui-selected-border) !important;
+}
+
+html body .settings-segmented button:active,
+html body .archive-scope-switch button:active,
+html body [data-segmented-control] > button:active {
+  transform: scale(0.985);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Switches / toggles                                                          */
+/* -------------------------------------------------------------------------- */
+
+html body .settings-switch,
+html body .source-switch-row {
+  width: var(--ui-switch-width) !important;
+  min-width: var(--ui-switch-width) !important;
+  height: var(--ui-touch) !important;
+  min-height: var(--ui-touch) !important;
+  display: inline-grid !important;
+  place-items: center !important;
+  cursor: pointer;
+}
+
+html body .settings-switch-track,
+html body .source-switch {
+  position: relative !important;
+  inset: auto !important;
+  width: var(--ui-switch-width) !important;
+  height: var(--ui-switch-height) !important;
+  border-radius: calc(var(--ui-switch-height) / 2) !important;
+  background: var(--gray-4) !important;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent) !important;
+  transition: background-color 180ms ease !important;
+}
+
+html body .settings-switch-track::after,
+html body .source-switch span {
+  position: absolute !important;
+  top: var(--ui-switch-inset) !important;
+  left: var(--ui-switch-inset) !important;
+  width: var(--ui-switch-thumb) !important;
+  height: var(--ui-switch-thumb) !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.28), 0 0 1px rgb(0 0 0 / 0.18) !important;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1) !important;
+}
+
+html body .settings-switch input:checked + .settings-switch-track,
+html body .source-switch-input:checked + .source-switch {
+  background: var(--accent) !important;
+}
+
+html body .settings-switch input:checked + .settings-switch-track::after,
+html body .source-switch-input:checked + .source-switch span {
+  transform: translateX(calc(var(--ui-switch-width) - var(--ui-switch-thumb) - (var(--ui-switch-inset) * 2))) !important;
+}
+
+html body .settings-switch input:focus-visible + .settings-switch-track,
+html body .source-switch-input:focus-visible + .source-switch {
+  outline: 3px solid var(--accent) !important;
+  outline-offset: 3px !important;
+}
+
+/* Future/native sliders inherit the same round Apple-style geometry. */
+html body input[type='range'] {
+  width: 100%;
+  min-height: var(--ui-touch) !important;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+html body input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--gray-4);
+}
+
+html body input[type='range']::-webkit-slider-thumb {
+  width: 28px;
+  height: 28px;
+  margin-top: -12px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.28);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+html body input[type='range']::-moz-range-track {
+  height: 4px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gray-4);
+}
+
+html body input[type='range']::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+html body input[type='range']::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.28);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Buttons                                                                     */
+/* -------------------------------------------------------------------------- */
+
+html body .bordered-button,
+html body .manage-sources-button,
+html body .settings-action-button,
+html body .source-original-link.button,
+html body [data-pill-button] {
+  min-height: var(--ui-control-height) !important;
+  padding-inline: 18px !important;
+  border-radius: calc(var(--ui-control-height) / 2) !important;
+}
+
+html body .bordered-button,
+html body .manage-sources-button,
+html body .settings-action-button {
+  border: 1px solid var(--line-strong) !important;
+  background: var(--ui-control-fill) !important;
+  box-shadow: none !important;
+}
+
+html body .settings-action-button {
+  color: var(--accent) !important;
+}
+
+/* Destructive actions use the semantic destructive colour, not the accent. */
+html body #clearReadHistory,
+html body #clearAllData {
+  color: var(--red) !important;
+}
+
+html body .bordered-button:active,
+html body .manage-sources-button:active,
+html body .settings-action-button:active {
+  transform: scale(0.985);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Menus and popovers                                                          */
+/* -------------------------------------------------------------------------- */
+
+html body .control-menu > summary,
+html body .section-more > summary {
+  min-height: var(--ui-control-height) !important;
+  padding-inline: 16px !important;
+  border-radius: calc(var(--ui-control-height) / 2) !important;
+}
+
+html body .control-popover,
+html body .section-menu,
+html body [role='menu'] {
+  padding: var(--ui-menu-inset) !important;
+  border-radius: var(--ui-menu-radius) !important;
+  border: 1px solid var(--line-strong) !important;
+  background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
+  box-shadow: 0 18px 48px rgb(0 0 0 / 0.16) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+}
+
+html body .control-menu-item,
+html body .section-menu button,
+html body .section-menu a,
+html body [role='menuitem'] {
+  min-height: var(--ui-touch) !important;
+  border-radius: var(--ui-menu-item-radius) !important;
+  padding: 8px 12px !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Cards and nested radii                                                      */
+/* -------------------------------------------------------------------------- */
+
+html body .news-card,
+html body .section-directory-card,
+html body .source-preference-card,
+html body .related-card,
+html body .settings-card,
+html body .card-no-results,
+html body .search-result-card,
+html body .archive-search-hit {
+  border-radius: var(--ui-card-radius) !important;
+}
+
+html body .settings-card {
+  overflow: hidden;
+}
+
+/* Accent swatches are selection controls, so use circles rather than a second
+   unrelated rounded-rectangle language. */
+html body .accent-choice {
+  min-width: 52px;
+  min-height: 52px !important;
+  aspect-ratio: 1 / 1;
+  border-radius: 50% !important;
+  background: transparent !important;
+}
+
+html body .accent-choice::before {
+  inset: 7px !important;
+  border-radius: 50% !important;
+}
+
+html body .accent-choice.selected {
+  border-color: var(--accent) !important;
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Bottom tab bar                                                              */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  html body .mobile-tab-bar {
+    min-height: var(--ui-tab-height) !important;
+    padding: var(--ui-tab-inset) !important;
+    border-radius: var(--ui-tab-radius) !important;
+  }
+
+  html body .mobile-tab,
+  html body .mobile-tab-indicator {
+    min-height: calc(var(--ui-tab-height) - (var(--ui-tab-inset) * 2)) !important;
+    border-radius: var(--ui-tab-item-radius) !important;
+  }
+
+  html body .archive-search-controls {
+    gap: 16px !important;
+  }
+
+  html body .archive-search-controls label {
+    gap: 8px !important;
+  }
+
+  html body .archive-search-controls select {
+    min-height: var(--ui-field-height) !important;
+  }
+
+  html body .settings-row {
+    min-height: 76px;
+  }
+
+  html body .settings-action-button {
+    min-height: var(--ui-control-height) !important;
+  }
+}
+
+@media (max-width: 430px) {
+  html body .settings-segmented,
+  html body .archive-scope-switch {
+    width: 100% !important;
+  }
+
+  html body .settings-segmented button,
+  html body .archive-scope-switch button {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  html body .settings-action-button {
+    width: 100% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body .settings-segmented button,
+  html body .archive-scope-switch button,
+  html body .settings-switch-track,
+  html body .settings-switch-track::after,
+  html body .source-switch,
+  html body .source-switch span,
+  html body .bordered-button,
+  html body .manage-sources-button,
+  html body .settings-action-button {
+    transition: none !important;
+  }
+}

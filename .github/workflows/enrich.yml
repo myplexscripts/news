@@ -1,0 +1,120 @@
+name: Enrich news articles
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: enrich-news-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install collector dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test article enrichment pipeline
+        run: |
+          python scripts/test_article_formatting.py
+          python scripts/test_article_media.py
+          python scripts/test_source_profiles.py
+          python scripts/test_article_sanitizer.py
+          python scripts/test_reader_mode_articles.py
+          python scripts/test_recirculation_cleanup.py
+          python scripts/check_scope_contracts.py
+          python scripts/check_local_source_rules.py
+
+      - name: Enrich pending article bodies
+        run: python scripts/enrich_pending.py --limit 60
+
+      - name: Refine enriched articles
+        run: |
+          python scripts/hydrate_cbc_lite.py
+          python scripts/enrich_article_structure.py
+          python scripts/refine_article_formatting.py
+          python scripts/refine_source_articles.py
+          python scripts/reader_mode_articles.py
+          python scripts/cleanup_article_recirculation.py
+          python scripts/enrich_article_media.py
+          python scripts/sanitize_article_blocks.py
+          python scripts/cache_cbc_images.py
+
+      - name: Run regression and audit tests
+        run: |
+          python scripts/test_scraper_regressions.py
+          python scripts/test_audit.py
+          python scripts/test_run_audit.py
+          python scripts/run_audit.py --sample-per-source 10
+
+      - name: Upload Scoop audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: scoop-audit-report-${{ github.run_number }}
+          path: data/audit.json
+          retention-days: 14
+
+      - name: Commit enriched articles
+        id: commit
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          rm -rf /tmp/scoop-enriched-output
+          mkdir -p /tmp/scoop-enriched-output/cache
+          cp data/news.json /tmp/scoop-enriched-output/news.json
+          cp data/audit.json /tmp/scoop-enriched-output/audit.json
+          rsync -a public/cache/ /tmp/scoop-enriched-output/cache/
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$GITHUB_REF_NAME"
+          git reset --hard "origin/$GITHUB_REF_NAME"
+
+          # A new fast refresh may have landed while article extraction was running.
+          # Merge reader improvements into that newest feed instead of restoring an
+          # older news.json snapshot over fresher headlines and timestamps.
+          python scripts/merge_enriched_output.py \
+            /tmp/scoop-enriched-output/news.json \
+            data/news.json \
+            /tmp/news-merged.json
+          mv /tmp/news-merged.json data/news.json
+          python scripts/apply_local_source_rules.py
+          cp /tmp/scoop-enriched-output/audit.json data/audit.json
+          mkdir -p public/cache
+          # Overlay newly enriched media, but never delete files a newer fast refresh added.
+          rsync -a /tmp/scoop-enriched-output/cache/ public/cache/
+          git add data/news.json data/audit.json public/cache/
+
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "Enrich news articles"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy enriched site
+        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main

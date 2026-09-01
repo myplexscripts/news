@@ -35,7 +35,7 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 48
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 13
+EXTRACTION_SCHEMA = 15
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -88,6 +88,7 @@ GENERIC_BOILERPLATE = (
     "story continues below", "continue reading", "download our app", "follow us on",
     "recommended video", "related stories", "related story", "more from", "you may also like", "read more from", "all rights reserved",
     "back to news search subscribe", "back to news search", "trending stories", "trending now", "most popular", "top stories", "watch more",
+    "sponsored content",
 )
 
 POSTMEDIA_BOILERPLATE = (
@@ -265,6 +266,56 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
             "nav", "footer", "aside"
         ],
     },
+    "The Globe and Mail": {
+        "profile": "globe",
+        "roots": [
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".c-article-body", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='advert']", "[class*='related']", "[class*='recirc']",
+            "[class*='recommend']", "[class*='follow']", "[class*='feedback']",
+            "[class*='error-report']", "[class*='editorial-code']", "[class*='interact']",
+            "[class*='comment']", "[data-testid*='follow']", "[data-testid*='related']",
+        ],
+    },
+    "Toronto Star": {
+        "profile": "star",
+        "roots": [
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".asset-content", ".story-body", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='trending']", "[id*='trending']", "[class*='more-news']",
+            "[class*='related']", "[class*='recommend']", "[class*='recirc']",
+            "[class*='share']", "[class*='social']", "[class*='comment']",
+            "[class*='advert']", "[data-testid*='related']", "[data-testid*='trending']",
+        ],
+    },
+    "Western News": {
+        "profile": "western",
+        "roots": [
+            ".entry-content", ".post-content", ".article-content", ".story-content",
+            "[itemprop='articleBody']", "main article", "article", "main",
+        ],
+        "remove": [
+            ".related", ".related-posts", ".share", ".social", ".newsletter", ".subscribe",
+            "[class*='related']", "[class*='recommend']", "[class*='recirc']",
+            "[class*='more-stories']", "[class*='more-from']", ".faculty-card", ".author-card",
+        ],
+    },
+    "CityNews Canada": {
+        "profile": "citynews",
+        "roots": [
+            "[data-testid='article-body']", ".article-body", ".entry-content",
+            ".story-content", "[itemprop='articleBody']", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='advert']", "[class*='related']", "[class*='recirc']",
+            "[class*='recommend']", "[class*='share']", "[class*='social']",
+            "[class*='newsletter']", "[class*='comment']",
+        ],
+    },
     "104.7 Heart FM": {
         "profile": "heartfm",
         "roots": [
@@ -322,6 +373,11 @@ IMAGE_JUNK = (
     "logo", "icon", "avatar", "author", "profile", "sprite", "pixel", "tracking", "badge",
     "weather", "placeholder", "default", "newsletter", "app-store", "google-play", "social",
     "facebook", "twitter", "instagram", "tiktok", "favicon", "headshot", "crest", "coat-of-arms", "coat_of_arms", "emblem",
+)
+
+AUTHOR_IMAGE_TEXT_RE = re.compile(
+    r"\b(?:author|byline|columnist|correspondent|headshot|journalist|portrait|profile|reporter)\b",
+    re.I,
 )
 
 ACRONYMS = {
@@ -520,7 +576,7 @@ def clean_article_blocks(blocks: list[str], source_name: str = "", title: str = 
         text = clean_text(strip_title_echo(normalize_source_case(block), title))
         if is_global_source(source_name) and global_stop_text(text):
             break
-        if source_name == "CTV News" and ctv_stop_text(text):
+        if is_ctv_source(source_name) and ctv_stop_text(text):
             break
         if len(text) < 25:
             if stats is not None:
@@ -722,29 +778,50 @@ def json_ld_image_objects(value: Any) -> list[dict[str, Any]]:
     return found
 
 
+def srcset_candidates(value: Any) -> list[tuple[int, str]]:
+    candidates: list[tuple[int, str]] = []
+    for part in str(value or "").split(","):
+        bits = part.strip().split()
+        if not bits:
+            continue
+        score = 1
+        if len(bits) > 1:
+            raw_score = re.sub(r"[^0-9.]", "", bits[1])
+            try:
+                score = int(float(raw_score) * (1000 if bits[1].endswith("x") else 1))
+            except Exception:
+                score = 1
+        candidates.append((score, bits[0]))
+    return candidates
+
+
 def best_img_url(img: Tag, base_url: str) -> str:
     candidates: list[tuple[int, str]] = []
-    for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+    picture = img.find_parent("picture")
+    if isinstance(picture, Tag):
+        for source in picture.find_all("source"):
+            if not isinstance(source, Tag):
+                continue
+            srcset = source.get("srcset") or source.get("data-srcset")
+            candidates.extend(srcset_candidates(srcset))
+            for attr in ("data-src", "data-lazy-src", "data-original", "src"):
+                if source.get(attr):
+                    candidates.append((1, str(source.get(attr))))
+    for attr in ("data-src", "data-lazy-src", "data-original", "data-full-src", "data-zoom-src", "data-image", "data-image-src", "data-img-url", "src"):
         if img.get(attr):
             candidates.append((1, str(img.get(attr))))
-    srcset = img.get("srcset") or img.get("data-srcset")
-    if srcset:
-        for part in str(srcset).split(","):
-            bits = part.strip().split()
-            if not bits:
-                continue
-            score = 1
-            if len(bits) > 1:
-                raw_score = re.sub(r"[^0-9.]", "", bits[1])
-                try:
-                    score = int(float(raw_score) * (1000 if bits[1].endswith("x") else 1))
-                except Exception:
-                    score = 1
-            candidates.append((score, bits[0]))
+    candidates.extend(srcset_candidates(img.get("srcset") or img.get("data-srcset")))
     for _, candidate in sorted(candidates, key=lambda item: item[0], reverse=True):
         if candidate and not candidate.startswith(("data:", "blob:")):
             return normalize_image_url(candidate, base_url)
     return ""
+
+
+def responsive_image_source(img: Tag) -> bool:
+    if img.get("srcset") or img.get("data-srcset"):
+        return True
+    picture = img.find_parent("picture")
+    return isinstance(picture, Tag) and bool(picture.find("source", srcset=True) or picture.find("source", attrs={"data-srcset": True}))
 
 
 def int_attr(value: Any) -> int:
@@ -752,6 +829,11 @@ def int_attr(value: Any) -> int:
         return int(re.sub(r"\D", "", str(value or "0")) or "0")
     except Exception:
         return 0
+
+
+def author_image_text(*values: Any) -> bool:
+    text = " ".join(clean_text(value) for value in values if clean_text(value))
+    return bool(text and AUTHOR_IMAGE_TEXT_RE.search(text))
 
 
 def valid_article_image(url: str, img: Tag | None = None) -> bool:
@@ -763,14 +845,19 @@ def valid_article_image(url: str, img: Tag | None = None) -> bool:
     if img is not None:
         alt = clean_text(img.get("alt") or "").lower()
         classes = " ".join(img.get("class", [])).lower()
-        if any(token in f"{alt} {classes}" for token in IMAGE_JUNK):
+        title = clean_text(img.get("title") or "").lower()
+        aria = clean_text(img.get("aria-label") or "").lower()
+        if any(token in f"{alt} {title} {aria} {classes}" for token in IMAGE_JUNK):
+            return False
+        if author_image_text(alt, title, aria, classes):
             return False
         width, height = int_attr(img.get("width")), int_attr(img.get("height"))
-        if width and width < 240:
+        has_responsive_source = responsive_image_source(img)
+        if width and width < 240 and not has_responsive_source:
             return False
-        if height and height < 160:
+        if height and height < 160 and not has_responsive_source:
             return False
-        if width and height and width * height < 60000:
+        if width and height and width * height < 60000 and not has_responsive_source:
             return False
     return True
 
@@ -841,7 +928,25 @@ def collect_image_candidates(soup: BeautifulSoup, base_url: str, ld: dict[str, A
 
 
 def profile_for(source_name: str) -> dict[str, Any]:
-    return SOURCE_PROFILES.get(source_name, {"profile": "generic", "roots": GENERIC_ROOTS, "remove": []})
+    """Return an extraction profile by publisher family, not only exact feed name."""
+    if source_name in SOURCE_PROFILES:
+        return SOURCE_PROFILES[source_name]
+    lower = source_name.lower()
+    if is_ctv_source(source_name):
+        return SOURCE_PROFILES["CTV News"]
+    if is_global_source(source_name):
+        return SOURCE_PROFILES["Global News London"]
+    if is_postmedia_source(source_name):
+        return SOURCE_PROFILES["London Free Press"]
+    if "globe and mail" in lower:
+        return SOURCE_PROFILES["The Globe and Mail"]
+    if "toronto star" in lower or "thestar" in lower:
+        return SOURCE_PROFILES["Toronto Star"]
+    if "western" in lower:
+        return SOURCE_PROFILES["Western News"]
+    if "citynews" in lower or "city news" in lower:
+        return SOURCE_PROFILES["CityNews Canada"]
+    return {"profile": "generic", "roots": GENERIC_ROOTS, "remove": []}
 
 
 def tag_signature(tag: Tag) -> str:
@@ -897,7 +1002,26 @@ def is_police_source(source_name: str) -> bool:
 
 
 def is_postmedia_source(source_name: str) -> bool:
-    return "free press" in source_name.lower()
+    lower = source_name.lower()
+    return "free press" in lower or "postmedia" in lower or "national post" in lower
+
+
+def is_ctv_source(source_name: str) -> bool:
+    return "ctv" in source_name.lower()
+
+
+def ctv_article_sections(source_name: str) -> tuple[str, ...]:
+    lower = source_name.lower()
+    if "london" in lower:
+        return ("london",)
+    if "canada" in lower:
+        return ("canada",)
+    return ("london", "canada")
+
+
+def is_allowed_ctv_article_path(path: str, source_name: str) -> bool:
+    normalized = str(path or "").lower()
+    return any(f"/{section}/article/" in normalized for section in ctv_article_sections(source_name))
 
 
 def is_global_source(source_name: str) -> bool:
@@ -973,11 +1097,46 @@ CTV_EMBEDDED_BODY_KEYS = {
     "storybody", "story_body", "bodycontent", "body_content", "body",
 }
 CTV_EMBEDDED_TEXT_KEYS = {"text", "html", "value", "content", "paragraph", "description"}
+CTV_EMBEDDED_CONTENT_KEYS = {"content_elements", "contentelements"}
 
 
-def _ctv_value_blocks(value: Any, source_name: str, title: str, stats: dict[str, int]) -> list[dict[str, Any]]:
+def ctv_image_url(node: dict[str, Any], base_url: str) -> str:
+    if author_image_text(
+        node.get("alt_text"),
+        node.get("subtitle"),
+        node.get("caption"),
+        node.get("description"),
+        node.get("credits"),
+    ):
+        return ""
+    props = node.get("additional_properties") if isinstance(node.get("additional_properties"), dict) else {}
+    for key in ("fullSizeResizeUrl", "resizeUrl", "proxyUrl", "originalUrl"):
+        url = props.get(key)
+        if url:
+            normalized = normalize_image_url(str(url), base_url)
+            if valid_article_image(normalized):
+                return normalized
+    url = node.get("url")
+    normalized = normalize_image_url(str(url or ""), base_url)
+    return normalized if valid_article_image(normalized) else ""
+
+
+def _ctv_value_blocks(value: Any, source_name: str, title: str, stats: dict[str, int], base_url: str = "") -> list[dict[str, Any]]:
     """Turn a CTV embedded JSON body value into clean structured blocks."""
     raw_blocks: list[dict[str, Any]] = []
+
+    def append_image(node: dict[str, Any]) -> None:
+        url = ctv_image_url(node, base_url)
+        if not url:
+            return
+        raw_blocks.append({
+            "type": "image",
+            "url": url,
+            "alt": clean_text(node.get("alt_text") or node.get("subtitle") or "", 180),
+            "caption": clean_text(node.get("caption") or "", 320),
+            **({"width": int_attr(node.get("width"))} if int_attr(node.get("width")) else {}),
+            **({"height": int_attr(node.get("height"))} if int_attr(node.get("height")) else {}),
+        })
 
     def append_text(raw_value: str) -> None:
         value_text = html.unescape(str(raw_value or "")).strip()
@@ -1035,6 +1194,10 @@ def _ctv_value_blocks(value: Any, source_name: str, title: str, stats: dict[str,
                 walk(item, depth + 1)
             return
         if isinstance(node, dict):
+            node_type = str(node.get("type") or "").lower()
+            if node_type == "image":
+                append_image(node)
+                return
             preferred = []
             fallback = []
             for key, child in node.items():
@@ -1050,7 +1213,15 @@ def _ctv_value_blocks(value: Any, source_name: str, title: str, stats: dict[str,
 
     cleaned: list[dict[str, Any]] = []
     seen: list[str] = []
+    seen_images: list[str] = []
     for block in raw_blocks:
+        if block.get("type") == "image":
+            url = str(block.get("url") or "")
+            if not url or any(same_image(url, prior) for prior in seen_images):
+                continue
+            seen_images.append(url)
+            cleaned.append(block)
+            continue
         raw_text = clean_text(block.get("text", ""))
         min_length = 4 if block.get("type") == "heading" else 18
         text = clean_structured_text(raw_text, source_name, title, seen, stats, min_length=min_length)
@@ -1059,7 +1230,7 @@ def _ctv_value_blocks(value: Any, source_name: str, title: str, stats: dict[str,
     return cleaned
 
 
-def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[dict[str, Any]], dict[str, int]]:
+def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str, base_url: str = "") -> tuple[list[dict[str, Any]], dict[str, int]]:
     """Extract CTV article prose from any server-provided application state.
 
     CTV has used several React/Next rendering shapes. Some pages expose ordinary
@@ -1070,7 +1241,7 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
     candidates: list[list[dict[str, Any]]] = []
 
     def consider(value: Any) -> None:
-        blocks = _ctv_value_blocks(value, "CTV News", title, stats)
+        blocks = _ctv_value_blocks(value, "CTV News", title, stats, base_url)
         paragraphs, text = text_from_blocks(blocks)
         if len(paragraphs) >= 2 and len(text) >= 180:
             candidates.append(blocks)
@@ -1089,6 +1260,8 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
             compact = normalized.replace("_", "")
             if normalized in CTV_EMBEDDED_BODY_KEYS or compact in CTV_EMBEDDED_BODY_KEYS:
                 consider(value)
+            elif normalized in CTV_EMBEDDED_CONTENT_KEYS or compact in CTV_EMBEDDED_CONTENT_KEYS:
+                consider(value)
             elif normalized == "content" and (
                 isinstance(value, (dict, list)) or (isinstance(value, str) and len(value) > 420)
             ):
@@ -1100,6 +1273,7 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
         if not raw_text:
             return
         text = html.unescape(raw_text)
+        decoder = json.JSONDecoder()
 
         # First try the whole value as JSON.
         try:
@@ -1107,13 +1281,23 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
         except Exception:
             pass
 
+        for marker in ("Fusion.globalContent=", "window.Fusion.globalContent="):
+            start = text.find(marker)
+            if start < 0:
+                continue
+            tail = text[start + len(marker):].lstrip()
+            try:
+                value, _ = decoder.raw_decode(tail)
+            except Exception:
+                continue
+            scan_object(value)
+
         # Pull JSON string values directly after known article-body keys. This is
         # more stable than relying on one exact application-state object shape.
         key_pattern = re.compile(
             r'["\\\'](?:articleBody|article_body|articleContent|article_content|storyBody|story_body|bodyContent|body_content|body|content)["\\\']\\s*:\\s*',
             re.I,
         )
-        decoder = json.JSONDecoder()
         for match in key_pattern.finditer(text):
             tail = text[match.end():].lstrip()
             if not tail:
@@ -1169,7 +1353,7 @@ def extract_ctv_embedded_blocks(soup: BeautifulSoup, title: str) -> tuple[list[d
 
         # Legacy JavaScript assignments can contain body strings without being a
         # complete JSON document. Scan every script, but only known body keys.
-        if any(key.lower() in raw.lower() for key in ("articleBody", "articleContent", "storyBody", "bodyContent")):
+        if any(key.lower() in raw.lower() for key in ("articleBody", "articleContent", "storyBody", "bodyContent", "content_elements", "Fusion.globalContent")):
             scan_serialized_text(raw)
 
     if not candidates:
@@ -1227,7 +1411,7 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
     postmedia_recirc = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
-    ctv_mode = source_name == "CTV News"
+    ctv_mode = is_ctv_source(source_name)
     ctv_recirc = False
 
     nodes = clone_root.find_all(["h2", "h3", "p", "blockquote", "ul", "ol", "figure", "img"], recursive=True)
@@ -1373,6 +1557,8 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
             "url": url,
             "alt": clean_text(img.get("alt") or "", 180),
             "caption": figure_caption(img),
+            **({"width": int_attr(img.get("width"))} if int_attr(img.get("width")) else {}),
+            **({"height": int_attr(img.get("height"))} if int_attr(img.get("height")) else {}),
         })
 
     if is_postmedia_source(source_name):
@@ -1402,7 +1588,14 @@ def fallback_blocks(paragraphs: list[str], images: list[dict[str, Any]]) -> list
         blocks.append({"type": "paragraph", "text": paragraph})
         if images and image_index < len(images) and interval and (index + 1) % interval == 0:
             image = images[image_index]
-            blocks.append({"type": "image", "url": image["url"], "alt": image.get("alt", ""), "caption": image.get("caption", "")})
+            blocks.append({
+                "type": "image",
+                "url": image["url"],
+                "alt": image.get("alt", ""),
+                "caption": image.get("caption", ""),
+                **({"width": image.get("width")} if image.get("width") else {}),
+                **({"height": image.get("height")} if image.get("height") else {}),
+            })
             image_index += 1
     return blocks
 
@@ -1688,8 +1881,8 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     extracted_text, extracted_paragraphs, extracted_meta = extracted_article_text(raw, final_url, source.name, title)
     ctv_blocks: list[dict[str, Any]] = []
     ctv_text = ""
-    if source.name == "CTV News":
-        ctv_blocks, ctv_stats = extract_ctv_embedded_blocks(soup, title)
+    if is_ctv_source(source.name):
+        ctv_blocks, ctv_stats = extract_ctv_embedded_blocks(soup, title, final_url)
         for key, value in ctv_stats.items():
             stats[key] = stats.get(key, 0) + value
         _, ctv_text = text_from_blocks(ctv_blocks)
@@ -1697,7 +1890,7 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     # CTV changes its rendering shape frequently. Treat DOM, JSON-LD, embedded
     # React state and readability extraction as parallel first-party candidates,
     # clean each one, then use the most complete plausible article body.
-    if source.name == "CTV News":
+    if is_ctv_source(source.name):
         ctv_candidates: list[tuple[int, int, str, list[dict[str, Any]], list[str], str]] = []
 
         def add_ctv_candidate(candidate_method: str, candidate_blocks: list[dict[str, Any]], priority: int) -> None:
@@ -1816,7 +2009,13 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
         "paragraphs": paragraphs,
         "content_blocks": blocks,
         "article_images": [
-            {"url": item["url"], "alt": item.get("alt", ""), "caption": item.get("caption", "")}
+            {
+                "url": item["url"],
+                "alt": item.get("alt", ""),
+                "caption": item.get("caption", ""),
+                **({"width": item.get("width")} if item.get("width") else {}),
+                **({"height": item.get("height")} if item.get("height") else {}),
+            }
             for item in inline_candidates
         ],
         "word_count": word_count,
@@ -1828,7 +2027,7 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     story["quality"] = extraction_quality(story, stats, method)
     score = story["quality"]["score"]
     complete_shape = word_count >= 120 or len(paragraphs) >= 3
-    trusted_ctv_body = source.name == "CTV News" and method.startswith(("jsonld:ctv", "embedded-json:ctv"))
+    trusted_ctv_body = is_ctv_source(source.name) and method.startswith(("jsonld:ctv", "embedded-json:ctv"))
     full_enough = (score >= 55 and complete_shape) or (trusted_ctv_body and score >= 45 and word_count >= 90 and len(paragraphs) >= 2)
     story["content_status"] = "full" if full_enough else "partial" if word_count >= 55 else "summary"
     return story
@@ -2019,14 +2218,21 @@ def page_links(source: Source) -> list[str]:
     soup = BeautifulSoup(raw, "html.parser")
     host = urlparse(final_url).netloc.lower().replace("www.", "")
     links: list[str] = []
-    ctv_mode = source.name == "CTV News"
+    ctv_mode = is_ctv_source(source.name)
     cbc_mode = source.name == "CBC News London"
     city_mode = source.name == "City of London Newsroom"
+    ctv_selectors = [
+        f"a[href*='/{section}/article/']"
+        for section in ctv_article_sections(source.name)
+    ] + [
+        f"main a[href*='/{section}/article/']"
+        for section in ctv_article_sections(source.name)
+    ]
 
     selectors = (
         ["a[href*='/news/posts/']"]
         if is_police_source(source.name)
-        else ["a[href*='/london/article/']", "main a[href*='/london/article/']"]
+        else ctv_selectors
         if ctv_mode
         else ["a[href*='/news/canada/london/']", "main a[href*='/news/canada/london/']"]
         if cbc_mode
@@ -2048,7 +2254,7 @@ def page_links(source: Source) -> list[str]:
         path = parsed.path.lower()
         if is_police_source(source.name) and "/news/posts/" not in path:
             return False
-        if ctv_mode and "/london/article/" not in path:
+        if ctv_mode and not is_allowed_ctv_article_path(path, source.name):
             return False
         if cbc_mode and "/news/canada/london/" not in path:
             return False
@@ -2075,7 +2281,7 @@ def page_links(source: Source) -> list[str]:
     if ctv_mode or cbc_mode:
         normalized_raw = html.unescape(raw).replace("\\/", "/")
         pattern = (
-            r'(?:https?://(?:www\.)?ctvnews\.ca)?(/london/article/[A-Za-z0-9][^"\'<>\\\s?#]*)'
+            rf'(?:https?://(?:www\.)?ctvnews\.ca)?(/(?:{"|".join(re.escape(section) for section in ctv_article_sections(source.name))})/article/[A-Za-z0-9][^"\'<>\\\s?#]*)'
             if ctv_mode
             else r'(?:https?://(?:www\.)?cbc\.ca)?(/news/canada/london/[A-Za-z0-9][^"\'<>\\\s?#]*)'
         )
@@ -2123,7 +2329,7 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
     skipping_postmedia_recirc = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
-    ctv_mode = source_name == "CTV News"
+    ctv_mode = is_ctv_source(source_name)
     skipping_ctv_recirc = False
     for block in blocks:
         if not isinstance(block, dict):
@@ -2184,10 +2390,14 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
             url = normalize_image_url(block.get("url", ""))
             if same_image(url, lead_image) or any(same_image(url, prior) for prior in seen_images):
                 continue
+            if author_image_text(block.get("alt"), block.get("caption"), block.get("title")):
+                continue
             seen_images.append(url)
             cleaned.append({
                 "type": "image", "url": url,
                 "alt": clean_text(block.get("alt", ""), 180), "caption": clean_text(block.get("caption", ""), 320),
+                **({"width": int_attr(block.get("width"))} if int_attr(block.get("width")) else {}),
+                **({"height": int_attr(block.get("height"))} if int_attr(block.get("height")) else {}),
             })
     return cleaned
 
@@ -2295,7 +2505,15 @@ def backfill_missing(
     done = 0
     # Repair CBC/CTV first after extractor changes so stale degraded records do
     # not keep their source health orange for many scheduled refreshes.
-    priority_sources = {"CBC News London": 0, "CTV News": 0, "London Free Press": 0, "Global News London": 0}
+    priority_sources = {
+        "CBC News London": 0,
+        "CTV News": 0,
+        "CTV News London": 0,
+        "CTV News Canada": 0,
+        "London Free Press": 0,
+        "Global News London": 0,
+        "Global News Canada": 0,
+    }
     # Python's sort is stable, so sorting only by priority preserves the existing
     # newest-first order within CBC/CTV and repairs the records that affect health
     # and the visible feed first.

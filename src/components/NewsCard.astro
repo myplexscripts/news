@@ -35,12 +35,18 @@ const timestamp = story.cluster_latest_published || story.published;
 const categoryClass = `category-${String(story.category || 'Local').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const words = String(story.title || '').trim().split(/\s+/).filter(Boolean);
 const title = words.length > 20 ? `${words.slice(0, 20).join(' ')}…` : words.join(' ');
-const imageSrc = (() => {
-  const value = String(variant === 'standard' ? (story.card_image_small || story.card_image || story.image || '') : (story.card_image || story.image || '')).trim();
-  if (!value) return '';
-  if (/^https?:\/\//i.test(value) || value.startsWith('/')) return value;
-  return `${base}${value}`;
-})();
+const toImageSrc = (value) => {
+  const clean = String(value || '').trim();
+  if (!clean) return '';
+  if (/^https?:\/\//i.test(clean) || clean.startsWith('/')) return clean;
+  return `${base}${clean}`;
+};
+const rawImageCandidates = variant === 'standard'
+  ? [story.card_image_small, story.card_image, story.image]
+  : [story.card_image, story.image, story.card_image_small];
+const imageCandidates = [...new Set(rawImageCandidates.map(toImageSrc).filter(Boolean))];
+const imageSrc = imageCandidates[0] || '';
+const imageFallbacks = imageCandidates.slice(1);
 const published = (value) => {
   try {
     return new Intl.DateTimeFormat('en-CA', {
@@ -56,6 +62,7 @@ const published = (value) => {
 };
 const readMinutes = Number(story.word_count) > 0 ? Math.max(1, Math.round(Number(story.word_count) / 220)) : null;
 const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sources.length ? story.cluster_sources : [story.source].filter(Boolean);
+const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSources.length || 1);
 ---
 <article
   class:list={[
@@ -81,6 +88,7 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
       <img
         class="news-card-photo"
         src={imageSrc}
+        data-image-fallbacks={JSON.stringify(imageFallbacks)}
         alt={story.image_alt || ''}
         width={variant === 'standard' ? 420 : 720}
         height={variant === 'standard' ? 420 : 720}
@@ -107,6 +115,12 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
     <h3 title={story.title}>{title}</h3>
     <div class="news-card-footer">
       <time datetime={timestamp}>{published(timestamp)}</time>
+      {sourceCount > 1 && (
+        <span class="news-card-coverage" title={`Covered by ${sourceCount} sources`}>
+          <i class="ph ph-stack" aria-hidden="true"></i>
+          {sourceCount} sources
+        </span>
+      )}
       {readMinutes && <span>{readMinutes} min read</span>}
     </div>
     {showSummary && story.summary && <p class="news-card-summary">{story.summary}</p>}
@@ -136,6 +150,19 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
   .news-card-body {
     position: relative;
     padding-bottom: 56px !important;
+  }
+
+  .news-card-coverage {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .news-card-coverage i {
+    font-size: 16px;
   }
 
   .news-card-save {
@@ -177,6 +204,38 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
 </style>
 
 <script>
+  function initialiseCardImageFallbacks() {
+    const images = [...document.querySelectorAll('.news-card-photo')];
+
+    images.forEach((item) => {
+      if (!(item instanceof HTMLImageElement)) return;
+
+      let fallbacks = [];
+      try {
+        const parsed = JSON.parse(item.dataset.imageFallbacks || '[]');
+        if (Array.isArray(parsed)) fallbacks = parsed.filter(Boolean);
+      } catch {
+        fallbacks = [];
+      }
+
+      let fallbackIndex = 0;
+      const useNextImage = () => {
+        const next = fallbacks[fallbackIndex];
+        fallbackIndex += 1;
+        if (next) {
+          item.src = next;
+          return;
+        }
+
+        item.closest('.news-card-media')?.remove();
+        item.closest('.news-card')?.classList.add('no-image');
+      };
+
+      item.addEventListener('error', useNextImage);
+      if (item.complete && item.naturalWidth === 0) useNextImage();
+    });
+  }
+
   function initialiseSourceLogoSizing() {
     const logos = [...document.querySelectorAll('.card-source-mark')];
 
@@ -237,6 +296,7 @@ const clusterSources = Array.isArray(story.cluster_sources) && story.cluster_sou
   }
 
   function initialiseNewsCards() {
+    initialiseCardImageFallbacks();
     initialiseSourceLogoSizing();
     initialiseHomeCardLookahead();
   }

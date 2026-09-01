@@ -1,0 +1,264 @@
+/* Forest City News: Apple-style flat control corrections.
+   Liquid Glass belongs only to the floating mobile navigation. */
+
+:root {
+  --flat-segment-height: 44px;
+  --flat-segment-radius: 12px;
+  --flat-segment-inset: 2px;
+  --flat-segment-selected-radius: calc(var(--flat-segment-radius) - var(--flat-segment-inset));
+  --flat-segment-fill: var(--gray-6);
+  --flat-segment-selected: var(--surface);
+  --flat-segment-divider: color-mix(in srgb, var(--ink) 12%, transparent);
+  --flat-control-fill: var(--gray-6);
+}
+
+html[data-theme='dark'] {
+  --flat-segment-fill: var(--gray-5);
+  --flat-segment-selected: var(--gray-3);
+  --flat-segment-divider: color-mix(in srgb, var(--ink) 18%, transparent);
+  --flat-control-fill: var(--gray-6);
+}
+
+/* Liquid Glass is intentionally exclusive to the floating navigation. */
+html body * {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html body .site-header,
+html body .header-search,
+html body .header-search.is-open,
+html body .search-page-field,
+html body .search-page-field-refined,
+html body .control-popover,
+html body .section-menu,
+html body [role='menu'],
+html body .settings-card,
+html body .news-card,
+html body .section-directory-card,
+html body .source-preference-card,
+html body .related-card,
+html body .search-result-card,
+html body .archive-search-hit,
+html body .directory-tabs,
+html body .settings-segmented,
+html body .archive-scope-switch,
+html body select {
+  background-image: none;
+}
+
+html body .site-header {
+  background: var(--bg) !important;
+}
+
+html body .control-popover,
+html body .section-menu,
+html body [role='menu'] {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.14) !important;
+}
+
+html[data-theme='dark'] body .control-popover,
+html[data-theme='dark'] body .section-menu,
+html[data-theme='dark'] body [role='menu'] {
+  box-shadow: 0 12px 34px rgb(0 0 0 / 0.38) !important;
+}
+
+html body .search-page-field,
+html body .search-page-field-refined,
+html body .header-search.is-open,
+html body select,
+html body .archive-search-controls select,
+html body .bordered-button,
+html body .manage-sources-button,
+html body .settings-action-button {
+  background-color: var(--flat-control-fill) !important;
+  box-shadow: none !important;
+}
+
+/* Restore the select disclosure icon after stripping legacy background effects. */
+html body select,
+html body .archive-search-controls select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 18 18' fill='none'%3E%3Cpath d='M4.5 6.75 9 11.25l4.5-4.5' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+}
+
+/* Flat segmented controls, matching Apple's neutral segmented-control language.
+   The button remains a full 44px touch target. The visual selection is inset. */
+html body .settings-segmented,
+html body .archive-scope-switch,
+html body .directory-tabs,
+html body [data-segmented-control] {
+  position: relative !important;
+  display: grid !important;
+  min-height: var(--flat-segment-height) !important;
+  height: var(--flat-segment-height) !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  border: 0 !important;
+  border-radius: var(--flat-segment-radius) !important;
+  background: var(--flat-segment-fill) !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+html body .settings-segmented {
+  grid-auto-flow: column !important;
+  grid-auto-columns: minmax(0, 1fr) !important;
+}
+
+html body .archive-scope-switch {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+html body .directory-tabs {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+html body .settings-segmented button,
+html body .archive-scope-switch button,
+html body .directory-tab,
+html body [data-segmented-control] > button {
+  position: relative !important;
+  z-index: 0;
+  min-width: 0 !important;
+  min-height: var(--flat-segment-height) !important;
+  height: var(--flat-segment-height) !important;
+  margin: 0 !important;
+  padding: 0 14px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--ink) !important;
+  box-shadow: none !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  transform: none !important;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+html body .settings-segmented button::before,
+html body .archive-scope-switch button::before,
+html body .directory-tab::before,
+html body [data-segmented-control] > button::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: var(--flat-segment-inset);
+  border-radius: var(--flat-segment-selected-radius);
+  background: transparent;
+  box-shadow: none;
+  pointer-events: none;
+  transition: background-color 140ms ease;
+}
+
+/* Thin separators between unselected segments. */
+html body .settings-segmented button + button::after,
+html body .archive-scope-switch button + button::after,
+html body .directory-tab + .directory-tab::after,
+html body [data-segmented-control] > button + button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: var(--flat-segment-divider);
+  pointer-events: none;
+}
+
+html body .settings-segmented button.selected,
+html body .settings-segmented button[aria-pressed='true'],
+html body .archive-scope-switch button.active,
+html body .archive-scope-switch button[aria-pressed='true'],
+html body .directory-tab.active,
+html body .directory-tab[aria-selected='true'],
+html body [data-segmented-control] > button[aria-pressed='true'] {
+  color: var(--ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html body .settings-segmented button.selected::before,
+html body .settings-segmented button[aria-pressed='true']::before,
+html body .archive-scope-switch button.active::before,
+html body .archive-scope-switch button[aria-pressed='true']::before,
+html body .directory-tab.active::before,
+html body .directory-tab[aria-selected='true']::before,
+html body [data-segmented-control] > button[aria-pressed='true']::before {
+  background: var(--flat-segment-selected) !important;
+  box-shadow: none !important;
+}
+
+html body .settings-segmented button.selected::after,
+html body .settings-segmented button[aria-pressed='true']::after,
+html body .archive-scope-switch button.active::after,
+html body .archive-scope-switch button[aria-pressed='true']::after,
+html body .directory-tab.active::after,
+html body .directory-tab[aria-selected='true']::after,
+html body [data-segmented-control] > button[aria-pressed='true']::after {
+  opacity: 0 !important;
+}
+
+html body .settings-segmented button:active::before,
+html body .archive-scope-switch button:active::before,
+html body .directory-tab:active::before,
+html body [data-segmented-control] > button:active::before {
+  background: color-mix(in srgb, var(--ink) 8%, var(--flat-segment-selected));
+}
+
+/* Keep switches rounded and physical, but not glassy. */
+html body .settings-switch-track,
+html body .source-switch {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Only the bottom navigation receives Liquid Glass. */
+@media (max-width: 760px) {
+  html body .mobile-tab-bar {
+    background: color-mix(in srgb, var(--surface) 58%, transparent) !important;
+    border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent) !important;
+    box-shadow:
+      0 16px 42px rgb(0 0 0 / 0.24),
+      inset 0 1px 0 rgb(255 255 255 / 0.16),
+      inset 0 -1px 0 rgb(0 0 0 / 0.08) !important;
+    backdrop-filter: blur(34px) saturate(210%) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(210%) !important;
+  }
+
+  html[data-theme='dark'] body .mobile-tab-bar {
+    background: color-mix(in srgb, var(--surface) 52%, transparent) !important;
+  }
+
+  html body .mobile-tab,
+  html body .mobile-tab-indicator {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  html body .mobile-tab.active,
+  html body .mobile-tab.context-active {
+    background: color-mix(in srgb, var(--surface) 72%, transparent) !important;
+    box-shadow: none !important;
+  }
+
+  html body .settings-segmented,
+  html body .archive-scope-switch,
+  html body .directory-tabs {
+    width: 100% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body .settings-segmented button::before,
+  html body .archive-scope-switch button::before,
+  html body .directory-tab::before,
+  html body [data-segmented-control] > button::before {
+    transition: none !important;
+  }
+}

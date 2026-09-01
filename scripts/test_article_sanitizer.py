@@ -154,6 +154,24 @@ def test_global_newsletter_image_and_copy_are_removed() -> None:
     assert "assertion of political power" in dumped
 
 
+def test_author_image_blocks_are_removed() -> None:
+    story = {
+        "id": "cbc-author-headshot",
+        "source": "CBC News London",
+        "content_status": "full",
+        "content_blocks": [
+            {"type": "paragraph", "text": "Council members discussed transit funding during Tuesday's budget meeting."},
+            {"type": "image", "url": "https://images.example.test/reporter.jpg", "alt": "CBC News reporter Jane Smith headshot"},
+            {"type": "paragraph", "text": "The proposal will return to committee after staff prepare a revised report."},
+        ],
+    }
+    payload = {"stories": [story]}
+    assert sanitize_payload(payload) == 1
+    assert not any(block.get("type") == "image" for block in story["content_blocks"])
+    assert "transit funding" in story["content"]
+    assert "revised report" in story["content"]
+
+
 def test_location_selector_dump_is_removed_and_forces_reader_retry() -> None:
     states = (
         "State Alabama Alaska Arizona Arkansas California Colorado Connecticut Delaware Florida Georgia Hawaii Idaho Illinois "
@@ -195,6 +213,7 @@ def main() -> int:
     test_cbc_markdown_embed_placeholder_and_fake_player_are_cleaned()
     test_real_audio_media_is_preserved()
     test_global_newsletter_image_and_copy_are_removed()
+    test_author_image_blocks_are_removed()
     test_location_selector_dump_is_removed_and_forces_reader_retry()
     print("PASS article presentation sanitizer regressions")
     return 0

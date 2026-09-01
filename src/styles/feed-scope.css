@@ -1,3 +1,10 @@
+:root {
+  --text: var(--ink);
+  --surface-2: var(--surface-subtle);
+  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+  --accent-ink: var(--accent);
+}
+
 .feed-scope-row {
   width: 100%;
   display: flex;
@@ -12,7 +19,7 @@
   gap: 3px;
   padding: 4px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 16px;
   background: var(--surface-subtle);
 }
 
@@ -21,7 +28,7 @@
   min-height: 44px;
   padding: 0 18px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 12px;
   background: transparent;
   color: var(--muted);
   font: inherit;
@@ -37,8 +44,8 @@
 }
 
 .feed-scope-button.active {
-  background: var(--accent);
-  color: #fff;
+  background: var(--surface);
+  color: var(--ink);
 }
 
 .feed-scope-button:focus-visible {
@@ -83,8 +90,6 @@
 }
 
 @media (max-width: 760px) {
-  /* Global mobile styles hide the desktop filter toolbar. Restore its shell only
-     for the feed selector, while keeping category navigation on Sections. */
   .home-page .card-filter-wrap.section-nav-wrap {
     display: block !important;
   }
@@ -113,5 +118,90 @@
 
   .card-filter-inner .section-tabs {
     display: none !important;
+  }
+}
+
+/* Liquid Glass exists only on the floating mobile navigation. */
+:root {
+  --nav-glass: #bbbbbc;
+  --nav-glass-light: #fff;
+  --nav-glass-dark: #000;
+  --nav-glass-reflex-light: 1;
+  --nav-glass-reflex-dark: 1;
+  --nav-glass-saturation: 140%;
+  --nav-glass-bg: rgb(118 118 128 / 0.16);
+  --nav-glass-selected: rgb(118 118 128 / 0.28);
+  --nav-glass-filter: blur(7px) saturate(140%) contrast(1.18);
+}
+
+html[data-theme='dark'] {
+  --nav-glass-reflex-light: 0.34;
+  --nav-glass-reflex-dark: 2;
+  --nav-glass-saturation: 145%;
+  --nav-glass-bg: rgb(44 44 46 / 0.3);
+  --nav-glass-selected: rgb(99 99 102 / 0.32);
+  --nav-glass-filter: blur(7px) saturate(145%) contrast(1.28) brightness(0.82);
+}
+
+@media (max-width: 760px) {
+  .mobile-tab-bar {
+    border: 0 !important;
+    background-color: var(--nav-glass-bg) !important;
+    backdrop-filter: var(--nav-glass-filter) !important;
+    -webkit-backdrop-filter: var(--nav-glass-filter) !important;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 12%), transparent),
+      inset 1.8px 3px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
+      inset -2px -2px 0 -2px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
+      inset -3px -8px 1px -6px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
+      inset -0.3px -1px 4px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 12%), transparent),
+      inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 0 3px 4px -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 2px -6.5px 1px -4px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent) !important;
+    transition: background-color 400ms cubic-bezier(1, 0, 0.4, 1), box-shadow 400ms cubic-bezier(1, 0, 0.4, 1) !important;
+  }
+
+  .mobile-tab-indicator {
+    background-color: var(--nav-glass-selected) !important;
+    backdrop-filter: var(--nav-glass-filter) !important;
+    -webkit-backdrop-filter: var(--nav-glass-filter) !important;
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 14%), transparent),
+      inset 2px 1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 90%), transparent),
+      inset -1.5px -1px 0 -1px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 80%), transparent),
+      inset -2px -6px 1px -5px color-mix(in srgb, var(--nav-glass-light) calc(var(--nav-glass-reflex-light) * 60%), transparent),
+      inset -1px 2px 3px -1px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 20%), transparent),
+      inset 0 -4px 1px -2px color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 10%), transparent),
+      0 2px 5px 0 color-mix(in srgb, var(--nav-glass-dark) calc(var(--nav-glass-reflex-dark) * 6%), transparent) !important;
+    transition:
+      transform 400ms cubic-bezier(1, 0, 0.4, 1),
+      background-color 400ms cubic-bezier(1, 0, 0.4, 1),
+      box-shadow 400ms cubic-bezier(1, 0, 0.4, 1),
+      opacity 180ms ease !important;
+  }
+
+  .mobile-tab i {
+    transition: transform 200ms cubic-bezier(0.5, 0, 0, 1), opacity 160ms ease !important;
+  }
+
+  .mobile-tab:hover i {
+    transform: scale(1.12);
+  }
+
+  .mobile-tab.active i {
+    transform: scale(1);
+  }
+
+  .mobile-tab:active i {
+    transform: scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-tab-bar,
+  .mobile-tab-indicator,
+  .mobile-tab i,
+  .feed-scope-button {
+    transition: none !important;
   }
 }

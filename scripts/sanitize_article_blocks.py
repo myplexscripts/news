@@ -11,7 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-SANITIZE_SCHEMA = 4
+SANITIZE_SCHEMA = 5
 
 JUNK_TEXT_MARKERS = (
     "open full embed in new tab loading external pages",
@@ -57,6 +57,10 @@ SHARE_EXACT_MARKERS = {
 }
 
 LOCATION_SELECTOR_PREFIX_RE = re.compile(r"^(?:state|country|province|region|territory)\b", re.I)
+AUTHOR_IMAGE_TEXT_RE = re.compile(
+    r"\b(?:author|byline|columnist|correspondent|headshot|journalist|portrait|profile|reporter)\b",
+    re.I,
+)
 LOCATION_SELECTOR_MARKERS = (
     "alabama",
     "alaska",
@@ -140,6 +144,11 @@ def is_share_text(value: Any) -> bool:
     return bool(key) and (key in SHARE_EXACT_MARKERS or any(marker in key for marker in SHARE_MARKERS))
 
 
+def is_author_image_text(value: Any) -> bool:
+    key = normalized_key(value)
+    return bool(key and AUTHOR_IMAGE_TEXT_RE.search(key))
+
+
 def normalize_list_items(items: list[Any]) -> list[Any]:
     normalized: list[Any] = []
     for item in items:
@@ -211,7 +220,7 @@ def sanitize_story(story: dict[str, Any]) -> bool:
                     item_text(block.get("title")),
                 ) if part
             )
-            if image_text and (is_junk_text(image_text) or is_share_text(image_text)):
+            if image_text and (is_junk_text(image_text) or is_share_text(image_text) or is_author_image_text(image_text)):
                 changed = True
                 selector_removed = selector_removed or looks_like_location_selector_dump(image_text)
                 continue

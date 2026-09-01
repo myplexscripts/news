@@ -246,7 +246,15 @@ const showDeck = Boolean(
                   )}
                   {block.type === 'image' && block.url && (
                     <figure class="inline-article-image">
-                      <img src={resolveImageSrc(block.url)} alt={block.alt || ''} loading="lazy" referrerpolicy="no-referrer" />
+                      <img
+                        src={resolveImageSrc(block.url)}
+                        alt={block.alt || ''}
+                        width={block.width || undefined}
+                        height={block.height || undefined}
+                        loading="lazy"
+                        decoding="async"
+                        referrerpolicy="no-referrer"
+                      />
                       {block.caption && <figcaption>{block.caption}</figcaption>}
                     </figure>
                   )}

@@ -6,6 +6,7 @@ const SOURCE_LOGO_FILES: Record<string, string> = {
   'cbc news canada': 'CBC_News_Logo.svg',
   'cbc news': 'CBC_News_Logo.svg',
   'london free press': 'The_London_Free_Press_Logo.svg',
+  'ctv news london': 'CTVNews_horizontal_logo.svg',
   'ctv news canada': 'CTVNews_horizontal_logo.svg',
   'ctv news': 'CTVNews_horizontal_logo.svg',
   '106.9 the x': '1069thex.png',

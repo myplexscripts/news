@@ -10,8 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-# Never mark an otherwise-valid commit as failed just because a newer push landed.
-# Deploys are queued and run in order instead of cancelling the in-progress run.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -22,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -38,9 +38,26 @@ jobs:
           fi
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check UI design contracts
+        run: python scripts/check_ui_contracts.py
+
+      - name: Check story scope contracts
+        run: python scripts/check_scope_contracts.py
+
+      - name: Check confirmed London source contracts
+        run: python scripts/check_local_source_rules.py
+
+      - name: Check homepage feed contracts
+        run: python scripts/check_home_feed_contracts.py
 
       - name: Install site dependencies
         shell: bash
@@ -60,15 +77,113 @@ jobs:
           mkdir -p public/images/logos
           cp -a images/logos/. public/images/logos/
 
-      - name: Publish feed data
+      - name: Generate social share image
+        run: python scripts/write_social_card.py
+
+      - name: Publish feed data and search index
         shell: bash
         run: |
+          python scripts/annotate_scopes.py
+          python scripts/apply_local_source_rules.py
           mkdir -p public/data
           cp data/news.json public/data/news.json
           cp data/audit.json public/data/audit.json
+          python scripts/build_search_index.py
 
       - name: Build static site
         run: npm run build
+
+      - name: Inject social metadata
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          owner = os.environ.get("GITHUB_REPOSITORY", "myplexscripts/news").split("/", 1)[0]
+          base = os.environ.get("BASE_PATH", "/").rstrip("/")
+          origin = f"https://{owner}.github.io"
+          image_url = f"{origin}{base}/social-card.png" if base else f"{origin}/social-card.png"
+          site_title = "Forest City News"
+          description = "Local reporting from across London, Ontario."
+
+          def page_url(path: Path) -> str:
+              rel = path.relative_to("dist").as_posix()
+              if rel == "index.html":
+                  suffix = "/"
+              elif rel.endswith("/index.html"):
+                  suffix = "/" + rel[:-10]
+              else:
+                  suffix = "/" + rel
+              prefix = base if base else ""
+              return f"{origin}{prefix}{suffix}"
+
+          tags_template = '''
+          <meta property="og:site_name" content="{title}">
+          <meta property="og:type" content="website">
+          <meta property="og:locale" content="en_CA">
+          <meta property="og:title" content="{title}">
+          <meta property="og:description" content="{description}">
+          <meta property="og:url" content="{url}">
+          <meta property="og:image" content="{image}">
+          <meta property="og:image:secure_url" content="{image}">
+          <meta property="og:image:type" content="image/png">
+          <meta property="og:image:width" content="1200">
+          <meta property="og:image:height" content="630">
+          <meta property="og:image:alt" content="Forest City News tree logo on a green background">
+          <meta name="twitter:card" content="summary_large_image">
+          <meta name="twitter:title" content="{title}">
+          <meta name="twitter:description" content="{description}">
+          <meta name="twitter:image" content="{image}">
+          <meta name="twitter:image:alt" content="Forest City News tree logo on a green background">
+          '''
+
+          updated = 0
+          for path in Path("dist").rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              if 'property="og:image"' in text or "</head>" not in text:
+                  continue
+              tags = tags_template.format(
+                  title=site_title,
+                  description=description,
+                  url=page_url(path),
+                  image=image_url,
+              )
+              text = text.replace("</head>", f"{tags}</head>", 1)
+              path.write_text(text, encoding="utf-8")
+              updated += 1
+
+          print(f"Injected social metadata into {updated} page(s) using {image_url}")
+          PY
+
+      - name: Apply global UI guidelines
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          base = os.environ.get("BASE_PATH", "/").rstrip("/")
+          ui_href = f"{base}/ui-guidelines.css" if base else "/ui-guidelines.css"
+          interaction_href = f"{base}/interaction-cleanup.css" if base else "/interaction-cleanup.css"
+          navigation_href = f"{base}/navigation-transitions.css" if base else "/navigation-transitions.css"
+          links = (
+              f'<link rel="stylesheet" href="{ui_href}" data-ui-system="guidelines">'
+              f'<link rel="stylesheet" href="{interaction_href}" data-ui-system="interaction-cleanup">'
+              f'<link rel="stylesheet" href="{navigation_href}" data-ui-system="navigation-transitions">'
+          )
+
+          updated = 0
+          for path in Path("dist").rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              if 'data-ui-system="guidelines"' in text or "</head>" not in text:
+                  continue
+              text = text.replace("</head>", f"{links}</head>", 1)
+              path.write_text(text, encoding="utf-8")
+              updated += 1
+
+          print(f"Applied UI guidelines, interaction cleanup, and navigation transitions to {updated} page(s)")
+          PY
 
       - name: Stamp deploy version
         shell: bash
@@ -106,11 +221,10 @@ jobs:
           path: dist
 
       - name: Persist generated lockfile
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref_name == 'main'
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- package-lock.json)" ]; then
-            echo "Lockfile already committed and unchanged"
             exit 0
           fi
           git config user.name "github-actions[bot]"

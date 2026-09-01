@@ -8,19 +8,17 @@ on:
       - 'requirements.txt'
       - '.github/workflows/refresh.yml'
       - '.github/workflows/refresh-wake.yml'
+      - '.github/workflows/enrich.yml'
   workflow_dispatch:
   schedule:
-    # Backup watchdog only. A separate wake workflow normally starts each cycle.
     - cron: '7,17,27,37,47,57 * * * *'
 
 permissions:
   contents: write
   actions: write
 
-# A newer push should not turn a valid in-progress refresh into a red X.
-# Queue the next refresh behind the active one instead.
 concurrency:
-  group: refresh-news-v3
+  group: refresh-news-v3-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -29,6 +27,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
 
       - name: Record refresh cycle start
         shell: bash
@@ -40,7 +40,6 @@ jobs:
         run: |
           if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
-            echo "Non-scheduled run: refresh required."
             exit 0
           fi
 
@@ -57,13 +56,11 @@ jobs:
               generated = datetime.fromisoformat(raw)
               if generated.tzinfo is None:
                   generated = generated.replace(tzinfo=timezone.utc)
-              generated = generated.astimezone(timezone.utc)
-              age_minutes = (datetime.now(timezone.utc) - generated).total_seconds() / 60
+              age_minutes = (datetime.now(timezone.utc) - generated.astimezone(timezone.utc)).total_seconds() / 60
               due = age_minutes >= 20
               print(f"Published feed age: {age_minutes:.1f} minutes. Refresh due: {due}")
           except Exception as exc:
               print(f"Could not verify feed freshness, refreshing safely: {exc}")
-              due = True
 
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
               handle.write(f"run={'true' if due else 'false'}\n")
@@ -79,197 +76,91 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: pip install -r requirements.txt
 
-      - name: Validate refresh workflow
+      - name: Test collector safeguards
         if: steps.due.outputs.run == 'true'
-        run: python scripts/test_workflow_config.py
+        run: |
+          python scripts/test_scoop_runtime.py
+          python scripts/test_ctv_locality.py
+          python scripts/test_publication_roundups.py
+          python scripts/test_editorial.py
+          python scripts/check_scope_contracts.py
+          python scripts/check_local_source_rules.py
 
-      - name: Test Scoop runtime safeguards
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_scoop_runtime.py
-
-      - name: Test CTV London source repair
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_ctv_locality.py
-
-      - name: Test publication roundup filters
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_publication_roundups.py
-
-      - name: Test article recirculation cleanup
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_recirculation_cleanup.py
-
-      - name: Test inline article formatting
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_article_formatting.py
-
-      - name: Test article media preservation
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_article_media.py
-
-      - name: Test source specific article profiles
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_source_profiles.py
-
-      - name: Test article presentation sanitation
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_article_sanitizer.py
-
-      - name: Test reader-mode article extraction
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_reader_mode_articles.py
-
-      - name: Fetch local and Canadian news
+      - name: Fetch headline metadata
         if: steps.due.outputs.run == 'true'
         run: python scripts/run_scoop.py
 
-      - name: Repair CTV London freshness and scope
+      - name: Apply fast feed normalization
         if: steps.due.outputs.run == 'true'
-        run: python scripts/repair_ctv_locality.py
-
-      - name: Annotate Local and Canada feed scopes
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/annotate_scopes.py
-
-      - name: Remove redundant publisher roundups
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/filter_publication_roundups.py
-
-      - name: Normalize London Police articles
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/fix_lps_articles.py
-
-      - name: Normalize CBC fallback metadata
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/fix_cbc_fallback.py
-
-      - name: Hydrate CBC article bodies from Lite
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/hydrate_cbc_lite.py
-
-      - name: Repair CBC image references
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/repair_cbc_image_refs.py
-
-      - name: Preserve source article structure
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/enrich_article_structure.py
-
-      - name: Preserve inline article formatting
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/refine_article_formatting.py
-
-      - name: Apply source specific extraction profiles
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/refine_source_articles.py
-
-      - name: Extract articles with reader mode
-        if: steps.due.outputs.run == 'true'
-        timeout-minutes: 12
-        run: python scripts/reader_mode_articles.py
+        run: |
+          python scripts/repair_ctv_locality.py
+          python scripts/annotate_scopes.py
+          python scripts/apply_local_source_rules.py
+          python scripts/filter_publication_roundups.py
+          python scripts/fix_lps_articles.py
+          python scripts/fix_cbc_fallback.py
+          python scripts/repair_cbc_image_refs.py
 
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
         timeout-minutes: 3
         run: python scripts/cleanup_article_recirculation.py
 
-      - name: Preserve article audio and video
+      - name: Run cluster-aware audit
         if: steps.due.outputs.run == 'true'
-        run: python scripts/enrich_article_media.py
+        run: python scripts/run_audit.py
 
-      - name: Sanitize article presentation artifacts
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/sanitize_article_blocks.py
-
-      - name: Cache CBC article images locally
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/cache_cbc_images.py
-
-      - name: Run Scoop regression tests
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_scraper_regressions.py
-
-      - name: Run editorial intelligence tests
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/test_editorial.py
-
-      - name: Run audit rule tests
-        if: steps.due.outputs.run == 'true'
-        run: |
-          python scripts/test_audit.py
-          python scripts/test_run_audit.py
-
-      - name: Audit current Scoop output
-        if: steps.due.outputs.run == 'true'
-        run: python scripts/run_audit.py --sample-per-source 10
-
-      - name: Upload Scoop audit report
-        if: steps.due.outputs.run == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: scoop-audit-report
-          path: data/audit.json
-          retention-days: 14
-
-      - name: Commit refreshed news
+      - name: Commit fast refresh
         id: commit
         if: steps.due.outputs.run == 'true'
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
-            echo "No data changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          # Save the generated feed before syncing to the newest main. A code push
-          # can land while Scoop is scraping, and rebasing two generated JSON files
-          # produces avoidable conflicts. Restore the finished output on top of the
-          # newest code instead.
-          rm -rf /tmp/scoop-output
-          mkdir -p /tmp/scoop-output/cache
-          cp data/news.json /tmp/scoop-output/news.json
-          cp data/audit.json /tmp/scoop-output/audit.json
-          rsync -a public/cache/ /tmp/scoop-output/cache/
-
-          restore_output() {
-            cp /tmp/scoop-output/news.json data/news.json
-            cp /tmp/scoop-output/audit.json data/audit.json
-            mkdir -p public/cache
-            rsync -a --delete /tmp/scoop-output/cache/ public/cache/
-          }
+          rm -rf /tmp/scoop-fast-output
+          mkdir -p /tmp/scoop-fast-output/cache
+          cp data/news.json /tmp/scoop-fast-output/news.json
+          cp data/audit.json /tmp/scoop-fast-output/audit.json
+          rsync -a public/cache/ /tmp/scoop-fast-output/cache/
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --hard origin/main
-          restore_output
+          git fetch origin "$GITHUB_REF_NAME"
+          git reset --hard "origin/$GITHUB_REF_NAME"
+          cp /tmp/scoop-fast-output/news.json data/news.json
+          cp /tmp/scoop-fast-output/audit.json data/audit.json
+          mkdir -p public/cache
+          rsync -a --delete /tmp/scoop-fast-output/cache/ public/cache/
           git add data/news.json data/audit.json public/cache/
 
           if git diff --cached --quiet; then
-            echo "Latest main already contains this refresh"
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           git commit -m "Refresh news"
-          git push origin HEAD:main
+          git push origin "HEAD:$GITHUB_REF_NAME"
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      # Commits pushed with GITHUB_TOKEN intentionally do not trigger other
-      # workflows. Explicitly deploy the refreshed feed so Pages follows main.
-      - name: Deploy refreshed site
-        if: steps.commit.outputs.changed == 'true'
+      - name: Deploy fast refresh
+        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run site.yml --repo myplexscripts/news --ref main
 
+      - name: Start deferred article enrichment
+        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run enrich.yml --repo "$GITHUB_REPOSITORY" --ref main
+
       - name: Schedule next refresh
-        # A fresh watchdog check must not reset the active wake timer. If it does,
-        # each 10-minute watchdog can cancel a nearly-finished 15-minute wake and
-        # leave the site dependent on GitHub's occasionally delayed cron scheduler.
-        if: always() && (github.event_name != 'schedule' || steps.due.outputs.run == 'true')
+        if: always() && github.ref_name == 'main' && (github.event_name != 'schedule' || steps.due.outputs.run == 'true')
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -277,11 +168,6 @@ jobs:
           now=$(date +%s)
           elapsed=$((now - CYCLE_START_EPOCH))
           wait_seconds=$((900 - elapsed))
-          if [ "$wait_seconds" -lt 60 ]; then
-            wait_seconds=60
-          fi
-          if [ "$wait_seconds" -gt 900 ]; then
-            wait_seconds=900
-          fi
-          echo "Refresh work took ${elapsed}s. Scheduling the next cycle in ${wait_seconds}s."
+          if [ "$wait_seconds" -lt 60 ]; then wait_seconds=60; fi
+          if [ "$wait_seconds" -gt 900 ]; then wait_seconds=900; fi
           gh workflow run refresh-wake.yml --ref main -f delay_seconds="$wait_seconds"

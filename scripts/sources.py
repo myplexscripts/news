@@ -39,7 +39,7 @@ SOURCES = [
         accent="#6155f5",
     ),
     Source(
-        name="CTV News",
+        name="CTV News London",
         logo="images/logos/CTVNews_horizontal_logo.svg",
         # CTV's legacy London RSS endpoint now redirects to a dead URL. Discover
         # stories from the current London landing page and scrape the first-party

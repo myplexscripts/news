@@ -11,6 +11,7 @@ from rapidfuzz import fuzz
 CLUSTER_WINDOW_HOURS = 36
 GOOGLE_DISCOVERY_MIN_LOCAL_SCORE = 25
 TOP_STORY_MIN_LOCAL_SCORE = 40
+TOP_STORY_MAX_AGE_HOURS = 36
 
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "been", "being", "but", "by", "can", "could",
@@ -289,7 +290,9 @@ def _ranking(story: dict[str, Any], source_count: int, now: datetime) -> tuple[i
     quality = int((story.get("quality") or {}).get("score") or 0)
     image = int(story.get("image_score") or 0)
 
-    score = round((local * 0.35) + (fresh * 0.25) + (coverage * 0.20) + (quality * 0.10) + (image * 0.10))
+    # Headline ranking should reward what is happening now and what multiple
+    # publishers consider important, rather than letting locality alone dominate.
+    score = round((local * 0.25) + (fresh * 0.35) + (coverage * 0.25) + (quality * 0.10) + (image * 0.05))
     reasons = [
         f"local relevance {local}/100",
         f"freshness {fresh}/100",
@@ -402,8 +405,9 @@ def apply_editorial_intelligence(
     eligible = [
         story for story in representative_stories
         if int(story.get("cluster_local_score") or story.get("local_score") or 0) >= TOP_STORY_MIN_LOCAL_SCORE
+        and (now - _dt(story.get("cluster_latest_published") or story.get("published"))).total_seconds() / 3600 <= TOP_STORY_MAX_AGE_HOURS
     ]
-    eligible.sort(key=lambda item: (int(item.get("rank_score") or 0), _dt(item.get("published"))), reverse=True)
+    eligible.sort(key=lambda item: (int(item.get("rank_score") or 0), _dt(item.get("cluster_latest_published") or item.get("published"))), reverse=True)
     top_story_ids = [str(story.get("id")) for story in eligible[:3] if story.get("id")]
 
     metadata = {
