@@ -40,30 +40,53 @@ def _source_scope(name: str) -> str:
     return SOURCE_SCOPES.get(str(name or "").strip(), "")
 
 
-def _has_story_level_local_evidence(story: dict[str, Any]) -> bool:
-    """Require London-area evidence beyond the publisher's local-feed prior."""
-    try:
-        score = int(story.get("local_score") or 0)
-    except (TypeError, ValueError):
-        score = 0
-    if score < LOCAL_SCOPE_MIN_SCORE:
-        return False
-
-    reasons = story.get("local_reasons") or []
-    if not isinstance(reasons, list):
-        return False
-
+def _has_negative_locality(reasons: list[Any]) -> bool:
     for reason in reasons:
         text = str(reason or "").strip().lower()
         if not text:
             continue
-        if text.startswith("local publisher"):
+        if "london, uk" in text or "united kingdom" in text:
+            return True
+        # Ranking reasons express penalties with a negative number, for example
+        # "London, UK -90". Treat any such locality penalty as disqualifying.
+        if " -" in text:
+            return True
+    return False
+
+
+def _has_story_level_local_evidence(story: dict[str, Any]) -> bool:
+    """Return true when the story itself is from or about London, Ontario.
+
+    Publisher geography is deliberately ignored here. A London story from a
+    national publisher is Local, while an unrelated national story carried by a
+    London-branded newsroom is not.
+    """
+    reasons = story.get("local_reasons") or []
+    if not isinstance(reasons, list) or _has_negative_locality(reasons):
+        return False
+
+    try:
+        score = int(story.get("local_score") or 0)
+    except (TypeError, ValueError):
+        score = 0
+
+    for reason in reasons:
+        text = str(reason or "").strip().lower()
+        if not text or text.startswith("local publisher"):
             continue
-        # Negative locality evidence, such as London, UK, must never qualify a
-        # story for the London feed.
-        if " -" in text or "london, uk" in text or "united kingdom" in text:
-            continue
-        return True
+
+        # An unqualified London mention is still useful story-level evidence once
+        # ranking has found no UK/England penalty. This catches headlines such as
+        # "London woman..." from national publishers.
+        if text.startswith("london mention"):
+            return True
+
+        # Strong London-area entities already carry weights at or above the scope
+        # threshold in ranking.py. Keep the threshold for weaker regional hints so
+        # Southwestern Ontario alone does not become London news.
+        if score >= LOCAL_SCOPE_MIN_SCORE:
+            return True
+
     return False
 
 
@@ -71,20 +94,21 @@ def scope_for_story(story: dict[str, Any]) -> str:
     source = str(story.get("source") or "").strip()
     discovery = str(story.get("discovery_via") or "").strip()
 
-    # National collections stay in Canada. A London-focused version of an event
-    # will normally also be available from the local collectors.
-    if _source_scope(source) == "canada" or _source_scope(discovery) == "canada":
-        return "canada"
-
     if source in ALWAYS_LOCAL_SOURCES:
         return "local"
 
-    # Newsroom feeds such as CBC London, CTV London, Global London and the Free
-    # Press occasionally carry broader Ontario or Canadian stories. Those only
-    # belong in Local when the story itself contains London-area evidence.
+    # Story relevance wins over publisher origin. This is the core contract for
+    # the Local filter: any publisher can contribute a London, Ontario story.
     if _has_story_level_local_evidence(story):
         return "local"
 
+    # National collections and broad newsroom feeds remain Canada unless the
+    # individual story passed the London evidence test above.
+    if _source_scope(source) == "canada" or _source_scope(discovery) == "canada":
+        return "canada"
+
+    # A London-branded publisher is not enough by itself. Broad Ontario or Canada
+    # stories without London evidence belong in Canada.
     return "canada"
 
 
@@ -113,7 +137,7 @@ def annotate_payload(payload: dict[str, Any]) -> dict[str, Any]:
         source = str(health.get("source") or "").strip()
         health["scope"] = SOURCE_SCOPES.get(source, "local")
 
-    payload["scope_schema_version"] = 2
+    payload["scope_schema_version"] = 3
     payload["scope_counts"] = {
         "local": counts.get("local", 0),
         "canada": counts.get("canada", 0),
