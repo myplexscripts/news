@@ -400,6 +400,32 @@ const generated = news.generated_at
       }
     }
 
+    function setupCardReveals() {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        cards.forEach((card) => card.classList.add('is-revealed'));
+        return;
+      }
+
+      cards.forEach((card, index) => {
+        card.classList.add('home-card-reveal');
+        card.style.setProperty('--home-card-reveal-delay', `${(index % 3) * 45}ms`);
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -4% 0px'
+      });
+
+      cards.forEach((card) => observer.observe(card));
+    }
+
     searchToggle?.addEventListener('click', () => headerSearch?.classList.contains('is-open') ? searchInput?.focus() : openSearch());
     searchClose?.addEventListener('click', closeSearch);
     searchInput?.addEventListener('input', applyFilters);
@@ -426,6 +452,7 @@ const generated = news.generated_at
       applyFilters();
     }
 
+    setupCardReveals();
     initialiseUserState().then(applyUserState).catch(() => {});
     onUserStateChange(applyUserState);
   </script>
