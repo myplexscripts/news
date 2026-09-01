@@ -61,12 +61,12 @@ const latestDate = (value) => {
   }
 };
 ---
-<BaseLayout title="Sections | London News" description="Browse London News by section or choose which sources appear in your feed.">
+<BaseLayout title="Sections | Forest City News" description="Browse Forest City News by section or choose which sources appear in your feed.">
   <main class="sections-page combined-directory-page" id="main-content">
     <section class="sections-shell shell">
       <PageHeading className="sections-heading" eyebrow="Browse" title="Sections" description="Browse by topic or choose which publishers appear in your feed." />
 
-      <div class="directory-tabs" role="tablist" aria-label="Browse London News">
+      <div class="directory-tabs" role="tablist" aria-label="Browse Forest City News">
         <button class="directory-tab active" type="button" role="tab" id="sectionsTab" aria-selected="true" aria-controls="sectionsPanel" data-directory-tab="sections">
           Sections
         </button>
@@ -79,18 +79,14 @@ const latestDate = (value) => {
         <div class="section-directory-grid" aria-label="News sections">
           <a class="section-directory-card section-all" href={`${base}latest/`}>
             <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
-            <div>
-              <strong>Latest</strong>
-            </div>
+            <div><strong>Latest</strong></div>
             <i class="ph ph-caret-right" aria-hidden="true"></i>
           </a>
 
           {categories.map((category) => (
             <a class:list={["section-directory-card", categoryClass(category)]} href={hrefFor(category)}>
               <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
-              <div>
-                <strong>{category}</strong>
-              </div>
+              <div><strong>{category}</strong></div>
               <i class="ph ph-caret-right" aria-hidden="true"></i>
             </a>
           ))}
@@ -126,7 +122,7 @@ const latestDate = (value) => {
 
         <div class="sources-footer-note">
           <i class="ph ph-device-mobile" aria-hidden="true"></i>
-          <p>These preferences only affect what London News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
+          <p>These preferences only affect what Forest City News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
         </div>
       </section>
     </section>
@@ -202,88 +198,94 @@ const latestDate = (value) => {
       margin-bottom: 20px;
     }
 
-    .directory-tabs {
-      display: inline-grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 4px;
-      margin: 0 0 28px;
-      padding: 4px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--surface-subtle);
-    }
-
-    .directory-tab {
-      min-width: 132px;
-      min-height: 44px;
-      padding: 0 20px;
-      border: 0;
-      border-radius: 999px;
-      background: transparent;
-      color: var(--muted);
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .directory-tab.active {
-      background: var(--surface);
-      color: var(--ink);
-      box-shadow: 0 1px 3px rgb(0 0 0 / 0.08);
-    }
-
-    html[data-theme='dark'] .directory-tab.active {
-      background: var(--gray-5);
+    .combined-directory-page .directory-tabs {
+      width: min(100%, 520px) !important;
+      margin: 0 0 28px !important;
     }
 
     .combined-directory-page .section-directory-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-      gap: 10px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      grid-template-columns: none !important;
+      gap: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 24px !important;
+      background: var(--gray-6) !important;
+      overflow: hidden !important;
+    }
+
+    html[data-theme='dark'] .combined-directory-page .section-directory-grid {
+      background: var(--surface) !important;
     }
 
     .combined-directory-page .section-directory-card {
       position: relative !important;
-      aspect-ratio: 1 / 1 !important;
+      aspect-ratio: auto !important;
+      width: 100% !important;
       min-width: 0 !important;
-      min-height: 0 !important;
+      min-height: 72px !important;
       display: flex !important;
-      flex-direction: column !important;
-      align-items: flex-start !important;
+      flex-direction: row !important;
+      align-items: center !important;
       justify-content: flex-start !important;
-      gap: 10px !important;
-      padding: 12px !important;
-      overflow: hidden !important;
+      gap: 14px !important;
+      padding: 12px 16px !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+    }
+
+    .combined-directory-page .section-directory-card:not(:last-child)::after {
+      content: '' !important;
+      position: absolute !important;
+      left: 74px !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      height: 1px !important;
+      background: var(--line) !important;
+      pointer-events: none !important;
     }
 
     .combined-directory-page .section-directory-card .section-directory-icon {
-      width: 42px !important;
-      height: 42px !important;
-      min-width: 42px !important;
+      width: 46px !important;
+      height: 46px !important;
+      min-width: 46px !important;
+      display: grid !important;
+      place-items: center !important;
+      border: 0 !important;
+      border-radius: 12px !important;
+      background: #fff !important;
+      color: #000 !important;
+      box-shadow: none !important;
+    }
+
+    .combined-directory-page .section-directory-card .section-directory-icon i {
+      color: #000 !important;
+      font-size: 25px !important;
     }
 
     .combined-directory-page .section-directory-card > div {
-      width: calc(100% - 22px) !important;
+      flex: 1 1 auto !important;
+      width: auto !important;
       min-width: 0 !important;
     }
 
     .combined-directory-page .section-directory-card strong {
       display: block !important;
       width: 100% !important;
-      font-size: 16px !important;
-      line-height: 1.15 !important;
+      color: var(--ink) !important;
+      font-size: 18px !important;
+      font-weight: 500 !important;
+      line-height: 1.25 !important;
       white-space: normal !important;
-      overflow: visible !important;
-      text-overflow: clip !important;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal !important;
     }
 
     .combined-directory-page .section-directory-card > i.ph-caret-right {
-      position: absolute !important;
-      right: 12px !important;
-      bottom: 12px !important;
-      display: block !important;
-      color: var(--muted) !important;
-      font-size: 18px !important;
+      display: none !important;
     }
 
     .combined-sources-toolbar {
@@ -299,37 +301,38 @@ const latestDate = (value) => {
     }
 
     @media (max-width: 760px) {
-      .directory-tabs {
-        width: 100%;
-        margin-bottom: 20px;
-      }
-
-      .directory-tab {
-        min-width: 0;
-        width: 100%;
-        padding-inline: 12px;
+      .combined-directory-page .directory-tabs {
+        width: 100% !important;
+        margin-bottom: 24px !important;
       }
 
       .combined-directory-page .section-directory-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-        gap: 8px !important;
+        border-radius: 22px !important;
       }
 
       .combined-directory-page .section-directory-card {
-        padding: 10px !important;
-        gap: 8px !important;
+        min-height: 70px !important;
+        padding: 12px 14px !important;
+        gap: 13px !important;
+      }
+
+      .combined-directory-page .section-directory-card:not(:last-child)::after {
+        left: 72px !important;
       }
 
       .combined-directory-page .section-directory-card .section-directory-icon {
-        width: 38px !important;
-        height: 38px !important;
-        min-width: 38px !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        border-radius: 11px !important;
       }
 
-      .combined-directory-page .section-directory-card > i.ph-caret-right {
-        right: 10px !important;
-        bottom: 10px !important;
-        font-size: 16px !important;
+      .combined-directory-page .section-directory-card .section-directory-icon i {
+        font-size: 24px !important;
+      }
+
+      .combined-directory-page .section-directory-card strong {
+        font-size: 17px !important;
       }
 
       .combined-sources-toolbar {
