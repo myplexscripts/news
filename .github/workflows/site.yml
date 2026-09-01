@@ -68,6 +68,7 @@ jobs:
       - name: Publish feed data and search index
         shell: bash
         run: |
+          python scripts/annotate_scopes.py
           mkdir -p public/data
           cp data/news.json public/data/news.json
           cp data/audit.json public/data/audit.json
