@@ -2,11 +2,11 @@
 """Fail CI when Forest City News UI invariants regress.
 
 This intentionally checks the design contracts that should survive later visual work:
-- 52px standard controls and 44px minimum touch targets
-- concentric 16px / 4px / 12px control radii
+- 44px controls and minimum touch targets
+- concentric 22px / 3px / 19px pill radii
+- no persistent outlines on controls
 - no shared Liquid Glass outside the mobile navigation
-- at least 3:1 control-boundary contrast
-- at least 4.5:1 action/selected-label contrast for every accent colour
+- at least 4.5:1 label contrast in both themes for every accent colour
 """
 
 from __future__ import annotations
@@ -77,15 +77,13 @@ def main() -> None:
     feed = FEED_CSS.read_text(encoding="utf-8")
 
     required_css = (
-        "--ui-control-height: 52px;",
+        "--ui-control-height: 44px;",
         "--ui-touch-min: 44px;",
-        "--ui-control-radius: 16px;",
-        "--ui-control-inset: 4px;",
+        "--ui-control-radius: 22px;",
+        "--ui-control-inset: 3px;",
         "--ui-inner-radius: calc(var(--ui-control-radius) - var(--ui-control-inset));",
-        "--ui-border: rgb(140 140 145);",
-        "--ui-border: rgb(108 108 112);",
-        "--ui-accent-text: color-mix(in srgb, var(--accent) 53%, black);",
-        "--ui-accent-text: color-mix(in srgb, var(--accent) 80%, white);",
+        "--ui-accent-text: color-mix(in srgb, var(--accent) 45%, black);",
+        "--ui-accent-text: color-mix(in srgb, var(--accent) 60%, white);",
     )
     for token in required_css:
         require(token in ui, f"missing required UI token: {token}")
@@ -93,28 +91,39 @@ def main() -> None:
     require("Shared Liquid Glass material" not in feed, "legacy shared Liquid Glass block returned")
     require(".mobile-tab-bar" in ui and "backdrop-filter: blur(34px)" in ui, "mobile nav Liquid Glass is missing")
 
-    # WCAG non-text contrast for visible control boundaries.
-    light_surface = (255, 255, 255)
-    light_border = (140, 140, 145)
-    dark_surface = (28, 28, 30)
-    dark_border = (108, 108, 112)
-    require(contrast(light_surface, light_border) >= 3.0, "light control boundary is below 3:1")
-    require(contrast(dark_surface, dark_border) >= 3.0, "dark control boundary is below 3:1")
+    # Persistent outlines and borders are intentionally absent from flat controls.
+    require("border: 1px solid var(--ui-border)" not in ui, "persistent control outlines returned")
+    require("border: 1px solid var(--ui-selected-border)" not in ui, "selected segment outline returned")
 
-    # Action/selected labels use accent-aware foregrounds that remain readable.
+    # Inactive labels remain readable on the flat segmented-control backgrounds.
+    light_segment_fill = (242, 242, 247)
+    light_muted = (108, 108, 112)
+    dark_segment_fill = (28, 28, 30)
+    dark_muted = (174, 174, 178)
+    require(contrast(light_muted, light_segment_fill) >= 4.5, "light inactive segment text is below 4.5:1")
+    require(contrast(dark_muted, dark_segment_fill) >= 4.5, "dark inactive segment text is below 4.5:1")
+
+    # Action and selected labels use accent-aware foregrounds that remain readable.
     light_action_fill = (242, 242, 247)
+    light_selected_fill = (255, 255, 255)
     dark_action_fill = (44, 44, 46)
+    dark_selected_fill = (58, 58, 60)
+
     for name, accent in LIGHT_ACCENTS.items():
-        text = mix(accent, (0, 0, 0), 0.53)
-        ratio = contrast(text, light_action_fill)
-        require(ratio >= 4.5, f"light {name} action text is only {ratio:.2f}:1")
+        text = mix(accent, (0, 0, 0), 0.45)
+        action_ratio = contrast(text, light_action_fill)
+        selected_ratio = contrast(text, light_selected_fill)
+        require(action_ratio >= 4.5, f"light {name} action text is only {action_ratio:.2f}:1")
+        require(selected_ratio >= 4.5, f"light {name} selected text is only {selected_ratio:.2f}:1")
 
     for name, accent in DARK_ACCENTS.items():
-        text = mix(accent, (255, 255, 255), 0.80)
-        ratio = contrast(text, dark_action_fill)
-        require(ratio >= 4.5, f"dark {name} action text is only {ratio:.2f}:1")
+        text = mix(accent, (255, 255, 255), 0.60)
+        action_ratio = contrast(text, dark_action_fill)
+        selected_ratio = contrast(text, dark_selected_fill)
+        require(action_ratio >= 4.5, f"dark {name} action text is only {action_ratio:.2f}:1")
+        require(selected_ratio >= 4.5, f"dark {name} selected text is only {selected_ratio:.2f}:1")
 
-    print("UI contracts passed: touch targets, concentric radii, nav-only glass, and contrast are valid.")
+    print("UI contracts passed: pill geometry, nav-only glass, flat controls, and label contrast are valid.")
 
 
 if __name__ == "__main__":
