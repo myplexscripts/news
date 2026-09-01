@@ -7,6 +7,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TIMELINE = (ROOT / "src/lib/timelineStories.ts").read_text(encoding="utf-8")
 HOME = (ROOT / "src/pages/index.astro").read_text(encoding="utf-8")
+HOME_CSS = (ROOT / "src/styles/editorial-home.css").read_text(encoding="utf-8")
+CARD = (ROOT / "src/components/NewsCard.astro").read_text(encoding="utf-8")
 
 
 def require(condition: bool, message: str) -> None:
@@ -17,10 +19,11 @@ def require(condition: bool, message: str) -> None:
 def main() -> None:
     require("seenMultiSourceClusters" not in TIMELINE, "homepage must not collapse articles by event cluster")
     require("cluster_latest_published: story.published || story.cluster_latest_published" in TIMELINE, "homepage cards must use each article's own publication time")
-    require("data-scope={story.scope || 'local'}" in (ROOT / "src/components/NewsCard.astro").read_text(encoding="utf-8"), "every homepage card must expose its own scope")
+    require("data-scope={story.scope || 'local'}" in CARD, "every homepage card must expose its own scope")
     require("timelineCards.forEach" in HOME and "cardMatches(item, query)" in HOME, "scope filtering must run across the full homepage timeline")
     require("const scopeMatch = activeScope === 'all' || itemScope === activeScope" in HOME, "every timeline card must respect Local, Canada, and All")
-    print("Homepage feed contracts passed: every article remains independent, chronological, and scope-filterable.")
+    require(".home-page .news-card.filtered-out" in HOME_CSS and "display: none !important" in HOME_CSS, "cards rejected by the homepage filter must actually be hidden")
+    print("Homepage feed contracts passed: every article remains independent, chronological, scope-filterable, and visibly hidden when rejected.")
 
 
 if __name__ == "__main__":
