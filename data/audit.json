@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 14,
-  "generated_at": "2026-09-01T09:34:12.339807+00:00",
-  "generated_at_london": "2026-09-01T05:34:12.339807-04:00",
-  "news_generated_at": "2026-09-01T09:23:06.968452+00:00",
+  "generated_at": "2026-09-01T09:51:58.834343+00:00",
+  "generated_at_london": "2026-09-01T05:51:58.834343-04:00",
+  "news_generated_at": "2026-09-01T09:38:12.551940+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 471,
+    "archive_story_count": 476,
     "source_count": 28,
     "audited_story_count": 203,
-    "pass_story_count": 185,
+    "pass_story_count": 184,
     "review_story_count": 15,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
+    "fail_story_count": 4,
+    "critical_issue_count": 4,
     "warning_issue_count": 19,
-    "info_issue_count": 182,
+    "info_issue_count": 181,
     "healthy_source_count": 11,
     "review_source_count": 13,
     "error_source_count": 0,
@@ -79,24 +79,24 @@
       "collector_status": "healthy",
       "profile": "cbc",
       "sample_size": 10,
-      "pass": 9,
+      "pass": 8,
       "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "fail": 2,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 584,
+      "average_words": 621,
       "average_quality": 75,
       "primary_method": "reader:cbc:lite",
       "method_counts": {
         "reader:cbc:lite": 10
       },
-      "critical_issues": 1,
+      "critical_issues": 2,
       "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-09-01T09:00:00+00:00",
-      "found_this_run": 8,
-      "tracked": 28,
-      "last_scrape": "2026-09-01T09:16:23.110892+00:00",
+      "info_issues": 0,
+      "latest_published": "2026-09-01T09:22:01+00:00",
+      "found_this_run": 9,
+      "tracked": 29,
+      "last_scrape": "2026-09-01T09:31:45.330128+00:00",
       "last_error": ""
     },
     {
@@ -499,7 +499,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 388,
+      "average_words": 421,
       "average_quality": 51,
       "primary_method": "trafilatura:fallback",
       "method_counts": {
@@ -508,10 +508,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-09-01T09:11:03.935000+00:00",
+      "latest_published": "2026-09-01T09:21:37.302000+00:00",
       "found_this_run": 15,
       "tracked": 30,
-      "last_scrape": "2026-09-01T09:18:35.025996+00:00",
+      "last_scrape": "2026-09-01T09:33:58.914322+00:00",
       "last_error": ""
     },
     {
@@ -551,8 +551,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 554,
-      "average_quality": 72,
+      "average_words": 546,
+      "average_quality": 70,
       "primary_method": "dom:generic:article",
       "method_counts": {
         "dom:generic:article": 10
@@ -560,10 +560,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-09-01T03:46:29+00:00",
+      "latest_published": "2026-09-01T08:00:18+00:00",
       "found_this_run": 10,
-      "tracked": 19,
-      "last_scrape": "2026-09-01T03:56:36.135651+00:00",
+      "tracked": 22,
+      "last_scrape": "2026-09-01T09:34:11.558110+00:00",
       "last_error": ""
     },
     {
@@ -642,7 +642,7 @@
       "latest_published": "2026-08-28T04:00:00+00:00",
       "found_this_run": 10,
       "tracked": 14,
-      "last_scrape": "2026-09-01T09:09:53.780026+00:00",
+      "last_scrape": "2026-09-01T09:25:03.579869+00:00",
       "last_error": ""
     },
     {
@@ -752,6 +752,21 @@
     }
   ],
   "issues": [
+    {
+      "severity": "critical",
+      "code": "scrape_error",
+      "message": "Scoop recorded a scraping error.",
+      "detail": "HTTPSConnectionPool(host='www.cbc.ca', port=443): Max retries exceeded with url: /news/canada/london/london-transit-seeks-2m-in-budget-funding-amid-rising-fuel-costs-tariffs-9.7327322 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='w",
+      "story_id": "bfc8be3620eb8397",
+      "source": "CBC News London",
+      "title": "London Transit seeks $2M in budget funding amid rising fuel costs, tariffs",
+      "url": "https://www.cbc.ca/news/canada/london/london-transit-seeks-2m-in-budget-funding-amid-rising-fuel-costs-tariffs-9.7327322",
+      "published": "2026-09-01T09:22:01+00:00",
+      "content_status": "full",
+      "word_count": 744,
+      "quality_score": 75,
+      "extraction_method": "reader:cbc:lite"
+    },
     {
       "severity": "critical",
       "code": "scrape_error",
@@ -1144,21 +1159,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "2a996dff9670a1d7",
-      "source": "CBC News London",
-      "title": "73-year-old woman dead following south London stabbing",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUW45aXVmMjNMVTkxRkNRUy1oV01TRFdQcHA1aGZFVk8wUURHcVVEbmlfZmF2bDZKRHBMMTlWYW1uQ0xWQ3FiV1Z2ZnlDZmJXRjR1VFdUWkhUcnFZOGtoeW9yRXR3SWZEM2t0U0ZINUdWZUhoYUZ4Mlp4a0RwV19WSXR2RXpnOF9vaV82ZGU5VjU0cEhhczVHZzRJQWpsV2JYaXpidw?oc=5",
-      "published": "2026-08-28T16:41:05+00:00",
-      "content_status": "full",
-      "word_count": 376,
-      "quality_score": 75,
-      "extraction_method": "reader:cbc:lite"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 15/100",
@@ -1216,6 +1216,21 @@
       "word_count": 413,
       "quality_score": 78,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "5cbf906dc34db9b0",
+      "source": "CTV News Canada",
+      "title": "'Evolving global context': School boards across Canada cancel, tweak field trips",
+      "url": "https://www.ctvnews.ca/canada/article/evolving-global-context-school-boards-across-canada-cancel-tweak-field-trips",
+      "published": "2026-09-01T09:21:37.302000+00:00",
+      "content_status": "full",
+      "word_count": 743,
+      "quality_score": 65,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -1290,21 +1305,6 @@
       "content_status": "partial",
       "word_count": 206,
       "quality_score": 48,
-      "extraction_method": "trafilatura:fallback"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8736669914567767",
-      "source": "CTV News Canada",
-      "title": "One Canadian found in Nepal as families of those still missing after floods wait for information",
-      "url": "https://www.ctvnews.ca/canada/article/one-canadian-found-in-nepal-as-families-of-those-still-missing-after-floods-wait-for-information",
-      "published": "2026-08-29T21:33:36.717000+00:00",
-      "content_status": "full",
-      "word_count": 443,
-      "quality_score": 60,
       "extraction_method": "trafilatura:fallback"
     },
     {
@@ -1522,6 +1522,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "6c5a75db6f5e6fbf",
+      "source": "CityNews Canada",
+      "title": "A closer look at five standout Canadian titles headed to Tiff 2026",
+      "url": "https://toronto.citynews.ca/2026/09/01/a-closer-look-at-five-standout-canadian-titles-headed-to-tiff-2026",
+      "published": "2026-09-01T08:00:18+00:00",
+      "content_status": "full",
+      "word_count": 1024,
+      "quality_score": 83,
+      "extraction_method": "dom:generic:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "eb00f343dcaa2f0b",
       "source": "CityNews Canada",
       "title": "Carney meets business leaders to discuss U.S. trade, says PM’s office",
@@ -1597,44 +1612,14 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cab4e4f49bc65244",
+      "story_id": "fbbadc46017cad31",
       "source": "CityNews Canada",
-      "title": "Some Ontario websites showing Lake America after Google Maps update",
-      "url": "https://toronto.citynews.ca/2026/08/30/google-updates-maps-to-display-lake-ontario-as-lake-america-in-u-s",
-      "published": "2026-08-30T14:40:39+00:00",
+      "title": "Stellantis, Unifor begin contract negotiations in final round of auto sector talks",
+      "url": "https://toronto.citynews.ca/2026/09/01/stellantis-unifor-begin-contract-negotiations-in-final-round-of-auto-sector-talks",
+      "published": "2026-09-01T08:00:08+00:00",
       "content_status": "full",
-      "word_count": 768,
-      "quality_score": 85,
-      "extraction_method": "dom:generic:article"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "7c0b73e648429f9c",
-      "source": "CityNews Canada",
-      "title": "Unionized GM workers vote to ratify new agreements with automaker",
-      "url": "https://toronto.citynews.ca/2026/08/30/unionized-gm-workers-vote-to-ratify-new-agreements-with-automaker",
-      "published": "2026-08-31T01:31:51+00:00",
-      "content_status": "full",
-      "word_count": 535,
-      "quality_score": 78,
-      "extraction_method": "dom:generic:article"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "2fa5090f4c1b5442",
-      "source": "CityNews Canada",
-      "title": "Voters head to the polls in three federal byelections in B.C., Ontario and Quebec",
-      "url": "https://toronto.citynews.ca/2026/08/30/voters-head-to-the-polls-in-three-federal-byelections-in-b-c-ontario-and-quebec",
-      "published": "2026-08-30T10:00:12+00:00",
-      "content_status": "full",
-      "word_count": 965,
-      "quality_score": 83,
+      "word_count": 242,
+      "quality_score": 66,
       "extraction_method": "dom:generic:article"
     },
     {
@@ -1664,6 +1649,21 @@
       "published": "2026-08-31T18:45:26+00:00",
       "content_status": "full",
       "word_count": 1269,
+      "quality_score": 83,
+      "extraction_method": "dom:generic:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a3c118e73483886d",
+      "source": "CityNews Canada",
+      "title": "‘You just move forward’: Greenland Energy oil exploration delayed by a year",
+      "url": "https://toronto.citynews.ca/2026/09/01/you-just-move-forward-greenland-energy-oil-exploration-delayed-by-a-year",
+      "published": "2026-09-01T08:00:06+00:00",
+      "content_status": "full",
+      "word_count": 925,
       "quality_score": 83,
       "extraction_method": "dom:generic:article"
     },
@@ -3866,6 +3866,35 @@
       ]
     },
     {
+      "id": "bfc8be3620eb8397",
+      "source": "CBC News London",
+      "title": "London Transit seeks $2M in budget funding amid rising fuel costs, tariffs",
+      "url": "https://www.cbc.ca/news/canada/london/london-transit-seeks-2m-in-budget-funding-amid-rising-fuel-costs-tariffs-9.7327322",
+      "published": "2026-09-01T09:22:01+00:00",
+      "audit_status": "fail",
+      "audit_score": 65,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 744,
+      "paragraph_count": 25,
+      "inline_image_count": 0,
+      "quality_score": 75,
+      "quality_grade": "good",
+      "extraction_method": "reader:cbc:lite",
+      "extraction_profile": "unknown",
+      "local_score": 66,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "scrape_error",
+          "message": "Scoop recorded a scraping error.",
+          "detail": "HTTPSConnectionPool(host='www.cbc.ca', port=443): Max retries exceeded with url: /news/canada/london/london-transit-seeks-2m-in-budget-funding-amid-rising-fuel-costs-tariffs-9.7327322 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='w"
+        }
+      ]
+    },
+    {
       "id": "490570edf36ee2f0",
       "source": "CBC News London",
       "title": "Pets displaced in northern Ontario wildfires head south to find a forever home",
@@ -4069,35 +4098,6 @@
       "extraction_profile": "cbc",
       "local_score": 56,
       "issues": []
-    },
-    {
-      "id": "2a996dff9670a1d7",
-      "source": "CBC News London",
-      "title": "73-year-old woman dead following south London stabbing",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUW45aXVmMjNMVTkxRkNRUy1oV01TRFdQcHA1aGZFVk8wUURHcVVEbmlfZmF2bDZKRHBMMTlWYW1uQ0xWQ3FiV1Z2ZnlDZmJXRjR1VFdUWkhUcnFZOGtoeW9yRXR3SWZEM2t0U0ZINUdWZUhoYUZ4Mlp4a0RwV19WSXR2RXpnOF9vaV82ZGU5VjU0cEhhczVHZzRJQWpsV2JYaXpidw?oc=5",
-      "published": "2026-08-28T16:41:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 376,
-      "paragraph_count": 17,
-      "inline_image_count": 0,
-      "quality_score": 75,
-      "quality_grade": "good",
-      "extraction_method": "reader:cbc:lite",
-      "extraction_profile": "cbc",
-      "local_score": 68,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
     },
     {
       "id": "ff1de0f813074db0",
@@ -7943,6 +7943,35 @@
       ]
     },
     {
+      "id": "5cbf906dc34db9b0",
+      "source": "CTV News Canada",
+      "title": "'Evolving global context': School boards across Canada cancel, tweak field trips",
+      "url": "https://www.ctvnews.ca/canada/article/evolving-global-context-school-boards-across-canada-cancel-tweak-field-trips",
+      "published": "2026-09-01T09:21:37.302000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 743,
+      "paragraph_count": 1,
+      "inline_image_count": 0,
+      "quality_score": 65,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "generic",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fa9ad592dbbd31e6",
       "source": "CTV News Canada",
       "title": "Local demand surges for Canadian-made food and household goods, but retailers lag",
@@ -8191,35 +8220,6 @@
       "inline_image_count": 0,
       "quality_score": 65,
       "quality_grade": "good",
-      "extraction_method": "trafilatura:fallback",
-      "extraction_profile": "generic",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8736669914567767",
-      "source": "CTV News Canada",
-      "title": "One Canadian found in Nepal as families of those still missing after floods wait for information",
-      "url": "https://www.ctvnews.ca/canada/article/one-canadian-found-in-nepal-as-families-of-those-still-missing-after-floods-wait-for-information",
-      "published": "2026-08-29T21:33:36.717000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 443,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 60,
-      "quality_grade": "partial",
       "extraction_method": "trafilatura:fallback",
       "extraction_profile": "generic",
       "local_score": 0,
@@ -9109,6 +9109,93 @@
       ]
     },
     {
+      "id": "6c5a75db6f5e6fbf",
+      "source": "CityNews Canada",
+      "title": "A closer look at five standout Canadian titles headed to Tiff 2026",
+      "url": "https://toronto.citynews.ca/2026/09/01/a-closer-look-at-five-standout-canadian-titles-headed-to-tiff-2026",
+      "published": "2026-09-01T08:00:18+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1024,
+      "paragraph_count": 44,
+      "inline_image_count": 0,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:article",
+      "extraction_profile": "generic",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "fbbadc46017cad31",
+      "source": "CityNews Canada",
+      "title": "Stellantis, Unifor begin contract negotiations in final round of auto sector talks",
+      "url": "https://toronto.citynews.ca/2026/09/01/stellantis-unifor-begin-contract-negotiations-in-final-round-of-auto-sector-talks",
+      "published": "2026-09-01T08:00:08+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 242,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:article",
+      "extraction_profile": "generic",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "a3c118e73483886d",
+      "source": "CityNews Canada",
+      "title": "‘You just move forward’: Greenland Energy oil exploration delayed by a year",
+      "url": "https://toronto.citynews.ca/2026/09/01/you-just-move-forward-greenland-energy-oil-exploration-delayed-by-a-year",
+      "published": "2026-09-01T08:00:06+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 925,
+      "paragraph_count": 30,
+      "inline_image_count": 0,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:article",
+      "extraction_profile": "generic",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a55e016afb3973b1",
       "source": "CityNews Canada",
       "title": "Felix Auger-Aliassime advances with opening-round win at U.S. Open",
@@ -9298,93 +9385,6 @@
       "paragraph_count": 13,
       "inline_image_count": 0,
       "quality_score": 73,
-      "quality_grade": "good",
-      "extraction_method": "dom:generic:article",
-      "extraction_profile": "generic",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7c0b73e648429f9c",
-      "source": "CityNews Canada",
-      "title": "Unionized GM workers vote to ratify new agreements with automaker",
-      "url": "https://toronto.citynews.ca/2026/08/30/unionized-gm-workers-vote-to-ratify-new-agreements-with-automaker",
-      "published": "2026-08-31T01:31:51+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 535,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "dom:generic:article",
-      "extraction_profile": "generic",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cab4e4f49bc65244",
-      "source": "CityNews Canada",
-      "title": "Some Ontario websites showing Lake America after Google Maps update",
-      "url": "https://toronto.citynews.ca/2026/08/30/google-updates-maps-to-display-lake-ontario-as-lake-america-in-u-s",
-      "published": "2026-08-30T14:40:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 768,
-      "paragraph_count": 28,
-      "inline_image_count": 1,
-      "quality_score": 85,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:generic:article",
-      "extraction_profile": "generic",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2fa5090f4c1b5442",
-      "source": "CityNews Canada",
-      "title": "Voters head to the polls in three federal byelections in B.C., Ontario and Quebec",
-      "url": "https://toronto.citynews.ca/2026/08/30/voters-head-to-the-polls-in-three-federal-byelections-in-b-c-ontario-and-quebec",
-      "published": "2026-08-30T10:00:12+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 965,
-      "paragraph_count": 36,
-      "inline_image_count": 0,
-      "quality_score": 83,
       "quality_grade": "good",
       "extraction_method": "dom:generic:article",
       "extraction_profile": "generic",
