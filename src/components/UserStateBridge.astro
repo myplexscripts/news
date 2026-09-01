@@ -31,7 +31,87 @@
     opacity: 0.55;
     cursor: default;
   }
+
+  .pull-refresh-indicator {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .pull-refresh-indicator {
+      position: fixed;
+      z-index: 86;
+      top: calc(env(safe-area-inset-top) + 8px);
+      left: 50%;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--accent);
+      box-shadow: 0 5px 18px rgb(0 0 0 / 0.16);
+      opacity: 0;
+      transform: translate3d(-50%, -58px, 0) scale(0.84);
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition:
+        opacity 150ms ease,
+        transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html[data-theme='dark'] .pull-refresh-indicator {
+      background: var(--gray-5);
+      box-shadow: 0 6px 22px rgb(0 0 0 / 0.4);
+    }
+
+    .pull-refresh-indicator i {
+      font-size: 22px;
+      transform: rotate(0deg);
+      will-change: transform;
+    }
+
+    body.pull-refresh-active > .site-header,
+    body.pull-refresh-active > #page-content {
+      transform: translate3d(0, var(--pull-refresh-page-offset, 0px), 0);
+      will-change: transform;
+    }
+
+    body.pull-refresh-settling > .site-header,
+    body.pull-refresh-settling > #page-content {
+      transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body.pull-refresh-refreshing .pull-refresh-indicator {
+      opacity: 1 !important;
+      transform: translate3d(-50%, 10px, 0) scale(1) !important;
+    }
+
+    body.pull-refresh-refreshing .pull-refresh-indicator i {
+      animation: pull-refresh-spin 700ms linear infinite;
+    }
+  }
+
+  @keyframes pull-refresh-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pull-refresh-indicator,
+    body.pull-refresh-settling > .site-header,
+    body.pull-refresh-settling > #page-content {
+      transition: none !important;
+    }
+
+    body.pull-refresh-refreshing .pull-refresh-indicator i {
+      animation: none !important;
+    }
+  }
 </style>
+
+<div class="pull-refresh-indicator" data-pull-refresh-indicator aria-hidden="true">
+  <i class="ph ph-arrow-clockwise" data-pull-refresh-icon aria-hidden="true"></i>
+</div>
+<span class="visually-hidden" role="status" aria-live="polite" data-pull-refresh-status></span>
 
 <script>
   import { importLegacyUserState, initialiseUserState, onUserStateChange, toggleStorySaved, type LondonNewsUserState } from '../lib/userState';
@@ -101,7 +181,135 @@
     });
   });
 
+  function initialisePullToRefresh() {
+    const mobile = window.matchMedia('(max-width: 760px)');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const indicator = document.querySelector<HTMLElement>('[data-pull-refresh-indicator]');
+    const icon = document.querySelector<HTMLElement>('[data-pull-refresh-icon]');
+    const status = document.querySelector<HTMLElement>('[data-pull-refresh-status]');
+    if (!indicator || !icon || !status) return;
+
+    const threshold = 68;
+    const maxDistance = 108;
+    const resistance = 0.46;
+
+    let tracking = false;
+    let pulling = false;
+    let refreshing = false;
+    let armed = false;
+    let startX = 0;
+    let startY = 0;
+    let distance = 0;
+
+    const clearPullVisuals = () => {
+      document.body.classList.remove('pull-refresh-active', 'pull-refresh-settling');
+      document.body.style.removeProperty('--pull-refresh-page-offset');
+      indicator.style.removeProperty('opacity');
+      indicator.style.removeProperty('transform');
+      icon.style.removeProperty('transform');
+      pulling = false;
+      armed = false;
+      distance = 0;
+    };
+
+    const settle = () => {
+      if (!pulling) return;
+      document.body.classList.remove('pull-refresh-active');
+      document.body.classList.add('pull-refresh-settling');
+      document.body.style.setProperty('--pull-refresh-page-offset', '0px');
+      indicator.style.opacity = '0';
+      indicator.style.transform = 'translate3d(-50%, -58px, 0) scale(0.84)';
+      icon.style.transform = 'rotate(0deg)';
+      status.textContent = '';
+      window.setTimeout(clearPullVisuals, reduceMotion.matches ? 0 : 280);
+    };
+
+    const refresh = () => {
+      refreshing = true;
+      tracking = false;
+      pulling = false;
+      document.body.classList.remove('pull-refresh-active', 'pull-refresh-settling');
+      document.body.classList.add('pull-refresh-refreshing');
+      document.body.style.setProperty('--pull-refresh-page-offset', '42px');
+      status.textContent = 'Refreshing';
+
+      const reload = () => window.location.reload();
+      const registrationUpdate = navigator.serviceWorker?.getRegistration?.()
+        .then((registration) => registration?.update())
+        .catch(() => undefined);
+
+      Promise.race([
+        registrationUpdate || Promise.resolve(),
+        new Promise((resolve) => window.setTimeout(resolve, 240))
+      ]).finally(() => window.setTimeout(reload, reduceMotion.matches ? 40 : 180));
+    };
+
+    document.addEventListener('touchstart', (event) => {
+      if (!mobile.matches || refreshing || window.scrollY > 0 || event.touches.length !== 1) return;
+      const target = event.target instanceof Element ? event.target : null;
+      if (target?.closest('input, textarea, select, [contenteditable="true"]')) return;
+
+      const touch = event.touches[0];
+      tracking = true;
+      pulling = false;
+      armed = false;
+      startX = touch.clientX;
+      startY = touch.clientY;
+      distance = 0;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (event) => {
+      if (!tracking || refreshing || event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      const deltaX = touch.clientX - startX;
+      const deltaY = touch.clientY - startY;
+
+      if (Math.abs(deltaX) > Math.abs(deltaY) + 8) {
+        tracking = false;
+        settle();
+        return;
+      }
+
+      if (deltaY <= 0 || window.scrollY > 0) {
+        tracking = false;
+        settle();
+        return;
+      }
+
+      event.preventDefault();
+      pulling = true;
+      distance = Math.min(maxDistance, deltaY * resistance);
+      const progress = Math.min(1, distance / threshold);
+      const pageOffset = Math.min(42, distance * 0.52);
+      const indicatorY = -54 + Math.min(68, distance);
+      const scale = 0.84 + (progress * 0.16);
+
+      document.body.classList.add('pull-refresh-active');
+      document.body.style.setProperty('--pull-refresh-page-offset', `${pageOffset}px`);
+      indicator.style.opacity = String(Math.min(1, progress * 1.2));
+      indicator.style.transform = `translate3d(-50%, ${indicatorY}px, 0) scale(${scale})`;
+      icon.style.transform = `rotate(${Math.round(progress * 250)}deg)`;
+
+      const nextArmed = distance >= threshold;
+      if (nextArmed !== armed) {
+        armed = nextArmed;
+        status.textContent = armed ? 'Release to refresh' : 'Pull to refresh';
+      }
+    }, { passive: false });
+
+    const finishPull = () => {
+      if (!tracking && !pulling) return;
+      tracking = false;
+      if (pulling && distance >= threshold) refresh();
+      else settle();
+    };
+
+    document.addEventListener('touchend', finishPull, { passive: true });
+    document.addEventListener('touchcancel', finishPull, { passive: true });
+  }
+
   ensureArticleReadLaterButton();
+  initialisePullToRefresh();
   initialiseUserState().then(applyState).catch(() => {});
   onUserStateChange(applyState);
 
