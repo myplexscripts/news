@@ -87,21 +87,23 @@ jobs:
           base = os.environ.get("BASE_PATH", "/").rstrip("/")
           hig_href = f"{base}/hig-components.css" if base else "/hig-components.css"
           flat_href = f"{base}/apple-flat-controls.css" if base else "/apple-flat-controls.css"
+          interaction_href = f"{base}/interaction-cleanup.css" if base else "/interaction-cleanup.css"
           links = (
               f'<link rel="stylesheet" href="{hig_href}" data-ui-system="hig">'
               f'<link rel="stylesheet" href="{flat_href}" data-ui-system="apple-flat">'
+              f'<link rel="stylesheet" href="{interaction_href}" data-ui-system="interaction-cleanup">'
           )
 
           updated = 0
           for path in Path("dist").rglob("*.html"):
               text = path.read_text(encoding="utf-8")
-              if 'data-ui-system="apple-flat"' in text or "</head>" not in text:
+              if 'data-ui-system="interaction-cleanup"' in text or "</head>" not in text:
                   continue
               text = text.replace("</head>", f"{links}</head>", 1)
               path.write_text(text, encoding="utf-8")
               updated += 1
 
-          print(f"Applied HIG and flat Apple component styles to {updated} page(s)")
+          print(f"Applied HIG, flat Apple controls, and interaction cleanup to {updated} page(s)")
           PY
 
       - name: Stamp deploy version
