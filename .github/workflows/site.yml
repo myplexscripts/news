@@ -77,6 +77,9 @@ jobs:
           mkdir -p public/images/logos
           cp -a images/logos/. public/images/logos/
 
+      - name: Generate social share image
+        run: python scripts/write_social_card.py
+
       - name: Publish feed data and search index
         shell: bash
         run: |
@@ -89,6 +92,69 @@ jobs:
 
       - name: Build static site
         run: npm run build
+
+      - name: Inject social metadata
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          owner = os.environ.get("GITHUB_REPOSITORY", "myplexscripts/news").split("/", 1)[0]
+          base = os.environ.get("BASE_PATH", "/").rstrip("/")
+          origin = f"https://{owner}.github.io"
+          image_url = f"{origin}{base}/social-card.png" if base else f"{origin}/social-card.png"
+          site_title = "Forest City News"
+          description = "Local reporting from across London, Ontario."
+
+          def page_url(path: Path) -> str:
+              rel = path.relative_to("dist").as_posix()
+              if rel == "index.html":
+                  suffix = "/"
+              elif rel.endswith("/index.html"):
+                  suffix = "/" + rel[:-10]
+              else:
+                  suffix = "/" + rel
+              prefix = base if base else ""
+              return f"{origin}{prefix}{suffix}"
+
+          tags_template = '''
+          <meta property="og:site_name" content="{title}">
+          <meta property="og:type" content="website">
+          <meta property="og:locale" content="en_CA">
+          <meta property="og:title" content="{title}">
+          <meta property="og:description" content="{description}">
+          <meta property="og:url" content="{url}">
+          <meta property="og:image" content="{image}">
+          <meta property="og:image:secure_url" content="{image}">
+          <meta property="og:image:type" content="image/png">
+          <meta property="og:image:width" content="1200">
+          <meta property="og:image:height" content="630">
+          <meta property="og:image:alt" content="Forest City News tree logo on a green background">
+          <meta name="twitter:card" content="summary_large_image">
+          <meta name="twitter:title" content="{title}">
+          <meta name="twitter:description" content="{description}">
+          <meta name="twitter:image" content="{image}">
+          <meta name="twitter:image:alt" content="Forest City News tree logo on a green background">
+          '''
+
+          updated = 0
+          for path in Path("dist").rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              if 'property="og:image"' in text or "</head>" not in text:
+                  continue
+              tags = tags_template.format(
+                  title=site_title,
+                  description=description,
+                  url=page_url(path),
+                  image=image_url,
+              )
+              text = text.replace("</head>", f"{tags}</head>", 1)
+              path.write_text(text, encoding="utf-8")
+              updated += 1
+
+          print(f"Injected social metadata into {updated} page(s) using {image_url}")
+          PY
 
       - name: Apply global UI guidelines
         shell: bash
