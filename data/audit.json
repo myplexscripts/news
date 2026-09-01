@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 14,
-  "generated_at": "2026-09-01T09:17:55.072488+00:00",
-  "generated_at_london": "2026-09-01T05:17:55.072488-04:00",
-  "news_generated_at": "2026-09-01T09:07:53.673195+00:00",
+  "generated_at": "2026-09-01T09:34:12.339807+00:00",
+  "generated_at_london": "2026-09-01T05:34:12.339807-04:00",
+  "news_generated_at": "2026-09-01T09:23:06.968452+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 467,
+    "archive_story_count": 471,
     "source_count": 28,
     "audited_story_count": 203,
-    "pass_story_count": 186,
+    "pass_story_count": 185,
     "review_story_count": 15,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 19,
     "info_issue_count": 182,
-    "healthy_source_count": 12,
-    "review_source_count": 12,
+    "healthy_source_count": 11,
+    "review_source_count": 13,
     "error_source_count": 0,
     "waiting_source_count": 4
   },
@@ -71,6 +71,32 @@
       "found_this_run": 10,
       "tracked": 10,
       "last_scrape": "2026-08-31T09:39:13.036349+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CBC News London",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "cbc",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 584,
+      "average_quality": 75,
+      "primary_method": "reader:cbc:lite",
+      "method_counts": {
+        "reader:cbc:lite": 10
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-09-01T09:00:00+00:00",
+      "found_this_run": 8,
+      "tracked": 28,
+      "last_scrape": "2026-09-01T09:16:23.110892+00:00",
       "last_error": ""
     },
     {
@@ -297,8 +323,8 @@
       "review": 0,
       "fail": 1,
       "pass_rate": 90,
-      "usable_body_rate": 60,
-      "average_words": 217,
+      "usable_body_rate": 80,
+      "average_words": 477,
       "average_quality": 80,
       "primary_method": "dom:generic:article",
       "method_counts": {
@@ -311,7 +337,7 @@
       "latest_published": "2026-09-01T08:00:11+00:00",
       "found_this_run": 15,
       "tracked": 30,
-      "last_scrape": "2026-09-01T08:17:28.175745+00:00",
+      "last_scrape": "2026-09-01T09:18:39.257659+00:00",
       "last_error": ""
     },
     {
@@ -437,32 +463,6 @@
       "last_error": ""
     },
     {
-      "source": "CBC News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "cbc",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 528,
-      "average_quality": 75,
-      "primary_method": "reader:cbc:lite",
-      "method_counts": {
-        "reader:cbc:lite": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-08-31T20:11:45+00:00",
-      "found_this_run": 7,
-      "tracked": 27,
-      "last_scrape": "2026-09-01T05:05:27.137653+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -499,8 +499,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 380,
-      "average_quality": 50,
+      "average_words": 388,
+      "average_quality": 51,
       "primary_method": "trafilatura:fallback",
       "method_counts": {
         "trafilatura:fallback": 10
@@ -508,10 +508,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-08-31T22:31:51.409000+00:00",
+      "latest_published": "2026-09-01T09:11:03.935000+00:00",
       "found_this_run": 15,
       "tracked": 30,
-      "last_scrape": "2026-09-01T09:03:25.191604+00:00",
+      "last_scrape": "2026-09-01T09:18:35.025996+00:00",
       "last_error": ""
     },
     {
@@ -642,7 +642,7 @@
       "latest_published": "2026-08-28T04:00:00+00:00",
       "found_this_run": 10,
       "tracked": 14,
-      "last_scrape": "2026-09-01T08:54:30.750000+00:00",
+      "last_scrape": "2026-09-01T09:09:53.780026+00:00",
       "last_error": ""
     },
     {
@@ -752,6 +752,21 @@
     }
   ],
   "issues": [
+    {
+      "severity": "critical",
+      "code": "scrape_error",
+      "message": "Scoop recorded a scraping error.",
+      "detail": "HTTPSConnectionPool(host='www.cbc.ca', port=443): Max retries exceeded with url: /news/canada/london/northern-ontario-wildfire-animals-humane-society-9.7327176 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.cbc.ca', port=443): R",
+      "story_id": "490570edf36ee2f0",
+      "source": "CBC News London",
+      "title": "Pets displaced in northern Ontario wildfires head south to find a forever home",
+      "url": "https://www.cbc.ca/news/canada/london/northern-ontario-wildfire-animals-humane-society-9.7327176",
+      "published": "2026-09-01T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 692,
+      "quality_score": 75,
+      "extraction_method": "reader:cbc:lite"
+    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -1252,21 +1267,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3bac8a7fc92645fa",
-      "source": "CTV News Canada",
-      "title": "Federal government posts $370M deficit for April-to-June period",
-      "url": "https://www.ctvnews.ca/canada/article/federal-government-posts-370m-deficit-for-april-to-june-period",
-      "published": "2026-08-28T15:19:02.958000+00:00",
-      "content_status": "partial",
-      "word_count": 132,
-      "quality_score": 39,
-      "extraction_method": "trafilatura:fallback"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e9e4f41951b48311",
       "source": "CTV News Canada",
       "title": "Immigration board asks feds to better track temporary residents",
@@ -1275,6 +1275,21 @@
       "content_status": "full",
       "word_count": 977,
       "quality_score": 65,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fa9ad592dbbd31e6",
+      "source": "CTV News Canada",
+      "title": "Local demand surges for Canadian-made food and household goods, but retailers lag",
+      "url": "https://www.ctvnews.ca/canada/article/local-demand-surges-for-canadian-made-food-and-household-goods-but-retailers-lag",
+      "published": "2026-09-01T09:11:03.935000+00:00",
+      "content_status": "partial",
+      "word_count": 206,
+      "quality_score": 48,
       "extraction_method": "trafilatura:fallback"
     },
     {
@@ -3532,6 +3547,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "40aee10e035a8709",
+      "source": "Toronto Star",
+      "title": "In Ontario, a proposed gold mine could release pollutants and require water treatment ‘in perpetuity,’ federal reports reveal",
+      "url": "https://www.thestar.com/news/investigations/why-federal-scientists-warn-this-proposed-ontario-gold-mine-could-release-pollutants-and-require-water-treatment-in-perpetuity/article_1395c167-85b7-483e-a231-23363e4c3274.html",
+      "published": "2026-09-01T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1856,
+      "quality_score": 77,
+      "extraction_method": "dom:generic:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "3a2158a0a79a42df",
       "source": "Toronto Star",
       "title": "Legal aid lawyers begin weeklong strike in regions of Quebec",
@@ -3577,41 +3607,11 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "815ac34989cb61fa",
-      "source": "Toronto Star",
-      "title": "N.L. police arrest Quebec man for alleged bomb threat at Labrador airport",
-      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/nl-police-arrest-quebec-man-for-alleged-bomb-threat-at-labrador-airport/article_275bbfe6-452a-5e6b-ad10-3da0635f5ff3.html",
-      "published": "2026-08-31T16:38:33+00:00",
-      "content_status": "summary",
-      "word_count": 26,
-      "quality_score": 77,
-      "extraction_method": "dom:generic:article"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "d8642afc1a616000",
       "source": "Toronto Star",
       "title": "Ontario breaks ground on longest stretch of proposed Ring of Fire road network",
       "url": "https://www.thestar.com/news/ontario/ontario-breaks-ground-on-longest-stretch-of-proposed-ring-of-fire-road-network/article_79ccd0c0-5cba-5ae6-9d61-fe68b4e387cf.html",
       "published": "2026-08-31T17:13:46+00:00",
-      "content_status": "summary",
-      "word_count": 22,
-      "quality_score": 77,
-      "extraction_method": "dom:generic:article"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8dbc5499b5c19dfc",
-      "source": "Toronto Star",
-      "title": "SIU investigating fatal crash after attempted police traffic stop in Windsor, Ont.",
-      "url": "https://www.thestar.com/news/ontario/siu-investigating-fatal-crash-after-attempted-police-traffic-stop-in-windsor-ont/article_9db6efb7-48e0-5d00-927d-d2ee2a58f374.html",
-      "published": "2026-08-31T16:39:29+00:00",
       "content_status": "summary",
       "word_count": 22,
       "quality_score": 77,
@@ -3645,6 +3645,21 @@
       "content_status": "full",
       "word_count": 85,
       "quality_score": 84,
+      "extraction_method": "dom:generic:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "3d60a698dbfcfd97",
+      "source": "Toronto Star",
+      "title": "Wildfires. Flooding. Drought. Majority of Canadians personally affected by climate change events this year: Study",
+      "url": "https://www.thestar.com/news/canada/majority-of-canadians-personally-affected-by-climate-change-events-this-year-study/article_6a3905d5-45fd-4c75-a517-632eddc96cdf.html",
+      "published": "2026-09-01T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 791,
+      "quality_score": 77,
       "extraction_method": "dom:generic:article"
     },
     {
@@ -3847,6 +3862,35 @@
           "code": "short_partial_body",
           "message": "Partial extraction may be missing article content.",
           "detail": "60 words"
+        }
+      ]
+    },
+    {
+      "id": "490570edf36ee2f0",
+      "source": "CBC News London",
+      "title": "Pets displaced in northern Ontario wildfires head south to find a forever home",
+      "url": "https://www.cbc.ca/news/canada/london/northern-ontario-wildfire-animals-humane-society-9.7327176",
+      "published": "2026-09-01T09:00:00+00:00",
+      "audit_status": "fail",
+      "audit_score": 65,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 692,
+      "paragraph_count": 28,
+      "inline_image_count": 0,
+      "quality_score": 75,
+      "quality_grade": "good",
+      "extraction_method": "reader:cbc:lite",
+      "extraction_profile": "unknown",
+      "local_score": 30,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "scrape_error",
+          "message": "Scoop recorded a scraping error.",
+          "detail": "HTTPSConnectionPool(host='www.cbc.ca', port=443): Max retries exceeded with url: /news/canada/london/northern-ontario-wildfire-animals-humane-society-9.7327176 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.cbc.ca', port=443): R"
         }
       ]
     },
@@ -4054,28 +4098,6 @@
           "detail": ""
         }
       ]
-    },
-    {
-      "id": "ef69eae2548ca201",
-      "source": "CBC News London",
-      "title": "Morning fog advisory in London and region",
-      "url": "https://www.cbc.ca/news/canada/london/morning-fog-advisory-in-london-and-region-9.7323832",
-      "published": "2026-08-28T11:50:02+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 129,
-      "paragraph_count": 8,
-      "inline_image_count": 0,
-      "quality_score": 75,
-      "quality_grade": "good",
-      "extraction_method": "reader:cbc:lite",
-      "extraction_profile": "cbc",
-      "local_score": 100,
-      "issues": []
     },
     {
       "id": "ff1de0f813074db0",
@@ -7921,6 +7943,35 @@
       ]
     },
     {
+      "id": "fa9ad592dbbd31e6",
+      "source": "CTV News Canada",
+      "title": "Local demand surges for Canadian-made food and household goods, but retailers lag",
+      "url": "https://www.ctvnews.ca/canada/article/local-demand-surges-for-canadian-made-food-and-household-goods-but-retailers-lag",
+      "published": "2026-09-01T09:11:03.935000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 206,
+      "paragraph_count": 1,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "generic",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f98f30b39ba83eea",
       "source": "CTV News Canada",
       "title": "Bank of Canada set to grapple with renewed trade war pressures in rate decision",
@@ -8169,35 +8220,6 @@
       "inline_image_count": 0,
       "quality_score": 60,
       "quality_grade": "partial",
-      "extraction_method": "trafilatura:fallback",
-      "extraction_profile": "generic",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3bac8a7fc92645fa",
-      "source": "CTV News Canada",
-      "title": "Federal government posts $370M deficit for April-to-June period",
-      "url": "https://www.ctvnews.ca/canada/article/federal-government-posts-370m-deficit-for-april-to-june-period",
-      "published": "2026-08-28T15:19:02.958000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 132,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 39,
-      "quality_grade": "poor",
       "extraction_method": "trafilatura:fallback",
       "extraction_profile": "generic",
       "local_score": 0,
@@ -8820,6 +8842,64 @@
       ]
     },
     {
+      "id": "3d60a698dbfcfd97",
+      "source": "Toronto Star",
+      "title": "Wildfires. Flooding. Drought. Majority of Canadians personally affected by climate change events this year: Study",
+      "url": "https://www.thestar.com/news/canada/majority-of-canadians-personally-affected-by-climate-change-events-this-year-study/article_6a3905d5-45fd-4c75-a517-632eddc96cdf.html",
+      "published": "2026-09-01T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 791,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 77,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:article",
+      "extraction_profile": "generic",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "40aee10e035a8709",
+      "source": "Toronto Star",
+      "title": "In Ontario, a proposed gold mine could release pollutants and require water treatment ‘in perpetuity,’ federal reports reveal",
+      "url": "https://www.thestar.com/news/investigations/why-federal-scientists-warn-this-proposed-ontario-gold-mine-could-release-pollutants-and-require-water-treatment-in-perpetuity/article_1395c167-85b7-483e-a231-23363e4c3274.html",
+      "published": "2026-09-01T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1856,
+      "paragraph_count": 55,
+      "inline_image_count": 2,
+      "quality_score": 77,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:article",
+      "extraction_profile": "generic",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3a2158a0a79a42df",
       "source": "Toronto Star",
       "title": "Legal aid lawyers begin weeklong strike in regions of Quebec",
@@ -9012,64 +9092,6 @@
       "info_count": 1,
       "content_status": "summary",
       "word_count": 22,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 77,
-      "quality_grade": "good",
-      "extraction_method": "dom:generic:article",
-      "extraction_profile": "generic",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8dbc5499b5c19dfc",
-      "source": "Toronto Star",
-      "title": "SIU investigating fatal crash after attempted police traffic stop in Windsor, Ont.",
-      "url": "https://www.thestar.com/news/ontario/siu-investigating-fatal-crash-after-attempted-police-traffic-stop-in-windsor-ont/article_9db6efb7-48e0-5d00-927d-d2ee2a58f374.html",
-      "published": "2026-08-31T16:39:29+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 22,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 77,
-      "quality_grade": "good",
-      "extraction_method": "dom:generic:article",
-      "extraction_profile": "generic",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "815ac34989cb61fa",
-      "source": "Toronto Star",
-      "title": "N.L. police arrest Quebec man for alleged bomb threat at Labrador airport",
-      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/nl-police-arrest-quebec-man-for-alleged-bomb-threat-at-labrador-airport/article_275bbfe6-452a-5e6b-ad10-3da0635f5ff3.html",
-      "published": "2026-08-31T16:38:33+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 26,
       "paragraph_count": 2,
       "inline_image_count": 0,
       "quality_score": 77,
