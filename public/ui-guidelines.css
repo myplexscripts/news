@@ -1,6 +1,6 @@
 /* Forest City News UI rules.
    Liquid Glass is permitted only on the floating mobile navigation.
-   All other controls are flat, opaque and use concentric radii. */
+   All other controls are flat, opaque, contrast-safe and use concentric radii. */
 
 :root {
   --ui-control-height: 52px;
@@ -9,16 +9,22 @@
   --ui-control-inset: 4px;
   --ui-inner-radius: calc(var(--ui-control-radius) - var(--ui-control-inset));
   --ui-control-fill: var(--gray-6);
+  --ui-action-fill: var(--gray-6);
   --ui-segment-fill: var(--gray-6);
   --ui-segment-selected: var(--surface);
-  --ui-border: var(--line);
+  --ui-border: rgb(140 140 145);
+  --ui-selected-border: rgb(140 140 145);
+  --ui-accent-text: color-mix(in srgb, var(--accent) 53%, black);
 }
 
 html[data-theme='dark'] {
   --ui-control-fill: var(--gray-6);
-  --ui-segment-fill: var(--gray-5);
-  --ui-segment-selected: var(--gray-3);
-  --ui-border: var(--line-strong);
+  --ui-action-fill: var(--gray-5);
+  --ui-segment-fill: var(--gray-6);
+  --ui-segment-selected: var(--gray-5);
+  --ui-border: rgb(108 108 112);
+  --ui-selected-border: rgb(108 108 112);
+  --ui-accent-text: color-mix(in srgb, var(--accent) 80%, white);
 }
 
 /* Liquid Glass is forbidden everywhere except the floating nav. */
@@ -40,7 +46,7 @@ html body .control-popover,
 html body .section-menu,
 html body [role='menu'] {
   background: var(--surface) !important;
-  border-color: var(--ui-border) !important;
+  border: 1px solid var(--ui-border) !important;
   box-shadow: 0 10px 28px rgb(0 0 0 / 0.14) !important;
   border-radius: var(--ui-control-radius) !important;
 }
@@ -94,10 +100,18 @@ html body [role='menuitem'] {
 html body .bordered-button,
 html body .manage-sources-button,
 html body .settings-action-button {
+  border: 1px solid var(--ui-border) !important;
   border-radius: var(--ui-control-radius) !important;
-  background: var(--ui-control-fill) !important;
-  border-color: var(--ui-border) !important;
+  background: var(--ui-action-fill) !important;
+  color: var(--ui-accent-text) !important;
   box-shadow: none !important;
+}
+
+html body .bordered-button:disabled,
+html body .manage-sources-button:disabled,
+html body .settings-action-button:disabled {
+  color: var(--muted) !important;
+  opacity: 0.55;
 }
 
 /* One shared flat segmented-control system.
@@ -145,7 +159,7 @@ html body [data-segmented-control] > button {
   height: calc(var(--ui-control-height) - (var(--ui-control-inset) * 2)) !important;
   margin: 0 !important;
   padding: 0 14px !important;
-  border: 0 !important;
+  border: 1px solid transparent !important;
   border-radius: var(--ui-inner-radius) !important;
   background: transparent !important;
   color: var(--muted) !important;
@@ -189,9 +203,10 @@ html body .directory-tab[aria-selected='true'],
 html body .settings-segmented button.selected,
 html body .settings-segmented button[aria-pressed='true'],
 html body [data-segmented-control] > button[aria-pressed='true'] {
+  border: 1px solid var(--ui-selected-border) !important;
   border-radius: var(--ui-inner-radius) !important;
   background: var(--ui-segment-selected) !important;
-  color: var(--ink) !important;
+  color: var(--ui-accent-text) !important;
   box-shadow: none !important;
 }
 
@@ -219,7 +234,7 @@ html body .source-switch {
   height: 31px !important;
   min-width: 51px !important;
   min-height: 31px !important;
-  border: 0 !important;
+  border: 1px solid var(--ui-border) !important;
   border-radius: 999px !important;
   background: var(--gray-4) !important;
   box-shadow: none !important;
@@ -237,6 +252,7 @@ html body .source-switch > span {
 html body .settings-switch input:checked + .settings-switch-track,
 html body .source-switch-input:checked + .source-switch {
   background: var(--accent) !important;
+  border-color: var(--ui-border) !important;
   box-shadow: none !important;
 }
 
@@ -247,6 +263,12 @@ html[data-theme='dark'] body .accent-choice {
   border-radius: 999px !important;
   background: transparent !important;
   box-shadow: none !important;
+}
+
+html body .accent-choice.selected,
+html[data-theme='dark'] body .accent-choice.selected {
+  outline: 2px solid var(--ui-accent-text) !important;
+  outline-offset: 2px !important;
 }
 
 /* Liquid Glass exists only on the floating mobile navigation. */
