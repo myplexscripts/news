@@ -93,9 +93,11 @@ jobs:
           base = os.environ.get("BASE_PATH", "/").rstrip("/")
           ui_href = f"{base}/ui-guidelines.css" if base else "/ui-guidelines.css"
           interaction_href = f"{base}/interaction-cleanup.css" if base else "/interaction-cleanup.css"
+          navigation_href = f"{base}/navigation-transitions.css" if base else "/navigation-transitions.css"
           links = (
               f'<link rel="stylesheet" href="{ui_href}" data-ui-system="guidelines">'
               f'<link rel="stylesheet" href="{interaction_href}" data-ui-system="interaction-cleanup">'
+              f'<link rel="stylesheet" href="{navigation_href}" data-ui-system="navigation-transitions">'
           )
 
           updated = 0
@@ -107,7 +109,7 @@ jobs:
               path.write_text(text, encoding="utf-8")
               updated += 1
 
-          print(f"Applied UI guidelines and interaction cleanup to {updated} page(s)")
+          print(f"Applied UI guidelines, interaction cleanup, and navigation transitions to {updated} page(s)")
           PY
 
       - name: Stamp deploy version
