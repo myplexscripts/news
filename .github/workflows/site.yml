@@ -77,6 +77,29 @@ jobs:
       - name: Build static site
         run: npm run build
 
+      - name: Apply global HIG component stylesheet
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          base = os.environ.get("BASE_PATH", "/").rstrip("/")
+          href = f"{base}/hig-components.css" if base else "/hig-components.css"
+          link = f'<link rel="stylesheet" href="{href}" data-ui-system="hig">'
+
+          updated = 0
+          for path in Path("dist").rglob("*.html"):
+              text = path.read_text(encoding="utf-8")
+              if 'data-ui-system="hig"' in text or "</head>" not in text:
+                  continue
+              text = text.replace("</head>", f"{link}</head>", 1)
+              path.write_text(text, encoding="utf-8")
+              updated += 1
+
+          print(f"Applied HIG component stylesheet to {updated} page(s)")
+          PY
+
       - name: Stamp deploy version
         shell: bash
         run: |
