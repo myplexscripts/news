@@ -77,7 +77,7 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Apply global component stylesheets
+      - name: Apply global UI guidelines
         shell: bash
         run: |
           python - <<'PY'
@@ -85,25 +85,23 @@ jobs:
           from pathlib import Path
 
           base = os.environ.get("BASE_PATH", "/").rstrip("/")
-          flat_href = f"{base}/apple-flat-controls.css" if base else "/apple-flat-controls.css"
-          no_glass_href = f"{base}/no-glass.css" if base else "/no-glass.css"
+          ui_href = f"{base}/ui-guidelines.css" if base else "/ui-guidelines.css"
           interaction_href = f"{base}/interaction-cleanup.css" if base else "/interaction-cleanup.css"
           links = (
-              f'<link rel="stylesheet" href="{flat_href}" data-ui-system="apple-flat">'
-              f'<link rel="stylesheet" href="{no_glass_href}" data-ui-system="no-glass">'
+              f'<link rel="stylesheet" href="{ui_href}" data-ui-system="guidelines">'
               f'<link rel="stylesheet" href="{interaction_href}" data-ui-system="interaction-cleanup">'
           )
 
           updated = 0
           for path in Path("dist").rglob("*.html"):
               text = path.read_text(encoding="utf-8")
-              if 'data-ui-system="no-glass"' in text or "</head>" not in text:
+              if 'data-ui-system="guidelines"' in text or "</head>" not in text:
                   continue
               text = text.replace("</head>", f"{links}</head>", 1)
               path.write_text(text, encoding="utf-8")
               updated += 1
 
-          print(f"Applied flat controls, no-glass enforcement, and interaction cleanup to {updated} page(s)")
+          print(f"Applied UI guidelines and interaction cleanup to {updated} page(s)")
           PY
 
       - name: Stamp deploy version
