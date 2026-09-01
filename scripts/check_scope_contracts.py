@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail CI if the Local/Canada story contract regresses."""
+"""Fail CI if the strict Local/Canada source contract regresses."""
 from __future__ import annotations
 
 from annotate_scopes import scope_for_story
@@ -13,59 +13,66 @@ def require(condition: bool, message: str) -> None:
 def main() -> None:
     require(
         scope_for_story({
-            "source": "National Publisher",
-            "local_score": 35,
-            "local_reasons": ["London, Ontario +35"],
+            "source": "London Free Press",
+            "url": "https://lfpress.com/news/local-news/example",
         }) == "local",
-        "London, Ontario story from a national publisher must be Local",
+        "London Free Press must be Local",
     )
 
     require(
         scope_for_story({
-            "source": "National Publisher",
-            "local_score": 12,
-            "local_reasons": ["London mention +12"],
+            "source": "CTV News London",
+            "url": "https://www.ctvnews.ca/london/article/example/",
         }) == "local",
-        "unambiguous London story from any publisher must be Local",
-    )
-
-    require(
-        scope_for_story({
-            "source": "National Publisher",
-            "local_score": 0,
-            "local_reasons": [],
-        }) == "canada",
-        "non-London national story must remain Canada",
+        "CTV News London must be Local",
     )
 
     require(
         scope_for_story({
             "source": "CTV News",
-            "local_score": 15,
-            "local_reasons": ["local publisher +15"],
-        }) == "canada",
-        "publisher identity alone must not make a broad story Local",
-    )
-
-    require(
-        scope_for_story({
-            "source": "National Publisher",
-            "local_score": 0,
-            "local_reasons": ["London mention +12", "London, UK -90"],
-        }) == "canada",
-        "London, UK must never qualify for the London, Ontario feed",
-    )
-
-    require(
-        scope_for_story({
-            "source": "London Police Service",
-            "local_score": 0,
-            "local_reasons": [],
+            "url": "https://www.ctvnews.ca/london/article/example/",
         }) == "local",
-        "London civic institutions must remain inherently Local",
+        "legacy CTV name is Local only for a ctvnews.ca/london URL",
     )
 
-    print("Scope contracts passed: Local is story-level London, Ontario relevance from any publisher.")
+    require(
+        scope_for_story({
+            "source": "CTV News",
+            "url": "https://www.ctvnews.ca/canada/article/example/",
+            "local_score": 100,
+            "local_reasons": ["London, Ontario +35"],
+        }) == "canada",
+        "non-London CTV must never be Local",
+    )
+
+    require(
+        scope_for_story({
+            "source": "CTV News Canada",
+            "url": "https://www.ctvnews.ca/canada/article/example/",
+        }) == "canada",
+        "CTV News Canada must remain Canada",
+    )
+
+    require(
+        scope_for_story({
+            "source": "The Globe and Mail",
+            "url": "https://www.theglobeandmail.com/canada/article-example/",
+            "local_score": 100,
+            "local_reasons": ["London, Ontario +35"],
+        }) == "canada",
+        "The Globe and Mail must never appear in Local",
+    )
+
+    require(
+        scope_for_story({
+            "source": "Toronto Star",
+            "local_score": 100,
+            "local_reasons": ["London, Ontario +35"],
+        }) == "canada",
+        "national publishers cannot be promoted into Local by story text",
+    )
+
+    print("Scope contracts passed: Local is the explicit London-source whitelist only.")
 
 
 if __name__ == "__main__":
