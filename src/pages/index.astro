@@ -56,58 +56,20 @@ const rankEditorialStories = (pool) => [...pool].sort((a, b) => {
   return Date.parse(storyTime(b) || '') - Date.parse(storyTime(a) || '');
 });
 
-const buildEditorialLayout = (scope, pool) => {
+const buildTopLayout = (scope, pool) => {
   const editorialRank = rankEditorialStories(pool);
   const leadStory = editorialRank.find((story) => story.card_image || story.image) || editorialRank[0];
   const usedIds = new Set(leadStory?.id ? [String(leadStory.id)] : []);
-
   const supportStories = editorialRank
     .filter((story) => !usedIds.has(String(story.id)))
     .slice(0, 2);
-  supportStories.forEach((story) => usedIds.add(String(story.id)));
-
-  const justInStories = [...pool]
-    .sort((a, b) => Date.parse(storyTime(b) || '') - Date.parse(storyTime(a) || ''))
-    .filter((story) => !usedIds.has(String(story.id)))
-    .slice(0, 6);
-  justInStories.forEach((story) => usedIds.add(String(story.id)));
-
-  const sectionGroups = [];
-  for (const category of orderedCategories) {
-    const items = editorialRank
-      .filter((story) => story.category === category && !usedIds.has(String(story.id)))
-      .slice(0, 2);
-    if (!items.length) continue;
-    items.forEach((story) => usedIds.add(String(story.id)));
-    sectionGroups.push({ category, stories: items });
-    if (sectionGroups.length >= 4) break;
-  }
-
-  const copy = scope === 'local'
-    ? {
-        justIn: 'The newest local reporting',
-        sectionsTitle: 'Across London',
-        sectionsDescription: 'Leading local stories by section'
-      }
-    : scope === 'canada'
-      ? {
-          justIn: 'The newest Canadian reporting',
-          sectionsTitle: 'Across Canada',
-          sectionsDescription: 'Leading Canadian stories by section'
-        }
-      : {
-          justIn: 'The newest reporting',
-          sectionsTitle: 'By Section',
-          sectionsDescription: 'Leading stories from across the feed'
-        };
-
-  return { scope, leadStory, supportStories, justInStories, sectionGroups, ...copy };
+  return { scope, leadStory, supportStories };
 };
 
-const editorialLayouts = [
-  buildEditorialLayout('local', localStories),
-  buildEditorialLayout('canada', canadaStories),
-  buildEditorialLayout('all', stories)
+const topLayouts = [
+  buildTopLayout('local', localStories),
+  buildTopLayout('canada', canadaStories),
+  buildTopLayout('all', stories)
 ];
 
 const storyIndex = new Map(stories.map((story, index) => [story.id, index]));
@@ -214,119 +176,50 @@ const generated = news.generated_at
       </div>
     </section>
 
-    {editorialLayouts.map((layout) => (
-      <>
-        {(layout.leadStory || layout.supportStories.length > 0) && (
-          <section
-            class="editorial-front shell"
-            data-editorial-section="front"
-            data-editorial-scope={layout.scope}
-            hidden={layout.scope !== 'local'}
-          >
-            <div class="editorial-home-heading">
-              <div><h2>Top Stories</h2></div>
-              <p>Selected by relevance, freshness and coverage</p>
-            </div>
-            <div class="editorial-front-grid">
-              {layout.leadStory && (
-                <div class="editorial-lead-slot">
+    {topLayouts.map((layout) => (
+      (layout.leadStory || layout.supportStories.length > 0) && (
+        <section
+          class="editorial-front shell"
+          data-editorial-section="front"
+          data-editorial-scope={layout.scope}
+          hidden={layout.scope !== 'local'}
+        >
+          <div class="editorial-home-heading">
+            <div><h2>Top Stories</h2></div>
+            <p>Selected by relevance, freshness and coverage</p>
+          </div>
+          <div class="editorial-front-grid">
+            {layout.leadStory && (
+              <div class="editorial-lead-slot">
+                <NewsCard
+                  story={layout.leadStory}
+                  index={layout.scope === 'local' ? 0 : 99}
+                  variant="featured"
+                  searchable={true}
+                  dateGroup={groupKeyFor(storyTime(layout.leadStory))}
+                  dataSearch={dataSearchFor(layout.leadStory)}
+                  className="editorial-lead-card"
+                />
+              </div>
+            )}
+            {layout.supportStories.length > 0 && (
+              <div class="editorial-support-stack">
+                {layout.supportStories.map((story, index) => (
                   <NewsCard
-                    story={layout.leadStory}
-                    index={layout.scope === 'local' ? 0 : 99}
+                    story={story}
+                    index={layout.scope === 'local' ? index + 1 : 99}
                     variant="featured"
                     searchable={true}
-                    dateGroup={groupKeyFor(storyTime(layout.leadStory))}
-                    dataSearch={dataSearchFor(layout.leadStory)}
-                    className="editorial-lead-card"
+                    dateGroup={groupKeyFor(storyTime(story))}
+                    dataSearch={dataSearchFor(story)}
+                    className="editorial-support-card"
                   />
-                </div>
-              )}
-              {layout.supportStories.length > 0 && (
-                <div class="editorial-support-stack">
-                  {layout.supportStories.map((story, index) => (
-                    <NewsCard
-                      story={story}
-                      index={layout.scope === 'local' ? index + 1 : 99}
-                      variant="featured"
-                      searchable={true}
-                      dateGroup={groupKeyFor(storyTime(story))}
-                      dataSearch={dataSearchFor(story)}
-                      className="editorial-support-card"
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          </section>
-        )}
-
-        {layout.justInStories.length > 0 && (
-          <section
-            class="editorial-just-in shell"
-            data-editorial-section="just-in"
-            data-editorial-scope={layout.scope}
-            hidden={layout.scope !== 'local'}
-          >
-            <div class="editorial-home-heading">
-              <div><h2>Just In</h2></div>
-              <p>{layout.justIn}</p>
-            </div>
-            <div class="editorial-just-in-grid">
-              {layout.justInStories.map((story, index) => (
-                <NewsCard
-                  story={story}
-                  index={layout.scope === 'local' ? index + 3 : 99}
-                  variant="standard"
-                  searchable={true}
-                  dateGroup={groupKeyFor(storyTime(story))}
-                  dataSearch={dataSearchFor(story)}
-                  className="editorial-just-in-card"
-                  showSummary={false}
-                />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {layout.sectionGroups.length > 0 && (
-          <section
-            class="editorial-sections shell"
-            data-editorial-section="sections"
-            data-editorial-scope={layout.scope}
-            hidden={layout.scope !== 'local'}
-          >
-            <div class="editorial-home-heading">
-              <div><h2>{layout.sectionsTitle}</h2></div>
-              <p>{layout.sectionsDescription}</p>
-            </div>
-            <div class="editorial-section-grid">
-              {layout.sectionGroups.map((group) => (
-                <section class:list={["editorial-section-block", categoryClass(group.category)]} data-editorial-block>
-                  <header class="editorial-section-block-heading">
-                    <h3>{group.category}</h3>
-                    <a href={`${base}?section=${encodeURIComponent(group.category)}&scope=${layout.scope}`}>
-                      View all <i class="ph ph-arrow-right" aria-hidden="true"></i>
-                    </a>
-                  </header>
-                  <div class="editorial-section-stories">
-                    {group.stories.map((story) => (
-                      <NewsCard
-                        story={story}
-                        variant="standard"
-                        searchable={true}
-                        dateGroup={groupKeyFor(storyTime(story))}
-                        dataSearch={dataSearchFor(story)}
-                        className="editorial-section-card"
-                        showSummary={false}
-                      />
-                    ))}
-                  </div>
-                </section>
-              ))}
-            </div>
-          </section>
-        )}
-      </>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )
     ))}
 
     <section class="news-card-section shell editorial-timeline" id="latest" aria-labelledby="latest-heading">
@@ -387,7 +280,6 @@ const generated = news.generated_at
     const dateHeadings = [...document.querySelectorAll('[data-date-heading]')];
     const scopeButtons = [...document.querySelectorAll('[data-scope-filter]')];
     const editorialSections = [...document.querySelectorAll('[data-editorial-section]')];
-    const editorialBlocks = [...document.querySelectorAll('[data-editorial-block]')];
 
     let activeFilter = 'All';
     let activeScope = 'local';
@@ -427,10 +319,6 @@ const generated = news.generated_at
       if (persist) {
         try { localStorage.setItem(FEED_SCOPE_KEY, next); } catch {}
       }
-      if (persist && activeFilter !== 'All') {
-        setFilter('All');
-        return;
-      }
       applyFilters();
     }
 
@@ -467,13 +355,6 @@ const generated = news.generated_at
     }
 
     function updateEditorialVisibility() {
-      editorialBlocks.forEach((block) => {
-        const section = block.closest('[data-editorial-scope]');
-        const scopeMatch = section?.dataset.editorialScope === activeScope;
-        const blockCards = [...block.querySelectorAll('.news-card.searchable')];
-        block.hidden = !scopeMatch || !blockCards.some((card) => !card.classList.contains('filtered-out'));
-      });
-
       editorialSections.forEach((section) => {
         const scopeMatch = section.dataset.editorialScope === activeScope;
         const sectionCards = [...section.querySelectorAll('.news-card.searchable')];
