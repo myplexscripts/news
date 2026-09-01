@@ -53,6 +53,9 @@ jobs:
       - name: Check story scope contracts
         run: python scripts/check_scope_contracts.py
 
+      - name: Check confirmed London source contracts
+        run: python scripts/check_local_source_rules.py
+
       - name: Install site dependencies
         shell: bash
         run: |
@@ -75,6 +78,7 @@ jobs:
         shell: bash
         run: |
           python scripts/annotate_scopes.py
+          python scripts/apply_local_source_rules.py
           mkdir -p public/data
           cp data/news.json public/data/news.json
           cp data/audit.json public/data/audit.json
