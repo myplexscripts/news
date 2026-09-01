@@ -1,0 +1,39 @@
+/* Preserve the floating mobile navigation visually across normal Astro page loads.
+   This uses browser-native cross-document view transitions, so pages remain MPAs
+   and their existing scripts continue to initialise normally. */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Do not fade the entire document between routes. Hold the current frame until
+   the next document is ready, then swap it cleanly. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (max-width: 760px) {
+  .mobile-tab-bar {
+    view-transition-name: forest-city-primary-nav;
+  }
+
+  ::view-transition-group(forest-city-primary-nav),
+  ::view-transition-image-pair(forest-city-primary-nav),
+  ::view-transition-old(forest-city-primary-nav),
+  ::view-transition-new(forest-city-primary-nav) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-group(forest-city-primary-nav),
+  ::view-transition-old(forest-city-primary-nav),
+  ::view-transition-new(forest-city-primary-nav) {
+    animation: none !important;
+  }
+}
