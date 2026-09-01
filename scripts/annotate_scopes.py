@@ -2,148 +2,22 @@
 from __future__ import annotations
 
 import json
-from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from sources import SOURCES
+from apply_local_source_rules import apply_rules, scope_for_story
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_FILE = ROOT / "data" / "news.json"
-VALID_SCOPES = {"local", "canada"}
-LOCAL_SCOPE_MIN_SCORE = 25
-SOURCE_SCOPES = {
-    source.name: (source.scope if source.scope in VALID_SCOPES else "local")
-    for source in SOURCES
-}
-
-# These publishers are themselves London-area institutions, so their own news is
-# inherently local even when the headline does not repeat the city name.
-ALWAYS_LOCAL_SOURCES = {
-    "City of London Newsroom",
-    "London Police Service",
-    "London Fire Department",
-    "Middlesex-London Health Unit",
-    "London Health Sciences Centre",
-    "St. Joseph's Health Care London",
-    "Western News",
-    "Fanshawe College Newsroom",
-    "Thames Valley District School Board",
-    "London District Catholic School Board",
-    "London Transit Commission",
-    "Middlesex County",
-    "Environment Canada London Alerts",
-}
-
-
-def _source_scope(name: str) -> str:
-    return SOURCE_SCOPES.get(str(name or "").strip(), "")
-
-
-def _has_negative_locality(reasons: list[Any]) -> bool:
-    for reason in reasons:
-        text = str(reason or "").strip().lower()
-        if not text:
-            continue
-        if "london, uk" in text or "united kingdom" in text:
-            return True
-        # Ranking reasons express penalties with a negative number, for example
-        # "London, UK -90". Treat any such locality penalty as disqualifying.
-        if " -" in text:
-            return True
-    return False
-
-
-def _has_story_level_local_evidence(story: dict[str, Any]) -> bool:
-    """Return true when the story itself is from or about London, Ontario.
-
-    Publisher geography is deliberately ignored here. A London story from a
-    national publisher is Local, while an unrelated national story carried by a
-    London-branded newsroom is not.
-    """
-    reasons = story.get("local_reasons") or []
-    if not isinstance(reasons, list) or _has_negative_locality(reasons):
-        return False
-
-    try:
-        score = int(story.get("local_score") or 0)
-    except (TypeError, ValueError):
-        score = 0
-
-    for reason in reasons:
-        text = str(reason or "").strip().lower()
-        if not text or text.startswith("local publisher"):
-            continue
-
-        # An unqualified London mention is still useful story-level evidence once
-        # ranking has found no UK/England penalty. This catches headlines such as
-        # "London woman..." from national publishers.
-        if text.startswith("london mention"):
-            return True
-
-        # Strong London-area entities already carry weights at or above the scope
-        # threshold in ranking.py. Keep the threshold for weaker regional hints so
-        # Southwestern Ontario alone does not become London news.
-        if score >= LOCAL_SCOPE_MIN_SCORE:
-            return True
-
-    return False
-
-
-def scope_for_story(story: dict[str, Any]) -> str:
-    source = str(story.get("source") or "").strip()
-    discovery = str(story.get("discovery_via") or "").strip()
-
-    if source in ALWAYS_LOCAL_SOURCES:
-        return "local"
-
-    # Story relevance wins over publisher origin. This is the core contract for
-    # the Local filter: any publisher can contribute a London, Ontario story.
-    if _has_story_level_local_evidence(story):
-        return "local"
-
-    # National collections and broad newsroom feeds remain Canada unless the
-    # individual story passed the London evidence test above.
-    if _source_scope(source) == "canada" or _source_scope(discovery) == "canada":
-        return "canada"
-
-    # A London-branded publisher is not enough by itself. Broad Ontario or Canada
-    # stories without London evidence belong in Canada.
-    return "canada"
 
 
 def annotate_payload(payload: dict[str, Any]) -> dict[str, Any]:
-    stories = payload.get("stories") or []
-    counts: Counter[str] = Counter()
+    """Apply the strict Local/Canada source contract.
 
-    for story in stories:
-        if not isinstance(story, dict):
-            continue
-        scope = scope_for_story(story)
-        story["scope"] = scope
-        counts[scope] += 1
-
-        category = str(story.get("category") or "").strip()
-        if scope == "canada" and category in {"", "Local"}:
-            story["category"] = "Canada"
-        elif scope == "local" and category == "Canada":
-            story["category"] = "Local"
-
-    # Source health describes where a collector comes from, not whether every
-    # story that collector publishes is locally relevant.
-    for health in payload.get("source_health") or []:
-        if not isinstance(health, dict):
-            continue
-        source = str(health.get("source") or "").strip()
-        health["scope"] = SOURCE_SCOPES.get(source, "local")
-
-    payload["scope_schema_version"] = 3
-    payload["scope_counts"] = {
-        "local": counts.get("local", 0),
-        "canada": counts.get("canada", 0),
-        "all": counts.get("local", 0) + counts.get("canada", 0),
-    }
-    return payload
+    Local is determined only by the explicit London-source whitelist. National
+    publishers are never promoted into Local because of article text or scores.
+    """
+    return apply_rules(payload)
 
 
 def main() -> int:
