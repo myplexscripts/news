@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from unittest.mock import patch
+
 from bs4 import BeautifulSoup
 
 import fetch_news as scoop
@@ -164,6 +166,78 @@ def test_ctv_embedded_content_elements_keep_article_images() -> None:
     assert images[0]["height"] == 900
 
 
+def test_ctv_canada_page_links_stay_in_canada_section() -> None:
+    html = """
+    <main>
+      <a href="/canada/article/national-story-alpha">National story alpha</a>
+      <a href="/london/article/local-story-beta">Local story beta</a>
+    </main>
+    """
+    source = scoop.Source(
+        name="CTV News Canada",
+        url="https://www.ctvnews.ca/canada/",
+        kind="page",
+        homepage="https://www.ctvnews.ca/canada/",
+        max_items=10,
+    )
+
+    with patch("fetch_news.fetch_html", return_value=(html, source.url)):
+        links = scoop.page_links(source)
+
+    assert links == ["https://www.ctvnews.ca/canada/article/national-story-alpha"]
+
+
+def test_ctv_canada_enrich_uses_structured_embedded_body() -> None:
+    html = """
+    <html>
+      <head>
+        <meta property="og:title" content="National CTV story keeps its paragraphs">
+        <meta property="og:description" content="A national story description.">
+      </head>
+      <body>
+        <script id="fusion-metadata" type="application/javascript">
+        Fusion.globalContent={
+          "content_elements": [
+            {"type": "text", "content": "The first paragraph explains the national story with enough detail about where it happened, who was involved, and why readers should understand the broader context."},
+            {"type": "text", "content": "The second paragraph adds another full piece of reporting from officials and witnesses, keeping the article readable instead of merging every sentence into one long block."},
+            {"type": "text", "content": "The third paragraph closes with practical next steps and additional background that belongs in the body, not in a flattened summary fallback."}
+          ]
+        };Fusion.arcSite="ctvnews";
+        </script>
+      </body>
+    </html>
+    """
+    url = "https://www.ctvnews.ca/canada/article/national-story-alpha"
+    source = scoop.Source(
+        name="CTV News Canada",
+        url="https://www.ctvnews.ca/canada/",
+        kind="page",
+        homepage="https://www.ctvnews.ca/canada/",
+    )
+    story = {
+        "id": scoop.make_id(url),
+        "title": "National CTV story keeps its paragraphs",
+        "source": source.name,
+        "source_home": source.homepage,
+        "source_accent": source.accent,
+        "url": url,
+        "published": "2026-09-01T12:00:00+00:00",
+        "summary": "A national story description.",
+        "image": "",
+        "author": "",
+        "category": "Local",
+    }
+
+    with patch("fetch_news.fetch_html", return_value=(html, url)):
+        enriched = scoop.enrich_article(story, source)
+
+    assert enriched["quality"]["method"] == "embedded-json:ctv"
+    assert len(enriched["paragraphs"]) == 3
+    assert len(enriched["content_blocks"]) == 3
+    assert all(block["type"] == "paragraph" for block in enriched["content_blocks"])
+    assert all(len(paragraph) < 220 for paragraph in enriched["paragraphs"])
+
+
 def test_author_images_are_rejected_from_article_blocks() -> None:
     html = """
     <article>
@@ -295,6 +369,8 @@ def main() -> int:
         test_ctv_inline_recirculation_does_not_truncate_story,
         test_ctv_linked_promo_image_is_rejected,
         test_ctv_embedded_content_elements_keep_article_images,
+        test_ctv_canada_page_links_stay_in_canada_section,
+        test_ctv_canada_enrich_uses_structured_embedded_body,
         test_author_images_are_rejected_from_article_blocks,
         test_ctv_embedded_author_image_is_rejected,
         test_cbc_markdown_author_image_is_rejected,

@@ -18,7 +18,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: refresh-news-v4-${{ github.ref }}
+  group: refresh-news-v3-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -88,7 +88,7 @@ jobs:
 
       - name: Fetch headline metadata
         if: steps.due.outputs.run == 'true'
-        run: python scripts/fast_refresh.py
+        run: python scripts/run_scoop.py
 
       - name: Apply fast feed normalization
         if: steps.due.outputs.run == 'true'
@@ -101,12 +101,21 @@ jobs:
           python scripts/fix_cbc_fallback.py
           python scripts/repair_cbc_image_refs.py
 
+      - name: Remove inline promoted-story modules
+        if: steps.due.outputs.run == 'true'
+        timeout-minutes: 3
+        run: python scripts/cleanup_article_recirculation.py
+
+      - name: Run cluster-aware audit
+        if: steps.due.outputs.run == 'true'
+        run: python scripts/run_audit.py
+
       - name: Commit fast refresh
         id: commit
         if: steps.due.outputs.run == 'true'
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- data/news.json public/cache/)" ]; then
+          if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -114,6 +123,7 @@ jobs:
           rm -rf /tmp/scoop-fast-output
           mkdir -p /tmp/scoop-fast-output/cache
           cp data/news.json /tmp/scoop-fast-output/news.json
+          cp data/audit.json /tmp/scoop-fast-output/audit.json
           rsync -a public/cache/ /tmp/scoop-fast-output/cache/
 
           git config user.name "github-actions[bot]"
@@ -121,16 +131,17 @@ jobs:
           git fetch origin "$GITHUB_REF_NAME"
           git reset --hard "origin/$GITHUB_REF_NAME"
           cp /tmp/scoop-fast-output/news.json data/news.json
+          cp /tmp/scoop-fast-output/audit.json data/audit.json
           mkdir -p public/cache
           rsync -a --delete /tmp/scoop-fast-output/cache/ public/cache/
-          git add data/news.json public/cache/
+          git add data/news.json data/audit.json public/cache/
 
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          git commit -m "Refresh news metadata"
+          git commit -m "Refresh news"
           git push origin "HEAD:$GITHUB_REF_NAME"
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
@@ -139,7 +150,7 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main
+        run: gh workflow run site.yml --repo myplexscripts/news --ref main
 
       - name: Start deferred article enrichment
         if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'

@@ -88,6 +88,7 @@ GENERIC_BOILERPLATE = (
     "story continues below", "continue reading", "download our app", "follow us on",
     "recommended video", "related stories", "related story", "more from", "you may also like", "read more from", "all rights reserved",
     "back to news search subscribe", "back to news search", "trending stories", "trending now", "most popular", "top stories", "watch more",
+    "sponsored content",
 )
 
 POSTMEDIA_BOILERPLATE = (
@@ -263,6 +264,56 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
             "[class*='read-more']", "[class*='readmore']", "[class*='more-from']",
             "[class*='morefrom']", "[data-testid*='related']", "[data-testid*='recommend']",
             "nav", "footer", "aside"
+        ],
+    },
+    "The Globe and Mail": {
+        "profile": "globe",
+        "roots": [
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".c-article-body", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='advert']", "[class*='related']", "[class*='recirc']",
+            "[class*='recommend']", "[class*='follow']", "[class*='feedback']",
+            "[class*='error-report']", "[class*='editorial-code']", "[class*='interact']",
+            "[class*='comment']", "[data-testid*='follow']", "[data-testid*='related']",
+        ],
+    },
+    "Toronto Star": {
+        "profile": "star",
+        "roots": [
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".asset-content", ".story-body", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='trending']", "[id*='trending']", "[class*='more-news']",
+            "[class*='related']", "[class*='recommend']", "[class*='recirc']",
+            "[class*='share']", "[class*='social']", "[class*='comment']",
+            "[class*='advert']", "[data-testid*='related']", "[data-testid*='trending']",
+        ],
+    },
+    "Western News": {
+        "profile": "western",
+        "roots": [
+            ".entry-content", ".post-content", ".article-content", ".story-content",
+            "[itemprop='articleBody']", "main article", "article", "main",
+        ],
+        "remove": [
+            ".related", ".related-posts", ".share", ".social", ".newsletter", ".subscribe",
+            "[class*='related']", "[class*='recommend']", "[class*='recirc']",
+            "[class*='more-stories']", "[class*='more-from']", ".faculty-card", ".author-card",
+        ],
+    },
+    "CityNews Canada": {
+        "profile": "citynews",
+        "roots": [
+            "[data-testid='article-body']", ".article-body", ".entry-content",
+            ".story-content", "[itemprop='articleBody']", "main article", "article", "main",
+        ],
+        "remove": [
+            "[class*='advert']", "[class*='related']", "[class*='recirc']",
+            "[class*='recommend']", "[class*='share']", "[class*='social']",
+            "[class*='newsletter']", "[class*='comment']",
         ],
     },
     "104.7 Heart FM": {
@@ -525,7 +576,7 @@ def clean_article_blocks(blocks: list[str], source_name: str = "", title: str = 
         text = clean_text(strip_title_echo(normalize_source_case(block), title))
         if is_global_source(source_name) and global_stop_text(text):
             break
-        if source_name == "CTV News" and ctv_stop_text(text):
+        if is_ctv_source(source_name) and ctv_stop_text(text):
             break
         if len(text) < 25:
             if stats is not None:
@@ -877,7 +928,25 @@ def collect_image_candidates(soup: BeautifulSoup, base_url: str, ld: dict[str, A
 
 
 def profile_for(source_name: str) -> dict[str, Any]:
-    return SOURCE_PROFILES.get(source_name, {"profile": "generic", "roots": GENERIC_ROOTS, "remove": []})
+    """Return an extraction profile by publisher family, not only exact feed name."""
+    if source_name in SOURCE_PROFILES:
+        return SOURCE_PROFILES[source_name]
+    lower = source_name.lower()
+    if is_ctv_source(source_name):
+        return SOURCE_PROFILES["CTV News"]
+    if is_global_source(source_name):
+        return SOURCE_PROFILES["Global News London"]
+    if is_postmedia_source(source_name):
+        return SOURCE_PROFILES["London Free Press"]
+    if "globe and mail" in lower:
+        return SOURCE_PROFILES["The Globe and Mail"]
+    if "toronto star" in lower or "thestar" in lower:
+        return SOURCE_PROFILES["Toronto Star"]
+    if "western" in lower:
+        return SOURCE_PROFILES["Western News"]
+    if "citynews" in lower or "city news" in lower:
+        return SOURCE_PROFILES["CityNews Canada"]
+    return {"profile": "generic", "roots": GENERIC_ROOTS, "remove": []}
 
 
 def tag_signature(tag: Tag) -> str:
@@ -933,7 +1002,26 @@ def is_police_source(source_name: str) -> bool:
 
 
 def is_postmedia_source(source_name: str) -> bool:
-    return "free press" in source_name.lower()
+    lower = source_name.lower()
+    return "free press" in lower or "postmedia" in lower or "national post" in lower
+
+
+def is_ctv_source(source_name: str) -> bool:
+    return "ctv" in source_name.lower()
+
+
+def ctv_article_sections(source_name: str) -> tuple[str, ...]:
+    lower = source_name.lower()
+    if "london" in lower:
+        return ("london",)
+    if "canada" in lower:
+        return ("canada",)
+    return ("london", "canada")
+
+
+def is_allowed_ctv_article_path(path: str, source_name: str) -> bool:
+    normalized = str(path or "").lower()
+    return any(f"/{section}/article/" in normalized for section in ctv_article_sections(source_name))
 
 
 def is_global_source(source_name: str) -> bool:
@@ -1323,7 +1411,7 @@ def extract_dom_blocks(soup: BeautifulSoup, base_url: str, source_name: str, tit
     postmedia_recirc = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
-    ctv_mode = source_name == "CTV News"
+    ctv_mode = is_ctv_source(source_name)
     ctv_recirc = False
 
     nodes = clone_root.find_all(["h2", "h3", "p", "blockquote", "ul", "ol", "figure", "img"], recursive=True)
@@ -1793,7 +1881,7 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     extracted_text, extracted_paragraphs, extracted_meta = extracted_article_text(raw, final_url, source.name, title)
     ctv_blocks: list[dict[str, Any]] = []
     ctv_text = ""
-    if source.name == "CTV News":
+    if is_ctv_source(source.name):
         ctv_blocks, ctv_stats = extract_ctv_embedded_blocks(soup, title, final_url)
         for key, value in ctv_stats.items():
             stats[key] = stats.get(key, 0) + value
@@ -1802,7 +1890,7 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     # CTV changes its rendering shape frequently. Treat DOM, JSON-LD, embedded
     # React state and readability extraction as parallel first-party candidates,
     # clean each one, then use the most complete plausible article body.
-    if source.name == "CTV News":
+    if is_ctv_source(source.name):
         ctv_candidates: list[tuple[int, int, str, list[dict[str, Any]], list[str], str]] = []
 
         def add_ctv_candidate(candidate_method: str, candidate_blocks: list[dict[str, Any]], priority: int) -> None:
@@ -1939,7 +2027,7 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     story["quality"] = extraction_quality(story, stats, method)
     score = story["quality"]["score"]
     complete_shape = word_count >= 120 or len(paragraphs) >= 3
-    trusted_ctv_body = source.name == "CTV News" and method.startswith(("jsonld:ctv", "embedded-json:ctv"))
+    trusted_ctv_body = is_ctv_source(source.name) and method.startswith(("jsonld:ctv", "embedded-json:ctv"))
     full_enough = (score >= 55 and complete_shape) or (trusted_ctv_body and score >= 45 and word_count >= 90 and len(paragraphs) >= 2)
     story["content_status"] = "full" if full_enough else "partial" if word_count >= 55 else "summary"
     return story
@@ -2130,14 +2218,21 @@ def page_links(source: Source) -> list[str]:
     soup = BeautifulSoup(raw, "html.parser")
     host = urlparse(final_url).netloc.lower().replace("www.", "")
     links: list[str] = []
-    ctv_mode = source.name == "CTV News"
+    ctv_mode = is_ctv_source(source.name)
     cbc_mode = source.name == "CBC News London"
     city_mode = source.name == "City of London Newsroom"
+    ctv_selectors = [
+        f"a[href*='/{section}/article/']"
+        for section in ctv_article_sections(source.name)
+    ] + [
+        f"main a[href*='/{section}/article/']"
+        for section in ctv_article_sections(source.name)
+    ]
 
     selectors = (
         ["a[href*='/news/posts/']"]
         if is_police_source(source.name)
-        else ["a[href*='/london/article/']", "main a[href*='/london/article/']"]
+        else ctv_selectors
         if ctv_mode
         else ["a[href*='/news/canada/london/']", "main a[href*='/news/canada/london/']"]
         if cbc_mode
@@ -2159,7 +2254,7 @@ def page_links(source: Source) -> list[str]:
         path = parsed.path.lower()
         if is_police_source(source.name) and "/news/posts/" not in path:
             return False
-        if ctv_mode and "/london/article/" not in path:
+        if ctv_mode and not is_allowed_ctv_article_path(path, source.name):
             return False
         if cbc_mode and "/news/canada/london/" not in path:
             return False
@@ -2186,7 +2281,7 @@ def page_links(source: Source) -> list[str]:
     if ctv_mode or cbc_mode:
         normalized_raw = html.unescape(raw).replace("\\/", "/")
         pattern = (
-            r'(?:https?://(?:www\.)?ctvnews\.ca)?(/london/article/[A-Za-z0-9][^"\'<>\\\s?#]*)'
+            rf'(?:https?://(?:www\.)?ctvnews\.ca)?(/(?:{"|".join(re.escape(section) for section in ctv_article_sections(source.name))})/article/[A-Za-z0-9][^"\'<>\\\s?#]*)'
             if ctv_mode
             else r'(?:https?://(?:www\.)?cbc\.ca)?(/news/canada/london/[A-Za-z0-9][^"\'<>\\\s?#]*)'
         )
@@ -2234,7 +2329,7 @@ def sanitize_content_blocks(blocks: list[dict[str, Any]], source_name: str, titl
     skipping_postmedia_recirc = False
     heartfm_mode = is_heartfm_source(source_name)
     heartfm_content_started = False
-    ctv_mode = source_name == "CTV News"
+    ctv_mode = is_ctv_source(source_name)
     skipping_ctv_recirc = False
     for block in blocks:
         if not isinstance(block, dict):
@@ -2410,7 +2505,15 @@ def backfill_missing(
     done = 0
     # Repair CBC/CTV first after extractor changes so stale degraded records do
     # not keep their source health orange for many scheduled refreshes.
-    priority_sources = {"CBC News London": 0, "CTV News": 0, "London Free Press": 0, "Global News London": 0}
+    priority_sources = {
+        "CBC News London": 0,
+        "CTV News": 0,
+        "CTV News London": 0,
+        "CTV News Canada": 0,
+        "London Free Press": 0,
+        "Global News London": 0,
+        "Global News Canada": 0,
+    }
     # Python's sort is stable, so sorting only by priority preserves the existing
     # newest-first order within CBC/CTV and repairs the records that affect health
     # and the visible feed first.
