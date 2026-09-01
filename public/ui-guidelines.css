@@ -13,6 +13,7 @@
   --ui-segment-fill: var(--gray-6);
   --ui-segment-selected: var(--surface);
   --ui-accent-text: color-mix(in srgb, var(--accent) 45%, black);
+  --ui-motion-spring: 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html[data-theme='dark'] {
@@ -112,13 +113,16 @@ html body .settings-action-button:disabled {
 }
 
 /* Shared flat segmented-control system.
-   Outer radius 22px, 3px inset, selected radius 19px. */
+   The selected fill is one physical layer that glides between equal-width segments. */
 html body .feed-scope-switch,
 html body .archive-scope-switch,
 html body .directory-tabs,
 html body .settings-segmented,
 html body [data-segmented-control] {
+  --segment-count: 2;
+  --segment-index: 0;
   position: relative !important;
+  isolation: isolate !important;
   display: grid !important;
   min-height: var(--ui-control-height) !important;
   height: var(--ui-control-height) !important;
@@ -134,14 +138,58 @@ html body [data-segmented-control] {
 
 html body .feed-scope-switch,
 html body .archive-scope-switch {
+  --segment-count: 3;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
 
 html body .directory-tabs,
 html body .settings-segmented {
+  --segment-count: 2;
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   grid-auto-flow: column !important;
   grid-auto-columns: minmax(0, 1fr) !important;
+}
+
+html body .feed-scope-switch::before,
+html body .archive-scope-switch::before,
+html body .directory-tabs::before,
+html body .settings-segmented::before,
+html body [data-segmented-control]::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  top: var(--ui-control-inset) !important;
+  left: var(--ui-control-inset) !important;
+  width: calc((100% - (var(--ui-control-inset) * 2)) / var(--segment-count)) !important;
+  height: calc(100% - (var(--ui-control-inset) * 2)) !important;
+  border: 0 !important;
+  border-radius: var(--ui-inner-radius) !important;
+  background: var(--ui-segment-selected) !important;
+  box-shadow: none !important;
+  transform: translate3d(calc(var(--segment-index) * 100%), 0, 0) !important;
+  transition: transform var(--ui-motion-spring), background-color 220ms ease !important;
+  pointer-events: none !important;
+}
+
+html body .feed-scope-switch:has(> :nth-child(2).active),
+html body .feed-scope-switch:has(> :nth-child(2)[aria-pressed='true']),
+html body .archive-scope-switch:has(> :nth-child(2).active),
+html body .archive-scope-switch:has(> :nth-child(2)[aria-pressed='true']),
+html body .directory-tabs:has(> :nth-child(2).active),
+html body .directory-tabs:has(> :nth-child(2)[aria-selected='true']),
+html body .settings-segmented:has(> :nth-child(2).selected),
+html body .settings-segmented:has(> :nth-child(2)[aria-pressed='true']),
+html body [data-segmented-control]:has(> :nth-child(2)[aria-pressed='true']) {
+  --segment-index: 1;
+}
+
+html body .feed-scope-switch:has(> :nth-child(3).active),
+html body .feed-scope-switch:has(> :nth-child(3)[aria-pressed='true']),
+html body .archive-scope-switch:has(> :nth-child(3).active),
+html body .archive-scope-switch:has(> :nth-child(3)[aria-pressed='true']),
+html body [data-segmented-control]:has(> :nth-child(3)[aria-pressed='true']) {
+  --segment-index: 2;
 }
 
 html body .feed-scope-button,
@@ -150,7 +198,7 @@ html body .directory-tab,
 html body .settings-segmented button,
 html body [data-segmented-control] > button {
   position: relative !important;
-  z-index: 0 !important;
+  z-index: 1 !important;
   min-width: 0 !important;
   min-height: calc(var(--ui-control-height) - (var(--ui-control-inset) * 2)) !important;
   height: calc(var(--ui-control-height) - (var(--ui-control-inset) * 2)) !important;
@@ -165,6 +213,7 @@ html body [data-segmented-control] > button {
   font-weight: 650 !important;
   line-height: 1 !important;
   transform: none !important;
+  transition: color 220ms ease !important;
   cursor: pointer !important;
 }
 
@@ -201,7 +250,7 @@ html body .settings-segmented button[aria-pressed='true'],
 html body [data-segmented-control] > button[aria-pressed='true'] {
   border: 0 !important;
   border-radius: var(--ui-inner-radius) !important;
-  background: var(--ui-segment-selected) !important;
+  background: transparent !important;
   color: var(--ui-accent-text) !important;
   box-shadow: none !important;
 }
@@ -211,7 +260,7 @@ html body .archive-scope-switch button:active,
 html body .directory-tab:active,
 html body .settings-segmented button:active,
 html body [data-segmented-control] > button:active {
-  background: color-mix(in srgb, var(--ink) 8%, var(--ui-segment-selected)) !important;
+  color: var(--ink) !important;
 }
 
 /* System switches remain round with a 44px minimum touch target. */
@@ -296,6 +345,11 @@ html[data-theme='dark'] body .accent-choice.selected {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html body .feed-scope-switch::before,
+  html body .archive-scope-switch::before,
+  html body .directory-tabs::before,
+  html body .settings-segmented::before,
+  html body [data-segmented-control]::before,
   html body .feed-scope-button,
   html body .archive-scope-switch button,
   html body .directory-tab,
