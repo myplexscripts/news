@@ -32,6 +32,60 @@
     cursor: default;
   }
 
+  .news-card-share,
+  .article-share-button {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .news-card-share {
+    position: absolute;
+    z-index: 4;
+    right: 54px;
+    bottom: 8px;
+  }
+
+  .news-card-share i,
+  .article-share-button i {
+    font-size: 22px;
+  }
+
+  .news-card-share:hover,
+  .news-card-share:focus-visible,
+  .article-share-button:hover,
+  .article-share-button:focus-visible {
+    color: var(--accent);
+  }
+
+  .news-card-share:focus-visible,
+  .article-share-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .article-source-card-refined {
+    position: relative;
+  }
+
+  .article-source-card-refined .source-original-link {
+    padding-right: 54px;
+  }
+
+  .article-share-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--muted);
+  }
+
   .pull-refresh-indicator {
     display: none;
   }
@@ -106,6 +160,7 @@
   <i class="ph ph-spinner" data-pull-refresh-icon aria-hidden="true"></i>
 </div>
 <span class="visually-hidden" role="status" aria-live="polite" data-pull-refresh-status></span>
+<span class="visually-hidden" role="status" aria-live="polite" data-share-status></span>
 
 <script>
   import { importLegacyUserState, initialiseUserState, onUserStateChange, toggleStorySaved, type LondonNewsUserState } from '../lib/userState';
@@ -127,6 +182,80 @@
     button.setAttribute('title', 'Save to Read Later');
     button.innerHTML = '<i class="ph ph-bookmark-simple" aria-hidden="true"></i>';
     header.append(button);
+  }
+
+  function makeShareButton(className: string, title: string, url: string) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = className;
+    button.dataset.shareStory = 'true';
+    button.dataset.shareTitle = title;
+    button.dataset.shareUrl = url;
+    button.setAttribute('aria-label', 'Share story');
+    button.setAttribute('title', 'Share');
+    button.innerHTML = '<i class="ph ph-share-network" aria-hidden="true"></i>';
+    return button;
+  }
+
+  function ensureStoryShareButtons() {
+    document.querySelectorAll<HTMLElement>('.news-card').forEach((card) => {
+      if (card.querySelector('[data-share-story]')) return;
+      const body = card.querySelector<HTMLElement>('.news-card-body');
+      const link = card.querySelector<HTMLAnchorElement>('.news-card-link');
+      const heading = card.querySelector<HTMLElement>('h3');
+      if (!body || !link) return;
+      const title = String(heading?.getAttribute('title') || heading?.textContent || 'Forest City News').trim();
+      body.append(makeShareButton('news-card-share', title, link.href));
+    });
+
+    const article = document.querySelector<HTMLElement>('[data-current-story-id]');
+    const sourceCard = article?.querySelector<HTMLElement>('.article-source-card-refined');
+    if (!article || !sourceCard || sourceCard.querySelector('[data-share-story]')) return;
+    const heading = article.querySelector<HTMLElement>('h1');
+    const title = String(heading?.textContent || document.title || 'Forest City News').trim();
+    sourceCard.append(makeShareButton('article-share-button', title, window.location.href));
+  }
+
+  async function copyShareUrl(url: string) {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(url);
+      return;
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = url;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.append(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  }
+
+  async function shareStory(button: HTMLButtonElement) {
+    const status = document.querySelector<HTMLElement>('[data-share-status]');
+    const title = String(button.dataset.shareTitle || 'Forest City News').trim();
+    const rawUrl = String(button.dataset.shareUrl || window.location.href).trim();
+    const url = new URL(rawUrl, window.location.href).href;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, url });
+        if (status) status.textContent = 'Share sheet opened';
+        return;
+      }
+      await copyShareUrl(url);
+      if (status) status.textContent = 'Story link copied';
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') return;
+      try {
+        await copyShareUrl(url);
+        if (status) status.textContent = 'Story link copied';
+      } catch {
+        if (status) status.textContent = 'Unable to share this story';
+      }
+    }
   }
 
   function applyState(state: LondonNewsUserState) {
@@ -163,6 +292,14 @@
   }
 
   document.addEventListener('click', (event) => {
+    const shareTarget = event.target instanceof Element ? event.target.closest('[data-share-story]') : null;
+    if (shareTarget instanceof HTMLButtonElement) {
+      event.preventDefault();
+      event.stopPropagation();
+      shareStory(shareTarget).catch(() => {});
+      return;
+    }
+
     const target = event.target instanceof Element ? event.target.closest('[data-read-later-toggle]') : null;
     if (!(target instanceof HTMLButtonElement)) return;
     event.preventDefault();
@@ -310,6 +447,7 @@
   }
 
   ensureArticleReadLaterButton();
+  ensureStoryShareButtons();
   initialisePullToRefresh();
   initialiseUserState().then(applyState).catch(() => {});
   onUserStateChange(applyState);
