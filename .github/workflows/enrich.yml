@@ -37,6 +37,7 @@ jobs:
           python scripts/test_reader_mode_articles.py
           python scripts/test_recirculation_cleanup.py
           python scripts/test_national_post_repair.py
+          python scripts/test_source_content_repair.py
           python scripts/check_scope_contracts.py
           python scripts/check_local_source_rules.py
 
@@ -49,6 +50,8 @@ jobs:
 
       - name: Refine enriched articles
         run: |
+          python scripts/fix_cbc_fallback.py
+          python scripts/repair_source_content.py --cbc-limit 40
           python scripts/hydrate_cbc_lite.py
           python scripts/enrich_article_structure.py
           python scripts/refine_article_formatting.py
@@ -57,6 +60,7 @@ jobs:
           python scripts/cleanup_article_recirculation.py
           python scripts/enrich_article_media.py
           python scripts/sanitize_article_blocks.py
+          python scripts/repair_source_content.py --cbc-limit 0
           python scripts/cache_cbc_images.py
 
       - name: Run regression and audit tests
@@ -102,6 +106,7 @@ jobs:
             /tmp/news-merged.json
           mv /tmp/news-merged.json data/news.json
           python scripts/apply_local_source_rules.py
+          python scripts/repair_source_content.py --cbc-limit 0
           cp /tmp/scoop-enriched-output/audit.json data/audit.json
           mkdir -p public/cache
           # Overlay newly enriched media, but never delete files a newer fast refresh added.
