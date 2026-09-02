@@ -21,8 +21,8 @@ def main() -> int:
     short = candidate_details(
         "dom:postmedia:article",
         [
-            paragraph(repeated_sentence("Lead", 1)),
-            paragraph(repeated_sentence("Second", 1)),
+            paragraph(repeated_sentence("Lead", 2)),
+            paragraph(repeated_sentence("Second", 2)),
         ],
     )
     long = candidate_details(
