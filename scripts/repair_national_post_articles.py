@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import os
 import re
@@ -17,7 +18,7 @@ import fetch_news
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
 SOURCE_NAME = "National Post"
-REPAIR_SCHEMA = 1
+REPAIR_SCHEMA = 2
 MAX_PER_RUN = max(5, int(os.getenv("NATIONAL_POST_REPAIR_MAX", "30")))
 
 POSTMEDIA_EXTRA_BOILERPLATE = (
@@ -33,6 +34,14 @@ POSTMEDIA_EXTRA_BOILERPLATE = (
     "story continues below",
     "this advertisement has not loaded yet",
 )
+
+JINA_HEADERS = {
+    "User-Agent": "ForestCityNews/1.0 (+https://myplexscripts.github.io/news/)",
+    "Accept": "text/plain",
+    "X-Retain-Links": "text",
+    "X-Retain-Images": "all",
+    "X-Retain-Media": "none",
+}
 
 
 def words(value: str) -> int:
@@ -125,6 +134,87 @@ def image_fallbacks(soup: BeautifulSoup, final_url: str, ld: dict[str, Any], lea
     return result
 
 
+def markdown_text(value: str) -> str:
+    text = html.unescape(str(value or ""))
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = text.replace("**", "").replace("__", "").replace("`", "")
+    return fetch_news.clean_text(text)
+
+
+def parse_jina_paragraphs(raw: str, title: str) -> list[str]:
+    marker = re.search(r"^Markdown Content:\s*$", raw, flags=re.I | re.M)
+    body = raw[marker.end():] if marker else raw
+    paragraphs: list[str] = []
+    buffer: list[str] = []
+
+    def flush() -> None:
+        nonlocal buffer
+        if not buffer:
+            return
+        text = markdown_text(" ".join(buffer))
+        buffer = []
+        if len(text) >= 25:
+            paragraphs.append(text)
+
+    for line in body.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            flush()
+            continue
+        if re.fullmatch(r"[-_=]{3,}", stripped):
+            flush()
+            continue
+        heading = re.match(r"^#{1,6}\s+(.+)$", stripped)
+        if heading:
+            flush()
+            heading_text = markdown_text(heading.group(1))
+            key = fetch_news.boilerplate_key(heading_text)
+            if paragraphs and any(key.startswith(marker) for marker in POSTMEDIA_EXTRA_BOILERPLATE):
+                break
+            # Headings are useful structure, but the text body candidate only needs
+            # article prose. Avoid treating the headline itself as a paragraph.
+            continue
+        if stripped.startswith("!["):
+            continue
+        if re.match(r"^(?:[-*+]\s+|\d+[.)]\s+)", stripped):
+            item = re.sub(r"^(?:[-*+]\s+|\d+[.)]\s+)", "", stripped)
+            item = markdown_text(item)
+            if len(item) >= 25:
+                flush()
+                paragraphs.append(item)
+            continue
+        key = fetch_news.boilerplate_key(markdown_text(stripped))
+        if paragraphs and any(key.startswith(marker) for marker in POSTMEDIA_EXTRA_BOILERPLATE):
+            flush()
+            break
+        buffer.append(stripped)
+
+    flush()
+    paragraphs = clean_candidate_paragraphs(paragraphs, title)
+    return paragraphs
+
+
+def jina_candidate(story: dict[str, Any], title: str, inline_images: list[dict[str, Any]]) -> dict[str, Any] | None:
+    url = str(story.get("url") or "").strip()
+    if not article_path_ok(url):
+        return None
+    reader_url = f"https://r.jina.ai/https://{urlparse(url).netloc}{urlparse(url).path}"
+    try:
+        response = fetch_news.SESSION.get(reader_url, headers=JINA_HEADERS, timeout=(4, 24))
+        response.raise_for_status()
+    except Exception:
+        return None
+    if len(response.text) < 500:
+        return None
+    paragraphs = parse_jina_paragraphs(response.text, title)
+    if not paragraphs:
+        return None
+    blocks = fetch_news.fallback_blocks(paragraphs, inline_images)
+    return candidate_details("jina:postmedia-repair", blocks)
+
+
 def extract_candidates(story: dict[str, Any]) -> list[dict[str, Any]]:
     url = str(story.get("url") or "").strip()
     raw, final_url = fetch_news.fetch_html(url)
@@ -171,15 +261,24 @@ def extract_candidates(story: dict[str, Any]) -> list[dict[str, Any]]:
         if extracted_candidate:
             candidates.append(extracted_candidate)
 
+    jina = jina_candidate(story, title, inline_images)
+    if jina:
+        candidates.append(jina)
+
     return candidates
 
 
-def should_replace(story: dict[str, Any], candidate: dict[str, Any]) -> bool:
+def story_shape(story: dict[str, Any]) -> tuple[int, int]:
     existing_words = int(story.get("word_count") or 0)
     if existing_words <= 0:
         existing_words = words(str(story.get("content") or ""))
     existing_paragraphs = story.get("paragraphs") if isinstance(story.get("paragraphs"), list) else []
-    existing_paragraph_count = len([item for item in existing_paragraphs if str(item or "").strip()])
+    paragraph_count = len([item for item in existing_paragraphs if str(item or "").strip()])
+    return existing_words, paragraph_count
+
+
+def should_replace(story: dict[str, Any], candidate: dict[str, Any]) -> bool:
+    existing_words, existing_paragraph_count = story_shape(story)
     candidate_words = int(candidate.get("word_count") or 0)
     candidate_paragraph_count = int(candidate.get("paragraph_count") or 0)
 
@@ -190,6 +289,11 @@ def should_replace(story: dict[str, Any], candidate: dict[str, Any]) -> bool:
     if existing_paragraph_count <= 2 and candidate_paragraph_count >= 5 and candidate_words >= existing_words:
         return True
     return False
+
+
+def body_is_confident(story: dict[str, Any]) -> bool:
+    current_words, current_paragraphs = story_shape(story)
+    return current_words >= 250 and current_paragraphs >= 3
 
 
 def apply_candidate(story: dict[str, Any], candidate: dict[str, Any]) -> None:
@@ -236,21 +340,37 @@ def repair_payload(payload: dict[str, Any], filter_only: bool = False, limit: in
     repaired = 0
     for story in targets:
         attempted += 1
+        now = datetime.now(timezone.utc).isoformat()
+        story["national_post_repair_attempts"] = int(story.get("national_post_repair_attempts") or 0) + 1
         try:
             candidate = choose_candidate(extract_candidates(story))
             if candidate and should_replace(story, candidate):
-                old_words = int(story.get("word_count") or 0)
+                old_words = story_shape(story)[0]
                 apply_candidate(story, candidate)
                 repaired += 1
                 print(
                     f"National Post repaired: {old_words} -> {candidate['word_count']} words | "
                     f"{str(story.get('title') or '')[:80]}"
                 )
-            story["national_post_repair_schema"] = REPAIR_SCHEMA
-            story["national_post_repair_checked_at"] = datetime.now(timezone.utc).isoformat()
+
+            if body_is_confident(story):
+                story["national_post_repair_schema"] = REPAIR_SCHEMA
+                story["national_post_repair_status"] = "complete"
+                story.pop("national_post_repair_retry_pending", None)
+            else:
+                # Do not bless a suspicious lead-only body as permanently fixed.
+                # It remains eligible for another enrichment run if the publisher
+                # exposes the complete body later or a fallback succeeds next time.
+                story.pop("national_post_repair_schema", None)
+                story["national_post_repair_status"] = "short-body-retry"
+                story["national_post_repair_retry_pending"] = True
+            story["national_post_repair_checked_at"] = now
         except Exception as exc:
+            story.pop("national_post_repair_schema", None)
+            story["national_post_repair_status"] = "retry"
+            story["national_post_repair_retry_pending"] = True
             story["national_post_repair_error"] = str(exc)[:240]
-            story["national_post_repair_checked_at"] = datetime.now(timezone.utc).isoformat()
+            story["national_post_repair_checked_at"] = now
             print(f"National Post repair deferred: {str(story.get('title') or '')[:70]} | {exc}")
 
     return removed, attempted, repaired
