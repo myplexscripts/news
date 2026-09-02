@@ -36,11 +36,16 @@ jobs:
           python scripts/test_article_sanitizer.py
           python scripts/test_reader_mode_articles.py
           python scripts/test_recirculation_cleanup.py
+          python scripts/test_national_post_repair.py
           python scripts/check_scope_contracts.py
           python scripts/check_local_source_rules.py
 
       - name: Enrich pending article bodies
         run: python scripts/enrich_pending.py --limit 60
+
+      - name: Repair National Post article bodies
+        timeout-minutes: 6
+        run: python scripts/repair_national_post_articles.py --limit 30
 
       - name: Refine enriched articles
         run: |
