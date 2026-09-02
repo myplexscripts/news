@@ -21,14 +21,14 @@ def main() -> int:
     short = candidate_details(
         "dom:postmedia:article",
         [
-            paragraph(repeated_sentence("Lead", 2)),
-            paragraph(repeated_sentence("Second", 2)),
+            paragraph(repeated_sentence("Lead", 4)),
+            paragraph(repeated_sentence("Second", 4)),
         ],
     )
     long = candidate_details(
         "trafilatura:postmedia-repair",
         [
-            paragraph(repeated_sentence(f"Paragraph {index}", 2))
+            paragraph(repeated_sentence(f"Paragraph {index}", 4))
             for index in range(8)
         ],
     )
