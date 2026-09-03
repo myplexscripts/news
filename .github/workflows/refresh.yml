@@ -10,7 +10,7 @@ on:
       - '.github/workflows/enrich.yml'
   workflow_dispatch:
   schedule:
-    - cron: '7,17,27,37,47,57 * * * *'
+    - cron: '7,27,47 * * * *'
 
 permissions:
   contents: write
@@ -18,7 +18,7 @@ permissions:
 
 concurrency:
   group: refresh-news-v4-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   refresh:
@@ -52,7 +52,7 @@ jobs:
               if generated.tzinfo is None:
                   generated = generated.replace(tzinfo=timezone.utc)
               age_minutes = (datetime.now(timezone.utc) - generated.astimezone(timezone.utc)).total_seconds() / 60
-              due = age_minutes >= 20
+              due = age_minutes >= 15
               print(f"Published feed age: {age_minutes:.1f} minutes. Refresh due: {due}")
           except Exception as exc:
               print(f"Could not verify feed freshness, refreshing safely: {exc}")
