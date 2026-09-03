@@ -57,11 +57,13 @@ def main() -> int:
 
     first = (
         "Cleanup crews worked through the morning after strong winds knocked down mature trees and damaged hydro lines across the region. "
-        "Municipal officials said several roads were temporarily closed while workers removed debris and assessed damaged infrastructure."
+        "Municipal officials said several roads were temporarily closed while workers removed debris and assessed damaged infrastructure. "
+        "Emergency crews also checked neighbourhoods where branches had fallen onto homes, vehicles and sidewalks during the storm."
     )
     second = (
         "Hydro crews restored service to most customers by Thursday afternoon, while a smaller number of properties remained without power. "
-        "Residents were asked to keep away from downed wires and report damaged trees that could pose a public safety risk."
+        "Residents were asked to keep away from downed wires and report damaged trees that could pose a public safety risk. "
+        "Officials said cleanup work would continue through the day and asked drivers to give maintenance vehicles extra room."
     )
     candidate = {
         **broken_ctv,
@@ -73,12 +75,9 @@ def main() -> int:
             {"type": "image", "url": "https://www.ctvnews.ca/content/dam/ctvnews/images/storm.jpg", "alt": "Storm damage"},
             {"type": "paragraph", "text": second},
         ],
-        "word_count": 83,
+        "word_count": len((first + " " + second).split()),
         "quality": {"score": 82, "grade": "good", "method": "embedded-json:ctv"},
     }
-    # Candidate word_count metadata can be stale, so the repair also trusts the
-    # actual text when deciding whether a source-specific body is complete.
-    candidate["word_count"] = len((first + " " + second).split())
     assert candidate["word_count"] >= 90
     assert apply_ctv_source_result(broken_ctv, candidate)
     assert broken_ctv["quality"]["method"] == "embedded-json:ctv"
