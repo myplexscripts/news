@@ -16,6 +16,8 @@ import hydrate_cbc_lite
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
 CBC_READER_SCHEMA = 2
+CTV_REPAIR_SCHEMA = 1
+CTV_MIN_WORDS = 90
 
 NATIONAL_POST_PROMOS = tuple(
     fetch_news.boilerplate_key(value)
@@ -114,6 +116,152 @@ def repair_national_post_story(story: dict[str, Any]) -> bool:
         story["quality"] = fetch_news.extraction_quality(story, {}, method)
         story["national_post_promo_cleaned_at"] = now_iso()
     return changed
+
+
+def ctv_section(story: dict[str, Any]) -> str:
+    path = urlparse(fetch_news.clean_text(story.get("url", ""))).path.lower()
+    if "/london/article/" in path:
+        return "london"
+    if "/canada/article/" in path:
+        return "canada"
+    return ""
+
+
+def is_ctv_story(story: dict[str, Any]) -> bool:
+    return "ctv" in fetch_news.clean_text(story.get("source", "")).lower() and bool(ctv_section(story))
+
+
+def ctv_source_for_story(story: dict[str, Any]) -> fetch_news.Source | None:
+    section = ctv_section(story)
+    url = fetch_news.clean_text(story.get("url", ""))
+    if not section or not url:
+        return None
+    if section == "london":
+        return fetch_news.Source(
+            name="CTV News London",
+            url=url,
+            kind="page",
+            homepage="https://www.ctvnews.ca/london/",
+            accent="#6155f5",
+            max_items=1,
+            scope="local",
+        )
+    return fetch_news.Source(
+        name="CTV News Canada",
+        url=url,
+        kind="page",
+        homepage="https://www.ctvnews.ca/canada/",
+        accent="#6155f5",
+        max_items=1,
+        scope="canada",
+    )
+
+
+def ctv_method(story: dict[str, Any]) -> str:
+    quality = story.get("quality") if isinstance(story.get("quality"), dict) else {}
+    return str(quality.get("method") or story.get("rich_article_method") or "").strip().lower()
+
+
+def trusted_ctv_method(value: Any) -> bool:
+    method = str(value or "").strip().lower()
+    return method.startswith((
+        "embedded-json:ctv",
+        "jsonld:ctv",
+        "dom:ctv",
+        "trafilatura:ctv",
+    ))
+
+
+def ctv_story_needs_repair(story: dict[str, Any]) -> bool:
+    if not is_ctv_story(story):
+        return False
+    if int(story.get("ctv_source_repair_schema") or 0) < CTV_REPAIR_SCHEMA:
+        return True
+    paragraphs = story.get("paragraphs") if isinstance(story.get("paragraphs"), list) else []
+    words = int(story.get("word_count") or 0) or word_count(story.get("content", ""))
+    if words < CTV_MIN_WORDS or len(paragraphs) < 2:
+        return True
+    return not trusted_ctv_method(ctv_method(story))
+
+
+def fetch_ctv_source_result(story: dict[str, Any]) -> dict[str, Any] | None:
+    source = ctv_source_for_story(story)
+    if source is None:
+        return None
+    candidate = fetch_news.enrich_article(dict(story), source)
+    return candidate if isinstance(candidate, dict) else None
+
+
+def ctv_candidate_usable(candidate: dict[str, Any] | None) -> bool:
+    if not candidate or candidate.get("scrape_error"):
+        return False
+    paragraphs = candidate.get("paragraphs") if isinstance(candidate.get("paragraphs"), list) else []
+    words = int(candidate.get("word_count") or 0) or word_count(candidate.get("content", ""))
+    return words >= CTV_MIN_WORDS and len(paragraphs) >= 2 and trusted_ctv_method(ctv_method(candidate))
+
+
+def apply_ctv_source_result(story: dict[str, Any], candidate: dict[str, Any] | None) -> bool:
+    if not ctv_candidate_usable(candidate):
+        return False
+    assert candidate is not None
+    original_source = story.get("source")
+    original_scope = story.get("scope")
+    story.clear()
+    story.update(candidate)
+    if original_source:
+        story["source"] = original_source
+    if original_scope:
+        story["scope"] = original_scope
+
+    # Generic reader/media enrichment is valuable for most publishers, but CTV's
+    # application shell can look richer than the actual article body. Once the
+    # first-party CTV extractor has recovered the body, do not let the generic
+    # stages overwrite it during the same enrichment cycle.
+    story["ctv_source_repair_schema"] = CTV_REPAIR_SCHEMA
+    story["ctv_source_repaired_at"] = now_iso()
+    story["reader_schema"] = max(2, int(story.get("reader_schema") or 0))
+    story["media_schema"] = max(3, int(story.get("media_schema") or 0))
+    story["rich_article_schema"] = max(1, int(story.get("rich_article_schema") or 0))
+    story["source_profile_schema"] = max(3, int(story.get("source_profile_schema") or 0))
+    story["rich_article_method"] = "source:ctv-final"
+    story["article_format_state"] = "structured"
+    story.pop("reader_error", None)
+    story.pop("ctv_source_repair_error", None)
+    return True
+
+
+def degrade_broken_ctv_story(story: dict[str, Any], error: str = "") -> bool:
+    if not is_ctv_story(story):
+        return False
+    existing_words = int(story.get("word_count") or 0) or word_count(story.get("content", ""))
+    if existing_words >= 55:
+        if error:
+            story["ctv_source_repair_error"] = error[:240]
+            story["ctv_source_repair_checked_at"] = now_iso()
+        return False
+
+    summary = fetch_news.clean_text(story.get("summary", ""), 720)
+    paragraphs = [summary] if word_count(summary) >= 12 else []
+    story["paragraphs"] = paragraphs
+    story["content"] = "\n\n".join(paragraphs)
+    story["content_blocks"] = [{"type": "paragraph", "text": summary}] if paragraphs else []
+    story["word_count"] = word_count(story["content"])
+    story["content_status"] = "summary"
+    story["article_format_state"] = "structured" if paragraphs else "flat"
+    quality = story.get("quality") if isinstance(story.get("quality"), dict) else {}
+    story["quality"] = {
+        **quality,
+        "score": min(40, int(quality.get("score") or 40)),
+        "grade": "poor",
+        "method": "ctv:summary-fallback",
+        "text_blocks": len(paragraphs),
+        "rich_blocks": 0,
+        "image_blocks": 0,
+    }
+    story["ctv_source_repair_checked_at"] = now_iso()
+    if error:
+        story["ctv_source_repair_error"] = error[:240]
+    return True
 
 
 def local_cbc_cache(value: str) -> bool:
@@ -312,18 +460,48 @@ def apply_cbc_reader_result(
     return changed
 
 
-def repair_payload(payload: dict[str, Any], cbc_limit: int = 20) -> tuple[int, int, int, int]:
+def repair_payload(
+    payload: dict[str, Any],
+    cbc_limit: int = 20,
+    ctv_limit: int = 80,
+) -> tuple[int, int, int, int, int, int]:
     stories = payload.get("stories") if isinstance(payload.get("stories"), list) else []
     national_post_cleaned = 0
     cbc_images_cleaned = 0
     cbc_reader_attempted = 0
     cbc_reader_updated = 0
+    ctv_attempted = 0
+    ctv_updated = 0
 
     for story in stories:
         if not isinstance(story, dict):
             continue
         if repair_national_post_story(story):
             national_post_cleaned += 1
+
+    ctv_targets = [story for story in stories if isinstance(story, dict) and ctv_story_needs_repair(story)]
+    ctv_targets.sort(key=lambda story: str(story.get("published") or ""), reverse=True)
+    if ctv_limit <= 0:
+        ctv_targets = []
+    else:
+        ctv_targets = ctv_targets[:ctv_limit]
+
+    if ctv_targets:
+        with ThreadPoolExecutor(max_workers=min(6, len(ctv_targets))) as executor:
+            futures = {executor.submit(fetch_ctv_source_result, story): story for story in ctv_targets}
+            for future in as_completed(futures):
+                story = futures[future]
+                ctv_attempted += 1
+                try:
+                    candidate = future.result()
+                    error = str(candidate.get("scrape_error") or "") if isinstance(candidate, dict) else "ctv:no-result"
+                except Exception as exc:
+                    candidate = None
+                    error = f"ctv:{type(exc).__name__}: {exc}"
+                if apply_ctv_source_result(story, candidate):
+                    ctv_updated += 1
+                else:
+                    degrade_broken_ctv_story(story, error or "ctv:no-trusted-body")
 
     targets: list[dict[str, Any]] = []
     for story in stories:
@@ -358,24 +536,38 @@ def repair_payload(payload: dict[str, Any], cbc_limit: int = 20) -> tuple[int, i
 
     payload["source_content_repair_at"] = now_iso()
     payload["cbc_reader_repair_schema"] = CBC_READER_SCHEMA
-    return national_post_cleaned, cbc_images_cleaned, cbc_reader_attempted, cbc_reader_updated
+    payload["ctv_source_repair_schema"] = CTV_REPAIR_SCHEMA
+    return (
+        national_post_cleaned,
+        cbc_images_cleaned,
+        cbc_reader_attempted,
+        cbc_reader_updated,
+        ctv_attempted,
+        ctv_updated,
+    )
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Clean National Post subscription promos and harden CBC reader bodies/media")
+    parser = argparse.ArgumentParser(description="Clean publisher bodies and recover CTV/CBC source content")
     parser.add_argument("--cbc-limit", type=int, default=20)
+    parser.add_argument("--ctv-limit", type=int, default=80)
     args = parser.parse_args()
 
     if not NEWS_PATH.exists():
         return 0
 
     payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
-    np_cleaned, cbc_images, attempted, updated = repair_payload(payload, max(0, args.cbc_limit))
+    np_cleaned, cbc_images, cbc_attempted, cbc_updated, ctv_attempted, ctv_updated = repair_payload(
+        payload,
+        max(0, args.cbc_limit),
+        max(0, args.ctv_limit),
+    )
     NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"Source content repair: {np_cleaned} National Post record(s) cleaned, "
         f"{cbc_images} CBC record(s) stripped of non-CBC images, "
-        f"{updated}/{attempted} CBC reader record(s) improved"
+        f"{cbc_updated}/{cbc_attempted} CBC reader record(s) improved, "
+        f"{ctv_updated}/{ctv_attempted} CTV source record(s) recovered"
     )
     return 0
 
