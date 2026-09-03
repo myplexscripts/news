@@ -85,6 +85,7 @@ jobs:
           python scripts/test_editorial.py
           python scripts/test_national_post_repair.py
           python scripts/test_source_content_repair.py
+          python scripts/test_rich_articles.py
           python scripts/check_scope_contracts.py
           python scripts/check_local_source_rules.py
 
@@ -104,6 +105,8 @@ jobs:
           python scripts/fix_cbc_fallback.py
           python scripts/repair_source_content.py --cbc-limit 12
           python scripts/repair_cbc_image_refs.py
+          python scripts/enrich_rich_articles.py --limit 16
+          python scripts/sanitize_article_blocks.py
 
       - name: Remove inline promoted-story modules
         if: steps.due.outputs.run == 'true'
