@@ -1,13 +1,28 @@
 name: Article reader tests
 
 on:
-  pull_request:
+  push:
+    branches: [main]
     paths:
       - 'requirements.txt'
+      - 'scripts/enrich_rich_articles.py'
+      - 'scripts/test_rich_articles.py'
       - 'scripts/reader_mode_articles.py'
       - 'scripts/test_reader_mode_articles.py'
       - 'scripts/cleanup_article_recirculation.py'
       - 'scripts/test_recirculation_cleanup.py'
+      - 'scripts/article_source_profiles.py'
+      - '.github/workflows/article-reader-tests.yml'
+  pull_request:
+    paths:
+      - 'requirements.txt'
+      - 'scripts/enrich_rich_articles.py'
+      - 'scripts/test_rich_articles.py'
+      - 'scripts/reader_mode_articles.py'
+      - 'scripts/test_reader_mode_articles.py'
+      - 'scripts/cleanup_article_recirculation.py'
+      - 'scripts/test_recirculation_cleanup.py'
+      - 'scripts/article_source_profiles.py'
       - '.github/workflows/article-reader-tests.yml'
   workflow_dispatch:
 
@@ -29,6 +44,9 @@ jobs:
       - name: Install extractor dependencies
         run: pip install -r requirements.txt
 
+      - name: Test rich article reconstruction
+        run: python scripts/test_rich_articles.py
+
       - name: Test reader-mode extraction
         run: python scripts/test_reader_mode_articles.py
 
@@ -36,4 +54,4 @@ jobs:
         run: python scripts/test_recirculation_cleanup.py
 
       - name: Compile article extractors
-        run: python -m py_compile scripts/reader_mode_articles.py scripts/cleanup_article_recirculation.py
+        run: python -m py_compile scripts/enrich_rich_articles.py scripts/reader_mode_articles.py scripts/cleanup_article_recirculation.py
