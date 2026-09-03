@@ -5,7 +5,7 @@ from __future__ import annotations
 The extractors are intentionally source-agnostic, but publisher pages sometimes
 serialize UI, recommendation modules or reader-service metadata as if it were
 article prose. This pass runs after extraction and removes only high-confidence
-publisher chrome while preserving real paragraphs, headings, lists and media.
+publisher chrome while preserving real paragraphs, headings, lists and images.
 """
 
 import json
@@ -16,7 +16,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-HYGIENE_SCHEMA = 1
+HYGIENE_SCHEMA = 2
 
 IMAGE_SUMMARY_RE = re.compile(r"^image\s+\d+(?:\s*,\s*\d+)*(?:\s*[:|]|$)", re.I)
 CBC_DURATION_RE = re.compile(r"^duration\s+\d{1,2}:\d{2}(?::\d{2})?$", re.I)
@@ -34,6 +34,16 @@ GLOBE_TERMINAL_HEADINGS = {
     "latest videos",
     "more videos",
     "watch more videos",
+}
+
+GLOBAL_UI_EXACT = {
+    "watch",
+    "previous video",
+    "next video",
+    "recommended video",
+    "stick to the facts",
+    "stick to facts",
+    "hide message bar",
 }
 
 
@@ -77,6 +87,10 @@ def source_is_cbc(story: dict[str, Any]) -> bool:
     return "cbc" in source_name(story)
 
 
+def source_is_global(story: dict[str, Any]) -> bool:
+    return "global news" in source_name(story)
+
+
 def source_is_star(story: dict[str, Any]) -> bool:
     source = source_name(story)
     return "toronto star" in source or source == "the star"
@@ -97,8 +111,7 @@ def image_summary_list(block: dict[str, Any]) -> bool:
 
 
 def citynews_ui(value: Any) -> bool:
-    text = clean(value)
-    normalized = key(text)
+    normalized = key(value)
     if normalized in {"keep it factual", "keep reading"}:
         return True
     if normalized.startswith("add citynews") and "source on google" in normalized:
@@ -106,6 +119,17 @@ def citynews_ui(value: Any) -> bool:
     if normalized.startswith("add as a preferred source on google"):
         return True
     if normalized in {"citynews everywhere", "680 news radio toronto", "rogers sports media toronto"}:
+        return True
+    return False
+
+
+def global_ui(value: Any) -> bool:
+    normalized = key(value)
+    if normalized in GLOBAL_UI_EXACT:
+        return True
+    if normalized.startswith("add global news") and "preferred source on google" in normalized:
+        return True
+    if normalized.startswith("add global news") and "source on google" in normalized:
         return True
     return False
 
@@ -142,12 +166,7 @@ def short_promo_heading(value: Any) -> bool:
 
 
 def cbc_video_ranges(blocks: list[dict[str, Any]]) -> set[int]:
-    """Return high-confidence CBC text-video module indexes.
-
-    CBC's text reader emits a linked video as a title, freshness label, duration
-    and a synopsis. The explicit Duration marker is used as the anchor so normal
-    article prose containing the word WATCH is never removed wholesale.
-    """
+    """Return high-confidence CBC text-video module indexes."""
     remove: set[int] = set()
     for index, block in enumerate(blocks):
         if not CBC_DURATION_RE.match(block_text(block)):
@@ -267,6 +286,17 @@ def clean_story(story: dict[str, Any]) -> bool:
         if source_is_citynews(story) and citynews_ui(text):
             removed.append("citynews-publisher-promo")
             continue
+
+        if source_is_global(story):
+            # Global's page embeds frequently survive extraction as non-functional
+            # cross-origin players. Scoop cannot reliably render those transport
+            # wrappers, so keep the editorial text and photos but omit the player.
+            if block.get("type") == "media":
+                removed.append("global-inline-media")
+                continue
+            if global_ui(text):
+                removed.append("global-publisher-ui")
+                continue
 
         if source_is_cbc(story):
             if index in cbc_video:
