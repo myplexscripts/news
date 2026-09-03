@@ -35,7 +35,7 @@ def sample_html() -> str:
                   "width": 1200,
                   "height": 1800,
                   "subtitle": "Second scene photo",
-                  "caption": "The second photograph is portrait orientation."
+                  "caption": "The second photograph is vertical orientation."
                 },
                 {
                   "type": "image",
@@ -67,7 +67,7 @@ def test_nested_ctv_gallery_keeps_every_photo_in_source_order() -> None:
     ]
     assert recovered[1]["width"] == 1200
     assert recovered[1]["height"] == 1800
-    assert recovered[1]["caption"] == "The second photograph is portrait orientation."
+    assert recovered[1]["caption"] == "The second photograph is vertical orientation."
 
 
 def test_ctv_gallery_merge_uses_first_photo_as_hero_and_keeps_rest_inline() -> None:
