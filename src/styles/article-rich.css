@@ -69,6 +69,41 @@
   border: 0;
 }
 
+/* Social and audio embeds are documents, not 16:9 video frames. Give each
+   provider enough natural vertical space so the post itself remains visible. */
+.article-media-frame:has(iframe[src*="platform.twitter.com/embed/Tweet"]),
+.article-media-frame:has(iframe[src*="instagram.com/"][src*="/embed"]),
+.article-media-frame:has(iframe[src*="tiktok.com/player/"]),
+.article-media-frame:has(iframe[src*="open.spotify.com"]),
+.article-media-frame:has(iframe[src*="w.soundcloud.com"]),
+.article-media-frame:has(iframe[src*="omny.fm"]),
+.article-media-frame:has(iframe[src*="simplecast.com"]) {
+  aspect-ratio: auto;
+  background: transparent;
+}
+
+.article-media-frame:has(iframe[src*="platform.twitter.com/embed/Tweet"]) {
+  height: 580px;
+}
+
+.article-media-frame:has(iframe[src*="instagram.com/"][src*="/embed"]) {
+  height: 760px;
+}
+
+.article-media-frame:has(iframe[src*="tiktok.com/player/"]) {
+  height: 760px;
+}
+
+.article-media-frame:has(iframe[src*="open.spotify.com"]) {
+  height: 352px;
+}
+
+.article-media-frame:has(iframe[src*="w.soundcloud.com"]),
+.article-media-frame:has(iframe[src*="omny.fm"]),
+.article-media-frame:has(iframe[src*="simplecast.com"]) {
+  height: 190px;
+}
+
 .article-copy-refined .article-media-link {
   min-height: 72px;
   display: grid;
@@ -200,6 +235,18 @@ html[data-theme='dark'] .article-sidebar-source-logo {
 
   .site-header-home .home-header-updated {
     grid-column: 2 !important;
+  }
+
+  .article-media-frame:has(iframe[src*="platform.twitter.com/embed/Tweet"]) {
+    height: 620px;
+  }
+
+  .article-media-frame:has(iframe[src*="instagram.com/"][src*="/embed"]) {
+    height: 720px;
+  }
+
+  .article-media-frame:has(iframe[src*="tiktok.com/player/"]) {
+    height: 720px;
   }
 
   .card-source-logo {
