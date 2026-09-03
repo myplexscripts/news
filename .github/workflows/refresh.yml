@@ -94,7 +94,7 @@ jobs:
       - name: Fetch headline metadata
         if: steps.due.outputs.run == 'true'
         timeout-minutes: 12
-        run: python scripts/run_scoop.py
+        run: python scripts/run_fast_scoop.py
 
       - name: Apply fast feed normalization
         if: steps.due.outputs.run == 'true'
