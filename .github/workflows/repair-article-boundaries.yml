@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/repair-article-boundaries.yml'
+      - 'scripts/repair_source_content.py'
+      - 'scripts/test_source_content_repair.py'
       - 'scripts/publisher_hygiene.py'
       - 'scripts/test_publisher_hygiene.py'
       - 'scripts/sanitize_article_blocks.py'
@@ -31,11 +33,20 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Validate boundary regressions
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install collector dependencies
+        run: pip install -r requirements.txt
+
+      - name: Validate article repair regressions
         run: |
+          python scripts/test_source_content_repair.py
+          python scripts/test_publisher_hygiene.py
           python scripts/test_article_boundaries.py
           python scripts/test_article_tail_cleanup.py
-          python scripts/test_publisher_hygiene.py
 
       - name: Repair current published article bodies
         shell: bash
@@ -47,25 +58,27 @@ jobs:
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
+            python scripts/repair_source_content.py --cbc-limit 0 --ctv-limit 80
             python scripts/publisher_hygiene.py
             python scripts/sanitize_article_blocks.py
             python scripts/trim_article_tails.py
+            python scripts/run_audit.py --sample-per-source 10
 
-            git add data/news.json
+            git add data/news.json data/audit.json
             if git diff --cached --quiet; then
-              echo "No published article boundaries required repair."
+              echo "No published article bodies required repair."
               exit 0
             fi
 
-            git commit -m "Repair published article boundaries"
+            git commit -m "Repair published article bodies"
             if git push origin HEAD:main; then
               exit 0
             fi
 
-            echo "Main changed while repairing article boundaries; retrying on the newest feed."
+            echo "Main changed while repairing article bodies; retrying on the newest feed."
           done
 
-          echo "Could not publish boundary repairs after three attempts." >&2
+          echo "Could not publish article repairs after three attempts." >&2
           exit 1
 
       - name: Deploy repaired site
