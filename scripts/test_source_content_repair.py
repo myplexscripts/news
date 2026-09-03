@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 from repair_source_content import (
+    apply_ctv_source_result,
+    ctv_story_needs_repair,
+    degrade_broken_ctv_story,
     repair_national_post_story,
     safe_cbc_image,
     should_apply_reader,
@@ -32,6 +35,77 @@ def main() -> int:
     assert "enjoy additional articles" not in combined
     assert "first real paragraph" in combined
     assert "second real paragraph" in combined
+
+    broken_ctv = {
+        "id": "ctv-example",
+        "source": "CTV News London",
+        "scope": "local",
+        "title": "Storm cleanup continues",
+        "url": "https://www.ctvnews.ca/london/article/storm-cleanup-continues",
+        "summary": "Crews are cleaning up across the region after a powerful storm damaged trees, hydro lines and several properties on Wednesday evening.",
+        "content_status": "full",
+        "content": "",
+        "paragraphs": [],
+        "content_blocks": [
+            {"type": "media", "media_type": "embed", "url": "https://www.ctvnews.ca/video/player"},
+        ],
+        "word_count": 0,
+        "quality": {"score": 96, "grade": "excellent", "method": "dom:semantic-rich-v1"},
+        "rich_article_method": "dom:semantic-rich-v1",
+    }
+    assert ctv_story_needs_repair(broken_ctv)
+
+    first = (
+        "Cleanup crews worked through the morning after strong winds knocked down mature trees and damaged hydro lines across the region. "
+        "Municipal officials said several roads were temporarily closed while workers removed debris and assessed damaged infrastructure."
+    )
+    second = (
+        "Hydro crews restored service to most customers by Thursday afternoon, while a smaller number of properties remained without power. "
+        "Residents were asked to keep away from downed wires and report damaged trees that could pose a public safety risk."
+    )
+    candidate = {
+        **broken_ctv,
+        "content_status": "full",
+        "content": f"{first}\n\n{second}",
+        "paragraphs": [first, second],
+        "content_blocks": [
+            {"type": "paragraph", "text": first},
+            {"type": "image", "url": "https://www.ctvnews.ca/content/dam/ctvnews/images/storm.jpg", "alt": "Storm damage"},
+            {"type": "paragraph", "text": second},
+        ],
+        "word_count": 83,
+        "quality": {"score": 82, "grade": "good", "method": "embedded-json:ctv"},
+    }
+    # Candidate word_count metadata can be stale, so the repair also trusts the
+    # actual text when deciding whether a source-specific body is complete.
+    candidate["word_count"] = len((first + " " + second).split())
+    assert candidate["word_count"] >= 90
+    assert apply_ctv_source_result(broken_ctv, candidate)
+    assert broken_ctv["quality"]["method"] == "embedded-json:ctv"
+    assert broken_ctv["ctv_source_repair_schema"] == 1
+    assert broken_ctv["rich_article_schema"] >= 1
+    assert broken_ctv["media_schema"] >= 3
+    assert broken_ctv["reader_schema"] >= 2
+    assert any(block.get("type") == "image" for block in broken_ctv["content_blocks"])
+    assert not ctv_story_needs_repair(broken_ctv)
+
+    fallback_ctv = {
+        "source": "CTV News Canada",
+        "title": "A national story",
+        "url": "https://www.ctvnews.ca/canada/article/a-national-story",
+        "summary": "Federal officials provided an update Thursday after several agencies met to discuss the new national program and the next steps for provinces.",
+        "content_status": "full",
+        "content": "",
+        "paragraphs": [],
+        "content_blocks": [{"type": "media", "media_type": "embed", "url": "https://example.test/player"}],
+        "word_count": 0,
+        "quality": {"score": 96, "method": "dom:semantic-rich-v1"},
+    }
+    assert degrade_broken_ctv_story(fallback_ctv, "ctv:no-trusted-body")
+    assert fallback_ctv["content_status"] == "summary"
+    assert fallback_ctv["word_count"] > 0
+    assert fallback_ctv["content_blocks"] == [{"type": "paragraph", "text": fallback_ctv["summary"]}]
+    assert fallback_ctv["quality"]["method"] == "ctv:summary-fallback"
 
     assert safe_cbc_image("https://i.cbc.ca/1.12345.1234567890!/fileImage/httpImage/image.jpg")
     assert safe_cbc_image("cache/cbc/cbc-example.jpg")
