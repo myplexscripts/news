@@ -294,6 +294,15 @@ def clean_story(story: dict[str, Any]) -> bool:
             if block.get("type") == "media":
                 removed.append("global-inline-media")
                 continue
+            if block.get("type") == "list":
+                raw_items = block.get("items") if isinstance(block.get("items"), list) else []
+                filtered_items = [item for item in raw_items if not global_ui(item_text(item))]
+                if len(filtered_items) != len(raw_items):
+                    removed.append("global-video-module-ui")
+                    if not filtered_items:
+                        continue
+                    block = {**block, "items": filtered_items}
+                    text = block_text(block)
             if global_ui(text):
                 removed.append("global-publisher-ui")
                 continue
