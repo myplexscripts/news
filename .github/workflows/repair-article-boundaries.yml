@@ -1,0 +1,57 @@
+name: Repair published article boundaries
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-article-boundaries.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repair-published-article-boundaries-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Validate boundary regressions
+        run: python scripts/test_article_boundaries.py
+
+      - name: Repair current published article bodies
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/sanitize_article_blocks.py
+
+            git add data/news.json
+            if git diff --cached --quiet; then
+              echo "No published article boundaries required repair."
+              exit 0
+            fi
+
+            git commit -m "Repair published article boundaries"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Main changed while repairing article boundaries; retrying on the newest feed."
+          done
+
+          echo "Could not publish boundary repairs after three attempts." >&2
+          exit 1
