@@ -123,6 +123,82 @@ def test_global_failed_player_and_ui_are_removed_but_article_images_remain() -> 
     assert any(block.get("type") == "image" for block in story["content_blocks"])
 
 
+def test_global_mobile_topics_menu_is_removed_before_article() -> None:
+    story = {
+        "source": "Global News London",
+        "title": "London council considers housing changes",
+        "content_blocks": [
+            {"type": "heading", "text": "Menu"},
+            {"type": "heading", "text": "Topics"},
+            {"type": "list", "ordered": False, "items": [
+                "World",
+                "Canada",
+                "Local",
+                "Politics",
+                "Money",
+                "Health",
+                "Entertainment",
+                "Lifestyle",
+                "Perspectives",
+                "Sports",
+                "Shopping",
+                "Commentary",
+                "Contests",
+                "Podcasts",
+                "U.S. News",
+                "Global National",
+                "The West Block",
+            ]},
+            {"type": "paragraph", "text": "London city councillors are considering several housing policy changes after staff presented a new report at city hall on Thursday afternoon."},
+            {"type": "paragraph", "text": "The report recommends changes to approvals and zoning rules as the city looks for ways to increase the supply of new homes."},
+        ],
+    }
+    payload = {"stories": [story]}
+    assert clean_payload(payload) == 1
+    text = rendered(story)
+    assert "Menu" not in text
+    assert "Topics" not in text
+    assert "World" not in text
+    assert "U.S. News" not in text
+    assert "The West Block" not in text
+    assert "London city councillors" in text
+    assert "The report recommends" in text
+
+
+def test_global_mobile_topics_split_into_paragraphs_are_removed() -> None:
+    story = {
+        "source": "Global News London",
+        "title": "Local story",
+        "content_blocks": [
+            {"type": "heading", "text": "Menu"},
+            {"type": "heading", "text": "Topics"},
+            {"type": "paragraph", "text": "World"},
+            {"type": "paragraph", "text": "Canada"},
+            {"type": "paragraph", "text": "Local"},
+            {"type": "paragraph", "text": "Politics"},
+            {"type": "paragraph", "text": "Money"},
+            {"type": "paragraph", "text": "Health"},
+            {"type": "paragraph", "text": "Entertainment"},
+            {"type": "paragraph", "text": "Lifestyle"},
+            {"type": "paragraph", "text": "Perspectives"},
+            {"type": "paragraph", "text": "Sports"},
+            {"type": "paragraph", "text": "Shopping"},
+            {"type": "paragraph", "text": "Commentary"},
+            {"type": "paragraph", "text": "Contests"},
+            {"type": "paragraph", "text": "Podcasts"},
+            {"type": "paragraph", "text": "U.S. News"},
+            {"type": "paragraph", "text": "Police said officers remained at the intersection Thursday evening while investigators gathered evidence and asked drivers to use another route."},
+        ],
+    }
+    payload = {"stories": [story]}
+    assert clean_payload(payload) == 1
+    text = rendered(story)
+    assert "World" not in text
+    assert "Podcasts" not in text
+    assert "U.S. News" not in text
+    assert "Police said officers remained" in text
+
+
 def test_globe_diversions_tail_is_terminal() -> None:
     story = {
         "source": "The Globe and Mail",
@@ -168,6 +244,8 @@ def main() -> int:
         test_cbc_audio_ui_and_photo_caption_are_removed,
         test_cbc_related_video_text_module_is_removed_without_cutting_article,
         test_global_failed_player_and_ui_are_removed_but_article_images_remain,
+        test_global_mobile_topics_menu_is_removed_before_article,
+        test_global_mobile_topics_split_into_paragraphs_are_removed,
         test_globe_diversions_tail_is_terminal,
         test_normal_editorial_list_is_preserved,
     ]
