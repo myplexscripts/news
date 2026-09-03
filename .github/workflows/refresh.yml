@@ -19,7 +19,7 @@ permissions:
 
 concurrency:
   group: refresh-news-v4-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   refresh:
@@ -80,6 +80,7 @@ jobs:
         if: steps.due.outputs.run == 'true'
         run: |
           python scripts/test_scoop_runtime.py
+          python scripts/test_fast_scoop_budget.py
           python scripts/test_ctv_locality.py
           python scripts/test_publication_roundups.py
           python scripts/test_editorial.py
@@ -94,7 +95,7 @@ jobs:
 
       - name: Fetch headline metadata
         if: steps.due.outputs.run == 'true'
-        timeout-minutes: 12
+        timeout-minutes: 15
         run: python scripts/run_fast_scoop.py
 
       - name: Apply fast feed normalization
@@ -105,19 +106,11 @@ jobs:
           python scripts/apply_local_source_rules.py
           python scripts/filter_publication_roundups.py
           python scripts/repair_national_post_articles.py --filter-only
-          python scripts/fix_lps_articles.py
-          python scripts/fix_cbc_fallback.py
-          python scripts/repair_source_content.py --cbc-limit 12
-          python scripts/repair_cbc_image_refs.py
-          python scripts/enrich_rich_articles.py --limit 16
           python scripts/sanitize_article_blocks.py
 
-      - name: Remove inline promoted-story modules
+      - name: Final article boundary guard
         if: steps.due.outputs.run == 'true'
-        timeout-minutes: 3
-        run: |
-          python scripts/cleanup_article_recirculation.py
-          python scripts/trim_article_tails.py
+        run: python scripts/trim_article_tails.py
 
       - name: Run cluster-aware audit
         if: steps.due.outputs.run == 'true'
