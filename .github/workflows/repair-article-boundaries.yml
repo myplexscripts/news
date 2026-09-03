@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: repair-published-article-boundaries-${{ github.ref }}
@@ -55,3 +56,9 @@ jobs:
 
           echo "Could not publish boundary repairs after three attempts." >&2
           exit 1
+
+      - name: Deploy repaired site
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main
