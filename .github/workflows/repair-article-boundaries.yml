@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/repair-article-boundaries.yml'
+      - 'scripts/sanitize_article_blocks.py'
+      - 'scripts/trim_article_tails.py'
+      - 'scripts/test_article_boundaries.py'
+      - 'scripts/test_article_tail_cleanup.py'
   workflow_dispatch:
 
 permissions:
@@ -26,7 +30,9 @@ jobs:
           fetch-depth: 0
 
       - name: Validate boundary regressions
-        run: python scripts/test_article_boundaries.py
+        run: |
+          python scripts/test_article_boundaries.py
+          python scripts/test_article_tail_cleanup.py
 
       - name: Repair current published article bodies
         shell: bash
@@ -39,6 +45,7 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             python scripts/sanitize_article_blocks.py
+            python scripts/trim_article_tails.py
 
             git add data/news.json
             if git diff --cached --quiet; then
