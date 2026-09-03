@@ -32,6 +32,7 @@ jobs:
         run: |
           python scripts/test_article_formatting.py
           python scripts/test_article_media.py
+          python scripts/test_rich_articles.py
           python scripts/test_source_profiles.py
           python scripts/test_article_sanitizer.py
           python scripts/test_reader_mode_articles.py
@@ -57,8 +58,9 @@ jobs:
           python scripts/refine_article_formatting.py
           python scripts/refine_source_articles.py
           python scripts/reader_mode_articles.py
-          python scripts/cleanup_article_recirculation.py
           python scripts/enrich_article_media.py
+          python scripts/enrich_rich_articles.py --limit 64
+          python scripts/cleanup_article_recirculation.py
           python scripts/sanitize_article_blocks.py
           python scripts/repair_source_content.py --cbc-limit 0
           python scripts/cache_cbc_images.py
