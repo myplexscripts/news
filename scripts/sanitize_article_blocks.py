@@ -11,7 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-SANITIZE_SCHEMA = 6
+SANITIZE_SCHEMA = 7
 
 JUNK_TEXT_MARKERS = (
     "open full embed in new tab loading external pages",
@@ -30,6 +30,15 @@ JUNK_TEXT_MARKERS = (
     "never miss the day's top stories",
     "never miss the day’s top stories",
     "a division of corus entertainment inc",
+    "skip to main content",
+    "share current article via",
+    "ctv news homepage",
+    "show canada sub sections",
+    "show politics sub sections",
+    "show world sub sections",
+    "show watch sub sections",
+    "show business sub sections",
+    "show ctv shopping trends sub sections",
 )
 
 SHARE_MARKERS = (
@@ -42,6 +51,7 @@ SHARE_MARKERS = (
     "share on whatsapp",
     "share on bluesky",
     "share on threads",
+    "share current article via",
 )
 
 SHARE_EXACT_MARKERS = {
@@ -56,12 +66,34 @@ SHARE_EXACT_MARKERS = {
     "threads",
 }
 
+# Article transport layers sometimes expose the entire publisher page as one
+# document. These markers describe page chrome rather than one publisher's
+# editorial prose, so they are useful as cross-source boundary evidence.
+PREFIX_CHROME_MARKERS = (
+    "skip to main content",
+    "sections sections",
+    "share current article via",
+    "homepage local canada",
+    "ctv news homepage",
+    "contact us newsletters",
+)
+ARTICLE_END_MARKERS = (
+    "report an error",
+    "report an editorial error",
+    "report a technical issue",
+    "editorial standards",
+    "editorial standards & policies",
+    "editorial standards and policies",
+    "why you can trust",
+    "about the author",
+)
+SHOW_SUBSECTIONS_RE = re.compile(r"^show\s+.{2,100}\s+sub\s+sections\b", re.I)
 LOCATION_SELECTOR_PREFIX_RE = re.compile(r"^(?:state|country|province|region|territory)\b", re.I)
 AUTHOR_IMAGE_TEXT_RE = re.compile(
     r"\b(?:author|byline|columnist|correspondent|headshot|journalist|portrait|profile|reporter)\b",
     re.I,
 )
-RAW_MEDIA_LABEL_RE = re.compile(r"^(?:image|photo)\s*\|\s*", re.I)
+RAW_MEDIA_LABEL_RE = re.compile(r"^(?:image|photo)\s*(?:\d+)?\s*(?:\||:)\s*", re.I)
 RAW_CAPTION_RE = re.compile(r"^(?:caption|photo caption)\s*:\s*(.+)$", re.I)
 PUBLISHER_META_RE = re.compile(
     r"^(?:updated|posted|published|last updated)(?:\s+[a-z .'-]+)?\s*(?:\||:)",
@@ -126,6 +158,29 @@ def normalized_key(value: Any) -> str:
     return re.sub(r"\s+", " ", item_text(value).lower()).strip()
 
 
+def word_count(value: Any) -> int:
+    return len(re.findall(r"\b\w+[’'-]?\w*\b", item_text(value)))
+
+
+def block_text(block: dict[str, Any]) -> str:
+    kind = block.get("type")
+    if kind in {"paragraph", "heading", "quote"}:
+        return item_text(block.get("text"))
+    if kind == "list":
+        return " ".join(item_text(item) for item in block.get("items", []) if item_text(item))
+    if kind == "image":
+        return " ".join(
+            value for value in (
+                item_text(block.get("caption")),
+                item_text(block.get("alt")),
+                item_text(block.get("title")),
+            ) if value
+        )
+    if kind == "media":
+        return item_text(block.get("title"))
+    return ""
+
+
 def looks_like_location_selector_dump(value: Any) -> bool:
     text = item_text(value)
     key = normalized_key(text)
@@ -153,6 +208,124 @@ def is_share_text(value: Any) -> bool:
 def is_author_image_text(value: Any) -> bool:
     key = normalized_key(value)
     return bool(key and AUTHOR_IMAGE_TEXT_RE.search(key))
+
+
+def is_prefix_chrome(value: Any) -> bool:
+    text = item_text(value)
+    key = normalized_key(text)
+    if not key:
+        return False
+    if any(marker in key for marker in PREFIX_CHROME_MARKERS):
+        return True
+    if SHOW_SUBSECTIONS_RE.match(text):
+        return True
+    if key.startswith("show ") and " sub sections" in key:
+        return True
+    return False
+
+
+def is_article_end(value: Any) -> bool:
+    text = item_text(value)
+    key = normalized_key(text)
+    if not key or len(key) > 140:
+        return False
+    return any(key == marker or key.startswith(f"{marker} ") for marker in ARTICLE_END_MARKERS)
+
+
+def trim_article_boundaries(
+    blocks: list[dict[str, Any]],
+    story: dict[str, Any],
+) -> tuple[list[dict[str, Any]], bool, list[str]]:
+    if not blocks:
+        return blocks, False, []
+
+    working = [dict(block) for block in blocks if isinstance(block, dict)]
+    changed = len(working) != len(blocks)
+    flags: list[str] = []
+
+    # First find a credible end of the editorial document. We only honour a
+    # footer marker after enough article prose has appeared, preventing an
+    # incidental phrase near the beginning from truncating a real story.
+    prose_words = 0
+    prose_blocks = 0
+    end_index: int | None = None
+    for index, block in enumerate(working):
+        text = block_text(block)
+        if is_article_end(text) and (prose_words >= 70 or prose_blocks >= 2):
+            end_index = index
+            break
+        kind = block.get("type")
+        if kind in {"paragraph", "quote", "list"}:
+            count = word_count(text)
+            if count:
+                prose_words += count
+                prose_blocks += 1
+
+    if end_index is not None:
+        working = working[:end_index]
+        changed = True
+        flags.append("article-end-boundary")
+
+    if not working:
+        return working, changed, flags
+
+    # Detect a page-shell prefix. A single nav-looking phrase is not enough to
+    # discard content. Multiple chrome signals mean the transport captured the
+    # publisher page, at which point title/byline/prose anchors can safely locate
+    # where the article itself begins.
+    inspect_limit = min(len(working), 50)
+    chrome_positions = [
+        index for index, block in enumerate(working[:inspect_limit])
+        if is_prefix_chrome(block_text(block))
+    ]
+
+    if chrome_positions:
+        first_substantial = next((
+            index for index, block in enumerate(working[:inspect_limit])
+            if block.get("type") in {"paragraph", "quote"}
+            and word_count(block_text(block)) >= 24
+            and not is_prefix_chrome(block_text(block))
+        ), None)
+        prefix_limit = first_substantial if first_substantial is not None else inspect_limit
+        early_chrome = [index for index in chrome_positions if index <= prefix_limit]
+
+        if len(early_chrome) >= 2 or (early_chrome and early_chrome[0] <= 2):
+            start_index: int | None = None
+            title_key = normalized_key(story.get("title"))
+            author_key = normalized_key(story.get("author"))
+            anchor_limit = min(len(working), (first_substantial + 3) if first_substantial is not None else inspect_limit)
+
+            if title_key:
+                for index, block in enumerate(working[:anchor_limit]):
+                    key = normalized_key(block_text(block))
+                    if key and (key == title_key or (len(title_key) >= 28 and title_key in key and len(key) <= len(title_key) + 40)):
+                        start_index = index + 1
+                        break
+
+            if author_key:
+                for index, block in enumerate(working[:anchor_limit]):
+                    key = normalized_key(block_text(block))
+                    if not key or author_key not in key:
+                        continue
+                    if key.startswith("by ") or key == author_key or "opens in new window" in key:
+                        start_index = max(start_index or 0, index + 1)
+                        break
+
+            if start_index is None:
+                last_chrome = max(early_chrome)
+                for index in range(last_chrome + 1, min(len(working), last_chrome + 18)):
+                    block = working[index]
+                    text = block_text(block)
+                    if block.get("type") in {"paragraph", "quote"} and word_count(text) >= 18 and not is_prefix_chrome(text):
+                        start_index = index
+                        break
+
+            if start_index is not None and start_index > 0:
+                working = working[start_index:]
+                changed = True
+                flags.append("article-start-boundary")
+
+    return working, changed, flags
 
 
 def normalize_list_items(items: list[Any]) -> list[Any]:
@@ -211,16 +384,24 @@ def repair_fragmented_paragraphs(blocks: list[dict[str, Any]]) -> tuple[list[dic
 
 
 def sanitize_story(story: dict[str, Any]) -> bool:
-    blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
-    if not blocks:
+    raw_blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
+    if not raw_blocks:
         return False
 
+    blocks, boundary_changed, boundary_flags = trim_article_boundaries(raw_blocks, story)
     source = str(story.get("source") or "")
     is_cbc = source == "CBC News London"
     story_url = str(story.get("url") or "").strip()
-    changed = False
+    changed = boundary_changed
     selector_removed = False
     cleaned: list[dict[str, Any]] = []
+
+    if boundary_flags:
+        flags = [str(flag) for flag in story.get("article_hygiene_flags", []) if flag]
+        for flag in boundary_flags:
+            if flag not in flags:
+                flags.append(flag)
+        story["article_hygiene_flags"] = flags
 
     for raw_block in blocks:
         if not isinstance(raw_block, dict):
@@ -277,11 +458,11 @@ def sanitize_story(story: dict[str, Any]) -> bool:
                 selector_removed = True
                 changed = True
                 continue
-            if not text or is_junk_text(text) or is_share_text(text):
+            if not text or is_junk_text(text) or is_share_text(text) or is_prefix_chrome(text) or is_article_end(text):
                 changed = True
                 continue
 
-            if kind == "paragraph" and RAW_MEDIA_LABEL_RE.match(text):
+            if RAW_MEDIA_LABEL_RE.match(text):
                 changed = True
                 continue
 
