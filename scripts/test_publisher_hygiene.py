@@ -99,6 +99,30 @@ def test_cbc_related_video_text_module_is_removed_without_cutting_article() -> N
     assert "permanent storefront gives vendors" in text
 
 
+def test_global_failed_player_and_ui_are_removed_but_article_images_remain() -> None:
+    story = {
+        "source": "Global News Canada",
+        "title": "Housing story",
+        "content_blocks": [
+            {"type": "paragraph", "text": "Home sales declined in August as buyers continued to weigh borrowing costs and available inventory across the region."},
+            {"type": "heading", "text": "Watch"},
+            {"type": "media", "media_type": "embed", "url": "https://players.brightcove.net/example/default_default/index.html?videoId=123", "title": "Watch the report"},
+            {"type": "image", "url": "https://globalnews.ca/wp-content/uploads/2026/09/housing.jpg", "alt": "Homes in Toronto", "caption": "Homes are pictured in Toronto."},
+            {"type": "paragraph", "text": "The board said listings increased from a year earlier, giving buyers more choice during the final weeks of summer."},
+            {"type": "heading", "text": "Stick to the Facts"},
+        ],
+    }
+    payload = {"stories": [story]}
+    assert clean_payload(payload) == 1
+    text = rendered(story)
+    assert "Home sales declined" in text
+    assert "listings increased" in text
+    assert "Watch" not in text
+    assert "Stick to the Facts" not in text
+    assert all(block.get("type") != "media" for block in story["content_blocks"])
+    assert any(block.get("type") == "image" for block in story["content_blocks"])
+
+
 def test_globe_diversions_tail_is_terminal() -> None:
     story = {
         "source": "The Globe and Mail",
@@ -143,6 +167,7 @@ def main() -> int:
         test_citynews_reader_image_summary_and_google_promo_are_removed,
         test_cbc_audio_ui_and_photo_caption_are_removed,
         test_cbc_related_video_text_module_is_removed_without_cutting_article,
+        test_global_failed_player_and_ui_are_removed_but_article_images_remain,
         test_globe_diversions_tail_is_terminal,
         test_normal_editorial_list_is_preserved,
     ]
