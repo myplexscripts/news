@@ -9,6 +9,8 @@ on:
       - 'scripts/test_rich_articles.py'
       - 'scripts/sanitize_article_blocks.py'
       - 'scripts/test_final_article_guard.py'
+      - 'scripts/merge_refresh_output.py'
+      - 'scripts/test_refresh_merge.py'
       - 'scripts/reader_mode_articles.py'
       - 'scripts/test_reader_mode_articles.py'
       - 'scripts/cleanup_article_recirculation.py'
@@ -22,6 +24,8 @@ on:
       - 'scripts/test_rich_articles.py'
       - 'scripts/sanitize_article_blocks.py'
       - 'scripts/test_final_article_guard.py'
+      - 'scripts/merge_refresh_output.py'
+      - 'scripts/test_refresh_merge.py'
       - 'scripts/reader_mode_articles.py'
       - 'scripts/test_reader_mode_articles.py'
       - 'scripts/cleanup_article_recirculation.py'
@@ -54,6 +58,9 @@ jobs:
       - name: Test final rich article guard
         run: python scripts/test_final_article_guard.py
 
+      - name: Test refresh merge protection
+        run: python scripts/test_refresh_merge.py
+
       - name: Test reader-mode extraction
         run: python scripts/test_reader_mode_articles.py
 
@@ -61,4 +68,4 @@ jobs:
         run: python scripts/test_recirculation_cleanup.py
 
       - name: Compile article extractors
-        run: python -m py_compile scripts/enrich_rich_articles.py scripts/sanitize_article_blocks.py scripts/reader_mode_articles.py scripts/cleanup_article_recirculation.py
+        run: python -m py_compile scripts/enrich_rich_articles.py scripts/sanitize_article_blocks.py scripts/merge_refresh_output.py scripts/reader_mode_articles.py scripts/cleanup_article_recirculation.py
