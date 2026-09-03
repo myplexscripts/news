@@ -18,7 +18,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: refresh-news-v3-${{ github.ref }}
+  group: refresh-news-v4-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -91,6 +91,7 @@ jobs:
 
       - name: Fetch headline metadata
         if: steps.due.outputs.run == 'true'
+        timeout-minutes: 12
         run: python scripts/run_scoop.py
 
       - name: Apply fast feed normalization
