@@ -7,6 +7,8 @@ on:
       - '.github/workflows/repair-article-boundaries.yml'
       - 'scripts/repair_source_content.py'
       - 'scripts/test_source_content_repair.py'
+      - 'scripts/repair_ctv_photos.py'
+      - 'scripts/test_ctv_photo_repair.py'
       - 'scripts/publisher_hygiene.py'
       - 'scripts/test_publisher_hygiene.py'
       - 'scripts/sanitize_article_blocks.py'
@@ -44,6 +46,7 @@ jobs:
       - name: Validate article repair regressions
         run: |
           python scripts/test_source_content_repair.py
+          python scripts/test_ctv_photo_repair.py
           python scripts/test_publisher_hygiene.py
           python scripts/test_article_boundaries.py
           python scripts/test_article_tail_cleanup.py
@@ -59,6 +62,7 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             python scripts/repair_source_content.py --cbc-limit 0 --ctv-limit 80
+            python scripts/repair_ctv_photos.py --limit 80
             python scripts/publisher_hygiene.py
             python scripts/sanitize_article_blocks.py
             python scripts/trim_article_tails.py
