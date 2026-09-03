@@ -16,6 +16,8 @@ on:
       - 'scripts/test_reader_mode_articles.py'
       - 'scripts/cleanup_article_recirculation.py'
       - 'scripts/test_recirculation_cleanup.py'
+      - 'scripts/publisher_hygiene.py'
+      - 'scripts/test_publisher_hygiene.py'
       - 'scripts/article_source_profiles.py'
       - 'scripts/test_source_profiles.py'
       - '.github/workflows/article-reader-tests.yml'
@@ -33,6 +35,8 @@ on:
       - 'scripts/test_reader_mode_articles.py'
       - 'scripts/cleanup_article_recirculation.py'
       - 'scripts/test_recirculation_cleanup.py'
+      - 'scripts/publisher_hygiene.py'
+      - 'scripts/test_publisher_hygiene.py'
       - 'scripts/article_source_profiles.py'
       - 'scripts/test_source_profiles.py'
       - '.github/workflows/article-reader-tests.yml'
@@ -77,5 +81,8 @@ jobs:
       - name: Test contextual article cleanup
         run: python scripts/test_recirculation_cleanup.py
 
+      - name: Test publisher hygiene
+        run: python scripts/test_publisher_hygiene.py
+
       - name: Compile article extractors
-        run: python -m py_compile scripts/enrich_rich_articles.py scripts/sanitize_article_blocks.py scripts/merge_refresh_output.py scripts/reader_mode_articles.py scripts/cleanup_article_recirculation.py scripts/article_source_profiles.py
+        run: python -m py_compile scripts/enrich_rich_articles.py scripts/sanitize_article_blocks.py scripts/merge_refresh_output.py scripts/reader_mode_articles.py scripts/cleanup_article_recirculation.py scripts/publisher_hygiene.py scripts/article_source_profiles.py
