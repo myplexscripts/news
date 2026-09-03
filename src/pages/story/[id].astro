@@ -21,7 +21,7 @@ const resolveImageSrc = (value = '') => {
   if (/^https?:\/\//i.test(src) || src.startsWith('/')) return src;
   return `${base}${src}`;
 };
-const heroImage = resolveImageSrc(story.card_image || story.image);
+const heroImage = resolveImageSrc(story.image || story.card_image);
 
 const published = (value) => {
   try {
@@ -201,6 +201,7 @@ const showDeck = Boolean(
         {heroImage && (
           <figure class="article-hero article-hero-refined">
             <img src={heroImage} alt={story.image_alt || ''} referrerpolicy="no-referrer" />
+            {story.image_caption && <figcaption>{story.image_caption}</figcaption>}
           </figure>
         )}
 
@@ -283,6 +284,11 @@ const showDeck = Boolean(
                           allowfullscreen
                         ></iframe>
                       </div>
+                      {block.source_url && (
+                        <a class="article-embed-source" href={block.source_url} target="_blank" rel="noopener noreferrer">
+                          View original post <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                        </a>
+                      )}
                     </figure>
                   )}
                   {block.type === 'media' && block.media_type === 'link' && block.url && (
