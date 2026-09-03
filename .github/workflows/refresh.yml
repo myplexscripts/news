@@ -86,6 +86,8 @@ jobs:
           python scripts/test_national_post_repair.py
           python scripts/test_source_content_repair.py
           python scripts/test_rich_articles.py
+          python scripts/test_final_article_guard.py
+          python scripts/test_refresh_merge.py
           python scripts/check_scope_contracts.py
           python scripts/check_local_source_rules.py
 
@@ -138,10 +140,21 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin "$GITHUB_REF_NAME"
           git reset --hard "origin/$GITHUB_REF_NAME"
-          cp /tmp/scoop-fast-output/news.json data/news.json
+
+          # Headline collection may have started before a richer article pass
+          # landed. Keep the fresh feed metadata while preserving whichever
+          # article body is demonstrably more complete and media-rich.
+          python scripts/merge_refresh_output.py \
+            /tmp/scoop-fast-output/news.json \
+            data/news.json \
+            /tmp/news-merged.json
+          mv /tmp/news-merged.json data/news.json
+          python scripts/sanitize_article_blocks.py
           cp /tmp/scoop-fast-output/audit.json data/audit.json
           mkdir -p public/cache
-          rsync -a --delete /tmp/scoop-fast-output/cache/ public/cache/
+          # Overlay cache additions from this refresh without deleting media
+          # that a newer enrichment run may have committed concurrently.
+          rsync -a /tmp/scoop-fast-output/cache/ public/cache/
           git add data/news.json data/audit.json public/cache/
 
           if git diff --cached --quiet; then
