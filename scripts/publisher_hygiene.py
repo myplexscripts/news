@@ -16,7 +16,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-HYGIENE_SCHEMA = 2
+HYGIENE_SCHEMA = 3
 
 IMAGE_SUMMARY_RE = re.compile(r"^image\s+\d+(?:\s*,\s*\d+)*(?:\s*[:|]|$)", re.I)
 CBC_DURATION_RE = re.compile(r"^duration\s+\d{1,2}:\d{2}(?::\d{2})?$", re.I)
@@ -44,6 +44,32 @@ GLOBAL_UI_EXACT = {
     "stick to the facts",
     "stick to facts",
     "hide message bar",
+}
+
+# Global News exposes its responsive site menu inside the same rendered document
+# as articles. Reader services can occasionally mistake this navigation for story
+# copy. These are publisher navigation labels, not editorial subject matter.
+GLOBAL_NAV_HEADINGS = {"menu", "topics"}
+GLOBAL_TOPIC_NAV_ITEMS = {
+    "world",
+    "canada",
+    "local",
+    "politics",
+    "money",
+    "health",
+    "entertainment",
+    "lifestyle",
+    "perspectives",
+    "sports",
+    "shopping",
+    "commentary",
+    "contests",
+    "podcasts",
+    "u s news",
+    "us news",
+    "global national",
+    "the west block",
+    "west block",
 }
 
 
@@ -132,6 +158,20 @@ def global_ui(value: Any) -> bool:
     if normalized.startswith("add global news") and "source on google" in normalized:
         return True
     return False
+
+
+def global_topic_nav_item(value: Any) -> bool:
+    return key(value) in GLOBAL_TOPIC_NAV_ITEMS
+
+
+def global_topic_navigation_list(block: dict[str, Any]) -> bool:
+    if block.get("type") != "list":
+        return False
+    items = [item_text(item) for item in block.get("items", []) if item_text(item)]
+    if len(items) < 5:
+        return False
+    matches = sum(1 for item in items if global_topic_nav_item(item))
+    return matches >= 4 and matches / len(items) >= 0.50
 
 
 def cbc_audio_ui(value: Any) -> bool:
@@ -270,6 +310,8 @@ def clean_story(story: dict[str, Any]) -> bool:
     cbc_video = cbc_video_ranges(blocks) if source_is_cbc(story) else set()
     out: list[dict[str, Any]] = []
     star_chrome = False
+    global_chrome = False
+    global_seen_prose = False
 
     for index, block in enumerate(blocks):
         text = block_text(block)
@@ -288,6 +330,30 @@ def clean_story(story: dict[str, Any]) -> bool:
             continue
 
         if source_is_global(story):
+            # Global's mobile menu can be serialized ahead of the article by
+            # reader services. Strip only the leading publisher navigation and
+            # resume as soon as sentence-like editorial prose appears.
+            is_story_prose = block.get("type") in {"paragraph", "quote"} and substantive_story_text(text)
+            if is_story_prose:
+                global_seen_prose = True
+                global_chrome = False
+            elif not global_seen_prose and (
+                normalized in GLOBAL_NAV_HEADINGS
+                or global_topic_navigation_list(block)
+                or global_topic_nav_item(text)
+            ):
+                global_chrome = True
+                removed.append("global-leading-navigation")
+                continue
+            elif global_chrome and not global_seen_prose:
+                if block.get("type") == "image":
+                    # Keep genuine article photography even if it appears before
+                    # the first prose paragraph.
+                    pass
+                else:
+                    removed.append("global-leading-navigation")
+                    continue
+
             # Global's page embeds frequently survive extraction as non-functional
             # cross-origin players. Scoop cannot reliably render those transport
             # wrappers, so keep the editorial text and photos but omit the player.
