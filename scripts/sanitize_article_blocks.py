@@ -11,7 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-SANITIZE_SCHEMA = 5
+SANITIZE_SCHEMA = 6
 
 JUNK_TEXT_MARKERS = (
     "open full embed in new tab loading external pages",
@@ -59,6 +59,12 @@ SHARE_EXACT_MARKERS = {
 LOCATION_SELECTOR_PREFIX_RE = re.compile(r"^(?:state|country|province|region|territory)\b", re.I)
 AUTHOR_IMAGE_TEXT_RE = re.compile(
     r"\b(?:author|byline|columnist|correspondent|headshot|journalist|portrait|profile|reporter)\b",
+    re.I,
+)
+RAW_MEDIA_LABEL_RE = re.compile(r"^(?:image|photo)\s*\|\s*", re.I)
+RAW_CAPTION_RE = re.compile(r"^(?:caption|photo caption)\s*:\s*(.+)$", re.I)
+PUBLISHER_META_RE = re.compile(
+    r"^(?:updated|posted|published|last updated)(?:\s+[a-z .'-]+)?\s*(?:\||:)",
     re.I,
 )
 LOCATION_SELECTOR_MARKERS = (
@@ -183,6 +189,27 @@ def normalize_list_items(items: list[Any]) -> list[Any]:
     return normalized
 
 
+def repair_fragmented_paragraphs(blocks: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], bool]:
+    repaired: list[dict[str, Any]] = []
+    changed = False
+    for block in blocks:
+        if block.get("type") == "paragraph" and repaired and repaired[-1].get("type") == "paragraph":
+            previous = item_text(repaired[-1].get("text"))
+            current = item_text(block.get("text"))
+            if (
+                previous
+                and current
+                and not re.search(r"[.!?;:\u201d\"']$", previous)
+                and current[:1].islower()
+            ):
+                repaired[-1]["text"] = f"{previous} {current}"
+                repaired[-1].pop("html", None)
+                changed = True
+                continue
+        repaired.append(block)
+    return repaired, changed
+
+
 def sanitize_story(story: dict[str, Any]) -> bool:
     blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
     if not blocks:
@@ -254,6 +281,23 @@ def sanitize_story(story: dict[str, Any]) -> bool:
                 changed = True
                 continue
 
+            if kind == "paragraph" and RAW_MEDIA_LABEL_RE.match(text):
+                changed = True
+                continue
+
+            if kind == "paragraph":
+                caption_match = RAW_CAPTION_RE.match(text)
+                if caption_match:
+                    caption = item_text(caption_match.group(1))
+                    if caption and cleaned and cleaned[-1].get("type") == "image" and not item_text(cleaned[-1].get("caption")):
+                        cleaned[-1]["caption"] = caption
+                    changed = True
+                    continue
+
+            if PUBLISHER_META_RE.match(text) and len(text) <= 280:
+                changed = True
+                continue
+
             plain, rendered = markdown_inline(text)
             if plain != text:
                 block["text"] = plain
@@ -279,6 +323,9 @@ def sanitize_story(story: dict[str, Any]) -> bool:
             continue
 
         cleaned.append(block)
+
+    cleaned, fragments_repaired = repair_fragmented_paragraphs(cleaned)
+    changed = changed or fragments_repaired
 
     paragraphs: list[str] = []
     for block in cleaned:
