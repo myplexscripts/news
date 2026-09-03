@@ -17,8 +17,8 @@ DEFAULT_PROFILE: dict[str, Any] = {
         "main",
     ],
     "remove": [
-        "script", "style", "noscript", "nav", "footer", "form", "button", "aside",
-        "[role='complementary']", "[aria-hidden='true']",
+        "script", "style", "noscript", "nav", "header", "footer", "form", "button", "aside",
+        "[role='navigation']", "[role='complementary']", "[aria-hidden='true']",
         "[class*='advert']", "[class*='newsletter']", "[class*='subscribe']",
         "[class*='related']", "[class*='recommend']", "[class*='recirc']",
         "[class*='read-more']", "[class*='readmore']", "[class*='outbrain']",
@@ -30,6 +30,15 @@ DEFAULT_PROFILE: dict[str, Any] = {
         "[id*='related']", "[id*='recirc']", "[id*='advert']",
     ],
 }
+
+# These wrappers are useful only when the publisher exposes no semantic article
+# body at all. Letting them compete with precise body selectors rewards sheer
+# page size and can turn navigation and recommendation rails into article prose.
+BROAD_ROOT_SELECTORS = {"article", "main", "main article", "body"}
+SEMANTIC_DEFAULT_ROOTS = [
+    selector for selector in DEFAULT_PROFILE["roots"]
+    if selector.strip().lower() not in BROAD_ROOT_SELECTORS
+]
 
 PROFILES: dict[str, dict[str, Any]] = {
     "cbc": {
@@ -185,6 +194,18 @@ def profile_for(source: str = "", url: str = "") -> dict[str, Any]:
     else:
         selected = DEFAULT_PROFILE
 
-    roots = list(dict.fromkeys([*selected.get("roots", []), *DEFAULT_PROFILE["roots"]]))
+    if selected is DEFAULT_PROFILE:
+        roots = list(dict.fromkeys(DEFAULT_PROFILE["roots"]))
+    else:
+        # Precise publisher/body selectors get first refusal. If none match,
+        # enrich_rich_articles.select_root() already falls back to article/main/body.
+        # Keeping broad wrappers out of this candidate set prevents a giant page
+        # shell from beating a correct article body merely because it has more text.
+        selected_semantic = [
+            selector for selector in selected.get("roots", [])
+            if selector.strip().lower() not in BROAD_ROOT_SELECTORS
+        ]
+        roots = list(dict.fromkeys([*selected_semantic, *SEMANTIC_DEFAULT_ROOTS]))
+
     remove = list(dict.fromkeys([*DEFAULT_PROFILE["remove"], *selected.get("remove", [])]))
     return {"name": selected.get("name", "generic"), "roots": roots, "remove": remove}
