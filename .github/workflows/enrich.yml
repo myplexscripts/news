@@ -38,6 +38,7 @@ jobs:
           python scripts/test_reader_mode_articles.py
           python scripts/test_recirculation_cleanup.py
           python scripts/test_article_tail_cleanup.py
+          python scripts/test_publisher_hygiene.py
           python scripts/test_national_post_repair.py
           python scripts/test_source_content_repair.py
           python scripts/check_scope_contracts.py
@@ -64,6 +65,7 @@ jobs:
           # Trafilatura result cannot overwrite a cleaner publisher article root.
           python scripts/refine_source_articles.py
           python scripts/cleanup_article_recirculation.py
+          python scripts/publisher_hygiene.py
           python scripts/sanitize_article_blocks.py
           python scripts/trim_article_tails.py
           python scripts/repair_source_content.py --cbc-limit 0
@@ -113,6 +115,7 @@ jobs:
           mv /tmp/news-merged.json data/news.json
           python scripts/apply_local_source_rules.py
           python scripts/repair_source_content.py --cbc-limit 0
+          python scripts/publisher_hygiene.py
           python scripts/trim_article_tails.py
           cp /tmp/scoop-enriched-output/audit.json data/audit.json
           mkdir -p public/cache
