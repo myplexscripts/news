@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from article_source_profiles import profile_for
-from refine_source_articles import extract_profiled_blocks
+from refine_source_articles import coverage_ok, extract_profiled_blocks
 
 
 def dump(blocks: list[dict]) -> str:
@@ -77,6 +77,26 @@ def test_global_profile() -> None:
     )
 
 
+def test_globe_profile_removes_diversions() -> None:
+    assert_profile(
+        "The Globe and Mail",
+        "https://www.theglobeandmail.com/canada/article-example/",
+        "globe",
+        "c-article-body",
+        "diversions-module",
+    )
+
+
+def test_star_profile_removes_dropdown_navigation() -> None:
+    assert_profile(
+        "Toronto Star",
+        "https://www.thestar.com/news/canada/example.html",
+        "star",
+        "asset-content",
+        "dropdown-menu",
+    )
+
+
 def test_western_profile() -> None:
     assert_profile(
         "Western News",
@@ -113,6 +133,24 @@ def test_cbc_profile_is_explicit() -> None:
     assert "[data-cy='storyWrapper']" in profile["roots"]
 
 
+def test_profile_candidate_can_replace_known_chrome_contamination() -> None:
+    story = {
+        "source": "Toronto Star",
+        "word_count": 900,
+        "content_blocks": [
+            {"type": "heading", "text": "Today's paper"},
+            {"type": "list", "items": ["Ontario", "Alberta", "Quebec", "Wildfires"]},
+        ],
+    }
+    prose = "Officials said the proposal would return next month after another public meeting with residents and community groups. "
+    blocks = [
+        {"type": "paragraph", "text": prose * 3},
+        {"type": "paragraph", "text": prose * 3},
+        {"type": "paragraph", "text": prose * 3},
+    ]
+    assert coverage_ok(story, blocks)
+
+
 def test_unknown_source_uses_generic_fallback() -> None:
     profile = profile_for("Independent Publisher", "https://example.test/local/story")
     assert profile["name"] == "generic"
@@ -133,10 +171,13 @@ def main() -> int:
         test_postmedia_profile,
         test_ctv_profile,
         test_global_profile,
+        test_globe_profile_removes_diversions,
+        test_star_profile_removes_dropdown_navigation,
         test_western_profile,
         test_london_police_profile,
         test_city_profile,
         test_cbc_profile_is_explicit,
+        test_profile_candidate_can_replace_known_chrome_contamination,
         test_unknown_source_uses_generic_fallback,
     ]
     for test in tests:

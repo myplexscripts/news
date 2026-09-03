@@ -17,11 +17,23 @@ from refine_article_formatting import extract_dom_blocks
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-PROFILE_SCHEMA = 2
-MAX_PER_RUN = max(8, int(os.getenv("PROFILE_MAX_PER_RUN", "42")))
+PROFILE_SCHEMA = 3
+MAX_PER_RUN = max(12, int(os.getenv("PROFILE_MAX_PER_RUN", "64")))
 RECENT_HOURS = max(24, int(os.getenv("PROFILE_RECENT_HOURS", "168")))
 WORKERS = max(2, min(8, int(os.getenv("PROFILE_WORKERS", "6"))))
 MIN_WORDS = 70
+
+
+PROFILE_CONTAMINATION_MARKERS: dict[str, tuple[str, ...]] = {
+    "globe": (
+        "diversions", "puzzles games", "puzzles and games",
+        "latest videos", "more videos", "watch more videos",
+    ),
+    "star": (
+        "you have permission to edit this article", "site search search",
+        "site search", "today s paper", "todays paper",
+    ),
+}
 
 
 def utc_now() -> datetime:
@@ -88,8 +100,22 @@ def choose_profile_root(soup: BeautifulSoup, roots: list[str]) -> Tag | None:
             content_chars = paragraph_chars + int(list_chars * 0.7) + int(heading_chars * 0.4)
             if content_chars < 120:
                 continue
+
             link_chars = sum(len(clean_text(a.get_text(" ", strip=True))) for a in candidate.select("a"))
-            score = content_chars + len(paragraphs) * 90 - int(link_chars * 0.18) - priority * 12
+            controls = len(candidate.select(
+                "nav,form,select,option,[role='navigation'],[role='menu'],[role='menubar'],[role='listbox'],[role='combobox']"
+            ))
+            link_density = link_chars / max(1, content_chars)
+            if link_density > 0.72 and len(paragraphs) < 4:
+                continue
+
+            score = (
+                content_chars
+                + len(paragraphs) * 90
+                - int(link_chars * 0.42)
+                - controls * 220
+                - priority * 12
+            )
             candidates.append((score, candidate))
     return max(candidates, key=lambda item: item[0])[1] if candidates else None
 
@@ -126,12 +152,45 @@ def extract_profiled_blocks(
     return blocks, profile["name"]
 
 
+def normalized_label(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", clean_text(value).lower()).strip()
+
+
+def existing_has_profile_chrome(story: dict[str, Any]) -> bool:
+    source = clean_text(story.get("source", "")).lower()
+    if "globe and mail" in source:
+        markers = PROFILE_CONTAMINATION_MARKERS["globe"]
+    elif "toronto star" in source:
+        markers = PROFILE_CONTAMINATION_MARKERS["star"]
+    else:
+        return False
+
+    blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
+    values: list[str] = []
+    for block in blocks:
+        if not isinstance(block, dict):
+            continue
+        for field in ("text", "title", "label", "name"):
+            if block.get(field):
+                values.append(str(block.get(field)))
+        if block.get("type") == "list":
+            values.extend(list_item_text(item) for item in block.get("items", []) if list_item_text(item))
+
+    for value in values:
+        label = normalized_label(value)
+        if not label or len(label) > 140:
+            continue
+        if any(label == marker or label.startswith(marker + " ") for marker in markers):
+            return True
+    return False
+
+
 def coverage_ok(story: dict[str, Any], blocks: list[dict[str, Any]]) -> bool:
     extracted = block_word_count(blocks)
     if extracted < MIN_WORDS:
         return False
     existing = int(story.get("word_count") or 0) or words(story.get("content"))
-    if existing <= 0:
+    if existing <= 0 or existing_has_profile_chrome(story):
         return True
     return extracted >= max(MIN_WORDS, int(existing * 0.72))
 
@@ -153,7 +212,7 @@ def process_story(story: dict[str, Any]) -> tuple[list[dict[str, Any]], str, str
         clean_text(story.get("title", "")),
         clean_text(story.get("image", "")),
     )
-    return blocks, profile_name, f"{profile_name}:profiled-dom-v1"
+    return blocks, profile_name, f"{profile_name}:profiled-dom-v2"
 
 
 def story_needs_work(story: dict[str, Any], now: datetime) -> bool:

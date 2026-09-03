@@ -57,10 +57,12 @@ jobs:
           python scripts/hydrate_cbc_lite.py
           python scripts/enrich_article_structure.py
           python scripts/refine_article_formatting.py
-          python scripts/refine_source_articles.py
           python scripts/reader_mode_articles.py
           python scripts/enrich_article_media.py
           python scripts/enrich_rich_articles.py --limit 64
+          # Publisher profiles run after generic readers so a broad Readability or
+          # Trafilatura result cannot overwrite a cleaner publisher article root.
+          python scripts/refine_source_articles.py
           python scripts/cleanup_article_recirculation.py
           python scripts/sanitize_article_blocks.py
           python scripts/trim_article_tails.py

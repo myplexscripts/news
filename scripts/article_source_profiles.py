@@ -18,7 +18,8 @@ DEFAULT_PROFILE: dict[str, Any] = {
     ],
     "remove": [
         "script", "style", "noscript", "nav", "header", "footer", "form", "button", "aside",
-        "[role='navigation']", "[role='complementary']", "[aria-hidden='true']",
+        "select", "option", "[role='navigation']", "[role='complementary']", "[role='menu']",
+        "[role='menubar']", "[role='listbox']", "[role='combobox']", "[aria-hidden='true']",
         "[class*='advert']", "[class*='newsletter']", "[class*='subscribe']",
         "[class*='related']", "[class*='recommend']", "[class*='recirc']",
         "[class*='read-more']", "[class*='readmore']", "[class*='outbrain']",
@@ -116,6 +117,10 @@ PROFILES: dict[str, dict[str, Any]] = {
             "[class*='recommend']", "[class*='follow']", "[class*='feedback']",
             "[class*='error-report']", "[class*='editorial-code']", "[class*='interact']",
             "[class*='comment']", "[data-testid*='follow']", "[data-testid*='related']",
+            "[class*='diversion']", "[id*='diversion']", "[data-testid*='diversion']",
+            "[class*='puzzle']", "[id*='puzzle']", "[class*='game-hub']", "[class*='games-hub']",
+            "[class*='latest-video']", "[class*='more-video']", "[class*='video-recommend']",
+            "[class*='video-carousel']",
         ],
     },
     "star": {
@@ -129,6 +134,10 @@ PROFILES: dict[str, dict[str, Any]] = {
             "[class*='related']", "[class*='recommend']", "[class*='recirc']",
             "[class*='share']", "[class*='social']", "[class*='comment']",
             "[class*='advert']", "[data-testid*='related']", "[data-testid*='trending']",
+            "[class*='site-search']", "[id*='site-search']", "[class*='weather']",
+            "[class*='lottery']", "[class*='today-paper']", "[class*='todays-paper']",
+            "[class*='edition-menu']", "[class*='mega-menu']", "[class*='dropdown']",
+            "[data-testid*='navigation']", "[data-testid*='menu']",
         ],
     },
     "western": {
