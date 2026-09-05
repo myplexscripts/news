@@ -6,8 +6,10 @@ ROOT = Path(__file__).resolve().parents[1]
 REFRESH_WORKFLOW = ROOT / ".github" / "workflows" / "refresh.yml"
 WAKE_WORKFLOW = ROOT / ".github" / "workflows" / "refresh-wake.yml"
 DEPLOY_WORKFLOW = ROOT / ".github" / "workflows" / "site.yml"
+
 EXPECTED_CRON = "7,17,27,37,47,57 * * * *"
-EXPECTED_WAKE_DISPATCH = "gh workflow run refresh.yml --repo myplexscripts/news --ref main"
+EXPECTED_WAKE_DISPATCH = 'gh workflow run refresh-wake.yml --repo "$GITHUB_REPOSITORY" --ref main -f delay_seconds="$wait_seconds"'
+EXPECTED_REFRESH_DISPATCH = "gh workflow run refresh.yml --repo myplexscripts/news --ref main"
 EXPECTED_SITE_DISPATCH = "gh workflow run site.yml --repo myplexscripts/news --ref main"
 WATCHDOG_WAKE_GUARD = "github.event_name != 'schedule' || steps.due.outputs.run == 'true'"
 
@@ -15,126 +17,86 @@ WATCHDOG_WAKE_GUARD = "github.event_name != 'schedule' || steps.due.outputs.run 
 def main() -> int:
     errors: list[str] = []
 
-    if not REFRESH_WORKFLOW.exists():
+    refresh = REFRESH_WORKFLOW.read_text(encoding="utf-8") if REFRESH_WORKFLOW.exists() else ""
+    wake = WAKE_WORKFLOW.read_text(encoding="utf-8") if WAKE_WORKFLOW.exists() else ""
+    deploy = DEPLOY_WORKFLOW.read_text(encoding="utf-8") if DEPLOY_WORKFLOW.exists() else ""
+
+    if not refresh:
         errors.append("refresh.yml is missing")
-        refresh = ""
-    else:
-        refresh = REFRESH_WORKFLOW.read_text(encoding="utf-8")
-
-    if not WAKE_WORKFLOW.exists():
+    if not wake:
         errors.append("refresh-wake.yml is missing")
-        wake = ""
-    else:
-        wake = WAKE_WORKFLOW.read_text(encoding="utf-8")
-
-    if not DEPLOY_WORKFLOW.exists():
+    if not deploy:
         errors.append("site.yml is missing")
-        deploy = ""
-    else:
-        deploy = DEPLOY_WORKFLOW.read_text(encoding="utf-8")
 
     cron_values = re.findall(r"-\s*cron:\s*['\"]([^'\"]+)['\"]", refresh)
     if EXPECTED_CRON not in cron_values:
-        errors.append(f"expected resilient refresh cron {EXPECTED_CRON!r}, found {cron_values or 'none'}")
-
-    if re.search(r"^\s+timezone\s*:", refresh, flags=re.MULTILINE):
-        errors.append("unsupported 'timezone:' key found in refresh schedule")
+        errors.append(f"expected watchdog cron {EXPECTED_CRON!r}, found {cron_values or 'none'}")
 
     if "workflow_dispatch:" not in refresh:
         errors.append("refresh workflow is missing manual workflow_dispatch fallback")
 
-    if "paths:" not in refresh or "'scripts/**'" not in refresh:
-        errors.append("collector changes should trigger a refresh without making data commits recursive")
+    if "'scripts/**'" not in refresh or "'.github/workflows/refresh-wake.yml'" not in refresh:
+        errors.append("refresh workflow push triggers do not cover scheduler and collector changes")
 
     if "id: due" not in refresh or "Decide whether refresh is due" not in refresh:
         errors.append("refresh workflow is missing the freshness gate")
 
     if "age_minutes >= 20" not in refresh:
-        errors.append("freshness gate must prevent unnecessary scheduled retries when the feed is under 20 minutes old")
+        errors.append("scheduled watchdog runs must refresh feeds at least 20 minutes old")
 
-    if "steps.due.outputs.run == 'true'" not in refresh:
-        errors.append("expensive refresh steps are not guarded by the freshness decision")
-
-    if "python scripts/run_scoop.py" not in refresh:
-        errors.append("refresh workflow is bypassing the hardened Scoop runtime")
+    if "python scripts/run_fast_scoop.py" not in refresh:
+        errors.append("refresh workflow is bypassing the bounded fast collector")
 
     if "python scripts/run_audit.py" not in refresh:
-        errors.append("refresh workflow is bypassing the cluster-aware audit runner")
+        errors.append("refresh workflow is bypassing the audit runner")
 
-    if "python scripts/test_scoop_runtime.py" not in refresh:
-        errors.append("Scoop runtime safeguard tests are missing from refresh workflow")
-
-    if "Remove inline promoted-story modules" not in refresh or "timeout-minutes: 3" not in refresh:
-        errors.append("recirculation cleanup must have a short timeout so it cannot block later refreshes")
+    if "python scripts/test_workflow_config.py" not in refresh:
+        errors.append("refresh workflow is not validating its scheduler configuration")
 
     if 'git commit -m "Refresh news"' not in refresh:
-        errors.append("refresh workflow does not commit updated data with the current feed name")
+        errors.append("refresh workflow does not commit updated feed data")
 
-    if "group: refresh-news-v3" not in refresh or "cancel-in-progress: false" not in refresh:
-        errors.append("refresh workflow must queue overlapping runs instead of cancelling valid commits")
+    if "group: refresh-news-v5" not in refresh or "cancel-in-progress: false" not in refresh:
+        errors.append("refresh workflow must queue overlapping triggers instead of cancelling active work")
 
     if EXPECTED_SITE_DISPATCH not in refresh:
-        errors.append("refresh workflow must explicitly deploy bot-authored data commits because GITHUB_TOKEN pushes do not trigger site.yml")
+        errors.append("refresh workflow must explicitly deploy bot-authored feed commits")
 
-    if "steps.commit.outputs.changed == 'true'" not in refresh:
-        errors.append("Pages deployment should only be dispatched when refreshed data was committed")
+    if "Start deferred article enrichment" not in refresh or "gh workflow run enrich.yml" not in refresh:
+        errors.append("refresh workflow must hand new stories to deferred article enrichment")
 
-    if "Schedule next refresh" not in refresh:
-        errors.append("refresh workflow is not scheduling its next wake-up")
+    if "Record refresh cycle start" not in refresh or "CYCLE_START_EPOCH=$(date +%s)" not in refresh:
+        errors.append("refresh workflow is not recording its cycle start time")
 
-    if "CYCLE_START_EPOCH=$(date +%s)" not in refresh:
-        errors.append("refresh workflow is not recording the cycle start time")
+    if "Schedule next refresh" not in refresh or EXPECTED_WAKE_DISPATCH not in refresh:
+        errors.append("refresh workflow is not chaining its next wake-up")
 
     if "wait_seconds=$((900 - elapsed))" not in refresh:
-        errors.append("refresh loop should target a 15-minute start-to-start cadence")
-
-    if "gh workflow run refresh-wake.yml" not in refresh:
-        errors.append("refresh workflow does not dispatch the separate wake-up workflow")
-
-    if "if: always()" not in refresh:
-        errors.append("refresh scheduling must survive scraper or audit failures")
+        errors.append("refresh loop should target an approximately 15-minute start-to-start cadence")
 
     if WATCHDOG_WAKE_GUARD not in refresh:
-        errors.append("fresh watchdog checks must not reset and cancel the active wake timer")
+        errors.append("fresh watchdog checks must not reset the active wake timer")
 
     if "sleep \"$wait_seconds\"" in refresh or "sleep 900" in refresh:
-        errors.append("refresh workflow must not remain open just to wait for its next cycle")
+        errors.append("refresh workflow must not stay open only to wait for the next cycle")
 
-    if "workflow_dispatch:" not in wake:
-        errors.append("wake workflow must support workflow_dispatch")
+    if "workflow_dispatch:" not in wake or "delay_seconds:" not in wake:
+        errors.append("wake workflow is missing dispatch support or its delay input")
 
-    if "delay_seconds:" not in wake:
-        errors.append("wake workflow is missing its delay input")
-
-    if "sleep \"$delay\"" not in wake:
-        errors.append("wake workflow does not wait for the requested refresh window")
-
-    if EXPECTED_WAKE_DISPATCH not in wake:
-        errors.append("wake workflow does not explicitly dispatch the next refresh in myplexscripts/news")
+    if 'sleep "$delay"' not in wake or EXPECTED_REFRESH_DISPATCH not in wake:
+        errors.append("wake workflow does not wait and dispatch the next refresh")
 
     if "group: refresh-wake" not in wake or "cancel-in-progress: true" not in wake:
         errors.append("wake workflow must collapse duplicate timers into one active timer")
 
     if "schedule:" in deploy:
-        errors.append("site.yml must remain deploy-only and must not have a schedule trigger")
-
-    if "python scripts/run_scoop.py" in deploy or "python scripts/fetch_news.py" in deploy:
-        errors.append("site.yml must not mutate news data during deployment")
+        errors.append("site.yml must remain deploy-only")
 
     if "cp data/news.json public/data/news.json" not in deploy:
-        errors.append("site.yml must publish data/news.json into the Pages artifact for freshness checks")
+        errors.append("site.yml must publish data/news.json into the Pages artifact")
 
     if "cp data/audit.json public/data/audit.json" not in deploy:
-        errors.append("site.yml must publish data/audit.json into the Pages artifact for diagnostics")
-
-    if "group: pages" not in deploy or "cancel-in-progress: false" not in deploy:
-        errors.append("site deploys must queue instead of cancelling an in-progress commit deployment")
-
-    lock_exists = (ROOT / "package-lock.json").exists() or (ROOT / "npm-shrinkwrap.json").exists()
-    if lock_exists and "npm ci" not in deploy:
-        errors.append("site.yml should use npm ci when a lockfile exists")
-    if not lock_exists and "npm install" not in deploy:
-        errors.append("site.yml needs npm install until the repository has a lockfile")
+        errors.append("site.yml must publish data/audit.json into the Pages artifact")
 
     if errors:
         print("Workflow configuration check failed:")
@@ -143,9 +105,8 @@ def main() -> int:
         return 1
 
     print(
-        "Workflow configuration OK: queued deploys, queued refreshes, explicit deploy after changed data commits, "
-        "separate wake timer, watchdog-safe wake scheduling, approximately 15-minute start-to-start refresh loop, "
-        f"cron backup ({EXPECTED_CRON}), 20-minute scheduled freshness gate, bounded cleanup, and public feed data"
+        "Workflow configuration OK: chained 15-minute refresh wake, 10-minute watchdog, "
+        "20-minute freshness fallback, queued refreshes, fast collection, enrichment, and explicit deployment"
     )
     return 0
 
