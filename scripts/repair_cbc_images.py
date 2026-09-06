@@ -28,6 +28,16 @@ AUTHOR_STOPWORDS = {
     "by", "cbc", "news", "reporter", "journalist", "staff", "senior", "producer",
     "editor", "correspondent", "writer", "digital", "video", "photo", "photos",
 }
+CBC_BYLINE_RE = re.compile(
+    r"(?im)^\s*(?:by\s+)?"
+    r"([A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'’.\-]+"
+    r"(?:\s+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'’.\-]+){1,3})"
+    r"\s*(?:·|\||-)\s*CBC News\b"
+)
+NAME_ONLY_ALT_RE = re.compile(
+    r"^[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'’.\-]+"
+    r"(?:\s+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'’.\-]+){1,3}$"
+)
 
 
 def clean(value: Any) -> str:
@@ -48,6 +58,7 @@ def author_tokens(record: dict[str, Any]) -> list[str]:
         value = record.get(key)
         if isinstance(value, str) and clean(value):
             values.append(clean(value))
+
     authors = record.get("authors")
     if isinstance(authors, list):
         for value in authors:
@@ -75,21 +86,35 @@ def author_mentioned(record: dict[str, Any], value: Any) -> bool:
     return matches >= min(2, len(tokens))
 
 
-def looks_like_author_image(
-    record: dict[str, Any],
-    url: str = "",
-    alt: str = "",
-    caption: str = "",
-) -> bool:
+def infer_author_from_reader(record: dict[str, Any], reader_text: str) -> bool:
+    if len(author_tokens(record)) >= 2:
+        return False
+    plain = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", reader_text or "")
+    match = CBC_BYLINE_RE.search(plain)
+    if not match:
+        return False
+    inferred = clean(match.group(1))
+    if len(normalized_words(inferred)) < 2:
+        return False
+    record["author"] = inferred
+    record["cbc_author_inferred"] = True
+    return True
+
+
+def looks_like_name_only_alt(value: Any) -> bool:
+    alt = clean(value)
+    if not alt or len(alt) > 72:
+        return False
+    if any(char in alt for char in (",", ";", ":", "!", "?", "(", ")", "/")):
+        return False
+    return bool(NAME_ONLY_ALT_RE.fullmatch(alt))
+
+
+def looks_like_author_image(record: dict[str, Any], url: str = "", alt: str = "", caption: str = "") -> bool:
     normalized_url = clean(url).lower()
     normalized_alt = clean(alt)
     normalized_caption = clean(caption)
     descriptive = f"{normalized_alt} {normalized_caption}".strip().lower()
-
-    # CBC captions often credit the reporter who took a legitimate story photo,
-    # so an author name in a caption alone is not enough to reject the image.
-    # Profile photos are much more reliably identified by the URL, a short alt
-    # label that is the reporter's name, or explicit author/headshot wording.
     if author_mentioned(record, normalized_url):
         return True
     if normalized_alt and len(normalized_alt) <= 120 and author_mentioned(record, normalized_alt):
@@ -150,19 +175,6 @@ def block_metadata_for(record: dict[str, Any], url: str) -> tuple[str, str]:
     return "", ""
 
 
-def current_hero_is_author(record: dict[str, Any]) -> bool:
-    for key in ("card_image", "image"):
-        url = clean(record.get(key))
-        if not url:
-            continue
-        alt, caption = block_metadata_for(record, url)
-        if not alt and key == "image":
-            alt = clean(record.get("image_alt"))
-        if looks_like_author_image(record, url, alt, caption):
-            return True
-    return False
-
-
 def local_image_dimensions(value: Any) -> tuple[int, int]:
     src = cbc.normalize_local_image(value)
     if not src or cbc.is_remote_url(src):
@@ -180,15 +192,63 @@ def local_image_dimensions(value: Any) -> tuple[int, int]:
         return 0, 0
 
 
-def probable_small_square_profile(record: dict[str, Any]) -> bool:
-    if len(author_tokens(record)) < 2:
-        return False
-    hero = cbc.usable_hero(record)
-    width, height = local_image_dimensions(hero)
+def is_small_near_square(value: Any, *, max_side: int = 640) -> bool:
+    width, height = local_image_dimensions(value)
     if not width or not height:
         return False
     ratio = width / max(1, height)
-    return 0.82 <= ratio <= 1.22 and max(width, height) <= 640
+    return 0.82 <= ratio <= 1.22 and max(width, height) <= max_side
+
+
+def probable_profile_candidate(record: dict[str, Any], url: str, alt: str = "", caption: str = "", *, early: bool = False) -> bool:
+    if looks_like_author_image(record, url, alt, caption):
+        return True
+    small_square = is_small_near_square(url)
+    if small_square and (early or looks_like_name_only_alt(alt)):
+        return True
+    if early and looks_like_name_only_alt(alt):
+        return True
+    return False
+
+
+def block_is_early_image(record: dict[str, Any], target_url: str) -> bool:
+    blocks = record.get("content_blocks")
+    if not isinstance(blocks, list):
+        return False
+    substantive_text_seen = False
+    image_index = 0
+    for block in blocks:
+        if not isinstance(block, dict):
+            continue
+        block_type = clean(block.get("type")).lower()
+        if block_type != "image":
+            text = clean(block.get("text") or block.get("content") or block.get("value"))
+            if block_type in {"paragraph", "heading", "subheading", "quote", "blockquote"} and len(text) >= 40:
+                substantive_text_seen = True
+            continue
+        if same_reference(block.get("url"), target_url):
+            return not substantive_text_seen and image_index < 2
+        image_index += 1
+    return False
+
+
+def current_hero_is_author(record: dict[str, Any]) -> bool:
+    for key in ("card_image", "image"):
+        url = clean(record.get(key))
+        if not url:
+            continue
+        alt, caption = block_metadata_for(record, url)
+        if not alt and key == "image":
+            alt = clean(record.get("image_alt"))
+        early = block_is_early_image(record, url)
+        if probable_profile_candidate(record, url, alt, caption, early=early):
+            return True
+    return False
+
+
+def probable_small_square_profile(record: dict[str, Any]) -> bool:
+    hero = cbc.usable_hero(record)
+    return bool(hero and is_small_near_square(hero))
 
 
 def remove_author_image_blocks(record: dict[str, Any]) -> bool:
@@ -197,16 +257,25 @@ def remove_author_image_blocks(record: dict[str, Any]) -> bool:
         return False
     cleaned_blocks: list[Any] = []
     changed = False
+    substantive_text_seen = False
+    image_index = 0
     for block in blocks:
-        if not isinstance(block, dict) or block.get("type") != "image":
+        if not isinstance(block, dict):
             cleaned_blocks.append(block)
             continue
-        if looks_like_author_image(
-            record,
-            clean(block.get("url")),
-            clean(block.get("alt")),
-            clean(block.get("caption")),
-        ):
+        block_type = clean(block.get("type")).lower()
+        if block_type != "image":
+            text = clean(block.get("text") or block.get("content") or block.get("value"))
+            if block_type in {"paragraph", "heading", "subheading", "quote", "blockquote"} and len(text) >= 40:
+                substantive_text_seen = True
+            cleaned_blocks.append(block)
+            continue
+        url = clean(block.get("url"))
+        alt = clean(block.get("alt"))
+        caption = clean(block.get("caption"))
+        early = not substantive_text_seen and image_index < 2
+        image_index += 1
+        if probable_profile_candidate(record, url, alt, caption, early=early):
             changed = True
             continue
         cleaned_blocks.append(block)
@@ -223,7 +292,7 @@ def clear_author_hero(record: dict[str, Any]) -> bool:
         if clean(record.get(key)):
             record[key] = ""
             changed = True
-    if clean(record.get("image_alt")) and author_mentioned(record, record.get("image_alt")):
+    if clean(record.get("image_alt")) and (author_mentioned(record, record.get("image_alt")) or looks_like_name_only_alt(record.get("image_alt"))):
         record["image_alt"] = ""
         changed = True
     record["cbc_author_image_rejected"] = True
@@ -231,30 +300,36 @@ def clear_author_hero(record: dict[str, Any]) -> bool:
 
 
 def promote_existing_hero(record: dict[str, Any]) -> bool:
-    """Promote an existing non-author article image to the card hero."""
-    if cbc.usable_hero(record) and not current_hero_is_author(record):
+    if cbc.usable_hero(record) and not current_hero_is_author(record) and not probable_small_square_profile(record):
         return False
-
-    candidates: list[tuple[str, str, str]] = []
+    candidates: list[tuple[str, str, str, bool]] = []
     for key in ("lead_image", "hero_image", "og_image", "twitter_image"):
         value = clean(record.get(key))
         if value:
-            candidates.append((value, "", ""))
-
+            candidates.append((value, "", "", False))
     blocks = record.get("content_blocks")
     if isinstance(blocks, list):
+        substantive_text_seen = False
+        image_index = 0
         for block in blocks:
-            if not isinstance(block, dict) or block.get("type") != "image":
+            if not isinstance(block, dict):
+                continue
+            block_type = clean(block.get("type")).lower()
+            if block_type != "image":
+                text = clean(block.get("text") or block.get("content") or block.get("value"))
+                if block_type in {"paragraph", "heading", "subheading", "quote", "blockquote"} and len(text) >= 40:
+                    substantive_text_seen = True
                 continue
             value = clean(block.get("url"))
             if value:
-                candidates.append((value, clean(block.get("alt")), clean(block.get("caption"))))
-
-    for candidate, alt, caption in candidates:
+                early = not substantive_text_seen and image_index < 2
+                candidates.append((value, clean(block.get("alt")), clean(block.get("caption")), early))
+            image_index += 1
+    for candidate, alt, caption, early in candidates:
         normalized = cbc.normalize_local_image(candidate)
         if not normalized:
             continue
-        if looks_like_author_image(record, normalized, alt, caption):
+        if probable_profile_candidate(record, normalized, alt, caption, early=early):
             continue
         if cbc.is_remote_cbc_image(normalized) or not cbc.is_remote_url(normalized):
             record["image"] = normalized
@@ -285,19 +360,17 @@ def reader_image_candidates(story_url: str, record: dict[str, Any]) -> list[str]
     host = parsed.netloc.lower().split(":", 1)[0]
     if host != "cbc.ca" and host != "www.cbc.ca" and not host.endswith(".cbc.ca"):
         return []
-
     target = f"{parsed.netloc}{parsed.path}"
     if parsed.query:
         target += f"?{parsed.query}"
     reader_url = f"https://r.jina.ai/http://{target}"
-
     try:
         response = requests.get(reader_url, headers=cbc.READER_HEADERS, timeout=(4, 22))
         if response.status_code != 200 or len(response.content) < 400:
             return []
     except Exception:
         return []
-
+    infer_author_from_reader(record, response.text)
     scored: list[tuple[int, str]] = []
     seen: set[str] = set()
     markdown_found = False
@@ -305,7 +378,8 @@ def reader_image_candidates(story_url: str, record: dict[str, Any]) -> list[str]
         image_url = html.unescape(raw_url.strip())
         alt = clean(raw_alt)
         score = cbc.image_score(image_url)
-        if score <= 0 or looks_like_author_image(record, image_url, alt, ""):
+        early = index < 4
+        if score <= 0 or probable_profile_candidate(record, image_url, alt, "", early=early):
             continue
         key = f"{urlparse(image_url).netloc.lower()}{urlparse(image_url).path.lower()}"
         if key in seen:
@@ -318,10 +392,6 @@ def reader_image_candidates(story_url: str, record: dict[str, Any]) -> list[str]
         score += 20 if any(marker in lower_url for marker in ("16x9", "1180", "1280", "1920")) else 0
         score -= min(index, 24)
         scored.append((score, image_url))
-
-    # Bare i.cbc.ca URLs have no descriptive text, so only use them if Jina did
-    # not expose any usable Markdown image. This prevents an unlabelled profile
-    # photo near the byline from outranking a real story image.
     if not markdown_found:
         for index, raw_url in enumerate(re.findall(r"https?://i\.cbc\.ca/[^\s)\]>\"']+", response.text, flags=re.I)):
             image_url = html.unescape(raw_url.strip())
@@ -334,9 +404,8 @@ def reader_image_candidates(story_url: str, record: dict[str, Any]) -> list[str]
             seen.add(key)
             lower_url = image_url.lower()
             score += 20 if any(marker in lower_url for marker in ("16x9", "1180", "1280", "1920")) else 0
-            score -= min(index, 24)
+            score -= 40 if index < 4 else min(index, 24)
             scored.append((score, image_url))
-
     scored.sort(key=lambda item: item[0], reverse=True)
     return [url for _, url in scored]
 
@@ -345,26 +414,19 @@ def discover_hero(record: dict[str, Any]) -> str:
     story_url = clean(record.get("url"))
     if not story_url:
         return ""
-
     candidates = reader_image_candidates(story_url, record)
     if candidates:
         return candidates[0]
-
     match = CBC_STORY_ID.search(story_url)
     if match:
         lite_url = f"https://www.cbc.ca/lite/story/{match.group(1)}"
         candidates = reader_image_candidates(lite_url, record)
         if candidates:
             return candidates[0]
-
     return ""
 
 
-def apply_discovered_validation(
-    record: dict[str, Any],
-    discovered: str,
-    cached: dict[str, str],
-) -> bool:
+def apply_discovered_validation(record: dict[str, Any], discovered: str, cached: dict[str, str]) -> bool:
     if not discovered or looks_like_author_image(record, discovered, "", ""):
         return False
     replacement = cached.get(discovered, "") or discovered
@@ -385,16 +447,13 @@ def apply_discovered_validation(
 def main() -> int:
     if not cbc.NEWS_PATH.exists():
         return 0
-
     payload = json.loads(cbc.NEWS_PATH.read_text(encoding="utf-8"))
     records: list[dict[str, Any]] = []
     collect_records(payload, records, set())
-
     records_updated = 0
     validation_ids: set[int] = set()
     author_blocks_removed = 0
     author_heroes_cleared = 0
-
     for record in records:
         changed = False
         if cbc.prepare_record(record):
@@ -402,7 +461,6 @@ def main() -> int:
         if remove_author_image_blocks(record):
             changed = True
             author_blocks_removed += 1
-
         suspicious = current_hero_is_author(record)
         low_res_square = probable_small_square_profile(record)
         if suspicious or low_res_square:
@@ -414,17 +472,7 @@ def main() -> int:
             changed = True
         if changed:
             records_updated += 1
-
-    discovery_targets = [
-        record
-        for record in records
-        if (
-            not cbc.usable_hero(record)
-            or id(record) in validation_ids
-        )
-        and cbc.is_cbc_article_url(clean(record.get("url")))
-    ]
-
+    discovery_targets = [record for record in records if (not cbc.usable_hero(record) or id(record) in validation_ids) and cbc.is_cbc_article_url(clean(record.get("url")))]
     discovered_by_record: dict[int, str] = {}
     if discovery_targets:
         with ThreadPoolExecutor(max_workers=min(5, len(discovery_targets))) as executor:
@@ -436,14 +484,12 @@ def main() -> int:
                 except Exception as exc:
                     print(f"CBC hero discovery worker failed: {type(exc).__name__}: {exc}", file=sys.stderr)
                     discovered_by_record[id(record)] = ""
-
     urls: set[str] = set()
     for record in records:
         urls.update(cbc.remote_image_urls(record))
         discovered = discovered_by_record.get(id(record), "")
         if cbc.is_remote_cbc_image(discovered):
             urls.add(discovered)
-
     cached: dict[str, str] = {}
     if urls:
         with ThreadPoolExecutor(max_workers=min(6, len(urls))) as executor:
@@ -455,7 +501,6 @@ def main() -> int:
                 except Exception as exc:
                     print(f"CBC image cache worker failed: {type(exc).__name__}: {exc}", file=sys.stderr)
                     cached[url] = ""
-
     images_rewritten = 0
     validated_replacements = 0
     for record in records:
@@ -463,26 +508,22 @@ def main() -> int:
         if id(record) in validation_ids and apply_discovered_validation(record, discovered, cached):
             records_updated += 1
             validated_replacements += 1
-
         changed, rewritten, _ = cbc.rewrite_record(record, cached, discovered)
         if changed:
             records_updated += 1
         images_rewritten += rewritten
-
-        # A final guard catches metadata introduced by rewrite_record itself.
         if remove_author_image_blocks(record):
             records_updated += 1
             author_blocks_removed += 1
-        if current_hero_is_author(record):
+        suspicious = current_hero_is_author(record)
+        if suspicious:
             if clear_author_hero(record):
                 records_updated += 1
                 author_heroes_cleared += 1
             if promote_existing_hero(record):
                 records_updated += 1
-
     if records_updated:
         cbc.NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
     hero_count = sum(1 for record in records if cbc.usable_hero(record) and not current_hero_is_author(record))
     discovered_count = sum(1 for value in discovered_by_record.values() if value)
     cached_count = sum(1 for value in cached.values() if value)
