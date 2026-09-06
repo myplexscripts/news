@@ -85,6 +85,20 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
   <a class="news-card-link" href={storyHref} aria-label={story.title}></a>
   {imageSrc && (
     <div class="news-card-media">
+      {variant === 'featured' && (
+        <img
+          class="news-card-photo-backdrop"
+          src={imageSrc}
+          alt=""
+          aria-hidden="true"
+          width="1200"
+          height="675"
+          loading={index < 3 ? 'eager' : 'lazy'}
+          fetchpriority={index < 3 ? 'high' : 'auto'}
+          decoding="async"
+          referrerpolicy="no-referrer"
+        />
+      )}
       <img
         class="news-card-photo"
         src={imageSrc}
@@ -101,7 +115,18 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
     </div>
   )}
   <div class="news-card-body">
-    {sourceLogo && (
+    {sourceLogo && variant === 'featured' ? (
+      <span class="card-source-mark-slot">
+        <img
+          class="card-source-mark"
+          onerror="this.parentElement.style.display='none';this.parentElement.nextElementSibling?.removeAttribute('hidden')"
+          src={sourceLogo}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </span>
+    ) : sourceLogo && (
       <img
         class="card-source-mark"
         onerror="this.style.display='none';this.nextElementSibling?.removeAttribute('hidden')"
@@ -201,6 +226,119 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
     opacity: 0.55;
     cursor: default;
   }
+
+  /* Keep every carousel publisher mark on one stable visual canvas. */
+  .editorial-carousel-card .card-source-mark-slot {
+    width: 168px;
+    height: 32px;
+    min-width: 168px;
+    min-height: 32px;
+    flex: 0 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+
+  .editorial-carousel-card .card-source-mark-slot .card-source-mark {
+    width: 168px !important;
+    height: 32px !important;
+    min-width: 168px !important;
+    max-width: 168px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+    flex: 0 0 168px !important;
+    transform: none !important;
+  }
+
+  .editorial-carousel-card .news-card-photo-backdrop {
+    display: none;
+  }
+
+  @media (max-width: 720px) {
+    /* Match the exact mobile feed gutter instead of subtracting another 24px. */
+    .editorial-front.shell {
+      width: 100% !important;
+      max-width: none !important;
+      margin-inline: 0 !important;
+      padding-left: var(--page-gutter-mobile, 20px) !important;
+      padding-right: var(--page-gutter-mobile, 20px) !important;
+    }
+
+    .editorial-carousel-ready,
+    .editorial-carousel-viewport,
+    .editorial-carousel-track,
+    .editorial-carousel-slide,
+    .editorial-carousel-card.news-card.card-featured {
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    /* Every featured image gets a true 16:9 frame. */
+    .editorial-carousel-card.news-card.card-featured .news-card-media {
+      position: relative !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      aspect-ratio: 16 / 9 !important;
+      overflow: hidden !important;
+      background: var(--gray-6) !important;
+    }
+
+    .editorial-carousel-card.news-card.card-featured .news-card-photo {
+      position: absolute !important;
+      z-index: 1;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      object-fit: cover !important;
+      object-position: var(--focus-x, 50%) var(--focus-y, 50%) !important;
+      transform: none !important;
+    }
+
+    /* A roughly 1:1 source stays square. The same art fills and blurs behind it. */
+    .editorial-carousel-card.news-card.card-featured .news-card-media.is-square-image .news-card-photo-backdrop {
+      position: absolute !important;
+      z-index: 0;
+      inset: -8%;
+      display: block !important;
+      width: 116% !important;
+      height: 116% !important;
+      max-width: none !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      filter: blur(22px) saturate(1.08);
+      transform: scale(1.08) !important;
+      opacity: 0.78;
+    }
+
+    .editorial-carousel-card.news-card.card-featured .news-card-media.is-square-image .news-card-photo {
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+
+    .editorial-carousel-card .card-source-mark-slot {
+      width: 150px;
+      min-width: 150px;
+      height: 28px;
+      min-height: 28px;
+      flex-basis: 28px;
+    }
+
+    .editorial-carousel-card .card-source-mark-slot .card-source-mark {
+      width: 150px !important;
+      min-width: 150px !important;
+      max-width: 150px !important;
+      height: 28px !important;
+      min-height: 28px !important;
+      max-height: 28px !important;
+      flex-basis: 150px !important;
+    }
+  }
 </style>
 
 <script>
@@ -218,6 +356,28 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
         fallbacks = [];
       }
 
+      const syncFeaturedMedia = () => {
+        const card = item.closest('.news-card.card-featured');
+        const media = item.closest('.news-card-media');
+        if (!(card instanceof HTMLElement) || !(media instanceof HTMLElement)) return;
+        if (!item.naturalWidth || !item.naturalHeight) return;
+
+        const ratio = item.naturalWidth / item.naturalHeight;
+        const isSquare = ratio >= 0.92 && ratio <= 1.08;
+        const storyId = card.dataset.storyId || '';
+        const src = item.currentSrc || item.src;
+
+        [...document.querySelectorAll('.news-card.card-featured')].forEach((candidate) => {
+          if (!(candidate instanceof HTMLElement) || candidate.dataset.storyId !== storyId) return;
+          const candidateMedia = candidate.querySelector('.news-card-media');
+          if (!(candidateMedia instanceof HTMLElement)) return;
+          candidateMedia.classList.toggle('is-square-image', isSquare);
+          candidateMedia.classList.toggle('is-fill-image', !isSquare);
+          const backdrop = candidateMedia.querySelector('.news-card-photo-backdrop');
+          if (backdrop instanceof HTMLImageElement && src) backdrop.src = src;
+        });
+      };
+
       let fallbackIndex = 0;
       const useNextImage = () => {
         const next = fallbacks[fallbackIndex];
@@ -231,8 +391,12 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
         item.closest('.news-card')?.classList.add('no-image');
       };
 
+      item.addEventListener('load', syncFeaturedMedia);
       item.addEventListener('error', useNextImage);
-      if (item.complete && item.naturalWidth === 0) useNextImage();
+      if (item.complete) {
+        if (item.naturalWidth === 0) useNextImage();
+        else syncFeaturedMedia();
+      }
     });
   }
 
