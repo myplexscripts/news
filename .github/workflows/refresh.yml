@@ -115,6 +115,7 @@ jobs:
           python scripts/repair_national_post_articles.py --filter-only
           python scripts/publisher_hygiene.py
           python scripts/sanitize_article_blocks.py
+          python scripts/repair_cbc_images.py
 
       - name: Final article boundary guard
         if: steps.due.outputs.run == 'true'
@@ -153,6 +154,7 @@ jobs:
             data/news.json \
             /tmp/news-merged.json
           mv /tmp/news-merged.json data/news.json
+          python scripts/repair_cbc_images.py
           python scripts/publisher_hygiene.py
           python scripts/sanitize_article_blocks.py
           python scripts/trim_article_tails.py
