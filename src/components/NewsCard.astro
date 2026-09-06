@@ -401,10 +401,9 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
         if (!(card instanceof HTMLElement) || !(media instanceof HTMLElement)) return;
         if (!item.naturalWidth || !item.naturalHeight) return;
 
-        const ratio = item.naturalWidth / item.naturalHeight;
-        const isLandscape = ratio > 1.02;
-        const isSquare = ratio >= 0.98 && ratio <= 1.02;
-        const isPortrait = ratio < 0.98;
+        const isLandscape = item.naturalWidth > item.naturalHeight;
+        const isSquare = item.naturalWidth === item.naturalHeight;
+        const isPortrait = item.naturalHeight > item.naturalWidth;
         const useBackdrop = !isLandscape;
         const storyId = card.dataset.storyId || '';
         const src = item.currentSrc || item.src;
