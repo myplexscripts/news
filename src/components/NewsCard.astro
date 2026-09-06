@@ -90,8 +90,8 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
         src={imageSrc}
         data-image-fallbacks={JSON.stringify(imageFallbacks)}
         alt={story.image_alt || ''}
-        width={variant === 'standard' ? 420 : 720}
-        height={variant === 'standard' ? 420 : 720}
+        width={variant === 'standard' ? 420 : 1200}
+        height={variant === 'standard' ? 420 : 675}
         loading={index < 3 ? 'eager' : 'lazy'}
         fetchpriority={index < 3 ? 'high' : 'auto'}
         decoding="async"
@@ -295,10 +295,327 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
     cards.forEach((card) => observer.observe(card));
   }
 
+  function initialiseEditorialCarousels() {
+    const grids = [...document.querySelectorAll('.editorial-front-grid:not(.editorial-carousel-ready)')];
+    if (!grids.length) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const AUTO_DELAY = 5600;
+    const RESUME_DELAY = 7200;
+
+    grids.forEach((grid, carouselIndex) => {
+      const cards = [...grid.querySelectorAll('.news-card.searchable')];
+      if (!cards.length) return;
+
+      const section = grid.closest('[data-editorial-section]');
+      const slides = cards.map((card, index) => {
+        card.classList.remove('editorial-lead-card', 'editorial-support-card');
+        card.classList.add('editorial-carousel-card');
+
+        const slide = document.createElement('div');
+        slide.className = 'editorial-carousel-slide';
+        slide.dataset.carouselRealSlide = String(index);
+        slide.append(card);
+        return slide;
+      });
+
+      const viewport = document.createElement('div');
+      viewport.className = 'editorial-carousel-viewport';
+      viewport.setAttribute('aria-roledescription', 'carousel');
+      viewport.setAttribute('aria-label', 'Top stories');
+      viewport.style.touchAction = 'pan-y';
+
+      const track = document.createElement('div');
+      track.className = 'editorial-carousel-track';
+      track.setAttribute('aria-live', 'off');
+      slides.forEach((slide) => track.append(slide));
+      viewport.append(track);
+
+      const dots = document.createElement('div');
+      dots.className = 'editorial-carousel-dots';
+      dots.setAttribute('role', 'group');
+      dots.setAttribute('aria-label', 'Choose a top story');
+
+      grid.replaceChildren(viewport, dots);
+      grid.classList.add('editorial-carousel-ready');
+      grid.dataset.carouselIndex = String(carouselIndex);
+
+      let visibleSlides = [];
+      let current = 0;
+      let physical = 0;
+      let pendingJump = null;
+      let autoTimer = 0;
+      let resumeTimer = 0;
+      let pointerId = null;
+      let startX = 0;
+      let startY = 0;
+      let deltaX = 0;
+      let dragAxis = '';
+      let suppressClick = false;
+
+      const clearAuto = () => {
+        if (autoTimer) window.clearInterval(autoTimer);
+        autoTimer = 0;
+      };
+
+      const clearResume = () => {
+        if (resumeTimer) window.clearTimeout(resumeTimer);
+        resumeTimer = 0;
+      };
+
+      const setTrackPosition = (index, animate = true, offset = 0) => {
+        track.classList.toggle('is-jumping', !animate || reduceMotion);
+        track.style.transform = `translate3d(calc(${-index * 100}% + ${offset}px), 0, 0)`;
+        if (!animate && !reduceMotion) {
+          requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove('is-jumping')));
+        }
+      };
+
+      const updateSlideAccess = () => {
+        visibleSlides.forEach((slide, index) => {
+          const active = index === current;
+          slide.toggleAttribute('inert', !active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+      };
+
+      const updateDots = () => {
+        [...dots.querySelectorAll('button')].forEach((dot, index) => {
+          const active = index === current;
+          dot.classList.toggle('active', active);
+          dot.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+      };
+
+      const decorateClone = (clone) => {
+        clone.dataset.carouselClone = 'true';
+        clone.setAttribute('aria-hidden', 'true');
+        clone.setAttribute('inert', '');
+        clone.querySelectorAll('[id]').forEach((item) => item.removeAttribute('id'));
+        const cloneCard = clone.querySelector('.news-card');
+        if (cloneCard) {
+          cloneCard.classList.remove('searchable', 'filtered-out', 'home-card-reveal', 'is-revealed');
+          cloneCard.dataset.carouselCloneCard = 'true';
+          cloneCard.style.removeProperty('--home-card-reveal-delay');
+        }
+        clone.querySelectorAll('[data-read-later-toggle]').forEach((item) => item.removeAttribute('data-read-later-toggle'));
+        return clone;
+      };
+
+      const startAuto = () => {
+        clearAuto();
+        if (reduceMotion || visibleSlides.length <= 1) return;
+        autoTimer = window.setInterval(() => {
+          if (document.hidden || section?.hidden || pointerId !== null) return;
+          moveNext();
+        }, AUTO_DELAY);
+      };
+
+      const resumeAutoLater = (delay = RESUME_DELAY) => {
+        clearAuto();
+        clearResume();
+        if (reduceMotion || visibleSlides.length <= 1) return;
+        resumeTimer = window.setTimeout(startAuto, delay);
+      };
+
+      const moveTo = (target) => {
+        if (visibleSlides.length <= 1) return;
+        current = Math.max(0, Math.min(target, visibleSlides.length - 1));
+        physical = current + 1;
+        pendingJump = null;
+        setTrackPosition(physical, true);
+        updateSlideAccess();
+        updateDots();
+      };
+
+      const moveNext = () => {
+        const count = visibleSlides.length;
+        if (count <= 1) return;
+        if (current === count - 1) {
+          current = 0;
+          physical = count + 1;
+          pendingJump = 1;
+        } else {
+          current += 1;
+          physical = current + 1;
+          pendingJump = null;
+        }
+        setTrackPosition(physical, true);
+        updateSlideAccess();
+        updateDots();
+      };
+
+      const movePrevious = () => {
+        const count = visibleSlides.length;
+        if (count <= 1) return;
+        if (current === 0) {
+          current = count - 1;
+          physical = 0;
+          pendingJump = count;
+        } else {
+          current -= 1;
+          physical = current + 1;
+          pendingJump = null;
+        }
+        setTrackPosition(physical, true);
+        updateSlideAccess();
+        updateDots();
+      };
+
+      const rebuild = () => {
+        const previousStoryId = visibleSlides[current]?.querySelector('.news-card')?.dataset.storyId || '';
+        [...track.querySelectorAll('[data-carousel-clone]')].forEach((clone) => clone.remove());
+
+        slides.forEach((slide) => {
+          const card = slide.querySelector('.news-card');
+          const filtered = !card || card.classList.contains('filtered-out');
+          slide.hidden = filtered;
+          slide.removeAttribute('inert');
+          slide.setAttribute('aria-hidden', filtered ? 'true' : 'false');
+        });
+
+        visibleSlides = slides.filter((slide) => !slide.hidden);
+        const preservedIndex = visibleSlides.findIndex((slide) => slide.querySelector('.news-card')?.dataset.storyId === previousStoryId);
+        current = preservedIndex >= 0 ? preservedIndex : 0;
+        pendingJump = null;
+
+        dots.replaceChildren();
+        visibleSlides.forEach((slide, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'editorial-carousel-dot';
+          button.setAttribute('aria-label', `Show top story ${index + 1} of ${visibleSlides.length}`);
+          button.addEventListener('click', () => {
+            clearAuto();
+            moveTo(index);
+            resumeAutoLater();
+          });
+          dots.append(button);
+        });
+
+        if (visibleSlides.length > 1) {
+          const lastClone = decorateClone(visibleSlides[visibleSlides.length - 1].cloneNode(true));
+          const firstClone = decorateClone(visibleSlides[0].cloneNode(true));
+          track.prepend(lastClone);
+          track.append(firstClone);
+          physical = current + 1;
+        } else {
+          physical = 0;
+        }
+
+        dots.hidden = visibleSlides.length <= 1;
+        setTrackPosition(physical, false);
+        updateSlideAccess();
+        updateDots();
+        startAuto();
+      };
+
+      track.addEventListener('transitionend', (event) => {
+        if (event.target !== track || event.propertyName !== 'transform' || pendingJump === null) return;
+        physical = pendingJump;
+        pendingJump = null;
+        setTrackPosition(physical, false);
+      });
+
+      viewport.addEventListener('pointerdown', (event) => {
+        if (!event.isPrimary || visibleSlides.length <= 1) return;
+        pointerId = event.pointerId;
+        startX = event.clientX;
+        startY = event.clientY;
+        deltaX = 0;
+        dragAxis = '';
+        clearAuto();
+        clearResume();
+      });
+
+      viewport.addEventListener('pointermove', (event) => {
+        if (event.pointerId !== pointerId) return;
+        const x = event.clientX - startX;
+        const y = event.clientY - startY;
+
+        if (!dragAxis && Math.max(Math.abs(x), Math.abs(y)) >= 7) {
+          dragAxis = Math.abs(x) > Math.abs(y) ? 'horizontal' : 'vertical';
+          if (dragAxis === 'horizontal') {
+            try { viewport.setPointerCapture(pointerId); } catch {}
+          }
+        }
+
+        if (dragAxis !== 'horizontal') return;
+        event.preventDefault();
+        deltaX = x;
+        track.classList.add('is-dragging');
+        setTrackPosition(physical, false, deltaX);
+      });
+
+      const finishPointer = (event) => {
+        if (event.pointerId !== pointerId) return;
+        const wasHorizontal = dragAxis === 'horizontal';
+        const width = viewport.getBoundingClientRect().width || 1;
+        const threshold = Math.min(72, Math.max(40, width * 0.12));
+        const swipe = wasHorizontal && Math.abs(deltaX) >= threshold;
+
+        track.classList.remove('is-dragging');
+        if (swipe) {
+          suppressClick = true;
+          if (deltaX < 0) moveNext();
+          else movePrevious();
+        } else {
+          setTrackPosition(physical, true);
+        }
+
+        try { viewport.releasePointerCapture(pointerId); } catch {}
+        pointerId = null;
+        deltaX = 0;
+        dragAxis = '';
+        resumeAutoLater();
+        if (suppressClick) window.setTimeout(() => { suppressClick = false; }, 350);
+      };
+
+      viewport.addEventListener('pointerup', finishPointer);
+      viewport.addEventListener('pointercancel', finishPointer);
+      viewport.addEventListener('click', (event) => {
+        if (!suppressClick) return;
+        event.preventDefault();
+        event.stopPropagation();
+        suppressClick = false;
+      }, true);
+
+      viewport.addEventListener('mouseenter', clearAuto);
+      viewport.addEventListener('mouseleave', () => resumeAutoLater(2600));
+      viewport.addEventListener('focusin', clearAuto);
+      viewport.addEventListener('focusout', () => resumeAutoLater(3200));
+
+      const filterObserver = new MutationObserver((mutations) => {
+        const filterChanged = mutations.some((mutation) => {
+          if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') return false;
+          const oldClasses = String(mutation.oldValue || '').split(/\s+/);
+          const wasFiltered = oldClasses.includes('filtered-out');
+          const isFiltered = mutation.target.classList.contains('filtered-out');
+          return wasFiltered !== isFiltered;
+        });
+        if (filterChanged) rebuild();
+      });
+
+      cards.forEach((card) => filterObserver.observe(card, {
+        attributes: true,
+        attributeFilter: ['class'],
+        attributeOldValue: true
+      }));
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) clearAuto();
+        else resumeAutoLater(1800);
+      });
+
+      rebuild();
+    });
+  }
+
   function initialiseNewsCards() {
     initialiseCardImageFallbacks();
     initialiseSourceLogoSizing();
     initialiseHomeCardLookahead();
+    initialiseEditorialCarousels();
   }
 
   if (document.readyState === 'loading') {
