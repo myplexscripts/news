@@ -13,18 +13,26 @@ const publishedTime = (story: TimelineStory) => {
 };
 
 /**
- * Prepare articles for the homepage timeline.
+ * Keep the chronological homepage compact without discarding source-specific stories.
  *
- * The homepage is an article feed, not an event-cluster feed. Every collected
- * article stays independent, even when several publishers cover the same event.
- * Each card also uses its own publication timestamp so a cluster update from a
- * different publisher can never move an older article ahead of a newer one.
+ * Multi-source clusters contribute one homepage card, using the newest report in
+ * that cluster. This applies before the featured carousel is selected, so two
+ * publishers covering the same event cannot consume multiple carousel slots.
+ * Single-source stories remain independent. All original stories stay in news.json
+ * and retain their own permalinks for search and alternate-coverage links.
  */
 export function collapseTimelineStories<T extends TimelineStory>(input: T[]): T[] {
-  return [...input]
-    .map((story) => ({
-      ...story,
-      cluster_latest_published: story.published || story.cluster_latest_published
-    }))
-    .sort((a, b) => publishedTime(b) - publishedTime(a)) as T[];
+  const sorted = [...input].sort((a, b) => publishedTime(b) - publishedTime(a));
+  const seenMultiSourceClusters = new Set<string>();
+
+  return sorted.filter((story) => {
+    const sourceCount = Number(story.cluster_source_count || story.cluster_sources?.length || 1);
+    const clusterId = String(story.cluster_id || '');
+
+    if (sourceCount < 2 || !clusterId) return true;
+    if (seenMultiSourceClusters.has(clusterId)) return false;
+
+    seenMultiSourceClusters.add(clusterId);
+    return true;
+  });
 }

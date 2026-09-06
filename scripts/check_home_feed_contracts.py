@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail CI if homepage chronology or scope filtering regresses."""
+"""Fail CI if homepage deduplication, chronology, or scope filtering regresses."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -17,13 +17,15 @@ def require(condition: bool, message: str) -> None:
 
 
 def main() -> None:
-    require("seenMultiSourceClusters" not in TIMELINE, "homepage must not collapse articles by event cluster")
-    require("cluster_latest_published: story.published || story.cluster_latest_published" in TIMELINE, "homepage cards must use each article's own publication time")
+    require("seenMultiSourceClusters" in TIMELINE, "homepage must collapse duplicate multi-source event clusters")
+    require("sourceCount < 2 || !clusterId" in TIMELINE, "single-source stories must remain independent")
+    require("const sorted = [...input].sort" in TIMELINE, "homepage clustering must keep the newest report from each cluster")
+    require("const newestFirst = (pool) => collapseTimelineStories(pool)" in HOME, "homepage pools must be deduplicated before carousel selection")
     require("data-scope={story.scope || 'local'}" in CARD, "every homepage card must expose its own scope")
     require("timelineCards.forEach" in HOME and "cardMatches(item, query)" in HOME, "scope filtering must run across the full homepage timeline")
     require("const scopeMatch = activeScope === 'all' || itemScope === activeScope" in HOME, "every timeline card must respect Local, Canada, and All")
     require(".home-page .news-card.filtered-out" in HOME_CSS and "display: none !important" in HOME_CSS, "cards rejected by the homepage filter must actually be hidden")
-    print("Homepage feed contracts passed: every article remains independent, chronological, scope-filterable, and visibly hidden when rejected.")
+    print("Homepage feed contracts passed: duplicate multi-source events collapse before carousel selection while chronology and scope filtering remain intact.")
 
 
 if __name__ == "__main__":
