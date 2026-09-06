@@ -39,6 +39,7 @@ jobs:
           python scripts/test_recirculation_cleanup.py
           python scripts/test_article_tail_cleanup.py
           python scripts/test_publisher_hygiene.py
+          python scripts/test_article_contract.py
           python scripts/test_national_post_repair.py
           python scripts/test_source_content_repair.py
           python scripts/test_ctv_photo_repair.py
@@ -72,6 +73,7 @@ jobs:
           python scripts/repair_source_content.py --cbc-limit 0
           python scripts/repair_ctv_photos.py --limit 80
           python scripts/repair_cbc_images.py
+          python scripts/enforce_article_contract.py
 
       - name: Run regression and audit tests
         run: |
@@ -121,6 +123,7 @@ jobs:
           python scripts/repair_cbc_images.py
           python scripts/publisher_hygiene.py
           python scripts/trim_article_tails.py
+          python scripts/enforce_article_contract.py
           cp /tmp/scoop-enriched-output/audit.json data/audit.json
           mkdir -p public/cache
           # Overlay newly enriched media, but never delete files a newer fast refresh added.
