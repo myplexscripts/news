@@ -253,8 +253,48 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
     transform: none !important;
   }
 
-  .editorial-carousel-card .news-card-photo-backdrop {
+  /* Carousel media is always a fixed frame. Landscape art fills it, while
+     portrait and square art stays uncropped over a blurred copy of itself. */
+  .editorial-carousel-card.news-card.card-featured .news-card-media {
+    position: relative !important;
+    overflow: hidden !important;
+    background: var(--gray-6) !important;
+  }
+
+  .editorial-carousel-card.news-card.card-featured .news-card-photo {
+    position: absolute !important;
+    z-index: 1;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    object-fit: cover !important;
+    object-position: var(--focus-x, 50%) var(--focus-y, 50%) !important;
+    transform: none !important;
+  }
+
+  .editorial-carousel-card.news-card.card-featured .news-card-photo-backdrop {
     display: none;
+  }
+
+  .editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo-backdrop {
+    position: absolute !important;
+    z-index: 0;
+    inset: -8%;
+    display: block !important;
+    width: 116% !important;
+    height: 116% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    filter: blur(22px) saturate(1.08);
+    transform: scale(1.08) !important;
+    opacity: 0.78;
+  }
+
+  .editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo {
+    object-fit: contain !important;
+    object-position: center !important;
   }
 
   @media (max-width: 720px) {
@@ -300,8 +340,7 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
       transform: none !important;
     }
 
-    /* A roughly 1:1 source stays square. The same art fills and blurs behind it. */
-    .editorial-carousel-card.news-card.card-featured .news-card-media.is-square-image .news-card-photo-backdrop {
+    .editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo-backdrop {
       position: absolute !important;
       z-index: 0;
       inset: -8%;
@@ -316,7 +355,7 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
       opacity: 0.78;
     }
 
-    .editorial-carousel-card.news-card.card-featured .news-card-media.is-square-image .news-card-photo {
+    .editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo {
       object-fit: contain !important;
       object-position: center !important;
     }
@@ -363,7 +402,10 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
         if (!item.naturalWidth || !item.naturalHeight) return;
 
         const ratio = item.naturalWidth / item.naturalHeight;
-        const isSquare = ratio >= 0.92 && ratio <= 1.08;
+        const isLandscape = ratio > 1.02;
+        const isSquare = ratio >= 0.98 && ratio <= 1.02;
+        const isPortrait = ratio < 0.98;
+        const useBackdrop = !isLandscape;
         const storyId = card.dataset.storyId || '';
         const src = item.currentSrc || item.src;
 
@@ -371,8 +413,11 @@ const sourceCount = Math.max(Number(story.cluster_source_count || 0), clusterSou
           if (!(candidate instanceof HTMLElement) || candidate.dataset.storyId !== storyId) return;
           const candidateMedia = candidate.querySelector('.news-card-media');
           if (!(candidateMedia instanceof HTMLElement)) return;
+          candidateMedia.classList.toggle('is-landscape-image', isLandscape);
           candidateMedia.classList.toggle('is-square-image', isSquare);
-          candidateMedia.classList.toggle('is-fill-image', !isSquare);
+          candidateMedia.classList.toggle('is-portrait-image', isPortrait);
+          candidateMedia.classList.toggle('is-contained-image', useBackdrop);
+          candidateMedia.classList.toggle('is-fill-image', isLandscape);
           const backdrop = candidateMedia.querySelector('.news-card-photo-backdrop');
           if (backdrop instanceof HTMLImageElement && src) backdrop.src = src;
         });
