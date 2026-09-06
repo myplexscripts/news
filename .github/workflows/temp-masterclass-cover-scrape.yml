@@ -1,0 +1,42 @@
+name: Temp MasterClass Cover Scrape
+
+on:
+  push:
+    branches:
+      - temp/masterclass-cover-scrape
+
+permissions:
+  contents: read
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download official MasterClass cover images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p covers
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/oqgWHZ8QVEG6upxTbBx8PWTC?format=webp&quality=100&width=1920' -o 'covers/Season 071 - Bob Iger.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/UTFkJhvJSZHsNcHz5nm7vcjX?format=webp&quality=100&width=1920' -o 'covers/Season 077 - Neil deGrasse Tyson.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/QXaEd5sJyYxzbd42Cw5ZJNsC?format=webp&quality=100&width=1920' -o 'covers/Season 082 - RuPaul.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/502vwe54lj3esoibj2t1rysntl9w?format=webp&quality=100&width=1920' -o 'covers/Season 122 - Elaine Welteroth.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/68esjepf5y4yw1ef08rvztonfnmy?format=webp&quality=100&width=1920' -o 'covers/Season 141 - President Bill Clinton.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/y6tg305m1ifekg50a8p5a8chql1m?format=webp&quality=100&width=1920' -o 'covers/Season 154 - Richard Branson.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/lizh66df7xomyziovq13ze4rnsr1?format=webp&quality=100&width=1920' -o 'covers/Season 171 - Jocko Willink.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/u45bksktnoy3jdcmmnd7yxfhbcgh?format=webp&quality=100&width=1920' -o 'covers/Season 172 - James Clear.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/624ez465zuewcjwwf1srhv6yeanx?format=webp&quality=100&width=1920' -o 'covers/Season 173 - Whitney Wolfe Herd.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/7c5gfywnzfe4dq5tu0aaafv4gzzj?format=webp&quality=100&width=1920' -o 'covers/Season 175 - Amy Poehler.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/0t0vpgypsslux4a9sq4ixn3webpd?format=webp&quality=100&width=1920' -o 'covers/Season 176 - Kevin Hart.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/zywpf9qg4t2x1umjyho0zgo70uxl?format=webp&quality=100&width=1920' -o 'covers/Season 177 - Martha Stewart.webp'
+          curl -fL --retry 3 'https://www.masterclass.com/course-images/attachments/douszrm0l8ck5d1jg4zi75fh4qs4?format=webp&quality=100&width=1920' -o 'covers/Season 179 - Mark Cuban.webp'
+          file covers/*
+
+      - name: Upload covers as ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: masterclass-covers
+          path: covers/*
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 1
