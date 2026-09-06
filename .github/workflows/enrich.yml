@@ -71,7 +71,7 @@ jobs:
           python scripts/trim_article_tails.py
           python scripts/repair_source_content.py --cbc-limit 0
           python scripts/repair_ctv_photos.py --limit 80
-          python scripts/cache_cbc_images.py
+          python scripts/repair_cbc_images.py
 
       - name: Run regression and audit tests
         run: |
@@ -118,6 +118,7 @@ jobs:
           python scripts/apply_local_source_rules.py
           python scripts/repair_source_content.py --cbc-limit 0
           python scripts/repair_ctv_photos.py --limit 80
+          python scripts/repair_cbc_images.py
           python scripts/publisher_hygiene.py
           python scripts/trim_article_tails.py
           cp /tmp/scoop-enriched-output/audit.json data/audit.json
