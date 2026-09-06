@@ -96,6 +96,7 @@ jobs:
           python scripts/test_final_article_guard.py
           python scripts/test_article_tail_cleanup.py
           python scripts/test_publisher_hygiene.py
+          python scripts/test_article_contract.py
           python scripts/test_refresh_merge.py
           python scripts/check_scope_contracts.py
           python scripts/check_local_source_rules.py
@@ -119,7 +120,9 @@ jobs:
 
       - name: Final article boundary guard
         if: steps.due.outputs.run == 'true'
-        run: python scripts/trim_article_tails.py
+        run: |
+          python scripts/trim_article_tails.py
+          python scripts/enforce_article_contract.py
 
       - name: Run cluster-aware audit
         if: steps.due.outputs.run == 'true'
@@ -158,6 +161,7 @@ jobs:
           python scripts/publisher_hygiene.py
           python scripts/sanitize_article_blocks.py
           python scripts/trim_article_tails.py
+          python scripts/enforce_article_contract.py
           cp /tmp/scoop-fast-output/audit.json data/audit.json
           mkdir -p public/cache
           # Overlay cache additions from this refresh without deleting media
