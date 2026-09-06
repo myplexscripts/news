@@ -1,0 +1,42 @@
+name: Temp Amanda Ripley Cover
+
+on:
+  push:
+    branches:
+      - temp/masterclass-cover-scrape
+    paths:
+      - .github/workflows/temp-amanda-ripley-cover.yml
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download official MasterClass image
+        run: |
+          python - <<'PY'
+          import urllib.request
+          url = 'https://www.masterclass.com/course-images/attachments/96q8c1u6i7dovnbbdo3osz873qrt?format=webp&quality=90&width=1920'
+          req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+          with urllib.request.urlopen(req, timeout=30) as r, open('source.webp','wb') as f:
+              f.write(r.read())
+          PY
+      - name: Match existing 1920x800 cover format
+        run: |
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image
+          im = Image.open('source.webp').convert('RGB')
+          target_w, target_h = 1920, 800
+          if im.width != target_w:
+              new_h = round(im.height * target_w / im.width)
+              im = im.resize((target_w, new_h), Image.Resampling.LANCZOS)
+          top = max(0, (im.height - target_h) // 2)
+          im = im.crop((0, top, target_w, top + target_h))
+          im.save('The Conflict Playbook - Amanda Ripley.webp', 'WEBP', quality=92, method=6)
+          print('output', im.size)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: amanda-ripley-conflict-playbook-cover
+          path: The Conflict Playbook - Amanda Ripley.webp
+          retention-days: 1
