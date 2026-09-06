@@ -91,6 +91,7 @@
 }
 
 .editorial-carousel-card.news-card.card-featured .news-card-media {
+  position: relative !important;
   grid-column: 1 !important;
   grid-row: 1 !important;
   width: 100% !important;
@@ -98,24 +99,54 @@
   min-height: 0 !important;
   aspect-ratio: auto !important;
   margin: 0 !important;
-  display: grid !important;
-  place-items: center;
-  overflow: hidden;
+  display: block !important;
+  overflow: hidden !important;
   border-radius: 0 !important;
-  background: var(--gray-6);
+  background: var(--gray-6) !important;
 }
 
+/* Landscape source art always fills the frame. object-fit: cover preserves the
+   original aspect ratio while cropping only the overflow needed to fill it. */
 .editorial-carousel-card.news-card.card-featured .news-card-photo {
+  position: absolute !important;
+  z-index: 1;
+  inset: 0;
   width: 100% !important;
   height: 100% !important;
   min-height: 0 !important;
-  object-fit: contain !important;
-  object-position: center !important;
+  object-fit: cover !important;
+  object-position: var(--focus-x, 50%) var(--focus-y, 50%) !important;
   transform: none !important;
 }
 
 .editorial-carousel-card.news-card.card-featured:hover .news-card-photo {
   transform: none !important;
+}
+
+.editorial-carousel-card.news-card.card-featured .news-card-photo-backdrop {
+  display: none !important;
+}
+
+/* Portrait and square source art stays fully visible. A second copy fills the
+   frame behind it so the 16:9 canvas never shows empty bars. */
+.editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo-backdrop {
+  position: absolute !important;
+  z-index: 0;
+  inset: -8%;
+  display: block !important;
+  width: 116% !important;
+  height: 116% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: blur(22px) saturate(1.08);
+  transform: scale(1.08) !important;
+  opacity: 0.78;
+}
+
+.editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo {
+  object-fit: contain !important;
+  object-position: center !important;
 }
 
 .editorial-carousel-card.news-card.card-featured .news-card-body {
@@ -437,19 +468,47 @@
     min-height: 0 !important;
   }
 
+  /* On mobile, the media canvas itself is exactly 16:9. */
   .editorial-carousel-card.news-card.card-featured .news-card-media {
-    display: grid !important;
+    position: relative !important;
+    display: block !important;
     width: 100% !important;
-    height: clamp(160px, 34svh, 300px) !important;
+    height: auto !important;
     min-height: 0 !important;
-    aspect-ratio: auto !important;
+    aspect-ratio: 16 / 9 !important;
     flex: 0 0 auto;
-    background: var(--gray-6);
+    overflow: hidden !important;
+    background: var(--gray-6) !important;
   }
 
   .editorial-carousel-card.news-card.card-featured .news-card-photo {
+    position: absolute !important;
+    z-index: 1;
+    inset: 0;
     width: 100% !important;
     height: 100% !important;
+    min-height: 0 !important;
+    object-fit: cover !important;
+    object-position: var(--focus-x, 50%) var(--focus-y, 50%) !important;
+    transform: none !important;
+  }
+
+  .editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo-backdrop {
+    position: absolute !important;
+    z-index: 0;
+    inset: -8%;
+    display: block !important;
+    width: 116% !important;
+    height: 116% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    filter: blur(22px) saturate(1.08);
+    transform: scale(1.08) !important;
+    opacity: 0.78;
+  }
+
+  .editorial-carousel-card.news-card.card-featured .news-card-media.is-contained-image .news-card-photo {
     object-fit: contain !important;
     object-position: center !important;
   }
@@ -512,10 +571,6 @@
 }
 
 @media (max-height: 620px) and (max-width: 720px) {
-  .editorial-carousel-card.news-card.card-featured .news-card-media {
-    height: min(30svh, 190px) !important;
-  }
-
   .editorial-carousel-card.news-card.card-featured h3 {
     font-size: 22px !important;
   }
