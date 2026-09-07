@@ -88,11 +88,45 @@ def test_tiny_encoded_remote_derivative_cannot_be_card_hero() -> None:
         "card_image_small": "cache/news/stale-headshot-sm.webp",
         "content_blocks": [],
     }
-    assert repair.repair_story(story)
+    original_recover = repair.recover_cbc_hero
+    try:
+        repair.recover_cbc_hero = lambda _story: ""
+        assert repair.repair_story(story)
+    finally:
+        repair.recover_cbc_hero = original_recover
     assert story["image"] == ""
     assert story["card_image"] == ""
     assert story["card_image_small"] == ""
     assert story["card_image_rejected_reason"] == "tiny-remote-derivative"
+
+
+def test_cbc_tracking_pixel_is_rejected_and_recovered() -> None:
+    # Exact failure observed on the London centre-running bus-lane article.
+    pixel = (
+        "https://www.cbc.ca/akam/13/pixel_6f205634?"
+        "a=dD02YjNiMzZmOTcyNmIwYzRjNGJjYmFhZDA1ZWQ0ODcwNzQ2NmQ3NGE0JmpzPW9mZg=="
+    )
+    recovered = "cache/cbc/cbc-real-bus-photo.jpg"
+    assert repair.is_invalid_remote_image(pixel)
+    story = {
+        "source": "CBC News London",
+        "image": pixel,
+        "image_alt": "New LTC centre bus lanes",
+        "image_caption": "Tariq Alyousif boarding the Express Route 90 from the new platform.",
+        "cbc_lite_url": "https://www.cbc.ca/lite/story/9.7334426",
+        "card_image": "",
+        "card_image_small": "",
+        "content_blocks": [],
+    }
+    original_recover = repair.recover_cbc_hero
+    try:
+        repair.recover_cbc_hero = lambda _story: recovered
+        assert repair.repair_story(story)
+    finally:
+        repair.recover_cbc_hero = original_recover
+    assert story["image"] == recovered
+    assert story["card_image"] == recovered
+    assert story["card_image_rejected_reason"] == "invalid-remote-image"
 
 
 def test_tiny_inline_derivative_is_not_promoted() -> None:
@@ -121,6 +155,7 @@ def main() -> None:
     test_remote_hero_only_accepts_matching_cache_name()
     test_local_hero_replaces_stale_cache_reference()
     test_tiny_encoded_remote_derivative_cannot_be_card_hero()
+    test_cbc_tracking_pixel_is_rejected_and_recovered()
     test_tiny_inline_derivative_is_not_promoted()
     print("Card image contract regression tests passed")
 
