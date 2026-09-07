@@ -1,19 +1,26 @@
 {
-  "name": "london-news",
-  "version": "1.0.0",
+  "name": "forest-city-news",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "python scripts/build_search_index.py && astro build",
-    "preview": "astro preview",
+    "dev": "python scripts/prepare_frontend.py && vite dev",
+    "build": "python scripts/prepare_frontend.py && python scripts/build_search_index.py && vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "fetch": "python scripts/run_scoop.py"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "astro": "^7.2.8",
     "dexie": "^4.4.5",
-    "minisearch": "^7.2.0",
-    "typescript": "^5.9.2"
+    "minisearch": "^7.2.0"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "typescript": "^5.9.2",
+    "vite": "^6.0.0"
   }
 }
