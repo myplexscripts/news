@@ -1,0 +1,455 @@
+name: Apply publisher article image fixes
+
+on:
+  push:
+    branches: [fix/publisher-article-images-20260907]
+    paths:
+      - '.github/workflows/apply-publisher-image-fixes.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply scraper fixes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/fetch_news.py')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('EXTRACTION_SCHEMA = 15', 'EXTRACTION_SCHEMA = 16', 1)
+
+          start = text.index('def srcset_candidates(value: Any) -> list[tuple[int, str]]:')
+          end = text.index('\ndef best_img_url(', start)
+          replacement = '''def srcset_candidates(value: Any) -> list[tuple[int, str]]:
+    """Parse responsive image candidates without splitting commas inside URLs.
+
+    CBC image asset paths contain a literal comma before the numeric asset id.
+    A plain ``str.split(",")`` therefore corrupts otherwise valid srcset URLs.
+    Candidate descriptors are the reliable boundary, so parse complete
+    ``URL + width/density descriptor`` pairs first and fall back only when a
+    publisher supplies a non-standard descriptor-free srcset.
+    """
+    raw = html.unescape(str(value or "")).strip()
+    if not raw:
+        return []
+
+    candidates: list[tuple[int, str]] = []
+    pattern = re.compile(r'(?:^|,\\s*)(\\S+?)\\s+([0-9.]+[wx])(?=\\s*(?:,|$))', re.I)
+    for match in pattern.finditer(raw):
+        url, descriptor = match.group(1), match.group(2).lower()
+        try:
+            number = float(descriptor[:-1])
+            score = int(number * (1000 if descriptor.endswith("x") else 1))
+        except Exception:
+            score = 1
+        candidates.append((max(1, score), url))
+
+    if candidates:
+        return candidates
+
+    # Descriptor-free srcsets are uncommon but legal enough in the wild to
+    # preserve the old permissive behaviour. Do not use this path for normal
+    # CBC responsive markup because its URL itself contains commas.
+    for part in raw.split(','):
+        candidate = part.strip().split()[0] if part.strip() else ''
+        if candidate:
+            candidates.append((1, candidate))
+    return candidates
+
+'''
+          text = text[:start] + replacement + text[end + 1:]
+
+          valid_start = text.index('def valid_article_image(')
+          valid_end = text.index('\ndef figure_caption(', valid_start)
+          valid_slice = text[valid_start:valid_end]
+          old = '    if any(token in lower for token in IMAGE_JUNK):\n        return False'
+          new = '    # CBC uses /default.jpg for real editorial photos, so "default" is only\n    # a junk signal in element metadata, not in an otherwise valid image URL.\n    if any(token in lower for token in IMAGE_JUNK if token != "default"):\n        return False'
+          assert old in valid_slice, 'valid_article_image URL junk check changed unexpectedly'
+          valid_slice = valid_slice.replace(old, new, 1)
+          text = text[:valid_start] + valid_slice + text[valid_end:]
+
+          old_cbc = '''        "remove": ["[data-cy*='related']", ".related", ".newsletter", ".share", ".ad"],'''
+          new_cbc = '''        "remove": [
+            "[data-cy*='related']", ".related", ".newsletter", ".share", ".ad",
+            "[data-cy*='player']", "[class*='player-placeholder']", ".mediaEmbed",
+        ],'''
+          assert old_cbc in text, 'CBC profile changed unexpectedly'
+          text = text.replace(old_cbc, new_cbc, 1)
+
+          old_globe = '''        "roots": [
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".c-article-body", "main article", "article", "main",
+        ],'''
+          new_globe = '''        "roots": [
+            "article#content-gate", "#content-gate",
+            "[data-testid='article-body']", "[itemprop='articleBody']",
+            ".article-body", ".c-article-body", "main article", "article",
+        ],'''
+          assert old_globe in text, 'Globe profile changed unexpectedly'
+          text = text.replace(old_globe, new_globe, 1)
+
+          selection_needle = '''    else:
+        blocks = dom_blocks
+        paragraphs, text = text_from_blocks(blocks)
+
+    raw_summary = ('''
+          structured = '''    else:
+        blocks = dom_blocks
+        paragraphs, text = text_from_blocks(blocks)
+
+    # For publishers with noisy whole-page markup, the images that survived the
+    # chosen article body are more trustworthy than generic page-wide candidates.
+    # This is especially important for CTV, whose server HTML contains dozens of
+    # recommendation cards, and for Globe pages with large recirculation rails.
+    if source.name == "CBC News London" or is_ctv_source(source.name) or "globe and mail" in source.name.lower():
+        structured_inline: list[dict[str, Any]] = []
+        for block in blocks:
+            if block.get("type") != "image" or not block.get("url"):
+                continue
+            image_url = normalize_image_url(str(block.get("url") or ""), final_url)
+            if not valid_article_image(image_url) or same_image(image_url, lead_image):
+                continue
+            if any(same_image(image_url, prior["url"]) for prior in structured_inline):
+                continue
+            structured_inline.append({
+                "url": image_url,
+                "alt": clean_text(block.get("alt", ""), 180),
+                "caption": clean_text(block.get("caption", ""), 320),
+                "width": int_attr(block.get("width")) or None,
+                "height": int_attr(block.get("height")) or None,
+                "score": 1000 - len(structured_inline),
+            })
+            if len(structured_inline) >= MAX_ARTICLE_IMAGES:
+                break
+        if structured_inline:
+            inline_candidates = structured_inline
+        elif is_ctv_source(source.name):
+            # Never publish recommendation-card images as CTV article media just
+            # because the visible article DOM is client-rendered.
+            inline_candidates = []
+
+    raw_summary = ('''
+          assert selection_needle in text, 'article selection insertion point changed unexpectedly'
+          text = text.replace(selection_needle, structured, 1)
+          path.write_text(text, encoding='utf-8')
+
+          path = Path('scripts/enrich_article_media.py')
+          text = path.read_text(encoding='utf-8')
+          text = text.replace('MEDIA_SCHEMA = 3', 'MEDIA_SCHEMA = 4', 1)
+          old_import = '''    extract_dom_blocks as extract_article_dom_blocks,
+    image_dedupe_key,
+    same_image,
+    valid_article_image,
+)'''
+          new_import = '''    extract_dom_blocks as extract_article_dom_blocks,
+    extract_ctv_embedded_blocks,
+    image_dedupe_key,
+    is_ctv_source,
+    same_image,
+    valid_article_image,
+)'''
+          assert old_import in text, 'media import block changed unexpectedly'
+          text = text.replace(old_import, new_import, 1)
+
+          start = text.index('def process_story(story: dict[str, Any]) -> tuple[list[tuple[str, dict[str, Any]]], str]:')
+          end = text.index('\ndef story_needs_work(', start)
+          replacement = '''def process_story(story: dict[str, Any]) -> tuple[list[tuple[str, dict[str, Any]]], str]:
+    source = clean_text(story.get("source", ""))
+    cbc_media: list[tuple[str, dict[str, Any]]] = []
+    if source == "CBC News London":
+        # CBC's Jina/Lite route is useful for playable audio/video, but returning
+        # here used to prevent the normal DOM pass from ever recovering photos.
+        cbc_media = extract_cbc_media(story)
+
+    url = clean_text(story.get("url", ""))
+    if not url:
+        return cbc_media, "cbc:jina-media-v4" if cbc_media else "dom:no-url"
+    try:
+        raw, final_url = fetch_html(url)
+    except Exception as exc:
+        if cbc_media:
+            return cbc_media, "cbc:jina-media-v4"
+        return [], f"dom:{type(exc).__name__}"
+
+    dom_media = extract_dom_media(raw, final_url)
+    hero_url = clean_text(story.get("image", ""))
+    images = extract_dom_images(
+        raw,
+        final_url,
+        source,
+        clean_text(story.get("title", "")),
+        hero_url,
+    )
+
+    if is_ctv_source(source):
+        # CTV's actual article body lives in Arc/Fusion state on pages where the
+        # visible server DOM has no usable article root. Reuse that first-party
+        # structure so recommendation-card photos never stand in for story media.
+        soup = BeautifulSoup(raw, "html.parser")
+        embedded_blocks, _stats = extract_ctv_embedded_blocks(
+            soup,
+            clean_text(story.get("title", "")),
+            final_url,
+        )
+        embedded_images: list[tuple[str, dict[str, Any]]] = []
+        anchor = ""
+        for block in embedded_blocks:
+            kind = block.get("type")
+            if kind in {"paragraph", "heading", "quote"} and block.get("text"):
+                anchor = clean_text(block.get("text"), 240)
+                continue
+            if kind != "image" or not block.get("url"):
+                continue
+            image_url = str(block.get("url") or "")
+            if same_image(image_url, hero_url) or not valid_article_image(image_url):
+                continue
+            embedded_images.append((anchor, block))
+        if embedded_images:
+            images = [*embedded_images, *images]
+
+    combined = [*cbc_media, *dom_media, *images]
+    deduped: list[tuple[str, dict[str, Any]]] = []
+    seen: set[str] = set()
+    for anchor, block in combined:
+        key = block_key(block)
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        deduped.append((anchor, block))
+
+    if source == "CBC News London":
+        return deduped, "cbc:jina-dom-media-images-v4"
+    if is_ctv_source(source):
+        return deduped, "ctv:embedded-dom-media-images-v4"
+    return deduped, "dom:media-images-v4"
+
+'''
+          text = text[:start] + replacement + text[end + 1:]
+          path.write_text(text, encoding='utf-8')
+
+          for workflow_name, needle, insertion in [
+              ('.github/workflows/refresh.yml', '          python scripts/test_scoop_runtime.py\n', '          python scripts/test_scoop_runtime.py\n          python scripts/test_publisher_image_structures.py\n'),
+              ('.github/workflows/enrich.yml', '          python scripts/test_article_media.py\n', '          python scripts/test_article_media.py\n          python scripts/test_publisher_image_structures.py\n'),
+          ]:
+              wf = Path(workflow_name)
+              body = wf.read_text(encoding='utf-8')
+              assert needle in body, f'{workflow_name} test insertion point changed unexpectedly'
+              body = body.replace(needle, insertion, 1)
+              wf.write_text(body, encoding='utf-8')
+          PY
+
+          cat > scripts/test_publisher_image_structures.py <<'PYTEST'
+          from __future__ import annotations
+
+          from unittest.mock import patch
+
+          from bs4 import BeautifulSoup
+
+          import enrich_article_media as media
+          import fetch_news as scoop
+
+
+          def test_cbc_srcset_keeps_literal_asset_comma() -> None:
+              value = (
+                  'https://i.cbc.ca/ais/abc-123,1788727815050/full/max/0/default.jpg?im=Resize%3D796 796w,'
+                  'https://i.cbc.ca/ais/abc-123,1788727815050/full/max/0/default.jpg?im=Resize%3D1280 1280w'
+              )
+              candidates = scoop.srcset_candidates(value)
+              assert candidates[-1][0] == 1280
+              best = max(candidates, key=lambda item: item[0])[1]
+              assert best.startswith('https://i.cbc.ca/ais/abc-123,1788727815050/')
+              assert '/default.jpg' in best
+
+
+          def test_cbc_default_jpg_is_not_treated_as_placeholder() -> None:
+              url = 'https://i.cbc.ca/ais/abc-123,1788727815050/full/max/0/default.jpg?im=Resize%3D1280'
+              assert scoop.valid_article_image(url)
+
+
+          def test_cbc_story_wrapper_keeps_real_photos_and_drops_player_thumbnail() -> None:
+              raw = '''
+              <main>
+                <div data-cy="storyWrapper">
+                  <p>London transit riders are using the new centre-running lanes after construction was completed.</p>
+                  <div class="player-placeholder-video-ui" data-cy="player-placeholder-ui-container">
+                    <img src="https://i.cbc.ca/ais/video,1700000000000/full/max/0/default.jpg?im=Resize%3D620" width="620" height="349">
+                  </div>
+                  <figure class="imageMedia image full">
+                    <picture>
+                      <img src="https://i.cbc.ca/ais/photo,1788727815050/full/max/0/default.jpg"
+                           srcset="https://i.cbc.ca/ais/photo,1788727815050/full/max/0/default.jpg?im=Resize%3D796 796w,https://i.cbc.ca/ais/photo,1788727815050/full/max/0/default.jpg?im=Resize%3D1280 1280w"
+                           alt="A rider boards the bus">
+                    </picture>
+                    <figcaption>A rider boards from the new centre platform. (CBC)</figcaption>
+                  </figure>
+                  <p>Officials said the platform and signals are intended to make service faster and safer.</p>
+                </div>
+              </main>
+              '''
+              blocks, stats, method = scoop.extract_dom_blocks(
+                  BeautifulSoup(raw, 'html.parser'),
+                  'https://www.cbc.ca/news/canada/london/example-9.1234567',
+                  'CBC News London',
+                  'London bus lanes open',
+                  '',
+              )
+              images = [block for block in blocks if block.get('type') == 'image']
+              assert method.startswith('dom:cbc:')
+              assert len(images) == 1, (images, stats)
+              assert images[0]['url'].startswith('https://i.cbc.ca/ais/photo,1788727815050/')
+              assert 'Resize%3D1280' in images[0]['url']
+
+
+          def test_globe_prefers_content_gate_over_whole_main() -> None:
+              raw = '''
+              <main id="main-content">
+                <article id="content-gate">
+                  <p>The first reported paragraph contains enough detail to identify the actual article body for extraction.</p>
+                  <figure><img src="https://www.theglobeandmail.com/resizer/v2/REAL.JPG?width=1200" width="600" height="400"></figure>
+                  <p>The second reported paragraph continues the story with additional information from the scene.</p>
+                </article>
+                <section class="recommendations">
+                  <article><p>Recommended story text that should not cause the whole main element to win article-root scoring.</p></article>
+                  <article><p>Another recommended story with extra copy that belongs outside the current article.</p></article>
+                  <article><p>A third recommendation makes the main container deliberately larger than the real body.</p></article>
+                </section>
+              </main>
+              '''
+              root, selector = scoop.choose_article_root(BeautifulSoup(raw, 'html.parser'), 'The Globe and Mail')
+              assert root is not None
+              assert root.get('id') == 'content-gate', selector
+
+
+          def test_ctv_media_pass_uses_embedded_story_images_not_page_cards() -> None:
+              raw = '''
+              <html><body>
+                <script id="fusion-metadata" type="application/javascript">
+                Fusion.globalContent={
+                  "content_elements": [
+                    {"type":"text","content":"The first paragraph explains the program and provides enough reporting detail about the people involved and why the approach is being used."},
+                    {"type":"image","url":"https://www.ctvnews.ca/resizer/v2/INLINE.jpeg?auth=abc","width":1920,"height":1080,"subtitle":"Program participant","caption":"A participant speaks outside the store. (CTV News)"},
+                    {"type":"text","content":"The second paragraph adds comments from organizers and describes what they hope customers and security staff will experience."},
+                    {"type":"image","url":"https://www.ctvnews.ca/resizer/v2/HERO.jpeg?auth=xyz","width":1920,"height":1080,"subtitle":"Community ambassador","caption":"The community ambassador outside the store. (CTV News)"}
+                  ]
+                };Fusion.arcSite="ctvnews";
+                </script>
+                <article><a href="/canada/article/unrelated"><img src="https://www.ctvnews.ca/resizer/v2/RECIRC.jpg?width=800" width="800" height="450" alt="Unrelated story"></a></article>
+              </body></html>
+              '''
+              story = {
+                  'source': 'CTV News Canada',
+                  'url': 'https://www.ctvnews.ca/canada/article/example/',
+                  'title': 'Program aims to create a calmer store environment',
+                  'image': 'https://www.ctvnews.ca/resizer/v2/HERO.jpeg?auth=xyz',
+              }
+              with patch.object(media, 'fetch_html', return_value=(raw, story['url'])):
+                  found, method = media.process_story(story)
+              urls = [block.get('url', '') for _, block in found if block.get('type') == 'image']
+              assert method == 'ctv:embedded-dom-media-images-v4'
+              assert any('/INLINE.jpeg' in url for url in urls)
+              assert not any('/HERO.jpeg' in url for url in urls)
+              assert not any('/RECIRC.jpg' in url for url in urls)
+
+
+          def test_cbc_audio_does_not_prevent_photo_recovery() -> None:
+              raw = '''
+              <main><div data-cy="storyWrapper">
+                <p>The researcher described how historical work patterns shaped modern ideas about exhaustion and labour.</p>
+                <figure><img src="https://i.cbc.ca/ais/researcher,1788290677516/full/max/0/default.jpg" width="1200" height="675" alt="A researcher at Western University"><figcaption>The researcher at Western University. (CBC)</figcaption></figure>
+                <p>The interview also connected those patterns to the way modern workplaces measure time and productivity.</p>
+              </div></main>
+              '''
+              story = {
+                  'source': 'CBC News London',
+                  'url': 'https://www.cbc.ca/news/canada/london/example-9.1234567',
+                  'title': 'Burnout is not new',
+                  'image': '',
+              }
+              audio = ('Listen to the interview', {'type':'media','media_type':'audio','url':'https://media.example.test/interview.mp3','title':'Interview'})
+              with patch.object(media, 'extract_cbc_media', return_value=[audio]), patch.object(media, 'fetch_html', return_value=(raw, story['url'])):
+                  found, method = media.process_story(story)
+              kinds = [block.get('type') for _, block in found]
+              assert method == 'cbc:jina-dom-media-images-v4'
+              assert 'media' in kinds
+              assert 'image' in kinds
+
+
+          def main() -> int:
+              tests = [
+                  test_cbc_srcset_keeps_literal_asset_comma,
+                  test_cbc_default_jpg_is_not_treated_as_placeholder,
+                  test_cbc_story_wrapper_keeps_real_photos_and_drops_player_thumbnail,
+                  test_globe_prefers_content_gate_over_whole_main,
+                  test_ctv_media_pass_uses_embedded_story_images_not_page_cards,
+                  test_cbc_audio_does_not_prevent_photo_recovery,
+              ]
+              for test in tests:
+                  test()
+                  print(f'PASS {test.__name__}')
+              return 0
+
+
+          if __name__ == '__main__':
+              raise SystemExit(main())
+          PYTEST
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run focused and related tests
+        run: |
+          python scripts/test_publisher_image_structures.py
+          python scripts/test_article_media.py
+          python scripts/test_ctv_photo_repair.py
+          python scripts/test_source_profiles.py
+          python scripts/test_article_sanitizer.py
+      - name: Live-check supplied publisher pages
+        shell: bash
+        run: |
+          python - <<'PY'
+          from bs4 import BeautifulSoup
+          import fetch_news as f
+          from sources import Source
+
+          cases = [
+              ('CBC burnout', 'CBC News London', "https://www.cbc.ca/news/canada/london/burnout-isn-t-new-how-18th-century-farming-set-the-stage-for-modern-worker-exhaustion-9.7328400"),
+              ('CBC buses', 'CBC News London', "https://www.cbc.ca/news/canada/london/here-s-what-you-need-to-know-about-london-s-new-centre-running-bus-lanes-9.7334426"),
+              ('CTV advocate', 'CTV News Canada', 'https://www.ctvnews.ca/canada/article/indigenous-advocate-leads-calm-environment-in-program-for-customers-security-guards/'),
+              ('Globe floods', 'The Globe and Mail', 'https://www.theglobeandmail.com/canada/article-cape-breton-nova-scotia-floods-emergency-roads-power/'),
+          ]
+          for label, source_name, url in cases:
+              raw, final = f.fetch_html(url)
+              soup = BeautifulSoup(raw, 'html.parser')
+              ld = f.article_json_ld(soup)
+              candidates = f.collect_image_candidates(soup, final, ld)
+              lead = candidates[0]['url'] if candidates else ''
+              blocks, stats, method = f.extract_dom_blocks(soup, final, source_name, label, lead)
+              dom_images = [b for b in blocks if b.get('type') == 'image']
+              ctv_images = []
+              if f.is_ctv_source(source_name):
+                  ctv_blocks, _ = f.extract_ctv_embedded_blocks(soup, label, final)
+                  ctv_images = [b for b in ctv_blocks if b.get('type') == 'image']
+              print('LIVE', label, 'lead=', bool(lead), 'candidates=', len(candidates), 'dom_images=', len(dom_images), 'ctv_embedded_images=', len(ctv_images), 'method=', method, 'rejected=', stats.get('images_rejected', 0))
+              for img in dom_images:
+                  print('  DOM', img.get('url'), '|', img.get('caption', ''))
+              for img in ctv_images:
+                  print('  CTV', img.get('url'), '|', img.get('caption', ''))
+          PY
+      - name: Commit tested fixes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/fetch_news.py scripts/enrich_article_media.py scripts/test_publisher_image_structures.py .github/workflows/refresh.yml .github/workflows/enrich.yml
+          git commit -m "Improve CBC CTV and Globe article images"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
