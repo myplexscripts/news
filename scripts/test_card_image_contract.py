@@ -69,11 +69,59 @@ def test_local_hero_replaces_stale_cache_reference() -> None:
     assert story["card_image_small"] == ""
 
 
+def test_tiny_encoded_remote_derivative_cannot_be_card_hero() -> None:
+    # Regression for the CBC centre-running bus story. The CDN URL carried
+    # story-like alt/caption metadata but explicitly requested a 76 px square
+    # rendition, which was the reporter's profile photo.
+    tiny = (
+        "https://i.cbc.ca/ais/1.7528226,1746569401000/full/max/0/default.jpg?"
+        "im=Crop%2Crect%3D%280%2C0%2C3395%2C3395%29%3BResize%3D76"
+    )
+    assert repair.requested_remote_sizes(tiny) == [76]
+    assert repair.is_tiny_remote_derivative(tiny)
+    story = {
+        "source": "CBC News London",
+        "image": tiny,
+        "image_alt": "New LTC centre bus lanes",
+        "image_caption": "Tariq Alyousif boarding the Express Route 90 from the new platform.",
+        "card_image": "cache/news/stale-headshot.webp",
+        "card_image_small": "cache/news/stale-headshot-sm.webp",
+        "content_blocks": [],
+    }
+    assert repair.repair_story(story)
+    assert story["image"] == ""
+    assert story["card_image"] == ""
+    assert story["card_image_small"] == ""
+    assert story["card_image_rejected_reason"] == "tiny-remote-derivative"
+
+
+def test_tiny_inline_derivative_is_not_promoted() -> None:
+    story = {
+        "image": "",
+        "content_blocks": [
+            {
+                "type": "image",
+                "url": "https://publisher.example/avatar.jpg?width=96&height=96",
+                "alt": "Story photo",
+            },
+            {
+                "type": "image",
+                "url": "https://publisher.example/story.jpg?width=1200",
+                "alt": "Actual article photograph",
+            },
+        ],
+    }
+    assert repair.repair_story(story)
+    assert story["image"] == "https://publisher.example/story.jpg?width=1200"
+
+
 def main() -> None:
     test_rejected_hero_clears_stale_card_cache()
     test_remaining_article_photo_is_promoted()
     test_remote_hero_only_accepts_matching_cache_name()
     test_local_hero_replaces_stale_cache_reference()
+    test_tiny_encoded_remote_derivative_cannot_be_card_hero()
+    test_tiny_inline_derivative_is_not_promoted()
     print("Card image contract regression tests passed")
 
 
