@@ -7,18 +7,26 @@ the pipeline, an older card_image must never survive and continue rendering the
 rejected image on Home. This pass also promotes the first remaining article image
 when the final article contract has removed a bad hero but left legitimate inline
 photography behind.
+
+The card contract is intentionally source-agnostic. Publisher avatar services often
+attach perfectly plausible story alt text to a tiny author/profile derivative. A
+remote image that explicitly asks for a very small rendition is therefore not
+eligible to become a large article-card hero, regardless of its metadata.
 """
 
 import hashlib
 import json
+import re
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
 PUBLIC_DIR = ROOT / "public"
-SCHEMA = 1
+SCHEMA = 2
+TINY_REMOTE_MAX = 192
+REMOTE_SIZE_RE = re.compile(r"(?:resize|width|height|w|h)\s*=\s*(\d{1,4})", re.I)
 
 
 def clean(value: Any) -> str:
@@ -51,6 +59,38 @@ def same_ref(left: Any, right: Any) -> bool:
     return False
 
 
+def requested_remote_sizes(value: Any) -> list[int]:
+    """Return explicit resize dimensions encoded in a remote image URL.
+
+    Several publisher CDNs encode their transforms once or twice inside a query
+    parameter, for example ``Resize%3D76``. Decode a few rounds before checking so
+    those derivatives cannot bypass the card-quality guard.
+    """
+    text = clean(value)
+    if not text.startswith(("http://", "https://")):
+        return []
+    decoded = text
+    for _ in range(3):
+        next_value = unquote(decoded)
+        if next_value == decoded:
+            break
+        decoded = next_value
+    sizes: list[int] = []
+    for match in REMOTE_SIZE_RE.finditer(decoded):
+        try:
+            size = int(match.group(1))
+        except (TypeError, ValueError):
+            continue
+        if size > 0:
+            sizes.append(size)
+    return sizes
+
+
+def is_tiny_remote_derivative(value: Any, *, threshold: int = TINY_REMOTE_MAX) -> bool:
+    sizes = requested_remote_sizes(value)
+    return bool(sizes and min(sizes) <= threshold)
+
+
 def first_article_image(story: dict[str, Any]) -> tuple[str, str, str]:
     blocks = story.get("content_blocks")
     if not isinstance(blocks, list):
@@ -59,7 +99,7 @@ def first_article_image(story: dict[str, Any]) -> tuple[str, str, str]:
         if not isinstance(block, dict) or block.get("type") != "image":
             continue
         ref = clean(block.get("url") or block.get("src"))
-        if ref:
+        if ref and not is_tiny_remote_derivative(ref):
             return ref, clean(block.get("alt")), clean(block.get("caption"))
     return "", "", ""
 
@@ -80,6 +120,17 @@ def local_exists(value: Any) -> bool:
 def repair_story(story: dict[str, Any]) -> bool:
     changed = False
     hero = clean(story.get("image"))
+
+    # Explicitly tiny CDN derivatives are not viable story heroes. This catches
+    # author/avatar thumbnails even when a publisher has attached story-like alt
+    # text to the URL and therefore defeats text-only author heuristics.
+    if hero and is_tiny_remote_derivative(hero):
+        story["image"] = ""
+        story["card_image"] = ""
+        story["card_image_small"] = ""
+        story["card_image_rejected_reason"] = "tiny-remote-derivative"
+        hero = ""
+        changed = True
 
     # The final article contract may reject a bad hero while preserving legitimate
     # article photography. Promote that surviving image rather than leaving Home
