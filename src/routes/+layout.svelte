@@ -56,7 +56,7 @@
     });
 
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register(`${base}/sw.js`).catch(() => {});
+      navigator.serviceWorker.register(`${base}/sw.js`).then((registration) => registration.update()).catch(() => {});
     }
 
     return () => {
@@ -73,7 +73,7 @@
 <div class="app-shell">
   <a class="skip-link" href="#main-content">Skip to content</a>
 
-  <header class="site-header app-header">
+  <header class="app-header">
     <div class="site-header-inner shell">
       <a class="site-brand" href={`${base}/`} data-sveltekit-preload-data="tap" aria-label="Forest City News home">
         <span class="brand-mark" aria-hidden="true"><i class="ph-fill ph-tree"></i></span>
@@ -101,14 +101,14 @@
     <slot />
   </div>
 
-  <footer class="site-footer">
+  <footer class="app-footer">
     <div class="shell app-footer-inner">
       <span>Forest City News</span>
       <span>London, Ontario</span>
     </div>
   </footer>
 
-  <nav class="mobile-tab-bar app-tab-bar" aria-label="Primary">
+  <nav class="app-tab-bar" aria-label="Primary">
     <div class="app-tab-bar-inner">
       {#each tabs as tab}
         <a
