@@ -1,0 +1,159 @@
+name: Probe article image structures
+
+on:
+  push:
+    paths:
+      - '.github/workflows/article-image-structure-probe.yml'
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install scraper dependencies
+        run: pip install -r requirements.txt
+      - name: Inspect live publisher markup and current extraction
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import sys
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          import requests
+          from bs4 import BeautifulSoup, Tag
+
+          sys.path.insert(0, str(Path.cwd() / 'scripts'))
+          import fetch_news as f
+
+          CASES = [
+              ('cbc_burnout', 'CBC News London', "https://www.cbc.ca/news/canada/london/burnout-isn-t-new-how-18th-century-farming-set-the-stage-for-modern-worker-exhaustion-9.7328400"),
+              ('cbc_bus', 'CBC News London', "https://www.cbc.ca/news/canada/london/here-s-what-you-need-to-know-about-london-s-new-centre-running-bus-lanes-9.7334426"),
+              ('ctv_advocate', 'CTV News', 'https://www.ctvnews.ca/canada/article/indigenous-advocate-leads-calm-environment-in-program-for-customers-security-guards/'),
+              ('globe_floods', 'The Globe and Mail', 'https://www.theglobeandmail.com/canada/article-cape-breton-nova-scotia-floods-emergency-roads-power/'),
+          ]
+
+          browser_headers = {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+              'Accept-Language': 'en-CA,en;q=0.9',
+          }
+
+          def sig(node):
+              if not isinstance(node, Tag):
+                  return ''
+              attrs = []
+              if node.get('id'):
+                  attrs.append('#' + str(node.get('id')))
+              if node.get('class'):
+                  attrs.append('.' + '.'.join(str(x) for x in node.get('class')[:4]))
+              for key in ('data-testid', 'data-cy', 'itemprop', 'data-component'):
+                  if node.get(key):
+                      attrs.append(f'[{key}={node.get(key)}]')
+              return node.name + ''.join(attrs)
+
+          def img_info(img, base):
+              attrs = {}
+              for key in ('src', 'srcset', 'data-src', 'data-srcset', 'data-lazy-src', 'data-original', 'data-full-src', 'data-image', 'data-image-src', 'data-img-url', 'width', 'height', 'loading'):
+                  if img.get(key):
+                      value = str(img.get(key))
+                      attrs[key] = value[:500]
+              parent = img.parent
+              chain = []
+              for _ in range(5):
+                  if not isinstance(parent, Tag):
+                      break
+                  chain.append(sig(parent))
+                  parent = parent.parent
+              return {
+                  'best': f.best_img_url(img, base),
+                  'alt': str(img.get('alt') or '')[:220],
+                  'attrs': attrs,
+                  'caption': f.figure_caption(img),
+                  'ancestors': chain,
+              }
+
+          for name, source, url in CASES:
+              print('\n' + '=' * 100)
+              print('CASE', name, source, url)
+              try:
+                  r = requests.get(url, headers=browser_headers, timeout=30, allow_redirects=True)
+                  print('DIRECT_FETCH', r.status_code, len(r.content), r.url, r.headers.get('content-type'))
+                  raw = r.text
+              except Exception as exc:
+                  print('DIRECT_FETCH_ERROR', type(exc).__name__, str(exc))
+                  raw = ''
+
+              if raw:
+                  soup = BeautifulSoup(raw, 'html.parser')
+                  title = (soup.title.get_text(' ', strip=True) if soup.title else '')[:300]
+                  print('TITLE', title)
+                  print('COUNTS', json.dumps({
+                      'article': len(soup.select('article')),
+                      'main': len(soup.select('main')),
+                      'figures': len(soup.select('figure')),
+                      'pictures': len(soup.select('picture')),
+                      'imgs': len(soup.select('img')),
+                      'article_imgs': len(soup.select('article img')),
+                      'itemprop_body': len(soup.select("[itemprop='articleBody']")),
+                      'testid_article_body': len(soup.select("[data-testid*='article-body'], [data-testid*='articleBody']")),
+                  }))
+
+                  profile = f.profile_for(source)
+                  root, selector = f.choose_article_root(soup, source)
+                  print('PROFILE', json.dumps(profile))
+                  print('CHOSEN_ROOT', selector, sig(root), 'imgs=', len(root.select('img')) if isinstance(root, Tag) else 0)
+                  if isinstance(root, Tag):
+                      print('ROOT_ANCESTRY', ' > '.join(sig(x) for x in list(root.parents)[:5] if isinstance(x, Tag)))
+                      for idx, img in enumerate(root.select('img')[:30], 1):
+                          print('ROOT_IMG', idx, json.dumps(img_info(img, r.url), ensure_ascii=False))
+
+                  ld = f.article_json_ld(soup)
+                  print('JSONLD_TYPE', ld.get('@type'))
+                  print('JSONLD_IMAGE', json.dumps(ld.get('image'), ensure_ascii=False)[:5000])
+                  print('META_OG_IMAGE', f.soup_meta(soup, ('property', 'og:image')))
+
+                  candidates = f.collect_image_candidates(soup, r.url, ld)
+                  print('CURRENT_CANDIDATES', len(candidates))
+                  for idx, candidate in enumerate(candidates[:20], 1):
+                      print('CANDIDATE', idx, json.dumps(candidate, ensure_ascii=False))
+
+                  blocks, stats, method = f.extract_dom_blocks(soup, r.url, source, title, candidates[0]['url'] if candidates else '')
+                  imgs = [b for b in blocks if b.get('type') == 'image']
+                  print('CURRENT_DOM', method, json.dumps(stats), 'blocks=', len(blocks), 'images=', len(imgs))
+                  for idx, image in enumerate(imgs, 1):
+                      print('DOM_IMAGE', idx, json.dumps(image, ensure_ascii=False))
+
+                  ctv_blocks = []
+                  if source == 'CTV News':
+                      ctv_blocks, ctv_stats = f.extract_ctv_embedded_blocks(soup, title, r.url)
+                      print('CTV_EMBEDDED', len(ctv_blocks), json.dumps(ctv_stats))
+                      for idx, image in enumerate([b for b in ctv_blocks if b.get('type') == 'image'][:20], 1):
+                          print('CTV_EMBEDDED_IMAGE', idx, json.dumps(image, ensure_ascii=False))
+
+                  # Show image-bearing hydration fragments without dumping entire application state.
+                  for sidx, script in enumerate(soup.find_all('script')):
+                      text = script.string or script.get_text('', strip=False) or ''
+                      if len(text) < 100:
+                          continue
+                      if re.search(r'(?i)(image|photo|picture|media|contentUrl|thumbnailUrl)', text):
+                          urls = re.findall(r'https?[^"\\\s<>]+', text)
+                          image_urls = [u.replace('\\u0026', '&').replace('\\/', '/') for u in urls if re.search(r'(?i)(\.(?:jpe?g|png|webp)|image|photo|resizer|im=)', u)]
+                          if image_urls:
+                              print('SCRIPT_IMAGE_URLS', sidx, script.get('id'), script.get('type'), json.dumps(image_urls[:12], ensure_ascii=False))
+
+              try:
+                  target = 'https://r.jina.ai/http://' + urlparse(url).netloc + urlparse(url).path
+                  jr = requests.get(target, headers={'X-Retain-Images':'all','X-With-Images-Summary':'all','X-Retain-Links':'all'}, timeout=40)
+                  mdimgs = re.findall(r'!\[([^]]*)\]\((https?://[^)]+)\)', jr.text)
+                  print('JINA_FETCH', jr.status_code, len(jr.text), 'images=', len(mdimgs))
+                  for idx, (alt, image_url) in enumerate(mdimgs[:25], 1):
+                      print('JINA_IMAGE', idx, json.dumps({'alt': alt[:220], 'url': image_url}, ensure_ascii=False))
+              except Exception as exc:
+                  print('JINA_ERROR', type(exc).__name__, str(exc))
+          PY
