@@ -123,13 +123,13 @@
 
     <div class="header-actions">
       <a class="icon-button header-search-link" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search news" title="Search">
-        <Icon name="search" size={22} />
+        <Icon name="magnifying-glass" size={22} />
       </a>
       <a class:active={onDirectory} class="icon-button desktop-sources-link" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Browse sections and sources" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-        <Icon name="grid" size={22} strokeWidth={onDirectory ? 2.5 : 2} />
+        <Icon name="hard-drives" size={22} strokeWidth={onDirectory ? 2.5 : 2} />
       </a>
       <a class:active={onSettings} class="icon-button settings-link" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-        <Icon name="settings" size={22} strokeWidth={onSettings ? 2.5 : 2} />
+        <Icon name="gear-six" size={22} strokeWidth={onSettings ? 2.5 : 2} />
       </a>
     </div>
 
@@ -178,22 +178,22 @@
   </a>
 
   <a class:active={onDirectory} class="mobile-tab" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-    <Icon name="grid" size={24} strokeWidth={onDirectory ? 2.5 : 2} />
+    <Icon name="hard-drives" size={24} strokeWidth={onDirectory ? 2.5 : 2} />
     <span class="visually-hidden">Sections</span>
   </a>
 
   <a class:active={onSearch} class="mobile-tab" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
-    <Icon name="search" size={24} strokeWidth={onSearch ? 2.5 : 2} />
+    <Icon name="magnifying-glass" size={24} strokeWidth={onSearch ? 2.5 : 2} />
     <span class="visually-hidden">Search</span>
   </a>
 
   <a class:active={onReadLater} class="mobile-tab" href={`${base}/read-later/`} data-sveltekit-preload-data="tap" aria-label="Read Later" title="Read Later" aria-current={onReadLater ? 'page' : undefined}>
-    <Icon name="bookmark" size={24} strokeWidth={onReadLater ? 2.5 : 2} />
+    <Icon name="bookmark-simple" size={24} strokeWidth={onReadLater ? 2.5 : 2} />
     <span class="visually-hidden">Read Later</span>
   </a>
 
   <a class:active={onSettings} class="mobile-tab" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-    <Icon name="settings" size={24} strokeWidth={onSettings ? 2.5 : 2} />
+    <Icon name="gear-six" size={24} strokeWidth={onSettings ? 2.5 : 2} />
     <span class="visually-hidden">Settings</span>
   </a>
 </nav>
