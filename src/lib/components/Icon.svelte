@@ -25,7 +25,7 @@
     Settings,
     ShieldCheck,
     Smartphone,
-    Tree,
+    TreeDeciduous,
     Trophy,
     Users
   } from '@lucide/svelte';
@@ -78,7 +78,7 @@
     settings: Settings,
     'shield-check': ShieldCheck,
     smartphone: Smartphone,
-    tree: Tree,
+    tree: TreeDeciduous,
     trophy: Trophy,
     users: Users,
     'users-three': Users
