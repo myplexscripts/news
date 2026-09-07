@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -59,6 +59,9 @@ jobs:
       - name: Check homepage feed contracts
         run: python scripts/check_home_feed_contracts.py
 
+      - name: Check card image contract
+        run: python scripts/test_card_image_contract.py
+
       - name: Install site dependencies
         shell: bash
         run: |
@@ -83,6 +86,10 @@ jobs:
         run: |
           python scripts/annotate_scopes.py
           python scripts/apply_local_source_rules.py
+          # Card thumbnails are derived from the canonical article hero. Repair
+          # stale references at deploy time too, so a queued refresh can never
+          # publish an old author headshot after that hero was rejected.
+          python scripts/repair_card_image_refs.py
           mkdir -p public/data
           cp data/news.json public/data/news.json
           cp data/audit.json public/data/audit.json
