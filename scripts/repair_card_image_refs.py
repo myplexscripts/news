@@ -172,9 +172,9 @@ def cbc_candidate_variants(value: str) -> list[str]:
 def recover_cbc_hero(story: dict[str, Any]) -> str:
     """Recover a CBC hero using the stricter, image-score-aware reader path.
 
-    This is a final safety net. The richer CBC repair runs earlier, but this pass is
-    also executed during site builds. It therefore catches stale data records whose
-    stored hero is a tracking pixel or another invalid publisher asset.
+    This is a final safety net for a CBC hero that this pass has just rejected. It
+    deliberately does not try to fill every image-less CBC record during a Pages
+    build, keeping deployments bounded and leaving broad recovery to enrichment.
     """
     if not is_cbc_story(story):
         return ""
@@ -220,7 +220,7 @@ def recover_cbc_hero(story: dict[str, Any]) -> str:
 
             # A valid i.cbc.ca image is still preferable to a broken CBC tracking
             # pixel. Keep it as a browser fallback when GitHub's runner cannot copy
-            # the asset, while the article UI has its own load-failure placeholder.
+            # the asset. The next enrichment run will get another chance to cache it.
             story["cbc_image_hotlink"] = True
             story["cbc_card_guard_recovered"] = True
             return candidate
@@ -230,11 +230,13 @@ def recover_cbc_hero(story: dict[str, Any]) -> str:
 def repair_story(story: dict[str, Any]) -> bool:
     changed = False
     hero = clean(story.get("image"))
+    rejected_cbc_hero = False
 
     # Explicitly tiny CDN derivatives and known tracking/pixel endpoints are not
     # viable story heroes, even if publisher metadata labels them like the story.
     if hero and (is_tiny_remote_derivative(hero) or is_invalid_remote_image(hero)):
         reason = "tiny-remote-derivative" if is_tiny_remote_derivative(hero) else "invalid-remote-image"
+        rejected_cbc_hero = is_cbc_story(story)
         story["image"] = ""
         story["card_image"] = ""
         story["card_image_small"] = ""
@@ -256,9 +258,9 @@ def repair_story(story: dict[str, Any]) -> bool:
                 story["image_caption"] = caption
             changed = True
 
-    # CBC records can arrive with no remaining inline photography after the author
-    # image is removed. Recover a real publisher image from the stored CBC Lite URL.
-    if not hero and is_cbc_story(story):
+    # Only perform synchronous CBC network recovery when this pass rejected a bad
+    # CBC hero. Normal image-less stories are handled later by the enrichment job.
+    if not hero and rejected_cbc_hero:
         recovered = recover_cbc_hero(story)
         if recovered:
             story["image"] = recovered
