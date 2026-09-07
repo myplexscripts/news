@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import NewsCard from '$lib/components/NewsCard.svelte';
+  import Icon from '$lib/components/Icon.svelte';
   import { loadFeed, scopeForStory, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
@@ -27,19 +28,39 @@
   let error = '';
   let activeScope = 'local';
   let activeCategory = 'All';
+  let activeSlide = 0;
+  let dragStartX = null;
+  let dragDelta = 0;
+  let carouselPaused = false;
 
-  onMount(async () => {
+  onMount(() => {
+    let cancelled = false;
+
     try {
       const storedScope = localStorage.getItem('london-news-home-feed');
       if (['local', 'canada', 'all'].includes(storedScope || '')) activeScope = storedScope;
-      feed = await loadFeed();
-    } catch (reason) {
-      error = reason instanceof Error ? reason.message : 'Unable to load the latest news.';
-    }
+    } catch {}
+
+    loadFeed().then((nextFeed) => {
+      if (!cancelled) feed = nextFeed;
+    }).catch((reason) => {
+      if (!cancelled) error = reason instanceof Error ? reason.message : 'Unable to load the latest news.';
+    });
+
+    const carouselTimer = window.setInterval(() => {
+      if (carouselPaused || document.hidden || topStories.length < 2) return;
+      setSlide(activeSlide + 1);
+    }, 7000);
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(carouselTimer);
+    };
   });
 
   function setScope(scope) {
     activeScope = scope;
+    activeSlide = 0;
     try { localStorage.setItem('london-news-home-feed', scope); } catch {}
   }
 
@@ -75,8 +96,46 @@
     return 'earlier';
   }
 
+  function setCategory(category) {
+    activeCategory = category;
+    activeSlide = 0;
+  }
+
+  function setSlide(index) {
+    const count = topStories.length;
+    if (!count) {
+      activeSlide = 0;
+      return;
+    }
+    activeSlide = ((index % count) + count) % count;
+  }
+
+  function carouselPointerDown(event) {
+    if (topStories.length < 2) return;
+    dragStartX = event.clientX;
+    dragDelta = 0;
+    carouselPaused = true;
+    event.currentTarget?.setPointerCapture?.(event.pointerId);
+  }
+
+  function carouselPointerMove(event) {
+    if (dragStartX === null) return;
+    dragDelta = event.clientX - dragStartX;
+  }
+
+  function carouselPointerUp() {
+    if (dragStartX === null) return;
+    if (Math.abs(dragDelta) >= 44) setSlide(activeSlide + (dragDelta < 0 ? 1 : -1));
+    dragStartX = null;
+    dragDelta = 0;
+    carouselPaused = false;
+  }
+
   $: requestedSection = $page.url.searchParams.get('section');
-  $: if (requestedSection && requestedSection !== activeCategory) activeCategory = requestedSection;
+  $: if (requestedSection && requestedSection !== activeCategory) {
+    activeCategory = requestedSection;
+    activeSlide = 0;
+  }
 
   $: sourceHealth = feed?.source_health || {};
   $: hiddenSources = new Set(($userState.hiddenSources || []).map((value) => String(value).toLowerCase()));
@@ -112,6 +171,7 @@
   });
 
   $: topStories = filteredStories.slice(0, 3);
+  $: if (activeSlide >= topStories.length && topStories.length > 0) activeSlide = 0;
   $: timelineStories = filteredStories.slice(3, 93);
   $: referenceDate = feed?.generated_at || new Date().toISOString();
   $: dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
@@ -140,14 +200,14 @@
       </div>
 
       <div class="section-tabs" role="group" aria-label="Filter by section">
-        <button class:active={activeCategory === 'All'} class="section-tab" type="button" aria-pressed={activeCategory === 'All'} on:click={() => activeCategory = 'All'}>Latest</button>
+        <button class:active={activeCategory === 'All'} class="section-tab" type="button" aria-pressed={activeCategory === 'All'} on:click={() => setCategory('All')}>Latest</button>
         {#each primaryCategories as category}
           <button
             class:active={activeCategory === category}
             class={`section-tab ${categoryClass(category)}`}
             type="button"
             aria-pressed={activeCategory === category}
-            on:click={() => activeCategory = category}
+            on:click={() => setCategory(category)}
           >{category}</button>
         {/each}
 
@@ -155,7 +215,7 @@
           <details class="control-menu section-more">
             <summary>
               <span>{moreCategories.includes(activeCategory) ? activeCategory : 'More'}</span>
-              <i class="ph ph-caret-down" aria-hidden="true"></i>
+              <Icon name="chevron-down" size={18} />
             </summary>
             <div class="control-popover section-popover">
               {#each moreCategories as category}
@@ -163,7 +223,7 @@
                   class:active-filter={activeCategory === category}
                   class={`control-menu-item ${categoryClass(category)}`}
                   type="button"
-                  on:click={() => activeCategory = category}
+                  on:click={() => setCategory(category)}
                 >
                   <span class="section-color" aria-hidden="true"></span>
                   <span>{category}</span>
@@ -192,17 +252,44 @@
         <div><h2 id="today-heading">Today</h2></div>
       </div>
 
-      <div class="editorial-front-grid">
-        {#if topStories[0]}
-          <div class="editorial-lead-slot">
-            <NewsCard story={topStories[0]} index={0} variant="featured" className="editorial-lead-card" />
+      <div class="editorial-front-grid editorial-carousel-ready">
+        <div
+          class="editorial-carousel-viewport"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Top stories"
+          on:pointerdown={carouselPointerDown}
+          on:pointermove={carouselPointerMove}
+          on:pointerup={carouselPointerUp}
+          on:pointercancel={carouselPointerUp}
+          on:pointerenter={() => carouselPaused = true}
+          on:pointerleave={() => { carouselPaused = false; if (dragStartX !== null) carouselPointerUp(); }}
+        >
+          <div class:dragging={dragStartX !== null} class="editorial-carousel-track" style={`transform:translate3d(-${activeSlide * 100}%,0,0);`}>
+            {#each topStories as story, index (story.id)}
+              <div class="editorial-carousel-slide" aria-hidden={index !== activeSlide}>
+                <NewsCard
+                  {story}
+                  {index}
+                  variant="featured"
+                  className="editorial-carousel-card"
+                />
+              </div>
+            {/each}
           </div>
-        {/if}
+        </div>
 
         {#if topStories.length > 1}
-          <div class="editorial-support-stack">
-            {#each topStories.slice(1) as story, index (story.id)}
-              <NewsCard {story} index={index + 1} variant="featured" showSummary={false} className="editorial-support-card" />
+          <div class="editorial-carousel-dots" aria-label="Choose top story">
+            {#each topStories as story, index (story.id)}
+              <button
+                class:active={activeSlide === index}
+                class="editorial-carousel-dot"
+                type="button"
+                aria-label={`Show top story ${index + 1} of ${topStories.length}`}
+                aria-current={activeSlide === index ? 'true' : undefined}
+                on:click={() => setSlide(index)}
+              ></button>
             {/each}
           </div>
         {/if}
@@ -239,5 +326,13 @@
   .home-state-wrap {
     padding-top: 34px;
     padding-bottom: 34px;
+  }
+
+  .editorial-carousel-viewport {
+    touch-action: pan-y;
+  }
+
+  .editorial-carousel-track.dragging {
+    transition: none !important;
   }
 </style>
