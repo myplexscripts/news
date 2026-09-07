@@ -127,11 +127,16 @@ def main() -> None:
 
     require('"@lucide/svelte": "1.42.0"' in package_json, "Lucide must be bundled locally with the Svelte app")
     require("from '@lucide/svelte'" in icon, "shared icon component must use bundled Lucide")
+    require("TreePine" not in icon, "Tree must not be silently substituted with TreePine")
+    require("tree: Tree" in icon, "Forest City logo must use Lucide Tree")
+    require("'hard-drives': HardDrive" in icon, "Sections hard-drive identity must be preserved")
 
     require_tokens(svelte_css, (
         "--minimum-ui-type: 14px;",
         "font-size: max(var(--minimum-ui-type), 1em) !important;",
         ".lucide-icon",
+        ".editorial-front.shell",
+        "width: min(calc(100% - 28px), var(--content)) !important;",
     ), "Svelte UI styling")
     require("view-transition-name" not in svelte_css, "route view-transition name returned")
     require("navigation: none" in nav_transitions, "cross-document view transitions must stay disabled")
@@ -143,8 +148,10 @@ def main() -> None:
         'class="mobile-tab-bar svelte-mobile-tab-bar"',
         'class="mobile-tab-indicator"',
         "--mobile-tab-count:5",
-        "Icon name=\"search\"",
-        "Icon name=\"settings\"",
+        "Icon name=\"tree\"",
+        "Icon name=\"magnifying-glass\"",
+        "Icon name=\"hard-drives\"",
+        "Icon name=\"gear-six\"",
     ), "app shell")
     require("onNavigate" not in layout, "Svelte route transition hook returned")
     require("startViewTransition" not in layout, "browser route crossfade returned")
@@ -187,6 +194,11 @@ def main() -> None:
         "source-preference-list",
         "source-switch-input",
         "Icon name={iconFor(category)}",
+        "Icon name=\"clock-countdown\"",
+        "Icon name=\"device-mobile\"",
+        "'City Hall': 'buildings'",
+        "'Health': 'heartbeat'",
+        "'Community': 'users-three'",
     ), "sections page")
     require_tokens(search, (
         "directory-page search-page",
@@ -238,7 +250,7 @@ def main() -> None:
         require(action_ratio >= 4.5, f"dark {name} action text is only {action_ratio:.2f}:1")
         require(selected_ratio >= 4.5, f"dark {name} selected text is only {selected_ratio:.2f}:1")
 
-    print("UI contracts passed: 14px type floor, bundled Lucide, carousel, no route fades, visual structure, controls, and contrast are valid.")
+    print("UI contracts passed: original icon identities, 14px type floor, bundled Lucide, carousel alignment, no route fades, visual structure, controls, and contrast are valid.")
 
 
 if __name__ == "__main__":
