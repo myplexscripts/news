@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
+  import Icon from '$lib/components/Icon.svelte';
   import { loadFeed, resolveAsset, scopeForStory, sortNewest, storyHref } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
@@ -91,7 +92,7 @@
     </header>
 
     <div class="search-page-field search-page-field-refined">
-      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+      <Icon name="search" size={20} />
       <input
         id="archiveSearch"
         type="search"
@@ -105,7 +106,7 @@
       />
       {#if query}
         <button class="search-clear-button" type="button" aria-label="Clear search" on:click={clearSearch}>
-          <i class="ph ph-x-circle" aria-hidden="true"></i>
+          <Icon name="circle-x" size={20} />
         </button>
       {/if}
     </div>
