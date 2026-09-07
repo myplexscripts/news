@@ -9,6 +9,7 @@ TINY = (
     "im=Crop%2Crect%3D%280%2C0%2C3395%2C3395%29%3BResize%3D76"
 )
 GOOD = "https://i.cbc.ca/ais/story/full/max/0/default.jpg?im=Resize%3D1180"
+FULL = "https://www.cbc.ca/news/canada/london/london-centre-running-bus-lanes-9.7334426"
 
 
 def make_story() -> dict:
@@ -39,16 +40,48 @@ def test_tiny_reader_candidate_is_rejected() -> None:
     assert repair.acceptable_candidate(story, GOOD)
 
 
-def test_repair_uses_real_lite_story_image(monkeypatch=None) -> None:
+def test_html_metadata_prefers_real_story_image_and_finds_canonical() -> None:
+    story = make_story()
+    page = f"""
+    <html><head>
+      <link rel="canonical" href="{FULL}">
+      <meta property="og:url" content="{FULL}">
+      <meta property="og:image" content="{GOOD}">
+    </head><body>
+      <article>
+        <div class="author-profile"><img src="{TINY}" alt="Jack Sutton"></div>
+        <figure><img src="https://i.cbc.ca/ais/story/second.jpg?im=Resize%3D900" alt="Bus lane platform"></figure>
+      </article>
+    </body></html>
+    """
+    images, links = repair.html_document_candidates(story, "https://www.cbc.ca/lite/story/9.7334426", page)
+    assert images
+    assert images[0][1] == GOOD
+    assert FULL in links
+    assert all(candidate != TINY for _, candidate in images)
+
+
+def test_text_reader_can_find_full_article_link() -> None:
+    story = make_story()
+    text = f"[Read the full CBC story]({FULL})\n\n![Bus lane]({GOOD})"
+    images, links = repair.text_document_candidates(story, "https://www.cbc.ca/lite/story/9.7334426", text)
+    assert images[0][1] == GOOD
+    assert FULL in links
+
+
+def test_repair_uses_real_lite_story_image() -> None:
     story = make_story()
 
     original_reader = repair.cbc_repair.reader_image_candidates
     original_cache = repair.cbc.cache_image
+    original_documents = repair.fetch_documents
     try:
+        repair.fetch_documents = lambda url: []
         repair.cbc_repair.reader_image_candidates = lambda url, record: [TINY, GOOD]
         repair.cbc.cache_image = lambda url: "cache/cbc/cbc-real-story.jpg" if url == GOOD else ""
         assert repair.repair_record(story)
     finally:
+        repair.fetch_documents = original_documents
         repair.cbc_repair.reader_image_candidates = original_reader
         repair.cbc.cache_image = original_cache
 
@@ -56,11 +89,14 @@ def test_repair_uses_real_lite_story_image(monkeypatch=None) -> None:
     assert story["card_image"] == "cache/cbc/cbc-real-story.jpg"
     assert story["card_image_small"] == ""
     assert story["cbc_lite_hero_source"] == "https://www.cbc.ca/lite/story/9.7334426"
+    assert story["cbc_lite_hero_repair_status"] == "recovered"
 
 
 def main() -> None:
     test_lite_url_is_preferred_reader_surface()
     test_tiny_reader_candidate_is_rejected()
+    test_html_metadata_prefers_real_story_image_and_finds_canonical()
+    test_text_reader_can_find_full_article_link()
     test_repair_uses_real_lite_story_image()
     print("CBC Lite hero repair regression tests passed")
 
