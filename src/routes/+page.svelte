@@ -16,6 +16,13 @@
     'Sports'
   ];
 
+  const groupLabels = {
+    today: 'Today',
+    yesterday: 'Yesterday',
+    'two-days-ago': 'Two Days Ago',
+    earlier: 'Earlier'
+  };
+
   let feed;
   let error = '';
   let activeScope = 'local';
@@ -23,233 +30,214 @@
 
   onMount(async () => {
     try {
+      const storedScope = localStorage.getItem('london-news-home-feed');
+      if (['local', 'canada', 'all'].includes(storedScope || '')) activeScope = storedScope;
       feed = await loadFeed();
     } catch (reason) {
       error = reason instanceof Error ? reason.message : 'Unable to load the latest news.';
     }
   });
 
-  $: requestedSection = $page.url.searchParams.get('section');
-  $: if (requestedSection && requestedSection !== activeCategory) {
-    activeCategory = requestedSection;
+  function setScope(scope) {
+    activeScope = scope;
+    try { localStorage.setItem('london-news-home-feed', scope); } catch {}
   }
 
-  $: sourceHealth = feed?.source_health || {};
-  $: hiddenSources = new Set($userState.hiddenSources.map((value) => value.toLowerCase()));
-  $: readIds = new Set($userState.readIds);
+  function categoryClass(category = 'Local') {
+    return `category-${String(category).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+  }
 
-  $: baseStories = feed
-    ? sortNewest((feed.stories || []).filter((story) => story?.cluster_representative !== false))
+  function localDateKey(value) {
+    try {
+      const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Toronto',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).formatToParts(new Date(value));
+      const values = Object.fromEntries(parts.filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+      return `${values.year}-${values.month}-${values.day}`;
+    } catch {
+      return '1970-01-01';
+    }
+  }
+
+  function dayNumber(key) {
+    const [year, month, day] = key.split('-').map(Number);
+    return Math.floor(Date.UTC(year, month - 1, day) / 86400000);
+  }
+
+  function groupKeyFor(value, reference) {
+    const diff = dayNumber(localDateKey(reference)) - dayNumber(localDateKey(value));
+    if (diff <= 0) return 'today';
+    if (diff === 1) return 'yesterday';
+    if (diff === 2) return 'two-days-ago';
+    return 'earlier';
+  }
+
+  $: requestedSection = $page.url.searchParams.get('section');
+  $: if (requestedSection && requestedSection !== activeCategory) activeCategory = requestedSection;
+
+  $: sourceHealth = feed?.source_health || {};
+  $: hiddenSources = new Set(($userState.hiddenSources || []).map((value) => String(value).toLowerCase()));
+  $: readIds = new Set(($userState.readIds || []).map(String));
+
+  $: allStories = feed
+    ? sortNewest((feed.stories || [])
+        .filter((story) => story?.cluster_representative !== false)
+        .map((story) => ({ ...story, scope: scopeForStory(story, sourceHealth) })))
     : [];
 
-  $: categories = [
-    'All',
-    ...preferredCategories.filter((category) => baseStories.some((story) => story.category === category)),
-    ...[...new Set(baseStories.map((story) => story.category).filter(Boolean))]
-      .filter((category) => !preferredCategories.includes(category) && !['Local', 'Canada'].includes(category))
-      .sort()
+  $: discoveredCategories = [...new Set(allStories.map((story) => story.category).filter(Boolean))]
+    .filter((category) => !['Local', 'Canada'].includes(category));
+
+  $: orderedCategories = [
+    ...preferredCategories.filter((category) => discoveredCategories.includes(category)),
+    ...discoveredCategories.filter((category) => !preferredCategories.includes(category)).sort()
   ];
 
-  $: filteredStories = baseStories.filter((story) => {
-    const source = String(story.source || '').toLowerCase();
-    if (hiddenSources.has(source)) return false;
-    if ($userState.hideRead && readIds.has(String(story.id))) return false;
+  $: primaryCategories = orderedCategories.slice(0, 4);
+  $: moreCategories = orderedCategories.slice(4);
 
-    const storyScope = scopeForStory(story, sourceHealth);
-    if (activeScope !== 'all' && storyScope !== activeScope) return false;
+  $: filteredStories = allStories.filter((story) => {
+    const sources = Array.isArray(story.cluster_sources) && story.cluster_sources.length
+      ? story.cluster_sources
+      : [story.source].filter(Boolean);
+    const allHidden = sources.length > 0 && sources.every((source) => hiddenSources.has(String(source).toLowerCase()));
+    if (allHidden) return false;
+    if ($userState.hideRead && readIds.has(String(story.id))) return false;
+    if (activeScope !== 'all' && story.scope !== activeScope) return false;
     if (activeCategory !== 'All' && story.category !== activeCategory) return false;
     return true;
   });
 
   $: topStories = filteredStories.slice(0, 3);
-  $: timelineStories = filteredStories.slice(3, 63);
-
-  function updatedLabel() {
-    if (!feed?.generated_at) return '';
-    try {
-      return new Intl.DateTimeFormat('en-CA', {
-        timeZone: 'America/Toronto',
-        hour: 'numeric',
-        minute: '2-digit'
-      }).format(new Date(feed.generated_at));
-    } catch {
-      return '';
-    }
-  }
+  $: timelineStories = filteredStories.slice(3, 93);
+  $: referenceDate = feed?.generated_at || new Date().toISOString();
+  $: dateGroups = ['today', 'yesterday', 'two-days-ago', 'earlier']
+    .map((key) => ({
+      key,
+      label: groupLabels[key],
+      stories: timelineStories.filter((story) => groupKeyFor(story.cluster_latest_published || story.published, referenceDate) === key)
+    }))
+    .filter((group) => group.stories.length > 0);
 </script>
 
 <svelte:head>
   <title>Forest City News | London, Ontario</title>
-  <meta name="description" content="A fast, local-first news reader for London, Ontario and Canada." />
+  <meta name="description" content="A fast local news reader for London, Ontario and Canada." />
 </svelte:head>
 
-<main class="app-page home-page editorial-home" id="main-content">
-  <div class="shell">
-    <section class="home-masthead">
-      <div>
-        <p class="eyebrow">London, Ontario</p>
-        <h1>Forest City News</h1>
+<main class="home-page card-home editorial-home" id="main-content">
+  <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
+    <div class="shell section-nav-inner card-filter-inner">
+      <div class="feed-scope-row">
+        <div class="feed-scope-switch" role="group" aria-label="Choose home feed">
+          <button class:active={activeScope === 'local'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'local'} on:click={() => setScope('local')}>Local</button>
+          <button class:active={activeScope === 'canada'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'canada'} on:click={() => setScope('canada')}>Canada</button>
+          <button class:active={activeScope === 'all'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'all'} on:click={() => setScope('all')}>All</button>
+        </div>
       </div>
-      {#if feed}
-        <p class="home-updated">Updated {updatedLabel()}</p>
-      {/if}
+
+      <div class="section-tabs" role="group" aria-label="Filter by section">
+        <button class:active={activeCategory === 'All'} class="section-tab" type="button" aria-pressed={activeCategory === 'All'} on:click={() => activeCategory = 'All'}>Latest</button>
+        {#each primaryCategories as category}
+          <button
+            class:active={activeCategory === category}
+            class={`section-tab ${categoryClass(category)}`}
+            type="button"
+            aria-pressed={activeCategory === category}
+            on:click={() => activeCategory = category}
+          >{category}</button>
+        {/each}
+
+        {#if moreCategories.length}
+          <details class="control-menu section-more">
+            <summary>
+              <span>{moreCategories.includes(activeCategory) ? activeCategory : 'More'}</span>
+              <i class="ph ph-caret-down" aria-hidden="true"></i>
+            </summary>
+            <div class="control-popover section-popover">
+              {#each moreCategories as category}
+                <button
+                  class:active-filter={activeCategory === category}
+                  class={`control-menu-item ${categoryClass(category)}`}
+                  type="button"
+                  on:click={() => activeCategory = category}
+                >
+                  <span class="section-color" aria-hidden="true"></span>
+                  <span>{category}</span>
+                </button>
+              {/each}
+            </div>
+          </details>
+        {/if}
+      </div>
+    </div>
+  </section>
+
+  {#if error}
+    <div class="shell home-state-wrap"><div class="app-error">{error}</div></div>
+  {:else if !feed}
+    <div class="app-loading-grid" aria-label="Loading news">
+      <div class="app-skeleton"></div>
+      <div class="app-skeleton"></div>
+      <div class="app-skeleton"></div>
+    </div>
+  {:else if filteredStories.length === 0}
+    <div class="shell home-state-wrap"><div class="app-empty">No stories match these filters right now.</div></div>
+  {:else}
+    <section class="editorial-front shell" aria-labelledby="today-heading">
+      <div class="editorial-home-heading">
+        <div><h2 id="today-heading">Today</h2></div>
+      </div>
+
+      <div class="editorial-front-grid">
+        {#if topStories[0]}
+          <div class="editorial-lead-slot">
+            <NewsCard story={topStories[0]} index={0} variant="featured" className="editorial-lead-card" />
+          </div>
+        {/if}
+
+        {#if topStories.length > 1}
+          <div class="editorial-support-stack">
+            {#each topStories.slice(1) as story, index (story.id)}
+              <NewsCard {story} index={index + 1} variant="featured" showSummary={false} className="editorial-support-card" />
+            {/each}
+          </div>
+        {/if}
+      </div>
     </section>
 
-    <div class="app-control-row home-scope-controls" aria-label="News scope">
-      <button class:active={activeScope === 'local'} class="app-chip" type="button" on:click={() => activeScope = 'local'}>Local</button>
-      <button class:active={activeScope === 'canada'} class="app-chip" type="button" on:click={() => activeScope = 'canada'}>Canada</button>
-      <button class:active={activeScope === 'all'} class="app-chip" type="button" on:click={() => activeScope = 'all'}>All</button>
-    </div>
+    {#if timelineStories.length}
+      <section class="news-card-section shell editorial-timeline" id="latest" aria-labelledby="latest-heading">
+        <header class="news-card-section-header editorial-home-heading">
+          <div><h2 id="latest-heading">Latest</h2></div>
+        </header>
 
-    <div class="app-control-row home-category-controls" aria-label="News category">
-      {#each categories as category}
-        <button
-          class:active={activeCategory === category}
-          class="app-chip"
-          type="button"
-          on:click={() => activeCategory = category}
-        >
-          {category}
-        </button>
-      {/each}
-    </div>
-
-    {#if error}
-      <div class="app-error">{error}</div>
-    {:else if !feed}
-      <div class="app-loading-grid" aria-label="Loading news">
-        <div class="app-skeleton"></div>
-        <div class="app-skeleton"></div>
-        <div class="app-skeleton"></div>
-      </div>
-    {:else if filteredStories.length === 0}
-      <div class="app-empty">No stories match these filters right now.</div>
-    {:else}
-      <section class="home-top-stories" aria-labelledby="top-stories-heading">
-        <div class="app-section-heading">
-          <div>
-            <p class="eyebrow">{activeScope === 'local' ? 'Around London' : activeScope === 'canada' ? 'Across Canada' : 'Latest'}</p>
-            <h2 id="top-stories-heading">Top stories</h2>
-          </div>
-        </div>
-
-        <div class="home-lead-grid">
-          {#if topStories[0]}
-            <NewsCard story={topStories[0]} variant="featured" />
-          {/if}
-          <div class="home-support-grid">
-            {#each topStories.slice(1) as story}
-              <NewsCard {story} showSummary={false} />
+        <div class="news-card-grid" id="newsCardGrid">
+          {#each dateGroups as group}
+            <header class="story-date-heading" data-date-heading={group.key}>
+              <h2>{group.label}</h2>
+            </header>
+            {#each group.stories as story, index (story.id)}
+              <NewsCard
+                {story}
+                index={index + 3}
+                variant="standard"
+                dateGroup={group.key}
+              />
             {/each}
-          </div>
+          {/each}
         </div>
       </section>
-
-      {#if timelineStories.length}
-        <section class="home-latest" id="latest" aria-labelledby="latest-heading">
-          <div class="app-section-heading">
-            <div>
-              <p class="eyebrow">Live feed</p>
-              <h2 id="latest-heading">Latest</h2>
-            </div>
-          </div>
-
-          <div class="app-story-grid">
-            {#each timelineStories as story (story.id)}
-              <NewsCard {story} />
-            {/each}
-          </div>
-        </section>
-      {/if}
     {/if}
-  </div>
+  {/if}
 </main>
 
 <style>
-  .home-masthead {
-    padding: 24px 0 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 20px;
-  }
-
-  .home-masthead .eyebrow {
-    margin: 0 0 4px;
-    color: var(--accent, #34c759);
-    text-transform: uppercase;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .09em;
-  }
-
-  .home-masthead h1 {
-    margin: 0;
-    font-size: clamp(38px, 7vw, 70px);
-    line-height: .92;
-    letter-spacing: -0.055em;
-    color: var(--text);
-  }
-
-  .home-updated {
-    margin: 0;
-    color: var(--text-tertiary);
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  .home-scope-controls {
-    margin-bottom: 10px;
-  }
-
-  .home-category-controls {
-    padding-bottom: 15px;
-  }
-
-  .home-lead-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.7fr) minmax(280px, .8fr);
-    gap: 28px;
-    align-items: start;
-  }
-
-  .home-support-grid {
-    display: grid;
-    gap: 28px;
-  }
-
-  .home-latest {
-    margin-top: 12px;
-  }
-
-  @media (max-width: 760px) {
-    .home-masthead {
-      padding-top: 8px;
-    }
-
-    .home-masthead h1 {
-      font-size: 42px;
-    }
-
-    .home-updated {
-      display: none;
-    }
-
-    .home-lead-grid {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-
-    .home-support-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .home-support-grid {
-      grid-template-columns: 1fr;
-      gap: 26px;
-    }
+  .home-state-wrap {
+    padding-top: 34px;
+    padding-bottom: 34px;
   }
 </style>
