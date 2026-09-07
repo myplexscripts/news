@@ -3,11 +3,22 @@
   --text: var(--ink);
   --text-secondary: var(--muted);
   --text-tertiary: var(--tertiary);
+  --minimum-ui-type: 14px;
 }
 
 .svelte-route-stage {
   min-height: calc(100vh - 120px);
-  view-transition-name: app-route;
+}
+
+/* Project rule: visible interface text never renders below 14px. */
+:where(body) :where(a, button, input, select, textarea, label, p, span, small, time, strong, li, figcaption, summary) {
+  font-size: max(var(--minimum-ui-type), 1em) !important;
+}
+
+.lucide-icon {
+  min-width: 14px;
+  min-height: 14px;
+  flex: 0 0 auto;
 }
 
 .app-page {
@@ -24,7 +35,7 @@
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: .09em;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 800;
 }
 
@@ -124,7 +135,7 @@
   padding: 0 15px;
   background: var(--gray-6);
   color: var(--ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -139,13 +150,12 @@
   width: 100%;
 }
 
-.app-search-field i {
+.app-search-field .lucide-icon {
   position: absolute;
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--tertiary);
-  font-size: 19px;
 }
 
 .app-search-field input {
@@ -170,28 +180,7 @@
   gap: 24px;
 }
 
-::view-transition-old(app-route) {
-  animation: app-route-out 120ms ease both;
-}
-
-::view-transition-new(app-route) {
-  animation: app-route-in 180ms cubic-bezier(.2,.8,.2,1) both;
-}
-
-@keyframes app-route-out {
-  to { opacity: .88; transform: translateY(-2px); }
-}
-
-@keyframes app-route-in {
-  from { opacity: .72; transform: translateY(4px); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(app-route),
-  ::view-transition-new(app-route) {
-    animation: none;
-  }
-
   .app-skeleton {
     animation: none;
   }
