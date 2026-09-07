@@ -128,7 +128,7 @@ def main() -> None:
     require('"@lucide/svelte": "1.42.0"' in package_json, "Lucide must be bundled locally with the Svelte app")
     require("from '@lucide/svelte'" in icon, "shared icon component must use bundled Lucide")
     require("TreePine" not in icon, "Tree must not be silently substituted with TreePine")
-    require("tree: Tree" in icon, "Forest City logo must use Lucide Tree")
+    require("tree: TreeDeciduous" in icon, "Forest City logo must use the deciduous Lucide tree equivalent")
     require("'hard-drives': HardDrive" in icon, "Sections hard-drive identity must be preserved")
 
     require_tokens(svelte_css, (
