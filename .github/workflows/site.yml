@@ -47,6 +47,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install collector dependencies
+        run: pip install -r requirements.txt
+
       - name: Check UI design contracts
         run: python scripts/check_ui_contracts.py
 
@@ -61,6 +64,9 @@ jobs:
 
       - name: Check card image contract
         run: python scripts/test_card_image_contract.py
+
+      - name: Check CBC Lite hero recovery
+        run: python scripts/test_cbc_lite_hero_repair.py
 
       - name: Install site dependencies
         shell: bash
@@ -86,9 +92,12 @@ jobs:
         run: |
           python scripts/annotate_scopes.py
           python scripts/apply_local_source_rules.py
-          # Card thumbnails are derived from the canonical article hero. Repair
-          # stale references at deploy time too, so a queued refresh can never
-          # publish an old author headshot after that hero was rejected.
+          # For the small set of stories actually occupying the homepage feature
+          # slots, recover a real CBC article hero from CBC/Lite immediately instead
+          # of waiting for a queued refresh. If recovery is unavailable, the final
+          # card contract below still rejects tiny avatar derivatives and uses the
+          # normal green placeholder.
+          python scripts/repair_cbc_lite_heroes.py --top-only
           python scripts/repair_card_image_refs.py
           mkdir -p public/data
           cp data/news.json public/data/news.json
