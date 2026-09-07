@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -233,20 +233,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
-      - name: Persist generated lockfile
-        if: github.event_name == 'push' && github.ref_name == 'main'
-        shell: bash
-        run: |
-          if [ -z "$(git status --porcelain -- package-lock.json)" ]; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add package-lock.json
-          git commit -m "Lock npm dependencies"
-          git pull --rebase origin main
-          git push origin HEAD:main
 
   deploy:
     environment:
