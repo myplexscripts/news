@@ -1,6 +1,6 @@
-const SHELL_CACHE = 'forest-city-news-shell-v1';
-const ASSET_CACHE = 'forest-city-news-assets-v1';
-const DATA_CACHE = 'forest-city-news-data-v1';
+const SHELL_CACHE = 'forest-city-news-shell-v2';
+const ASSET_CACHE = 'forest-city-news-assets-v2';
+const DATA_CACHE = 'forest-city-news-data-v2';
 const CACHE_PREFIXES = ['forest-city-news-', 'london-news-'];
 
 function scopePath(path = '') {
