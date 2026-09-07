@@ -10,6 +10,9 @@ export default {
       assets: 'dist',
       fallback: '404.html'
     }),
+    files: {
+      assets: 'public'
+    },
     paths: {
       base
     },
