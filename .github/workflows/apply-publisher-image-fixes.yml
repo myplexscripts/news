@@ -5,6 +5,9 @@ on:
     branches: [fix/publisher-article-images-20260907]
     paths:
       - '.github/workflows/apply-publisher-image-fixes.yml'
+      - 'scripts/_apply_publisher_image_fixes.py'
+      - 'scripts/_verify_publisher_image_fixes.py'
+      - 'scripts/test_publisher_image_structures.py'
   workflow_dispatch:
 
 permissions:
@@ -47,5 +50,3 @@ jobs:
           git add scripts/fetch_news.py scripts/enrich_article_media.py scripts/test_publisher_image_structures.py .github/workflows/refresh.yml .github/workflows/enrich.yml
           git commit -m "Improve CBC CTV and Globe article images"
           git push origin "HEAD:${GITHUB_REF_NAME}"
-
-# Trigger validation after replacing the oversized inline patch workflow.
