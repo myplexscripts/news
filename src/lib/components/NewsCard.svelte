@@ -13,11 +13,13 @@
 
   let fallbackIndex = 0;
   let fallbackStoryId = '';
+  let logoFailed = false;
 
   $: id = String(story?.id || '');
   $: if (id !== fallbackStoryId) {
     fallbackStoryId = id;
     fallbackIndex = 0;
+    logoFailed = false;
   }
   $: isSaved = $userState.savedIds.includes(id);
   $: isRead = $userState.readIds.includes(id);
@@ -27,6 +29,7 @@
   $: imageCandidates = [...new Set(rawCandidates.map((value) => resolveAsset(value)).filter(Boolean))];
   $: image = imageCandidates[fallbackIndex] || '';
   $: logo = sourceLogoPath(story?.source || '', `${base}/`);
+  $: usableLogo = Boolean(logo && !logoFailed);
   $: href = storyHref(id);
   $: timestamp = story?.cluster_latest_published || story?.published;
   $: readMinutes = Number(story?.word_count) > 0
@@ -86,7 +89,6 @@
 <article
   class={`news-card card-${variant} ${categoryClass} ${className}`}
   class:is-read-story={isRead}
-  class:no-image={!image}
   data-story-id={id}
   data-category={story?.category || ''}
   data-source={story?.source || ''}
@@ -98,8 +100,8 @@
 >
   <a class="news-card-link" href={href} data-sveltekit-preload-data="tap" aria-label={story?.title || 'Open article'}></a>
 
-  {#if image}
-    <div class="news-card-media">
+  <div class:news-card-placeholder-media={!image} class="news-card-media">
+    {#if image}
       {#if variant === 'featured'}
         <img
           class="news-card-photo-backdrop"
@@ -122,20 +124,30 @@
         on:load={syncImageMode}
         on:error={imageError}
       />
-    </div>
-  {/if}
+    {:else}
+      <div class="news-card-placeholder" aria-hidden="true">
+        <span class="news-card-placeholder-brand">
+          <i class="ph-fill ph-tree"></i>
+          <strong>News</strong>
+        </span>
+      </div>
+    {/if}
+  </div>
 
   <div class="news-card-body">
-    {#if logo && variant === 'featured'}
-      <span class="card-source-mark-slot">
-        <img class="card-source-mark" src={logo} alt="" loading="lazy" decoding="async" />
-      </span>
-    {:else if logo}
-      <img class="card-source-mark" src={logo} alt="" loading="lazy" decoding="async" />
+    {#if usableLogo}
+      <img
+        class="card-source-mark"
+        src={logo}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        on:error={() => logoFailed = true}
+      />
     {/if}
 
     {#if story?.source}
-      <span class="card-source-name" hidden={Boolean(logo)}>{story.source}</span>
+      <span class="card-source-name" hidden={usableLogo}>{story.source}</span>
     {/if}
 
     <h3 title={story?.title || ''}>{title}</h3>
@@ -188,7 +200,84 @@
 
   .news-card-body {
     position: relative;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
     padding-bottom: 56px !important;
+  }
+
+  .card-source-mark,
+  .card-source-name {
+    order: 0;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    margin: 0 0 8px !important;
+  }
+
+  .card-source-mark {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: min(150px, 100%) !important;
+    max-height: 30px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+    transform: none !important;
+  }
+
+  .card-source-name {
+    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .news-card h3 {
+    order: 1;
+  }
+
+  .news-card-summary {
+    order: 2;
+  }
+
+  .news-card-footer {
+    order: 3;
+    margin-top: auto !important;
+  }
+
+  .news-card-placeholder-media {
+    background: var(--green) !important;
+  }
+
+  .news-card-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    background: var(--green);
+    color: #fff;
+  }
+
+  .news-card-placeholder-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .news-card-placeholder-brand i {
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .news-card-placeholder-brand strong {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
   }
 
   .news-card-coverage {
@@ -234,11 +323,5 @@
   .news-card-save:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
-  }
-
-  .card-source-mark-slot {
-    min-height: 24px;
-    display: flex;
-    align-items: center;
   }
 </style>
