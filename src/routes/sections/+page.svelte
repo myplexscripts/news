@@ -10,14 +10,14 @@
   const iconFor = (category) => ({
     'Local': 'map-pin',
     'Public Safety': 'shield-check',
-    'City Hall': 'building',
+    'City Hall': 'buildings',
     'Business': 'briefcase',
     'Traffic': 'car',
     'Education': 'graduation-cap',
-    'Health': 'heart-pulse',
-    'Community': 'users',
+    'Health': 'heartbeat',
+    'Community': 'users-three',
     'Sports': 'trophy'
-  }[category] || 'newspaper');
+  }[category] || 'newspaper-clipping');
 
   let feed;
   let error = '';
@@ -119,7 +119,7 @@
         <section class="directory-panel" aria-label="News sections">
           <div class="section-directory-grid">
             <a class="section-directory-card section-all" href={`${base}/latest/`} data-sveltekit-preload-data="tap">
-              <span class="section-directory-icon"><Icon name="clock" size={25} /></span>
+              <span class="section-directory-icon"><Icon name="clock-countdown" size={25} /></span>
               <div><strong>Latest</strong></div>
             </a>
 
@@ -164,7 +164,7 @@
           </div>
 
           <div class="sources-footer-note">
-            <Icon name="smartphone" size={22} />
+            <Icon name="device-mobile" size={22} />
             <p>These preferences only affect what Forest City News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
           </div>
         </section>
