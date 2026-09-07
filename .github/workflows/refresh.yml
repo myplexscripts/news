@@ -98,6 +98,7 @@ jobs:
           python scripts/test_publisher_hygiene.py
           python scripts/test_article_contract.py
           python scripts/test_card_image_contract.py
+          python scripts/test_cbc_lite_hero_repair.py
           python scripts/test_refresh_merge.py
           python scripts/check_scope_contracts.py
           python scripts/check_local_source_rules.py
@@ -118,6 +119,7 @@ jobs:
           python scripts/publisher_hygiene.py
           python scripts/sanitize_article_blocks.py
           python scripts/repair_cbc_images.py
+          python scripts/repair_cbc_lite_heroes.py
 
       - name: Final article boundary guard
         if: steps.due.outputs.run == 'true'
@@ -160,6 +162,7 @@ jobs:
             /tmp/news-merged.json
           mv /tmp/news-merged.json data/news.json
           python scripts/repair_cbc_images.py
+          python scripts/repair_cbc_lite_heroes.py
           python scripts/publisher_hygiene.py
           python scripts/sanitize_article_blocks.py
           python scripts/trim_article_tails.py
