@@ -17,14 +17,16 @@ from bs4 import BeautifulSoup, Tag
 from fetch_news import clean_text, fetch_html
 from fetch_news import (
     extract_dom_blocks as extract_article_dom_blocks,
+    extract_ctv_embedded_blocks,
     image_dedupe_key,
+    is_ctv_source,
     same_image,
     valid_article_image,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-MEDIA_SCHEMA = 3
+MEDIA_SCHEMA = 4
 MAX_INLINE_IMAGES = max(4, int(os.getenv("MEDIA_MAX_INLINE_IMAGES", "10")))
 MAX_PER_RUN = max(8, int(os.getenv("MEDIA_MAX_PER_RUN", "36")))
 RECENT_HOURS = max(24, int(os.getenv("MEDIA_RECENT_HOURS", "120")))
@@ -352,27 +354,73 @@ def merge_media(blocks: list[dict[str, Any]], media: list[tuple[str, dict[str, A
 
 def process_story(story: dict[str, Any]) -> tuple[list[tuple[str, dict[str, Any]]], str]:
     source = clean_text(story.get("source", ""))
+    cbc_media: list[tuple[str, dict[str, Any]]] = []
     if source == "CBC News London":
-        media = extract_cbc_media(story)
-        if media:
-            return media, "cbc:jina-media-v2"
+        # CBC's Jina/Lite route is useful for playable audio/video, but returning
+        # here used to prevent the normal DOM pass from ever recovering photos.
+        cbc_media = extract_cbc_media(story)
+
     url = clean_text(story.get("url", ""))
     if not url:
-        return [], "dom:no-url"
+        return cbc_media, "cbc:jina-media-v4" if cbc_media else "dom:no-url"
     try:
         raw, final_url = fetch_html(url)
     except Exception as exc:
+        if cbc_media:
+            return cbc_media, "cbc:jina-media-v4"
         return [], f"dom:{type(exc).__name__}"
-    media = extract_dom_media(raw, final_url)
+
+    dom_media = extract_dom_media(raw, final_url)
+    hero_url = clean_text(story.get("image", ""))
     images = extract_dom_images(
         raw,
         final_url,
         source,
         clean_text(story.get("title", "")),
-        clean_text(story.get("image", "")),
+        hero_url,
     )
-    return [*media, *images], "dom:media-images-v3"
 
+    if is_ctv_source(source):
+        # CTV's actual article body lives in Arc/Fusion state on pages where the
+        # visible server DOM has no usable article root. Reuse that first-party
+        # structure so recommendation-card photos never stand in for story media.
+        soup = BeautifulSoup(raw, "html.parser")
+        embedded_blocks, _stats = extract_ctv_embedded_blocks(
+            soup,
+            clean_text(story.get("title", "")),
+            final_url,
+        )
+        embedded_images: list[tuple[str, dict[str, Any]]] = []
+        anchor = ""
+        for block in embedded_blocks:
+            kind = block.get("type")
+            if kind in {"paragraph", "heading", "quote"} and block.get("text"):
+                anchor = clean_text(block.get("text"), 240)
+                continue
+            if kind != "image" or not block.get("url"):
+                continue
+            image_url = str(block.get("url") or "")
+            if same_image(image_url, hero_url) or not valid_article_image(image_url):
+                continue
+            embedded_images.append((anchor, block))
+        if embedded_images:
+            images = [*embedded_images, *images]
+
+    combined = [*cbc_media, *dom_media, *images]
+    deduped: list[tuple[str, dict[str, Any]]] = []
+    seen: set[str] = set()
+    for anchor, block in combined:
+        key = block_key(block)
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        deduped.append((anchor, block))
+
+    if source == "CBC News London":
+        return deduped, "cbc:jina-dom-media-images-v4"
+    if is_ctv_source(source):
+        return deduped, "ctv:embedded-dom-media-images-v4"
+    return deduped, "dom:media-images-v4"
 
 def story_needs_work(story: dict[str, Any], now: datetime) -> bool:
     if not isinstance(story, dict) or not story.get("url") or not story.get("title"):
