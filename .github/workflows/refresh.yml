@@ -150,39 +150,54 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin "$GITHUB_REF_NAME"
-          git reset --hard "origin/$GITHUB_REF_NAME"
 
-          # Headline collection may have started before a richer article pass
-          # landed. Keep the fresh feed metadata while preserving whichever
-          # article body is demonstrably more complete and media-rich.
-          python scripts/merge_refresh_output.py \
-            /tmp/scoop-fast-output/news.json \
-            data/news.json \
-            /tmp/news-merged.json
-          mv /tmp/news-merged.json data/news.json
-          python scripts/repair_cbc_images.py
-          python scripts/repair_cbc_lite_heroes.py
-          python scripts/publisher_hygiene.py
-          python scripts/sanitize_article_blocks.py
-          python scripts/trim_article_tails.py
-          python scripts/enforce_article_contract.py
-          python scripts/repair_card_image_refs.py
-          cp /tmp/scoop-fast-output/audit.json data/audit.json
-          mkdir -p public/cache
-          # Overlay cache additions from this refresh without deleting media
-          # that a newer enrichment run may have committed concurrently.
-          rsync -a /tmp/scoop-fast-output/cache/ public/cache/
-          git add data/news.json data/audit.json public/cache/
+          # Another workflow can legitimately write to main while headline collection
+          # is running. Rebuild this refresh on the newest main before every push
+          # attempt so a concurrent enrichment or code commit cannot discard data.
+          for attempt in 1 2 3 4; do
+            echo "Preparing refresh push attempt $attempt/4"
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard "origin/$GITHUB_REF_NAME"
 
-          if git diff --cached --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
+            # Keep the fresh feed metadata while preserving whichever article body
+            # on main is demonstrably more complete and media-rich.
+            python scripts/merge_refresh_output.py \
+              /tmp/scoop-fast-output/news.json \
+              data/news.json \
+              /tmp/news-merged.json
+            mv /tmp/news-merged.json data/news.json
+            python scripts/repair_cbc_images.py
+            python scripts/repair_cbc_lite_heroes.py
+            python scripts/publisher_hygiene.py
+            python scripts/sanitize_article_blocks.py
+            python scripts/trim_article_tails.py
+            python scripts/enforce_article_contract.py
+            python scripts/repair_card_image_refs.py
+            cp /tmp/scoop-fast-output/audit.json data/audit.json
+            mkdir -p public/cache
 
-          git commit -m "Refresh news"
-          git push origin "HEAD:$GITHUB_REF_NAME"
-          echo "changed=true" >> "$GITHUB_OUTPUT"
+            # Overlay cache additions from this refresh without deleting media
+            # that a newer enrichment run may have committed concurrently.
+            rsync -a /tmp/scoop-fast-output/cache/ public/cache/
+            git add data/news.json data/audit.json public/cache/
+
+            if git diff --cached --quiet; then
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git commit -m "Refresh news"
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            echo "main moved during push attempt $attempt; rebuilding on the newest commit"
+            sleep $((attempt * 2))
+          done
+
+          echo "Refresh could not publish after 4 concurrent-push retries" >&2
+          exit 1
 
       - name: Deploy fast refresh
         if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
