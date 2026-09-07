@@ -109,13 +109,9 @@ def main() -> None:
     require("Shared Liquid Glass material" not in feed, "legacy shared Liquid Glass block returned")
     require(".mobile-tab-bar" in ui and "backdrop-filter: blur(34px)" in ui, "mobile nav Liquid Glass is missing")
 
-    # Persistent outlines and borders are intentionally absent from flat controls.
     require("border: 1px solid var(--ui-border)" not in ui, "persistent control outlines returned")
     require("border: 1px solid var(--ui-selected-border)" not in ui, "selected segment outline returned")
 
-    # The app shell must keep the established font/icon assets and original DOM
-    # hooks. These checks specifically guard against a framework migration silently
-    # leaving the CSS in place while replacing every class it styles.
     require_tokens(app_html, (
         "smart-features.css",
         "family=Inter:wght@400;500;600;700;800",
@@ -132,7 +128,8 @@ def main() -> None:
         'class="mobile-tab-indicator"',
         "--mobile-tab-count:5",
     ), "app shell")
-    require(layout.count('class="mobile-tab') == 5, "mobile navigation must contain exactly five tab links")
+    tab_count = layout.count('class="mobile-tab"') + layout.count('class="mobile-tab mobile-home-tab"')
+    require(tab_count == 5, f"mobile navigation must contain exactly five tab links, found {tab_count}")
     require("app-tab-bar" not in layout, "temporary generic Svelte tab bar returned")
 
     require_tokens(home, (
@@ -186,7 +183,6 @@ def main() -> None:
         "settings-switch-track",
     ), "settings page")
 
-    # Inactive labels remain readable on the flat segmented-control backgrounds.
     light_segment_fill = (242, 242, 247)
     light_muted = (108, 108, 112)
     dark_segment_fill = (28, 28, 30)
@@ -194,7 +190,6 @@ def main() -> None:
     require(contrast(light_muted, light_segment_fill) >= 4.5, "light inactive segment text is below 4.5:1")
     require(contrast(dark_muted, dark_segment_fill) >= 4.5, "dark inactive segment text is below 4.5:1")
 
-    # Action and selected labels use accent-aware foregrounds that remain readable.
     light_action_fill = (242, 242, 247)
     light_selected_fill = (255, 255, 255)
     dark_action_fill = (44, 44, 46)
