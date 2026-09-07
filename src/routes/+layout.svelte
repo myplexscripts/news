@@ -250,9 +250,15 @@
       font-size: 32px !important;
     }
 
-    :global(.svelte-mobile-tab-bar) {
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar) {
       --mobile-tab-count: 5 !important;
       grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
     }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(1)) { grid-column: 1 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(2)) { grid-column: 2 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(3)) { grid-column: 3 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(4)) { grid-column: 4 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(5)) { grid-column: 5 !important; }
   }
 </style>
