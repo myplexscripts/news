@@ -15,7 +15,7 @@ import html
 import json
 import re
 from typing import Any
-from urllib.parse import unquote, urljoin, urlparse
+from urllib.parse import urljoin, urlparse
 
 import requests
 from bs4 import BeautifulSoup
@@ -189,8 +189,7 @@ def html_document_candidates(
         candidate = clean(raw)
         if not candidate:
             return
-        candidate = html.unescape(unquote(candidate))
-        candidate = urljoin(page_url, candidate)
+        candidate = urljoin(page_url, html.unescape(candidate))
         if not acceptable_candidate(record, candidate, alt=alt, caption=caption):
             return
         key = cbc.normalize_local_image(candidate).split("?", 1)[0].lower()
@@ -208,7 +207,6 @@ def html_document_candidates(
             seen_links.add(key)
             links.append(key)
 
-    # Publisher metadata is the strongest evidence for the article hero.
     for prop, bonus in (
         ("og:image", 180),
         ("og:image:secure_url", 175),
@@ -230,7 +228,6 @@ def html_document_candidates(
         if "canonical" in rel:
             add_link(link.get("href"))
 
-    # JSON-LD frequently carries the hero even when the visible Lite page omits it.
     for script in soup.find_all("script", attrs={"type": re.compile("ld\\+json", re.I)}):
         raw = script.string or script.get_text(" ", strip=True)
         if not raw:
@@ -276,7 +273,6 @@ def html_document_candidates(
                 for offset, candidate in enumerate(reversed(entries)):
                     add_image(candidate, score + 8 - offset, alt, caption)
 
-    # Keep ordinary CBC article links so a Lite document can lead us to the full page.
     for anchor in soup.find_all("a", href=True, limit=300):
         add_link(anchor.get("href"))
 
@@ -376,7 +372,6 @@ def discover_from_cbc(record: dict[str, Any]) -> tuple[str, str]:
                 if link not in visited and link not in queue:
                     queue.append(link)
 
-        # Retain the mature CBC reader parser as another independent fallback.
         for index, candidate in enumerate(cbc_repair.reader_image_candidates(page_url, record)):
             if acceptable_candidate(record, candidate):
                 all_images.append((90 - min(index, 30), clean(candidate), page_url))
@@ -384,7 +379,6 @@ def discover_from_cbc(record: dict[str, Any]) -> tuple[str, str]:
     if not all_images:
         return "", ""
 
-    # Deduplicate by CBC asset path. The highest-scored occurrence wins.
     best: dict[str, tuple[int, str, str]] = {}
     for score, candidate, source_url in all_images:
         parsed = urlparse(candidate)
