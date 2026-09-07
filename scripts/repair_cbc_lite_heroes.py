@@ -9,6 +9,7 @@ publisher-owned article surface as the preferred source of truth whenever the
 current hero is missing or fails the final card-image quality contract.
 """
 
+import argparse
 import json
 from typing import Any
 from urllib.parse import urlparse
@@ -17,7 +18,7 @@ import cache_cbc_images as cbc
 import repair_card_image_refs as card_guard
 import repair_cbc_images as cbc_repair
 
-SCHEMA = 1
+SCHEMA = 2
 
 
 def clean(value: Any) -> str:
@@ -120,9 +121,10 @@ def repair_record(record: dict[str, Any]) -> bool:
     record["image"] = selected
     record["card_image"] = selected if cached else ""
     record["card_image_small"] = ""
+    urls = candidate_reader_urls(record)
     record["cbc_lite_hero_source"] = next(
-        (url for url in candidate_reader_urls(record) if "/lite/story/" in urlparse(url).path.lower()),
-        candidate_reader_urls(record)[0] if candidate_reader_urls(record) else "",
+        (url for url in urls if "/lite/story/" in urlparse(url).path.lower()),
+        urls[0] if urls else "",
     )
     record["cbc_lite_hero_repair_schema"] = SCHEMA
     record["cbc_invalid_hero_cleared"] = True
@@ -134,13 +136,22 @@ def repair_record(record: dict[str, Any]) -> bool:
     return True
 
 
-def repair_payload(payload: dict[str, Any]) -> int:
+def repair_payload(payload: dict[str, Any], *, top_only: bool = False) -> int:
     stories = payload.get("stories")
     if not isinstance(stories, list):
         return 0
+    top_ids = {
+        clean(value)
+        for value in payload.get("top_story_ids", [])
+        if clean(value)
+    } if top_only else set()
     corrected = 0
     for story in stories:
-        if isinstance(story, dict) and repair_record(story):
+        if not isinstance(story, dict):
+            continue
+        if top_only and clean(story.get("id")) not in top_ids:
+            continue
+        if repair_record(story):
             corrected += 1
     payload["cbc_lite_hero_repair_schema"] = SCHEMA
     payload["cbc_lite_hero_repair_corrected"] = corrected
@@ -148,14 +159,23 @@ def repair_payload(payload: dict[str, Any]) -> int:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--top-only",
+        action="store_true",
+        help="Only repair stories currently selected for the homepage top-story set.",
+    )
+    args = parser.parse_args()
+
     if not cbc.NEWS_PATH.exists():
         print("No data/news.json found")
         return 0
     payload = json.loads(cbc.NEWS_PATH.read_text(encoding="utf-8"))
-    corrected = repair_payload(payload)
+    corrected = repair_payload(payload, top_only=args.top_only)
     if corrected:
         cbc.NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"CBC Lite hero repair corrected {corrected} story/stories")
+    scope = "top stories" if args.top_only else "all stories"
+    print(f"CBC Lite hero repair corrected {corrected} story/stories ({scope})")
     return 0
 
 
