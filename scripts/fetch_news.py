@@ -35,7 +35,7 @@ ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 48
 MIN_ARTICLE_CHARS = 320
 MAX_ARTICLE_IMAGES = 10
-EXTRACTION_SCHEMA = 15
+EXTRACTION_SCHEMA = 16
 LOCAL_TIMEZONE = ZoneInfo("America/Toronto")
 USER_AGENT = "LondonNewsAggregator/3.0 (+https://github.com/)"
 
@@ -231,7 +231,10 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
     "CBC News London": {
         "profile": "cbc",
         "roots": ["[data-cy='storyWrapper']", ".story-content", "[itemprop='articleBody']", "article"],
-        "remove": ["[data-cy*='related']", ".related", ".newsletter", ".share", ".ad"],
+        "remove": [
+            "[data-cy*='related']", ".related", ".newsletter", ".share", ".ad",
+            "[data-cy*='player']", "[class*='player-placeholder']", ".mediaEmbed",
+        ],
     },
     "London Free Press": {
         "profile": "postmedia",
@@ -269,8 +272,9 @@ SOURCE_PROFILES: dict[str, dict[str, Any]] = {
     "The Globe and Mail": {
         "profile": "globe",
         "roots": [
+            "article#content-gate", "#content-gate",
             "[data-testid='article-body']", "[itemprop='articleBody']",
-            ".article-body", ".c-article-body", "main article", "article", "main",
+            ".article-body", ".c-article-body", "main article", "article",
         ],
         "remove": [
             "[class*='advert']", "[class*='related']", "[class*='recirc']",
@@ -779,21 +783,40 @@ def json_ld_image_objects(value: Any) -> list[dict[str, Any]]:
 
 
 def srcset_candidates(value: Any) -> list[tuple[int, str]]:
-    candidates: list[tuple[int, str]] = []
-    for part in str(value or "").split(","):
-        bits = part.strip().split()
-        if not bits:
-            continue
-        score = 1
-        if len(bits) > 1:
-            raw_score = re.sub(r"[^0-9.]", "", bits[1])
-            try:
-                score = int(float(raw_score) * (1000 if bits[1].endswith("x") else 1))
-            except Exception:
-                score = 1
-        candidates.append((score, bits[0]))
-    return candidates
+    """Parse responsive image candidates without splitting commas inside URLs.
 
+    CBC image asset paths contain a literal comma before the numeric asset id.
+    A plain ``str.split(",")`` therefore corrupts otherwise valid srcset URLs.
+    Candidate descriptors are the reliable boundary, so parse complete
+    ``URL + width/density descriptor`` pairs first and fall back only when a
+    publisher supplies a non-standard descriptor-free srcset.
+    """
+    raw = html.unescape(str(value or "")).strip()
+    if not raw:
+        return []
+
+    candidates: list[tuple[int, str]] = []
+    pattern = re.compile(r'(?:^|,\s*)(\S+?)\s+([0-9.]+[wx])(?=\s*(?:,|$))', re.I)
+    for match in pattern.finditer(raw):
+        url, descriptor = match.group(1), match.group(2).lower()
+        try:
+            number = float(descriptor[:-1])
+            score = int(number * (1000 if descriptor.endswith("x") else 1))
+        except Exception:
+            score = 1
+        candidates.append((max(1, score), url))
+
+    if candidates:
+        return candidates
+
+    # Descriptor-free srcsets are uncommon but legal enough in the wild to
+    # preserve the old permissive behaviour. Do not use this path for normal
+    # CBC responsive markup because its URL itself contains commas.
+    for part in raw.split(','):
+        candidate = part.strip().split()[0] if part.strip() else ''
+        if candidate:
+            candidates.append((1, candidate))
+    return candidates
 
 def best_img_url(img: Tag, base_url: str) -> str:
     candidates: list[tuple[int, str]] = []
@@ -840,7 +863,9 @@ def valid_article_image(url: str, img: Tag | None = None) -> bool:
     if not url or url.lower().endswith((".svg", ".gif")):
         return False
     lower = url.lower()
-    if any(token in lower for token in IMAGE_JUNK):
+    # CBC uses /default.jpg for real editorial photos, so "default" is only
+    # a junk signal in element metadata, not in an otherwise valid image URL.
+    if any(token in lower for token in IMAGE_JUNK if token != "default"):
         return False
     if img is not None:
         alt = clean_text(img.get("alt") or "").lower()
@@ -1975,6 +2000,37 @@ def enrich_article(story: dict[str, Any], source: Source) -> dict[str, Any]:
     else:
         blocks = dom_blocks
         paragraphs, text = text_from_blocks(blocks)
+
+    # For publishers with noisy whole-page markup, the images that survived the
+    # chosen article body are more trustworthy than generic page-wide candidates.
+    # This is especially important for CTV, whose server HTML contains dozens of
+    # recommendation cards, and for Globe pages with large recirculation rails.
+    if source.name == "CBC News London" or is_ctv_source(source.name) or "globe and mail" in source.name.lower():
+        structured_inline: list[dict[str, Any]] = []
+        for block in blocks:
+            if block.get("type") != "image" or not block.get("url"):
+                continue
+            image_url = normalize_image_url(str(block.get("url") or ""), final_url)
+            if not valid_article_image(image_url) or same_image(image_url, lead_image):
+                continue
+            if any(same_image(image_url, prior["url"]) for prior in structured_inline):
+                continue
+            structured_inline.append({
+                "url": image_url,
+                "alt": clean_text(block.get("alt", ""), 180),
+                "caption": clean_text(block.get("caption", ""), 320),
+                "width": int_attr(block.get("width")) or None,
+                "height": int_attr(block.get("height")) or None,
+                "score": 1000 - len(structured_inline),
+            })
+            if len(structured_inline) >= MAX_ARTICLE_IMAGES:
+                break
+        if structured_inline:
+            inline_candidates = structured_inline
+        elif is_ctv_source(source.name):
+            # Never publish recommendation-card images as CTV article media just
+            # because the visible article DOM is client-rendered.
+            inline_candidates = []
 
     raw_summary = (
         clean_text(ld.get("description"), 360) or clean_text(extracted_meta.get("description"), 360)
