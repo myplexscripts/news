@@ -3,6 +3,7 @@
   import { prefetchStory, resolveAsset, storyHref } from '$lib/newsData';
   import { sourceLogoPath } from '$lib/sourceLogos';
   import { base } from '$app/paths';
+  import Icon from '$lib/components/Icon.svelte';
 
   export let story;
   export let variant = 'standard';
@@ -144,7 +145,7 @@
       <time datetime={timestamp}>{published(timestamp)}</time>
       {#if sourceCount > 1}
         <span class="news-card-coverage" title={`Covered by ${sourceCount} sources`}>
-          <i class="ph ph-stack" aria-hidden="true"></i>
+          <Icon name="layers" size={16} strokeWidth={2.25} />
           {sourceCount} sources
         </span>
       {/if}
@@ -164,7 +165,7 @@
       title={isSaved ? 'Remove from Read Later' : 'Save to Read Later'}
       on:click={toggle}
     >
-      <i class={isSaved ? 'ph-fill ph-bookmark-simple' : 'ph ph-bookmark-simple'} aria-hidden="true"></i>
+      <Icon name="bookmark" size={22} strokeWidth={isSaved ? 2.75 : 2} />
     </button>
   </div>
 </article>
@@ -200,10 +201,6 @@
     font-weight: 700;
   }
 
-  .news-card-coverage i {
-    font-size: 16px;
-  }
-
   .news-card-save {
     position: absolute;
     z-index: 4;
@@ -219,10 +216,6 @@
     background: transparent;
     color: var(--muted);
     cursor: pointer;
-  }
-
-  .news-card-save i {
-    font-size: 22px;
   }
 
   .news-card-save:hover,
