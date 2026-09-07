@@ -42,11 +42,11 @@ jobs:
       - name: Verify supplied publisher pages live
         run: python scripts/_verify_publisher_image_fixes.py
 
-      - name: Commit tested fixes
+      - name: Commit tested scraper fixes
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/fetch_news.py scripts/enrich_article_media.py scripts/test_publisher_image_structures.py .github/workflows/refresh.yml .github/workflows/enrich.yml
+          git add scripts/fetch_news.py scripts/enrich_article_media.py scripts/test_publisher_image_structures.py
           git commit -m "Improve CBC CTV and Globe article images"
           git push origin "HEAD:${GITHUB_REF_NAME}"
