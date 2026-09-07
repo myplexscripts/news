@@ -1,4 +1,5 @@
 <script>
+  import Icon from '$lib/components/Icon.svelte';
   import {
     clearEverything,
     clearRead,
@@ -78,7 +79,7 @@
                   style={`--swatch:var(--${accent[0]});`}
                   on:click={() => preference('accent', accent[0])}
                 >
-                  <i class="ph ph-check" aria-hidden="true"></i>
+                  <Icon name="check" size={22} strokeWidth={2.5} />
                 </button>
               {/each}
             </div>
@@ -161,11 +162,9 @@
     display: none !important;
   }
 
-  .settings-page .accent-choice i {
+  .settings-page .accent-choice :global(.lucide-icon) {
     opacity: 0;
     color: #000 !important;
-    font-size: 22px !important;
-    font-weight: 700;
     transition: opacity 160ms ease, transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
     transform: scale(0.8);
   }
@@ -176,7 +175,7 @@
     box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--swatch) !important;
   }
 
-  .settings-page .accent-choice.selected i {
+  .settings-page .accent-choice.selected :global(.lucide-icon) {
     opacity: 1;
     transform: scale(1);
   }
@@ -203,7 +202,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .settings-page .accent-choice i {
+    .settings-page .accent-choice :global(.lucide-icon) {
       transition: none !important;
     }
   }
