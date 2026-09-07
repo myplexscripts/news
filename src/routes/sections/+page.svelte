@@ -4,19 +4,20 @@
   import { loadFeed } from '$lib/newsData';
   import { setHiddenSource, revealAllSources, userState } from '$lib/appState';
   import { sourceLogoPath } from '$lib/sourceLogos';
+  import Icon from '$lib/components/Icon.svelte';
 
   const preferredOrder = ['Local', 'Public Safety', 'City Hall', 'Business', 'Traffic', 'Education', 'Health', 'Community', 'Sports'];
   const iconFor = (category) => ({
-    'Local': 'ph-map-pin',
-    'Public Safety': 'ph-shield-check',
-    'City Hall': 'ph-buildings',
-    'Business': 'ph-briefcase',
-    'Traffic': 'ph-car',
-    'Education': 'ph-graduation-cap',
-    'Health': 'ph-heartbeat',
-    'Community': 'ph-users-three',
-    'Sports': 'ph-trophy'
-  }[category] || 'ph-newspaper-clipping');
+    'Local': 'map-pin',
+    'Public Safety': 'shield-check',
+    'City Hall': 'building',
+    'Business': 'briefcase',
+    'Traffic': 'car',
+    'Education': 'graduation-cap',
+    'Health': 'heart-pulse',
+    'Community': 'users',
+    'Sports': 'trophy'
+  }[category] || 'newspaper');
 
   let feed;
   let error = '';
@@ -118,16 +119,14 @@
         <section class="directory-panel" aria-label="News sections">
           <div class="section-directory-grid">
             <a class="section-directory-card section-all" href={`${base}/latest/`} data-sveltekit-preload-data="tap">
-              <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
+              <span class="section-directory-icon"><Icon name="clock" size={25} /></span>
               <div><strong>Latest</strong></div>
-              <i class="ph ph-caret-right" aria-hidden="true"></i>
             </a>
 
             {#each categories as category}
               <a class={`section-directory-card ${categoryClass(category)}`} href={`${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
-                <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
+                <span class="section-directory-icon"><Icon name={iconFor(category)} size={25} /></span>
                 <div><strong>{category}</strong></div>
-                <i class="ph ph-caret-right" aria-hidden="true"></i>
               </a>
             {/each}
           </div>
@@ -165,7 +164,7 @@
           </div>
 
           <div class="sources-footer-note">
-            <i class="ph ph-device-mobile" aria-hidden="true"></i>
+            <Icon name="smartphone" size={22} />
             <p>These preferences only affect what Forest City News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
           </div>
         </section>
@@ -242,11 +241,6 @@
     color: #000;
   }
 
-  .section-directory-icon i {
-    color: #000;
-    font-size: 25px;
-  }
-
   .section-directory-card > div {
     flex: 1 1 auto;
     min-width: 0;
@@ -258,10 +252,6 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 1.25;
-  }
-
-  .section-directory-card > i.ph-caret-right {
-    display: none;
   }
 
   .combined-sources-toolbar {
@@ -301,10 +291,6 @@
       height: 44px;
       min-width: 44px;
       border-radius: 11px;
-    }
-
-    .section-directory-icon i {
-      font-size: 24px;
     }
 
     .section-directory-card strong {
