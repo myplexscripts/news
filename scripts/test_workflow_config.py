@@ -56,8 +56,24 @@ def main() -> int:
     if 'git commit -m "Refresh news"' not in refresh:
         errors.append("refresh workflow does not commit updated feed data")
 
-    if "group: refresh-news-v5" not in refresh or "cancel-in-progress: false" not in refresh:
-        errors.append("refresh workflow must queue overlapping triggers instead of cancelling active work")
+    if "group: refresh-news-v6" not in refresh or "cancel-in-progress: false" not in refresh:
+        errors.append("refresh workflow must use the v6 queue and preserve valid in-progress work")
+
+    commit_match = re.search(
+        r"- name: Commit fast refresh(?P<body>.*?)(?=\n      - name: Deploy fast refresh)",
+        refresh,
+        re.S,
+    )
+    commit_phase = commit_match.group("body") if commit_match else ""
+    if not commit_phase:
+        errors.append("refresh workflow is missing the bounded commit phase")
+    else:
+        if "timeout-minutes: 8" not in commit_phase:
+            errors.append("refresh commit phase must have an 8-minute hard timeout")
+        if "for attempt in 1 2 3 4" not in commit_phase:
+            errors.append("refresh commit phase must retry concurrent main updates")
+        if "repair_cbc_images.py" in commit_phase or "repair_cbc_lite_heroes.py" in commit_phase:
+            errors.append("refresh commit retries must not perform slow CBC network repair")
 
     if EXPECTED_SITE_DISPATCH not in refresh:
         errors.append("refresh workflow must explicitly deploy bot-authored feed commits")
@@ -77,7 +93,7 @@ def main() -> int:
     if WATCHDOG_WAKE_GUARD not in refresh:
         errors.append("fresh watchdog checks must not reset the active wake timer")
 
-    if "sleep \"$wait_seconds\"" in refresh or "sleep 900" in refresh:
+    if 'sleep "$wait_seconds"' in refresh or "sleep 900" in refresh:
         errors.append("refresh workflow must not stay open only to wait for the next cycle")
 
     if "workflow_dispatch:" not in wake or "delay_seconds:" not in wake:
@@ -106,7 +122,8 @@ def main() -> int:
 
     print(
         "Workflow configuration OK: chained 15-minute refresh wake, 10-minute watchdog, "
-        "20-minute freshness fallback, queued refreshes, fast collection, enrichment, and explicit deployment"
+        "20-minute freshness fallback, v6 queued refreshes, bounded push retries, "
+        "fast collection, enrichment, and explicit deployment"
     )
     return 0
 

@@ -18,9 +18,10 @@ permissions:
   contents: write
   actions: write
 
-# Queue overlapping triggers instead of cancelling a valid in-progress refresh.
+# Queue overlapping triggers instead of cancelling valid work. v6 moves new
+# cycles off the legacy v5 queue so a stale pre-fix run cannot block refreshes.
 concurrency:
-  group: refresh-news-v5
+  group: refresh-news-v6
   cancel-in-progress: false
 
 jobs:
@@ -135,6 +136,7 @@ jobs:
       - name: Commit fast refresh
         id: commit
         if: steps.due.outputs.run == 'true'
+        timeout-minutes: 8
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
@@ -145,37 +147,33 @@ jobs:
           rm -rf /tmp/scoop-fast-output
           mkdir -p /tmp/scoop-fast-output/cache
           cp data/news.json /tmp/scoop-fast-output/news.json
-          cp data/audit.json /tmp/scoop-fast-output/audit.json
           rsync -a public/cache/ /tmp/scoop-fast-output/cache/
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Another workflow can legitimately write to main while headline collection
-          # is running. Rebuild this refresh on the newest main before every push
-          # attempt so a concurrent enrichment or code commit cannot discard data.
+          # Rebuild against newest main before every push. Keep this phase local and
+          # deterministic: network image recovery already ran above and must never
+          # make a commit retry take minutes.
           for attempt in 1 2 3 4; do
             echo "Preparing refresh push attempt $attempt/4"
             git fetch origin "$GITHUB_REF_NAME"
             git reset --hard "origin/$GITHUB_REF_NAME"
 
-            # Keep the fresh feed metadata while preserving whichever article body
-            # on main is demonstrably more complete and media-rich.
             python scripts/merge_refresh_output.py \
               /tmp/scoop-fast-output/news.json \
               data/news.json \
               /tmp/news-merged.json
             mv /tmp/news-merged.json data/news.json
-            python scripts/repair_cbc_images.py
-            python scripts/repair_cbc_lite_heroes.py
+
+            python scripts/apply_local_source_rules.py
             python scripts/publisher_hygiene.py
             python scripts/sanitize_article_blocks.py
             python scripts/trim_article_tails.py
             python scripts/enforce_article_contract.py
-            python scripts/repair_card_image_refs.py
-            cp /tmp/scoop-fast-output/audit.json data/audit.json
-            mkdir -p public/cache
+            python scripts/run_audit.py
 
+            mkdir -p public/cache
             # Overlay cache additions from this refresh without deleting media
             # that a newer enrichment run may have committed concurrently.
             rsync -a /tmp/scoop-fast-output/cache/ public/cache/

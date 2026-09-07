@@ -8,7 +8,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: enrich-news-${{ github.ref }}
+  group: enrich-news-v2-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -95,6 +95,7 @@ jobs:
 
       - name: Commit enriched articles
         id: commit
+        timeout-minutes: 8
         shell: bash
         run: |
           if [ -z "$(git status --porcelain -- data/news.json data/audit.json public/cache/)" ]; then
@@ -105,45 +106,54 @@ jobs:
           rm -rf /tmp/scoop-enriched-output
           mkdir -p /tmp/scoop-enriched-output/cache
           cp data/news.json /tmp/scoop-enriched-output/news.json
-          cp data/audit.json /tmp/scoop-enriched-output/audit.json
           rsync -a public/cache/ /tmp/scoop-enriched-output/cache/
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin "$GITHUB_REF_NAME"
-          git reset --hard "origin/$GITHUB_REF_NAME"
 
-          # A new fast refresh may have landed while article extraction was running.
-          # Merge reader improvements into that newest feed instead of restoring an
-          # older news.json snapshot over fresher headlines and timestamps.
-          python scripts/merge_enriched_output.py \
-            /tmp/scoop-enriched-output/news.json \
-            data/news.json \
-            /tmp/news-merged.json
-          mv /tmp/news-merged.json data/news.json
-          python scripts/apply_local_source_rules.py
-          python scripts/repair_source_content.py --cbc-limit 0
-          python scripts/repair_ctv_photos.py --limit 80
-          python scripts/repair_cbc_images.py
-          python scripts/repair_cbc_lite_heroes.py
-          python scripts/publisher_hygiene.py
-          python scripts/trim_article_tails.py
-          python scripts/enforce_article_contract.py
-          python scripts/repair_card_image_refs.py
-          cp /tmp/scoop-enriched-output/audit.json data/audit.json
-          mkdir -p public/cache
-          # Overlay newly enriched media, but never delete files a newer fast refresh added.
-          rsync -a /tmp/scoop-enriched-output/cache/ public/cache/
-          git add data/news.json data/audit.json public/cache/
+          # A refresh or code change can land during the long extraction phase.
+          # Rebuild the enriched output on newest main before every push attempt.
+          # Keep retries local: all network repair work already happened above.
+          for attempt in 1 2 3 4; do
+            echo "Preparing enrichment push attempt $attempt/4"
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard "origin/$GITHUB_REF_NAME"
 
-          if git diff --cached --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
+            python scripts/merge_enriched_output.py \
+              /tmp/scoop-enriched-output/news.json \
+              data/news.json \
+              /tmp/news-merged.json
+            mv /tmp/news-merged.json data/news.json
 
-          git commit -m "Enrich news articles"
-          git push origin "HEAD:$GITHUB_REF_NAME"
-          echo "changed=true" >> "$GITHUB_OUTPUT"
+            python scripts/apply_local_source_rules.py
+            python scripts/publisher_hygiene.py
+            python scripts/sanitize_article_blocks.py
+            python scripts/trim_article_tails.py
+            python scripts/enforce_article_contract.py
+            python scripts/run_audit.py --sample-per-source 10
+
+            mkdir -p public/cache
+            # Overlay newly enriched media without deleting files from newer refreshes.
+            rsync -a /tmp/scoop-enriched-output/cache/ public/cache/
+            git add data/news.json data/audit.json public/cache/
+
+            if git diff --cached --quiet; then
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git commit -m "Enrich news articles"
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            echo "main moved during enrichment push attempt $attempt; rebuilding on newest main"
+            sleep $((attempt * 2))
+          done
+
+          echo "Enrichment could not publish after 4 concurrent-push retries" >&2
+          exit 1
 
       - name: Deploy enriched site
         if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
