@@ -2,7 +2,6 @@
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import Icon from '$lib/components/Icon.svelte';
   import { loadFeed, scopeForStory, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
@@ -215,7 +214,7 @@
           <details class="control-menu section-more">
             <summary>
               <span>{moreCategories.includes(activeCategory) ? activeCategory : 'More'}</span>
-              <Icon name="chevron-down" size={18} />
+              <i class="ph ph-caret-down" aria-hidden="true"></i>
             </summary>
             <div class="control-popover section-popover">
               {#each moreCategories as category}

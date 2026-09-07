@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import Icon from '$lib/components/Icon.svelte';
   import { loadFeed } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
@@ -58,7 +57,7 @@
         </div>
       {:else}
         <div class="read-later-empty">
-          <Icon name="bookmark" size={34} strokeWidth={2} />
+          <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
           <h2>Nothing saved yet</h2>
           <p>Tap the bookmark on any article to keep it here for later.</p>
         </div>
@@ -105,8 +104,9 @@
     text-align: center;
   }
 
-  .read-later-empty :global(.lucide-icon) {
+  .read-later-empty > i {
     color: var(--accent);
+    font-size: 34px;
   }
 
   .read-later-empty h2,

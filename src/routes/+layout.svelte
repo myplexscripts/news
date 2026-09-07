@@ -4,7 +4,6 @@
   import { base } from '$app/paths';
   import { initialiseAppState, userState } from '$lib/appState';
   import { loadFeed } from '$lib/newsData';
-  import Icon from '$lib/components/Icon.svelte';
 
   import '../styles/global.css';
   import '../styles/article-rich.css';
@@ -56,6 +55,10 @@
   $: onSettings = currentPath.startsWith('/settings/');
   $: activeIndex = onHome || onStory ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater ? 3 : onSettings ? 4 : 0;
   $: if (!onHome) isBackToTop = false;
+
+  function activeIcon(active, icon) {
+    return active ? `ph-fill ph-${icon}` : `ph ph-${icon}`;
+  }
 
   function handleHomeTab(event) {
     if (!onHome || !isBackToTop) return;
@@ -116,20 +119,20 @@
   <div class:home-header-inner={onHome} class="shell header-inner header-inner-simple">
     <div class="brand-area">
       <a class="brand brand-news" href={`${base}/`} data-sveltekit-preload-data="tap" aria-label="Forest City News home">
-        <Icon name="tree" size={34} strokeWidth={2.25} className="brand-news-icon" />
+        <i class="ph-fill ph-tree brand-news-icon" aria-hidden="true"></i>
         <span class="brand-news-wordmark">News</span>
       </a>
     </div>
 
     <div class="header-actions">
       <a class="icon-button header-search-link" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search news" title="Search">
-        <Icon name="magnifying-glass" size={22} />
+        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
       </a>
       <a class:active={onDirectory} class="icon-button desktop-sources-link" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Browse sections and sources" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-        <Icon name="hard-drives" size={22} strokeWidth={onDirectory ? 2.5 : 2} />
+        <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
       </a>
       <a class:active={onSettings} class="icon-button settings-link" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-        <Icon name="gear-six" size={22} strokeWidth={onSettings ? 2.5 : 2} />
+        <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
       </a>
     </div>
 
@@ -173,27 +176,27 @@
     aria-current={onHome ? 'page' : undefined}
     on:click={handleHomeTab}
   >
-    <Icon name={onHome && isBackToTop ? 'arrow-up' : 'house'} size={24} strokeWidth={onHome || onStory ? 2.5 : 2} />
+    <i class={onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
     <span class="visually-hidden">Home</span>
   </a>
 
   <a class:active={onDirectory} class="mobile-tab" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-    <Icon name="hard-drives" size={24} strokeWidth={onDirectory ? 2.5 : 2} />
+    <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
     <span class="visually-hidden">Sections</span>
   </a>
 
   <a class:active={onSearch} class="mobile-tab" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
-    <Icon name="magnifying-glass" size={24} strokeWidth={onSearch ? 2.5 : 2} />
+    <i class={activeIcon(onSearch, 'magnifying-glass')} aria-hidden="true"></i>
     <span class="visually-hidden">Search</span>
   </a>
 
   <a class:active={onReadLater} class="mobile-tab" href={`${base}/read-later/`} data-sveltekit-preload-data="tap" aria-label="Read Later" title="Read Later" aria-current={onReadLater ? 'page' : undefined}>
-    <Icon name="bookmark-simple" size={24} strokeWidth={onReadLater ? 2.5 : 2} />
+    <i class={activeIcon(onReadLater, 'bookmark-simple')} aria-hidden="true"></i>
     <span class="visually-hidden">Read Later</span>
   </a>
 
   <a class:active={onSettings} class="mobile-tab" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-    <Icon name="gear-six" size={24} strokeWidth={onSettings ? 2.5 : 2} />
+    <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
     <span class="visually-hidden">Settings</span>
   </a>
 </nav>
@@ -213,23 +216,15 @@
     letter-spacing: -0.045em !important;
   }
 
-  :global(.brand-news-icon) {
+  .brand-news-icon {
     flex: 0 0 auto;
-    width: 34px !important;
-    height: 34px !important;
+    font-size: 34px !important;
+    line-height: 1 !important;
   }
 
   .brand-news-wordmark {
     display: inline-block;
     transform: translateY(-1px);
-  }
-
-  :global(.mobile-tab .lucide-icon) {
-    transition: transform 160ms ease;
-  }
-
-  .mobile-tab:active :global(.lucide-icon) {
-    transform: scale(0.92);
   }
 
   @media (max-width: 760px) {
@@ -238,20 +233,19 @@
       font-size: 26px !important;
     }
 
-    :global(.brand-news-icon) {
-      width: 32px !important;
-      height: 32px !important;
+    .brand-news-icon {
+      font-size: 32px !important;
     }
 
-    :global(.svelte-mobile-tab-bar) {
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar) {
       --mobile-tab-count: 5 !important;
       grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
     }
 
-    :global(.svelte-mobile-tab-bar > .mobile-tab:nth-of-type(1)) { grid-column: 1 !important; }
-    :global(.svelte-mobile-tab-bar > .mobile-tab:nth-of-type(2)) { grid-column: 2 !important; }
-    :global(.svelte-mobile-tab-bar > .mobile-tab:nth-of-type(3)) { grid-column: 3 !important; }
-    :global(.svelte-mobile-tab-bar > .mobile-tab:nth-of-type(4)) { grid-column: 4 !important; }
-    :global(.svelte-mobile-tab-bar > .mobile-tab:nth-of-type(5)) { grid-column: 5 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(1)) { grid-column: 1 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(2)) { grid-column: 2 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(3)) { grid-column: 3 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(4)) { grid-column: 4 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(5)) { grid-column: 5 !important; }
   }
 </style>

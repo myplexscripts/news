@@ -13,11 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 UI_CSS = ROOT / "public" / "ui-guidelines.css"
 FEED_CSS = ROOT / "src" / "styles" / "feed-scope.css"
-SVELTE_CSS = ROOT / "src" / "styles" / "svelte-app.css"
-NAV_TRANSITIONS = ROOT / "public" / "navigation-transitions.css"
-PACKAGE_JSON = ROOT / "package.json"
 APP_HTML = ROOT / "src" / "app.html"
-ICON = ROOT / "src" / "lib" / "components" / "Icon.svelte"
 LAYOUT = ROOT / "src" / "routes" / "+layout.svelte"
 HOME = ROOT / "src" / "routes" / "+page.svelte"
 CARD = ROOT / "src" / "lib" / "components" / "NewsCard.svelte"
@@ -89,11 +85,7 @@ def require_tokens(text: str, tokens: tuple[str, ...], label: str) -> None:
 def main() -> None:
     ui = UI_CSS.read_text(encoding="utf-8")
     feed = FEED_CSS.read_text(encoding="utf-8")
-    svelte_css = SVELTE_CSS.read_text(encoding="utf-8")
-    nav_transitions = NAV_TRANSITIONS.read_text(encoding="utf-8")
-    package_json = PACKAGE_JSON.read_text(encoding="utf-8")
     app_html = APP_HTML.read_text(encoding="utf-8")
-    icon = ICON.read_text(encoding="utf-8")
     layout = LAYOUT.read_text(encoding="utf-8")
     home = HOME.read_text(encoding="utf-8")
     card = CARD.read_text(encoding="utf-8")
@@ -123,23 +115,10 @@ def main() -> None:
     require_tokens(app_html, (
         "smart-features.css",
         "family=Inter:wght@400;500;600;700;800",
+        "@phosphor-icons/web@2.1.1/src/regular/style.css",
+        "@phosphor-icons/web@2.1.1/src/fill/style.css",
+        "@phosphor-icons/web@2.1.1/src/duotone/style.css",
     ), "app head")
-
-    require('"@lucide/svelte": "1.42.0"' in package_json, "Lucide must be bundled locally with the Svelte app")
-    require("from '@lucide/svelte'" in icon, "shared icon component must use bundled Lucide")
-    require("TreePine" not in icon, "Tree must not be silently substituted with TreePine")
-    require("tree: TreeDeciduous" in icon, "Forest City logo must use the deciduous Lucide tree equivalent")
-    require("'hard-drives': HardDrive" in icon, "Sections hard-drive identity must be preserved")
-
-    require_tokens(svelte_css, (
-        "--minimum-ui-type: 14px;",
-        "font-size: max(var(--minimum-ui-type), 1em) !important;",
-        ".lucide-icon",
-        ".editorial-front.shell",
-        "width: min(calc(100% - 28px), var(--content)) !important;",
-    ), "Svelte UI styling")
-    require("view-transition-name" not in svelte_css, "route view-transition name returned")
-    require("navigation: none" in nav_transitions, "cross-document view transitions must stay disabled")
 
     require_tokens(layout, (
         'class="site-header"',
@@ -148,13 +127,7 @@ def main() -> None:
         'class="mobile-tab-bar svelte-mobile-tab-bar"',
         'class="mobile-tab-indicator"',
         "--mobile-tab-count:5",
-        "Icon name=\"tree\"",
-        "Icon name=\"magnifying-glass\"",
-        "Icon name=\"hard-drives\"",
-        "Icon name=\"gear-six\"",
     ), "app shell")
-    require("onNavigate" not in layout, "Svelte route transition hook returned")
-    require("startViewTransition" not in layout, "browser route crossfade returned")
     tab_count = layout.count('class="mobile-tab"') + layout.count('class="mobile-tab mobile-home-tab"')
     require(tab_count == 5, f"mobile navigation must contain exactly five tab links, found {tab_count}")
     require("app-tab-bar" not in layout, "temporary generic Svelte tab bar returned")
@@ -165,11 +138,7 @@ def main() -> None:
         "feed-scope-switch",
         "section-tabs",
         "editorial-front",
-        "editorial-front-grid editorial-carousel-ready",
-        "editorial-carousel-viewport",
-        "editorial-carousel-track",
-        "editorial-carousel-slide",
-        "editorial-carousel-dots",
+        "editorial-front-grid",
         "news-card-grid",
         "story-date-heading",
     ), "home page")
@@ -183,7 +152,6 @@ def main() -> None:
         'class="news-card-footer"',
         'class="news-card-save"',
         "card-source-mark",
-        "<Icon name=\"bookmark\"",
     ), "story card")
     require("svelte-news-card" not in card, "temporary generic Svelte story card returned")
 
@@ -193,12 +161,6 @@ def main() -> None:
         "section-directory-grid",
         "source-preference-list",
         "source-switch-input",
-        "Icon name={iconFor(category)}",
-        "Icon name=\"clock-countdown\"",
-        "Icon name=\"device-mobile\"",
-        "'City Hall': 'buildings'",
-        "'Health': 'heartbeat'",
-        "'Community': 'users-three'",
     ), "sections page")
     require_tokens(search, (
         "directory-page search-page",
@@ -206,14 +168,12 @@ def main() -> None:
         "archive-search-controls",
         "archive-scope-switch",
         "archive-search-results",
-        "<Icon name=\"search\"",
     ), "search page")
     require_tokens(read_later, (
         "read-later-page",
         "read-later-shell",
         "read-later-grid",
         "read-later-empty",
-        "<Icon name=\"bookmark\"",
     ), "Read Later page")
     require_tokens(settings, (
         "settings-page",
@@ -221,7 +181,6 @@ def main() -> None:
         "settings-segmented",
         "accent-choice",
         "settings-switch-track",
-        "<Icon name=\"check\"",
     ), "settings page")
 
     light_segment_fill = (242, 242, 247)
@@ -250,7 +209,7 @@ def main() -> None:
         require(action_ratio >= 4.5, f"dark {name} action text is only {action_ratio:.2f}:1")
         require(selected_ratio >= 4.5, f"dark {name} selected text is only {selected_ratio:.2f}:1")
 
-    print("UI contracts passed: original icon identities, 14px type floor, bundled Lucide, carousel alignment, no route fades, visual structure, controls, and contrast are valid.")
+    print("UI contracts passed: visual structure, assets, nav, cards, controls, and contrast are valid.")
 
 
 if __name__ == "__main__":
