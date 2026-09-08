@@ -32,6 +32,7 @@ jobs:
         run: |
           python scripts/test_article_formatting.py
           python scripts/test_article_media.py
+          python scripts/test_tweet_media.py
           python scripts/test_rich_articles.py
           python scripts/test_source_profiles.py
           python scripts/test_article_sanitizer.py
@@ -68,6 +69,9 @@ jobs:
           # Publisher profiles run after generic readers so a broad Readability or
           # Trafilatura result cannot overwrite a cleaner publisher article root.
           python scripts/refine_source_articles.py
+          # Tweet enrichment runs after all body replacement passes so native tweet
+          # blocks cannot be overwritten by a later generic article extraction.
+          python scripts/enrich_tweets.py --limit 60
           python scripts/cleanup_article_recirculation.py
           python scripts/publisher_hygiene.py
           python scripts/sanitize_article_blocks.py
