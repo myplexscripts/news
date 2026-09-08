@@ -150,6 +150,9 @@
   $: readMinutes = story && Number(story.word_count) > 0
     ? Math.max(1, Math.round(Number(story.word_count) / 220))
     : null;
+  $: authorLabel = story?.author
+    ? (/^by\s+/i.test(String(story.author).trim()) ? String(story.author).trim() : `By ${String(story.author).trim()}`)
+    : '';
   $: related = story && feed
     ? (feed.stories || [])
         .filter((item) =>
@@ -195,7 +198,7 @@
           <h1>{story.title}</h1>
           <div class="article-cover-source-row">
             <div class="article-cover-author">
-              {#if story.author}<strong>{/^by\s+/i.test(story.author) ? story.author : `By ${story.author}`}</strong>{/if}
+              {#if authorLabel}<strong>{authorLabel}</strong>{/if}
             </div>
 
             {#if story.url}
