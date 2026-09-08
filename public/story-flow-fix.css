@@ -1,6 +1,7 @@
 /* Story-page interaction refinements.
    Keep the editorial author row visible on load, then bring the next story
-   content into the unused lower hero space only after the full nav has split. */
+   content into view only after the full nav has split. The editorial image
+   height is independent from the text/meta anchors. */
 body:has(.svelte-article-page) .article-cover-source-row {
   opacity: 1 !important;
   visibility: visible !important;
@@ -24,8 +25,8 @@ body:has(.svelte-article-page) .article-reader.article-reveal {
 }
 
 @media (max-width: 760px) {
-  /* Keep the editorial section full-screen, but end its photography higher.
-     The fade travels with the raised image edge into the page background. */
+  /* Only the photography moves upward. The editorial copy remains anchored
+     near the bottom of the full 100svh cover, independent of image height. */
   html body:has(.svelte-article-page) .article-cover-media {
     height: 70svh !important;
   }
@@ -35,10 +36,14 @@ body:has(.svelte-article-page) .article-reader.article-reveal {
     height: 38svh !important;
   }
 
-  /* Pull normal article flow upward by the same space reserved above the
-     full bottom nav. It stays invisible until that nav has collapsed. */
+  html body:has(.svelte-article-page) .editorial-story .article-cover-content {
+    padding-bottom: max(72px, calc(60px + env(safe-area-inset-bottom))) !important;
+  }
+
+  /* Keep post-hero metadata close to the cover without dragging it upward
+     with the shorter image. It still reveals only after the nav has split. */
   html body:has(.svelte-article-page) .article-after-cover {
-    margin-top: -96px !important;
+    margin-top: -44px !important;
     padding-top: 0 !important;
     position: relative !important;
     z-index: 4 !important;
