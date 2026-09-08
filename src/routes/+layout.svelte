@@ -1,9 +1,11 @@
 <script>
+  import { browser } from '$app/environment';
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
   import { initialiseAppState, userState } from '$lib/appState';
   import { loadFeed } from '$lib/newsData';
+  import { sourceLogoPath } from '$lib/sourceLogos';
 
   import '../styles/global.css';
   import '../styles/article-rich.css';
@@ -16,10 +18,22 @@
   let homeDate = formatHomeDate(new Date());
   let homeUpdated = '';
   let isBackToTop = false;
+  let storyCompactNav = false;
+  let shellFeed;
 
   function normalizedPath(pathname = '') {
     const withoutBase = base && pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
     return withoutBase || '/';
+  }
+
+  function storyIdFromPath(pathname = '') {
+    const match = String(pathname).match(/^\/story\/([^/]+)/);
+    if (!match) return '';
+    try {
+      return decodeURIComponent(match[1]);
+    } catch {
+      return match[1];
+    }
   }
 
   function formatHomeDate(value) {
@@ -54,7 +68,15 @@
   $: onReadLater = currentPath.startsWith('/read-later/');
   $: onSettings = currentPath.startsWith('/settings/');
   $: activeIndex = onHome || onStory ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater ? 3 : onSettings ? 4 : 0;
+  $: currentStoryId = onStory ? storyIdFromPath(currentPath) : '';
+  $: storyMeta = currentStoryId && shellFeed
+    ? (shellFeed.stories || []).find((item) => String(item.id) === String(currentStoryId))
+    : null;
+  $: storySourceName = storyMeta?.source || '';
+  $: storySourceLogo = storySourceName ? sourceLogoPath(storySourceName, `${base}/`) : '';
   $: if (!onHome) isBackToTop = false;
+  $: if (!onStory) storyCompactNav = false;
+  $: if (browser && currentPath) queueMicrotask(syncScrollChrome);
 
   function activeIcon(active, icon) {
     return active ? `ph-fill ph-${icon}` : `ph ph-${icon}`;
@@ -67,10 +89,32 @@
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   }
 
+  function handleStoryBackToTop() {
+    if (!browser) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  }
+
+  function syncScrollChrome() {
+    if (!browser) return;
+
+    if (onHome) {
+      const threshold = Math.min(420, Math.max(240, window.innerHeight * 0.38));
+      isBackToTop = window.scrollY > threshold;
+    } else {
+      isBackToTop = false;
+    }
+
+    const storyScroll = onStory ? window.scrollY : 0;
+    storyCompactNav = onStory && storyScroll > Math.max(84, window.innerHeight * 0.09);
+    document.body.classList.toggle('story-meta-visible', onStory && storyScroll > 34);
+  }
+
   onMount(() => {
     initialiseAppState().catch(() => {});
 
     loadFeed().then((feed) => {
+      shellFeed = feed;
       if (!feed?.generated_at) return;
       homeDate = formatHomeDate(feed.generated_at);
       homeUpdated = formatUpdated(feed.generated_at);
@@ -83,18 +127,9 @@
       root.dataset.hideRead = state.hideRead ? 'true' : 'false';
     });
 
-    const syncHomeAction = () => {
-      if (!onHome) {
-        isBackToTop = false;
-        return;
-      }
-      const threshold = Math.min(420, Math.max(240, window.innerHeight * 0.38));
-      isBackToTop = window.scrollY > threshold;
-    };
-
-    window.addEventListener('scroll', syncHomeAction, { passive: true });
-    window.addEventListener('resize', syncHomeAction, { passive: true });
-    syncHomeAction();
+    window.addEventListener('scroll', syncScrollChrome, { passive: true });
+    window.addEventListener('resize', syncScrollChrome, { passive: true });
+    syncScrollChrome();
 
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register(`${base}/sw.js`).then((registration) => registration.update()).catch(() => {});
@@ -102,8 +137,9 @@
 
     return () => {
       unsubscribe();
-      window.removeEventListener('scroll', syncHomeAction);
-      window.removeEventListener('resize', syncHomeAction);
+      document.body.classList.remove('story-meta-visible');
+      window.removeEventListener('scroll', syncScrollChrome);
+      window.removeEventListener('resize', syncScrollChrome);
     };
   });
 </script>
@@ -118,10 +154,25 @@
 <header class:site-header-home={onHome} class="site-header">
   <div class:home-header-inner={onHome} class="shell header-inner header-inner-simple">
     <div class="brand-area">
-      <a class="brand brand-news" href={`${base}/`} data-sveltekit-preload-data="tap" aria-label="Forest City News home">
-        <i class="ph-fill ph-tree brand-news-icon" aria-hidden="true"></i>
-        <span class="brand-news-wordmark">News</span>
-      </a>
+      {#if onStory}
+        <a
+          class="brand brand-story-source"
+          href={`${base}/`}
+          data-sveltekit-preload-data="tap"
+          aria-label={storySourceName ? `${storySourceName}, return home` : 'Return home'}
+        >
+          {#if storySourceLogo}
+            <img class="brand-story-source-logo" src={storySourceLogo} alt={storySourceName} />
+          {:else if storySourceName}
+            <span class="brand-story-source-name">{storySourceName}</span>
+          {/if}
+        </a>
+      {:else}
+        <a class="brand brand-news" href={`${base}/`} data-sveltekit-preload-data="tap" aria-label="Forest City News home">
+          <i class="ph-fill ph-tree brand-news-icon" aria-hidden="true"></i>
+          <span class="brand-news-wordmark">News</span>
+        </a>
+      {/if}
     </div>
 
     <div class="header-actions">
@@ -158,6 +209,7 @@
 </footer>
 
 <nav
+  class:storyCompactNav={onStory && storyCompactNav}
   class="mobile-tab-bar svelte-mobile-tab-bar"
   aria-label="Primary navigation"
   data-active-index={String(activeIndex)}
@@ -176,7 +228,7 @@
     aria-current={onHome ? 'page' : undefined}
     on:click={handleHomeTab}
   >
-    <i class={onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
+    <i class={onStory && storyCompactNav ? 'ph-fill ph-tree' : onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
     <span class="visually-hidden">Home</span>
   </a>
 
@@ -199,6 +251,12 @@
     <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
     <span class="visually-hidden">Settings</span>
   </a>
+
+  {#if onStory}
+    <button class="story-back-to-top" type="button" aria-label="Back to top" title="Back to top" on:click={handleStoryBackToTop}>
+      <i class="ph ph-arrow-up" aria-hidden="true"></i>
+    </button>
+  {/if}
 </nav>
 
 <style>
@@ -227,6 +285,122 @@
     transform: translateY(-1px);
   }
 
+  .brand-story-source {
+    max-width: min(72vw, 320px);
+    overflow: hidden;
+  }
+
+  .brand-story-source-logo {
+    width: auto !important;
+    height: auto !important;
+    max-width: min(68vw, 280px) !important;
+    max-height: 42px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+    filter: grayscale(1) brightness(0);
+  }
+
+  :global(html[data-theme='dark']) .brand-story-source-logo {
+    filter: grayscale(1) brightness(0) invert(1);
+  }
+
+  .brand-story-source-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ink);
+    font-size: 22px !important;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+  }
+
+  .story-back-to-top {
+    display: none;
+  }
+
+  :global(body:has(.svelte-article-page) .article-cover-source) {
+    visibility: hidden !important;
+  }
+
+  :global(body:has(.svelte-article-page) .article-after-cover) {
+    position: relative !important;
+  }
+
+  :global(body:has(.svelte-article-page) .article-content-layout) {
+    display: block !important;
+    width: min(100%, 760px) !important;
+    margin-inline: auto !important;
+  }
+
+  :global(body:has(.svelte-article-page) .article-reader) {
+    width: 100% !important;
+  }
+
+  :global(body:has(.svelte-article-page) .article-source-panel) {
+    position: absolute !important;
+    top: -130px !important;
+    left: 0 !important;
+    width: min(100%, 620px) !important;
+    z-index: 8 !important;
+    margin: 0 !important;
+    pointer-events: none;
+  }
+
+  :global(body:has(.svelte-article-page) .article-source-card) {
+    display: block !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  :global(body:has(.svelte-article-page) .source-card-details-editorial) {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 6px 12px !important;
+    max-width: 100% !important;
+  }
+
+  :global(body:has(.svelte-article-page) .source-detail-item) {
+    gap: 0 !important;
+    margin: 0 !important;
+    line-height: 1.25 !important;
+  }
+
+  :global(body:has(.svelte-article-page) .source-detail-item i) {
+    display: none !important;
+  }
+
+  :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-user)) {
+    color: var(--ink) !important;
+    font-weight: 750 !important;
+  }
+
+  :global(body:has(.svelte-article-page) time.source-detail-item),
+  :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)) {
+    opacity: 0;
+    transform: translateY(7px) scale(0.98);
+    transition: opacity 260ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
+  }
+
+  :global(body.story-meta-visible:has(.svelte-article-page) time.source-detail-item),
+  :global(body.story-meta-visible:has(.svelte-article-page) .source-detail-item:has(.ph-clock)) {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  :global(body:has(.svelte-article-page) time.source-detail-item::before),
+  :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)::before) {
+    content: '•';
+    margin-right: 12px;
+    color: var(--tertiary);
+  }
+
+  :global(body:has(.svelte-article-page) .source-coverage),
+  :global(body:has(.svelte-article-page) .source-card-tags) {
+    display: none !important;
+  }
+
   @media (max-width: 760px) {
     .brand-news {
       gap: 7px !important;
@@ -237,9 +411,31 @@
       font-size: 32px !important;
     }
 
+    .brand-story-source {
+      max-width: 78vw;
+    }
+
+    .brand-story-source-logo {
+      max-width: 72vw !important;
+      max-height: 38px !important;
+    }
+
+    .brand-story-source-name {
+      max-width: 72vw;
+      font-size: 20px !important;
+    }
+
     :global(.mobile-tab-bar.svelte-mobile-tab-bar) {
       --mobile-tab-count: 5 !important;
       grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+      transition:
+        left 320ms cubic-bezier(.2,.8,.2,1),
+        right 320ms cubic-bezier(.2,.8,.2,1),
+        min-height 320ms cubic-bezier(.2,.8,.2,1),
+        padding 320ms cubic-bezier(.2,.8,.2,1),
+        border-color 220ms ease,
+        background 220ms ease,
+        box-shadow 220ms ease !important;
     }
 
     :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(1)) { grid-column: 1 !important; }
@@ -247,5 +443,133 @@
     :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(3)) { grid-column: 3 !important; }
     :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(4)) { grid-column: 4 !important; }
     :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(5)) { grid-column: 5 !important; }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab) {
+      transition: opacity 180ms ease, transform 260ms cubic-bezier(.2,.8,.2,1), background 180ms ease, color 180ms ease !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav) {
+      left: 14px !important;
+      right: 14px !important;
+      min-height: 64px !important;
+      grid-template-columns: 64px 64px !important;
+      justify-content: space-between !important;
+      gap: 0 !important;
+      padding: 0 !important;
+      border-color: transparent !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      pointer-events: none;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .mobile-tab-indicator) {
+      opacity: 0 !important;
+      transform: scale(0.7) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-tab:not(.mobile-home-tab)) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(10px) scale(0.7) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab) {
+      grid-column: 1 !important;
+      width: 64px !important;
+      height: 64px !important;
+      min-height: 64px !important;
+      border-radius: 50% !important;
+      background: color-mix(in srgb, var(--surface) 62%, transparent) !important;
+      border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent) !important;
+      box-shadow:
+        0 12px 34px rgb(0 0 0 / 0.24),
+        inset 0 1px 0 rgb(255 255 255 / 0.16) !important;
+      backdrop-filter: blur(30px) saturate(210%) !important;
+      -webkit-backdrop-filter: blur(30px) saturate(210%) !important;
+      color: var(--accent) !important;
+      pointer-events: auto !important;
+      transform: scale(1) !important;
+    }
+
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab),
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
+      background: rgb(28 28 30 / 0.72) !important;
+      border-color: rgb(255 255 255 / 0.14) !important;
+      box-shadow:
+        0 14px 38px rgb(0 0 0 / 0.5),
+        inset 0 1px 0 rgb(255 255 255 / 0.15) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top) {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+      display: grid;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--surface) 62%, transparent);
+      color: var(--ink);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px) scale(0.72);
+      box-shadow:
+        0 12px 34px rgb(0 0 0 / 0.24),
+        inset 0 1px 0 rgb(255 255 255 / 0.16);
+      backdrop-filter: blur(30px) saturate(210%);
+      -webkit-backdrop-filter: blur(30px) saturate(210%);
+      transition: opacity 200ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top i) {
+      font-size: 24px !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    :global(body:has(.svelte-article-page) .article-source-panel) {
+      top: calc(-160px - env(safe-area-inset-bottom)) !important;
+      width: calc(100% - 126px) !important;
+      max-width: none !important;
+    }
+
+    :global(body:has(.svelte-article-page) .source-card-details-editorial) {
+      gap: 5px 9px !important;
+    }
+
+    :global(body:has(.svelte-article-page) .source-detail-item) {
+      font-size: 14px !important;
+      white-space: nowrap;
+    }
+
+    :global(body:has(.svelte-article-page) time.source-detail-item::before),
+    :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)::before) {
+      margin-right: 9px;
+    }
+
+    :global(body:has(.svelte-article-page) .article-after-cover) {
+      padding-top: 28px !important;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top),
+    :global(body:has(.svelte-article-page) time.source-detail-item),
+    :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)) {
+      transition: none !important;
+    }
   }
 </style>
