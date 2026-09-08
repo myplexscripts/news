@@ -6,7 +6,6 @@
   import TweetCard from '$lib/components/TweetCard.svelte';
   import { formatPublished, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
   import { markRead } from '$lib/appState';
-  import { sourceLogoPath } from '$lib/sourceLogos';
 
   let feed;
   let story;
@@ -114,10 +113,34 @@
     });
   }
 
+  function revealOnScroll(node) {
+    if (!browser) return {};
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
+      node.classList.add('article-reveal-visible');
+      return {};
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        requestAnimationFrame(() => node.classList.add('article-reveal-visible'));
+        observer.disconnect();
+      },
+      {
+        threshold: 0.04,
+        rootMargin: '0px 0px -108px 0px'
+      }
+    );
+
+    observer.observe(node);
+    return { destroy: () => observer.disconnect() };
+  }
+
   $: coverSource = coverSourceFor(story);
   $: blocks = buildBlocks(story, coverSource);
   $: heroImage = resolveAsset(coverSource);
-  $: sourceLogo = story ? sourceLogoPath(story.source || '', `${base}/`) : '';
   $: firstTextBlock = blocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
   $: showDeck = Boolean(
     story?.summary
@@ -127,11 +150,6 @@
   $: readMinutes = story && Number(story.word_count) > 0
     ? Math.max(1, Math.round(Number(story.word_count) / 220))
     : null;
-  $: clusterCoverage = story && feed
-    ? (feed.stories || [])
-        .filter((item) => item.cluster_id && item.cluster_id === story.cluster_id && String(item.id) !== String(story.id))
-        .slice(0, 5)
-    : [];
   $: related = story && feed
     ? (feed.stories || [])
         .filter((item) =>
@@ -141,10 +159,6 @@
           && (item.category === story.category || item.source === story.source)
         )
         .slice(0, 4)
-    : [];
-  $: tags = story
-    ? [...new Set([story.category, ...(Array.isArray(story.story_topics) ? story.story_topics : [])].filter(Boolean))]
-        .filter((tag) => String(tag).toLowerCase() !== 'full story')
     : [];
 </script>
 
@@ -180,12 +194,8 @@
         <div class="article-cover-content shell">
           <h1>{story.title}</h1>
           <div class="article-cover-source-row">
-            <div class="article-cover-source">
-              {#if sourceLogo}
-                <img src={sourceLogo} alt={`${story.source} logo`} />
-              {:else if story.source}
-                <strong>{story.source}</strong>
-              {/if}
+            <div class="article-cover-author">
+              {#if story.author}<strong>{/^by\s+/i.test(story.author) ? story.author : `By ${story.author}`}</strong>{/if}
             </div>
 
             {#if story.url}
@@ -200,50 +210,12 @@
 
       <div class="article-after-cover shell">
         <div class="article-content-layout">
-          <aside class="article-source-panel" aria-label="Article source and details">
-            <div class="article-source-card article-source-card-refined">
-              <div class="source-card-details source-card-details-editorial">
-                {#if story.author}
-                  <span class="source-detail-item">
-                    <i class="ph ph-user" aria-hidden="true"></i>
-                    <span>By {story.author}</span>
-                  </span>
-                {/if}
-                <time class="source-detail-item" datetime={story.published}>
-                  <i class="ph ph-calendar-blank" aria-hidden="true"></i>
-                  <span>{formatPublished(story.published)}</span>
-                </time>
-                {#if readMinutes}
-                  <span class="source-detail-item">
-                    <i class="ph ph-clock" aria-hidden="true"></i>
-                    <span>{readMinutes} min read</span>
-                  </span>
-                {/if}
-              </div>
+          <div class="article-flow-meta article-reveal" use:revealOnScroll>
+            <time datetime={story.published}>{formatPublished(story.published)}</time>
+            {#if readMinutes}<span>{readMinutes} min read</span>{/if}
+          </div>
 
-              {#if clusterCoverage.length}
-                <div class="source-coverage">
-                  <span class="source-card-label">Also covered by</span>
-                  <div class="source-coverage-links">
-                    {#each clusterCoverage as item}
-                      <a href={`${base}/story/${encodeURIComponent(item.id)}/`} data-sveltekit-preload-data="tap">
-                        <span>{item.source}</span>
-                        <i class="ph ph-arrow-right" aria-hidden="true"></i>
-                      </a>
-                    {/each}
-                  </div>
-                </div>
-              {/if}
-
-              {#if tags.length}
-                <div class="article-sidebar-tags source-card-tags" aria-label="Story categories and tags">
-                  {#each tags as tag}<span>{tag}</span>{/each}
-                </div>
-              {/if}
-            </div>
-          </aside>
-
-          <div class="article-reader article-reader-refined">
+          <div class="article-reader article-reader-refined article-reveal" use:revealOnScroll>
             {#if heroImage}
               <figure class="article-body-hero inline-article-image">
                 <img
@@ -389,6 +361,10 @@
     pointer-events: none;
   }
 
+  :global(body:has(.svelte-article-page) .story-cover-secondary-meta) {
+    display: none !important;
+  }
+
   .svelte-article-page {
     padding: 0 0 48px;
     overflow: clip;
@@ -409,6 +385,11 @@
     overflow: hidden;
     background: var(--bg);
     isolation: isolate;
+  }
+
+  :global(body:has(.svelte-article-page) .editorial-story .article-cover) {
+    min-height: 100svh !important;
+    height: 100svh !important;
   }
 
   .article-cover-media,
@@ -498,33 +479,27 @@
     align-items: center;
     justify-content: space-between;
     gap: 22px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 240ms ease, transform 320ms cubic-bezier(.2,.8,.2,1);
   }
 
-  .article-cover-source {
+  :global(body.story-meta-visible) .article-cover-source-row {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .article-cover-author {
     min-width: 0;
     display: flex;
     align-items: center;
   }
 
-  .article-cover-source img {
-    width: auto !important;
-    height: auto !important;
-    max-width: min(44vw, 220px);
-    max-height: 46px;
-    object-fit: contain !important;
-    object-position: left center;
-    filter: grayscale(1) brightness(0);
-  }
-
-  :global(html[data-theme='dark']) .article-cover-source img {
-    filter: grayscale(1) brightness(0) invert(1);
-  }
-
-  .article-cover-source strong {
+  .article-cover-author strong {
     color: var(--ink);
-    font-size: 18px;
-    font-weight: 800;
-    line-height: 1.15;
+    font-size: 16px;
+    font-weight: 750;
+    line-height: 1.25;
   }
 
   .article-cover-original {
@@ -545,66 +520,62 @@
   }
 
   .article-after-cover {
-    padding-top: 44px;
+    padding-top: 0;
+  }
+
+  :global(body:has(.svelte-article-page) .article-after-cover) {
+    padding-top: 0 !important;
   }
 
   .article-content-layout {
-    display: grid;
-    grid-template-columns: minmax(240px, 300px) minmax(0, 760px);
-    justify-content: center;
-    gap: clamp(42px, 6vw, 86px);
-    align-items: start;
+    width: min(100%, 760px);
+    margin-inline: auto;
   }
 
-  .article-source-panel {
-    position: sticky;
-    top: 28px;
-    align-self: start;
-  }
-
-  .article-source-card {
-    gap: 18px;
-    padding: 0 0 22px;
-    border-top: 0;
-    border-bottom: 1px solid var(--line-strong);
-  }
-
-  .source-card-details-editorial {
-    display: grid;
-    gap: 11px;
-  }
-
-  .source-detail-item {
-    min-width: 0;
+  .article-flow-meta {
     display: flex;
-    align-items: flex-start;
-    gap: 9px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 12px;
+    margin: 0 0 20px;
     color: var(--muted);
     line-height: 1.4;
   }
 
-  .source-detail-item i {
-    flex: 0 0 auto;
-    margin-top: 2px;
-    color: var(--muted);
-    font-size: 17px;
+  .article-flow-meta time,
+  .article-flow-meta span {
+    font-size: 14px !important;
   }
 
-  .source-detail-item span {
-    min-width: 0;
+  .article-flow-meta span::before {
+    content: '•';
+    margin-right: 12px;
+    color: var(--tertiary);
   }
 
-  .source-coverage {
-    padding-top: 4px;
+  .article-reveal {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    filter: blur(3px);
+    transition:
+      opacity 260ms ease,
+      transform 360ms cubic-bezier(.2,.8,.2,1),
+      filter 280ms ease,
+      visibility 0s linear 320ms;
   }
 
-  .source-card-tags {
-    margin-top: 0;
+  .article-reveal.article-reveal-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0s;
   }
 
   .article-reader {
     min-width: 0;
-    grid-column: auto;
+    width: 100%;
   }
 
   .article-body-hero {
@@ -676,21 +647,14 @@
     max-width: 720px;
   }
 
-  @media (max-width: 900px) {
-    .article-content-layout {
-      grid-template-columns: minmax(200px, 250px) minmax(0, 1fr);
-      gap: 38px;
-    }
-  }
-
   @media (max-width: 760px) {
     :global(body:has(.svelte-article-page) .site-header .header-inner) {
       min-height: calc(60px + env(safe-area-inset-top)) !important;
     }
 
-    .article-cover {
-      min-height: 100svh;
-      height: 100svh;
+    :global(body:has(.svelte-article-page) .editorial-story .article-cover) {
+      min-height: 100svh !important;
+      height: 100svh !important;
     }
 
     .article-cover-media {
@@ -706,9 +670,9 @@
       height: 40svh;
     }
 
-    .article-cover-content {
-      padding-top: calc(82px + env(safe-area-inset-top));
-      padding-bottom: max(112px, calc(92px + env(safe-area-inset-bottom)));
+    :global(body:has(.svelte-article-page) .editorial-story .article-cover-content) {
+      padding-top: calc(82px + env(safe-area-inset-top)) !important;
+      padding-bottom: max(112px, calc(92px + env(safe-area-inset-bottom))) !important;
     }
 
     .article-cover-content h1 {
@@ -721,48 +685,29 @@
       gap: 14px;
     }
 
-    .article-cover-source img {
-      max-width: 44vw;
-      max-height: 40px;
-    }
-
-    .article-cover-source strong {
-      font-size: 16px;
-    }
-
+    .article-cover-author strong,
     .article-cover-original {
-      font-size: 14px;
+      font-size: 14px !important;
     }
 
-    .article-after-cover {
-      padding-top: 28px;
+    .article-after-cover,
+    :global(body:has(.svelte-article-page) .article-after-cover) {
+      padding-top: 0 !important;
     }
 
     .article-content-layout {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .article-source-panel {
-      position: static;
+      display: block;
       width: 100%;
-      order: 0;
     }
 
-    .article-source-card {
-      width: 100%;
-      padding: 0 0 24px;
+    .article-flow-meta {
+      margin: 0 0 18px;
+      padding-top: 0;
+      gap: 2px 10px;
     }
 
-    .source-card-details-editorial {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-
-    .article-reader {
-      width: 100%;
-      order: 1;
+    .article-flow-meta span::before {
+      margin-right: 10px;
     }
 
     .article-body-hero {
@@ -777,8 +722,8 @@
   }
 
   @media (max-width: 390px) {
-    .article-cover-content {
-      padding-bottom: max(108px, calc(88px + env(safe-area-inset-bottom)));
+    :global(body:has(.svelte-article-page) .editorial-story .article-cover-content) {
+      padding-bottom: max(108px, calc(88px + env(safe-area-inset-bottom))) !important;
     }
 
     .article-cover-source-row {
@@ -789,6 +734,13 @@
       max-width: 110px;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .article-cover-source-row,
+    .article-reveal {
+      transition: none !important;
     }
   }
 </style>
