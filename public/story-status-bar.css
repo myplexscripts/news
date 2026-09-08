@@ -2,32 +2,28 @@
    Story pages use one solid image-derived colour behind the status bar.
    Other pages reserve that same system safe area in the shared header itself. */
 
-html.standalone-webapp body:has(.svelte-article-page)::before {
+html.standalone-webapp.story-status-coloured body:has(.svelte-article-page)::before {
   content: '';
   position: fixed;
   inset: 0 0 auto;
   z-index: 59;
+  height: constant(safe-area-inset-top);
   height: env(safe-area-inset-top, 0px);
   pointer-events: none;
-  background: var(--story-status-colour, var(--bg));
-  transition: background 220ms ease;
-}
-
-/* Once the user is reading, use the normal page surface behind the system bar.
-   It remains a solid strip with no gradient, blur, mask, or image texture. */
-html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyCompactNav)::before {
-  background: var(--bg);
+  background: var(--story-status-colour);
 }
 
 @media (max-width: 760px) {
   /* The editorial image itself begins below the iOS status-bar safe area. */
   html.standalone-webapp body:has(.svelte-article-page) .article-cover-media {
+    top: constant(safe-area-inset-top) !important;
     top: env(safe-area-inset-top, 0px) !important;
     bottom: auto !important;
     height: calc(70svh - env(safe-area-inset-top, 0px)) !important;
   }
 
   html.standalone-webapp body:has(.svelte-article-page) .article-cover-fade-top {
+    top: constant(safe-area-inset-top) !important;
     top: env(safe-area-inset-top, 0px) !important;
   }
 
@@ -42,20 +38,15 @@ html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyC
     margin-top: 0 !important;
   }
 
-  /* On every non-story page the safe area belongs to the sticky header itself.
-     This cannot be cancelled by page-specific .header-inner height rules. */
+  /* Every non-story page reserves the standalone status-bar inset on the
+     sticky header itself, outside page-specific header-inner sizing. */
   html.standalone-webapp body:not(:has(.svelte-article-page)) .site-header {
+    padding-top: constant(safe-area-inset-top) !important;
     padding-top: env(safe-area-inset-top, 0px) !important;
   }
 
   html.standalone-webapp body:not(:has(.svelte-article-page)) .site-header .header-inner {
     min-height: 60px !important;
     padding-top: 0 !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.standalone-webapp body:has(.svelte-article-page)::before {
-    transition: none;
   }
 }

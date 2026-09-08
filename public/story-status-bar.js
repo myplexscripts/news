@@ -17,6 +17,9 @@
   }
   if (basePath === '/') basePath = '';
 
+  const themeColourMeta = Array.from(document.querySelectorAll('meta[name="theme-color"]'))
+    .map((meta) => ({ meta, original: meta.getAttribute('content') || '' }));
+
   let feedPromise;
   let scheduled = false;
   let lastStoryId = '';
@@ -35,7 +38,10 @@
 
   function loadFeed() {
     if (!feedPromise) {
-      feedPromise = fetch(`${basePath}/data/app-feed.json`, { credentials: 'same-origin' })
+      feedPromise = fetch(`${basePath}/data/app-feed.json`, {
+        credentials: 'same-origin',
+        cache: 'no-store'
+      })
         .then((response) => {
           if (!response.ok) throw new Error(`Feed ${response.status}`);
           return response.json();
@@ -45,21 +51,43 @@
     return feedPromise;
   }
 
-  function resolveStoryImage(story) {
-    const value = String(story?.card_image_small || story?.card_image || story?.image || '').trim();
-    if (!value) return '';
-    if (/^https?:\/\//i.test(value)) return value;
-    if (value.startsWith('/')) return value;
-    return `${basePath}/${value}`.replace(/\/+/g, '/');
+  function validColour(value) {
+    const colour = String(value || '').trim();
+    return /^#[0-9a-f]{6}$/i.test(colour) ? colour : '';
   }
 
-  function setStatusImage(value) {
+  function setSystemThemeColour(colour) {
+    const value = validColour(colour);
+    if (!value) return;
+    for (const entry of themeColourMeta) {
+      entry.meta.setAttribute('content', value);
+    }
+  }
+
+  function restoreSystemThemeColour() {
+    for (const entry of themeColourMeta) {
+      entry.meta.setAttribute('content', entry.original);
+    }
+  }
+
+  function clearStoryColour() {
+    root.style.removeProperty('--story-status-colour');
+    root.style.removeProperty('background-color');
+    root.classList.remove('story-status-coloured');
+    restoreSystemThemeColour();
+  }
+
+  function applyStoryColour(colour) {
+    const value = validColour(colour);
     if (!value) {
-      root.style.removeProperty('--story-status-image');
+      clearStoryColour();
       return;
     }
-    const escaped = value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-    root.style.setProperty('--story-status-image', `url("${escaped}")`);
+
+    root.style.setProperty('--story-status-colour', value);
+    root.style.setProperty('background-color', value);
+    root.classList.add('story-status-coloured');
+    setSystemThemeColour(value);
   }
 
   async function syncStoryColour() {
@@ -69,14 +97,14 @@
 
     if (!storyId) {
       lastStoryId = '';
-      root.style.removeProperty('--story-status-colour');
-      root.style.removeProperty('--story-status-image');
+      clearStoryColour();
       return;
     }
 
     if (
       storyId === lastStoryId
-      && (root.style.getPropertyValue('--story-status-colour') || root.style.getPropertyValue('--story-status-image'))
+      && root.classList.contains('story-status-coloured')
+      && root.style.getPropertyValue('--story-status-colour')
     ) return;
     lastStoryId = storyId;
 
@@ -84,13 +112,7 @@
     if (currentStoryId() !== storyId) return;
 
     const story = (feed.stories || []).find((item) => String(item.id) === storyId);
-    const colour = String(story?.hero_top_colour || '').trim();
-    if (/^#[0-9a-f]{6}$/i.test(colour)) {
-      root.style.setProperty('--story-status-colour', colour);
-    } else {
-      root.style.removeProperty('--story-status-colour');
-    }
-    setStatusImage(resolveStoryImage(story));
+    applyStoryColour(story?.hero_top_colour);
   }
 
   function scheduleSync() {

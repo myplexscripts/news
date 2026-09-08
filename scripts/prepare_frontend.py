@@ -4,7 +4,11 @@ import hashlib
 import json
 import re
 import shutil
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from io import BytesIO
 from pathlib import Path
+from urllib.parse import urlparse
+from urllib.request import Request, urlopen
 
 from PIL import Image, ImageOps
 
@@ -44,6 +48,10 @@ FEED_FIELDS = {
     "story_topics",
 }
 
+HEX_COLOUR = re.compile(r"^#[0-9a-f]{6}$", re.I)
+REMOTE_SAMPLE_LIMIT = 6 * 1024 * 1024
+REMOTE_SAMPLE_WORKERS = 12
+
 
 def safe_story_filename(story_id: str) -> str:
     if re.fullmatch(r"[A-Za-z0-9_-]{1,160}", story_id):
@@ -82,8 +90,6 @@ def local_public_path(value: object) -> Path | None:
 
 
 def cached_hero_path(story: dict) -> Path | None:
-    # Prefer the small card cache. It represents the same selected hero and is much
-    # cheaper to decode when this runs across the whole feed during every build.
     for key in ("card_image_small", "card_image", "image"):
         path = local_public_path(story.get(key))
         if path is not None:
@@ -91,26 +97,24 @@ def cached_hero_path(story: dict) -> Path | None:
     return None
 
 
-def representative_top_colour(path: Path, top_fraction: float = 0.16) -> str:
-    """Return a robust average colour from the top band of an image.
+def remote_hero_url(story: dict) -> str:
+    for key in ("card_image_small", "card_image", "image"):
+        value = str(story.get(key) or "").strip()
+        if value.startswith(("http://", "https://")):
+            return value
+    return ""
 
-    The top band is what visually touches the iOS status area. Trim the brightest
-    and darkest few percent before averaging so a white logo, black letterbox, or
-    tiny text overlay cannot dominate the result.
-    """
-    try:
-        with Image.open(path) as opened:
-            image = ImageOps.exif_transpose(opened).convert("RGB")
-            width, height = image.size
-            if width < 1 or height < 1:
-                return ""
-            band_height = max(1, min(height, round(height * top_fraction)))
-            band = image.crop((0, 0, width, band_height))
-            band.thumbnail((64, 32), Image.Resampling.LANCZOS)
-            pixels = list(band.getdata())
-    except Exception:
+
+def _representative_top_colour(opened: Image.Image, top_fraction: float = 0.16) -> str:
+    image = ImageOps.exif_transpose(opened).convert("RGB")
+    width, height = image.size
+    if width < 1 or height < 1:
         return ""
 
+    band_height = max(1, min(height, round(height * top_fraction)))
+    band = image.crop((0, 0, width, band_height))
+    band.thumbnail((64, 32), Image.Resampling.LANCZOS)
+    pixels = list(band.getdata())
     if not pixels:
         return ""
 
@@ -130,14 +134,99 @@ def representative_top_colour(path: Path, top_fraction: float = 0.16) -> str:
     return f"#{red:02x}{green:02x}{blue:02x}"
 
 
-def hero_top_colour(story: dict, cache: dict[str, str]) -> str:
-    path = cached_hero_path(story)
-    if path is None:
+def representative_top_colour(path: Path, top_fraction: float = 0.16) -> str:
+    try:
+        with Image.open(path) as opened:
+            return _representative_top_colour(opened, top_fraction)
+    except Exception:
         return ""
-    key = str(path)
-    if key not in cache:
-        cache[key] = representative_top_colour(path)
-    return cache[key]
+
+
+def representative_top_colour_bytes(payload: bytes, top_fraction: float = 0.16) -> str:
+    if not payload:
+        return ""
+    try:
+        with Image.open(BytesIO(payload)) as opened:
+            return _representative_top_colour(opened, top_fraction)
+    except Exception:
+        return ""
+
+
+def representative_top_colour_url(url: str, timeout: float = 6.0) -> str:
+    if not str(url or "").startswith(("http://", "https://")):
+        return ""
+
+    parsed = urlparse(url)
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) "
+            "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1"
+        ),
+        "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
+    }
+    if parsed.scheme and parsed.netloc:
+        headers["Referer"] = f"{parsed.scheme}://{parsed.netloc}/"
+
+    try:
+        request = Request(url, headers=headers)
+        with urlopen(request, timeout=timeout) as response:
+            content_type = str(response.headers.get("Content-Type") or "").lower()
+            if content_type and "image/" not in content_type:
+                return ""
+            payload = response.read(REMOTE_SAMPLE_LIMIT + 1)
+    except Exception:
+        return ""
+
+    if len(payload) > REMOTE_SAMPLE_LIMIT:
+        return ""
+    return representative_top_colour_bytes(payload)
+
+
+def existing_story_colour(story: dict) -> str:
+    colour = str(story.get("hero_top_colour") or "").strip()
+    return colour.lower() if HEX_COLOUR.fullmatch(colour) else ""
+
+
+def build_remote_colour_cache(stories: list[dict]) -> dict[str, str]:
+    urls = {
+        remote_hero_url(story)
+        for story in stories
+        if not existing_story_colour(story)
+        and cached_hero_path(story) is None
+        and remote_hero_url(story)
+    }
+    if not urls:
+        return {}
+
+    colours: dict[str, str] = {}
+    workers = min(REMOTE_SAMPLE_WORKERS, len(urls))
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {executor.submit(representative_top_colour_url, url): url for url in urls}
+        for future in as_completed(futures):
+            url = futures[future]
+            try:
+                colour = future.result()
+            except Exception:
+                colour = ""
+            if colour:
+                colours[url] = colour
+    return colours
+
+
+def hero_top_colour(story: dict, local_cache: dict[str, str], remote_cache: dict[str, str]) -> str:
+    existing = existing_story_colour(story)
+    if existing:
+        return existing
+
+    path = cached_hero_path(story)
+    if path is not None:
+        key = str(path)
+        if key not in local_cache:
+            local_cache[key] = representative_top_colour(path)
+        return local_cache[key]
+
+    url = remote_hero_url(story)
+    return remote_cache.get(url, "") if url else ""
 
 
 def main() -> None:
@@ -154,8 +243,10 @@ def main() -> None:
 
     stories = news.get("stories") or []
     feed_stories = []
-    colour_cache: dict[str, str] = {}
+    local_colour_cache: dict[str, str] = {}
+    remote_colour_cache = build_remote_colour_cache(stories)
     coloured_stories = 0
+    remote_coloured_stories = 0
 
     for story in stories:
         story_id = str(story.get("id") or "").strip()
@@ -163,10 +254,14 @@ def main() -> None:
             continue
 
         story_payload = dict(story)
-        colour = hero_top_colour(story_payload, colour_cache)
+        had_existing = bool(existing_story_colour(story_payload))
+        local_path = cached_hero_path(story_payload)
+        colour = hero_top_colour(story_payload, local_colour_cache, remote_colour_cache)
         if colour:
             story_payload["hero_top_colour"] = colour
             coloured_stories += 1
+            if not had_existing and local_path is None:
+                remote_coloured_stories += 1
         else:
             story_payload.pop("hero_top_colour", None)
 
@@ -196,7 +291,10 @@ def main() -> None:
     copy_if_exists(ROOT / "images" / "logos", PUBLIC / "images" / "logos")
     copy_if_exists(ROOT / "images" / "social.png", PUBLIC / "images" / "social.png")
 
-    print(f"Prepared SvelteKit data: {len(feed_stories)} stories ({coloured_stories} hero status colours)")
+    print(
+        f"Prepared SvelteKit data: {len(feed_stories)} stories "
+        f"({coloured_stories} hero status colours, {remote_coloured_stories} sampled remotely)"
+    )
 
 
 if __name__ == "__main__":
