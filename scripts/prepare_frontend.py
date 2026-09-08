@@ -51,6 +51,8 @@ FEED_FIELDS = {
 HEX_COLOUR = re.compile(r"^#[0-9a-f]{6}$", re.I)
 REMOTE_SAMPLE_LIMIT = 6 * 1024 * 1024
 REMOTE_SAMPLE_WORKERS = 12
+STATUS_MIN_LUMINANCE = 42.0
+STATUS_MAX_LUMINANCE = 218.0
 
 
 def safe_story_filename(story_id: str) -> str:
@@ -105,6 +107,37 @@ def remote_hero_url(story: dict) -> str:
     return ""
 
 
+def pixel_luminance(pixel: tuple[int, int, int]) -> float:
+    r, g, b = pixel
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def colour_luminance(colour: str) -> float:
+    if not HEX_COLOUR.fullmatch(str(colour or "")):
+        return -1.0
+    value = colour.lstrip("#")
+    return pixel_luminance(tuple(int(value[index:index + 2], 16) for index in (0, 2, 4)))
+
+
+def status_colour_allowed(colour: str) -> bool:
+    luminance = colour_luminance(colour)
+    return STATUS_MIN_LUMINANCE <= luminance <= STATUS_MAX_LUMINANCE
+
+
+def constrain_status_pixel(pixel: tuple[int, int, int]) -> tuple[int, int, int]:
+    luminance = pixel_luminance(pixel)
+    if STATUS_MIN_LUMINANCE <= luminance <= STATUS_MAX_LUMINANCE:
+        return pixel
+
+    if luminance < STATUS_MIN_LUMINANCE:
+        denominator = max(1.0, 255.0 - luminance)
+        amount = min(1.0, (STATUS_MIN_LUMINANCE - luminance) / denominator)
+        return tuple(round(channel + (255 - channel) * amount) for channel in pixel)
+
+    scale = STATUS_MAX_LUMINANCE / max(1.0, luminance)
+    return tuple(max(0, min(255, round(channel * scale))) for channel in pixel)
+
+
 def _representative_top_colour(opened: Image.Image, top_fraction: float = 0.16) -> str:
     image = ImageOps.exif_transpose(opened).convert("RGB")
     width, height = image.size
@@ -118,19 +151,26 @@ def _representative_top_colour(opened: Image.Image, top_fraction: float = 0.16) 
     if not pixels:
         return ""
 
-    def luminance(pixel: tuple[int, int, int]) -> float:
-        r, g, b = pixel
-        return 0.2126 * r + 0.7152 * g + 0.0722 * b
-
-    ordered = sorted(pixels, key=luminance)
+    # Do not let white logos, black wordmarks, letterboxing, or very bright/dark
+    # image edges become the status-strip colour. Prefer the meaningful mid-range
+    # pixels from the top band instead.
+    eligible = [
+        pixel for pixel in pixels
+        if STATUS_MIN_LUMINANCE <= pixel_luminance(pixel) <= STATUS_MAX_LUMINANCE
+    ]
+    sample_source = eligible if eligible else pixels
+    ordered = sorted(sample_source, key=pixel_luminance)
     trim = int(len(ordered) * 0.05)
     sample = ordered[trim:len(ordered) - trim] if trim and len(ordered) > trim * 2 else ordered
     if not sample:
         sample = ordered
 
-    red = round(sum(pixel[0] for pixel in sample) / len(sample))
-    green = round(sum(pixel[1] for pixel in sample) / len(sample))
-    blue = round(sum(pixel[2] for pixel in sample) / len(sample))
+    averaged = (
+        round(sum(pixel[0] for pixel in sample) / len(sample)),
+        round(sum(pixel[1] for pixel in sample) / len(sample)),
+        round(sum(pixel[2] for pixel in sample) / len(sample)),
+    )
+    red, green, blue = constrain_status_pixel(averaged)
     return f"#{red:02x}{green:02x}{blue:02x}"
 
 
@@ -183,8 +223,8 @@ def representative_top_colour_url(url: str, timeout: float = 6.0) -> str:
 
 
 def existing_story_colour(story: dict) -> str:
-    colour = str(story.get("hero_top_colour") or "").strip()
-    return colour.lower() if HEX_COLOUR.fullmatch(colour) else ""
+    colour = str(story.get("hero_top_colour") or "").strip().lower()
+    return colour if HEX_COLOUR.fullmatch(colour) and status_colour_allowed(colour) else ""
 
 
 def build_remote_colour_cache(stories: list[dict]) -> dict[str, str]:

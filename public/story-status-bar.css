@@ -1,5 +1,5 @@
 /* Installed iOS web-app safe-area treatment.
-   The system status area is a real opaque layer, never a translucent hero/header effect. */
+   The top colour strip is an opaque page element that scrolls away with the document. */
 
 :root {
   --standalone-status-height: env(safe-area-inset-top, 0px);
@@ -11,7 +11,7 @@
 
 html.standalone-webapp #ios-status-strip {
   display: block;
-  position: fixed;
+  position: absolute;
   inset: 0 0 auto;
   width: 100%;
   height: var(--standalone-status-height);
@@ -31,21 +31,21 @@ html.standalone-webapp.story-status-coloured #ios-status-strip {
   background-color: var(--story-status-colour) !important;
 }
 
-/* Reserve the status-bar row structurally on every installed-app page and
-   at every viewport width, including landscape. */
+/* Reserve the system status-bar row structurally on every installed-app page.
+   The coloured strip itself is not fixed and scrolls away with the top of the page. */
 html.standalone-webapp .site-header {
   padding-top: var(--standalone-status-height) !important;
 }
 
 /* Story pages already add env(safe-area-inset-top) inside header-inner.
-   The outer header now owns that spacing, so remove the duplicate inset. */
+   The outer header owns that spacing, so remove the duplicate inset. */
 html.standalone-webapp.story-route .site-header .header-inner {
   min-height: 64px !important;
   padding-top: 0 !important;
 }
 
-/* Keep the story image below the opaque status strip without changing the
-   intended lower edge of the editorial image. */
+/* Keep the story image below the status strip without changing the intended
+   lower edge of the editorial image. */
 html.standalone-webapp.story-route .article-cover-media {
   top: var(--standalone-status-height) !important;
   bottom: auto !important;

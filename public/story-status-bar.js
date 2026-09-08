@@ -18,8 +18,6 @@
   if (basePath === '/') basePath = '';
 
   const statusStrip = document.getElementById('ios-status-strip');
-  const themeColourMeta = Array.from(document.querySelectorAll('meta[name="theme-color"]'))
-    .map((meta) => ({ meta, original: meta.getAttribute('content') || '' }));
 
   let feedPromise;
   let scheduled = false;
@@ -95,25 +93,10 @@
     return /^#[0-9a-f]{6}$/i.test(colour) ? colour : '';
   }
 
-  function setSystemThemeColour(colour) {
-    const value = validColour(colour);
-    if (!value) return;
-    for (const entry of themeColourMeta) {
-      entry.meta.setAttribute('content', value);
-    }
-  }
-
-  function restoreSystemThemeColour() {
-    for (const entry of themeColourMeta) {
-      entry.meta.setAttribute('content', entry.original);
-    }
-  }
-
   function clearStoryColour() {
     root.style.removeProperty('--story-status-colour');
     root.classList.remove('story-status-coloured');
     if (statusStrip) statusStrip.style.removeProperty('background-color');
-    restoreSystemThemeColour();
   }
 
   function applyStoryColour(colour) {
@@ -126,7 +109,6 @@
     root.style.setProperty('--story-status-colour', value);
     root.classList.add('story-status-coloured');
     if (statusStrip) statusStrip.style.setProperty('background-color', value, 'important');
-    setSystemThemeColour(value);
   }
 
   async function syncStoryColour() {
