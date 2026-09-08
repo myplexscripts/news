@@ -1,0 +1,39 @@
+/* Story-flow fail-safe: keep editorial metadata visible and never gate article content. */
+body:has(.svelte-article-page) .article-cover-source-row {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+body:has(.svelte-article-page) .article-reader.article-reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+body:has(.svelte-article-page) .article-flow-meta.article-reveal {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(10px) !important;
+  filter: blur(2px) !important;
+  transition:
+    opacity 220ms ease,
+    transform 300ms cubic-bezier(.2,.8,.2,1),
+    filter 220ms ease,
+    visibility 0s linear 240ms !important;
+}
+
+body.story-meta-visible:has(.svelte-article-page) .article-flow-meta.article-reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  filter: blur(0) !important;
+  transition-delay: 0s !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(.svelte-article-page) .article-flow-meta.article-reveal {
+    transition: none !important;
+  }
+}
