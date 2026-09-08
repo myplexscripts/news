@@ -1,0 +1,38 @@
+/* Installed iOS web-app safe-area treatment.
+   Editorial story media may extend behind the system status bar, while app
+   chrome and publisher branding remain below the safe area. */
+
+:root {
+  --standalone-status-height: env(safe-area-inset-top, 0px);
+}
+
+/* Reserve the system status-bar row structurally for app chrome on every
+   installed-app page. No colour or overlay is painted into this area. */
+html.standalone-webapp .site-header {
+  padding-top: var(--standalone-status-height) !important;
+}
+
+/* Story pages also contain an older safe-area inset on header-inner. The outer
+   header owns the spacing in standalone mode so the source logo is offset once. */
+html.standalone-webapp.story-route .site-header .header-inner {
+  min-height: 64px !important;
+  padding-top: 0 !important;
+}
+
+/* The editorial image itself starts at the physical top of the viewport,
+   including behind the iOS status bar. Its lower edge remains unchanged. */
+html.standalone-webapp.story-route .article-cover-media {
+  top: 0 !important;
+  bottom: auto !important;
+  height: 78svh !important;
+}
+
+html.standalone-webapp.story-route .article-cover-fade-top {
+  top: 0 !important;
+}
+
+@media (max-width: 760px) {
+  html.standalone-webapp.story-route .article-cover-media {
+    height: 70svh !important;
+  }
+}
