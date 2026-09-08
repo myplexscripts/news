@@ -1,0 +1,74 @@
+name: Clean London Free Press navigation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/cleanup_postmedia_navigation.py'
+      - 'scripts/test_postmedia_navigation.py'
+      - '.github/workflows/cleanup-postmedia.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: cleanup-postmedia-navigation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Test London Free Press cleanup
+        run: python scripts/test_postmedia_navigation.py
+
+      - name: Clean current articles and commit
+        id: commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4; do
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard "origin/$GITHUB_REF_NAME"
+
+            python scripts/test_postmedia_navigation.py
+            python scripts/cleanup_postmedia_navigation.py
+            git add data/news.json
+
+            if git diff --cached --quiet; then
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git commit -m "Clean London Free Press article navigation"
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            echo "main moved during cleanup attempt $attempt; retrying on newest main"
+            sleep $((attempt * 2))
+          done
+
+          echo "London Free Press cleanup could not publish after 4 retries" >&2
+          exit 1
+
+      - name: Deploy cleaned site
+        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main
