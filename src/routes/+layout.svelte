@@ -19,6 +19,7 @@
   let homeUpdated = '';
   let isBackToTop = false;
   let storyCompactNav = false;
+  let storyMetaVisible = false;
   let shellFeed;
 
   function normalizedPath(pathname = '') {
@@ -60,6 +61,23 @@
     }
   }
 
+  function formatStoryPublished(value) {
+    if (!value) return '';
+    try {
+      return new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Toronto',
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      }).format(new Date(value));
+    } catch {
+      return '';
+    }
+  }
+
   $: currentPath = normalizedPath($page.url.pathname);
   $: onHome = currentPath === '/';
   $: onStory = currentPath.startsWith('/story/');
@@ -74,9 +92,17 @@
     : null;
   $: storySourceName = storyMeta?.source || '';
   $: storySourceLogo = storySourceName ? sourceLogoPath(storySourceName, `${base}/`) : '';
+  $: storyPublishedLabel = formatStoryPublished(storyMeta?.published);
+  $: storyReadMinutes = storyMeta && Number(storyMeta.word_count) > 0
+    ? Math.max(1, Math.round(Number(storyMeta.word_count) / 220))
+    : null;
   $: if (!onHome) isBackToTop = false;
-  $: if (!onStory) storyCompactNav = false;
+  $: if (!onStory) {
+    storyCompactNav = false;
+    storyMetaVisible = false;
+  }
   $: if (browser && currentPath) queueMicrotask(syncScrollChrome);
+  $: if (browser && onStory && storyMeta) queueMicrotask(() => syncStoryHeroAuthor());
 
   function activeIcon(active, icon) {
     return active ? `ph-fill ph-${icon}` : `ph ph-${icon}`;
@@ -95,6 +121,24 @@
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   }
 
+  function syncStoryHeroAuthor(attempt = 0) {
+    if (!browser || !onStory || !storyMeta) return;
+    const slot = document.querySelector('.article-cover-source');
+    if (!slot) {
+      if (attempt < 18) requestAnimationFrame(() => syncStoryHeroAuthor(attempt + 1));
+      return;
+    }
+
+    const author = String(storyMeta.author || '').trim();
+    slot.replaceChildren();
+    if (!author) return;
+
+    const label = document.createElement('strong');
+    label.className = 'story-hero-author';
+    label.textContent = /^by\s+/i.test(author) ? author : `By ${author}`;
+    slot.appendChild(label);
+  }
+
   function syncScrollChrome() {
     if (!browser) return;
 
@@ -106,8 +150,9 @@
     }
 
     const storyScroll = onStory ? window.scrollY : 0;
+    storyMetaVisible = onStory && storyScroll > 34;
     storyCompactNav = onStory && storyScroll > Math.max(84, window.innerHeight * 0.09);
-    document.body.classList.toggle('story-meta-visible', onStory && storyScroll > 34);
+    document.body.classList.toggle('story-meta-visible', storyMetaVisible);
   }
 
   onMount(() => {
@@ -196,6 +241,17 @@
   </div>
 </header>
 
+{#if onStory && storyMeta}
+  <div
+    class:visible={storyMetaVisible}
+    class="story-cover-secondary-meta"
+    aria-hidden={storyMetaVisible ? 'false' : 'true'}
+  >
+    {#if storyPublishedLabel}<time datetime={storyMeta.published}>{storyPublishedLabel}</time>{/if}
+    {#if storyReadMinutes}<span>{storyReadMinutes} min read</span>{/if}
+  </div>
+{/if}
+
 <div class="svelte-route-stage">
   <slot />
 </div>
@@ -228,7 +284,7 @@
     aria-current={onHome ? 'page' : undefined}
     on:click={handleHomeTab}
   >
-    <i class={onStory && storyCompactNav ? 'ph-fill ph-tree' : onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
+    <i class={onStory && storyCompactNav ? 'ph-fill ph-house' : onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
     <span class="visually-hidden">Home</span>
   </a>
 
@@ -314,16 +370,66 @@
     letter-spacing: -0.035em;
   }
 
+  .story-cover-secondary-meta {
+    position: absolute;
+    z-index: 65;
+    top: calc(100svh - 78px);
+    left: 50%;
+    width: min(calc(100% - 64px), var(--content));
+    display: grid;
+    gap: 2px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.35;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 8px);
+    filter: blur(3px);
+    pointer-events: none;
+    transition:
+      opacity 220ms ease,
+      transform 320ms cubic-bezier(.2,.8,.2,1),
+      filter 240ms ease,
+      visibility 0s linear 240ms;
+  }
+
+  .story-cover-secondary-meta.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+    filter: blur(0);
+    transition-delay: 0s;
+  }
+
+  .story-cover-secondary-meta time,
+  .story-cover-secondary-meta span {
+    font-size: 15px !important;
+  }
+
   .story-back-to-top {
     display: none;
   }
 
   :global(body:has(.svelte-article-page) .article-cover-source) {
-    visibility: hidden !important;
+    visibility: visible !important;
+  }
+
+  :global(body:has(.svelte-article-page) .article-cover-source > img),
+  :global(body:has(.svelte-article-page) .article-cover-source > strong:not(.story-hero-author)) {
+    display: none !important;
+  }
+
+  :global(body:has(.svelte-article-page) .story-hero-author) {
+    display: block !important;
+    color: var(--ink) !important;
+    font-size: 16px !important;
+    font-weight: 750 !important;
+    line-height: 1.25 !important;
   }
 
   :global(body:has(.svelte-article-page) .article-after-cover) {
     position: relative !important;
+    padding-top: 20px !important;
   }
 
   :global(body:has(.svelte-article-page) .article-content-layout) {
@@ -337,63 +443,7 @@
   }
 
   :global(body:has(.svelte-article-page) .article-source-panel) {
-    position: absolute !important;
-    top: -130px !important;
-    left: 0 !important;
-    width: min(100%, 620px) !important;
-    z-index: 8 !important;
-    margin: 0 !important;
-    pointer-events: none;
-  }
-
-  :global(body:has(.svelte-article-page) .article-source-card) {
-    display: block !important;
-    padding: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-  }
-
-  :global(body:has(.svelte-article-page) .source-card-details-editorial) {
-    display: flex !important;
-    align-items: center !important;
-    flex-wrap: wrap !important;
-    gap: 6px 12px !important;
-    max-width: 100% !important;
-  }
-
-  :global(body:has(.svelte-article-page) .source-detail-item) {
-    gap: 0 !important;
-    margin: 0 !important;
-    line-height: 1.25 !important;
-  }
-
-  :global(body:has(.svelte-article-page) .source-detail-item i) {
     display: none !important;
-  }
-
-  :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-user)) {
-    color: var(--ink) !important;
-    font-weight: 750 !important;
-  }
-
-  :global(body:has(.svelte-article-page) time.source-detail-item),
-  :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)) {
-    opacity: 0;
-    transform: translateY(7px) scale(0.98);
-    transition: opacity 260ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
-  }
-
-  :global(body.story-meta-visible:has(.svelte-article-page) time.source-detail-item),
-  :global(body.story-meta-visible:has(.svelte-article-page) .source-detail-item:has(.ph-clock)) {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  :global(body:has(.svelte-article-page) time.source-detail-item::before),
-  :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)::before) {
-    content: '•';
-    margin-right: 12px;
-    color: var(--tertiary);
   }
 
   :global(body:has(.svelte-article-page) .source-coverage),
@@ -425,6 +475,31 @@
       font-size: 20px !important;
     }
 
+    .story-cover-secondary-meta {
+      top: calc(88svh - 72px);
+      width: min(calc(100% - 28px), var(--content));
+      gap: 1px;
+      font-size: 14px;
+    }
+
+    .story-cover-secondary-meta time,
+    .story-cover-secondary-meta span {
+      font-size: 14px !important;
+    }
+
+    :global(body:has(.svelte-article-page) .article-cover) {
+      min-height: 88svh !important;
+      height: 88svh !important;
+    }
+
+    :global(body:has(.svelte-article-page) .article-cover-content) {
+      padding-bottom: max(92px, calc(72px + env(safe-area-inset-bottom))) !important;
+    }
+
+    :global(body:has(.svelte-article-page) .article-after-cover) {
+      padding-top: 18px !important;
+    }
+
     :global(.mobile-tab-bar.svelte-mobile-tab-bar) {
       --mobile-tab-count: 5 !important;
       grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
@@ -448,7 +523,8 @@
       transition: opacity 180ms ease, transform 260ms cubic-bezier(.2,.8,.2,1), background 180ms ease, color 180ms ease !important;
     }
 
-    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav) {
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav),
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav) {
       left: 14px !important;
       right: 14px !important;
       min-height: 64px !important;
@@ -456,17 +532,26 @@
       justify-content: space-between !important;
       gap: 0 !important;
       padding: 0 !important;
-      border-color: transparent !important;
+      overflow: visible !important;
+      border: 0 !important;
+      outline: 0 !important;
       background: transparent !important;
       box-shadow: none !important;
+      filter: none !important;
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
       pointer-events: none;
     }
 
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav::before),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav::after),
     :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .mobile-tab-indicator) {
+      display: none !important;
+      content: none !important;
       opacity: 0 !important;
-      transform: scale(0.7) !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      filter: none !important;
     }
 
     :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-tab:not(.mobile-home-tab)) {
@@ -482,25 +567,9 @@
       height: 64px !important;
       min-height: 64px !important;
       border-radius: 50% !important;
-      background: color-mix(in srgb, var(--surface) 62%, transparent) !important;
-      border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent) !important;
-      box-shadow:
-        0 12px 34px rgb(0 0 0 / 0.24),
-        inset 0 1px 0 rgb(255 255 255 / 0.16) !important;
-      backdrop-filter: blur(30px) saturate(210%) !important;
-      -webkit-backdrop-filter: blur(30px) saturate(210%) !important;
       color: var(--accent) !important;
       pointer-events: auto !important;
       transform: scale(1) !important;
-    }
-
-    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab),
-    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
-      background: rgb(28 28 30 / 0.72) !important;
-      border-color: rgb(255 255 255 / 0.14) !important;
-      box-shadow:
-        0 14px 38px rgb(0 0 0 / 0.5),
-        inset 0 1px 0 rgb(255 255 255 / 0.15) !important;
     }
 
     :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top) {
@@ -513,22 +582,38 @@
       min-height: 64px;
       display: grid;
       place-items: center;
-      border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
       border-radius: 50%;
-      background: color-mix(in srgb, var(--surface) 62%, transparent);
       color: var(--ink);
       opacity: 0;
       pointer-events: none;
       transform: translateY(10px) scale(0.72);
-      box-shadow:
-        0 12px 34px rgb(0 0 0 / 0.24),
-        inset 0 1px 0 rgb(255 255 255 / 0.16);
-      backdrop-filter: blur(30px) saturate(210%);
-      -webkit-backdrop-filter: blur(30px) saturate(210%);
       transition: opacity 200ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
     }
 
-    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top i) {
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
+      border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent) !important;
+      background: color-mix(in srgb, var(--surface) 86%, transparent) !important;
+      box-shadow:
+        0 8px 24px rgb(0 0 0 / 0.22),
+        inset 0 1px 0 rgb(255 255 255 / 0.28),
+        inset 0 -1px 0 rgb(0 0 0 / 0.10) !important;
+      backdrop-filter: blur(34px) saturate(220%) !important;
+      -webkit-backdrop-filter: blur(34px) saturate(220%) !important;
+    }
+
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab),
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
+      background: rgb(28 28 30 / 0.86) !important;
+      border-color: rgb(255 255 255 / 0.18) !important;
+      box-shadow:
+        0 9px 26px rgb(0 0 0 / 0.34),
+        inset 0 1px 0 rgb(255 255 255 / 0.22),
+        inset 0 -1px 0 rgb(0 0 0 / 0.34) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top i),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab i) {
       font-size: 24px !important;
     }
 
@@ -537,38 +622,13 @@
       pointer-events: auto;
       transform: translateY(0) scale(1);
     }
-
-    :global(body:has(.svelte-article-page) .article-source-panel) {
-      top: calc(-160px - env(safe-area-inset-bottom)) !important;
-      width: calc(100% - 126px) !important;
-      max-width: none !important;
-    }
-
-    :global(body:has(.svelte-article-page) .source-card-details-editorial) {
-      gap: 5px 9px !important;
-    }
-
-    :global(body:has(.svelte-article-page) .source-detail-item) {
-      font-size: 14px !important;
-      white-space: nowrap;
-    }
-
-    :global(body:has(.svelte-article-page) time.source-detail-item::before),
-    :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)::before) {
-      margin-right: 9px;
-    }
-
-    :global(body:has(.svelte-article-page) .article-after-cover) {
-      padding-top: 28px !important;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     :global(.mobile-tab-bar.svelte-mobile-tab-bar),
     :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab),
     :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top),
-    :global(body:has(.svelte-article-page) time.source-detail-item),
-    :global(body:has(.svelte-article-page) .source-detail-item:has(.ph-clock)) {
+    .story-cover-secondary-meta {
       transition: none !important;
     }
   }
