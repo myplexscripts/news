@@ -2,6 +2,12 @@ name: Enrich news articles
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/enrich_tweets.py'
+      - 'scripts/test_tweet_media.py'
+      - '.github/workflows/enrich.yml'
 
 permissions:
   contents: write
