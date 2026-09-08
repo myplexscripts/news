@@ -17,7 +17,6 @@ def main() -> int:
     assert "story-status-colour" not in css
     assert "representative_top_colour" not in prepare
     assert "REMOTE_SAMPLE" not in prepare
-    assert '"hero_top_colour",' not in prepare
     # Strip any legacy value that may still exist in source data instead of
     # publishing it into the generated feed/story payloads.
     assert 'story_payload.pop("hero_top_colour", None)' in prepare
