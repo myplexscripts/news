@@ -17,12 +17,14 @@
   }
   if (basePath === '/') basePath = '';
 
+  const statusStrip = document.getElementById('ios-status-strip');
   const themeColourMeta = Array.from(document.querySelectorAll('meta[name="theme-color"]'))
     .map((meta) => ({ meta, original: meta.getAttribute('content') || '' }));
 
   let feedPromise;
   let scheduled = false;
   let lastStoryId = '';
+  let resizeScheduled = false;
 
   function currentStoryId() {
     const prefix = `${basePath}/story/`.replace(/\/+/g, '/');
@@ -34,6 +36,43 @@
     } catch {
       return remainder || '';
     }
+  }
+
+  function measureSafeAreaTop() {
+    const probe = document.createElement('div');
+    probe.setAttribute('aria-hidden', 'true');
+    probe.style.cssText = [
+      'position:fixed',
+      'top:0',
+      'left:0',
+      'width:0',
+      'height:env(safe-area-inset-top, 0px)',
+      'visibility:hidden',
+      'pointer-events:none'
+    ].join(';');
+
+    document.documentElement.appendChild(probe);
+    const measured = Number.parseFloat(getComputedStyle(probe).height) || 0;
+    probe.remove();
+
+    const isiPhone = /iPhone|iPod/i.test(navigator.userAgent);
+    const isiPad = /iPad/i.test(navigator.userAgent)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    // iOS can report a zero top safe-area inset in wide/landscape standalone
+    // layouts even though the system status row still overlays the web view.
+    const fallback = isiPhone ? 59 : isiPad ? 24 : 0;
+    const height = measured > 0 ? measured : fallback;
+    root.style.setProperty('--standalone-status-height', `${Math.round(height)}px`);
+  }
+
+  function scheduleSafeAreaMeasure() {
+    if (resizeScheduled) return;
+    resizeScheduled = true;
+    window.requestAnimationFrame(() => {
+      resizeScheduled = false;
+      measureSafeAreaTop();
+    });
   }
 
   function loadFeed() {
@@ -72,8 +111,8 @@
 
   function clearStoryColour() {
     root.style.removeProperty('--story-status-colour');
-    root.style.removeProperty('background-color');
     root.classList.remove('story-status-coloured');
+    if (statusStrip) statusStrip.style.removeProperty('background-color');
     restoreSystemThemeColour();
   }
 
@@ -85,15 +124,15 @@
     }
 
     root.style.setProperty('--story-status-colour', value);
-    root.style.setProperty('background-color', value);
     root.classList.add('story-status-coloured');
+    if (statusStrip) statusStrip.style.setProperty('background-color', value, 'important');
     setSystemThemeColour(value);
   }
 
   async function syncStoryColour() {
     scheduled = false;
-    const storyPage = document.querySelector('.svelte-article-page');
-    const storyId = storyPage ? currentStoryId() : '';
+    const storyId = currentStoryId();
+    root.classList.toggle('story-route', Boolean(storyId));
 
     if (!storyId) {
       lastStoryId = '';
@@ -121,10 +160,21 @@
     window.requestAnimationFrame(syncStoryColour);
   }
 
-  window.addEventListener('pageshow', scheduleSync);
+  measureSafeAreaTop();
+  root.classList.toggle('story-route', Boolean(currentStoryId()));
+
+  window.addEventListener('pageshow', () => {
+    scheduleSafeAreaMeasure();
+    scheduleSync();
+  });
   window.addEventListener('popstate', scheduleSync);
+  window.addEventListener('resize', scheduleSafeAreaMeasure, { passive: true });
+  window.addEventListener('orientationchange', scheduleSafeAreaMeasure);
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) scheduleSync();
+    if (!document.hidden) {
+      scheduleSafeAreaMeasure();
+      scheduleSync();
+    }
   });
 
   const observer = new MutationObserver(scheduleSync);
