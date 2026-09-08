@@ -24,6 +24,17 @@ body:has(.svelte-article-page) .article-reader.article-reveal {
 }
 
 @media (max-width: 760px) {
+  /* Keep the editorial section full-screen, but end its photography higher.
+     The fade travels with the raised image edge into the page background. */
+  html body:has(.svelte-article-page) .article-cover-media {
+    height: 70svh !important;
+  }
+
+  html body:has(.svelte-article-page) .article-cover-fade-bottom {
+    top: 34svh !important;
+    height: 38svh !important;
+  }
+
   /* Pull normal article flow upward by the same space reserved above the
      full bottom nav. It stays invisible until that nav has collapsed. */
   html body:has(.svelte-article-page) .article-after-cover {
