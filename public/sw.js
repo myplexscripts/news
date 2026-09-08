@@ -1,6 +1,6 @@
-const SHELL_CACHE = 'forest-city-news-shell-v2';
-const ASSET_CACHE = 'forest-city-news-assets-v2';
-const DATA_CACHE = 'forest-city-news-data-v2';
+const SHELL_CACHE = 'forest-city-news-shell-v3';
+const ASSET_CACHE = 'forest-city-news-assets-v3';
+const DATA_CACHE = 'forest-city-news-data-v3';
 const CACHE_PREFIXES = ['forest-city-news-', 'london-news-'];
 
 function scopePath(path = '') {
@@ -78,16 +78,17 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  if (url.pathname.includes('/_app/immutable/')) {
+    event.respondWith(cacheFirst(event.request));
+    return;
+  }
+
   if (event.request.destination === 'image' || event.request.destination === 'font') {
     event.respondWith(cacheFirst(event.request));
     return;
   }
 
-  if (
-    url.pathname.includes('/_app/immutable/')
-    || event.request.destination === 'style'
-    || event.request.destination === 'script'
-  ) {
-    event.respondWith(cacheFirst(event.request));
+  if (event.request.destination === 'style' || event.request.destination === 'script') {
+    event.respondWith(networkFirst(event.request, ASSET_CACHE));
   }
 });
