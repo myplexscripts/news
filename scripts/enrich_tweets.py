@@ -73,9 +73,14 @@ def base_block(url: str, node: Tag | None = None) -> dict[str, Any] | None:
     if not tweet_id:
         return None
     block: dict[str, Any] = {
-        "type": "media", "media_type": "tweet", "provider": "x",
-        "url": canonical, "source_url": canonical, "tweet_id": tweet_id,
-        "handle": handle, "title": "Post on X",
+        "type": "media",
+        "media_type": "tweet",
+        "provider": "x",
+        "url": canonical,
+        "source_url": canonical,
+        "tweet_id": tweet_id,
+        "handle": handle,
+        "title": "Post on X",
     }
     if isinstance(node, Tag):
         paragraph = node.find("p")
@@ -132,6 +137,11 @@ def best_mp4(variants: list[dict[str, Any]]) -> str:
 
 
 def apply_syndication(block: dict[str, Any], payload: dict[str, Any]) -> dict[str, Any]:
+    """Parse a syndication-shaped payload when one is already available.
+
+    Forest City News does not call X's private syndication endpoint directly.
+    This parser remains useful for fixtures and any publisher-provided payloads.
+    """
     out = dict(block)
     text = clean(payload.get("text"), 10000)
     user = payload.get("user") if isinstance(payload.get("user"), dict) else {}
@@ -202,9 +212,11 @@ def apply_fxtwitter(block: dict[str, Any], payload: dict[str, Any]) -> dict[str,
     tweet = payload.get("tweet") if isinstance(payload.get("tweet"), dict) else payload
     if not isinstance(tweet, dict):
         return out
+
     raw_text = tweet.get("raw_text") if isinstance(tweet.get("raw_text"), dict) else {}
     if not out.get("text") and (tweet.get("text") or raw_text.get("text")):
         out["text"] = clean(tweet.get("text") or raw_text.get("text"), 10000)
+
     author = tweet.get("author") if isinstance(tweet.get("author"), dict) else {}
     handle = clean(author.get("screen_name"), 80).lstrip("@")
     if author.get("name") and not out.get("author_name"):
@@ -229,11 +241,17 @@ def apply_fxtwitter(block: dict[str, Any], payload: dict[str, Any]) -> dict[str,
             thumb = safe_url(item.get("thumbnail_url") or item.get("thumbnail") or item.get("poster"))
             if kind in {"photo", "image"} and url:
                 if not any(isinstance(photo, dict) and photo.get("url") == url for photo in photos):
-                    photos.append({"url": url, **({"width": item["width"]} if item.get("width") else {}), **({"height": item["height"]} if item.get("height") else {})})
+                    photo: dict[str, Any] = {"url": url}
+                    if item.get("width"):
+                        photo["width"] = item["width"]
+                    if item.get("height"):
+                        photo["height"] = item["height"]
+                    photos.append(photo)
             elif kind in {"video", "gif", "animated_gif"}:
                 if url and (urlparse(url).path.lower().endswith(".mp4") or "video.twimg.com" in urlparse(url).netloc.lower()):
                     video_url = video_url or url
                 poster = poster or thumb
+
     for value in tweet.get("mediaURLs") or tweet.get("media_urls") or []:
         url = safe_url(value)
         if not url:
@@ -242,6 +260,7 @@ def apply_fxtwitter(block: dict[str, Any], payload: dict[str, Any]) -> dict[str,
             video_url = video_url or url
         elif "pbs.twimg.com" in urlparse(url).netloc.lower() and not any(isinstance(photo, dict) and photo.get("url") == url for photo in photos):
             photos.append({"url": url})
+
     if photos:
         out["photos"] = photos[:4]
     if poster:
@@ -251,9 +270,9 @@ def apply_fxtwitter(block: dict[str, Any], payload: dict[str, Any]) -> dict[str,
     return out
 
 
-def get_json(url: str, params: dict[str, str]) -> dict[str, Any]:
+def get_json(url: str, params: dict[str, str] | None = None) -> dict[str, Any]:
     try:
-        response = requests.get(url, params=params, headers=HEADERS, timeout=(4, 12))
+        response = requests.get(url, params=params or {}, headers=HEADERS, timeout=(4, 12))
         response.raise_for_status()
         payload = response.json()
         return payload if isinstance(payload, dict) else {}
@@ -266,17 +285,22 @@ def enrich(block: dict[str, Any]) -> dict[str, Any]:
     if not tweet_id:
         return block
     out = {**block, "tweet_id": tweet_id}
-    syndication = get_json("https://cdn.syndication.twimg.com/tweet-result", {"id": tweet_id, "lang": "en", "token": "!"})
-    if syndication:
-        out = apply_syndication(out, syndication)
+
+    # Official oEmbed supplies stable text/author metadata without requiring an API key.
     if not out.get("text") or not out.get("author_name"):
-        oembed = get_json("https://publish.twitter.com/oembed", {"url": str(out.get("source_url") or out.get("url")), "omit_script": "true", "dnt": "true"})
+        oembed = get_json(
+            "https://publish.twitter.com/oembed",
+            {"url": str(out.get("source_url") or out.get("url")), "omit_script": "true", "dnt": "true"},
+        )
         if oembed:
             out = apply_oembed(out, oembed)
+
+    # X oEmbed does not expose direct photo/video assets. FxTwitter is a best-effort
+    # server-side metadata fallback only. Forest City News never downloads the MP4.
     if not out.get("video_url") or not out.get("avatar"):
         handle = clean(out.get("handle"), 80).lstrip("@")
         path = f"{handle}/status/{tweet_id}" if handle else f"i/status/{tweet_id}"
-        fallback = get_json(f"https://api.fxtwitter.com/{path}", {})
+        fallback = get_json(f"https://api.fxtwitter.com/{path}")
         if fallback:
             out = apply_fxtwitter(out, fallback)
     return out
@@ -309,10 +333,14 @@ def normalize(block: dict[str, Any]) -> dict[str, Any] | None:
         return None
     _, handle, canonical = identity(block.get("source_url") or block.get("url"))
     out: dict[str, Any] = {
-        "type": "media", "media_type": "tweet", "provider": "x",
+        "type": "media",
+        "media_type": "tweet",
+        "provider": "x",
         "url": canonical or f"https://x.com/i/web/status/{tweet_id}",
         "source_url": canonical or f"https://x.com/i/web/status/{tweet_id}",
-        "tweet_id": tweet_id, "handle": handle, "title": "Post on X",
+        "tweet_id": tweet_id,
+        "handle": handle,
+        "title": "Post on X",
     }
     for key in ("text", "author_name", "avatar", "published", "photos", "poster", "video_url"):
         if block.get(key):
@@ -348,10 +376,14 @@ def match_anchor(blocks: list[dict[str, Any]], anchor: str) -> int | None:
     return best[1] if best[0] >= 0.66 else None
 
 
-def merge(blocks: list[dict[str, Any]], discovered: list[tuple[str, dict[str, Any]]]) -> tuple[list[dict[str, Any]], int]:
+def merge(
+    blocks: list[dict[str, Any]],
+    discovered: list[tuple[str, dict[str, Any]]],
+) -> tuple[list[dict[str, Any]], int]:
     result = [dict(block) for block in blocks if isinstance(block, dict)]
-    positions: dict[str, int] = {}
+    known_ids: set[str] = set()
     changed = 0
+
     for index, block in enumerate(result):
         if not is_x_block(block):
             continue
@@ -359,18 +391,22 @@ def merge(blocks: list[dict[str, Any]], discovered: list[tuple[str, dict[str, An
         if not normalized:
             continue
         result[index] = enrich(normalized)
-        positions[str(normalized["tweet_id"])] = index
+        known_ids.add(str(normalized["tweet_id"]))
         changed += 1
-    offset = 0
+
+    inserted_after_anchor: dict[str, int] = {}
     for anchor, block in discovered:
         tweet_id = str(block.get("tweet_id") or "")
-        if not tweet_id or tweet_id in positions:
+        if not tweet_id or tweet_id in known_ids:
             continue
         target = match_anchor(result, anchor)
         if target is None:
             continue
-        result.insert(target + 1 + offset, enrich(block))
-        offset += 1
+        anchor_key = text_key(anchor)
+        prior_count = inserted_after_anchor.get(anchor_key, 0)
+        result.insert(target + 1 + prior_count, enrich(block))
+        inserted_after_anchor[anchor_key] = prior_count + 1
+        known_ids.add(tweet_id)
         changed += 1
     return result, changed
 
@@ -392,12 +428,20 @@ def process(story: dict[str, Any]) -> tuple[list[dict[str, Any]], int, str]:
 
 
 def needs_work(story: dict[str, Any]) -> bool:
-    return bool(
+    if not (
         isinstance(story, dict)
-        and story.get("url") and story.get("title")
+        and story.get("url")
+        and story.get("title")
         and story.get("content_status") in {"full", "partial"}
-        and int(story.get("tweet_schema") or 0) < TWEET_SCHEMA
+    ):
+        return False
+    blocks = story.get("content_blocks") if isinstance(story.get("content_blocks"), list) else []
+    has_unstructured_x = any(
+        is_x_block(block) and block.get("media_type") != "tweet"
+        for block in blocks
+        if isinstance(block, dict)
     )
+    return has_unstructured_x or int(story.get("tweet_schema") or 0) < TWEET_SCHEMA
 
 
 def timestamp(story: dict[str, Any]) -> float:
@@ -413,6 +457,7 @@ def main() -> int:
     args = parser.parse_args()
     if not NEWS_PATH.exists():
         return 0
+
     payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
     stories = payload.get("stories") if isinstance(payload.get("stories"), list) else []
     targets = sorted((story for story in stories if needs_work(story)), key=timestamp, reverse=True)[: max(1, args.limit)]
@@ -439,13 +484,20 @@ def main() -> int:
             story["content_blocks"] = blocks
         story.update({"tweet_schema": TWEET_SCHEMA, "tweet_enriched_at": now, "tweet_method": method})
         updated += int(bool(changed))
-        tweet_blocks = [block for block in story.get("content_blocks", []) if isinstance(block, dict) and block.get("media_type") == "tweet"]
+        tweet_blocks = [
+            block
+            for block in story.get("content_blocks", [])
+            if isinstance(block, dict) and block.get("media_type") == "tweet"
+        ]
         tweets += len(tweet_blocks)
         videos += sum(1 for block in tweet_blocks if block.get("video_url"))
 
     payload.update({"tweet_schema": TWEET_SCHEMA, "tweet_enriched_at": now})
     NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Tweet enrichment: {updated}/{len(targets)} changed, {tweets} tweet(s), {videos} remote video(s); no video files stored")
+    print(
+        f"Tweet enrichment: {updated}/{len(targets)} changed, "
+        f"{tweets} tweet(s), {videos} remote video(s); no video files stored"
+    )
     return 0
 
 
