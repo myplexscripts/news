@@ -41,9 +41,11 @@ def main() -> int:
     assert "env(safe-area-inset-top" in css
     assert "standalone-webapp" in css
     assert "article-cover-media" in css
+    assert "--story-status-image" in css
     assert "navigator.standalone" in js
     assert "display-mode: standalone" in js
     assert "hero_top_colour" in js
+    assert "--story-status-image" in js
     assert "story-status-bar.css" in app
     assert "story-status-bar.js" in app
 

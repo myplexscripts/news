@@ -2,25 +2,50 @@
    The actual editorial image begins below the status bar. Only a representative
    colour sampled from the image's top band is allowed behind the system chrome. */
 
-html.standalone-webapp body:has(.svelte-article-page)::before {
+html.standalone-webapp body:has(.svelte-article-page)::before,
+html.standalone-webapp body:has(.svelte-article-page)::after {
   content: '';
   position: fixed;
   inset: 0 0 auto;
-  z-index: 59;
   height: env(safe-area-inset-top, 0px);
   pointer-events: none;
+  clip-path: inset(0);
+  transition: background 220ms ease, opacity 220ms ease;
+}
+
+/* Exact sampled colour when a cached hero is available. */
+html.standalone-webapp body:has(.svelte-article-page)::before {
+  z-index: 58;
   background: color-mix(
     in srgb,
     var(--story-status-colour, var(--bg)) 68%,
     black 32%
   );
-  transition: background 220ms ease;
+}
+
+/* Remote-only fallback: the top of the real hero becomes a soft colour wash.
+   It is intentionally blurred and darkened so no recognisable photo detail sits
+   behind the iOS status icons. */
+html.standalone-webapp body:has(.svelte-article-page)::after {
+  z-index: 59;
+  background-image: var(--story-status-image, none);
+  background-size: 118% auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+  opacity: 0.42;
+  filter: blur(22px) saturate(135%) brightness(0.68);
+  transform: scale(1.16);
+  transform-origin: center top;
 }
 
 /* Once the user is reading, return the persistent status strip to the normal
    surface instead of leaving the hero colour floating above the article. */
 html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyCompactNav)::before {
   background: var(--bg);
+}
+
+html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyCompactNav)::after {
+  opacity: 0;
 }
 
 @media (max-width: 760px) {
@@ -48,7 +73,8 @@ html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyC
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html.standalone-webapp body:has(.svelte-article-page)::before {
+  html.standalone-webapp body:has(.svelte-article-page)::before,
+  html.standalone-webapp body:has(.svelte-article-page)::after {
     transition: none;
   }
 }

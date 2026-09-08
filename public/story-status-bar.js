@@ -45,6 +45,23 @@
     return feedPromise;
   }
 
+  function resolveStoryImage(story) {
+    const value = String(story?.card_image_small || story?.card_image || story?.image || '').trim();
+    if (!value) return '';
+    if (/^https?:\/\//i.test(value)) return value;
+    if (value.startsWith('/')) return value;
+    return `${basePath}/${value}`.replace(/\/+/g, '/');
+  }
+
+  function setStatusImage(value) {
+    if (!value) {
+      root.style.removeProperty('--story-status-image');
+      return;
+    }
+    const escaped = value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    root.style.setProperty('--story-status-image', `url("${escaped}")`);
+  }
+
   async function syncStoryColour() {
     scheduled = false;
     const storyPage = document.querySelector('.svelte-article-page');
@@ -53,10 +70,14 @@
     if (!storyId) {
       lastStoryId = '';
       root.style.removeProperty('--story-status-colour');
+      root.style.removeProperty('--story-status-image');
       return;
     }
 
-    if (storyId === lastStoryId && root.style.getPropertyValue('--story-status-colour')) return;
+    if (
+      storyId === lastStoryId
+      && (root.style.getPropertyValue('--story-status-colour') || root.style.getPropertyValue('--story-status-image'))
+    ) return;
     lastStoryId = storyId;
 
     const feed = await loadFeed();
@@ -69,6 +90,7 @@
     } else {
       root.style.removeProperty('--story-status-colour');
     }
+    setStatusImage(resolveStoryImage(story));
   }
 
   function scheduleSync() {
