@@ -8,14 +8,40 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Forest City News" />
+    <script>
+      (() => {
+        try {
+          const root = document.documentElement;
+          const standalone =
+            window.navigator.standalone === true
+            || window.matchMedia?.('(display-mode: standalone)').matches === true;
+          if (!standalone) return;
+
+          root.classList.add('standalone-webapp');
+          root.classList.toggle('story-route', /\/story\/[^/]+/.test(window.location.pathname));
+
+          const probe = document.createElement('div');
+          probe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:env(safe-area-inset-top, 0px);visibility:hidden;pointer-events:none';
+          root.appendChild(probe);
+          const measured = Number.parseFloat(getComputedStyle(probe).height) || 0;
+          probe.remove();
+
+          const isiPhone = /iPhone|iPod/i.test(navigator.userAgent);
+          const isiPad = /iPad/i.test(navigator.userAgent)
+            || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+          const fallback = isiPhone ? 59 : isiPad ? 24 : 0;
+          root.style.setProperty('--standalone-status-height', `${Math.round(measured > 0 ? measured : fallback)}px`);
+        } catch {}
+      })();
+    </script>
     <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest" />
     <link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/icons/icon-180.png" />
-    <link rel="stylesheet" href="%sveltekit.assets%/smart-features.css?v=20260908-4" />
-    <link rel="stylesheet" href="%sveltekit.assets%/story-flow-fix.css?v=20260908-4" />
-    <link rel="stylesheet" href="%sveltekit.assets%/story-status-bar.css?v=20260908-4" />
-    <script src="%sveltekit.assets%/story-status-bar.js?v=20260908-4" defer></script>
+    <link rel="stylesheet" href="%sveltekit.assets%/smart-features.css?v=20260908-5" />
+    <link rel="stylesheet" href="%sveltekit.assets%/story-flow-fix.css?v=20260908-5" />
+    <link rel="stylesheet" href="%sveltekit.assets%/story-status-bar.css?v=20260908-5" />
+    <script src="%sveltekit.assets%/story-status-bar.js?v=20260908-5" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -39,6 +65,7 @@
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="tap">
+    <div id="ios-status-strip" aria-hidden="true"></div>
     <div style="display: contents">%sveltekit.body%</div>
   </body>
 </html>
