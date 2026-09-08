@@ -240,14 +240,23 @@
                   {#each tags as tag}<span>{tag}</span>{/each}
                 </div>
               {/if}
-
-              {#if story.image_caption}
-                <p class="source-card-image-caption">{story.image_caption}</p>
-              {/if}
             </div>
           </aside>
 
           <div class="article-reader article-reader-refined">
+            {#if heroImage}
+              <figure class="article-body-hero inline-article-image">
+                <img
+                  src={heroImage}
+                  alt={story.image_alt || ''}
+                  loading="eager"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+                {#if story.image_caption}<figcaption>{story.image_caption}</figcaption>{/if}
+              </figure>
+            {/if}
+
             {#if showDeck}
               <p class="article-deck article-deck-after-cover">{story.summary}</p>
             {/if}
@@ -410,6 +419,8 @@
 
   .article-cover-media {
     z-index: -3;
+    inset: 0 0 auto;
+    height: 78svh;
   }
 
   .article-cover-media img {
@@ -427,27 +438,29 @@
   .article-cover-fade-top {
     z-index: -2;
     bottom: auto;
-    height: 44%;
+    height: 30%;
     background: linear-gradient(
       to bottom,
-      var(--bg) 0%,
-      color-mix(in srgb, var(--bg) 96%, transparent) 13%,
-      color-mix(in srgb, var(--bg) 70%, transparent) 30%,
+      color-mix(in srgb, var(--bg) 58%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 38%, transparent) 34%,
+      color-mix(in srgb, var(--bg) 16%, transparent) 66%,
       transparent 100%
     );
   }
 
   .article-cover-fade-bottom {
     z-index: -1;
-    top: auto;
-    height: 66%;
+    top: 40svh;
+    bottom: auto;
+    height: 40svh;
     background: linear-gradient(
-      to top,
-      var(--bg) 0%,
-      var(--bg) 10%,
-      color-mix(in srgb, var(--bg) 94%, transparent) 24%,
-      color-mix(in srgb, var(--bg) 68%, transparent) 43%,
-      transparent 100%
+      to bottom,
+      transparent 0%,
+      color-mix(in srgb, var(--bg) 18%, transparent) 24%,
+      color-mix(in srgb, var(--bg) 62%, transparent) 56%,
+      color-mix(in srgb, var(--bg) 92%, transparent) 78%,
+      var(--bg) 94%,
+      var(--bg) 100%
     );
   }
 
@@ -589,16 +602,13 @@
     margin-top: 0;
   }
 
-  .source-card-image-caption {
-    margin: 0;
-    color: var(--text-tertiary);
-    font-size: 14px;
-    line-height: 1.45;
-  }
-
   .article-reader {
     min-width: 0;
     grid-column: auto;
+  }
+
+  .article-body-hero {
+    margin: 0 0 34px;
   }
 
   .article-deck-after-cover {
@@ -614,10 +624,16 @@
     height: auto !important;
     max-height: none !important;
     object-fit: contain !important;
+    border-radius: var(--radius-md);
+    background: var(--gray-6);
   }
 
   .inline-article-image {
     margin: 30px 0;
+  }
+
+  .article-body-hero.inline-article-image {
+    margin-top: 0;
   }
 
   .inline-article-image figcaption {
@@ -677,12 +693,17 @@
       height: 100svh;
     }
 
+    .article-cover-media {
+      height: 76svh;
+    }
+
     .article-cover-fade-top {
-      height: 38%;
+      height: 27%;
     }
 
     .article-cover-fade-bottom {
-      height: 68%;
+      top: 38svh;
+      height: 40svh;
     }
 
     .article-cover-content {
@@ -742,6 +763,10 @@
     .article-reader {
       width: 100%;
       order: 1;
+    }
+
+    .article-body-hero {
+      margin-bottom: 28px;
     }
 
     .article-deck-after-cover {
