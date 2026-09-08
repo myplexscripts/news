@@ -72,7 +72,16 @@
     }
   }
 
-  function buildBlocks(article) {
+  function coverSourceFor(article) {
+    if (!article) return '';
+    if (article.image) return article.image;
+    const firstInline = Array.isArray(article.content_blocks)
+      ? article.content_blocks.find((block) => block?.type === 'image' && block?.url)
+      : null;
+    return firstInline?.url || article.card_image || '';
+  }
+
+  function buildBlocks(article, coverSource = '') {
     if (!article) return [];
 
     const legacy = Array.isArray(article.paragraphs) && article.paragraphs.length
@@ -93,8 +102,8 @@
       && qualityScore >= 45;
 
     const reader = usable ? blocks : article.summary ? [{ type: 'paragraph', text: article.summary }] : blocks;
-    const heroKey = normalizeImageKey(article.image || article.card_image || '');
-    const seen = new Set(heroKey ? [heroKey] : []);
+    const coverKey = normalizeImageKey(coverSource || article.image || article.card_image || '');
+    const seen = new Set(coverKey ? [coverKey] : []);
 
     return reader.filter((block) => {
       if (block.type !== 'image' || !block.url) return true;
@@ -105,8 +114,9 @@
     });
   }
 
-  $: blocks = buildBlocks(story);
-  $: heroImage = resolveAsset(story?.image || story?.card_image || '');
+  $: coverSource = coverSourceFor(story);
+  $: blocks = buildBlocks(story, coverSource);
+  $: heroImage = resolveAsset(coverSource);
   $: sourceLogo = story ? sourceLogoPath(story.source || '', `${base}/`) : '';
   $: firstTextBlock = blocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
   $: showDeck = Boolean(
@@ -144,43 +154,71 @@
 </svelte:head>
 
 <main class="article-page svelte-article-page" id="main-content">
-  <div class="article-shell shell">
-    {#if loading}
+  {#if loading}
+    <div class="article-shell shell">
       <div class="article-loading">
         <div class="article-title-skeleton"></div>
         <div class="article-image-skeleton"></div>
         <div class="article-copy-skeleton"></div>
       </div>
-    {:else if error}
+    </div>
+  {:else if error}
+    <div class="article-shell shell">
       <div class="app-error">{error}</div>
-    {:else if story}
-      <article class="article-layout article-layout-refined">
-        <header class="article-header article-header-refined">
-          {#if sourceLogo}
-            <img class="article-source-heading-logo" src={sourceLogo} alt={`${story.source} logo`} />
-          {:else if story.source}
-            <span class="article-source-heading-name">{story.source}</span>
-          {/if}
+    </div>
+  {:else if story}
+    <article class="editorial-story">
+      <header class:cover-no-image={!heroImage} class="article-cover">
+        {#if heroImage}
+          <div class="article-cover-media" aria-hidden="true">
+            <img src={heroImage} alt="" referrerpolicy="no-referrer" />
+          </div>
+        {/if}
+        <div class="article-cover-fade article-cover-fade-top" aria-hidden="true"></div>
+        <div class="article-cover-fade article-cover-fade-bottom" aria-hidden="true"></div>
 
+        <div class="article-cover-content shell">
           <h1>{story.title}</h1>
-          {#if showDeck}
-            <p class="article-deck">{story.summary}</p>
-          {/if}
-        </header>
+          <div class="article-cover-source-row">
+            <div class="article-cover-source">
+              {#if sourceLogo}
+                <img src={sourceLogo} alt={`${story.source} logo`} />
+              {:else if story.source}
+                <strong>{story.source}</strong>
+              {/if}
+            </div>
 
-        <aside class="article-sidebar article-sidebar-refined" aria-label="Article source and details">
-          <div class="article-sidebar-sticky">
-            {#if sourceLogo}
-              <img class="article-sidebar-source-logo" src={sourceLogo} alt={`${story.source} logo`} />
+            {#if story.url}
+              <a class="article-cover-original" href={story.url} target="_blank" rel="noopener noreferrer">
+                <span>Original article</span>
+                <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+              </a>
             {/if}
+          </div>
+        </div>
+      </header>
+
+      <div class="article-after-cover shell">
+        <div class="article-content-layout">
+          <aside class="article-source-panel" aria-label="Article source and details">
             <div class="article-source-card article-source-card-refined">
-              <div class="source-card-identity">
-                <span class="source-card-label">Published by</span>
-                <strong class="source-card-name">{story.source}</strong>
-              </div>
-              <div class="source-card-details">
-                {#if story.author}<span>By {story.author}</span>{/if}
-                <time datetime={story.published}>{formatPublished(story.published)}</time>
+              <div class="source-card-details source-card-details-editorial">
+                {#if story.author}
+                  <span class="source-detail-item">
+                    <i class="ph ph-user" aria-hidden="true"></i>
+                    <span>By {story.author}</span>
+                  </span>
+                {/if}
+                <time class="source-detail-item" datetime={story.published}>
+                  <i class="ph ph-calendar-blank" aria-hidden="true"></i>
+                  <span>{formatPublished(story.published)}</span>
+                </time>
+                {#if readMinutes}
+                  <span class="source-detail-item">
+                    <i class="ph ph-clock" aria-hidden="true"></i>
+                    <span>{readMinutes} min read</span>
+                  </span>
+                {/if}
               </div>
 
               {#if clusterCoverage.length}
@@ -197,160 +235,379 @@
                 </div>
               {/if}
 
-              {#if story.url}
-                <a class="source-original-link" href={story.url} target="_blank" rel="noopener noreferrer">
-                  Original article <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-                </a>
+              {#if tags.length}
+                <div class="article-sidebar-tags source-card-tags" aria-label="Story categories and tags">
+                  {#each tags as tag}<span>{tag}</span>{/each}
+                </div>
+              {/if}
+
+              {#if story.image_caption}
+                <p class="source-card-image-caption">{story.image_caption}</p>
               {/if}
             </div>
+          </aside>
 
-            {#if readMinutes || tags.length}
-              <div class="article-sidebar-details">
-                {#if readMinutes}
-                  <div class="article-sidebar-readtime">
-                    <i class="ph ph-clock" aria-hidden="true"></i>
-                    <span>{readMinutes} min read</span>
-                  </div>
-                {/if}
-                {#if tags.length}
-                  <div class="article-sidebar-tags" aria-label="Story categories and tags">
-                    {#each tags as tag}<span>{tag}</span>{/each}
-                  </div>
-                {/if}
-              </div>
-            {/if}
-          </div>
-        </aside>
-
-        {#if heroImage}
-          <figure class="article-hero article-hero-refined">
-            <img src={heroImage} alt={story.image_alt || ''} referrerpolicy="no-referrer" />
-            {#if story.image_caption}<figcaption>{story.image_caption}</figcaption>{/if}
-          </figure>
-        {/if}
-
-        <div class="article-reader article-reader-refined">
-          <div class="article-copy article-copy-refined">
-            {#if blocks.length === 0}
-              <p>No readable article body was returned by this source.</p>
+          <div class="article-reader article-reader-refined">
+            {#if showDeck}
+              <p class="article-deck article-deck-after-cover">{story.summary}</p>
             {/if}
 
-            {#each blocks as block}
-              {#if block.type === 'paragraph' && block.html}
-                <p>{@html block.html}</p>
-              {:else if block.type === 'paragraph' && block.text}
-                <p>{#if block.emphasis === 'strong'}<strong>{block.text}</strong>{:else}{block.text}{/if}</p>
-              {:else if block.type === 'heading' && block.text && Number(block.level) === 3}
-                <h3>{#if block.html}{@html block.html}{:else}{block.text}{/if}</h3>
-              {:else if block.type === 'heading' && block.text}
-                <h2>{#if block.html}{@html block.html}{:else}{block.text}{/if}</h2>
-              {:else if block.type === 'quote' && block.text}
-                <blockquote>{#if block.html}{@html block.html}{:else}{block.text}{/if}</blockquote>
-              {:else if block.type === 'list' && block.ordered}
-                <ol>
-                  {#each block.items || [] as item}
-                    <li>{#if typeof item === 'string'}{item}{:else if item?.html}{@html item.html}{:else}{item?.text}{/if}</li>
-                  {/each}
-                </ol>
-              {:else if block.type === 'list'}
-                <ul>
-                  {#each block.items || [] as item}
-                    <li>{#if typeof item === 'string'}{item}{:else if item?.html}{@html item.html}{:else}{item?.text}{/if}</li>
-                  {/each}
-                </ul>
-              {:else if block.type === 'image' && block.url}
-                <figure class="inline-article-image">
-                  <img
-                    src={resolveAsset(block.url)}
-                    alt={block.alt || ''}
-                    width={block.width || undefined}
-                    height={block.height || undefined}
-                    loading="lazy"
-                    decoding="async"
-                    referrerpolicy="no-referrer"
-                  />
-                  {#if block.caption}<figcaption>{block.caption}</figcaption>{/if}
-                </figure>
-              {:else if block.type === 'media' && block.media_type === 'tweet' && block.url}
-                <TweetCard {block} />
-              {:else if block.type === 'media' && block.media_type === 'audio' && block.url}
-                <figure class="article-media article-media-audio">
-                  {#if block.title}<figcaption>{block.title}</figcaption>{/if}
-                  <audio controls preload="none" src={block.url}></audio>
-                </figure>
-              {:else if block.type === 'media' && block.media_type === 'video' && block.url}
-                <figure class="article-media article-media-video">
-                  {#if block.title}<figcaption>{block.title}</figcaption>{/if}
-                  <video controls playsinline preload="metadata" poster={block.poster || undefined} src={block.url}></video>
-                </figure>
-              {:else if block.type === 'media' && block.media_type === 'embed' && block.url}
-                <figure class="article-media article-media-embed">
-                  {#if block.title}<figcaption>{block.title}</figcaption>{/if}
-                  <div class="article-media-frame">
-                    <iframe
-                      src={block.url}
-                      title={block.title || 'Embedded media'}
-                      loading="lazy"
-                      referrerpolicy="no-referrer"
-                      allow="autoplay; encrypted-media; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  </div>
-                  {#if block.source_url}
-                    <a class="article-embed-source" href={block.source_url} target="_blank" rel="noopener noreferrer">
-                      View original post <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-                    </a>
-                  {/if}
-                </figure>
-              {:else if block.type === 'media' && block.media_type === 'link' && block.url}
-                <a class="article-media article-media-link" href={block.url} target="_blank" rel="noopener noreferrer">
-                  <i class="ph ph-play-circle" aria-hidden="true"></i>
-                  <span>
-                    <strong>{block.title || 'Open media at source'}</strong>
-                    <small>Open media from {story.source}</small>
-                  </span>
-                  <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
-                </a>
+            <div class="article-copy article-copy-refined">
+              {#if blocks.length === 0}
+                <p>No readable article body was returned by this source.</p>
               {/if}
-            {/each}
+
+              {#each blocks as block}
+                {#if block.type === 'paragraph' && block.html}
+                  <p>{@html block.html}</p>
+                {:else if block.type === 'paragraph' && block.text}
+                  <p>{#if block.emphasis === 'strong'}<strong>{block.text}</strong>{:else}{block.text}{/if}</p>
+                {:else if block.type === 'heading' && block.text && Number(block.level) === 3}
+                  <h3>{#if block.html}{@html block.html}{:else}{block.text}{/if}</h3>
+                {:else if block.type === 'heading' && block.text}
+                  <h2>{#if block.html}{@html block.html}{:else}{block.text}{/if}</h2>
+                {:else if block.type === 'quote' && block.text}
+                  <blockquote>{#if block.html}{@html block.html}{:else}{block.text}{/if}</blockquote>
+                {:else if block.type === 'list' && block.ordered}
+                  <ol>
+                    {#each block.items || [] as item}
+                      <li>{#if typeof item === 'string'}{item}{:else if item?.html}{@html item.html}{:else}{item?.text}{/if}</li>
+                    {/each}
+                  </ol>
+                {:else if block.type === 'list'}
+                  <ul>
+                    {#each block.items || [] as item}
+                      <li>{#if typeof item === 'string'}{item}{:else if item?.html}{@html item.html}{:else}{item?.text}{/if}</li>
+                    {/each}
+                  </ul>
+                {:else if block.type === 'image' && block.url}
+                  <figure class="inline-article-image">
+                    <img
+                      src={resolveAsset(block.url)}
+                      alt={block.alt || ''}
+                      width={block.width || undefined}
+                      height={block.height || undefined}
+                      loading="lazy"
+                      decoding="async"
+                      referrerpolicy="no-referrer"
+                    />
+                    {#if block.caption}<figcaption>{block.caption}</figcaption>{/if}
+                  </figure>
+                {:else if block.type === 'media' && block.media_type === 'tweet' && block.url}
+                  <TweetCard {block} />
+                {:else if block.type === 'media' && block.media_type === 'audio' && block.url}
+                  <figure class="article-media article-media-audio">
+                    {#if block.title}<figcaption>{block.title}</figcaption>{/if}
+                    <audio controls preload="none" src={block.url}></audio>
+                  </figure>
+                {:else if block.type === 'media' && block.media_type === 'video' && block.url}
+                  <figure class="article-media article-media-video">
+                    {#if block.title}<figcaption>{block.title}</figcaption>{/if}
+                    <video controls playsinline preload="metadata" poster={block.poster || undefined} src={block.url}></video>
+                  </figure>
+                {:else if block.type === 'media' && block.media_type === 'embed' && block.url}
+                  <figure class="article-media article-media-embed">
+                    {#if block.title}<figcaption>{block.title}</figcaption>{/if}
+                    <div class="article-media-frame">
+                      <iframe
+                        src={block.url}
+                        title={block.title || 'Embedded media'}
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                    {#if block.source_url}
+                      <a class="article-embed-source" href={block.source_url} target="_blank" rel="noopener noreferrer">
+                        View original post <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                      </a>
+                    {/if}
+                  </figure>
+                {:else if block.type === 'media' && block.media_type === 'link' && block.url}
+                  <a class="article-media article-media-link" href={block.url} target="_blank" rel="noopener noreferrer">
+                    <i class="ph ph-play-circle" aria-hidden="true"></i>
+                    <span>
+                      <strong>{block.title || 'Open media at source'}</strong>
+                      <small>Open media from {story.source}</small>
+                    </span>
+                    <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                  </a>
+                {/if}
+              {/each}
+            </div>
           </div>
         </div>
-      </article>
+      </div>
+    </article>
 
-      {#if related.length}
-        <section class="related-section related-section-refined">
-          <div class="app-section-heading">
-            <div>
-              <p class="eyebrow">Keep reading</p>
-              <h2>More from London</h2>
-            </div>
+    {#if related.length}
+      <section class="related-section related-section-refined shell">
+        <div class="app-section-heading">
+          <div>
+            <p class="eyebrow">Keep reading</p>
+            <h2>More from London</h2>
           </div>
-          <div class="app-story-grid two">
-            {#each related as item (item.id)}
-              <NewsCard story={item} />
-            {/each}
-          </div>
-        </section>
-      {/if}
+        </div>
+        <div class="app-story-grid two">
+          {#each related as item (item.id)}
+            <NewsCard story={item} />
+          {/each}
+        </div>
+      </section>
     {/if}
-  </div>
+  {/if}
 </main>
 
 <style>
+  :global(body:has(.svelte-article-page) .site-header) {
+    position: absolute !important;
+    inset: 0 0 auto !important;
+    z-index: 60 !important;
+    background: transparent !important;
+    border-bottom: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  :global(body:has(.svelte-article-page) .site-header .header-inner) {
+    min-height: calc(64px + env(safe-area-inset-top)) !important;
+    padding-top: env(safe-area-inset-top);
+  }
+
+  :global(body:has(.svelte-article-page) .site-header .header-actions) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   .svelte-article-page {
-    padding: 18px 0 48px;
+    padding: 0 0 48px;
+    overflow: clip;
   }
 
-  .article-header h1 {
-    color: var(--text);
+  .article-shell {
+    padding-top: calc(84px + env(safe-area-inset-top));
   }
 
-  .article-source-heading-name {
-    color: var(--accent, #34c759);
+  .editorial-story {
+    position: relative;
+  }
+
+  .article-cover {
+    position: relative;
+    min-height: 100svh;
+    height: 100svh;
+    overflow: hidden;
+    background: var(--bg);
+    isolation: isolate;
+  }
+
+  .article-cover-media,
+  .article-cover-fade {
+    position: absolute;
+    inset: 0;
+  }
+
+  .article-cover-media {
+    z-index: -3;
+  }
+
+  .article-cover-media img {
+    width: 100%;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center center;
+  }
+
+  .article-cover-fade {
+    pointer-events: none;
+  }
+
+  .article-cover-fade-top {
+    z-index: -2;
+    bottom: auto;
+    height: 44%;
+    background: linear-gradient(
+      to bottom,
+      var(--bg) 0%,
+      color-mix(in srgb, var(--bg) 96%, transparent) 13%,
+      color-mix(in srgb, var(--bg) 70%, transparent) 30%,
+      transparent 100%
+    );
+  }
+
+  .article-cover-fade-bottom {
+    z-index: -1;
+    top: auto;
+    height: 66%;
+    background: linear-gradient(
+      to top,
+      var(--bg) 0%,
+      var(--bg) 10%,
+      color-mix(in srgb, var(--bg) 94%, transparent) 24%,
+      color-mix(in srgb, var(--bg) 68%, transparent) 43%,
+      transparent 100%
+    );
+  }
+
+  .cover-no-image .article-cover-fade-top,
+  .cover-no-image .article-cover-fade-bottom {
+    background: var(--bg);
+  }
+
+  .article-cover-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: calc(90px + env(safe-area-inset-top));
+    padding-bottom: clamp(42px, 6.5vh, 82px);
+  }
+
+  .article-cover-content h1 {
+    width: min(100%, 900px);
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(38px, 4.8vw, 62px);
+    line-height: 1.02;
+    letter-spacing: -0.052em;
+    text-wrap: balance;
+  }
+
+  .article-cover-source-row {
+    width: min(100%, 900px);
+    min-height: 48px;
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+  }
+
+  .article-cover-source {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .article-cover-source img {
+    width: auto !important;
+    height: auto !important;
+    max-width: min(44vw, 220px);
+    max-height: 46px;
+    object-fit: contain !important;
+    object-position: left center;
+    filter: grayscale(1) brightness(0);
+  }
+
+  :global(html[data-theme='dark']) .article-cover-source img {
+    filter: grayscale(1) brightness(0) invert(1);
+  }
+
+  .article-cover-source strong {
+    color: var(--ink);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .article-cover-original {
+    min-height: 44px;
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    color: var(--accent);
+    font-size: 16px;
     font-weight: 750;
+    white-space: nowrap;
   }
 
-  .article-hero img,
+  .article-cover-original i {
+    font-size: 17px;
+  }
+
+  .article-after-cover {
+    padding-top: 44px;
+  }
+
+  .article-content-layout {
+    display: grid;
+    grid-template-columns: minmax(240px, 300px) minmax(0, 760px);
+    justify-content: center;
+    gap: clamp(42px, 6vw, 86px);
+    align-items: start;
+  }
+
+  .article-source-panel {
+    position: sticky;
+    top: 28px;
+    align-self: start;
+  }
+
+  .article-source-card {
+    gap: 18px;
+    padding: 0 0 22px;
+    border-top: 0;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .source-card-details-editorial {
+    display: grid;
+    gap: 11px;
+  }
+
+  .source-detail-item {
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .source-detail-item i {
+    flex: 0 0 auto;
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 17px;
+  }
+
+  .source-detail-item span {
+    min-width: 0;
+  }
+
+  .source-coverage {
+    padding-top: 4px;
+  }
+
+  .source-card-tags {
+    margin-top: 0;
+  }
+
+  .source-card-image-caption {
+    margin: 0;
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .article-reader {
+    min-width: 0;
+    grid-column: auto;
+  }
+
+  .article-deck-after-cover {
+    max-width: 760px;
+    margin: 0 0 34px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);
+  }
+
   .inline-article-image img {
     display: block;
     width: 100%;
@@ -363,18 +620,14 @@
     margin: 30px 0;
   }
 
-  .inline-article-image figcaption,
-  .article-hero figcaption {
+  .inline-article-image figcaption {
     margin-top: 8px;
     color: var(--text-tertiary);
     font-size: 14px;
     line-height: 1.4;
   }
 
-  .article-copy {
-    color: var(--text);
-  }
-
+  .article-copy,
   .article-copy p,
   .article-copy li {
     color: var(--text);
@@ -407,9 +660,110 @@
     max-width: 720px;
   }
 
+  @media (max-width: 900px) {
+    .article-content-layout {
+      grid-template-columns: minmax(200px, 250px) minmax(0, 1fr);
+      gap: 38px;
+    }
+  }
+
   @media (max-width: 760px) {
-    .svelte-article-page {
-      padding-top: 5px;
+    :global(body:has(.svelte-article-page) .site-header .header-inner) {
+      min-height: calc(60px + env(safe-area-inset-top)) !important;
+    }
+
+    .article-cover {
+      min-height: 100svh;
+      height: 100svh;
+    }
+
+    .article-cover-fade-top {
+      height: 38%;
+    }
+
+    .article-cover-fade-bottom {
+      height: 68%;
+    }
+
+    .article-cover-content {
+      padding-top: calc(82px + env(safe-area-inset-top));
+      padding-bottom: max(112px, calc(92px + env(safe-area-inset-bottom)));
+    }
+
+    .article-cover-content h1 {
+      font-size: clamp(34px, 9vw, 46px);
+      text-wrap: pretty;
+    }
+
+    .article-cover-source-row {
+      margin-top: 20px;
+      gap: 14px;
+    }
+
+    .article-cover-source img {
+      max-width: 44vw;
+      max-height: 40px;
+    }
+
+    .article-cover-source strong {
+      font-size: 16px;
+    }
+
+    .article-cover-original {
+      font-size: 14px;
+    }
+
+    .article-after-cover {
+      padding-top: 28px;
+    }
+
+    .article-content-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .article-source-panel {
+      position: static;
+      width: 100%;
+      order: 0;
+    }
+
+    .article-source-card {
+      width: 100%;
+      padding: 0 0 24px;
+    }
+
+    .source-card-details-editorial {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .article-reader {
+      width: 100%;
+      order: 1;
+    }
+
+    .article-deck-after-cover {
+      margin-bottom: 28px;
+      padding-bottom: 26px;
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .article-cover-content {
+      padding-bottom: max(108px, calc(88px + env(safe-area-inset-bottom)));
+    }
+
+    .article-cover-source-row {
+      align-items: flex-end;
+    }
+
+    .article-cover-original span {
+      max-width: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 </style>
