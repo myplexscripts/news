@@ -1,0 +1,54 @@
+/* Installed iOS web-app story safe area.
+   The actual editorial image begins below the status bar. Only a representative
+   colour sampled from the image's top band is allowed behind the system chrome. */
+
+html.standalone-webapp body:has(.svelte-article-page)::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 59;
+  height: env(safe-area-inset-top, 0px);
+  pointer-events: none;
+  background: color-mix(
+    in srgb,
+    var(--story-status-colour, var(--bg)) 68%,
+    black 32%
+  );
+  transition: background 220ms ease;
+}
+
+/* Once the user is reading, return the persistent status strip to the normal
+   surface instead of leaving the hero colour floating above the article. */
+html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyCompactNav)::before {
+  background: var(--bg);
+}
+
+@media (max-width: 760px) {
+  html.standalone-webapp body:has(.svelte-article-page) .article-cover-media {
+    top: env(safe-area-inset-top, 0px) !important;
+    bottom: auto !important;
+    height: calc(70svh - env(safe-area-inset-top, 0px)) !important;
+  }
+
+  html.standalone-webapp body:has(.svelte-article-page) .article-cover-fade-top {
+    top: env(safe-area-inset-top, 0px) !important;
+  }
+
+  /* Keep the publisher wordmark/logo entirely below the system status bar.
+     The extra 6px is visual breathing room, not layout compensation. */
+  html.standalone-webapp body:has(.svelte-article-page) .site-header .header-inner {
+    min-height: calc(66px + env(safe-area-inset-top, 0px)) !important;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 6px) !important;
+  }
+
+  html.standalone-webapp body:has(.svelte-article-page) .site-header .brand-story-source {
+    align-self: center !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.standalone-webapp body:has(.svelte-article-page)::before {
+    transition: none;
+  }
+}
