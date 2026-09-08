@@ -42,6 +42,9 @@ def main() -> int:
     assert "standalone-webapp" in css
     assert "article-cover-media" in css
     assert "--story-status-image" in css
+    assert "height: calc(env(safe-area-inset-top, 0px) + 34px)" in css
+    assert "mask-image: linear-gradient" in css
+    assert "body:not(:has(.svelte-article-page)) .site-header .header-inner" in css
     assert "navigator.standalone" in js
     assert "display-mode: standalone" in js
     assert "hero_top_colour" in js
@@ -49,7 +52,7 @@ def main() -> int:
     assert "story-status-bar.css" in app
     assert "story-status-bar.js" in app
 
-    print("Story status-bar colour and standalone safe-area contract passed")
+    print("Story status-bar scrim and standalone safe-area contract passed")
     return 0
 
 

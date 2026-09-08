@@ -1,47 +1,61 @@
-/* Installed iOS web-app story safe area.
-   The actual editorial image begins below the status bar. Only a representative
-   colour sampled from the image's top band is allowed behind the system chrome. */
+/* Installed iOS web-app safe-area treatment.
+   Story pages use an image-derived status-bar wash with a real scrim fade.
+   Other pages reserve the same safe-area distance so header content never sits
+   underneath the iPhone status bar. */
 
 html.standalone-webapp body:has(.svelte-article-page)::before,
 html.standalone-webapp body:has(.svelte-article-page)::after {
   content: '';
   position: fixed;
   inset: 0 0 auto;
-  height: env(safe-area-inset-top, 0px);
+  height: calc(env(safe-area-inset-top, 0px) + 34px);
   pointer-events: none;
   clip-path: inset(0);
   transition: background 220ms ease, opacity 220ms ease;
 }
 
-/* Exact sampled colour when a cached hero is available. */
+/* Sampled hero colour is only the base. It now fades down into the real image
+   instead of reading as a flat colour strip behind the system chrome. */
 html.standalone-webapp body:has(.svelte-article-page)::before {
   z-index: 58;
-  background: color-mix(
-    in srgb,
-    var(--story-status-colour, var(--bg)) 68%,
-    black 32%
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--story-status-colour, var(--bg)) 56%, black 44%) 0%,
+    color-mix(in srgb, var(--story-status-colour, var(--bg)) 70%, black 30%) 56%,
+    color-mix(in srgb, var(--story-status-colour, var(--bg)) 42%, transparent) 78%,
+    transparent 100%
   );
 }
 
-/* Remote-only fallback: the top of the real hero becomes a soft colour wash.
-   It is intentionally blurred and darkened so no recognisable photo detail sits
-   behind the iOS status icons. */
+/* The hero itself supplies texture to the status-bar area. The mask lets the
+   wash dissolve into the actual image below the safe area instead of ending on
+   a visible horizontal edge. */
 html.standalone-webapp body:has(.svelte-article-page)::after {
   z-index: 59;
-  background-image: var(--story-status-image, none);
-  background-size: 118% auto;
-  background-position: center top;
+  background-image:
+    linear-gradient(to bottom, rgb(0 0 0 / 0.18), rgb(0 0 0 / 0.08) 56%, transparent 100%),
+    var(--story-status-image, none);
+  background-size: 100% 100%, 118% auto;
+  background-position: center top, center top;
   background-repeat: no-repeat;
-  opacity: 0.42;
+  opacity: 0.46;
   filter: blur(22px) saturate(135%) brightness(0.68);
   transform: scale(1.16);
   transform-origin: center top;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 56%, rgb(0 0 0 / 0.58) 76%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 56%, rgb(0 0 0 / 0.58) 76%, transparent 100%);
 }
 
-/* Once the user is reading, return the persistent status strip to the normal
-   surface instead of leaving the hero colour floating above the article. */
+/* Once the user is reading, return the status area to the normal page surface,
+   but retain a short fade below the safe area so it never becomes a hard strip. */
 html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyCompactNav)::before {
-  background: var(--bg);
+  background: linear-gradient(
+    to bottom,
+    var(--bg) 0%,
+    var(--bg) 58%,
+    color-mix(in srgb, var(--bg) 58%, transparent) 80%,
+    transparent 100%
+  );
 }
 
 html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyCompactNav)::after {
@@ -59,8 +73,7 @@ html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyC
     top: env(safe-area-inset-top, 0px) !important;
   }
 
-  /* Keep the publisher wordmark/logo entirely below the system status bar.
-     The extra 6px is visual breathing room, not layout compensation. */
+  /* Keep the publisher wordmark/logo entirely below the system status bar. */
   html.standalone-webapp body:has(.svelte-article-page) .site-header .header-inner {
     min-height: calc(66px + env(safe-area-inset-top, 0px)) !important;
     padding-top: calc(env(safe-area-inset-top, 0px) + 6px) !important;
@@ -69,6 +82,14 @@ html.standalone-webapp body:has(.svelte-article-page):has(.mobile-tab-bar.storyC
   html.standalone-webapp body:has(.svelte-article-page) .site-header .brand-story-source {
     align-self: center !important;
     margin-top: 0 !important;
+  }
+
+  /* Non-story pages do not use the image-derived status treatment, but they do
+     reserve the exact safe-area height so the app header/content begins below
+     the iPhone status bar in standalone mode. */
+  html.standalone-webapp body:not(:has(.svelte-article-page)) .site-header .header-inner {
+    min-height: calc(60px + env(safe-area-inset-top, 0px)) !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
   }
 }
 
