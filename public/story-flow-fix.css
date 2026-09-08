@@ -40,10 +40,17 @@ body:has(.svelte-article-page) .article-reader.article-reveal {
     padding-bottom: max(72px, calc(60px + env(safe-area-inset-bottom))) !important;
   }
 
-  /* Keep post-hero metadata close to the cover without dragging it upward
-     with the shorter image. It still reveals only after the nav has split. */
+  /* Match the compact editorial grouping: the byline sits close to the
+     headline instead of leaving the old 20px gap. */
+  html body:has(.svelte-article-page) .article-cover-source-row {
+    margin-top: 2px !important;
+  }
+
+  /* Pull the normal-flow metadata up to the bottom of the byline row. This
+     keeps author, date and read time visually grouped without moving the
+     editorial image or changing the full-height cover. */
   html body:has(.svelte-article-page) .article-after-cover {
-    margin-top: -44px !important;
+    margin-top: -76px !important;
     padding-top: 0 !important;
     position: relative !important;
     z-index: 4 !important;
