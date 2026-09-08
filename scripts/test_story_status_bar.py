@@ -38,21 +38,22 @@ def main() -> int:
     js = (ROOT / "public" / "story-status-bar.js").read_text(encoding="utf-8")
     app = (ROOT / "src" / "app.html").read_text(encoding="utf-8")
 
-    assert "env(safe-area-inset-top" in css
     assert "standalone-webapp" in css
+    assert "height: env(safe-area-inset-top, 0px);" in css
+    assert "background: var(--story-status-colour, var(--bg));" in css
+    assert "body:not(:has(.svelte-article-page)) .site-header {" in css
+    assert "padding-top: env(safe-area-inset-top, 0px) !important;" in css
     assert "article-cover-media" in css
-    assert "--story-status-image" in css
-    assert "height: calc(env(safe-area-inset-top, 0px) + 34px)" in css
-    assert "mask-image: linear-gradient" in css
-    assert "body:not(:has(.svelte-article-page)) .site-header .header-inner" in css
+    assert "linear-gradient(" not in css
+    assert "mask-image" not in css
+    assert "filter: blur" not in css
     assert "navigator.standalone" in js
     assert "display-mode: standalone" in js
     assert "hero_top_colour" in js
-    assert "--story-status-image" in js
     assert "story-status-bar.css" in app
     assert "story-status-bar.js" in app
 
-    print("Story status-bar scrim and standalone safe-area contract passed")
+    print("Story solid status colour and standalone safe-area contract passed")
     return 0
 
 
