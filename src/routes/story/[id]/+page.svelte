@@ -2,8 +2,8 @@
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
-  import { goto } from '$app/navigation';
   import NewsCard from '$lib/components/NewsCard.svelte';
+  import TweetCard from '$lib/components/TweetCard.svelte';
   import { formatPublished, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
   import { markRead } from '$lib/appState';
   import { sourceLogoPath } from '$lib/sourceLogos';
@@ -43,11 +43,6 @@
     } finally {
       loading = false;
     }
-  }
-
-  function goBack() {
-    if (history.length > 1) history.back();
-    else goto(`${base}/`);
   }
 
   function compareKey(value = '') {
@@ -150,11 +145,6 @@
 
 <main class="article-page svelte-article-page" id="main-content">
   <div class="article-shell shell">
-    <button class="article-back" type="button" on:click={goBack} aria-label="Go back">
-      <i class="ph ph-arrow-left" aria-hidden="true"></i>
-      <span>Back</span>
-    </button>
-
     {#if loading}
       <div class="article-loading">
         <div class="article-title-skeleton"></div>
@@ -281,6 +271,8 @@
                   />
                   {#if block.caption}<figcaption>{block.caption}</figcaption>{/if}
                 </figure>
+              {:else if block.type === 'media' && block.media_type === 'tweet' && block.url}
+                <TweetCard {block} />
               {:else if block.type === 'media' && block.media_type === 'audio' && block.url}
                 <figure class="article-media article-media-audio">
                   {#if block.title}<figcaption>{block.title}</figcaption>{/if}
@@ -349,21 +341,6 @@
     padding: 18px 0 48px;
   }
 
-  .article-back {
-    border: 0;
-    background: none;
-    color: var(--accent, #34c759);
-    min-height: 42px;
-    padding: 0;
-    margin-bottom: 10px;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 14px;
-    font-weight: 750;
-    cursor: pointer;
-  }
-
   .article-header h1 {
     color: var(--text);
   }
@@ -390,7 +367,7 @@
   .article-hero figcaption {
     margin-top: 8px;
     color: var(--text-tertiary);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.4;
   }
 
@@ -433,10 +410,6 @@
   @media (max-width: 760px) {
     .svelte-article-page {
       padding-top: 5px;
-    }
-
-    .article-back span {
-      display: none;
     }
   }
 </style>
