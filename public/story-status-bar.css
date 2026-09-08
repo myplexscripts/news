@@ -1,52 +1,63 @@
 /* Installed iOS web-app safe-area treatment.
-   Story pages use one solid image-derived colour behind the status bar.
-   Other pages reserve that same system safe area in the shared header itself. */
+   The system status area is a real opaque layer, never a translucent hero/header effect. */
 
-html.standalone-webapp.story-status-coloured body:has(.svelte-article-page)::before {
-  content: '';
+:root {
+  --standalone-status-height: env(safe-area-inset-top, 0px);
+}
+
+#ios-status-strip {
+  display: none;
+}
+
+html.standalone-webapp #ios-status-strip {
+  display: block;
   position: fixed;
   inset: 0 0 auto;
-  z-index: 59;
-  height: constant(safe-area-inset-top);
-  height: env(safe-area-inset-top, 0px);
+  width: 100%;
+  height: var(--standalone-status-height);
+  z-index: 2147483000;
   pointer-events: none;
-  background: var(--story-status-colour);
+  background-color: var(--bg);
+  background-image: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+  isolation: isolate;
+}
+
+html.standalone-webapp.story-status-coloured #ios-status-strip {
+  background-color: var(--story-status-colour) !important;
+}
+
+/* Reserve the status-bar row structurally on every installed-app page and
+   at every viewport width, including landscape. */
+html.standalone-webapp .site-header {
+  padding-top: var(--standalone-status-height) !important;
+}
+
+/* Story pages already add env(safe-area-inset-top) inside header-inner.
+   The outer header now owns that spacing, so remove the duplicate inset. */
+html.standalone-webapp.story-route .site-header .header-inner {
+  min-height: 64px !important;
+  padding-top: 0 !important;
+}
+
+/* Keep the story image below the opaque status strip without changing the
+   intended lower edge of the editorial image. */
+html.standalone-webapp.story-route .article-cover-media {
+  top: var(--standalone-status-height) !important;
+  bottom: auto !important;
+  height: calc(78svh - var(--standalone-status-height)) !important;
+}
+
+html.standalone-webapp.story-route .article-cover-fade-top {
+  top: var(--standalone-status-height) !important;
 }
 
 @media (max-width: 760px) {
-  /* The editorial image itself begins below the iOS status-bar safe area. */
-  html.standalone-webapp body:has(.svelte-article-page) .article-cover-media {
-    top: constant(safe-area-inset-top) !important;
-    top: env(safe-area-inset-top, 0px) !important;
-    bottom: auto !important;
-    height: calc(70svh - env(safe-area-inset-top, 0px)) !important;
-  }
-
-  html.standalone-webapp body:has(.svelte-article-page) .article-cover-fade-top {
-    top: constant(safe-area-inset-top) !important;
-    top: env(safe-area-inset-top, 0px) !important;
-  }
-
-  /* Keep the publisher wordmark/logo entirely below the system status bar. */
-  html.standalone-webapp body:has(.svelte-article-page) .site-header .header-inner {
-    min-height: calc(66px + env(safe-area-inset-top, 0px)) !important;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 6px) !important;
-  }
-
-  html.standalone-webapp body:has(.svelte-article-page) .site-header .brand-story-source {
-    align-self: center !important;
-    margin-top: 0 !important;
-  }
-
-  /* Every non-story page reserves the standalone status-bar inset on the
-     sticky header itself, outside page-specific header-inner sizing. */
-  html.standalone-webapp body:not(:has(.svelte-article-page)) .site-header {
-    padding-top: constant(safe-area-inset-top) !important;
-    padding-top: env(safe-area-inset-top, 0px) !important;
-  }
-
-  html.standalone-webapp body:not(:has(.svelte-article-page)) .site-header .header-inner {
-    min-height: 60px !important;
-    padding-top: 0 !important;
+  html.standalone-webapp.story-route .article-cover-media {
+    height: calc(70svh - var(--standalone-status-height)) !important;
   }
 }
