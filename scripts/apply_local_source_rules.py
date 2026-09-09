@@ -12,6 +12,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
+from cleanup_postmedia_navigation import clean_payload as clean_postmedia_navigation
+
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_FILE = ROOT / "data" / "news.json"
 
@@ -145,13 +147,15 @@ def main() -> int:
 
     payload = json.loads(NEWS_FILE.read_text(encoding="utf-8"))
     apply_rules(payload)
+    postmedia_cleaned = clean_postmedia_navigation(payload)
     NEWS_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
     counts = payload.get("scope_counts") or {}
     print(
         "Strict local-source whitelist applied: "
         f"local={counts.get('local', 0)} "
-        f"canada={counts.get('canada', 0)}"
+        f"canada={counts.get('canada', 0)}; "
+        f"free_press_navigation_cleaned={postmedia_cleaned}"
     )
     return 0
 
