@@ -23,6 +23,8 @@
     earlier: 'Earlier'
   };
 
+  const CAROUSEL_DELAY_MS = 7000;
+
   let feed;
   let error = '';
   let activeScope = 'local';
@@ -31,6 +33,29 @@
   let dragStartX = null;
   let dragDelta = 0;
   let carouselPaused = false;
+  let carouselTimer = null;
+
+  function clearCarouselTimer() {
+    if (carouselTimer === null || typeof window === 'undefined') return;
+    window.clearTimeout(carouselTimer);
+    carouselTimer = null;
+  }
+
+  function scheduleCarouselAdvance() {
+    if (typeof window === 'undefined') return;
+    clearCarouselTimer();
+    carouselTimer = window.setTimeout(() => {
+      carouselTimer = null;
+      if (!carouselPaused && !document.hidden && topStories.length > 1) {
+        setSlide(activeSlide + 1);
+      }
+      scheduleCarouselAdvance();
+    }, CAROUSEL_DELAY_MS);
+  }
+
+  function resetCarouselTimer() {
+    scheduleCarouselAdvance();
+  }
 
   onMount(() => {
     let cancelled = false;
@@ -46,20 +71,25 @@
       if (!cancelled) error = reason instanceof Error ? reason.message : 'Unable to load the latest news.';
     });
 
-    const carouselTimer = window.setInterval(() => {
-      if (carouselPaused || document.hidden || topStories.length < 2) return;
-      setSlide(activeSlide + 1);
-    }, 7000);
+    const handleVisibilityChange = () => {
+      if (document.hidden) clearCarouselTimer();
+      else scheduleCarouselAdvance();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    scheduleCarouselAdvance();
 
     return () => {
       cancelled = true;
-      window.clearInterval(carouselTimer);
+      clearCarouselTimer();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   });
 
   function setScope(scope) {
     activeScope = scope;
     activeSlide = 0;
+    resetCarouselTimer();
     try { localStorage.setItem('london-news-home-feed', scope); } catch {}
   }
 
@@ -98,6 +128,7 @@
   function setCategory(category) {
     activeCategory = category;
     activeSlide = 0;
+    resetCarouselTimer();
   }
 
   function setSlide(index) {
@@ -109,11 +140,17 @@
     activeSlide = ((index % count) + count) % count;
   }
 
+  function selectCarouselSlide(index) {
+    setSlide(index);
+    resetCarouselTimer();
+  }
+
   function carouselPointerDown(event) {
     if (topStories.length < 2) return;
     dragStartX = event.clientX;
     dragDelta = 0;
     carouselPaused = true;
+    clearCarouselTimer();
     event.currentTarget?.setPointerCapture?.(event.pointerId);
   }
 
@@ -128,6 +165,21 @@
     dragStartX = null;
     dragDelta = 0;
     carouselPaused = false;
+    resetCarouselTimer();
+  }
+
+  function carouselPointerEnter() {
+    carouselPaused = true;
+    clearCarouselTimer();
+  }
+
+  function carouselPointerLeave() {
+    if (dragStartX !== null) {
+      carouselPointerUp();
+      return;
+    }
+    carouselPaused = false;
+    resetCarouselTimer();
   }
 
   $: requestedSection = $page.url.searchParams.get('section');
@@ -261,8 +313,8 @@
           on:pointermove={carouselPointerMove}
           on:pointerup={carouselPointerUp}
           on:pointercancel={carouselPointerUp}
-          on:pointerenter={() => carouselPaused = true}
-          on:pointerleave={() => { carouselPaused = false; if (dragStartX !== null) carouselPointerUp(); }}
+          on:pointerenter={carouselPointerEnter}
+          on:pointerleave={carouselPointerLeave}
         >
           <div class:dragging={dragStartX !== null} class="editorial-carousel-track" style={`transform:translate3d(-${activeSlide * 100}%,0,0);`}>
             {#each topStories as story, index (story.id)}
@@ -287,7 +339,7 @@
                 type="button"
                 aria-label={`Show top story ${index + 1} of ${topStories.length}`}
                 aria-current={activeSlide === index ? 'true' : undefined}
-                on:click={() => setSlide(index)}
+                on:click={() => selectCarouselSlide(index)}
               ></button>
             {/each}
           </div>
