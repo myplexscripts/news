@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "python scripts/prepare_frontend.py && vite dev",
-    "build": "python scripts/test_ios_safe_area.py && python scripts/prepare_frontend.py && python scripts/build_search_index.py && vite build && python scripts/verify_svelte_pages_build.py",
+    "build": "python scripts/test_ios_safe_area.py && python scripts/prepare_frontend.py && python scripts/build_search_index.py && vite build && python scripts/verify_svelte_pages_build.py && python scripts/inject_story_social_metadata.py",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "fetch": "python scripts/run_scoop.py"
