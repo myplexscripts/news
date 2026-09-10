@@ -359,10 +359,10 @@
             <header class="story-date-heading" data-date-heading={group.key}>
               <h2>{group.label}</h2>
             </header>
-            {#each group.stories as story, index (story.id)}
+            {#each group.stories as story (story.id)}
               <NewsCard
                 {story}
-                index={index + 3}
+                index={filteredStories.indexOf(story)}
                 variant="standard"
                 dateGroup={group.key}
                 homeLazy={true}
