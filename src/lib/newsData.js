@@ -20,6 +20,35 @@ function feedCard(story) {
   return story;
 }
 
+function applyEditorialImages(story) {
+  if (!story || typeof story !== 'object') return story;
+
+  const heroOptimized = String(story.editorial_image || '').trim();
+  const heroSource = String(story.editorial_image_source || '').trim();
+  let changed = false;
+  const next = { ...story };
+
+  if (heroOptimized) {
+    next.image = heroOptimized;
+    changed = true;
+  }
+
+  if (Array.isArray(story.content_blocks)) {
+    const blocks = story.content_blocks.map((block) => {
+      if (!block || block.type !== 'image') return block;
+      const source = String(block.url || '').trim();
+      const optimized = String(block.optimized_url || '').trim()
+        || (heroOptimized && heroSource && source === heroSource ? heroOptimized : '');
+      if (!optimized || optimized === source) return block;
+      changed = true;
+      return { ...block, url: optimized };
+    });
+    if (changed) next.content_blocks = blocks;
+  }
+
+  return changed ? next : story;
+}
+
 export async function loadFeed() {
   if (!feedPromise) {
     feedPromise = (async () => {
@@ -57,6 +86,7 @@ export async function loadStory(id, metadata) {
         if (!response.ok) throw new Error(`Unable to load article (${response.status})`);
         return response.json();
       })
+      .then(applyEditorialImages)
       .catch((error) => {
         storyPromises.delete(storyId);
         throw error;
@@ -77,7 +107,7 @@ export function scopeForStory(story, sourceHealth = {}) {
   if (explicit === 'local' || explicit === 'canada') return explicit;
 
   const source = String(story?.discovery_via || story?.source || '').trim();
-  const health = sourceHealth?.[source] || {};
+  const health = source_health?.[source] || {};
   const scope = String(health.scope || '').toLowerCase();
   return scope === 'local' || scope === 'canada' ? scope : 'local';
 }
