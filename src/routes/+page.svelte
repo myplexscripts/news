@@ -324,6 +324,7 @@
                   {index}
                   variant="featured"
                   className="editorial-carousel-card"
+                  homeLazy={true}
                 />
               </div>
             {/each}
@@ -364,6 +365,7 @@
                 index={index + 3}
                 variant="standard"
                 dateGroup={group.key}
+                homeLazy={true}
               />
             {/each}
           {/each}
