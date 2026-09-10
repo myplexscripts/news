@@ -9,6 +9,7 @@ on:
       - 'scripts/test_tweet_media.py'
       - 'scripts/cleanup_postmedia_navigation.py'
       - 'scripts/test_postmedia_navigation.py'
+      - 'scripts/optimize_editorial_images.py'
       - '.github/workflows/enrich.yml'
 
 permissions:
@@ -38,6 +39,7 @@ jobs:
 
       - name: Test article enrichment pipeline
         run: |
+          python -m py_compile scripts/optimize_editorial_images.py
           python scripts/test_article_formatting.py
           python scripts/test_article_media.py
           python scripts/test_tweet_media.py
@@ -92,6 +94,7 @@ jobs:
           python scripts/repair_cbc_lite_heroes.py
           python scripts/enforce_article_contract.py
           python scripts/repair_card_image_refs.py
+          python scripts/optimize_editorial_images.py
 
       - name: Run regression and audit tests
         run: |
@@ -163,7 +166,7 @@ jobs:
               exit 0
             fi
 
-            echo "main moved during enrichment push attempt $attempt; rebuilding on newest main"
+            echo "main moved during enrichment push attempt $attempt; rebuilding on the newest commit"
             sleep $((attempt * 2))
           done
 
