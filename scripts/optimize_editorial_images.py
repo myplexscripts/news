@@ -193,8 +193,6 @@ def apply_result(container: dict[str, Any], source_key: str, output_key: str, re
     height_field = f"{output_key}_height"
 
     if result is None:
-        if container.get(source_field) != source:
-            return False
         changed = False
         for key in (output_key, source_field, width_field, height_field):
             if key in container:
@@ -266,8 +264,7 @@ def main() -> int:
 
     payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
     changed_stories, attempted, optimized_refs = optimize_payload(payload)
-    if changed_stories or payload.get("editorial_image_schema") != 1:
-        payload["editorial_image_schema"] = 1
+    payload["editorial_image_schema"] = 1
     NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"Editorial image optimization: {optimized_refs}/{attempted} references optimized "
