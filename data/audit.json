@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-09-10T00:15:16.585419+00:00",
-  "generated_at_london": "2026-09-09T20:15:16.585419-04:00",
-  "news_generated_at": "2026-09-09T23:50:46.077294+00:00",
+  "generated_at": "2026-09-10T00:46:20.598444+00:00",
+  "generated_at_london": "2026-09-09T20:46:20.598444-04:00",
+  "news_generated_at": "2026-09-10T00:20:11.629455+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 747,
@@ -14,11 +14,11 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 25,
-    "info_issue_count": 90,
-    "healthy_source_count": 10,
+    "info_issue_count": 96,
+    "healthy_source_count": 11,
     "review_source_count": 6,
     "error_source_count": 2,
-    "waiting_source_count": 10
+    "waiting_source_count": 9
   },
   "source_reports": [
     {
@@ -44,7 +44,7 @@
       "latest_published": "2026-09-04T04:00:00+00:00",
       "found_this_run": 6,
       "tracked": 2,
-      "last_scrape": "2026-09-09T23:47:27.740973+00:00",
+      "last_scrape": "2026-09-10T00:17:23.799145+00:00",
       "last_error": ""
     },
     {
@@ -96,7 +96,7 @@
       "latest_published": "2026-09-09T22:47:38.523000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-09T23:17:54.433232+00:00",
+      "last_scrape": "2026-09-09T23:48:06.452203+00:00",
       "last_error": ""
     },
     {
@@ -174,7 +174,7 @@
       "latest_published": "2026-09-09T18:13:41+00:00",
       "found_this_run": 10,
       "tracked": 3,
-      "last_scrape": "2026-09-09T23:48:00.800759+00:00",
+      "last_scrape": "2026-09-10T00:17:50.694114+00:00",
       "last_error": ""
     },
     {
@@ -188,26 +188,26 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 740,
-      "average_quality": 89,
+      "average_words": 784,
+      "average_quality": 88,
       "primary_method": "dom:globe:article#content-gate",
       "method_counts": {
-        "dom:globe:article#content-gate": 7,
-        "dom:semantic-rich-v1": 3
+        "dom:globe:article#content-gate": 8,
+        "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 12,
-      "latest_published": "2026-09-09T22:31:06.871000+00:00",
+      "latest_published": "2026-09-09T23:49:16.827000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-09T22:52:15.110461+00:00",
+      "last_scrape": "2026-09-10T00:18:19.072817+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 0,
@@ -225,34 +225,10 @@
       "warning_issues": 20,
       "info_issues": 10,
       "latest_published": "2026-09-09T21:43:16+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-09-09T22:24:53.157520+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "104.7 Heart FM",
-      "status": "waiting",
-      "collector_status": "waiting",
-      "profile": "heartfm",
-      "sample_size": 0,
-      "pass": 0,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 0,
-      "usable_body_rate": 0,
-      "average_words": 0,
-      "average_quality": 0,
-      "primary_method": "unknown",
-      "method_counts": {},
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "",
-      "found_this_run": 18,
-      "tracked": 0,
-      "last_scrape": "",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "106.9 The X",
@@ -471,6 +447,32 @@
       "last_error": ""
     },
     {
+      "source": "104.7 Heart FM",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "heartfm",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 428,
+      "average_quality": 81,
+      "primary_method": "dom:heartfm:main",
+      "method_counts": {
+        "dom:heartfm:main": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 0,
+      "latest_published": "2026-09-08T14:50:58+00:00",
+      "found_this_run": 18,
+      "tracked": 1,
+      "last_scrape": "2026-09-10T00:16:49.648191+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CBC News London",
       "status": "healthy",
       "collector_status": "healthy",
@@ -489,11 +491,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 2,
+      "info_issues": 9,
       "latest_published": "2026-09-09T22:32:20+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-09T23:18:17.746085+00:00",
+      "last_scrape": "2026-09-09T23:48:25.980367+00:00",
       "last_error": ""
     },
     {
@@ -519,7 +521,7 @@
       "latest_published": "2026-09-09T20:20:53.349000+00:00",
       "found_this_run": 2,
       "tracked": 30,
-      "last_scrape": "2026-09-09T23:17:52.682960+00:00",
+      "last_scrape": "2026-09-09T23:48:04.769892+00:00",
       "last_error": ""
     },
     {
@@ -527,27 +529,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 5,
-      "pass": 5,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 975,
-      "average_quality": 76,
+      "average_words": 1166,
+      "average_quality": 81,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 1,
-        "dom:semantic-rich-v1": 3,
-        "dom:municipal:.field--name-body": 1
+        "dom:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 4,
+      "info_issues": 3,
       "latest_published": "2026-09-09T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 5,
-      "last_scrape": "2026-09-09T23:46:19.051885+00:00",
+      "tracked": 4,
+      "last_scrape": "2026-09-10T00:16:25.174171+00:00",
       "last_error": ""
     },
     {
@@ -588,20 +589,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 614,
+      "average_words": 618,
       "average_quality": 82,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "reader:semantic-rich-v1": 7,
-        "dom:semantic-rich-v1": 3
+        "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 0,
-      "latest_published": "2026-09-09T21:34:44+00:00",
+      "latest_published": "2026-09-09T23:46:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-09T23:46:07.543563+00:00",
+      "last_scrape": "2026-09-10T00:16:16.709187+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +656,7 @@
       "latest_published": "2026-09-09T04:00:00+00:00",
       "found_this_run": 10,
       "tracked": 5,
-      "last_scrape": "2026-09-09T23:46:25.683618+00:00",
+      "last_scrape": "2026-09-10T00:16:30.472392+00:00",
       "last_error": ""
     },
     {
@@ -679,9 +681,9 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-09-09T20:48:20+00:00",
-      "found_this_run": 10,
+      "found_this_run": 9,
       "tracked": 30,
-      "last_scrape": "2026-09-09T23:48:35.227678+00:00",
+      "last_scrape": "2026-09-10T00:18:25.669373+00:00",
       "last_error": ""
     },
     {
@@ -708,7 +710,7 @@
       "latest_published": "2026-09-04T04:00:00+00:00",
       "found_this_run": 10,
       "tracked": 4,
-      "last_scrape": "2026-09-09T23:47:35.972330+00:00",
+      "last_scrape": "2026-09-10T00:17:29.689837+00:00",
       "last_error": ""
     },
     {
@@ -734,7 +736,7 @@
       "latest_published": "2026-09-09T18:58:51+00:00",
       "found_this_run": 10,
       "tracked": 8,
-      "last_scrape": "2026-09-09T23:47:21.188656+00:00",
+      "last_scrape": "2026-09-10T00:17:17.639742+00:00",
       "last_error": ""
     }
   ],
@@ -1149,6 +1151,51 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "f5d43aa512396fb0",
+      "source": "CBC News London",
+      "title": "8 storeys a 'bridge too far' for some neighbours of Sarnia Road development",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5oMDhTbExBUmpTYzFGRnJ5RWVrNVBuOXZCWDVEb25oYmhwd3pQd1dmUE14Ny1NVDlkQTZyWEZlU0w3NWptSVlhaUVNVUhENzBwVkJVeG5BRVVSdmRNendqUEp3ZEhRYmRlTHUxbG1QeWg?oc=5",
+      "published": "2026-09-08T16:50:54+00:00",
+      "content_status": "full",
+      "word_count": 842,
+      "quality_score": 95,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "adcbf48108590739",
+      "source": "CBC News London",
+      "title": "Burnout isn't new: How 18th-century farming set the stage for modern worker exhaustion",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPVWNqbXIzVGhmZnp2RHJPTTFIWmw5ZUtpZi1yV0dISWpIandwaHQyOFdpY19oZUYyb2ZROTdEMHM3VXZ3OUZMaC1yVkt1MkVzMEZSUFFPRlhiRDVRRkFVRXVWaXZrTU0yR0w3U1VnT284TkM5V3FaSGlUQmJmZHlGZUtxQ01HeW1BTThObGVybGZVN3FNUHZKYVE0aTdHS2V6MkxIc0xIWVdPaVFQMHJySEp4X016Y2Zfbk1qUnNienJDV3VZZURsTTRPdlMwUQ?oc=5",
+      "published": "2026-09-07T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 916,
+      "quality_score": 80,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "6938d0f8fb9efdbf",
+      "source": "CBC News London",
+      "title": "Emac Recording Studios closes after 46 years of 'immeasurable' impact on London, Ont.",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMFRnNnd2d0JXX3B4X2UtdWZ5c0RXZ3dBOEJ6M2I4NVFHX0E0R2g3WGNnRTAtSUVzRWdEUno1SEZheUVDUTA1N21vMnhsUWt3SXRwV2lzYjlpMmJJazZ2eUs3dzZJOTNxMmxJXzRYLWFYeVFWSWpKOGF1Rzc0TVZ6NUVoaHlENzQyM2VnMVBuMXhYcVFBYnc5LUh3bElPSHBmNkVQZV9EaXF5bFQyam54c1k0TkNLRUNSTkdHU3BpR2RrTWJndVlNcw?oc=5",
+      "published": "2026-09-09T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 621,
+      "quality_score": 89,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "e1ba7a0bb80fa979",
       "source": "CBC News London",
       "title": "London Mayor Josh Morgan launches re-election campaign with 4-part platform",
@@ -1164,6 +1211,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "66a1b5a86bc4142c",
+      "source": "CBC News London",
+      "title": "London constable charged with assault causing bodily harm: SIU",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSVNpRDQxNk84djlQTXREZm9TbVNjSVhaNXJnUFRxNjY4UkJRajk5bHcxM3QzeWFHSVZ5OFAwN2MzV0g4Mm9YSW5hQ1hvRVFZckNUUndjWXFpT09TUEI2VVlPX0x6RWpCUVdlNlZiRFd6MV9XVVNRWmlfVy1OckZoVnJJSVB1VHhkQ204SEN2YXVuamt2c0RQZnlIZ010YXNCZkw2QmFhcndlLWRJZVE?oc=5",
+      "published": "2026-09-09T18:07:09+00:00",
+      "content_status": "full",
+      "word_count": 272,
+      "quality_score": 80,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "b7419f5330bf369b",
+      "source": "CBC News London",
+      "title": "London man arrested after gun pointed at passing vehicle",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOTVhrQ3gxQjNmVFlybWFqUXhVQ2NkN1FEaXExVDRCdXUwZ3pLdkd0VnQ2YUE5b1h6eXQyelJkREk4em54b0FKMF9lWXJaWHVrd0YtZ3MtaHFielZOaW1JdEpmRWpNVlo0MnBhVi02TFJ4Rk9yRzRjMFJsSWh6UHk5WU5VNmloUXhCQm1PZ0RTQl9qNnZabUU4MXhWQXdOZlBuNllMUlV4MA?oc=5",
+      "published": "2026-09-08T18:16:32+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "1ed67e0cd9d43bd9",
       "source": "CBC News London",
       "title": "London woman killed in crash remembered as longtime gymnastics coach, dedicated mother",
@@ -1172,6 +1249,36 @@
       "content_status": "full",
       "word_count": 531,
       "quality_score": 89,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "c5c67c75a773d3ce",
+      "source": "CBC News London",
+      "title": "Thousands of London students will learn in portables this year. Why?",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQeElsdm1QMUwyNEdncWpfV2NHblZQWWpBME5yME9UYV85VWM1em1XQWg4Q0dEbXRGbFJTU25HRjMzdFZUYXllcXBkR0xiVmtBTVpHa3kyZG1rZG5xOVFPWHl2QWZPSTI4WnVWLWROOGYwd2JKSlh5SUxLQ0hPU0tDSFlhbUZSTVFFSWxMaC1pb2EtbFc5bEVtR2l5SnJ0SkNLNnNIUg?oc=5",
+      "published": "2026-09-08T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 661,
+      "quality_score": 82,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "208083df389ddb17",
+      "source": "CBC News London",
+      "title": "Trails End Market in Thorndale, Ont., ordered to close for fire risks",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE40dVNjcVg0LU5fREFyZ1J4SkNuUW5VTHFJZnJMSy1FUVNZYmxMUVlWNFNaWlJ6RG9zMjZpWFRMRWlrczJpb0lCVE5qTVU3c2l1RDZBRnhZeWE3NzNpbGVKdV9Jak4xekxnc0hkLWticUJVaGNtUWxkRWV1Z3hIUQ?oc=5",
+      "published": "2026-09-08T21:22:56+00:00",
+      "content_status": "full",
+      "word_count": 321,
+      "quality_score": 80,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -1398,21 +1505,6 @@
       "word_count": 2628,
       "quality_score": 88,
       "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "34bb5eee198d1121",
-      "source": "City of London Newsroom",
-      "title": "New online options to make it easier to report bylaw concerns to the City of London",
-      "url": "https://london.ca/newsroom/new-online-options-make-it-easier-report-bylaw-concerns-city-london",
-      "published": "2026-09-01T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 211,
-      "quality_score": 55,
-      "extraction_method": "dom:municipal:.field--name-body"
     },
     {
       "severity": "info",
@@ -2121,6 +2213,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "d5dd111cd604297d",
+      "source": "The Globe and Mail",
+      "title": "Endocrine Society publishes research roadmap for advancing obesity science in the era of GLP-1s",
+      "url": "https://www.theglobeandmail.com/canada/article-endocrine-society-publishes-research-roadmap-for-advancing-obesity",
+      "published": "2026-09-09T23:49:16.827000+00:00",
+      "content_status": "full",
+      "word_count": 780,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d5dd111cd604297d",
+      "source": "The Globe and Mail",
+      "title": "Endocrine Society publishes research roadmap for advancing obesity science in the era of GLP-1s",
+      "url": "https://www.theglobeandmail.com/canada/article-endocrine-society-publishes-research-roadmap-for-advancing-obesity",
+      "published": "2026-09-09T23:49:16.827000+00:00",
+      "content_status": "full",
+      "word_count": 780,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2148,36 +2270,6 @@
       "word_count": 833,
       "quality_score": 97,
       "extraction_method": "dom:globe:article#content-gate"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "77d757fc0b7d8f5c",
-      "source": "The Globe and Mail",
-      "title": "Mississauga home seller waits patiently for acceptable offer",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-mississauga-home-seller-waits-patiently-for-acceptable-offer",
-      "published": "2026-09-09T12:30:00+00:00",
-      "content_status": "full",
-      "word_count": 336,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "77d757fc0b7d8f5c",
-      "source": "The Globe and Mail",
-      "title": "Mississauga home seller waits patiently for acceptable offer",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-mississauga-home-seller-waits-patiently-for-acceptable-offer",
-      "published": "2026-09-09T12:30:00+00:00",
-      "content_status": "full",
-      "word_count": 336,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2611,10 +2703,10 @@
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPSVNpRDQxNk84djlQTXREZm9TbVNjSVhaNXJnUFRxNjY4UkJRajk5bHcxM3QzeWFHSVZ5OFAwN2MzV0g4Mm9YSW5hQ1hvRVFZckNUUndjWXFpT09TUEI2VVlPX0x6RWpCUVdlNlZiRFd6MV9XVVNRWmlfVy1OckZoVnJJSVB1VHhkQ204SEN2YXVuamt2c0RQZnlIZ010YXNCZkw2QmFhcndlLWRJZVE?oc=5",
       "published": "2026-09-09T18:07:09+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 272,
       "paragraph_count": 12,
@@ -2624,7 +2716,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 93,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "6938d0f8fb9efdbf",
@@ -2633,10 +2732,10 @@
       "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMFRnNnd2d0JXX3B4X2UtdWZ5c0RXZ3dBOEJ6M2I4NVFHX0E0R2g3WGNnRTAtSUVzRWdEUno1SEZheUVDUTA1N21vMnhsUWt3SXRwV2lzYjlpMmJJazZ2eUs3dzZJOTNxMmxJXzRYLWFYeVFWSWpKOGF1Rzc0TVZ6NUVoaHlENzQyM2VnMVBuMXhYcVFBYnc5LUh3bElPSHBmNkVQZV9EaXF5bFQyam54c1k0TkNLRUNSTkdHU3BpR2RrTWJndVlNcw?oc=5",
       "published": "2026-09-09T09:00:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 621,
       "paragraph_count": 25,
@@ -2646,7 +2745,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 65,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "208083df389ddb17",
@@ -2655,10 +2761,10 @@
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE40dVNjcVg0LU5fREFyZ1J4SkNuUW5VTHFJZnJMSy1FUVNZYmxMUVlWNFNaWlJ6RG9zMjZpWFRMRWlrczJpb0lCVE5qTVU3c2l1RDZBRnhZeWE3NzNpbGVKdV9Jak4xekxnc0hkLWticUJVaGNtUWxkRWV1Z3hIUQ?oc=5",
       "published": "2026-09-08T21:22:56+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 321,
       "paragraph_count": 12,
@@ -2668,7 +2774,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 68,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "b7419f5330bf369b",
@@ -2677,10 +2790,10 @@
       "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOTVhrQ3gxQjNmVFlybWFqUXhVQ2NkN1FEaXExVDRCdXUwZ3pLdkd0VnQ2YUE5b1h6eXQyelJkREk4em54b0FKMF9lWXJaWHVrd0YtZ3MtaHFielZOaW1JdEpmRWpNVlo0MnBhVi02TFJ4Rk9yRzRjMFJsSWh6UHk5WU5VNmloUXhCQm1PZ0RTQl9qNnZabUU4MXhWQXdOZlBuNllMUlV4MA?oc=5",
       "published": "2026-09-08T18:16:32+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 192,
       "paragraph_count": 8,
@@ -2690,7 +2803,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 58,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "f5d43aa512396fb0",
@@ -2699,10 +2819,10 @@
       "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5oMDhTbExBUmpTYzFGRnJ5RWVrNVBuOXZCWDVEb25oYmhwd3pQd1dmUE14Ny1NVDlkQTZyWEZlU0w3NWptSVlhaUVNVUhENzBwVkJVeG5BRVVSdmRNendqUEp3ZEhRYmRlTHUxbG1QeWg?oc=5",
       "published": "2026-09-08T16:50:54+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 842,
       "paragraph_count": 25,
@@ -2712,7 +2832,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 68,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "c5c67c75a773d3ce",
@@ -2721,10 +2848,10 @@
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQeElsdm1QMUwyNEdncWpfV2NHblZQWWpBME5yME9UYV85VWM1em1XQWg4Q0dEbXRGbFJTU25HRjMzdFZUYXllcXBkR0xiVmtBTVpHa3kyZG1rZG5xOVFPWHl2QWZPSTI4WnVWLWROOGYwd2JKSlh5SUxLQ0hPU0tDSFlhbUZSTVFFSWxMaC1pb2EtbFc5bEVtR2l5SnJ0SkNLNnNIUg?oc=5",
       "published": "2026-09-08T09:00:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 661,
       "paragraph_count": 22,
@@ -2734,7 +2861,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 66,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "e1ba7a0bb80fa979",
@@ -2772,10 +2906,10 @@
       "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPVWNqbXIzVGhmZnp2RHJPTTFIWmw5ZUtpZi1yV0dISWpIandwaHQyOFdpY19oZUYyb2ZROTdEMHM3VXZ3OUZMaC1yVkt1MkVzMEZSUFFPRlhiRDVRRkFVRXVWaXZrTU0yR0w3U1VnT284TkM5V3FaSGlUQmJmZHlGZUtxQ01HeW1BTThObGVybGZVN3FNUHZKYVE0aTdHS2V6MkxIc0xIWVdPaVFQMHJySEp4X016Y2Zfbk1qUnNienJDV3VZZURsTTRPdlMwUQ?oc=5",
       "published": "2026-09-07T09:00:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 916,
       "paragraph_count": 29,
@@ -2785,6 +2919,35 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 56,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "106e751e8a88b75b",
+      "source": "London Free Press",
+      "title": "Eight-storey Sarnia Road apartment plan advances despite neighbour pushback",
+      "url": "https://lfpress.com/news/local-news/eight-storey-sarnia-road-apartment-plan-advances-despite-neighbour-pushback",
+      "published": "2026-09-09T23:46:49+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 906,
+      "paragraph_count": 28,
+      "inline_image_count": 0,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 66,
       "issues": []
     },
     {
@@ -2983,28 +3146,6 @@
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 52,
-      "issues": []
-    },
-    {
-      "id": "970394346445e6ef",
-      "source": "London Free Press",
-      "title": "‘Get-rich-quick scheme’ lands gun smuggler nearly seven years in prison",
-      "url": "https://lfpress.com/news/local-news/get-rich-quick-scheme-lands-gun-smuggler-nearly-seven-years-in-prison",
-      "published": "2026-09-08T22:02:29+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 870,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 88,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 42,
       "issues": []
     },
     {
@@ -3372,35 +3513,6 @@
       "issues": []
     },
     {
-      "id": "34bb5eee198d1121",
-      "source": "City of London Newsroom",
-      "title": "New online options to make it easier to report bylaw concerns to the City of London",
-      "url": "https://london.ca/newsroom/new-online-options-make-it-easier-report-bylaw-concerns-city-london",
-      "published": "2026-09-01T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 211,
-      "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 55,
-      "quality_grade": "partial",
-      "extraction_method": "dom:municipal:.field--name-body",
-      "extraction_profile": "municipal",
-      "local_score": 100,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
       "id": "11c9c9893da49119",
       "source": "London Police Service",
       "title": "Missing Person – Joan Depeiza",
@@ -3529,6 +3641,28 @@
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "police",
       "local_score": 100,
+      "issues": []
+    },
+    {
+      "id": "e17e6f6e2469dd5a",
+      "source": "104.7 Heart FM",
+      "title": "Safety is Paramount as School Returns",
+      "url": "https://www.heartfm.ca/news/local-news/safety-is-paramount-as-school-returns",
+      "published": "2026-09-08T14:50:58+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 428,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:heartfm:main",
+      "extraction_profile": "heartfm",
+      "local_score": 46,
       "issues": []
     },
     {
@@ -4652,6 +4786,41 @@
       ]
     },
     {
+      "id": "d5dd111cd604297d",
+      "source": "The Globe and Mail",
+      "title": "Endocrine Society publishes research roadmap for advancing obesity science in the era of GLP-1s",
+      "url": "https://www.theglobeandmail.com/canada/article-endocrine-society-publishes-research-roadmap-for-advancing-obesity",
+      "published": "2026-09-09T23:49:16.827000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 780,
+      "paragraph_count": 20,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d0f96694beac1a5d",
       "source": "The Globe and Mail",
       "title": "U.S. to ban imports of some Canadian products as trade war escalates",
@@ -4916,41 +5085,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "77d757fc0b7d8f5c",
-      "source": "The Globe and Mail",
-      "title": "Mississauga home seller waits patiently for acceptable offer",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-mississauga-home-seller-waits-patiently-for-acceptable-offer",
-      "published": "2026-09-09T12:30:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 336,
-      "paragraph_count": 19,
-      "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
