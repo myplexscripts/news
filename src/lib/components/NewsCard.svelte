@@ -22,9 +22,9 @@
     fallbackStoryId = id;
     fallbackIndex = 0;
     logoFailed = false;
-    homeImageActive = !homeLazy || variant === 'featured';
+    homeImageActive = !homeLazy || variant === 'featured' || (index >= 3 && index < 6);
   }
-  $: if (!homeLazy || variant === 'featured') homeImageActive = true;
+  $: if (!homeLazy || variant === 'featured' || (index >= 3 && index < 6)) homeImageActive = true;
   $: isSaved = $userState.savedIds.includes(id);
   $: isRead = $userState.readIds.includes(id);
   $: smallImage = resolveAsset(story?.card_image_small || '');
