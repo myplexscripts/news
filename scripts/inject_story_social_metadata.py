@@ -192,9 +192,9 @@ def metadata(story: dict[str, Any], page_url: str, origin: str, base: str) -> st
     published = clean(story.get("cluster_latest_published") or story.get("published"))
     if published:
         tags.append(prop("article:published_time", published))
-    source = clean(story.get("source"))
-    if source:
-        tags.append(prop("article:author", source))
+    section = clean(story.get("category"))
+    if section:
+        tags.append(prop("article:section", section))
     return "\n".join(tags)
 
 
