@@ -23,13 +23,17 @@ function feedCard(story) {
 function applyEditorialImages(story) {
   if (!story || typeof story !== 'object') return story;
 
+  const originalHero = String(story.image || '').trim();
   const heroOptimized = String(story.editorial_image || '').trim();
   const heroSource = String(story.editorial_image_source || '').trim();
+  const validHeroOptimized = heroOptimized && heroSource && heroSource === originalHero
+    ? heroOptimized
+    : '';
   let changed = false;
   const next = { ...story };
 
-  if (heroOptimized) {
-    next.image = heroOptimized;
+  if (validHeroOptimized) {
+    next.image = validHeroOptimized;
     changed = true;
   }
 
@@ -37,8 +41,11 @@ function applyEditorialImages(story) {
     const blocks = story.content_blocks.map((block) => {
       if (!block || block.type !== 'image') return block;
       const source = String(block.url || '').trim();
-      const optimized = String(block.optimized_url || '').trim()
-        || (heroOptimized && heroSource && source === heroSource ? heroOptimized : '');
+      const optimizedSource = String(block.optimized_url_source || '').trim();
+      const blockOptimized = String(block.optimized_url || '').trim();
+      const validBlockOptimized = blockOptimized && optimizedSource === source ? blockOptimized : '';
+      const optimized = validBlockOptimized
+        || (validHeroOptimized && source === heroSource ? validHeroOptimized : '');
       if (!optimized || optimized === source) return block;
       changed = true;
       return { ...block, url: optimized };
