@@ -1,13 +1,6 @@
 from __future__ import annotations
 
-"""Create crawlable per-story HTML shells with story-specific social metadata.
-
-The site is deployed as a static SvelteKit SPA. GitHub Pages normally serves the
-same 404 fallback for dynamic /story/<id>/ routes, which means social crawlers
-only see generic site metadata. This script copies the SPA fallback into a real
-HTML path for every story and injects the headline, preview text and editorial
-image while leaving the Svelte app itself unchanged.
-"""
+"""Create crawlable per-story HTML shells with story-specific share metadata."""
 
 import html
 import json
@@ -24,6 +17,7 @@ FALLBACK_PATH = DIST_DIR / "404.html"
 SITE_TITLE = "Forest City News"
 SITE_DESCRIPTION = "Local reporting from across London, Ontario."
 MAX_DESCRIPTION = 240
+URL_SAFE = "-_.!~*'()"
 
 
 def clean(value: Any) -> str:
@@ -43,7 +37,6 @@ def repository_context() -> tuple[str, str]:
     owner, _, repo = repository.partition("/")
     owner = owner or "myplexscripts"
     repo = repo or "news"
-
     configured = os.environ.get("BASE_PATH")
     if configured is None:
         base = "" if repo == f"{owner}.github.io" else f"/{repo}"
@@ -61,7 +54,6 @@ def absolute_url(value: Any, origin: str, base: str) -> str:
         return raw
     if raw.startswith("//"):
         return f"https:{raw}"
-
     path = raw.replace("\\", "/")
     if path.startswith("/"):
         if base and (path == base or path.startswith(f"{base}/")):
@@ -84,19 +76,15 @@ def image_mime(value: str) -> str:
 
 
 def first_prose(story: dict[str, Any]) -> str:
-    paragraphs = story.get("paragraphs")
-    if isinstance(paragraphs, list):
-        for paragraph in paragraphs:
-            text = clean(paragraph)
-            if text:
-                return text
-
-    for block in story.get("content_blocks") or []:
-        if not isinstance(block, dict) or block.get("type") not in {"paragraph", "quote"}:
-            continue
-        text = clean(block.get("text"))
+    for paragraph in story.get("paragraphs") or []:
+        text = clean(paragraph)
         if text:
             return text
+    for block in story.get("content_blocks") or []:
+        if isinstance(block, dict) and block.get("type") in {"paragraph", "quote"}:
+            text = clean(block.get("text"))
+            if text:
+                return text
     return ""
 
 
@@ -108,16 +96,12 @@ def story_image(story: dict[str, Any], origin: str, base: str) -> tuple[str, int
     hero = clean(story.get("image"))
     optimized = clean(story.get("editorial_image"))
     optimized_source = clean(story.get("editorial_image_source"))
-
-    # Match the image the article reader uses. Only trust an optimized hero when
-    # it still belongs to the story's current publisher image.
     if optimized and (not optimized_source or not hero or optimized_source == hero):
         return (
             absolute_url(optimized, origin, base),
             int(story.get("editorial_image_width") or 0) or None,
             int(story.get("editorial_image_height") or 0) or None,
         )
-
     if hero:
         return absolute_url(hero, origin, base), None, None
 
@@ -126,8 +110,8 @@ def story_image(story: dict[str, Any], origin: str, base: str) -> tuple[str, int
             continue
         source = clean(block.get("url"))
         optimized_block = clean(block.get("optimized_url"))
-        optimized_block_source = clean(block.get("optimized_url_source"))
-        chosen = optimized_block if optimized_block and (not optimized_block_source or optimized_block_source == source) else source
+        optimized_source = clean(block.get("optimized_url_source"))
+        chosen = optimized_block if optimized_block and (not optimized_source or optimized_source == source) else source
         if chosen:
             return (
                 absolute_url(chosen, origin, base),
@@ -138,48 +122,37 @@ def story_image(story: dict[str, Any], origin: str, base: str) -> tuple[str, int
     card = clean(story.get("card_image") or story.get("card_image_small"))
     if card:
         return absolute_url(card, origin, base), None, None
-
     return absolute_url("social.png", origin, base), 1536, 1024
 
 
-def meta_property(name: str, value: Any) -> str:
+def prop(name: str, value: Any) -> str:
     return f'<meta property="{html.escape(name, quote=True)}" content="{html.escape(clean(value), quote=True)}">'
 
 
-def meta_name(name: str, value: Any) -> str:
+def named(name: str, value: Any) -> str:
     return f'<meta name="{html.escape(name, quote=True)}" content="{html.escape(clean(value), quote=True)}">'
 
 
-def replace_title(document: str, title: str) -> str:
-    tag = f"<title>{html.escape(title)}</title>"
-    if re.search(r"<title\b[^>]*>.*?</title>", document, flags=re.I | re.S):
-        return re.sub(r"<title\b[^>]*>.*?</title>", tag, document, count=1, flags=re.I | re.S)
-    return document.replace("</head>", f"{tag}</head>", 1)
-
-
-def strip_share_metadata(document: str) -> str:
+def strip_existing(document: str) -> str:
     document = re.sub(
         r"\s*<meta\b[^>]*(?:property|name)=[\"'](?:og:[^\"']+|twitter:[^\"']+|article:[^\"']+)[\"'][^>]*>\s*",
         "\n",
         document,
         flags=re.I,
     )
-    document = re.sub(
-        r"\s*<meta\b[^>]*name=[\"']description[\"'][^>]*>\s*",
-        "\n",
-        document,
-        flags=re.I,
-    )
-    document = re.sub(
-        r"\s*<link\b[^>]*rel=[\"']canonical[\"'][^>]*>\s*",
-        "\n",
-        document,
-        flags=re.I,
-    )
+    document = re.sub(r"\s*<meta\b[^>]*name=[\"']description[\"'][^>]*>\s*", "\n", document, flags=re.I)
+    document = re.sub(r"\s*<link\b[^>]*rel=[\"']canonical[\"'][^>]*>\s*", "\n", document, flags=re.I)
     return document
 
 
-def story_tags(story: dict[str, Any], page_url: str, origin: str, base: str) -> str:
+def set_title(document: str, title: str) -> str:
+    tag = f"<title>{html.escape(title)}</title>"
+    if re.search(r"<title\b[^>]*>.*?</title>", document, flags=re.I | re.S):
+        return re.sub(r"<title\b[^>]*>.*?</title>", tag, document, count=1, flags=re.I | re.S)
+    return document.replace("</head>", f"{tag}</head>", 1)
+
+
+def metadata(story: dict[str, Any], page_url: str, origin: str, base: str) -> str:
     title = clean(story.get("title")) or SITE_TITLE
     description = story_description(story)
     image, width, height = story_image(story, origin, base)
@@ -187,66 +160,63 @@ def story_tags(story: dict[str, Any], page_url: str, origin: str, base: str) -> 
     image_alt = clean(story.get("image_alt")) or title
 
     tags = [
-        meta_name("description", description),
+        named("description", description),
         f'<link rel="canonical" href="{html.escape(page_url, quote=True)}">',
-        meta_property("og:site_name", SITE_TITLE),
-        meta_property("og:type", "article"),
-        meta_property("og:locale", "en_CA"),
-        meta_property("og:title", title),
-        meta_property("og:description", description),
-        meta_property("og:url", page_url),
-        meta_property("og:image", image),
-        meta_property("og:image:secure_url", image),
-        meta_property("og:image:alt", image_alt),
-        meta_name("twitter:card", "summary_large_image"),
-        meta_name("twitter:title", title),
-        meta_name("twitter:description", description),
-        meta_name("twitter:image", image),
-        meta_name("twitter:image:alt", image_alt),
+        prop("og:site_name", SITE_TITLE),
+        prop("og:type", "article"),
+        prop("og:locale", "en_CA"),
+        prop("og:title", title),
+        prop("og:description", description),
+        prop("og:url", page_url),
+        prop("og:image", image),
+        prop("og:image:secure_url", image),
+        prop("og:image:alt", image_alt),
     ]
-
     if image_type:
-        tags.insert(10, meta_property("og:image:type", image_type))
+        tags.append(prop("og:image:type", image_type))
     if width:
-        tags.insert(11, meta_property("og:image:width", width))
+        tags.append(prop("og:image:width", width))
     if height:
-        tags.insert(12, meta_property("og:image:height", height))
+        tags.append(prop("og:image:height", height))
+
+    tags.extend(
+        [
+            named("twitter:card", "summary_large_image"),
+            named("twitter:title", title),
+            named("twitter:description", description),
+            named("twitter:image", image),
+            named("twitter:image:alt", image_alt),
+        ]
+    )
 
     published = clean(story.get("cluster_latest_published") or story.get("published"))
     if published:
-        tags.append(meta_property("article:published_time", published))
+        tags.append(prop("article:published_time", published))
     source = clean(story.get("source"))
     if source:
-        tags.append(meta_property("article:author", source))
-
+        tags.append(prop("article:author", source))
     return "\n".join(tags)
 
 
-def safe_story_segment(story_id: str) -> str:
-    # Current IDs are URL-safe hashes. Keep those paths human-stable. If a future
-    # source introduces another shape, encode it into one safe route segment.
+def story_segment(story_id: str) -> str:
     if re.fullmatch(r"[A-Za-z0-9._~-]+", story_id) and story_id not in {".", ".."}:
         return story_id
-    return quote(story_id, safe="-_.!~*'()")
+    return quote(story_id, safe=URL_SAFE)
 
 
-def build_story_shell(fallback: str, story: dict[str, Any], origin: str, base: str) -> tuple[Path, str] | None:
+def build_shell(fallback: str, story: dict[str, Any], origin: str, base: str) -> tuple[Path, str] | None:
     story_id = clean(story.get("id"))
     title = clean(story.get("title"))
     if not story_id or not title:
         return None
 
-    segment = safe_story_segment(story_id)
-    page_url = f"{origin}{base}/story/{quote(story_id, safe='-_.!~*\'()')}/"
-    document = strip_share_metadata(fallback)
-    document = replace_title(document, f"{title} | {SITE_TITLE}")
-    tags = story_tags(story, page_url, origin, base)
+    encoded_id = quote(story_id, safe=URL_SAFE)
+    page_url = f"{origin}{base}/story/{encoded_id}/"
+    document = set_title(strip_existing(fallback), f"{title} | {SITE_TITLE}")
     if "</head>" not in document:
         raise RuntimeError("Svelte fallback is missing </head>")
-    document = document.replace("</head>", f"\n{tags}\n</head>", 1)
-
-    target = DIST_DIR / "story" / segment / "index.html"
-    return target, document
+    document = document.replace("</head>", f"\n{metadata(story, page_url, origin, base)}\n</head>", 1)
+    return DIST_DIR / "story" / story_segment(story_id) / "index.html", document
 
 
 def main() -> int:
@@ -261,28 +231,22 @@ def main() -> int:
     origin, base = repository_context()
 
     generated = 0
-    editorial_images = 0
-    summaries = 0
+    with_images = 0
+    with_summaries = 0
     for story in stories:
-        built = build_story_shell(fallback, story, origin, base)
+        built = build_shell(fallback, story, origin, base)
         if built is None:
             continue
         target, document = built
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(document, encoding="utf-8")
         generated += 1
-        if clean(story.get("editorial_image") or story.get("image")):
-            editorial_images += 1
-        if clean(story.get("summary")):
-            summaries += 1
+        with_images += int(bool(clean(story.get("editorial_image") or story.get("image"))))
+        with_summaries += int(bool(clean(story.get("summary"))))
 
     if stories and generated == 0:
         raise SystemExit("No story social shells were generated")
-
-    print(
-        f"Story social metadata: {generated} shells, "
-        f"{editorial_images} with story images, {summaries} with story summaries"
-    )
+    print(f"Story social metadata: {generated} shells, {with_images} with story images, {with_summaries} with story summaries")
     return 0
 
 
