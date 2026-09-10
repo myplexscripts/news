@@ -107,7 +107,7 @@ export function scopeForStory(story, sourceHealth = {}) {
   if (explicit === 'local' || explicit === 'canada') return explicit;
 
   const source = String(story?.discovery_via || story?.source || '').trim();
-  const health = source_health?.[source] || {};
+  const health = sourceHealth?.[source] || {};
   const scope = String(health.scope || '').toLowerCase();
   return scope === 'local' || scope === 'canada' ? scope : 'local';
 }
