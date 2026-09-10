@@ -10,24 +10,39 @@
   export let className = '';
   export let index = 99;
   export let dateGroup = '';
+  export let homeLazy = false;
 
   let fallbackIndex = 0;
   let fallbackStoryId = '';
   let logoFailed = false;
+  let homeImageActive = false;
 
   $: id = String(story?.id || '');
   $: if (id !== fallbackStoryId) {
     fallbackStoryId = id;
     fallbackIndex = 0;
     logoFailed = false;
+    homeImageActive = !homeLazy || variant === 'featured';
   }
+  $: if (!homeLazy || variant === 'featured') homeImageActive = true;
   $: isSaved = $userState.savedIds.includes(id);
   $: isRead = $userState.readIds.includes(id);
+  $: smallImage = resolveAsset(story?.card_image_small || '');
+  $: largeImage = resolveAsset(story?.card_image || '');
   $: rawCandidates = variant === 'standard'
     ? [story?.card_image_small, story?.card_image, story?.image]
     : [story?.card_image, story?.image, story?.card_image_small];
   $: imageCandidates = [...new Set(rawCandidates.map((value) => resolveAsset(value)).filter(Boolean))];
   $: image = imageCandidates[fallbackIndex] || '';
+  $: cachedSrcset = smallImage && largeImage && smallImage !== largeImage
+    ? `${smallImage} 420w, ${largeImage} 720w`
+    : '';
+  $: imageSrcset = fallbackIndex === 0 && cachedSrcset ? cachedSrcset : '';
+  $: imageSizes = variant === 'featured'
+    ? '(max-width: 720px) calc(100vw - 24px), (max-width: 1280px) 44vw, 560px'
+    : '(max-width: 720px) calc(100vw - 24px), (max-width: 1100px) 50vw, 360px';
+  $: backdropImage = smallImage || image;
+  $: shouldRequestImage = !homeLazy || variant === 'featured' || homeImageActive;
   $: logo = sourceLogoPath(story?.source || '', `${base}/`);
   $: usableLogo = Boolean(logo && !logoFailed);
   $: href = storyHref(id);
@@ -78,6 +93,50 @@
     media.classList.toggle('is-fill-image', !contained);
   }
 
+  function activateMedia(media) {
+    media?.dispatchEvent?.(new CustomEvent('homeimageactivate'));
+  }
+
+  function trackHomeImage(node) {
+    if (!homeLazy || typeof window === 'undefined') return {};
+
+    const activate = () => {
+      homeImageActive = true;
+    };
+    node.addEventListener('homeimageactivate', activate);
+
+    if (!('IntersectionObserver' in window)) {
+      homeImageActive = true;
+      return {
+        destroy() {
+          node.removeEventListener('homeimageactivate', activate);
+        }
+      };
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+
+      const timelineImages = Array.from(document.querySelectorAll('[data-home-image-card="true"]'));
+      if (variant === 'featured') {
+        timelineImages.slice(0, 3).forEach(activateMedia);
+      } else {
+        const current = timelineImages.indexOf(node);
+        if (current >= 0) timelineImages.slice(current, current + 4).forEach(activateMedia);
+      }
+
+      observer.disconnect();
+    }, { threshold: 0.01 });
+
+    observer.observe(node);
+    return {
+      destroy() {
+        observer.disconnect();
+        node.removeEventListener('homeimageactivate', activate);
+      }
+    };
+  }
+
   async function toggle(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -100,25 +159,34 @@
 >
   <a class="news-card-link" href={href} data-sveltekit-preload-data="tap" aria-label={story?.title || 'Open article'}></a>
 
-  <div class:news-card-placeholder-media={!image} class="news-card-media">
+  <div
+    class:news-card-placeholder-media={!image}
+    class="news-card-media"
+    data-home-image-card={homeLazy && variant !== 'featured' && image ? 'true' : undefined}
+    use:trackHomeImage
+  >
     {#if image}
       {#if variant === 'featured'}
         <img
           class="news-card-photo-backdrop"
-          src={image}
+          src={shouldRequestImage ? backdropImage : undefined}
           alt=""
           aria-hidden="true"
-          loading={index < 3 ? 'eager' : 'lazy'}
+          loading="eager"
           decoding="async"
+          fetchpriority="low"
           referrerpolicy="no-referrer"
         />
       {/if}
       <img
         class="news-card-photo"
-        src={image}
+        src={shouldRequestImage ? image : undefined}
+        srcset={shouldRequestImage && imageSrcset ? imageSrcset : undefined}
+        sizes={imageSrcset ? imageSizes : undefined}
         alt={story?.image_alt || ''}
-        loading={index < 3 ? 'eager' : 'lazy'}
+        loading={homeLazy ? (shouldRequestImage ? 'eager' : 'lazy') : (index < 3 ? 'eager' : 'lazy')}
         decoding="async"
+        fetchpriority={variant === 'featured' && index === 0 ? 'high' : 'auto'}
         referrerpolicy="no-referrer"
         style={`--focus-x:${story?.image_focus_x ?? 50}%;--focus-y:${story?.image_focus_y ?? 50}%`}
         on:load={syncImageMode}
