@@ -195,7 +195,8 @@ def trim_start(blocks: list[dict[str, Any]], story: dict[str, Any]) -> tuple[lis
     trimmed = [dict(block) for block in blocks[start_index:]]
     if replacement is not None and trimmed:
         trimmed[0] = replacement
-    return trimmed, start_index
+    changes = start_index + (1 if replacement is not None else 0)
+    return trimmed, changes
 
 
 def trim_end(blocks: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], int]:
