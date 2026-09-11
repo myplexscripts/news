@@ -25,15 +25,15 @@ body:has(.svelte-article-page) .article-reader.article-reveal {
 }
 
 @media (max-width: 760px) {
-  /* Only the photography moves upward. The editorial copy remains anchored
-     near the bottom of the full 100svh cover, independent of image height. */
+  /* Let the editorial photography occupy more of the opening screen. The
+     headline/meta anchors stay in place while the bottom fade starts later. */
   html body:has(.svelte-article-page) .article-cover-media {
-    height: 70svh !important;
+    height: 84svh !important;
   }
 
   html body:has(.svelte-article-page) .article-cover-fade-bottom {
-    top: 34svh !important;
-    height: 38svh !important;
+    top: 50svh !important;
+    height: 36svh !important;
   }
 
   html body:has(.svelte-article-page) .editorial-story .article-cover-content {
