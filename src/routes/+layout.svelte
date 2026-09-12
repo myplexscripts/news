@@ -83,9 +83,7 @@
   $: onStory = currentPath.startsWith('/story/');
   $: onDirectory = currentPath.startsWith('/sections/') || currentPath.startsWith('/sources/');
   $: onSearch = currentPath.startsWith('/search/');
-  $: onReadLater = currentPath.startsWith('/read-later/');
   $: onSettings = currentPath.startsWith('/settings/');
-  $: activeIndex = onHome || onStory ? 0 : onDirectory ? 1 : onSearch ? 2 : onReadLater ? 3 : onSettings ? 4 : 0;
   $: currentStoryId = onStory ? storyIdFromPath(currentPath) : '';
   $: storyMeta = currentStoryId && shellFeed
     ? (shellFeed.stories || []).find((item) => String(item.id) === String(currentStoryId))
@@ -268,15 +266,23 @@
   class:storyCompactNav={onStory && storyCompactNav}
   class="mobile-tab-bar svelte-mobile-tab-bar"
   aria-label="Primary navigation"
-  data-active-index={String(activeIndex)}
-  style={`--indicator-index:${activeIndex};--mobile-tab-count:5;`}
 >
   <span class="mobile-tab-indicator" aria-hidden="true"></span>
 
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-home"
+    checked={onHome || onStory}
+    tabindex="-1"
+    aria-hidden="true"
+  />
   <a
     class:active={onHome || onStory}
     class:is-back-to-top={onHome && isBackToTop}
     class="mobile-tab mobile-home-tab"
+    data-mobile-tab="home"
     href={`${base}/`}
     data-sveltekit-preload-data="tap"
     aria-label={onHome && isBackToTop ? 'Back to top' : 'Home'}
@@ -288,22 +294,44 @@
     <span class="visually-hidden">Home</span>
   </a>
 
-  <a class:active={onDirectory} class="mobile-tab" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-sections"
+    checked={onDirectory}
+    tabindex="-1"
+    aria-hidden="true"
+  />
+  <a class:active={onDirectory} class="mobile-tab" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
     <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
     <span class="visually-hidden">Sections</span>
   </a>
 
-  <a class:active={onSearch} class="mobile-tab" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-search"
+    checked={onSearch}
+    tabindex="-1"
+    aria-hidden="true"
+  />
+  <a class:active={onSearch} class="mobile-tab" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
     <i class={activeIcon(onSearch, 'magnifying-glass')} aria-hidden="true"></i>
     <span class="visually-hidden">Search</span>
   </a>
 
-  <a class:active={onReadLater} class="mobile-tab" href={`${base}/read-later/`} data-sveltekit-preload-data="tap" aria-label="Read Later" title="Read Later" aria-current={onReadLater ? 'page' : undefined}>
-    <i class={activeIcon(onReadLater, 'bookmark-simple')} aria-hidden="true"></i>
-    <span class="visually-hidden">Read Later</span>
-  </a>
-
-  <a class:active={onSettings} class="mobile-tab" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-settings"
+    checked={onSettings}
+    tabindex="-1"
+    aria-hidden="true"
+  />
+  <a class:active={onSettings} class="mobile-tab" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
     <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
     <span class="visually-hidden">Settings</span>
   </a>
@@ -500,9 +528,40 @@
       padding-top: 18px !important;
     }
 
+    .mobile-tab-radio {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     :global(.mobile-tab-bar.svelte-mobile-tab-bar) {
-      --mobile-tab-count: 5 !important;
-      grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+      --mobile-tab-count: 4 !important;
+      left: 16px !important;
+      right: 16px !important;
+      bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      grid-template-rows: minmax(56px, 1fr) !important;
+      min-height: 68px !important;
+      height: auto !important;
+      padding: 6px !important;
+      isolation: isolate !important;
+      overflow: hidden !important;
+      border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent) !important;
+      border-radius: 9999px !important;
+      background: color-mix(in srgb, var(--surface) 58%, transparent) !important;
+      box-shadow:
+        0 16px 42px rgb(0 0 0 / 0.24),
+        inset 0 1px 0 rgb(255 255 255 / 0.18),
+        inset 0 -1px 0 rgb(0 0 0 / 0.08) !important;
+      backdrop-filter: blur(34px) saturate(210%) !important;
+      -webkit-backdrop-filter: blur(34px) saturate(210%) !important;
       transition:
         left 320ms cubic-bezier(.2,.8,.2,1),
         right 320ms cubic-bezier(.2,.8,.2,1),
@@ -513,15 +572,92 @@
         box-shadow 220ms ease !important;
     }
 
-    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(1)) { grid-column: 1 !important; }
-    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(2)) { grid-column: 2 !important; }
-    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(3)) { grid-column: 3 !important; }
-    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(4)) { grid-column: 4 !important; }
-    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab:nth-of-type(5)) { grid-column: 5 !important; }
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar) {
+      background: rgb(24 24 26 / 0.64) !important;
+      border-color: rgb(255 255 255 / 0.22) !important;
+      box-shadow:
+        0 16px 42px rgb(0 0 0 / 0.46),
+        inset 0 1px 0 rgb(255 255 255 / 0.16),
+        inset 0 -1px 0 rgb(0 0 0 / 0.24) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator) {
+      position: absolute !important;
+      z-index: 0 !important;
+      top: 6px !important;
+      bottom: 6px !important;
+      left: 6px !important;
+      width: calc((100% - 12px) / 4) !important;
+      height: auto !important;
+      min-width: 0 !important;
+      border: 1px solid rgb(255 255 255 / 0.52) !important;
+      border-radius: 9999px !important;
+      background: rgb(255 255 255 / 0.24) !important;
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.68),
+        inset 0 -1px 0 rgb(0 0 0 / 0.06),
+        0 8px 20px rgb(0 0 0 / 0.10) !important;
+      opacity: 1 !important;
+      pointer-events: none !important;
+      transform: translateX(0) scaleX(.88);
+      transform-origin: left center;
+      transition:
+        transform 460ms cubic-bezier(.34,1.56,.5,1),
+        border-radius 280ms ease,
+        box-shadow 280ms ease !important;
+      will-change: transform;
+    }
+
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator) {
+      background: rgb(255 255 255 / 0.14) !important;
+      border-color: rgb(255 255 255 / 0.28) !important;
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.25),
+        inset 0 -1px 0 rgb(0 0 0 / 0.20),
+        0 8px 20px rgb(0 0 0 / 0.20) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-home:checked) .mobile-tab-indicator) {
+      transform: translateX(0) scaleX(.88) !important;
+      transform-origin: left center !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-sections:checked) .mobile-tab-indicator) {
+      transform: translateX(100%) scaleX(1) !important;
+      transform-origin: center !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-search:checked) .mobile-tab-indicator) {
+      transform: translateX(200%) scaleX(1) !important;
+      transform-origin: center !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-settings:checked) .mobile-tab-indicator) {
+      transform: translateX(300%) scaleX(.88) !important;
+      transform-origin: right center !important;
+    }
 
     :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab) {
-      transition: opacity 180ms ease, transform 260ms cubic-bezier(.2,.8,.2,1), background 180ms ease, color 180ms ease !important;
+      position: relative !important;
+      z-index: 1 !important;
+      grid-row: 1 !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      min-height: 56px !important;
+      margin: 0 !important;
+      border-radius: 9999px !important;
+      background: transparent !important;
+      transition:
+        color 180ms ease,
+        opacity 180ms ease,
+        transform 260ms cubic-bezier(.2,.8,.2,1) !important;
     }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='home']) { grid-column: 1 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='sections']) { grid-column: 2 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='search']) { grid-column: 3 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='settings']) { grid-column: 4 !important; }
 
     :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav),
     :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav) {
@@ -627,6 +763,7 @@
   @media (prefers-reduced-motion: reduce) {
     :global(.mobile-tab-bar.svelte-mobile-tab-bar),
     :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator),
     :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top),
     .story-cover-secondary-meta {
       transition: none !important;
