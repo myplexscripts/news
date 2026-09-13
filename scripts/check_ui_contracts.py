@@ -126,10 +126,10 @@ def main() -> None:
         'class="brand brand-news"',
         'class="mobile-tab-bar svelte-mobile-tab-bar"',
         'class="mobile-tab-indicator"',
-        "--mobile-tab-count:5",
+        "--mobile-tab-count: 4",
     ), "app shell")
     tab_count = layout.count('class="mobile-tab"') + layout.count('class="mobile-tab mobile-home-tab"')
-    require(tab_count == 5, f"mobile navigation must contain exactly five tab links, found {tab_count}")
+    require(tab_count == 4, f"mobile navigation must contain exactly four tab links, found {tab_count}")
     require("app-tab-bar" not in layout, "temporary generic Svelte tab bar returned")
 
     require_tokens(home, (
