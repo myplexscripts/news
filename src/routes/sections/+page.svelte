@@ -277,6 +277,16 @@
   }
 
   @media (max-width: 760px) {
+    .directory-panel,
+    .source-preference-list,
+    .source-preference-card,
+    .combined-sources-toolbar {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
     .directory-tabs {
       width: 100%;
       margin-bottom: 24px;
@@ -313,6 +323,44 @@
 
     .combined-sources-toolbar {
       margin-bottom: 12px;
+    }
+
+    .source-preference-list {
+      overflow: hidden;
+    }
+
+    .source-preference-card {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) 52px !important;
+      align-items: center !important;
+      gap: 12px !important;
+      overflow: hidden;
+    }
+
+    .source-preference-identity {
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .source-preference-identity > div {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .source-preference-identity h2,
+    .source-preference-identity p {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .source-switch-row {
+      width: 52px;
+      min-width: 52px;
+      max-width: 52px;
+      justify-self: end;
+      margin: 0;
     }
   }
 </style>
