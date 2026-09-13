@@ -62,12 +62,13 @@
       })();
     </script>
     %sveltekit.head%
-    <link rel="stylesheet" href="%sveltekit.assets%/mobile-nav-stable.css?v=20260913-1" />
+    <link rel="stylesheet" href="%sveltekit.assets%/mobile-nav-stable.css?v=20260913-2" />
     <script>
       (() => {
         if (window.__forestCityNavMotion) return;
         window.__forestCityNavMotion = true;
 
+        const root = document.documentElement;
         const mobile = window.matchMedia('(max-width: 760px)');
         const indexes = Object.freeze({ home: 0, sections: 1, search: 2, settings: 3 });
         const transforms = Object.freeze([
@@ -85,6 +86,7 @@
 
         let pendingIndex = null;
         let pendingTimer = 0;
+        let stableVisualBottom = 0;
 
         const getNav = () => document.querySelector('nav.mobile-tab-bar.svelte-mobile-tab-bar');
 
@@ -96,28 +98,40 @@
           return 0;
         };
 
+        const visualBottom = () => {
+          const viewport = window.visualViewport;
+          if (!viewport) return window.innerHeight;
+          return viewport.offsetTop + viewport.height;
+        };
+
+        const editingText = () => {
+          const active = document.activeElement;
+          return active instanceof HTMLElement
+            && active.matches('input, textarea, select, [contenteditable="true"]');
+        };
+
         const forceGeometry = (nav) => {
           if (!nav || !mobile.matches) return;
           const values = {
             position: 'fixed',
             'z-index': '1000',
             top: 'auto',
-            left: '16px',
-            right: '16px',
+            left: 'max(16px, env(safe-area-inset-left))',
+            right: 'max(16px, env(safe-area-inset-right))',
             bottom: 'calc(12px + env(safe-area-inset-bottom))',
             width: 'auto',
             height: '68px',
             'min-height': '68px',
             'max-height': '68px',
             margin: '0',
-            padding: '5px',
+            padding: '6px',
             'box-sizing': 'border-box',
             'box-shadow': 'none',
             filter: 'none',
-            transform: 'none',
+            transform: 'translate3d(0, var(--mobile-nav-viewport-shift, 0px), 0)',
             transition: 'none',
-            'backdrop-filter': 'none',
-            '-webkit-backdrop-filter': 'none',
+            'backdrop-filter': 'blur(30px) saturate(190%)',
+            '-webkit-backdrop-filter': 'blur(30px) saturate(190%)',
             'pointer-events': 'auto'
           };
           for (const [property, value] of Object.entries(values)) {
@@ -129,6 +143,27 @@
           if (!nav) return;
           for (const property of fixedProperties) nav.style.removeProperty(property);
           nav.querySelector('.mobile-tab-indicator')?.style.removeProperty('transform');
+          root.style.removeProperty('--mobile-nav-viewport-shift');
+        };
+
+        const syncViewportShift = () => {
+          if (!mobile.matches) {
+            root.style.removeProperty('--mobile-nav-viewport-shift');
+            return;
+          }
+
+          const currentBottom = visualBottom();
+          if (!stableVisualBottom || currentBottom > stableVisualBottom) {
+            stableVisualBottom = currentBottom;
+          }
+
+          const searchRoute = routeIndex() === 2;
+          const shouldHoldPosition = searchRoute || editingText();
+          const lostHeight = Math.max(0, stableVisualBottom - currentBottom);
+          const shift = shouldHoldPosition && lostHeight > 20 ? Math.round(lostHeight) : 0;
+
+          root.style.setProperty('--mobile-nav-viewport-shift', `${shift}px`);
+          forceGeometry(getNav());
         };
 
         const setIndex = (index) => {
@@ -141,6 +176,7 @@
             forceGeometry(nav);
             const indicator = nav.querySelector('.mobile-tab-indicator');
             indicator?.style.setProperty('transform', transforms[safeIndex], 'important');
+            syncViewportShift();
           }
           return true;
         };
@@ -174,34 +210,56 @@
         };
 
         const ensureNav = (attempt = 0) => {
-          if (setIndex(pendingIndex ?? routeIndex())) return;
+          if (setIndex(pendingIndex ?? routeIndex())) {
+            stableVisualBottom = Math.max(stableVisualBottom, visualBottom());
+            syncViewportShift();
+            return;
+          }
           if (attempt < 120) requestAnimationFrame(() => ensureNav(attempt + 1));
         };
 
         document.addEventListener('pointerdown', previewTab, { capture: true, passive: true });
         document.addEventListener('click', previewTab, { capture: true });
+        document.addEventListener('focusin', () => requestAnimationFrame(syncViewportShift), { passive: true });
+        document.addEventListener('focusout', () => requestAnimationFrame(syncViewportShift), { passive: true });
         window.addEventListener('popstate', () => queueMicrotask(() => syncRoute(true)));
         window.addEventListener('pageshow', () => queueMicrotask(() => syncRoute(true)));
+
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener('resize', syncViewportShift, { passive: true });
+          window.visualViewport.addEventListener('scroll', syncViewportShift, { passive: true });
+        }
 
         const originalPushState = history.pushState.bind(history);
         history.pushState = (...args) => {
           const result = originalPushState(...args);
-          queueMicrotask(() => syncRoute());
+          queueMicrotask(() => {
+            syncRoute();
+            syncViewportShift();
+          });
           return result;
         };
 
         const originalReplaceState = history.replaceState.bind(history);
         history.replaceState = (...args) => {
           const result = originalReplaceState(...args);
-          queueMicrotask(() => syncRoute());
+          queueMicrotask(() => {
+            syncRoute();
+            syncViewportShift();
+          });
           return result;
         };
 
         const handleViewportChange = () => {
           const nav = getNav();
           if (!nav) return;
-          if (mobile.matches) setIndex(pendingIndex ?? routeIndex());
-          else clearGeometry(nav);
+          if (mobile.matches) {
+            stableVisualBottom = Math.max(stableVisualBottom, visualBottom());
+            setIndex(pendingIndex ?? routeIndex());
+            syncViewportShift();
+          } else {
+            clearGeometry(nav);
+          }
         };
 
         if (typeof mobile.addEventListener === 'function') {
