@@ -6,15 +6,15 @@
     position: fixed !important;
     z-index: 1000 !important;
     top: auto !important;
-    left: 16px !important;
-    right: 16px !important;
+    left: max(16px, env(safe-area-inset-left)) !important;
+    right: max(16px, env(safe-area-inset-right)) !important;
     bottom: calc(12px + env(safe-area-inset-bottom)) !important;
     width: auto !important;
     height: 68px !important;
     min-height: 68px !important;
     max-height: 68px !important;
     margin: 0 !important;
-    padding: 5px !important;
+    padding: 6px !important;
     box-sizing: border-box !important;
     display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
@@ -26,20 +26,20 @@
     overflow: hidden !important;
     border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent) !important;
     border-radius: 9999px !important;
-    background: color-mix(in srgb, var(--surface) 92%, transparent) !important;
+    background: color-mix(in srgb, var(--surface) 66%, transparent) !important;
     outline: 0 !important;
     box-shadow: none !important;
     filter: none !important;
-    transform: none !important;
+    transform: translate3d(0, var(--mobile-nav-viewport-shift, 0px), 0) !important;
     transition: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    backdrop-filter: blur(30px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
     pointer-events: auto !important;
   }
 
   html[data-theme='dark'] body nav.mobile-tab-bar.svelte-mobile-tab-bar,
   html[data-theme='dark'] body nav.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav {
-    background: rgb(24 24 26 / 0.94) !important;
+    background: rgb(24 24 26 / 0.68) !important;
     border-color: rgb(255 255 255 / 0.20) !important;
   }
 
@@ -57,29 +57,29 @@
   html body nav.mobile-tab-bar.svelte-mobile-tab-bar > .mobile-tab-indicator {
     position: absolute !important;
     z-index: 0 !important;
-    top: 5px !important;
-    bottom: 5px !important;
-    left: 5px !important;
-    width: calc((100% - 10px) / 4) !important;
+    top: 6px !important;
+    bottom: 6px !important;
+    left: 6px !important;
+    width: calc((100% - 12px) / 4) !important;
     height: auto !important;
     min-width: 0 !important;
     margin: 0 !important;
-    border: 1px solid rgb(255 255 255 / 0.38) !important;
+    border: 1px solid rgb(255 255 255 / 0.42) !important;
     border-radius: 9999px !important;
-    background: rgb(255 255 255 / 0.20) !important;
+    background: color-mix(in srgb, var(--accent) 16%, rgb(255 255 255 / 0.16)) !important;
     box-shadow: none !important;
     filter: none !important;
     opacity: 1 !important;
     pointer-events: none !important;
     transform-origin: center center !important;
-    transition: transform 280ms cubic-bezier(.22, 1, .36, 1) !important;
+    transition: transform 300ms cubic-bezier(.22, 1, .36, 1) !important;
     will-change: transform !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
 
   html[data-theme='dark'] body nav.mobile-tab-bar.svelte-mobile-tab-bar > .mobile-tab-indicator {
-    background: rgb(255 255 255 / 0.13) !important;
+    background: color-mix(in srgb, var(--accent) 18%, rgb(255 255 255 / 0.10)) !important;
     border-color: rgb(255 255 255 / 0.24) !important;
     box-shadow: none !important;
   }
