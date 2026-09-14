@@ -29,36 +29,40 @@ def modern_html() -> str:
           }
         }
         </script>
-        <script>
-        window.__STATE__ = {
-          "article": {
-            "headline": "Current CTV article",
-            "canonical_url": "/canada/article/example",
-            "content_elements": [
-              {
-                "type": "image",
-                "imageUrl": "https://cloudfront.example.test/inline-modern.jpg",
-                "width": 1200,
-                "height": 800,
-                "caption": "Inline CTV article photo"
-              }
-            ]
-          },
-          "related": [
-            {
-              "headline": "Another story",
-              "canonical_url": "/canada/article/another-story",
-              "content_elements": [
+        <script id="__NEXT_DATA__" type="application/json">
+        {
+          "props": {
+            "pageProps": {
+              "article": {
+                "headline": "Current CTV article",
+                "canonical_url": "/canada/article/example",
+                "content_elements": [
+                  {
+                    "type": "image",
+                    "imageUrl": "https://cloudfront.example.test/inline-modern.jpg",
+                    "width": 1200,
+                    "height": 800,
+                    "caption": "Inline CTV article photo"
+                  }
+                ]
+              },
+              "related": [
                 {
-                  "type": "image",
-                  "imageUrl": "https://cloudfront.example.test/unrelated-related.jpg",
-                  "width": 1200,
-                  "height": 800
+                  "headline": "Another story",
+                  "canonical_url": "/canada/article/another-story",
+                  "content_elements": [
+                    {
+                      "type": "image",
+                      "imageUrl": "https://cloudfront.example.test/unrelated-related.jpg",
+                      "width": 1200,
+                      "height": 800
+                    }
+                  ]
                 }
               ]
             }
-          ]
-        };
+          }
+        }
         </script>
       </head>
       <body>
@@ -94,7 +98,7 @@ def test_modern_ctv_recovers_only_current_article_images() -> None:
     assert urls == [
         "https://cloudfront.example.test/hero-modern.jpg",
         "https://cloudfront.example.test/inline-modern.jpg",
-    ]
+    ], urls
     assert "https://cloudfront.example.test/author-headshot.jpg" not in urls
     assert "https://cloudfront.example.test/unrelated-related.jpg" not in urls
 
