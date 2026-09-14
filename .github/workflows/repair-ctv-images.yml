@@ -1,0 +1,90 @@
+name: Repair CTV images
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/repair_ctv_photos_v2.py'
+      - 'scripts/test_ctv_photo_repair_v2.py'
+      - '.github/workflows/repair-ctv-images.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: repair-ctv-images-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install collector dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test CTV image recovery
+        run: python scripts/test_ctv_photo_repair_v2.py
+
+      - name: Recover current CTV images
+        run: python scripts/repair_ctv_photos_v2.py --limit 200
+
+      - name: Save repaired snapshot
+        shell: bash
+        run: cp data/news.json /tmp/ctv-repaired-news.json
+
+      - name: Publish repaired CTV data on newest main
+        id: publish
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3 4; do
+            echo "Preparing CTV repair push attempt $attempt/4"
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard "origin/$GITHUB_REF_NAME"
+
+            python scripts/merge_enriched_output.py \
+              /tmp/ctv-repaired-news.json \
+              data/news.json \
+              /tmp/news-merged.json
+            mv /tmp/news-merged.json data/news.json
+            python scripts/run_audit.py --sample-per-source 10
+
+            git add data/news.json data/audit.json
+            if git diff --cached --quiet; then
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git commit -m "Repair CTV article images"
+            if git push origin "HEAD:$GITHUB_REF_NAME"; then
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            sleep $((attempt * 2))
+          done
+
+          echo "CTV image repair could not publish after 4 retries" >&2
+          exit 1
+
+      - name: Deploy repaired site
+        if: steps.publish.outputs.changed == 'true' && github.ref_name == 'main'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main
