@@ -15,9 +15,9 @@ npm run dev
 
 ## App structure
 
-- `src/routes/+layout.svelte` owns the persistent shell, route lifecycle, appearance and article chrome.
-- `src/lib/components/AppNavigation.svelte` is the single primary navigation implementation, shared across phone and desktop layouts. Use SvelteKit navigation APIs; do not patch browser history or add a second tab animation script.
-- `src/styles/app-system.css` owns shared interface sizing, motion and accessibility rules. Editorial content keeps its existing layout and image proportions.
+- `src/routes/+layout.svelte` owns the persistent shell and the original four-icon mobile navigation: Home, Sections, Search and Settings.
+- `public/mobile-nav-stable.css` preserves the navigation geometry and sliding indicator. It must be copied into the production build; `static` is not this project's asset directory.
+- The early navigation animation in `src/app.html` provides immediate touch feedback. Do not add labelled tabs, additional destinations or whole-page transitions without an explicit request.
 - `src/lib/newsData.js` shares feed and article requests. Cached feed data can render synchronously when returning to a screen.
 - Home, Search and Sections expose SvelteKit snapshots for Back/Forward restoration. Article requests discard superseded results.
 - `src/pages` and `src/layouts` contain the legacy Astro implementation. The deployed app uses `src/routes`.

@@ -2,8 +2,8 @@
 """Fail CI when Forest City News UI invariants regress.
 
 This checks both the visual design contracts and the frontend structure that those
-styles depend on. Navigation has one persistent Svelte owner; editorial components
-retain their established structure.
+styles depend on. The Svelte app must preserve the established Forest City News
+shell/component class names instead of replacing them with a parallel generic UI.
 """
 
 from __future__ import annotations
@@ -87,7 +87,6 @@ def main() -> None:
     feed = FEED_CSS.read_text(encoding="utf-8")
     app_html = APP_HTML.read_text(encoding="utf-8")
     layout = LAYOUT.read_text(encoding="utf-8")
-    navigation = (ROOT / "src/lib/components/AppNavigation.svelte").read_text(encoding="utf-8")
     home = HOME.read_text(encoding="utf-8")
     card = CARD.read_text(encoding="utf-8")
     sections = SECTIONS.read_text(encoding="utf-8")
@@ -108,7 +107,7 @@ def main() -> None:
         require(token in ui, f"missing required UI token: {token}")
 
     require("Shared Liquid Glass material" not in feed, "legacy shared Liquid Glass block returned")
-    require("backdrop-filter: blur(20px)" in navigation, "shared navigation material is missing")
+    require(".mobile-tab-bar" in ui and "backdrop-filter: blur(34px)" in ui, "mobile nav Liquid Glass is missing")
 
     require("border: 1px solid var(--ui-border)" not in ui, "persistent control outlines returned")
     require("border: 1px solid var(--ui-selected-border)" not in ui, "selected segment outline returned")
@@ -125,19 +124,13 @@ def main() -> None:
         'class="site-header"',
         "site-header-home",
         'class="brand brand-news"',
-        '<AppNavigation {currentPath} />',
+        'class="mobile-tab-bar svelte-mobile-tab-bar"',
+        'class="mobile-tab-indicator"',
+        "--mobile-tab-count: 4",
     ), "app shell")
-    require_tokens(navigation, (
-        'aria-label="Primary navigation"',
-        'aria-current=',
-        "prefers-reduced-motion: reduce",
-        "env(safe-area-inset-bottom)",
-        "min-height: 44px",
-        "data-sveltekit-preload-code",
-    ), "navigation")
-    require(navigation.count("{ path:") == 5, "navigation must expose Home, Sections, Saved, Search and Settings")
-    require("history.pushState =" not in app_html, "navigation must not patch browser history")
-    require("mobile-tab-indicator" not in layout, "duplicate navigation implementation returned")
+    tab_count = layout.count('class="mobile-tab"') + layout.count('class="mobile-tab mobile-home-tab"')
+    require(tab_count == 4, f"mobile navigation must contain exactly four tab links, found {tab_count}")
+    require("app-tab-bar" not in layout, "temporary generic Svelte tab bar returned")
 
     require_tokens(home, (
         'class="home-page card-home editorial-home"',

@@ -1,8 +1,6 @@
 <script>
   import { browser } from '$app/environment';
   import { onMount } from 'svelte';
-  import { afterNavigate, goto, preloadCode } from '$app/navigation';
-  import AppNavigation from '$lib/components/AppNavigation.svelte';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
   import { initialiseAppState, userState } from '$lib/appState';
@@ -16,23 +14,11 @@
   import '../styles/mobile-card-fixes.css';
   import '../styles/polish.css';
   import '../styles/svelte-app.css';
-  import '../styles/app-system.css';
-
-  let canGoBack = false;
-  let routeStage;
-  let routeAnimation;
-  afterNavigate(({ from, to }) => {
-    canGoBack = !!from;
-    document.documentElement.classList.toggle('story-route', !!to?.url.pathname.includes('/story/'));
-    if (!from || from.url.pathname === to?.url.pathname) return;
-    routeAnimation?.cancel();
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      routeAnimation = routeStage?.animate([{ opacity: 0.65 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
-    }
-  });
 
   let homeDate = formatHomeDate(new Date());
   let homeUpdated = '';
+  let isBackToTop = false;
+  let storyCompactNav = false;
   let storyMetaVisible = false;
   let shellFeed;
 
@@ -108,7 +94,9 @@
   $: storyReadMinutes = storyMeta && Number(storyMeta.word_count) > 0
     ? Math.max(1, Math.round(Number(storyMeta.word_count) / 220))
     : null;
+  $: if (!onHome) isBackToTop = false;
   $: if (!onStory) {
+    storyCompactNav = false;
     storyMetaVisible = false;
   }
   $: if (browser && currentPath) queueMicrotask(syncScrollChrome);
@@ -116,6 +104,19 @@
 
   function activeIcon(active, icon) {
     return active ? `ph-fill ph-${icon}` : `ph ph-${icon}`;
+  }
+
+  function handleHomeTab(event) {
+    if (!onHome || !isBackToTop) return;
+    event.preventDefault();
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  }
+
+  function handleStoryBackToTop() {
+    if (!browser) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
   }
 
   function syncStoryHeroAuthor(attempt = 0) {
@@ -139,16 +140,21 @@
   function syncScrollChrome() {
     if (!browser) return;
 
+    if (onHome) {
+      const threshold = Math.min(420, Math.max(240, window.innerHeight * 0.38));
+      isBackToTop = window.scrollY > threshold;
+    } else {
+      isBackToTop = false;
+    }
+
     const storyScroll = onStory ? window.scrollY : 0;
     storyMetaVisible = onStory && storyScroll > 34;
+    storyCompactNav = onStory && storyScroll > Math.max(84, window.innerHeight * 0.09);
     document.body.classList.toggle('story-meta-visible', storyMetaVisible);
   }
 
   onMount(() => {
     initialiseAppState().catch(() => {});
-    const preloadTimer = window.setTimeout(() => {
-      if (!navigator.connection?.saveData) preloadCode(`${base}/*`).catch(() => {});
-    }, 300);
 
     loadFeed().then((feed) => {
       shellFeed = feed;
@@ -174,8 +180,6 @@
 
     return () => {
       unsubscribe();
-      clearTimeout(preloadTimer);
-      routeAnimation?.cancel();
       document.body.classList.remove('story-meta-visible');
       window.removeEventListener('scroll', syncScrollChrome);
       window.removeEventListener('resize', syncScrollChrome);
@@ -194,9 +198,6 @@
   <div class:home-header-inner={onHome} class="shell header-inner header-inner-simple">
     <div class="brand-area">
       {#if onStory}
-        <button class="icon-button reader-back" type="button" aria-label="Back" on:click={() => canGoBack ? history.back() : goto(`${base}/`)}>
-          <i class="ph ph-caret-left" aria-hidden="true"></i>
-        </button>
         <a
           class="brand brand-story-source"
           href={`${base}/`}
@@ -249,7 +250,7 @@
   </div>
 {/if}
 
-<div class="svelte-route-stage" bind:this={routeStage}>
+<div class="svelte-route-stage">
   <slot />
 </div>
 
@@ -261,11 +262,88 @@
   <span>Times shown in London, Ontario</span>
 </footer>
 
-<AppNavigation {currentPath} />
+<nav
+  class:storyCompactNav={onStory && storyCompactNav}
+  class="mobile-tab-bar svelte-mobile-tab-bar"
+  aria-label="Primary navigation"
+>
+  <span class="mobile-tab-indicator" aria-hidden="true"></span>
+
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-home"
+    checked={onHome || onStory}
+    tabindex="-1"
+    aria-hidden="true"
+  />
+  <a
+    class:active={onHome || onStory}
+    class:is-back-to-top={onHome && isBackToTop}
+    class="mobile-tab mobile-home-tab"
+    data-mobile-tab="home"
+    href={`${base}/`}
+    data-sveltekit-preload-data="tap"
+    aria-label={onHome && isBackToTop ? 'Back to top' : 'Home'}
+    title={onHome && isBackToTop ? 'Back to top' : 'Home'}
+    aria-current={onHome ? 'page' : undefined}
+    on:click={handleHomeTab}
+  >
+    <i class={onStory && storyCompactNav ? 'ph-fill ph-house' : onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
+    <span class="visually-hidden">Home</span>
+  </a>
+
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-sections"
+    checked={onDirectory}
+    tabindex="-1"
+    aria-hidden="true"
+  />
+  <a class:active={onDirectory} class="mobile-tab" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
+    <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
+    <span class="visually-hidden">Sections</span>
+  </a>
+
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-search"
+    checked={onSearch}
+    tabindex="-1"
+    aria-hidden="true"
+  />
+  <a class:active={onSearch} class="mobile-tab" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
+    <i class={activeIcon(onSearch, 'magnifying-glass')} aria-hidden="true"></i>
+    <span class="visually-hidden">Search</span>
+  </a>
+
+  <input
+    class="mobile-tab-radio"
+    type="radio"
+    name="mobile-primary-nav"
+    id="mobile-tab-settings"
+    checked={onSettings}
+    tabindex="-1"
+    aria-hidden="true"
+  />
+  <a class:active={onSettings} class="mobile-tab" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
+    <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
+    <span class="visually-hidden">Settings</span>
+  </a>
+
+  {#if onStory}
+    <button class="story-back-to-top" type="button" aria-label="Back to top" title="Back to top" on:click={handleStoryBackToTop}>
+      <i class="ph ph-arrow-up" aria-hidden="true"></i>
+    </button>
+  {/if}
+</nav>
 
 <style>
-  .reader-back { flex: 0 0 44px; margin-right: 8px; }
-  .brand-area { display: flex; align-items: center; min-width: 0; }
   .brand::after,
   .brand > span::after {
     content: none !important;
@@ -356,6 +434,9 @@
     font-size: 15px !important;
   }
 
+  .story-back-to-top {
+    display: none;
+  }
 
   :global(body:has(.svelte-article-page) .article-cover-source) {
     visibility: visible !important;
@@ -447,9 +528,245 @@
       padding-top: 18px !important;
     }
 
+    .mobile-tab-radio {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar) {
+      --mobile-tab-count: 4 !important;
+      left: 16px !important;
+      right: 16px !important;
+      bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+      display: grid !important;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      grid-template-rows: minmax(56px, 1fr) !important;
+      min-height: 68px !important;
+      height: auto !important;
+      padding: 6px !important;
+      isolation: isolate !important;
+      overflow: hidden !important;
+      border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent) !important;
+      border-radius: 9999px !important;
+      background: color-mix(in srgb, var(--surface) 58%, transparent) !important;
+      box-shadow:
+        0 16px 42px rgb(0 0 0 / 0.24),
+        inset 0 1px 0 rgb(255 255 255 / 0.18),
+        inset 0 -1px 0 rgb(0 0 0 / 0.08) !important;
+      backdrop-filter: blur(34px) saturate(210%) !important;
+      -webkit-backdrop-filter: blur(34px) saturate(210%) !important;
+      transition:
+        left 320ms cubic-bezier(.2,.8,.2,1),
+        right 320ms cubic-bezier(.2,.8,.2,1),
+        min-height 320ms cubic-bezier(.2,.8,.2,1),
+        padding 320ms cubic-bezier(.2,.8,.2,1),
+        border-color 220ms ease,
+        background 220ms ease,
+        box-shadow 220ms ease !important;
+    }
+
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar) {
+      background: rgb(24 24 26 / 0.64) !important;
+      border-color: rgb(255 255 255 / 0.22) !important;
+      box-shadow:
+        0 16px 42px rgb(0 0 0 / 0.46),
+        inset 0 1px 0 rgb(255 255 255 / 0.16),
+        inset 0 -1px 0 rgb(0 0 0 / 0.24) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator) {
+      position: absolute !important;
+      z-index: 0 !important;
+      top: 6px !important;
+      bottom: 6px !important;
+      left: 6px !important;
+      width: calc((100% - 12px) / 4) !important;
+      height: auto !important;
+      min-width: 0 !important;
+      border: 1px solid rgb(255 255 255 / 0.52) !important;
+      border-radius: 9999px !important;
+      background: rgb(255 255 255 / 0.24) !important;
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.68),
+        inset 0 -1px 0 rgb(0 0 0 / 0.06),
+        0 8px 20px rgb(0 0 0 / 0.10) !important;
+      opacity: 1 !important;
+      pointer-events: none !important;
+      transform: translateX(0) scaleX(.88);
+      transform-origin: left center;
+      transition:
+        transform 460ms cubic-bezier(.34,1.56,.5,1),
+        border-radius 280ms ease,
+        box-shadow 280ms ease !important;
+      will-change: transform;
+    }
+
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator) {
+      background: rgb(255 255 255 / 0.14) !important;
+      border-color: rgb(255 255 255 / 0.28) !important;
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.25),
+        inset 0 -1px 0 rgb(0 0 0 / 0.20),
+        0 8px 20px rgb(0 0 0 / 0.20) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-home:checked) .mobile-tab-indicator) {
+      transform: translateX(0) scaleX(.88) !important;
+      transform-origin: left center !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-sections:checked) .mobile-tab-indicator) {
+      transform: translateX(100%) scaleX(1) !important;
+      transform-origin: center !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-search:checked) .mobile-tab-indicator) {
+      transform: translateX(200%) scaleX(1) !important;
+      transform-origin: center !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-settings:checked) .mobile-tab-indicator) {
+      transform: translateX(300%) scaleX(.88) !important;
+      transform-origin: right center !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab) {
+      position: relative !important;
+      z-index: 1 !important;
+      grid-row: 1 !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: none !important;
+      min-height: 56px !important;
+      margin: 0 !important;
+      border-radius: 9999px !important;
+      background: transparent !important;
+      transition:
+        color 180ms ease,
+        opacity 180ms ease,
+        transform 260ms cubic-bezier(.2,.8,.2,1) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='home']) { grid-column: 1 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='sections']) { grid-column: 2 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='search']) { grid-column: 3 !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab[data-mobile-tab='settings']) { grid-column: 4 !important; }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav),
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav) {
+      left: 14px !important;
+      right: 14px !important;
+      min-height: 64px !important;
+      grid-template-columns: 64px 64px !important;
+      justify-content: space-between !important;
+      gap: 0 !important;
+      padding: 0 !important;
+      overflow: visible !important;
+      border: 0 !important;
+      outline: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      filter: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      pointer-events: none;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav::before),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav::after),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .mobile-tab-indicator) {
+      display: none !important;
+      content: none !important;
+      opacity: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-tab:not(.mobile-home-tab)) {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(10px) scale(0.7) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab) {
+      grid-column: 1 !important;
+      width: 64px !important;
+      height: 64px !important;
+      min-height: 64px !important;
+      border-radius: 50% !important;
+      color: var(--accent) !important;
+      pointer-events: auto !important;
+      transform: scale(1) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top) {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--ink);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px) scale(0.72);
+      transition: opacity 200ms ease, transform 300ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
+      border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent) !important;
+      background: color-mix(in srgb, var(--surface) 86%, transparent) !important;
+      box-shadow:
+        0 8px 24px rgb(0 0 0 / 0.22),
+        inset 0 1px 0 rgb(255 255 255 / 0.28),
+        inset 0 -1px 0 rgb(0 0 0 / 0.10) !important;
+      backdrop-filter: blur(34px) saturate(220%) !important;
+      -webkit-backdrop-filter: blur(34px) saturate(220%) !important;
+    }
+
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab),
+    :global(html[data-theme='dark'] .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
+      background: rgb(28 28 30 / 0.86) !important;
+      border-color: rgb(255 255 255 / 0.18) !important;
+      box-shadow:
+        0 9px 26px rgb(0 0 0 / 0.34),
+        inset 0 1px 0 rgb(255 255 255 / 0.22),
+        inset 0 -1px 0 rgb(0 0 0 / 0.34) !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top i),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab i) {
+      font-size: 24px !important;
+    }
+
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top) {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .story-cover-secondary-meta { transition: none !important; }
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator),
+    :global(.mobile-tab-bar.svelte-mobile-tab-bar .story-back-to-top),
+    .story-cover-secondary-meta {
+      transition: none !important;
+    }
   }
 </style>

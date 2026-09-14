@@ -309,3 +309,153 @@ body .card-source-mark-slot {
     height: 250px;
   }
 }
+
+/* Keep the mobile app navigation as one stable viewport-fixed control. */
+@media (max-width: 760px) {
+  html body .mobile-tab-bar.svelte-mobile-tab-bar,
+  html body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav,
+  html[data-theme='dark'] body .mobile-tab-bar.svelte-mobile-tab-bar,
+  html[data-theme='dark'] body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav {
+    position: fixed !important;
+    z-index: 110 !important;
+    top: auto !important;
+    left: max(16px, env(safe-area-inset-left)) !important;
+    right: max(16px, env(safe-area-inset-right)) !important;
+    bottom: calc(12px + env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    height: 68px !important;
+    min-height: 68px !important;
+    max-height: 68px !important;
+    box-sizing: border-box !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-rows: 56px !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 6px !important;
+    overflow: hidden !important;
+    isolation: isolate !important;
+    pointer-events: auto !important;
+    border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent) !important;
+    border-radius: 9999px !important;
+    outline: 0 !important;
+    background: color-mix(in srgb, var(--surface) 66%, transparent) !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+    backdrop-filter: blur(30px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(190%) !important;
+  }
+
+  html[data-theme='dark'] body .mobile-tab-bar.svelte-mobile-tab-bar,
+  html[data-theme='dark'] body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav {
+    background: rgb(24 24 26 / 0.68) !important;
+    border-color: rgb(255 255 255 / 0.20) !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator,
+  html body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .mobile-tab-indicator {
+    display: block !important;
+    position: absolute !important;
+    z-index: 0 !important;
+    top: 6px !important;
+    bottom: 6px !important;
+    left: 6px !important;
+    width: calc((100% - 12px) / 4) !important;
+    height: auto !important;
+    min-width: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+    border: 1px solid rgb(255 255 255 / 0.42) !important;
+    border-radius: 9999px !important;
+    background: color-mix(in srgb, var(--accent) 16%, rgb(255 255 255 / 0.16)) !important;
+    box-shadow: none !important;
+    filter: none !important;
+    transform: translate3d(0, 0, 0) !important;
+    transform-origin: center !important;
+    transition: transform 420ms cubic-bezier(.22,.78,.22,1) !important;
+    will-change: transform;
+  }
+
+  html[data-theme='dark'] body .mobile-tab-bar.svelte-mobile-tab-bar .mobile-tab-indicator,
+  html[data-theme='dark'] body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .mobile-tab-indicator {
+    background: color-mix(in srgb, var(--accent) 18%, rgb(255 255 255 / 0.10)) !important;
+    border-color: rgb(255 255 255 / 0.24) !important;
+    box-shadow: none !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab,
+  html body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-tab,
+  html body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-tab:not(.mobile-home-tab),
+  html body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav > a.mobile-home-tab {
+    position: relative !important;
+    z-index: 1 !important;
+    grid-row: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    display: grid !important;
+    place-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    border: 0 !important;
+    border-radius: 9999px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar > a.mobile-tab i {
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar.storyCompactNav .story-back-to-top {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-home:checked) .mobile-tab-indicator {
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-sections:checked) .mobile-tab-indicator {
+    transform: translate3d(100%, 0, 0) !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-search:checked) .mobile-tab-indicator {
+    transform: translate3d(200%, 0, 0) !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-settings:checked) .mobile-tab-indicator {
+    transform: translate3d(300%, 0, 0) !important;
+  }
+
+  /* Begin the slide on touch-down instead of waiting for the new route to finish. */
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-home):has(a[data-mobile-tab='home']:active) .mobile-tab-indicator {
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-home):has(a[data-mobile-tab='sections']:active) .mobile-tab-indicator {
+    transform: translate3d(100%, 0, 0) !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-home):has(a[data-mobile-tab='search']:active) .mobile-tab-indicator {
+    transform: translate3d(200%, 0, 0) !important;
+  }
+
+  html body .mobile-tab-bar.svelte-mobile-tab-bar:has(#mobile-tab-home):has(a[data-mobile-tab='settings']:active) .mobile-tab-indicator {
+    transform: translate3d(300%, 0, 0) !important;
+  }
+}

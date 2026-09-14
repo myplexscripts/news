@@ -62,6 +62,117 @@
       })();
     </script>
     %sveltekit.head%
+    <link rel="stylesheet" href="%sveltekit.assets%/mobile-nav-stable.css?v=20260914-1" />
+    <script>
+      (() => {
+        if (window.__forestCityNavMotion) return;
+        window.__forestCityNavMotion = true;
+
+        const mobile = window.matchMedia('(max-width: 760px)');
+        const indexes = Object.freeze({ home: 0, sections: 1, search: 2, settings: 3 });
+        const transforms = Object.freeze([
+          'translate3d(0%, 0, 0)',
+          'translate3d(100%, 0, 0)',
+          'translate3d(200%, 0, 0)',
+          'translate3d(300%, 0, 0)'
+        ]);
+
+        let pendingIndex = null;
+        let pendingTimer = 0;
+
+        const getNav = () => document.querySelector('nav.mobile-tab-bar.svelte-mobile-tab-bar');
+
+        const routeIndex = (pathname = window.location.pathname) => {
+          const path = String(pathname).toLowerCase();
+          if (/\/(sections|sources)(\/|$)/.test(path)) return 1;
+          if (/\/search(\/|$)/.test(path)) return 2;
+          if (/\/settings(\/|$)/.test(path)) return 3;
+          return 0;
+        };
+
+        const setIndex = (index) => {
+          const nav = getNav();
+          if (!nav) return false;
+
+          const safeIndex = Math.max(0, Math.min(3, Number(index) || 0));
+          nav.dataset.activeIndex = String(safeIndex);
+
+          if (mobile.matches) {
+            nav.querySelector('.mobile-tab-indicator')?.style.setProperty('transform', transforms[safeIndex], 'important');
+          }
+
+          return true;
+        };
+
+        const syncRoute = (force = false) => {
+          const actual = routeIndex();
+          if (!force && pendingIndex !== null && actual !== pendingIndex) {
+            setIndex(pendingIndex);
+            return;
+          }
+
+          pendingIndex = null;
+          window.clearTimeout(pendingTimer);
+          pendingTimer = 0;
+          setIndex(actual);
+        };
+
+        const previewTab = (event) => {
+          if (!mobile.matches) return;
+          const target = event.target instanceof Element ? event.target : null;
+          const link = target?.closest('a.mobile-tab[data-mobile-tab]');
+          if (!link) return;
+
+          const index = indexes[link.dataset.mobileTab];
+          if (index === undefined) return;
+
+          pendingIndex = index;
+          setIndex(index);
+          window.clearTimeout(pendingTimer);
+          pendingTimer = window.setTimeout(() => syncRoute(true), 1600);
+        };
+
+        const ensureNav = (attempt = 0) => {
+          if (setIndex(pendingIndex ?? routeIndex())) return;
+          if (attempt < 120) requestAnimationFrame(() => ensureNav(attempt + 1));
+        };
+
+        document.addEventListener('pointerdown', previewTab, { capture: true, passive: true });
+        document.addEventListener('click', previewTab, { capture: true });
+        window.addEventListener('popstate', () => queueMicrotask(() => syncRoute(true)));
+        window.addEventListener('pageshow', () => queueMicrotask(() => syncRoute(true)));
+
+        const originalPushState = history.pushState.bind(history);
+        history.pushState = (...args) => {
+          const result = originalPushState(...args);
+          queueMicrotask(() => syncRoute());
+          return result;
+        };
+
+        const originalReplaceState = history.replaceState.bind(history);
+        history.replaceState = (...args) => {
+          const result = originalReplaceState(...args);
+          queueMicrotask(() => syncRoute());
+          return result;
+        };
+
+        const handleViewportChange = () => {
+          if (mobile.matches) setIndex(pendingIndex ?? routeIndex());
+        };
+
+        if (typeof mobile.addEventListener === 'function') {
+          mobile.addEventListener('change', handleViewportChange);
+        } else if (typeof mobile.addListener === 'function') {
+          mobile.addListener(handleViewportChange);
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => ensureNav(), { once: true });
+        } else {
+          ensureNav();
+        }
+      })();
+    </script>
   </head>
   <body data-sveltekit-preload-data="tap">
     <div style="display: contents">%sveltekit.body%</div>

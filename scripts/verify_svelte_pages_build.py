@@ -18,6 +18,7 @@ def main() -> int:
         require(DIST / "index.html", "home page")
         require(DIST / "data" / "app-feed.json", "app feed")
         require(DIST / "sw.js", "service worker")
+        require(DIST / "mobile-nav-stable.css", "mobile navigation stylesheet")
         require(DIST / "manifest.webmanifest", "web app manifest")
 
         story_files = list((DIST / "data" / "stories").glob("*.json"))
