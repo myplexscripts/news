@@ -1,18 +1,20 @@
 <script>
+  import { onDestroy } from 'svelte';
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
   import NewsCard from '$lib/components/NewsCard.svelte';
   import TweetCard from '$lib/components/TweetCard.svelte';
-  import { formatPublished, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
+  import { formatPublished, getCachedFeed, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
   import { markRead } from '$lib/appState';
 
-  let feed;
+  let feed = getCachedFeed();
   let story;
   let currentId = '';
   let error = '';
   let loading = true;
   let readTimer;
+  onDestroy(() => { currentId = ''; clearTimeout(readTimer); });
 
   $: requestedId = String($page.params.id || '');
   $: if (browser && requestedId && requestedId !== currentId) {
@@ -30,7 +32,9 @@
       feed ||= await loadFeed();
       const metadata = (feed.stories || []).find((item) => String(item.id) === id);
       if (!metadata) throw new Error('This story is no longer available.');
-      story = await loadStory(id, metadata);
+      const loaded = await loadStory(id, metadata);
+      if (currentId !== id) return;
+      story = loaded;
 
       readTimer = window.setTimeout(() => {
         if (document.visibilityState === 'visible' && currentId === id) {
@@ -38,9 +42,10 @@
         }
       }, 1200);
     } catch (reason) {
+      if (currentId !== id) return;
       error = reason instanceof Error ? reason.message : 'Unable to open this story.';
     } finally {
-      loading = false;
+      if (currentId === id) loading = false;
     }
   }
 

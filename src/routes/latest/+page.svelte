@@ -1,10 +1,10 @@
 <script>
   import { onMount } from 'svelte';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { loadFeed, sortNewest } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
-  let feed;
+  let feed = getCachedFeed();
   let error = '';
 
   onMount(async () => {

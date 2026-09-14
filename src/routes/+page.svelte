@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { loadFeed, scopeForStory, sortNewest } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, scopeForStory, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
   const preferredCategories = [
@@ -25,7 +25,7 @@
 
   const CAROUSEL_DELAY_MS = 7000;
 
-  let feed;
+  let feed = getCachedFeed();
   let error = '';
   let activeScope = 'local';
   let activeCategory = 'All';
@@ -44,6 +44,7 @@
   function scheduleCarouselAdvance() {
     if (typeof window === 'undefined') return;
     clearCarouselTimer();
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     carouselTimer = window.setTimeout(() => {
       carouselTimer = null;
       if (!carouselPaused && !document.hidden && topStories.length > 1) {
@@ -232,6 +233,10 @@
       stories: timelineStories.filter((story) => groupKeyFor(story.cluster_latest_published || story.published, referenceDate) === key)
     }))
     .filter((group) => group.stories.length > 0);
+  export const snapshot = {
+    capture: () => ({ activeScope, activeCategory, activeSlide }),
+    restore: (value) => ({ activeScope, activeCategory, activeSlide } = value)
+  };
 </script>
 
 <svelte:head>

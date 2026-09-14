@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte';
-  import { loadFeed, sortNewest } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, sortNewest } from '$lib/newsData';
 
-  let feed;
+  let feed = getCachedFeed();
   let error = '';
 
   onMount(async () => {

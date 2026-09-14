@@ -1,7 +1,8 @@
 <script>
   import { onMount } from 'svelte';
+  import { replaceState } from '$app/navigation';
   import { base } from '$app/paths';
-  import { loadFeed } from '$lib/newsData';
+  import { getCachedFeed, loadFeed } from '$lib/newsData';
   import { setHiddenSource, revealAllSources, userState } from '$lib/appState';
   import { sourceLogoPath } from '$lib/sourceLogos';
 
@@ -18,7 +19,7 @@
     'Sports': 'ph-trophy'
   }[category] || 'ph-newspaper-clipping');
 
-  let feed;
+  let feed = getCachedFeed();
   let error = '';
   let activeTab = 'sections';
 
@@ -36,7 +37,7 @@
     const url = new URL(window.location.href);
     if (activeTab === 'sources') url.searchParams.set('tab', 'sources');
     else url.searchParams.delete('tab');
-    history.replaceState(history.state, '', url);
+    replaceState(url, {});
   }
 
   function categoryClass(category = 'Local') {
@@ -83,6 +84,10 @@
   async function toggleSource(source, shown) {
     await setHiddenSource(source.name, !shown).catch(() => {});
   }
+  export const snapshot = {
+    capture: () => ({ activeTab }),
+    restore: (value) => ({ activeTab } = value)
+  };
 </script>
 
 <svelte:head>

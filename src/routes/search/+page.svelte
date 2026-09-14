@@ -1,10 +1,11 @@
 <script>
   import { onMount } from 'svelte';
+  import { replaceState } from '$app/navigation';
   import { page } from '$app/stores';
-  import { loadFeed, resolveAsset, scopeForStory, sortNewest, storyHref } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, resolveAsset, scopeForStory, sortNewest, storyHref } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
-  let feed;
+  let feed = getCachedFeed();
   let error = '';
   let query = '';
   let activeScope = 'all';
@@ -25,7 +26,7 @@
     const url = new URL(window.location.href);
     if (query.trim()) url.searchParams.set('q', query.trim());
     else url.searchParams.delete('q');
-    history.replaceState(history.state, '', url);
+    replaceState(url, {});
   }
 
   function clearSearch() {
@@ -73,6 +74,10 @@
           .join(' ');
         return normalized.split(/\s+/).every((term) => haystack.includes(term));
       }).slice(0, 80);
+  export const snapshot = {
+    capture: () => ({ query, activeScope, activeCategory, activeSource, activeDays }),
+    restore: (value) => ({ query, activeScope, activeCategory, activeSource, activeDays } = value)
+  };
 </script>
 
 <svelte:head>

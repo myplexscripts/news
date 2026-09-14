@@ -1,6 +1,8 @@
 import { base } from '$app/paths';
 
 let feedPromise;
+let cachedFeed;
+export const getCachedFeed = () => cachedFeed;
 const storyPromises = new Map();
 
 const dataUrl = (path) => `${base}/data/${path}`.replace(/\/+/g, '/');
@@ -63,6 +65,7 @@ export async function loadFeed() {
       if (!response.ok) throw new Error(`Unable to load news feed (${response.status})`);
       const feed = await response.json();
       feed.stories = Array.isArray(feed.stories) ? feed.stories.map(feedCard) : [];
+      cachedFeed = feed;
       return feed;
     })().catch((error) => {
       feedPromise = undefined;
