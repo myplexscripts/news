@@ -7,8 +7,8 @@ import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
-from urllib.parse import urlparse
+from typing import Any, Iterable
+from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup, Tag
 
@@ -18,27 +18,35 @@ import repair_ctv_photos as legacy
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-CTV_PHOTO_SCHEMA = 2
-MAX_PHOTOS = 48
+CTV_PHOTO_SCHEMA = 3
+MAX_PHOTOS = 40
 WORKERS = 6
 
-BODY_KEYS = {
-    "contentelements", "articlebody", "bodyelements", "articlecontent",
-    "storybody", "blocks",
-}
-MEDIA_KEYS = {
-    "contentelements", "images", "image", "photos", "slides", "items",
-    "media", "gallery", "galleries", "promoitems", "leadart",
-    "primaryimage", "multimedia", "renditions", "resizedurls",
-}
+ARTICLE_TYPES = {"article", "newsarticle", "reportagenewsarticle"}
 IMAGE_TYPES = {"image", "photo", "picture", "imageobject"}
 IMAGE_URL_KEYS = (
     "url", "image_url", "imageUrl", "src", "source_url", "sourceUrl",
     "original_url", "originalUrl", "contentUrl", "thumbnailUrl",
     "fullSizeResizeUrl", "resizeUrl", "proxyUrl",
 )
+BODY_KEYS = {
+    "contentelements", "bodyelements", "articlecontent", "storybody", "blocks",
+}
+MEDIA_KEYS = {
+    "contentelements", "images", "image", "photos", "slides", "items",
+    "media", "gallery", "galleries", "promoitems", "leadart", "primaryimage",
+    "multimedia",
+}
+STATE_CONTAINER_KEYS = {
+    "props", "pageprops", "data", "story", "article", "globalcontent",
+    "content", "initialstate", "state", "payload", "result",
+}
 AUTHOR_RE = re.compile(r"(author|byline|avatar|headshot|profile|contributor|writer)", re.I)
-RECIRC_RE = re.compile(r"(related|recommended|newsletter|most-read|trending|recirculation)", re.I)
+CHROME_RE = re.compile(
+    r"(related|recommended|newsletter|most[-_ ]?read|trending|recirculation|sidebar|"
+    r"social|share|navigation|\bnav\b|advert|\bad\b|promo|logo|icon|footer|header)",
+    re.I,
+)
 
 
 def now_iso() -> str:
@@ -47,6 +55,22 @@ def now_iso() -> str:
 
 def clean_key(value: Any) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(value or "").lower())
+
+
+def canonical_page_url(value: Any) -> str:
+    raw = fetch_news.clean_text(value or "")
+    if not raw:
+        return ""
+    try:
+        return fetch_news.canonical_url(raw)
+    except Exception:
+        return raw.split("#", 1)[0].split("?", 1)[0].rstrip("/")
+
+
+def same_page(a: str, b: str) -> bool:
+    left = canonical_page_url(a)
+    right = canonical_page_url(b)
+    return bool(left and right and left == right)
 
 
 def is_ctv_story(story: dict[str, Any]) -> bool:
@@ -145,13 +169,11 @@ def image_url_from_node(node: dict[str, Any], base_url: str) -> str:
 
 
 def node_to_photo(node: dict[str, Any], base_url: str, context: str = "") -> dict[str, Any] | None:
-    if AUTHOR_RE.search(context):
-        return None
     metadata = " ".join(
         str(node.get(key) or "")
         for key in ("type", "@type", "role", "subtype", "alt", "alt_text", "caption")
     )
-    if AUTHOR_RE.search(metadata):
+    if AUTHOR_RE.search(context) or AUTHOR_RE.search(metadata) or CHROME_RE.search(context):
         return None
 
     url = image_url_from_node(node, base_url)
@@ -187,7 +209,7 @@ def looks_like_image(node: dict[str, Any], base_url: str) -> bool:
     )
 
 
-def walk_state(
+def walk_article_media(
     value: Any,
     base_url: str,
     found: list[dict[str, Any]],
@@ -195,29 +217,100 @@ def walk_state(
     context: str = "",
     depth: int = 0,
 ) -> None:
-    if depth > 16 or len(found) >= MAX_PHOTOS:
+    if depth > 12 or len(found) >= MAX_PHOTOS:
         return
     if isinstance(value, list):
         for item in value:
-            walk_state(item, base_url, found, seen, context, depth + 1)
+            walk_article_media(item, base_url, found, seen, context, depth + 1)
         return
-    if not isinstance(value, dict) or AUTHOR_RE.search(context):
+    if not isinstance(value, dict):
+        return
+    if AUTHOR_RE.search(context) or CHROME_RE.search(context):
         return
 
     if looks_like_image(value, base_url):
         add_photo(found, seen, node_to_photo(value, base_url, context))
+        return
 
     for key, child in value.items():
-        key_text = str(key)
         normalized = clean_key(key)
-        if AUTHOR_RE.search(key_text) or RECIRC_RE.search(key_text):
+        key_text = str(key)
+        if AUTHOR_RE.search(key_text) or CHROME_RE.search(key_text):
             continue
-        if (
-            normalized in BODY_KEYS
-            or normalized in MEDIA_KEYS
-            or (depth < 5 and isinstance(child, (dict, list)))
-        ):
-            walk_state(child, base_url, found, seen, f"{context} {key_text}", depth + 1)
+        if normalized in MEDIA_KEYS or normalized in BODY_KEYS:
+            walk_article_media(child, base_url, found, seen, f"{context} {key_text}", depth + 1)
+
+
+def node_page_url(node: dict[str, Any], base_url: str) -> str:
+    for key in ("canonical_url", "canonicalUrl", "website_url", "websiteUrl", "url"):
+        value = node.get(key)
+        if isinstance(value, str) and value.strip():
+            return urljoin(base_url, value.strip())
+    main_entity = node.get("mainEntityOfPage")
+    if isinstance(main_entity, str):
+        return urljoin(base_url, main_entity)
+    if isinstance(main_entity, dict):
+        value = main_entity.get("@id") or main_entity.get("url")
+        if isinstance(value, str):
+            return urljoin(base_url, value)
+    return ""
+
+
+def node_matches_current_article(node: dict[str, Any], base_url: str, context: str) -> bool:
+    candidate_url = node_page_url(node, base_url)
+    if candidate_url:
+        return same_page(candidate_url, base_url)
+    return "globalcontent" in clean_key(context)
+
+
+def is_article_node(node: dict[str, Any], base_url: str, context: str) -> bool:
+    kind = clean_key(node.get("@type") or node.get("type"))
+    if kind in ARTICLE_TYPES:
+        candidate_url = node_page_url(node, base_url)
+        return not candidate_url or same_page(candidate_url, base_url)
+
+    has_body = any(isinstance(node.get(key), list) for key in (
+        "content_elements", "contentElements", "body_elements", "bodyElements", "blocks"
+    ))
+    has_headline = bool(node.get("headline") or node.get("headlines") or node.get("title"))
+    return has_body and has_headline and node_matches_current_article(node, base_url, context)
+
+
+def iter_article_nodes(value: Any, base_url: str, context: str = "", depth: int = 0) -> Iterable[dict[str, Any]]:
+    if depth > 14:
+        return
+    if isinstance(value, list):
+        for item in value:
+            yield from iter_article_nodes(item, base_url, context, depth + 1)
+        return
+    if not isinstance(value, dict):
+        return
+
+    if is_article_node(value, base_url, context):
+        yield value
+        return
+
+    for key, child in value.items():
+        normalized = clean_key(key)
+        if normalized in STATE_CONTAINER_KEYS or (depth < 3 and isinstance(child, (dict, list))):
+            yield from iter_article_nodes(child, base_url, f"{context} {key}", depth + 1)
+
+
+def extract_article_node_photos(
+    node: dict[str, Any],
+    base_url: str,
+    found: list[dict[str, Any]],
+    seen: list[str],
+) -> None:
+    for key in ("image", "primaryImage", "leadArt", "promo_items", "promoItems"):
+        if key in node:
+            walk_article_media(node[key], base_url, found, seen, f"article {key}")
+    for key in (
+        "content_elements", "contentElements", "body_elements", "bodyElements",
+        "articleContent", "storyBody", "blocks",
+    ):
+        if key in node:
+            walk_article_media(node[key], base_url, found, seen, f"article {key}")
 
 
 def parse_script_values(text: str) -> list[Any]:
@@ -245,7 +338,8 @@ def parse_script_values(text: str) -> list[Any]:
             except Exception:
                 cursor = index + len(marker)
                 continue
-            values.append(value)
+            if isinstance(value, dict):
+                values.append({"globalContent": value})
             cursor = index + len(marker) + max(consumed, 1)
 
     if "__next_f.push" in text:
@@ -275,7 +369,6 @@ def metadata_photo(soup: BeautifulSoup, base_url: str) -> dict[str, Any] | None:
         url = normalize_url(tag.get("content"), base_url)
         if not valid_url(url):
             continue
-
         block: dict[str, Any] = {"type": "image", "url": url, "alt": "", "caption": ""}
         width_tag = soup.select_one('meta[property="og:image:width"]')
         height_tag = soup.select_one('meta[property="og:image:height"]')
@@ -293,6 +386,17 @@ def metadata_photo(soup: BeautifulSoup, base_url: str) -> dict[str, Any] | None:
     return None
 
 
+def linked_to_other_story(img: Tag, base_url: str) -> bool:
+    anchor = img.find_parent("a", href=True)
+    if not isinstance(anchor, Tag):
+        return False
+    href = urljoin(base_url, str(anchor.get("href") or ""))
+    path = urlparse(href).path.lower()
+    if "/article/" not in path and "/photos/" not in path:
+        return False
+    return not same_page(href, base_url)
+
+
 def dom_photos(
     soup: BeautifulSoup,
     base_url: str,
@@ -301,34 +405,37 @@ def dom_photos(
 ) -> None:
     roots: list[Tag] = []
     for selector in (
-        "article", "main article", '[data-testid*="article"]',
         '[class*="article-body"]', '[class*="article__body"]',
         '[class*="story-body"]', '[class*="story__body"]',
+        '[data-testid*="article-body"]', "main article", "article",
     ):
         for node in soup.select(selector):
             if isinstance(node, Tag) and node not in roots:
                 roots.append(node)
     if not roots:
-        main = soup.find("main")
-        if isinstance(main, Tag):
-            roots.append(main)
+        return
 
     for root in roots:
         for img in root.find_all("img"):
-            if not isinstance(img, Tag):
+            if not isinstance(img, Tag) or linked_to_other_story(img, base_url):
                 continue
-            parent = img.find_parent(["figure", "aside", "header", "footer"])
-            context = " ".join(
-                (
-                    str(img.get("class") or ""),
-                    str(img.get("id") or ""),
-                    str(img.get("alt") or ""),
-                    str(parent.get("class") if isinstance(parent, Tag) else ""),
-                    str(parent.get("id") if isinstance(parent, Tag) else ""),
-                )
-            )
-            if AUTHOR_RE.search(context) or RECIRC_RE.search(context):
+            ancestor = img.find_parent(["figure", "aside", "header", "footer", "nav"])
+            context = " ".join((
+                str(img.get("class") or ""), str(img.get("id") or ""),
+                str(img.get("alt") or ""),
+                str(ancestor.get("class") if isinstance(ancestor, Tag) else ""),
+                str(ancestor.get("id") if isinstance(ancestor, Tag) else ""),
+            ))
+            if AUTHOR_RE.search(context) or CHROME_RE.search(context):
                 continue
+
+            width = int_value(img.get("width"))
+            height = int_value(img.get("height"))
+            if width and width < 300:
+                continue
+            if height and height < 180:
+                continue
+
             try:
                 url = fetch_news.best_img_url(img, base_url)
             except Exception:
@@ -344,13 +451,10 @@ def dom_photos(
                     caption = fetch_news.clean_text(figcaption.get_text(" ", strip=True), 320)
 
             block: dict[str, Any] = {
-                "type": "image",
-                "url": url,
+                "type": "image", "url": url,
                 "alt": fetch_news.clean_text(img.get("alt") or "", 180),
                 "caption": caption,
             }
-            width = int_value(img.get("width"))
-            height = int_value(img.get("height"))
             if width:
                 block["width"] = width
             if height:
@@ -372,12 +476,26 @@ def extract_ctv_photos(raw: str, base_url: str) -> list[dict[str, Any]]:
         if not text or len(text) < 20:
             continue
         for value in parse_script_values(text):
-            walk_state(value, base_url, found, seen, "publisher-state")
-            if len(found) >= MAX_PHOTOS:
-                return found
+            for article_node in iter_article_nodes(value, base_url):
+                extract_article_node_photos(article_node, base_url, found, seen)
+                if len(found) >= MAX_PHOTOS:
+                    return found
 
     dom_photos(soup, base_url, found, seen)
     return found
+
+
+def reset_polluted_v2_media(story: dict[str, Any]) -> None:
+    if int(story.get("ctv_photo_schema") or 0) != 2:
+        return
+    blocks = story.get("content_blocks")
+    if isinstance(blocks, list):
+        story["content_blocks"] = [
+            block for block in blocks
+            if not (isinstance(block, dict) and block.get("type") == "image")
+        ]
+    story["article_images"] = []
+    story["ctv_photo_count"] = 0
 
 
 def process_story(story: dict[str, Any]) -> tuple[list[dict[str, Any]], str, str]:
@@ -392,7 +510,7 @@ def process_story(story: dict[str, Any]) -> tuple[list[dict[str, Any]], str, str
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Recover current CTV article images.")
+    parser = argparse.ArgumentParser(description="Recover current CTV article images without page-chrome media.")
     parser.add_argument("--limit", type=int, default=160)
     args = parser.parse_args()
 
@@ -426,14 +544,17 @@ def main() -> int:
     changed = 0
     recovered = 0
     missing = 0
+    max_story_photos = 0
     for index, story in enumerate(targets):
         key = str(story.get("id") or story.get("url") or index)
         photos, final_url, error = results.get(key, ([], "", "missing-result"))
         before = json.dumps(story, sort_keys=True, ensure_ascii=False)
 
+        reset_polluted_v2_media(story)
         if photos:
             legacy.merge_photos(story, photos)
             recovered += len(photos)
+            max_story_photos = max(max_story_photos, len(photos))
         else:
             missing += 1
 
@@ -456,8 +577,8 @@ def main() -> int:
         NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(
-        f"CTV image recovery v2: checked={len(targets)}, changed={changed}, "
-        f"images={recovered}, missing={missing}"
+        f"CTV image recovery v3: checked={len(targets)}, changed={changed}, "
+        f"images={recovered}, missing={missing}, max_per_story={max_story_photos}"
     )
     return 0
 
