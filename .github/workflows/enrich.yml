@@ -12,6 +12,8 @@ on:
       - 'scripts/cleanup_london_police_navigation.py'
       - 'scripts/test_london_police_navigation.py'
       - 'scripts/optimize_editorial_images.py'
+      - 'scripts/repair_ctv_photos_v2.py'
+      - 'scripts/test_ctv_photo_repair_v2.py'
       - '.github/workflows/enrich.yml'
 
 permissions:
@@ -60,6 +62,7 @@ jobs:
           python scripts/test_national_post_repair.py
           python scripts/test_source_content_repair.py
           python scripts/test_ctv_photo_repair.py
+          python scripts/test_ctv_photo_repair_v2.py
           python scripts/check_scope_contracts.py
           python scripts/check_local_source_rules.py
 
@@ -93,7 +96,7 @@ jobs:
           python scripts/sanitize_article_blocks.py
           python scripts/trim_article_tails.py
           python scripts/repair_source_content.py --cbc-limit 0
-          python scripts/repair_ctv_photos.py --limit 80
+          python scripts/repair_ctv_photos_v2.py --limit 160
           python scripts/repair_cbc_images.py
           python scripts/repair_cbc_lite_heroes.py
           python scripts/enforce_article_contract.py
