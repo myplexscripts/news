@@ -49,15 +49,15 @@
     <div class="settings-groups">
       <section class="settings-group" aria-labelledby="appearance-heading">
         <h2 id="appearance-heading">Appearance</h2>
-        <div class="settings-card">
+        <div class="settings-card ios-card">
           <div class="settings-row">
             <div class="settings-row-copy">
               <strong>Theme</strong>
               <span>Choose a light or dark reading experience.</span>
             </div>
-            <div class="settings-segmented" aria-label="Theme">
-              <button class:selected={$userState.theme === 'light'} type="button" aria-pressed={$userState.theme === 'light'} on:click={() => preference('theme', 'light')}>Light</button>
-              <button class:selected={$userState.theme === 'dark'} type="button" aria-pressed={$userState.theme === 'dark'} on:click={() => preference('theme', 'dark')}>Dark</button>
+            <div class="settings-segmented ios-segmented" aria-label="Theme">
+              <button class:selected={$userState.theme === 'light'} type="button" aria-pressed={$userState.theme === 'light'} aria-selected={$userState.theme === 'light'} on:click={() => preference('theme', 'light')}>Light</button>
+              <button class:selected={$userState.theme === 'dark'} type="button" aria-pressed={$userState.theme === 'dark'} aria-selected={$userState.theme === 'dark'} on:click={() => preference('theme', 'dark')}>Dark</button>
             </div>
           </div>
 
@@ -88,7 +88,7 @@
 
       <section class="settings-group" aria-labelledby="reading-heading">
         <h2 id="reading-heading">Reading</h2>
-        <div class="settings-card">
+        <div class="settings-card ios-card">
           <div class="settings-row settings-toggle-row">
             <div class="settings-row-copy">
               <strong>Hide read articles</strong>
@@ -114,7 +114,7 @@
                   : 'No articles marked as read.'}
               </span>
             </div>
-            <button class="settings-action-button" type="button" disabled={!$userState.readIds.length} on:click={() => clearRead().catch(() => {})}>Clear history</button>
+            <button class="settings-action-button ios-button ios-button--tinted" type="button" disabled={!$userState.readIds.length} on:click={() => clearRead().catch(() => {})}>Clear history</button>
           </div>
         </div>
         <p class="settings-footnote">Reading history and these preferences are stored only in this browser. They are not tied to an account.</p>
@@ -122,13 +122,13 @@
 
       <section class="settings-group" aria-labelledby="data-heading">
         <h2 id="data-heading">Data</h2>
-        <div class="settings-card">
+        <div class="settings-card ios-card">
           <div class="settings-row">
             <div class="settings-row-copy">
               <strong>Clear all data</strong>
               <span>Reset preferences and remove read history, Read Later items and hidden sources from this device.</span>
             </div>
-            <button class="settings-action-button" type="button" on:click={clearAll}>Clear all data</button>
+            <button class="settings-action-button ios-button ios-button--tinted" type="button" on:click={clearAll}>Clear all data</button>
           </div>
         </div>
       </section>
