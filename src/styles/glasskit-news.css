@@ -1,0 +1,160 @@
+/* Forest City News integration for the GlassKit snapshot vendored from myplexscripts/iOS. */
+:root {
+  --accent: var(--ios-green);
+  --bg: var(--ios-background);
+  --surface: var(--ios-background-tertiary);
+  --surface-subtle: var(--ios-fill-secondary);
+  --ink: var(--ios-label);
+  --muted: var(--ios-label-secondary);
+  --tertiary: var(--ios-label-tertiary);
+  --line: var(--ios-separator);
+  --line-strong: color-mix(in srgb, var(--ios-label) 24%, transparent);
+  --glass: var(--ios-glass);
+  --radius-xl: var(--ios-radius-xl);
+  --radius-lg: var(--ios-radius-l);
+  --radius-md: var(--ios-radius-m);
+  --radius-sm: var(--ios-radius-s);
+  --green: var(--ios-green);
+  --blue: var(--ios-blue);
+  --red: var(--ios-red);
+  --orange: var(--ios-orange);
+  --yellow: var(--ios-yellow);
+  --mint: var(--ios-mint);
+  --teal: var(--ios-teal);
+  --cyan: var(--ios-cyan);
+  --indigo: var(--ios-indigo);
+  --purple: var(--ios-purple);
+  --pink: var(--ios-pink);
+  --brown: var(--ios-brown);
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
+  --ios-label: #000;
+  --ios-label-secondary: rgb(60 60 67 / 60%);
+  --ios-label-tertiary: rgb(60 60 67 / 30%);
+  --ios-background: #fff;
+  --ios-background-secondary: rgb(242 242 247);
+  --ios-background-tertiary: #fff;
+  --ios-fill: rgb(120 120 128 / 20%);
+  --ios-fill-secondary: rgb(120 120 128 / 16%);
+  --ios-separator: rgb(60 60 67 / 29%);
+  --ios-glass: rgb(248 248 248 / 72%);
+  --ios-glass-strong: rgb(250 250 250 / 88%);
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --ios-label: #fff;
+  --ios-label-secondary: rgb(235 235 245 / 60%);
+  --ios-label-tertiary: rgb(235 235 245 / 30%);
+  --ios-background: #000;
+  --ios-background-secondary: rgb(28 28 30);
+  --ios-background-tertiary: rgb(44 44 46);
+  --ios-fill: rgb(120 120 128 / 36%);
+  --ios-fill-secondary: rgb(120 120 128 / 32%);
+  --ios-separator: rgb(84 84 88 / 60%);
+  --ios-glass: rgb(35 35 37 / 72%);
+  --ios-glass-strong: rgb(40 40 42 / 90%);
+}
+
+html,
+body {
+  background: var(--ios-background);
+}
+
+body {
+  color: var(--ios-label);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+
+.news-glasskit-app {
+  min-height: 100svh;
+  background: var(--ios-background);
+  color: var(--ios-label);
+}
+
+.site-header {
+  border-bottom-color: var(--ios-separator);
+  background: var(--ios-glass);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+}
+
+.icon-button,
+.news-card-save {
+  min-width: var(--ios-hit);
+  min-height: var(--ios-hit);
+  border-radius: 999px;
+}
+
+.icon-button:active,
+.news-card-save:active {
+  background: var(--ios-fill-secondary);
+  transform: scale(.96);
+}
+
+.app-chip,
+.section-tab,
+.feed-scope-button {
+  border-radius: 999px;
+}
+
+.app-search-field input,
+.search-input {
+  background: var(--ios-fill-secondary);
+  color: var(--ios-label);
+}
+
+.app-empty,
+.app-error,
+.section-directory-grid,
+.settings-card,
+.source-card {
+  background: var(--ios-background-tertiary);
+}
+
+.news-card.ios-card {
+  border-radius: var(--ios-surface-radius);
+}
+
+.news-card.ios-card .news-card-media {
+  border-radius: var(--ios-surface-radius) var(--ios-surface-radius) 0 0;
+}
+
+.news-card.ios-card .news-card-body {
+  background: var(--ios-background-tertiary);
+}
+
+@media (max-width: 760px) {
+  .news-ios-tabbar-wrap {
+    position: fixed;
+    z-index: 110;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    padding: 0 max(12px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  }
+
+  .mobile-tab-bar.svelte-mobile-tab-bar.ios-tabbar {
+    pointer-events: auto;
+    width: min(100%, 520px);
+    margin-inline: auto;
+  }
+
+  .mobile-tab.ios-tabbar__item {
+    min-height: 52px;
+    color: var(--ios-label-secondary);
+  }
+
+  .mobile-tab.ios-tabbar__item[aria-selected='true'] {
+    color: var(--ios-green);
+  }
+}
+
+@media (min-width: 761px) {
+  .news-ios-tabbar-wrap {
+    display: none;
+  }
+}
