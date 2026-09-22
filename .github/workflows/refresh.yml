@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'scripts/**'
+      # UI-only validation changes must not start a full network news refresh.
+      - '!scripts/check_ui_contracts.py'
       - 'requirements.txt'
       - '.github/workflows/refresh.yml'
       - '.github/workflows/refresh-wake.yml'
