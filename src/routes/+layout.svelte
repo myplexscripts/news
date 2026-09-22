@@ -6,7 +6,6 @@
   import { initialiseAppState, userState } from '$lib/appState';
   import { loadFeed } from '$lib/newsData';
   import { sourceLogoPath } from '$lib/sourceLogos';
-  import { initIOSPlatform } from '$lib/glasskit/platform.js';
 
   import '../styles/glasskit/framework.css';
   import '../styles/global.css';
@@ -24,6 +23,7 @@
   let storyCompactNav = false;
   let storyMetaVisible = false;
   let shellFeed;
+  let glassKit;
 
   function normalizedPath(pathname = '') {
     const withoutBase = base && pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
@@ -158,7 +158,9 @@
 
   onMount(() => {
     initialiseAppState().catch(() => {});
-    const glassKit = initIOSPlatform(document.querySelector('[data-ios-app]'));
+    import('$lib/glasskit/platform.js').then(({ initIOSPlatform }) => {
+      glassKit = initIOSPlatform(document.querySelector('[data-ios-app]'));
+    }).catch(() => {});
 
     loadFeed().then((feed) => {
       shellFeed = feed;
@@ -272,7 +274,7 @@
 <div class="ios-tabbar-wrap news-ios-tabbar-wrap">
 <nav
   class:storyCompactNav={onStory && storyCompactNav}
-  class="mobile-tab-bar svelte-mobile-tab-bar ios-tabbar"
+  class="mobile-tab-bar svelte-mobile-tab-bar"
   aria-label="Primary navigation"
 >
   <span class="mobile-tab-indicator" aria-hidden="true"></span>
@@ -289,7 +291,7 @@
   <a
     class:active={onHome || onStory}
     class:is-back-to-top={onHome && isBackToTop}
-    class="mobile-tab mobile-home-tab ios-tabbar__item"
+    class="mobile-tab mobile-home-tab"
     data-mobile-tab="home"
     href={`${base}/`}
     data-sveltekit-preload-data="tap"
@@ -312,7 +314,7 @@
     tabindex="-1"
     aria-hidden="true"
   />
-  <a class:active={onDirectory} class="mobile-tab ios-tabbar__item" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined} aria-selected={onDirectory ? 'true' : 'false'}>
+  <a class:active={onDirectory} class="mobile-tab" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined} aria-selected={onDirectory ? 'true' : 'false'}>
     <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
     <span class="visually-hidden">Sections</span>
   </a>
@@ -326,7 +328,7 @@
     tabindex="-1"
     aria-hidden="true"
   />
-  <a class:active={onSearch} class="mobile-tab ios-tabbar__item" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined} aria-selected={onSearch ? 'true' : 'false'}>
+  <a class:active={onSearch} class="mobile-tab" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined} aria-selected={onSearch ? 'true' : 'false'}>
     <i class={activeIcon(onSearch, 'magnifying-glass')} aria-hidden="true"></i>
     <span class="visually-hidden">Search</span>
   </a>
@@ -340,7 +342,7 @@
     tabindex="-1"
     aria-hidden="true"
   />
-  <a class:active={onSettings} class="mobile-tab ios-tabbar__item" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined} aria-selected={onSettings ? 'true' : 'false'}>
+  <a class:active={onSettings} class="mobile-tab" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined} aria-selected={onSettings ? 'true' : 'false'}>
     <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
     <span class="visually-hidden">Settings</span>
   </a>
