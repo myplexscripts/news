@@ -175,7 +175,7 @@
   {#if story?.summary}<meta name="description" content={story.summary} />{/if}
 </svelte:head>
 
-<main class="article-page svelte-article-page" id="main-content">
+<main class="article-page svelte-article-page glasskit-screen" id="main-content">
   {#if loading}
     <div class="article-shell shell">
       <div class="article-loading">
@@ -223,7 +223,7 @@
             {#if readMinutes}<span>{readMinutes} min read</span>{/if}
           </div>
 
-          <div class="article-reader article-reader-refined article-reveal" use:revealOnScroll>
+          <div class="article-reader article-reader-refined article-reveal ios-card ios-readable" use:revealOnScroll>
             {#if heroImage}
               <figure class="article-body-hero inline-article-image">
                 <img
@@ -241,7 +241,7 @@
               <p class="article-deck article-deck-after-cover">{story.summary}</p>
             {/if}
 
-            <div class="article-copy article-copy-refined">
+            <div class="article-copy article-copy-refined ios-prose">
               {#if blocks.length === 0}
                 <p>No readable article body was returned by this source.</p>
               {/if}
