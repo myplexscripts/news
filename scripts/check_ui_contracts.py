@@ -78,7 +78,7 @@ def require(condition: bool, message: str) -> None:
         raise SystemExit(f"UI contract failed: {message}")
 
 
-CLASS_ATTR_RE = re.compile(r'class\\s*=\\s*["\\']([^"\\']+)["\\']')
+CLASS_ATTR_RE = re.compile(r"""class\\s*=\\s*["']([^"']+)["']""")
 
 
 def class_sets(text: str) -> list[set[str]]:
