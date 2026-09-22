@@ -14,7 +14,6 @@ on:
       - 'scripts/optimize_editorial_images.py'
       - 'scripts/repair_ctv_photos_v2.py'
       - 'scripts/test_ctv_photo_repair_v2.py'
-      - '.github/workflows/enrich.yml'
 
 permissions:
   contents: write
@@ -180,10 +179,3 @@ jobs:
 
           echo "Enrichment could not publish after 4 concurrent-push retries" >&2
           exit 1
-
-      - name: Deploy enriched site
-        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main
