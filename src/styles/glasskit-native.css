@@ -1,0 +1,1021 @@
+/* Native Forest City News presentation built directly on the vendored GlassKit system.
+   GlassKit remains the source of truth for tokens, materials, radii, motion and controls. */
+
+:root {
+  --news-content-max: 1100px;
+  --news-readable: 720px;
+  --news-screen-pad: max(16px, env(safe-area-inset-left));
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--ios-background-secondary) !important;
+}
+
+body {
+  margin: 0;
+  color: var(--ios-label);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.news-glasskit-app {
+  min-height: 100svh;
+  background: var(--ios-background-secondary) !important;
+  color: var(--ios-label);
+}
+
+.shell {
+  width: min(calc(100% - 32px), var(--news-content-max)) !important;
+  max-width: var(--news-content-max) !important;
+  margin-inline: auto !important;
+}
+
+/* App chrome */
+.site-header {
+  position: sticky !important;
+  top: 0;
+  z-index: 80 !important;
+  border: 0 !important;
+  background: color-mix(in srgb, var(--ios-background-secondary) 72%, transparent) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: .5px;
+  background: var(--ios-separator);
+  opacity: .55;
+}
+
+.header-inner {
+  min-height: 58px !important;
+  padding-top: max(6px, env(safe-area-inset-top)) !important;
+  padding-bottom: 7px !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.brand-area,
+.header-actions {
+  min-width: 0;
+}
+
+.brand-news {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: var(--ios-label) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: -.02em !important;
+}
+
+.brand-news-icon {
+  width: 32px !important;
+  height: 32px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 10px !important;
+  background: var(--ios-green) !important;
+  color: #fff !important;
+  font-size: 19px !important;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--ios-green) 24%, transparent);
+}
+
+.brand-news-wordmark {
+  font-size: 20px !important;
+  line-height: 1 !important;
+}
+
+.header-actions {
+  display: inline-flex !important;
+  justify-self: end !important;
+  align-items: center !important;
+  gap: 2px !important;
+  min-height: 42px !important;
+  padding: 2px !important;
+  border-radius: 999px !important;
+  background: var(--ios-glass) !important;
+  box-shadow: var(--ios-shadow-soft) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+}
+
+.icon-button {
+  width: 38px !important;
+  min-width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  color: var(--ios-label) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.icon-button i {
+  font-size: 20px !important;
+}
+
+.icon-button.active {
+  color: var(--accent) !important;
+  background: color-mix(in srgb, var(--accent) 13%, transparent) !important;
+}
+
+.icon-button:active {
+  transform: scale(.94);
+  background: var(--ios-fill-secondary) !important;
+}
+
+.home-meta-row {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 2px 1px 0 !important;
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+}
+
+.home-meta-row p {
+  margin: 0 !important;
+}
+
+.site-footer {
+  display: none !important;
+}
+
+/* Screen staging and motion */
+.svelte-route-stage {
+  min-height: calc(100svh - 64px);
+}
+
+.svelte-route-stage > :global(*) {
+  animation: news-screen-in 220ms var(--ios-ease, cubic-bezier(.2,.8,.2,1));
+}
+
+@keyframes news-screen-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Shared native screen structure */
+.home-page,
+.directory-page,
+.sections-page,
+.settings-page,
+.combined-directory-page {
+  min-height: calc(100svh - 64px);
+  padding: 18px 0 calc(104px + env(safe-area-inset-bottom)) !important;
+  background: var(--ios-background-secondary) !important;
+}
+
+.page-heading,
+.settings-heading,
+.sections-heading,
+.directory-heading {
+  margin: 0 0 22px !important;
+}
+
+.page-heading-copy {
+  max-width: 720px;
+}
+
+.masthead-label,
+.eyebrow {
+  margin: 0 0 5px !important;
+  color: var(--accent) !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+  letter-spacing: .01em !important;
+  text-transform: none !important;
+}
+
+.page-heading h1,
+.settings-heading h1,
+.sections-heading h1 {
+  margin: 0 !important;
+  color: var(--ios-label) !important;
+  font-size: clamp(32px, 7vw, 36px) !important;
+  line-height: 1.06 !important;
+  font-weight: 750 !important;
+  letter-spacing: -.035em !important;
+}
+
+.page-heading-description {
+  margin: 8px 0 0 !important;
+  max-width: 620px;
+  color: var(--ios-label-secondary) !important;
+  font-size: 15px !important;
+  line-height: 1.42 !important;
+}
+
+/* Home filter chrome */
+.section-nav-wrap {
+  position: relative !important;
+  top: auto !important;
+  z-index: 20 !important;
+  margin: 0 0 20px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.section-nav-inner {
+  display: grid !important;
+  gap: 12px !important;
+}
+
+.feed-scope-row {
+  width: 100%;
+}
+
+.feed-scope-switch,
+.directory-tabs,
+.settings-segmented,
+.archive-scope-switch {
+  min-height: 38px !important;
+  padding: 2px !important;
+  gap: 2px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: var(--ios-fill-secondary) !important;
+  box-shadow: none !important;
+}
+
+.feed-scope-switch button,
+.directory-tabs button,
+.settings-segmented button,
+.archive-scope-switch button {
+  min-height: 34px !important;
+  padding: 0 12px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  color: var(--ios-label-secondary) !important;
+  background: transparent !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+
+.feed-scope-switch button[aria-selected='true'],
+.directory-tabs button[aria-selected='true'],
+.settings-segmented button[aria-selected='true'],
+.archive-scope-switch button[aria-selected='true'] {
+  color: var(--ios-label) !important;
+  background: var(--ios-background-tertiary) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12) !important;
+}
+
+.section-tabs {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  padding: 0 1px 2px !important;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.section-tabs::-webkit-scrollbar { display: none; }
+
+.section-tab,
+.section-more > summary {
+  flex: 0 0 auto !important;
+  min-height: 36px !important;
+  padding: 0 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--ios-fill-secondary) !important;
+  color: var(--ios-label-secondary) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+
+.section-tab.active,
+.section-tab[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--accent) 15%, transparent) !important;
+  color: var(--accent) !important;
+}
+
+.control-popover {
+  border: .5px solid var(--ios-separator) !important;
+  border-radius: 18px !important;
+  background: var(--ios-glass-strong) !important;
+  box-shadow: var(--ios-shadow) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+}
+
+/* Editorial home now behaves like a native content screen */
+.editorial-front {
+  padding-bottom: 8px !important;
+}
+
+.editorial-home-heading,
+.app-section-heading {
+  margin: 4px 0 12px !important;
+}
+
+.editorial-home-heading h2,
+.app-section-heading h2 {
+  margin: 0 !important;
+  color: var(--ios-label) !important;
+  font-size: 28px !important;
+  line-height: 1.12 !important;
+  font-weight: 700 !important;
+  letter-spacing: -.025em !important;
+}
+
+.editorial-front-grid {
+  gap: 14px !important;
+}
+
+/* News cards: GlassKit media cards rather than website tiles */
+.news-card.ios-card {
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: var(--ios-radius-l) !important;
+  background: var(--ios-background-tertiary) !important;
+  box-shadow: var(--ios-shadow-soft) !important;
+  isolation: isolate;
+}
+
+.news-card.ios-card + .news-card.ios-card {
+  margin-top: 12px;
+}
+
+.news-card.ios-card .news-card-media {
+  overflow: hidden !important;
+  border-radius: var(--ios-radius-l) var(--ios-radius-l) 0 0 !important;
+  background: var(--ios-fill-secondary) !important;
+}
+
+.news-card.ios-card .news-card-photo {
+  transition: transform 360ms var(--ios-ease, cubic-bezier(.2,.8,.2,1));
+}
+
+.news-card.ios-card:active .news-card-photo {
+  transform: scale(1.015);
+}
+
+.news-card.ios-card .news-card-body {
+  padding: 14px 14px 54px !important;
+  background: var(--ios-background-tertiary) !important;
+}
+
+.news-card.ios-card h3 {
+  margin: 0 0 8px !important;
+  color: var(--ios-label) !important;
+  font-size: 19px !important;
+  line-height: 1.18 !important;
+  font-weight: 650 !important;
+  letter-spacing: -.015em !important;
+}
+
+.news-card.ios-card .card-source-name {
+  margin-bottom: 7px !important;
+  color: var(--accent) !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+}
+
+.news-card.ios-card .card-source-mark {
+  max-height: 24px !important;
+  margin-bottom: 8px !important;
+}
+
+.news-card.ios-card .news-card-footer {
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+  font-weight: 450 !important;
+}
+
+.news-card.ios-card .news-card-summary {
+  color: var(--ios-label-secondary) !important;
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+}
+
+.news-card-save {
+  z-index: 5 !important;
+  width: 38px !important;
+  min-width: 38px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  right: 10px !important;
+  bottom: 10px !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: var(--ios-label) !important;
+  background: var(--ios-fill-secondary) !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.news-card-save.is-saved {
+  color: var(--accent) !important;
+  background: color-mix(in srgb, var(--accent) 15%, transparent) !important;
+}
+
+/* Group timeline cards as inset content */
+.timeline-section,
+.timeline-group,
+.home-feed-section {
+  margin-top: 24px !important;
+}
+
+.timeline-group > h2,
+.timeline-group-heading,
+.home-feed-heading {
+  margin: 0 16px 8px !important;
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+}
+
+/* Search */
+.search-page-field,
+.search-page-field-refined {
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 0 14px !important;
+  padding: 0 12px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--ios-fill-secondary) !important;
+  color: var(--ios-label-secondary) !important;
+  box-shadow: none !important;
+}
+
+.search-page-field input {
+  flex: 1 !important;
+  min-width: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: var(--ios-label) !important;
+  font-size: 17px !important;
+}
+
+.archive-search-controls {
+  display: grid !important;
+  grid-template-columns: minmax(240px, 1.2fr) repeat(3, minmax(140px, 1fr)) !important;
+  gap: 10px !important;
+  align-items: end !important;
+  margin: 0 0 22px !important;
+}
+
+.archive-search-controls label {
+  gap: 6px !important;
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+
+.archive-search-controls select {
+  min-height: 44px !important;
+  border: 0 !important;
+  border-radius: 12px !important;
+  background: var(--ios-background-tertiary) !important;
+  color: var(--ios-label) !important;
+  box-shadow: inset 0 0 0 .5px var(--ios-separator);
+}
+
+.archive-search-results {
+  display: grid !important;
+  gap: 10px !important;
+  margin-top: 8px !important;
+  border: 0 !important;
+}
+
+.archive-search-hit.ios-card {
+  display: grid !important;
+  grid-template-columns: 150px minmax(0, 1fr) !important;
+  gap: 14px !important;
+  padding: 12px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: var(--ios-radius-l) !important;
+  background: var(--ios-background-tertiary) !important;
+  box-shadow: var(--ios-shadow-soft) !important;
+}
+
+.archive-search-hit-image {
+  border-radius: 12px !important;
+}
+
+.archive-search-hit h2 {
+  margin: 4px 0 5px !important;
+  font-size: 19px !important;
+  line-height: 1.18 !important;
+}
+
+.archive-search-hit-meta,
+.archive-search-hit-footer,
+.search-result-status {
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+}
+
+/* Sections and sources */
+.directory-tabs {
+  width: min(100%, 430px) !important;
+  margin: 0 0 18px !important;
+}
+
+.section-directory-grid {
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: var(--ios-radius-l) !important;
+  background: var(--ios-background-tertiary) !important;
+  box-shadow: var(--ios-shadow-soft) !important;
+}
+
+.section-directory-card {
+  min-height: 58px !important;
+  padding: 8px 14px !important;
+  gap: 12px !important;
+  border-radius: 0 !important;
+  color: var(--ios-label) !important;
+}
+
+.section-directory-card:not(:last-child)::after {
+  left: 56px !important;
+  height: .5px !important;
+  background: var(--ios-separator) !important;
+}
+
+.section-directory-icon {
+  width: 32px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+.section-directory-icon i {
+  color: #fff !important;
+  font-size: 18px !important;
+}
+
+.section-directory-card strong {
+  color: var(--ios-label) !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+}
+
+.source-preference-list {
+  display: grid !important;
+  gap: 10px !important;
+}
+
+.source-preference-card.ios-card {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 12px !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 12px 14px !important;
+  border: 0 !important;
+  border-radius: var(--ios-radius-l) !important;
+  background: var(--ios-background-tertiary) !important;
+  box-shadow: var(--ios-shadow-soft) !important;
+}
+
+.source-preference-identity h2 {
+  color: var(--ios-label) !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+
+.source-preference-identity p,
+.combined-sources-toolbar,
+.sources-footer-note {
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+}
+
+.source-switch {
+  width: 51px !important;
+  height: 31px !important;
+  border-radius: 999px !important;
+  background: var(--ios-fill) !important;
+}
+
+.source-switch > span {
+  width: 27px !important;
+  height: 27px !important;
+  top: 2px !important;
+  left: 2px !important;
+  background: #fff !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,.22) !important;
+}
+
+.source-switch-input:checked + .source-switch {
+  background: var(--ios-green) !important;
+}
+
+/* Settings becomes native grouped settings */
+.settings-shell {
+  width: min(calc(100% - 32px), 760px) !important;
+}
+
+.settings-groups {
+  display: grid !important;
+  gap: 26px !important;
+}
+
+.settings-group {
+  margin: 0 !important;
+}
+
+.settings-group > h2 {
+  margin: 0 16px 7px !important;
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .01em !important;
+}
+
+.settings-card.ios-card {
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: var(--ios-radius-l) !important;
+  background: var(--ios-background-tertiary) !important;
+  box-shadow: var(--ios-shadow-soft) !important;
+}
+
+.settings-row,
+.settings-accent-row {
+  position: relative !important;
+  min-height: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 10px 14px !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+.settings-row:not(:last-child)::after,
+.settings-accent-row:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 0;
+  bottom: 0;
+  height: .5px;
+  background: var(--ios-separator);
+}
+
+.settings-row-copy {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.settings-row-copy strong {
+  display: block !important;
+  color: var(--ios-label) !important;
+  font-size: 17px !important;
+  line-height: 1.2 !important;
+  font-weight: 500 !important;
+}
+
+.settings-row-copy span {
+  display: block !important;
+  margin-top: 2px !important;
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+
+.settings-action-button {
+  min-height: 36px !important;
+  padding: 0 13px !important;
+  font-size: 14px !important;
+}
+
+.settings-footnote {
+  margin: 7px 16px 0 !important;
+  color: var(--ios-label-secondary) !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+.settings-switch {
+  width: 51px !important;
+  min-width: 51px !important;
+  height: 31px !important;
+}
+
+.settings-switch-track {
+  border-radius: 999px !important;
+  background: var(--ios-fill) !important;
+}
+
+.settings-switch-track::after {
+  width: 27px !important;
+  height: 27px !important;
+  top: 2px !important;
+  left: 2px !important;
+  background: #fff !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,.22) !important;
+}
+
+.settings-switch input:checked + .settings-switch-track {
+  background: var(--ios-green) !important;
+}
+
+/* Article reader: keep the editorial content but make the reader surface native */
+.svelte-article-page {
+  background: var(--ios-background-secondary) !important;
+}
+
+.article-after-cover {
+  width: min(calc(100% - 32px), var(--news-readable)) !important;
+  padding-top: 18px !important;
+}
+
+.article-content-layout {
+  width: 100% !important;
+}
+
+.article-reader {
+  padding: 18px !important;
+  border-radius: var(--ios-radius-l) !important;
+  background: var(--ios-background-tertiary) !important;
+  box-shadow: var(--ios-shadow-soft) !important;
+}
+
+.article-copy,
+.article-copy p,
+.article-copy li {
+  color: var(--ios-label) !important;
+  font-size: 17px !important;
+  line-height: 1.55 !important;
+}
+
+.article-copy h2 {
+  color: var(--ios-label) !important;
+  font-size: 24px !important;
+  line-height: 1.18 !important;
+  letter-spacing: -.02em !important;
+}
+
+.article-copy h3 {
+  color: var(--ios-label) !important;
+  font-size: 20px !important;
+  line-height: 1.2 !important;
+}
+
+.inline-article-image img,
+.article-media {
+  border-radius: 14px !important;
+}
+
+.related-section {
+  padding-bottom: calc(92px + env(safe-area-inset-bottom)) !important;
+}
+
+/* Bottom tab bar uses the same material and geometry as GlassKit's ios-tabbar */
+.news-ios-tabbar-wrap {
+  position: fixed !important;
+  z-index: 110 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  padding: 0 max(12px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)) !important;
+  pointer-events: none !important;
+}
+
+.mobile-tab-bar.svelte-mobile-tab-bar {
+  position: relative !important;
+  inset: auto !important;
+  width: min(100%, 520px) !important;
+  min-height: var(--ios-tabbar-height) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  align-items: center !important;
+  gap: 3px !important;
+  padding: 5px !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: var(--ios-glass) !important;
+  box-shadow: var(--ios-shadow) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  pointer-events: auto !important;
+  overflow: hidden !important;
+}
+
+.mobile-tab-bar .mobile-tab-radio,
+.mobile-tab-indicator {
+  display: none !important;
+}
+
+.mobile-tab {
+  position: relative !important;
+  min-width: 0 !important;
+  min-height: 52px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px 8px !important;
+  border-radius: 999px !important;
+  color: var(--ios-label-secondary) !important;
+  background: transparent !important;
+  transform: none !important;
+  transition: transform 120ms ease, color 160ms ease, background-color 160ms ease !important;
+}
+
+.mobile-tab i {
+  font-size: 23px !important;
+}
+
+.mobile-tab.active,
+.mobile-tab[aria-selected='true'] {
+  color: var(--accent) !important;
+  background: color-mix(in srgb, var(--accent) 12%, transparent) !important;
+}
+
+.mobile-tab:active {
+  transform: scale(.94) !important;
+}
+
+.story-back-to-top {
+  display: none !important;
+}
+
+/* Responsive native adaptation */
+@media (max-width: 760px) {
+  .shell {
+    width: calc(100% - 24px) !important;
+  }
+
+  .home-page,
+  .directory-page,
+  .sections-page,
+  .settings-page,
+  .combined-directory-page {
+    padding-top: 14px !important;
+  }
+
+  .header-inner {
+    width: calc(100% - 24px) !important;
+  }
+
+  .desktop-sources-link,
+  .settings-link {
+    display: none !important;
+  }
+
+  .header-search-link {
+    display: grid !important;
+  }
+
+  .feed-scope-switch {
+    width: 100% !important;
+  }
+
+  .editorial-front {
+    width: calc(100% - 24px) !important;
+  }
+
+  .editorial-front-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .archive-search-controls {
+    grid-template-columns: 1fr !important;
+  }
+
+  .archive-search-hit.ios-card {
+    grid-template-columns: 104px minmax(0, 1fr) !important;
+    gap: 12px !important;
+    padding: 10px !important;
+  }
+
+  .archive-search-hit h2 {
+    font-size: 17px !important;
+  }
+
+  .archive-search-hit p {
+    display: none !important;
+  }
+
+  .settings-row,
+  .settings-accent-row {
+    align-items: center !important;
+  }
+
+  .settings-row:not(.settings-toggle-row) {
+    flex-wrap: wrap !important;
+  }
+
+  .settings-row .settings-segmented {
+    width: 100% !important;
+    flex-basis: 100% !important;
+  }
+
+  .settings-accent-row {
+    display: block !important;
+  }
+
+  .settings-accent-row .settings-row-copy {
+    margin-bottom: 12px !important;
+  }
+
+  .article-reader {
+    padding: 16px !important;
+    border-radius: 18px !important;
+  }
+}
+
+@media (min-width: 761px) {
+  .news-ios-tabbar-wrap {
+    display: block !important;
+  }
+
+  .mobile-tab-bar.svelte-mobile-tab-bar {
+    width: 360px !important;
+  }
+
+  .home-page,
+  .directory-page,
+  .sections-page,
+  .settings-page,
+  .combined-directory-page {
+    padding-bottom: 110px !important;
+  }
+
+  .editorial-front-grid {
+    align-items: start !important;
+  }
+}
+
+@media (min-width: 1100px) {
+  .shell {
+    width: min(calc(100% - 56px), var(--news-content-max)) !important;
+  }
+
+  .header-inner {
+    min-height: 64px !important;
+  }
+
+  .brand-news-wordmark {
+    font-size: 22px !important;
+  }
+
+  .editorial-home-heading h2,
+  .app-section-heading h2 {
+    font-size: 30px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svelte-route-stage > :global(*) {
+    animation: none !important;
+  }
+
+  .news-card.ios-card .news-card-photo,
+  .mobile-tab,
+  .icon-button {
+    transition: none !important;
+  }
+}
