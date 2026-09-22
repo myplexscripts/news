@@ -16,7 +16,6 @@
   import '../styles/polish.css';
   import '../styles/svelte-app.css';
   import '../styles/glasskit-news.css';
-  import '../styles/glasskit-native.css';
 
   let homeDate = formatHomeDate(new Date());
   let homeUpdated = '';
@@ -202,7 +201,7 @@
 
 <a class="skip-link" href="#main-content">Skip to content</a>
 
-<div class="news-glasskit-app" data-ios-app data-glasskit-app>
+<div class="news-glasskit-app" data-ios-app>
 
 <header class:site-header-home={onHome} class="site-header">
   <div class:home-header-inner={onHome} class="shell header-inner header-inner-simple">

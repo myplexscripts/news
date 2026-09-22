@@ -95,12 +95,12 @@
   <meta name="description" content="Browse Forest City News by section or choose which sources appear in your feed." />
 </svelte:head>
 
-<main class="sections-page combined-directory-page glasskit-screen" id="main-content">
-  <section class="sections-shell shell ios-content">
+<main class="sections-page combined-directory-page" id="main-content">
+  <section class="sections-shell shell">
     <header class="page-heading sections-heading">
       <div class="page-heading-copy">
         <p class="masthead-label">Browse</p>
-        <h1 class="ios-large-title">Sections</h1>
+        <h1>Sections</h1>
         <p class="page-heading-description">Browse by topic or choose which publishers appear in your feed.</p>
       </div>
     </header>
@@ -121,7 +121,7 @@
 
       {#if activeTab === 'sections'}
         <section class="directory-panel" aria-label="News sections">
-          <div class="section-directory-grid ios-list">
+          <div class="section-directory-grid">
             <a class="section-directory-card section-all ios-row ios-row--disclosure" href={`${base}/latest/`} data-sveltekit-preload-data="tap">
               <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
               <div><strong>Latest</strong></div>
@@ -144,7 +144,7 @@
             <button class="bordered-button ios-button ios-button--tinted" type="button" disabled={shownCount === sources.length} on:click={() => revealAllSources().catch(() => {})}>Show all</button>
           </div>
 
-          <div class="source-preference-list ios-section">
+          <div class="source-preference-list">
             {#each sources as source}
               <article class:source-hidden={source.hidden} class="source-preference-card ios-card">
                 <div class="source-preference-identity">

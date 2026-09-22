@@ -86,11 +86,11 @@
 </svelte:head>
 
 <main class="directory-page search-page" id="main-content">
-  <section class="directory-shell shell ios-content">
+  <section class="directory-shell shell">
     <header class="page-heading directory-heading">
       <div class="page-heading-copy">
         <p class="masthead-label">Find stories</p>
-        <h1 class="ios-large-title">Search</h1>
+        <h1>Search</h1>
         <p class="page-heading-description">Search headlines, publishers and topics across Forest City News.</p>
       </div>
     </header>
