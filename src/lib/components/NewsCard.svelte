@@ -146,7 +146,7 @@
 </script>
 
 <article
-  class={`news-card card-${variant} ${categoryClass} ${className}`}
+  class={`news-card ios-card ios-editorial-card card-${variant} ${categoryClass} ${className}`}
   class:is-read-story={isRead}
   data-story-id={id}
   data-category={story?.category || ''}
@@ -237,7 +237,7 @@
 
     <button
       class:is-saved={isSaved}
-      class="news-card-save"
+      class="news-card-save ios-bar-button ios-bar-button--icon"
       type="button"
       aria-label={isSaved ? 'Remove from Read Later' : 'Save to Read Later'}
       aria-pressed={isSaved}
