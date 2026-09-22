@@ -1,0 +1,334 @@
+/* GlassKit: chrome.css */
+/* GlassKit navigation chrome spacing.
+   Controls sit inside the safe area with an additional visual margin, rather than
+   touching the viewport edge once a safe-area inset is present. */
+
+:root {
+  --glasskit-navigation-edge-inset: 16px;
+  --glasskit-navigation-top-inset: 8px;
+}
+
+.ios-navigation-bar {
+  padding-left: calc(var(--ios-safe-left) + var(--glasskit-navigation-edge-inset));
+  padding-right: calc(var(--ios-safe-right) + var(--glasskit-navigation-edge-inset));
+}
+
+@media (max-width: 759px), (max-height: 599px) {
+  .ios-tab-panel > .ios-navigation-bar,
+  .ios-push-screen > .ios-navigation-bar {
+    padding-top: calc(var(--ios-safe-top) + var(--glasskit-navigation-top-inset));
+  }
+
+  /* Keep the large-title region aligned with the taller compact chrome. */
+  .ios-tab-panel > .ios-scroll {
+    padding-top: calc(var(--ios-safe-top) + 58px);
+  }
+}
+
+@media (min-width: 760px) and (min-height: 600px) {
+  :root { --glasskit-navigation-edge-inset: 20px; }
+}
+
+
+/* GlassKit: radii.css */
+/* Concentric radius system.
+   When one rounded surface sits inside another, its radius follows:
+   inner radius = outer radius - inset.
+   Capsules and circles are geometry exceptions because their radius is defined by height. */
+
+:root {
+  --ios-radius-xs: 6px;
+  --ios-radius-s: 10px;
+  --ios-radius-m: 14px;
+  --ios-radius-l: 20px;
+  --ios-radius-xl: 26px;
+  --ios-radius-sheet: 30px;
+
+  --ios-surface-radius: var(--ios-radius-xl);
+  --ios-surface-inset: 16px;
+  --ios-surface-inner-radius: max(0px, calc(var(--ios-surface-radius) - var(--ios-surface-inset)));
+
+  --ios-menu-radius: 24px;
+  --ios-menu-inset: 8px;
+  --ios-menu-item-radius: max(0px, calc(var(--ios-menu-radius) - var(--ios-menu-inset)));
+
+  --ios-popover-radius: 24px;
+  --ios-popover-inset: 14px;
+  --ios-popover-inner-radius: max(0px, calc(var(--ios-popover-radius) - var(--ios-popover-inset)));
+}
+
+/* Public utility for future components. */
+.ios-concentric {
+  --ios-concentric-radius: var(--ios-surface-radius);
+  --ios-concentric-inset: var(--ios-surface-inset);
+  border-radius: var(--ios-concentric-radius);
+}
+.ios-concentric > .ios-concentric__inner {
+  border-radius: max(0px, calc(var(--ios-concentric-radius) - var(--ios-concentric-inset)));
+}
+
+/* Primary content surfaces use one outer radius family. */
+.ios-card,
+.ios-content-group,
+.ios-chart-card,
+.ios-insight-card,
+.ios-recommendation-card,
+.ios-article-card,
+.ios-editorial-card,
+.ios-feature-list-card,
+.ios-promo-banner {
+  --ios-container-radius: var(--ios-surface-radius);
+  --ios-container-inset: 16px;
+  border-radius: var(--ios-container-radius);
+}
+
+.ios-card--plain {
+  --ios-container-radius: 0px;
+  border-radius: 0;
+}
+
+/* Full bleed media shares the parent's outer contour. */
+.ios-card__media,
+.ios-scroll-card__media {
+  border-radius: var(--ios-container-radius, var(--ios-surface-radius)) var(--ios-container-radius, var(--ios-surface-radius)) 0 0;
+}
+
+/* Inset media and inset surfaces follow outer radius minus their inset. */
+.ios-card--horizontal .ios-card__media {
+  border-radius: max(0px, calc(var(--ios-container-radius, var(--ios-surface-radius)) - var(--ios-container-inset, 16px)));
+}
+
+.ios-card > .ios-callout-box,
+.ios-card > .ios-content-group,
+.ios-card > .ios-list,
+.ios-card > .ios-key-value-list,
+.ios-card > .ios-disclosure-group,
+.ios-card > .ios-inline-message,
+.ios-card > .ios-text-field,
+.ios-card > .ios-text-view,
+.ios-card > .ios-picker-field,
+.ios-chart-card > .ios-callout-box,
+.ios-chart-card > .ios-inline-message,
+.ios-chart-card > .ios-list {
+  border-radius: max(0px, calc(var(--ios-container-radius, var(--ios-surface-radius)) - var(--ios-container-inset, 16px)));
+}
+
+/* Grouped content surfaces form a quieter radius family. */
+.ios-list,
+.ios-key-value-list,
+.ios-disclosure-group,
+.ios-data-table-wrap,
+.ios-collection__item {
+  border-radius: var(--ios-radius-l);
+}
+
+.ios-split-view {
+  border-radius: var(--ios-radius-xl);
+}
+
+/* Menus have 8px internal padding, so 24px outside becomes 16px inside. */
+.ios-menu {
+  --ios-container-radius: var(--ios-menu-radius);
+  --ios-container-inset: var(--ios-menu-inset);
+  border-radius: var(--ios-container-radius);
+}
+.ios-menu__item {
+  border-radius: max(0px, calc(var(--ios-container-radius) - var(--ios-container-inset)));
+}
+
+/* Popovers use the same equation for any nested surface. */
+.ios-popover {
+  --ios-container-radius: var(--ios-popover-radius);
+  --ios-container-inset: var(--ios-popover-inset);
+  border-radius: var(--ios-container-radius);
+}
+.ios-popover > .ios-card,
+.ios-popover > .ios-list,
+.ios-popover > .ios-content-group,
+.ios-popover > .ios-inline-message {
+  border-radius: var(--ios-popover-inner-radius);
+}
+
+/* Sheets use a 30px outer contour. Surfaces inside the 16px body inset use 14px. */
+.ios-sheet {
+  --ios-container-radius: var(--ios-radius-sheet);
+  --ios-container-inset: 16px;
+  border-radius: var(--ios-container-radius);
+}
+.ios-sheet__body > .ios-card,
+.ios-sheet__body > .ios-list,
+.ios-sheet__body > .ios-content-group,
+.ios-sheet__body > .ios-key-value-list,
+.ios-sheet__body > .ios-disclosure-group,
+.ios-sheet__body > .ios-inline-message,
+.ios-sheet__body > .ios-text-field,
+.ios-sheet__body > .ios-text-view,
+.ios-sheet__body > .ios-picker-field {
+  border-radius: calc(var(--ios-radius-sheet) - 16px);
+}
+
+/* Source aware action groups and alerts are standalone rounded surfaces. */
+.ios-alert { border-radius: var(--ios-radius-xl); }
+.ios-action-sheet__group,
+.ios-action-sheet__cancel { border-radius: var(--ios-radius-l); }
+
+/* Capsules and circles intentionally remain geometry based rather than token based. */
+.ios-button,
+.ios-chip,
+.ios-token,
+.ios-status-pill,
+.ios-badge,
+.ios-row__badge,
+.ios-app-row__action,
+.ios-glass-group,
+.ios-bar-button,
+.ios-toolbar__group,
+.ios-toolbar__button,
+.ios-progress,
+.ios-stepper,
+.ios-stepper button,
+.ios-search-field,
+.ios-switch__track,
+.ios-insight-rule,
+.ios-stacked-bar__track,
+.ios-horizontal-bar__track {
+  border-radius: 999px;
+}
+
+.ios-avatar,
+.ios-recommendation-card__dismiss,
+.ios-page-control [data-ios-page],
+.ios-page-control [data-ios-page]::after,
+.ios-chart-legend__dot {
+  border-radius: 50%;
+}
+
+/* Regular width top level navigation has 10px padding inside a 30px shell. */
+@media (min-width: 760px) and (min-height: 600px) {
+  .ios-tabbar {
+    --ios-container-radius: var(--ios-radius-sheet);
+    --ios-container-inset: 10px;
+    border-radius: var(--ios-container-radius);
+  }
+
+  .ios-tabbar__item,
+  .ios-tabbar.is-minimized .ios-tabbar__item {
+    border-radius: max(0px, calc(var(--ios-container-radius) - var(--ios-container-inset)));
+  }
+}
+
+/* Compact presentation popovers become sheet shaped. */
+@media (max-width: 759px), (max-height: 599px) {
+  .ios-popover[popover]:popover-open {
+    --ios-container-radius: var(--ios-radius-sheet);
+    --ios-container-inset: 16px;
+    border-radius: var(--ios-container-radius);
+  }
+}
+
+
+/* GlassKit: framework.css */
+
+/* Apple semantic text metrics at the default content-size category.
+   Browsers can still zoom or enlarge text without changing the hierarchy. */
+.ios-large-title { font-size: 34px; line-height: 41px; }
+.ios-title-1 { font-size: 28px; line-height: 34px; }
+.ios-title-2 { font-size: 22px; line-height: 28px; }
+.ios-title-3 { font-size: 20px; line-height: 25px; }
+.ios-headline { font-size: 17px; line-height: 22px; font-weight: 600; }
+.ios-body { font-size: 17px; line-height: 22px; }
+.ios-callout { font-size: 16px; line-height: 21px; }
+.ios-subheadline { font-size: 15px; line-height: 20px; }
+.ios-footnote { font-size: 13px; line-height: 18px; }
+.ios-caption { font-size: 12px; line-height: 16px; }
+.ios-caption-2 { font-size: 11px; line-height: 13px; }
+
+/* Compact large-title navigation.
+   The compact title always stays in the real top bar. Only the trailing action
+   moves down beside the large title at rest, then returns to the bar on scroll. */
+@media (max-width: 759px), (max-height: 599px) {
+  .ios-tab-panel > .ios-navigation-bar {
+    position: absolute;
+    inset: 0 0 auto;
+    padding-top: calc(var(--ios-safe-top) + var(--glasskit-navigation-top-inset, 8px));
+    padding-bottom: 0;
+  }
+
+  .ios-tab-panel > .ios-navigation-bar .ios-navigation-bar__row {
+    transform: none;
+  }
+
+  .ios-tab-panel > .ios-navigation-bar .ios-navigation-bar__trailing {
+    transform: translateY(48px);
+    transition: transform 220ms var(--ios-ease);
+  }
+
+  .ios-tab-panel > .ios-navigation-bar.is-scrolled .ios-navigation-bar__trailing {
+    transform: translateY(0);
+  }
+
+  .ios-tab-panel > .ios-scroll {
+    padding-top: calc(var(--ios-safe-top) + 58px);
+  }
+
+  .ios-tab-panel .ios-content > .ios-large-title:first-child {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .ios-tab-panel:has(.ios-navigation-bar__trailing > *) .ios-content > .ios-large-title:first-child {
+    padding-right: 56px;
+  }
+}
+
+/* Pushed destinations keep the compact bar visible because the back relationship
+   is part of the destination's navigation context. */
+.ios-push-screen > .ios-navigation-bar {
+  padding-top: calc(var(--ios-safe-top) + var(--glasskit-navigation-top-inset, 8px));
+  padding-bottom: 1px;
+}
+.ios-push-screen > .ios-navigation-bar + .ios-scroll { padding-top: 0; }
+
+/* Cards in a horizontal collection form one visual row. Generic vertical card
+   spacing must not leak into the horizontal layout. */
+.ios-card-scroller { align-items: stretch; }
+.ios-card-scroller > .ios-card,
+.ios-card-scroller > .ios-card + .ios-card {
+  height: 100%;
+  margin-top: 0;
+}
+.ios-card-scroller .ios-scroll-card {
+  min-height: 100%;
+  justify-content: flex-start;
+}
+.ios-card-scroller .ios-scroll-card__media { flex: 0 0 auto; }
+
+/* Icon-only store actions use a true centred flex box. */
+.ios-app-row__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ios-app-row__action .ios-symbol { margin: 0; }
+
+/* Once the compact navigation state is active, content must not show through the
+   bar. The floating controls can remain glass while the bar itself becomes an
+   opaque system background with a subtle separator. */
+.ios-navigation-bar {
+  background-color: transparent;
+  border-bottom: .5px solid transparent;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+.ios-navigation-bar.is-scrolled {
+  background-color: var(--ios-background-secondary);
+  border-bottom-color: var(--ios-separator);
+}
+.ios-navigation-bar.is-scrolled::after { opacity: 0; }
+
+/* Percentage widths on inline spans are ignored by CSS. Comparison fills are
+   block-level so the value in each inline width style produces a visible bar. */
+.ios-horizontal-bar__fill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+}
