@@ -95,7 +95,7 @@
       </div>
     </header>
 
-    <div class="search-page-field search-page-field-refined ios-search-field">
+    <div class="search-page-field search-page-field-refined">
       <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
       <input
         id="archiveSearch"
@@ -109,17 +109,17 @@
         aria-label="Search Forest City News"
       />
       {#if query}
-        <button class="search-clear-button ios-search-field__clear" type="button" aria-label="Clear search" on:click={clearSearch}>
+        <button class="search-clear-button" type="button" aria-label="Clear search" on:click={clearSearch}>
           <i class="ph ph-x-circle" aria-hidden="true"></i>
         </button>
       {/if}
     </div>
 
     <div class="archive-search-controls" aria-label="Search filters">
-      <div class="archive-scope-switch ios-segmented" role="group" aria-label="Search feed">
-        <button class:active={activeScope === 'all'} type="button" aria-pressed={activeScope === 'all'} aria-selected={activeScope === 'all'} on:click={() => activeScope = 'all'}>All</button>
-        <button class:active={activeScope === 'local'} type="button" aria-pressed={activeScope === 'local'} aria-selected={activeScope === 'local'} on:click={() => activeScope = 'local'}>Local</button>
-        <button class:active={activeScope === 'canada'} type="button" aria-pressed={activeScope === 'canada'} aria-selected={activeScope === 'canada'} on:click={() => activeScope = 'canada'}>Canada</button>
+      <div class="archive-scope-switch" role="group" aria-label="Search feed">
+        <button class:active={activeScope === 'all'} type="button" aria-pressed={activeScope === 'all'} on:click={() => activeScope = 'all'}>All</button>
+        <button class:active={activeScope === 'local'} type="button" aria-pressed={activeScope === 'local'} on:click={() => activeScope = 'local'}>Local</button>
+        <button class:active={activeScope === 'canada'} type="button" aria-pressed={activeScope === 'canada'} on:click={() => activeScope = 'canada'}>Canada</button>
       </div>
 
       <label>
@@ -164,7 +164,7 @@
       {#if results.length}
         <div class="archive-search-results">
           {#each results as story (story.id)}
-            <article class="archive-search-hit ios-card ios-card--horizontal">
+            <article class="archive-search-hit">
               {#if story.card_image_small || story.card_image || story.image}
                 <a class="archive-search-hit-image" href={storyHref(story.id)} data-sveltekit-preload-data="tap" tabindex="-1">
                   <img src={resolveAsset(story.card_image_small || story.card_image || story.image)} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />

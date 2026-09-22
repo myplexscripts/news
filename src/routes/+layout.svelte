@@ -7,7 +7,6 @@
   import { loadFeed } from '$lib/newsData';
   import { sourceLogoPath } from '$lib/sourceLogos';
 
-  import '../styles/glasskit/framework.css';
   import '../styles/global.css';
   import '../styles/article-rich.css';
   import '../styles/editorial-home.css';
@@ -15,7 +14,6 @@
   import '../styles/mobile-card-fixes.css';
   import '../styles/polish.css';
   import '../styles/svelte-app.css';
-  import '../styles/glasskit-news.css';
 
   let homeDate = formatHomeDate(new Date());
   let homeUpdated = '';
@@ -23,7 +21,6 @@
   let storyCompactNav = false;
   let storyMetaVisible = false;
   let shellFeed;
-  let glassKit;
 
   function normalizedPath(pathname = '') {
     const withoutBase = base && pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
@@ -158,9 +155,6 @@
 
   onMount(() => {
     initialiseAppState().catch(() => {});
-    import('$lib/glasskit/platform.js').then(({ initIOSPlatform }) => {
-      glassKit = initIOSPlatform(document.querySelector('[data-ios-app]'));
-    }).catch(() => {});
 
     loadFeed().then((feed) => {
       shellFeed = feed;
@@ -185,7 +179,6 @@
     }
 
     return () => {
-      glassKit?.disconnect?.();
       unsubscribe();
       document.body.classList.remove('story-meta-visible');
       window.removeEventListener('scroll', syncScrollChrome);
@@ -200,8 +193,6 @@
 </svelte:head>
 
 <a class="skip-link" href="#main-content">Skip to content</a>
-
-<div class="news-glasskit-app" data-ios-app>
 
 <header class:site-header-home={onHome} class="site-header">
   <div class:home-header-inner={onHome} class="shell header-inner header-inner-simple">
@@ -271,7 +262,6 @@
   <span>Times shown in London, Ontario</span>
 </footer>
 
-<div class="ios-tabbar-wrap news-ios-tabbar-wrap">
 <nav
   class:storyCompactNav={onStory && storyCompactNav}
   class="mobile-tab-bar svelte-mobile-tab-bar"
@@ -298,7 +288,6 @@
     aria-label={onHome && isBackToTop ? 'Back to top' : 'Home'}
     title={onHome && isBackToTop ? 'Back to top' : 'Home'}
     aria-current={onHome ? 'page' : undefined}
-    aria-selected={onHome || onStory ? 'true' : 'false'}
     on:click={handleHomeTab}
   >
     <i class={onStory && storyCompactNav ? 'ph-fill ph-house' : onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
@@ -314,7 +303,7 @@
     tabindex="-1"
     aria-hidden="true"
   />
-  <a class:active={onDirectory} class="mobile-tab" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined} aria-selected={onDirectory ? 'true' : 'false'}>
+  <a class:active={onDirectory} class="mobile-tab" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
     <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
     <span class="visually-hidden">Sections</span>
   </a>
@@ -328,7 +317,7 @@
     tabindex="-1"
     aria-hidden="true"
   />
-  <a class:active={onSearch} class="mobile-tab" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined} aria-selected={onSearch ? 'true' : 'false'}>
+  <a class:active={onSearch} class="mobile-tab" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
     <i class={activeIcon(onSearch, 'magnifying-glass')} aria-hidden="true"></i>
     <span class="visually-hidden">Search</span>
   </a>
@@ -342,7 +331,7 @@
     tabindex="-1"
     aria-hidden="true"
   />
-  <a class:active={onSettings} class="mobile-tab" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined} aria-selected={onSettings ? 'true' : 'false'}>
+  <a class:active={onSettings} class="mobile-tab" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
     <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
     <span class="visually-hidden">Settings</span>
   </a>
@@ -353,8 +342,6 @@
     </button>
   {/if}
 </nav>
-</div>
-</div>
 
 <style>
   .brand::after,

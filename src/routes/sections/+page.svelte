@@ -114,7 +114,7 @@
         <div class="app-skeleton"></div>
       </div>
     {:else}
-      <div class="directory-tabs ios-segmented" role="tablist" aria-label="Browse Forest City News">
+      <div class="directory-tabs" role="tablist" aria-label="Browse Forest City News">
         <button class:active={activeTab === 'sections'} class="directory-tab" type="button" role="tab" aria-selected={activeTab === 'sections'} on:click={() => setTab('sections')}>Sections</button>
         <button class:active={activeTab === 'sources'} class="directory-tab" type="button" role="tab" aria-selected={activeTab === 'sources'} on:click={() => setTab('sources')}>Sources</button>
       </div>
@@ -122,14 +122,14 @@
       {#if activeTab === 'sections'}
         <section class="directory-panel" aria-label="News sections">
           <div class="section-directory-grid">
-            <a class="section-directory-card section-all ios-row ios-row--disclosure" href={`${base}/latest/`} data-sveltekit-preload-data="tap">
+            <a class="section-directory-card section-all" href={`${base}/latest/`} data-sveltekit-preload-data="tap">
               <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
               <div><strong>Latest</strong></div>
               <i class="ph ph-caret-right" aria-hidden="true"></i>
             </a>
 
             {#each categories as category}
-              <a class={`section-directory-card ios-row ios-row--disclosure ${categoryClass(category)}`} href={`${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
+              <a class={`section-directory-card ${categoryClass(category)}`} href={`${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
                 <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
                 <div><strong>{category}</strong></div>
                 <i class="ph ph-caret-right" aria-hidden="true"></i>
@@ -141,12 +141,12 @@
         <section class="directory-panel" aria-label="News sources">
           <div class="combined-sources-toolbar">
             <span aria-live="polite">{shownCount} of {sources.length} sources shown</span>
-            <button class="bordered-button ios-button ios-button--tinted" type="button" disabled={shownCount === sources.length} on:click={() => revealAllSources().catch(() => {})}>Show all</button>
+            <button class="bordered-button" type="button" disabled={shownCount === sources.length} on:click={() => revealAllSources().catch(() => {})}>Show all</button>
           </div>
 
           <div class="source-preference-list">
             {#each sources as source}
-              <article class:source-hidden={source.hidden} class="source-preference-card ios-card">
+              <article class:source-hidden={source.hidden} class="source-preference-card">
                 <div class="source-preference-identity">
                   <span class="source-preference-logo-wrap">
                     {#if source.logo}<img class="source-preference-logo" src={source.logo} alt="" loading="lazy" />{/if}

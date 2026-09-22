@@ -146,7 +146,7 @@
 </script>
 
 <article
-  class={`news-card ios-card ios-editorial-card card-${variant} ${categoryClass} ${className}`}
+  class={`news-card card-${variant} ${categoryClass} ${className}`}
   class:is-read-story={isRead}
   data-story-id={id}
   data-category={story?.category || ''}

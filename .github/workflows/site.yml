@@ -11,26 +11,17 @@ permissions:
   id-token: write
 
 concurrency:
-  # Push bursts only cancel older push builds. Manual refresh/deploy runs are isolated
-  # so they do not get cancelled by an unrelated code push.
-  group: pages-${{ github.event_name }}-${{ github.ref }}
+  group: pages
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # GitHub's contents API creates one commit per file. Give rapid multi-file
-      # updates a brief window so only the final push reaches validation/deploy.
-      - name: Settle rapid pushes
-        if: github.event_name == 'push'
-        run: sleep 12
-
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          # Build the exact commit that triggered this run, never a moving branch tip.
-          ref: ${{ github.sha }}
+          ref: ${{ github.ref_name }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

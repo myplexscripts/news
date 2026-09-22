@@ -248,10 +248,10 @@
   <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
     <div class="shell section-nav-inner card-filter-inner">
       <div class="feed-scope-row">
-        <div class="feed-scope-switch ios-segmented" role="group" aria-label="Choose home feed">
-          <button class:active={activeScope === 'local'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'local'} aria-selected={activeScope === 'local'} on:click={() => setScope('local')}>Local</button>
-          <button class:active={activeScope === 'canada'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'canada'} aria-selected={activeScope === 'canada'} on:click={() => setScope('canada')}>Canada</button>
-          <button class:active={activeScope === 'all'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'all'} aria-selected={activeScope === 'all'} on:click={() => setScope('all')}>All</button>
+        <div class="feed-scope-switch" role="group" aria-label="Choose home feed">
+          <button class:active={activeScope === 'local'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'local'} on:click={() => setScope('local')}>Local</button>
+          <button class:active={activeScope === 'canada'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'canada'} on:click={() => setScope('canada')}>Canada</button>
+          <button class:active={activeScope === 'all'} class="feed-scope-button" type="button" aria-pressed={activeScope === 'all'} on:click={() => setScope('all')}>All</button>
         </div>
       </div>
 
