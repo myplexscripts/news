@@ -244,7 +244,7 @@
   <meta name="description" content="A fast local news reader for London, Ontario and Canada." />
 </svelte:head>
 
-<main class="home-page card-home editorial-home glasskit-screen" id="main-content">
+<main class="home-page card-home editorial-home" id="main-content">
   <section class="section-nav-wrap card-filter-wrap ios-section" aria-label="News filters">
     <div class="shell section-nav-inner card-filter-inner">
       <div class="feed-scope-row">
