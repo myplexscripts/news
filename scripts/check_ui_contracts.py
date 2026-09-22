@@ -9,6 +9,7 @@ shell/component class names instead of replacing them with a parallel generic UI
 from __future__ import annotations
 
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 UI_CSS = ROOT / "public" / "ui-guidelines.css"
@@ -77,6 +78,30 @@ def require(condition: bool, message: str) -> None:
         raise SystemExit(f"UI contract failed: {message}")
 
 
+CLASS_ATTR_RE = re.compile(r'class\\s*=\\s*["\\']([^"\\']+)["\\']')
+
+
+def class_sets(text: str) -> list[set[str]]:
+    """Return literal class attributes as token sets.
+
+    UI contracts should care that required classes are present, not that they are
+    the only classes on an element or appear in one exact order.
+    """
+    return [set(value.split()) for value in CLASS_ATTR_RE.findall(text)]
+
+
+def require_classes(text: str, classes: tuple[str, ...], label: str) -> None:
+    required = set(classes)
+    require(
+        any(required.issubset(found) for found in class_sets(text)),
+        f"{label} is missing required classes {sorted(required)!r}",
+    )
+
+
+def count_elements_with_class(text: str, class_name: str) -> int:
+    return sum(class_name in found for found in class_sets(text))
+
+
 def require_tokens(text: str, tokens: tuple[str, ...], label: str) -> None:
     for token in tokens:
         require(token in text, f"{label} is missing {token!r}")
@@ -121,19 +146,19 @@ def main() -> None:
     ), "app head")
 
     require_tokens(layout, (
-        'class="site-header"',
         "site-header-home",
-        'class="brand brand-news"',
-        'class="mobile-tab-bar svelte-mobile-tab-bar"',
-        'class="mobile-tab-indicator"',
         "--mobile-tab-count: 4",
     ), "app shell")
-    tab_count = layout.count('class="mobile-tab"') + layout.count('class="mobile-tab mobile-home-tab"')
+    require_classes(layout, ("site-header",), "app shell header")
+    require_classes(layout, ("brand", "brand-news"), "app shell brand")
+    require_classes(layout, ("mobile-tab-bar", "svelte-mobile-tab-bar"), "app shell navigation")
+    require_classes(layout, ("mobile-tab-indicator",), "app shell navigation indicator")
+    tab_count = count_elements_with_class(layout, "mobile-tab")
     require(tab_count == 4, f"mobile navigation must contain exactly four tab links, found {tab_count}")
     require("app-tab-bar" not in layout, "temporary generic Svelte tab bar returned")
 
+    require_classes(home, ("home-page", "card-home", "editorial-home"), "home page root")
     require_tokens(home, (
-        'class="home-page card-home editorial-home"',
         "card-filter-wrap",
         "feed-scope-switch",
         "section-tabs",
@@ -146,13 +171,13 @@ def main() -> None:
 
     require_tokens(card, (
         "card-${variant}",
-        'class="news-card-media"',
-        'class="news-card-photo"',
-        'class="news-card-body"',
-        'class="news-card-footer"',
-        'class="news-card-save"',
         "card-source-mark",
     ), "story card")
+    require_classes(card, ("news-card-media",), "story card media")
+    require_classes(card, ("news-card-photo",), "story card photo")
+    require_classes(card, ("news-card-body",), "story card body")
+    require_classes(card, ("news-card-footer",), "story card footer")
+    require_classes(card, ("news-card-save",), "story card save action")
     require("svelte-news-card" not in card, "temporary generic Svelte story card returned")
 
     require_tokens(sections, (
@@ -162,8 +187,8 @@ def main() -> None:
         "source-preference-list",
         "source-switch-input",
     ), "sections page")
+    require_classes(search, ("directory-page", "search-page"), "search page root")
     require_tokens(search, (
-        "directory-page search-page",
         "search-page-field-refined",
         "archive-search-controls",
         "archive-scope-switch",
