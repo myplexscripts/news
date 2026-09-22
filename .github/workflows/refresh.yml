@@ -8,6 +8,9 @@ on:
       # UI-only validation changes must not start a full network news refresh.
       - '!scripts/check_ui_contracts.py'
       - 'requirements.txt'
+      - '.github/workflows/refresh.yml'
+      - '.github/workflows/refresh-wake.yml'
+      - '.github/workflows/enrich.yml'
   workflow_dispatch:
   schedule:
     # Backup watchdog. The chained wake workflow normally starts each cycle.
@@ -198,6 +201,13 @@ jobs:
 
           echo "Refresh could not publish after 4 concurrent-push retries" >&2
           exit 1
+
+      - name: Deploy fast refresh
+        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run site.yml --repo myplexscripts/news --ref main
 
       - name: Start deferred article enrichment
         if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
