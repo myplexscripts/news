@@ -36,22 +36,22 @@
   <meta name="description" content="Customize Forest City News appearance and reading preferences." />
 </svelte:head>
 
-<main class="settings-page" id="main-content">
-  <section class="settings-shell shell">
+<main class="settings-page glasskit-screen" id="main-content">
+  <section class="settings-shell shell ios-content">
     <header class="page-heading settings-heading directory-heading">
       <div class="page-heading-copy">
         <p class="masthead-label">Preferences</p>
-        <h1>Settings</h1>
+        <h1 class="ios-large-title">Settings</h1>
         <p class="page-heading-description">Choose how Forest City News looks and how stories behave on this device.</p>
       </div>
     </header>
 
     <div class="settings-groups">
-      <section class="settings-group" aria-labelledby="appearance-heading">
+      <section class="settings-group ios-section" aria-labelledby="appearance-heading">
         <h2 id="appearance-heading">Appearance</h2>
-        <div class="settings-card ios-card">
-          <div class="settings-row">
-            <div class="settings-row-copy">
+        <div class="settings-card ios-card ios-list">
+          <div class="settings-row ios-row">
+            <div class="settings-row-copy ios-row__body">
               <strong>Theme</strong>
               <span>Choose a light or dark reading experience.</span>
             </div>
@@ -61,8 +61,8 @@
             </div>
           </div>
 
-          <div class="settings-accent-row">
-            <div class="settings-row-copy">
+          <div class="settings-accent-row ios-row">
+            <div class="settings-row-copy ios-row__body">
               <strong>Accent colour</strong>
               <span>Used for controls, publisher names and interface highlights.</span>
             </div>
@@ -86,11 +86,11 @@
         </div>
       </section>
 
-      <section class="settings-group" aria-labelledby="reading-heading">
+      <section class="settings-group ios-section" aria-labelledby="reading-heading">
         <h2 id="reading-heading">Reading</h2>
-        <div class="settings-card ios-card">
-          <div class="settings-row settings-toggle-row">
-            <div class="settings-row-copy">
+        <div class="settings-card ios-card ios-list">
+          <div class="settings-row settings-toggle-row ios-row">
+            <div class="settings-row-copy ios-row__body">
               <strong>Hide read articles</strong>
               <span>Stories you open will disappear from article lists on this device.</span>
             </div>
@@ -105,8 +105,8 @@
             </label>
           </div>
 
-          <div class="settings-row">
-            <div class="settings-row-copy">
+          <div class="settings-row ios-row">
+            <div class="settings-row-copy ios-row__body">
               <strong>Read history</strong>
               <span>
                 {$userState.readIds.length
@@ -120,11 +120,11 @@
         <p class="settings-footnote">Reading history and these preferences are stored only in this browser. They are not tied to an account.</p>
       </section>
 
-      <section class="settings-group" aria-labelledby="data-heading">
+      <section class="settings-group ios-section" aria-labelledby="data-heading">
         <h2 id="data-heading">Data</h2>
-        <div class="settings-card ios-card">
-          <div class="settings-row">
-            <div class="settings-row-copy">
+        <div class="settings-card ios-card ios-list">
+          <div class="settings-row ios-row">
+            <div class="settings-row-copy ios-row__body">
               <strong>Clear all data</strong>
               <span>Reset preferences and remove read history, Read Later items and hidden sources from this device.</span>
             </div>
