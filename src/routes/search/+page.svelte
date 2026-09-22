@@ -85,7 +85,7 @@
   <meta name="description" content="Search Forest City News stories." />
 </svelte:head>
 
-<main class="directory-page search-page glasskit-screen" id="main-content">
+<main class="directory-page search-page" id="main-content">
   <section class="directory-shell shell ios-content">
     <header class="page-heading directory-heading">
       <div class="page-heading-copy">
