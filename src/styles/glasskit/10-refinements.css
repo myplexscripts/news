@@ -1,0 +1,462 @@
+/* GlassKit: refinements.css */
+/* Final HIG fidelity and accessibility layer. Loaded after all other framework CSS. */
+
+:root {
+  /* Current Apple system colours */
+  --ios-red: #ff383c;
+  --ios-orange: #ff8d28;
+  --ios-yellow: #ffcc00;
+  --ios-green: #34c759;
+  --ios-mint: #00c8b3;
+  --ios-teal: #00c3d0;
+  --ios-cyan: #00c0e8;
+  --ios-blue: #0088ff;
+  --ios-indigo: #6155f5;
+  --ios-purple: #cb30e0;
+  --ios-pink: #ff2d55;
+  --ios-brown: #ac7f5e;
+
+  /* Web-safe semantic label values. Important supporting text remains >= 4.5:1
+     against the framework's standard light content backgrounds. */
+  --ios-label-secondary: rgba(60, 60, 67, .78);
+  --ios-label-tertiary: rgba(60, 60, 67, .74);
+  --ios-label-quaternary: rgba(60, 60, 67, .34);
+
+  --ios-page-margin: 20px;
+  --ios-section-gap: 32px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ios-red: #ff4245;
+    --ios-orange: #ff9230;
+    --ios-yellow: #ffd600;
+    --ios-green: #30d158;
+    --ios-mint: #00dac3;
+    --ios-teal: #00d2e0;
+    --ios-cyan: #3cd3fe;
+    --ios-blue: #0091ff;
+    --ios-indigo: #6d7cff;
+    --ios-purple: #db34f2;
+    --ios-pink: #ff375f;
+    --ios-brown: #b78a66;
+
+    --ios-label-secondary: rgba(235, 235, 245, .72);
+    --ios-label-tertiary: rgba(235, 235, 245, .60);
+    --ios-label-quaternary: rgba(235, 235, 245, .34);
+  }
+}
+
+/* Page rhythm */
+.ios-scroll {
+  padding-left: max(var(--ios-page-margin), var(--ios-safe-left));
+  padding-right: max(var(--ios-page-margin), var(--ios-safe-right));
+}
+
+.ios-navigation-bar + .ios-scroll { padding-top: 8px; }
+
+.ios-content > .ios-large-title:first-child {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.ios-content > .ios-large-title:first-child + .ios-section { margin-top: 0; }
+.ios-section { margin-bottom: var(--ios-section-gap); }
+.ios-section__header { color: var(--ios-label-secondary); }
+.ios-section__footer { color: var(--ios-label-secondary); line-height: 1.42; }
+
+/* Lucide is the public icon system. */
+.lucide,
+.ios-symbol {
+  width: 1.15em;
+  height: 1.15em;
+  flex: 0 0 auto;
+  stroke-width: 2;
+}
+
+.ios-row__icon .lucide,
+.ios-row__icon .ios-symbol { width: 18px; height: 18px; }
+.ios-tabbar__item .lucide,
+.ios-tabbar__item .ios-symbol { width: 22px; height: 22px; }
+.ios-toolbar__button .lucide,
+.ios-bar-button .lucide { width: 20px; height: 20px; }
+
+/* Horizontal content scrollers */
+.ios-card-scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(82vw, 320px);
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-inline: calc(var(--ios-page-margin) * -1);
+  padding: 2px var(--ios-page-margin) 12px;
+  scroll-padding-inline: var(--ios-page-margin);
+  scroll-snap-type: x proximity;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.ios-card-scroller::-webkit-scrollbar { display: none; }
+.ios-card-scroller > * { scroll-snap-align: start; }
+.ios-card-scroller--peek { grid-auto-columns: min(74vw, 286px); }
+.ios-card-scroller--compact { grid-auto-columns: min(60vw, 230px); }
+
+.ios-scroll-card {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.ios-scroll-card__media {
+  aspect-ratio: 16 / 9;
+  margin: -16px -16px 14px;
+  border-radius: var(--ios-radius-l) var(--ios-radius-l) 0 0;
+  overflow: hidden;
+  background: var(--ios-fill-secondary);
+}
+.ios-scroll-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Form anatomy */
+.ios-form-group { display: grid; gap: 18px; }
+.ios-field { display: grid; gap: 7px; min-width: 0; }
+.ios-field__label { color: var(--ios-label); font-size: 15px; font-weight: 600; }
+.ios-field__help { color: var(--ios-label-secondary); font-size: 13px; line-height: 1.4; }
+.ios-field__error { color: var(--ios-red); font-size: 13px; line-height: 1.4; }
+.ios-field.is-invalid .ios-text-field,
+.ios-field.is-invalid .ios-text-view,
+.ios-field.is-invalid .ios-picker-field { outline: 2px solid color-mix(in srgb, var(--ios-red) 68%, transparent); outline-offset: 1px; }
+
+.ios-check-row,
+.ios-radio-row {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--ios-label);
+}
+.ios-check-row input,
+.ios-radio-row input { width: 20px; height: 20px; accent-color: var(--ios-blue); }
+
+.ios-token-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.ios-token {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--ios-fill-secondary);
+  color: var(--ios-label);
+  font-size: 14px;
+  font-weight: 500;
+}
+.ios-token[aria-selected="true"] { background: color-mix(in srgb, var(--ios-blue) 18%, transparent); color: var(--ios-blue); }
+
+/* Hierarchy and disclosure */
+.ios-disclosure-group { overflow: hidden; border-radius: var(--ios-radius-l); background: var(--ios-background-tertiary); }
+.ios-disclosure-group details + details { border-top: .5px solid var(--ios-separator); }
+.ios-disclosure-group summary {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+.ios-disclosure-group summary::-webkit-details-marker { display: none; }
+.ios-disclosure-group summary::after { content: "›"; margin-left: auto; color: var(--ios-label-secondary); font-size: 22px; transform: rotate(0deg); transition: transform 160ms ease; }
+.ios-disclosure-group details[open] summary::after { transform: rotate(90deg); }
+.ios-disclosure-group__content { padding: 0 14px 14px; color: var(--ios-label-secondary); font-size: 15px; line-height: 1.45; }
+
+/* Media and identity */
+.ios-avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; overflow: hidden; background: var(--ios-fill-secondary); color: var(--ios-label-secondary); font-weight: 600; }
+.ios-avatar--small { width: 30px; height: 30px; }
+.ios-avatar--large { width: 56px; height: 56px; }
+.ios-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.ios-status-pill { min-height: 26px; display: inline-flex; align-items: center; gap: 5px; padding: 0 9px; border-radius: 999px; background: var(--ios-fill-secondary); color: var(--ios-label-secondary); font-size: 12px; font-weight: 600; }
+.ios-status-pill--success { background: color-mix(in srgb, var(--ios-green) 15%, transparent); color: color-mix(in srgb, var(--ios-green) 72%, var(--ios-label)); }
+.ios-status-pill--warning { background: color-mix(in srgb, var(--ios-orange) 16%, transparent); color: color-mix(in srgb, var(--ios-orange) 72%, var(--ios-label)); }
+.ios-status-pill--error { background: color-mix(in srgb, var(--ios-red) 15%, transparent); color: var(--ios-red); }
+
+/* Content unavailable */
+.ios-content-unavailable { min-height: 260px; display: grid; place-items: center; padding: 34px 20px; text-align: center; }
+.ios-content-unavailable__icon { width: 62px; height: 62px; margin: 0 auto 14px; display: grid; place-items: center; border-radius: 20px; background: var(--ios-fill-secondary); color: var(--ios-label-secondary); font-size: 28px; }
+.ios-content-unavailable__title { font-size: 20px; line-height: 1.25; font-weight: 700; }
+.ios-content-unavailable__description { max-width: 340px; margin: 6px auto 17px; color: var(--ios-label-secondary); font-size: 15px; line-height: 1.42; }
+
+/* Compact split-view collapse. NavigationSplitView becomes a navigation stack at compact width. */
+@media (max-width: 759px), (max-height: 599px) {
+  .ios-split-view {
+    position: relative;
+    display: block;
+    min-height: 0;
+    height: auto !important;
+    overflow: hidden;
+    border-radius: var(--ios-radius-l);
+  }
+
+  .ios-split-view__sidebar,
+  .ios-split-view__content,
+  .ios-split-view__inspector {
+    min-height: 0;
+    height: auto;
+  }
+
+  .ios-split-view__content { display: none; }
+  .ios-split-view__inspector { display: none !important; }
+  .ios-split-view.is-detail-open .ios-split-view__sidebar { display: none; }
+  .ios-split-view.is-detail-open .ios-split-view__content { display: block; }
+  .ios-split-view__pane-scroll { height: auto; max-height: none; overflow: visible; padding: 14px; }
+  .ios-split-back { display: inline-flex; margin-bottom: 12px; }
+}
+
+@media (min-width: 760px) and (min-height: 600px) {
+  :root { --ios-page-margin: 24px; --ios-section-gap: 36px; }
+  .ios-split-back { display: none !important; }
+  .ios-card-scroller { grid-auto-columns: min(360px, 34vw); }
+  .ios-card-scroller--compact { grid-auto-columns: min(260px, 25vw); }
+}
+
+/* Pointer discoverability without weakening touch behavior. */
+@media (hover: hover) and (pointer: fine) {
+  .ios-token:hover,
+  .ios-disclosure-group summary:hover { background-color: var(--ios-hover-fill); }
+}
+
+/* Stronger accessibility mode follows Apple's increased-contrast system colours. */
+@media (prefers-contrast: more) {
+  :root {
+    --ios-red: #e9152d;
+    --ios-orange: #c55300;
+    --ios-yellow: #a16a00;
+    --ios-green: #008932;
+    --ios-mint: #008575;
+    --ios-teal: #008198;
+    --ios-cyan: #007eae;
+    --ios-blue: #1e6ef4;
+    --ios-indigo: #564ade;
+    --ios-purple: #b02fc2;
+    --ios-pink: #e7124d;
+    --ios-label-secondary: rgba(30, 30, 34, .92);
+    --ios-label-tertiary: rgba(30, 30, 34, .82);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    --ios-red: #ff6165;
+    --ios-orange: #ffa056;
+    --ios-yellow: #fedf43;
+    --ios-green: #4ad968;
+    --ios-mint: #54dfcb;
+    --ios-teal: #3bddEC;
+    --ios-cyan: #6dd9ff;
+    --ios-blue: #5cb8ff;
+    --ios-indigo: #a7aaff;
+    --ios-purple: #ea8dff;
+    --ios-pink: #ff8ac4;
+    --ios-label-secondary: rgba(255, 255, 255, .88);
+    --ios-label-tertiary: rgba(255, 255, 255, .76);
+  }
+}
+
+
+/* GlassKit: system-colors.css */
+/* GlassKit system colour foundation.
+   Values mirror Apple's current iOS system colours supplied by the HIG.
+   Semantic aliases keep app code independent from appearance and contrast mode. */
+
+:root {
+  /* System accents, default light */
+  --ios-red: rgb(255 56 60);
+  --ios-orange: rgb(255 141 40);
+  --ios-yellow: rgb(255 204 0);
+  --ios-green: rgb(52 199 89);
+  --ios-mint: rgb(0 200 179);
+  --ios-teal: rgb(0 195 208);
+  --ios-cyan: rgb(0 192 232);
+  --ios-blue: rgb(0 136 255);
+  --ios-indigo: rgb(97 85 245);
+  --ios-purple: rgb(203 48 224);
+  --ios-pink: rgb(255 45 85);
+  --ios-brown: rgb(172 127 94);
+
+  /* UIKit system grays, default light */
+  --ios-gray: rgb(142 142 147);
+  --ios-gray-2: rgb(174 174 178);
+  --ios-gray-3: rgb(199 199 204);
+  --ios-gray-4: rgb(209 209 214);
+  --ios-gray-5: rgb(229 229 234);
+  --ios-gray-6: rgb(242 242 247);
+
+  /* Semantic surfaces */
+  --ios-background: rgb(255 255 255);
+  --ios-background-secondary: var(--ios-gray-6);
+  --ios-background-tertiary: rgb(255 255 255);
+
+  /* Apple's system fill family. */
+  --ios-fill: rgb(120 120 128 / 20%);
+  --ios-fill-secondary: rgb(120 120 128 / 16%);
+  --ios-fill-tertiary: rgb(118 118 128 / 12%);
+  --ios-fill-quaternary: rgb(116 116 128 / 8%);
+
+  /* Separators use Apple's neutral label family rather than arbitrary gray. */
+  --ios-separator: rgb(60 60 67 / 29%);
+  --ios-separator-opaque: rgb(198 198 200);
+
+  /* Public GlassKit aliases. Existing ios-* variables remain for compatibility. */
+  --glasskit-red: var(--ios-red);
+  --glasskit-orange: var(--ios-orange);
+  --glasskit-yellow: var(--ios-yellow);
+  --glasskit-green: var(--ios-green);
+  --glasskit-mint: var(--ios-mint);
+  --glasskit-teal: var(--ios-teal);
+  --glasskit-cyan: var(--ios-cyan);
+  --glasskit-blue: var(--ios-blue);
+  --glasskit-indigo: var(--ios-indigo);
+  --glasskit-purple: var(--ios-purple);
+  --glasskit-pink: var(--ios-pink);
+  --glasskit-brown: var(--ios-brown);
+  --glasskit-gray: var(--ios-gray);
+  --glasskit-gray-2: var(--ios-gray-2);
+  --glasskit-gray-3: var(--ios-gray-3);
+  --glasskit-gray-4: var(--ios-gray-4);
+  --glasskit-gray-5: var(--ios-gray-5);
+  --glasskit-gray-6: var(--ios-gray-6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* System accents, default dark */
+    --ios-red: rgb(255 66 69);
+    --ios-orange: rgb(255 146 48);
+    --ios-yellow: rgb(255 214 0);
+    --ios-green: rgb(48 209 88);
+    --ios-mint: rgb(0 218 195);
+    --ios-teal: rgb(0 210 224);
+    --ios-cyan: rgb(60 211 254);
+    --ios-blue: rgb(0 145 255);
+    --ios-indigo: rgb(109 124 255);
+    --ios-purple: rgb(219 52 242);
+    --ios-pink: rgb(255 55 95);
+    --ios-brown: rgb(183 138 102);
+
+    /* UIKit system grays, default dark */
+    --ios-gray: rgb(142 142 147);
+    --ios-gray-2: rgb(99 99 102);
+    --ios-gray-3: rgb(72 72 74);
+    --ios-gray-4: rgb(58 58 60);
+    --ios-gray-5: rgb(44 44 46);
+    --ios-gray-6: rgb(28 28 30);
+
+    --ios-background: rgb(0 0 0);
+    --ios-background-secondary: var(--ios-gray-6);
+    --ios-background-tertiary: var(--ios-gray-5);
+
+    --ios-fill: rgb(120 120 128 / 36%);
+    --ios-fill-secondary: rgb(120 120 128 / 32%);
+    --ios-fill-tertiary: rgb(118 118 128 / 24%);
+    --ios-fill-quaternary: rgb(118 118 128 / 18%);
+
+    --ios-separator: rgb(84 84 88 / 60%);
+    --ios-separator-opaque: rgb(56 56 58);
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    /* System accents, increased contrast light */
+    --ios-red: rgb(233 21 45);
+    --ios-orange: rgb(197 83 0);
+    --ios-yellow: rgb(161 106 0);
+    --ios-green: rgb(0 137 50);
+    --ios-mint: rgb(0 133 117);
+    --ios-teal: rgb(0 129 152);
+    --ios-cyan: rgb(0 126 174);
+    --ios-blue: rgb(30 110 244);
+    --ios-indigo: rgb(86 74 222);
+    --ios-purple: rgb(176 47 194);
+    --ios-pink: rgb(231 18 77);
+    --ios-brown: rgb(149 109 81);
+
+    /* UIKit system grays, increased contrast light */
+    --ios-gray: rgb(108 108 112);
+    --ios-gray-2: rgb(142 142 147);
+    --ios-gray-3: rgb(174 174 178);
+    --ios-gray-4: rgb(188 188 192);
+    --ios-gray-5: rgb(216 216 220);
+    --ios-gray-6: rgb(235 235 240);
+
+    --ios-background-secondary: var(--ios-gray-6);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root {
+    /* System accents, increased contrast dark */
+    --ios-red: rgb(255 97 101);
+    --ios-orange: rgb(255 160 86);
+    --ios-yellow: rgb(254 223 67);
+    --ios-green: rgb(74 217 104);
+    --ios-mint: rgb(84 223 203);
+    --ios-teal: rgb(59 221 236);
+    --ios-cyan: rgb(109 217 255);
+    --ios-blue: rgb(92 184 255);
+    --ios-indigo: rgb(167 170 255);
+    --ios-purple: rgb(234 141 255);
+    --ios-pink: rgb(255 138 196);
+    --ios-brown: rgb(219 166 121);
+
+    /* UIKit system grays, increased contrast dark */
+    --ios-gray: rgb(174 174 178);
+    --ios-gray-2: rgb(124 124 128);
+    --ios-gray-3: rgb(84 84 86);
+    --ios-gray-4: rgb(68 68 70);
+    --ios-gray-5: rgb(54 54 56);
+    --ios-gray-6: rgb(36 36 38);
+
+    --ios-background-secondary: var(--ios-gray-6);
+    --ios-background-tertiary: var(--ios-gray-5);
+  }
+}
+
+
+/* GlassKit: presentations.css */
+/* Source-aware transient presentations */
+
+.ios-overlay[data-ios-action-anchored="true"] {
+  display: block;
+  padding: 0;
+}
+
+.ios-overlay[data-ios-action-anchored="true"] .ios-action-sheet {
+  position: fixed;
+  left: var(--ios-action-left, 12px);
+  top: var(--ios-action-top, 72px);
+  width: min(420px, calc(100vw - 24px));
+  margin: 0;
+  transform: scale(.88);
+  opacity: 0;
+  transform-origin: var(--ios-action-source-x, 50%) 0;
+  transition: transform 210ms var(--ios-ease), opacity 150ms ease;
+}
+
+.ios-overlay[data-ios-action-anchored="true"].is-open .ios-action-sheet {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Current inline action sheets dismiss by choosing an action or tapping outside. */
+.ios-overlay[data-ios-action-anchored="true"] .ios-action-sheet__cancel { display: none; }
+
+/* A source-aware action surface reads as one compact transient group. */
+.ios-overlay[data-ios-action-anchored="true"] .ios-action-sheet__group {
+  box-shadow: var(--ios-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ios-overlay[data-ios-action-anchored="true"] .ios-action-sheet { transform: none; }
+}
