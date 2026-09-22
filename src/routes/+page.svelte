@@ -244,8 +244,8 @@
   <meta name="description" content="A fast local news reader for London, Ontario and Canada." />
 </svelte:head>
 
-<main class="home-page card-home editorial-home" id="main-content">
-  <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
+<main class="home-page card-home editorial-home glasskit-screen" id="main-content">
+  <section class="section-nav-wrap card-filter-wrap ios-section" aria-label="News filters">
     <div class="shell section-nav-inner card-filter-inner">
       <div class="feed-scope-row">
         <div class="feed-scope-switch ios-segmented" role="group" aria-label="Choose home feed">
@@ -303,9 +303,9 @@
   {:else if filteredStories.length === 0}
     <div class="shell home-state-wrap"><div class="app-empty">No stories match these filters right now.</div></div>
   {:else}
-    <section class="editorial-front shell" aria-labelledby="today-heading">
+    <section class="editorial-front shell ios-content" aria-labelledby="today-heading">
       <div class="editorial-home-heading">
-        <div><h2 id="today-heading">Today</h2></div>
+        <div><h2 class="ios-title-1" id="today-heading">Today</h2></div>
       </div>
 
       <div class="editorial-front-grid editorial-carousel-ready">
