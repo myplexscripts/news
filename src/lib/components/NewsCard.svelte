@@ -237,7 +237,7 @@
 
     <button
       class:is-saved={isSaved}
-      class="news-card-save ios-bar-button ios-bar-button--icon"
+      class="news-card-save"
       type="button"
       aria-label={isSaved ? 'Remove from Read Later' : 'Save to Read Later'}
       aria-pressed={isSaved}
