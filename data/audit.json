@@ -1,24 +1,24 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-09-24T10:58:17.140047+00:00",
-  "generated_at_london": "2026-09-24T06:58:17.140047-04:00",
-  "news_generated_at": "2026-09-24T10:35:37.662757+00:00",
+  "generated_at": "2026-09-24T11:22:23.707242+00:00",
+  "generated_at_london": "2026-09-24T07:22:23.707242-04:00",
+  "news_generated_at": "2026-09-24T11:02:34.282481+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 747,
     "source_count": 28,
-    "audited_story_count": 129,
-    "pass_story_count": 113,
+    "audited_story_count": 126,
+    "pass_story_count": 110,
     "review_story_count": 14,
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 24,
-    "info_issue_count": 92,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "info_issue_count": 89,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 2,
-    "waiting_source_count": 9
+    "waiting_source_count": 10
   },
   "source_reports": [
     {
@@ -50,7 +50,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 2,
@@ -70,10 +70,10 @@
       "warning_issues": 13,
       "info_issues": 10,
       "latest_published": "2026-09-24T08:00:25+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-09-24T09:15:13.140365+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CTV News Canada",
@@ -98,8 +98,34 @@
       "latest_published": "2026-09-23T22:24:32.476000+00:00",
       "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-09-24T10:08:36.956000+00:00",
+      "last_scrape": "2026-09-24T10:33:15.153146+00:00",
       "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 329,
+      "average_quality": 75,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-09-23T23:06:03.612000+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-09-24T10:33:02.446291+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Max retries exceeded with url: /london/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Global News Canada",
@@ -112,19 +138,20 @@
       "fail": 0,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 330,
-      "average_quality": 96,
+      "average_words": 345,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-09-24T03:53:26+00:00",
+      "latest_published": "2026-09-24T11:00:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-24T04:13:19.508555+00:00",
+      "last_scrape": "2026-09-24T11:01:05.822969+00:00",
       "last_error": ""
     },
     {
@@ -138,8 +165,8 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 1162,
-      "average_quality": 89,
+      "average_words": 1028,
+      "average_quality": 88,
       "primary_method": "dom:globe:article#content-gate",
       "method_counts": {
         "dom:globe:article#content-gate": 10
@@ -147,10 +174,10 @@
       "critical_issues": 0,
       "warning_issues": 2,
       "info_issues": 11,
-      "latest_published": "2026-09-24T10:00:00+00:00",
+      "latest_published": "2026-09-24T10:45:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-24T10:33:22.689538+00:00",
+      "last_scrape": "2026-09-24T11:01:08.304013+00:00",
       "last_error": ""
     },
     {
@@ -370,6 +397,30 @@
       "last_error": ""
     },
     {
+      "source": "Thames Valley District School Board",
+      "status": "waiting",
+      "collector_status": "waiting",
+      "profile": "generic",
+      "sample_size": 0,
+      "pass": 0,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 0,
+      "usable_body_rate": 0,
+      "average_words": 0,
+      "average_quality": 0,
+      "primary_method": "unknown",
+      "method_counts": {},
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 0,
+      "latest_published": "",
+      "found_this_run": 10,
+      "tracked": 0,
+      "last_scrape": "",
+      "last_error": ""
+    },
+    {
       "source": "106.9 The X",
       "status": "healthy",
       "collector_status": "healthy",
@@ -423,55 +474,29 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 329,
-      "average_quality": 75,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-09-23T23:06:03.612000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-09-24T10:08:24.930673+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 6,
-      "pass": 6,
+      "sample_size": 5,
+      "pass": 5,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1501,
-      "average_quality": 82,
+      "average_words": 1746,
+      "average_quality": 84,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 3,
-        "dom:semantic-rich-v1": 3
+        "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 3,
+      "info_issues": 2,
       "latest_published": "2026-09-23T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 6,
+      "tracked": 5,
       "last_scrape": "2026-09-23T16:31:42.797434+00:00",
       "last_error": ""
     },
@@ -683,34 +708,7 @@
       "latest_published": "2026-09-24T10:00:39+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-24T10:33:29.975135+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Thames Valley District School Board",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 2,
-      "pass": 2,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 522,
-      "average_quality": 70,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1,
-        "reader:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 2,
-      "latest_published": "2026-09-17T04:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 2,
-      "last_scrape": "2026-09-17T18:23:55.307127+00:00",
+      "last_scrape": "2026-09-24T11:01:12.616585+00:00",
       "last_error": ""
     },
     {
@@ -1526,21 +1524,6 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
-      "story_id": "5780dcc7814cedb6",
-      "source": "City of London Newsroom",
-      "title": "Rescue Rendezvous returns to The Catty Shack this Saturday",
-      "url": "https://london.ca/newsroom/rescue-rendezvous-returns-catty-shack-saturday-0",
-      "published": "2026-09-17T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 278,
-      "quality_score": 72,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
       "story_id": "2bfb22c92773112f",
       "source": "City of London Newsroom",
       "title": "Temporary lane restrictions at Wonderland Road South and Viscount Road intersection",
@@ -1781,6 +1764,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "4673084468c27fd2",
+      "source": "Global News Canada",
+      "title": "Milton mayoral candidates call for clean campaigning",
+      "url": "https://globalnews.ca/news/12070709/milton-candidates-for-clean-campaigning",
+      "published": "2026-09-24T11:00:12+00:00",
+      "content_status": "full",
+      "word_count": 337,
+      "quality_score": 82,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6c4f5470ea1d333d",
       "source": "Global News Canada",
       "title": "Northwest Territories latest to stay on daylight time year-round",
@@ -1788,21 +1786,6 @@
       "published": "2026-09-23T21:24:54+00:00",
       "content_status": "full",
       "word_count": 194,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "14763ecffc9c9c56",
-      "source": "Global News Canada",
-      "title": "Premier Tim Houston softens stance on data centres operating in Nova Scotia",
-      "url": "https://globalnews.ca/news/12070592/premier-tim-houston-softens-stance-on-data-centres-operating-in-nova-scotia",
-      "published": "2026-09-23T20:32:08+00:00",
-      "content_status": "full",
-      "word_count": 188,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2123,33 +2106,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "6edb82ec3d29b2c9",
-      "source": "Thames Valley District School Board",
-      "title": "General News",
-      "url": "https://www.tvdsb.ca/news/general-news",
-      "published": "2026-09-17T04:00:00+00:00",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2a115cf4bd3d6c95",
+      "source": "The Globe and Mail",
+      "title": "AFN regional chiefs to meet with Carney, premiers next month",
+      "url": "https://www.theglobeandmail.com/canada/article-afn-regional-chiefs-to-meet-with-carney-premiers-next-month",
+      "published": "2026-09-24T10:41:11.670000+00:00",
       "content_status": "full",
-      "word_count": 813,
-      "quality_score": 70,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "a4e152ef87cdae69",
-      "source": "Thames Valley District School Board",
-      "title": "TVDSB Technology Programs Benefit from Industry Donation Exceeding $50,000",
-      "url": "https://www.tvdsb.ca/news/posts/tvdsb-technology-programs-benefit-from-industry-donation-exceeding-50-000",
-      "published": "2026-09-17T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 231,
-      "quality_score": 70,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 620,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2164,6 +2132,21 @@
       "content_status": "full",
       "word_count": 2386,
       "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7332d37d05524f5b",
+      "source": "The Globe and Mail",
+      "title": "David Eby’s snap election in B.C. snubs democracy",
+      "url": "https://www.theglobeandmail.com/opinion/editorials/article-david-ebys-snap-election-in-bc-snubs-democracy",
+      "published": "2026-09-24T10:45:00+00:00",
+      "content_status": "full",
+      "word_count": 755,
+      "quality_score": 86,
       "extraction_method": "dom:globe:article#content-gate"
     },
     {
@@ -2194,36 +2177,6 @@
       "content_status": "full",
       "word_count": 807,
       "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1f8a207c88fc233f",
-      "source": "The Globe and Mail",
-      "title": "Politics Insider: Ottawa City Council votes to rename Trump Avenue",
-      "url": "https://www.theglobeandmail.com/politics/article-politics-insider-ottawa-city-council-votes-to-rename-trump-avenue",
-      "published": "2026-09-23T23:18:27.841000+00:00",
-      "content_status": "full",
-      "word_count": 892,
-      "quality_score": 92,
-      "extraction_method": "dom:globe:article#content-gate"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8a064c9f6a9c2e4c",
-      "source": "The Globe and Mail",
-      "title": "Pro wrestler Paul Leduc thrilled crowds as half of an axe-wielding tag team of faux lumberjacks",
-      "url": "https://www.theglobeandmail.com/canada/article-obituary-pro-wrestler-paul-leduc",
-      "published": "2026-09-23T22:27:54.878000+00:00",
-      "content_status": "full",
-      "word_count": 1822,
-      "quality_score": 91,
       "extraction_method": "dom:globe:article#content-gate"
     },
     {
@@ -3636,35 +3589,6 @@
       "issues": []
     },
     {
-      "id": "5780dcc7814cedb6",
-      "source": "City of London Newsroom",
-      "title": "Rescue Rendezvous returns to The Catty Shack this Saturday",
-      "url": "https://london.ca/newsroom/rescue-rendezvous-returns-catty-shack-saturday-0",
-      "published": "2026-09-17T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 278,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 72,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "municipal",
-      "local_score": 95,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
       "id": "b5a301ef7cd40430",
       "source": "London Police Service",
       "title": "Fatal motor vehicle collision",
@@ -4114,64 +4038,6 @@
       "issues": []
     },
     {
-      "id": "a4e152ef87cdae69",
-      "source": "Thames Valley District School Board",
-      "title": "TVDSB Technology Programs Benefit from Industry Donation Exceeding $50,000",
-      "url": "https://www.tvdsb.ca/news/posts/tvdsb-technology-programs-benefit-from-industry-donation-exceeding-50-000",
-      "published": "2026-09-17T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 231,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 70,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "generic",
-      "local_score": 24,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "6edb82ec3d29b2c9",
-      "source": "Thames Valley District School Board",
-      "title": "General News",
-      "url": "https://www.tvdsb.ca/news/general-news",
-      "published": "2026-09-17T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 813,
-      "paragraph_count": 40,
-      "inline_image_count": 0,
-      "quality_score": 70,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "generic",
-      "local_score": 24,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
       "id": "7cc8a2914ec9b9f6",
       "source": "London Transit Commission",
       "title": "Plan Your Trip",
@@ -4249,6 +4115,35 @@
       "extraction_profile": "generic",
       "local_score": 22,
       "issues": []
+    },
+    {
+      "id": "4673084468c27fd2",
+      "source": "Global News Canada",
+      "title": "Milton mayoral candidates call for clean campaigning",
+      "url": "https://globalnews.ca/news/12070709/milton-candidates-for-clean-campaigning",
+      "published": "2026-09-24T11:00:12+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 337,
+      "paragraph_count": 18,
+      "inline_image_count": 1,
+      "quality_score": 82,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
     },
     {
       "id": "39eb7e6c50cd1797",
@@ -4521,35 +4416,6 @@
       "word_count": 462,
       "paragraph_count": 14,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "14763ecffc9c9c56",
-      "source": "Global News Canada",
-      "title": "Premier Tim Houston softens stance on data centres operating in Nova Scotia",
-      "url": "https://globalnews.ca/news/12070592/premier-tim-houston-softens-stance-on-data-centres-operating-in-nova-scotia",
-      "published": "2026-09-23T20:32:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 188,
-      "paragraph_count": 7,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4885,6 +4751,64 @@
       ]
     },
     {
+      "id": "7332d37d05524f5b",
+      "source": "The Globe and Mail",
+      "title": "David Eby’s snap election in B.C. snubs democracy",
+      "url": "https://www.theglobeandmail.com/opinion/editorials/article-david-ebys-snap-election-in-bc-snubs-democracy",
+      "published": "2026-09-24T10:45:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 755,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "2a115cf4bd3d6c95",
+      "source": "The Globe and Mail",
+      "title": "AFN regional chiefs to meet with Carney, premiers next month",
+      "url": "https://www.theglobeandmail.com/canada/article-afn-regional-chiefs-to-meet-with-carney-premiers-next-month",
+      "published": "2026-09-24T10:41:11.670000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 620,
+      "paragraph_count": 21,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2c2368c4fca130e2",
       "source": "The Globe and Mail",
       "title": "Ticket resellers fined for breaking Ontario’s price cap law take issue with charges",
@@ -5121,64 +5045,6 @@
       "paragraph_count": 28,
       "inline_image_count": 2,
       "quality_score": 90,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1f8a207c88fc233f",
-      "source": "The Globe and Mail",
-      "title": "Politics Insider: Ottawa City Council votes to rename Trump Avenue",
-      "url": "https://www.theglobeandmail.com/politics/article-politics-insider-ottawa-city-council-votes-to-rename-trump-avenue",
-      "published": "2026-09-23T23:18:27.841000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 892,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8a064c9f6a9c2e4c",
-      "source": "The Globe and Mail",
-      "title": "Pro wrestler Paul Leduc thrilled crowds as half of an axe-wielding tag team of faux lumberjacks",
-      "url": "https://www.theglobeandmail.com/canada/article-obituary-pro-wrestler-paul-leduc",
-      "published": "2026-09-23T22:27:54.878000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1822,
-      "paragraph_count": 41,
-      "inline_image_count": 4,
-      "quality_score": 91,
       "quality_grade": "excellent",
       "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
