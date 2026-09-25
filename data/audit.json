@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-09-25T12:04:57.257783+00:00",
-  "generated_at_london": "2026-09-25T08:04:57.257783-04:00",
-  "news_generated_at": "2026-09-25T11:41:10.446527+00:00",
+  "generated_at": "2026-09-25T12:32:51.099608+00:00",
+  "generated_at_london": "2026-09-25T08:32:51.099608-04:00",
+  "news_generated_at": "2026-09-25T12:09:51.890596+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 747,
     "source_count": 28,
     "audited_story_count": 125,
-    "pass_story_count": 113,
-    "review_story_count": 11,
+    "pass_story_count": 112,
+    "review_story_count": 12,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 22,
-    "info_issue_count": 84,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "warning_issue_count": 24,
+    "info_issue_count": 87,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -48,6 +48,34 @@
       "last_error": ""
     },
     {
+      "source": "CBC News London",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "cbc",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 90,
+      "average_words": 762,
+      "average_quality": 79,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "rss:google-cbc-fallback": 1,
+        "reader:semantic-rich-v1": 8,
+        "reader:cbc:lite-repair": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 4,
+      "latest_published": "2026-09-25T11:32:39+00:00",
+      "found_this_run": 17,
+      "tracked": 23,
+      "last_scrape": "2026-09-25T12:06:02.730208+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CTV News Canada",
       "status": "review",
       "collector_status": "healthy",
@@ -70,7 +98,7 @@
       "latest_published": "2026-09-25T09:22:27.067000+00:00",
       "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-09-25T11:12:09.228765+00:00",
+      "last_scrape": "2026-09-25T11:39:08.023164+00:00",
       "last_error": ""
     },
     {
@@ -393,33 +421,6 @@
       "last_error": ""
     },
     {
-      "source": "CBC News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "cbc",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 731,
-      "average_quality": 87,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "reader:cbc:lite-repair": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-09-25T09:00:00+00:00",
-      "found_this_run": 17,
-      "tracked": 22,
-      "last_scrape": "2026-09-25T11:12:38.522179+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News London",
       "status": "healthy",
       "collector_status": "healthy",
@@ -443,7 +444,7 @@
       "latest_published": "2026-09-25T10:23:11.040000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-25T11:11:59.977637+00:00",
+      "last_scrape": "2026-09-25T11:39:00.191290+00:00",
       "last_error": ""
     },
     {
@@ -683,7 +684,7 @@
       "latest_published": "2026-09-25T11:00:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-25T11:39:09.656453+00:00",
+      "last_scrape": "2026-09-25T12:07:49.250436+00:00",
       "last_error": ""
     },
     {
@@ -697,7 +698,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 995,
+      "average_words": 1026,
       "average_quality": 87,
       "primary_method": "dom:globe:article#content-gate",
       "method_counts": {
@@ -706,10 +707,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-09-25T11:00:00+00:00",
+      "latest_published": "2026-09-25T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-09-25T11:39:03.942560+00:00",
+      "last_scrape": "2026-09-25T12:07:43.987906+00:00",
       "last_error": ""
     },
     {
@@ -754,6 +755,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "short_body",
+      "message": "Article publisher returned only a very short body.",
+      "detail": "0 words",
+      "story_id": "f23214a463c4caf0",
+      "source": "CBC News London",
+      "title": "Roads closed after serious crash in Zorra Township Friday morning",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNVmRLXy10cGRQNE5qMUhMUWJsZ21JQnpqNjdpY2dRdnRlVkk1MzZDaml5OTBRNFQwRmhYVHVDNXZDUHVOM2J5bmNhajBHZ0lTeXUtSWZJQ2hsbFV4TVlBRkpLaC1lNVBUMDNUb3ZWVnBTbWFwcXpIQ0E2RV9KMHRqUnFNNzhzbmNBWXN3cjdDUHFienNpQThlc1RVemNOREdHUGY4VUc2dEozMzRRNjc2U2pENA?oc=5",
+      "published": "2026-09-25T11:32:39+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 20,
+      "extraction_method": "rss:google-cbc-fallback"
+    },
+    {
+      "severity": "warning",
+      "code": "low_quality",
+      "message": "Scoop extraction quality is low.",
+      "detail": "Quality 20/100",
+      "story_id": "f23214a463c4caf0",
+      "source": "CBC News London",
+      "title": "Roads closed after serious crash in Zorra Township Friday morning",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNVmRLXy10cGRQNE5qMUhMUWJsZ21JQnpqNjdpY2dRdnRlVkk1MzZDaml5OTBRNFQwRmhYVHVDNXZDUHVOM2J5bmNhajBHZ0lTeXUtSWZJQ2hsbFV4TVlBRkpLaC1lNVBUMDNUb3ZWVnBTbWFwcXpIQ0E2RV9KMHRqUnFNNzhzbmNBWXN3cjdDUHFienNpQThlc1RVemNOREdHUGY4VUc2dEozMzRRNjc2U2pENA?oc=5",
+      "published": "2026-09-25T11:32:39+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 20,
+      "extraction_method": "rss:google-cbc-fallback"
     },
     {
       "severity": "warning",
@@ -1098,6 +1129,51 @@
       "content_status": "full",
       "word_count": 1253,
       "quality_score": 82,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "f23214a463c4caf0",
+      "source": "CBC News London",
+      "title": "Roads closed after serious crash in Zorra Township Friday morning",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNVmRLXy10cGRQNE5qMUhMUWJsZ21JQnpqNjdpY2dRdnRlVkk1MzZDaml5OTBRNFQwRmhYVHVDNXZDUHVOM2J5bmNhajBHZ0lTeXUtSWZJQ2hsbFV4TVlBRkpLaC1lNVBUMDNUb3ZWVnBTbWFwcXpIQ0E2RV9KMHRqUnFNNzhzbmNBWXN3cjdDUHFienNpQThlc1RVemNOREdHUGY4VUc2dEozMzRRNjc2U2pENA?oc=5",
+      "published": "2026-09-25T11:32:39+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 20,
+      "extraction_method": "rss:google-cbc-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "545189ebec245f64",
+      "source": "CBC News London",
+      "title": "These London teens are ready to rock in the Grand Theatre's high school project",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPTU52R01BV2k1cEdpanp3YUZtQUczZ0E5dk1XRTQzQ0gweUUtX3JfTjZBb3l3ZHNoWnpyLWM2dTdOTTZvbG5rWElEdC13RjJfaUxpQ3dIb2pHOWxsVE1FaUVrZ0RZeEdUQW8zOEVIb1M2LWRwOTNVRG5hTG93cnZhTUFwdTRHVkt6a1dWSy00Ukc0MFdKdDJvaVpKMU40N3NabGp5SW9IRk5aaTl2OTNZRFNJdWs4X3o1bko1Q1NPTkw5dEI5ZHc?oc=5",
+      "published": "2026-09-24T21:42:13+00:00",
+      "content_status": "full",
+      "word_count": 691,
+      "quality_score": 88,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "f6a81348f7620a19",
+      "source": "CBC News London",
+      "title": "Volkswagen subsidiary delays opening of $7B St. Thomas, Ont., battery plant to 2029",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOd1E1dnNlS3dQQ29MVlNGR1EtQVAtMS1rcHVDRXBHVXhxUlVzTmZDTWF3cFZETjFpbmtjR0J4Ri1WMXk2WUQzRGlQX2lsek5TMU1MSU85bWVmc01KcjYtUC1aelNMMVdzWlBVUllwOWNwZ0lMeEVzeW9JSWc2UlA0S05KQURXbEE?oc=5",
+      "published": "2026-09-24T20:43:47+00:00",
+      "content_status": "full",
+      "word_count": 801,
+      "quality_score": 84,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -2020,21 +2096,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "52842cfdb017e5d4",
-      "source": "The Globe and Mail",
-      "title": "Fifteen ER nurses leave Ontario hospital citing overcrowding, safety issues, union says",
-      "url": "https://www.theglobeandmail.com/canada/article-fifteen-er-nurses-leave-ontario-hospital-overcrowding-safety-issues",
-      "published": "2026-09-24T23:32:32.774000+00:00",
-      "content_status": "full",
-      "word_count": 831,
-      "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "3454cff7088a9e0e",
       "source": "The Globe and Mail",
       "title": "Is genius a gift, serendipity or something else?",
@@ -2073,6 +2134,21 @@
       "content_status": "full",
       "word_count": 844,
       "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "cfd994be3be2e232",
+      "source": "The Globe and Mail",
+      "title": "Law & Order Toronto returns with familiar scene partners playing new cop partners",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/television/article-law-order-toronto-returns-with-familiar-scene-partners-playing-new-cop",
+      "published": "2026-09-25T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1139,
+      "quality_score": 91,
       "extraction_method": "dom:globe:article#content-gate"
     },
     {
@@ -2392,6 +2468,47 @@
       "issues": []
     },
     {
+      "id": "f23214a463c4caf0",
+      "source": "CBC News London",
+      "title": "Roads closed after serious crash in Zorra Township Friday morning",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNVmRLXy10cGRQNE5qMUhMUWJsZ21JQnpqNjdpY2dRdnRlVkk1MzZDaml5OTBRNFQwRmhYVHVDNXZDUHVOM2J5bmNhajBHZ0lTeXUtSWZJQ2hsbFV4TVlBRkpLaC1lNVBUMDNUb3ZWVnBTbWFwcXpIQ0E2RV9KMHRqUnFNNzhzbmNBWXN3cjdDUHFienNpQThlc1RVemNOREdHUGY4VUc2dEozMzRRNjc2U2pENA?oc=5",
+      "published": "2026-09-25T11:32:39+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 20,
+      "quality_grade": "poor",
+      "extraction_method": "rss:google-cbc-fallback",
+      "extraction_profile": "unknown",
+      "local_score": 30,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "short_body",
+          "message": "Article publisher returned only a very short body.",
+          "detail": "0 words"
+        },
+        {
+          "severity": "warning",
+          "code": "low_quality",
+          "message": "Scoop extraction quality is low.",
+          "detail": "Quality 20/100"
+        },
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "074c04942ee2ff6b",
       "source": "CBC News London",
       "title": "Police are cracking down on public drug use, London Mayor says it was always the plan",
@@ -2442,10 +2559,10 @@
       "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPTU52R01BV2k1cEdpanp3YUZtQUczZ0E5dk1XRTQzQ0gweUUtX3JfTjZBb3l3ZHNoWnpyLWM2dTdOTTZvbG5rWElEdC13RjJfaUxpQ3dIb2pHOWxsVE1FaUVrZ0RZeEdUQW8zOEVIb1M2LWRwOTNVRG5hTG93cnZhTUFwdTRHVkt6a1dWSy00Ukc0MFdKdDJvaVpKMU40N3NabGp5SW9IRk5aaTl2OTNZRFNJdWs4X3o1bko1Q1NPTkw5dEI5ZHc?oc=5",
       "published": "2026-09-24T21:42:13+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 691,
       "paragraph_count": 22,
@@ -2455,7 +2572,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 65,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "f6a81348f7620a19",
@@ -2464,10 +2588,10 @@
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOd1E1dnNlS3dQQ29MVlNGR1EtQVAtMS1rcHVDRXBHVXhxUlVzTmZDTWF3cFZETjFpbmtjR0J4Ri1WMXk2WUQzRGlQX2lsek5TMU1MSU85bWVmc01KcjYtUC1aelNMMVdzWlBVUllwOWNwZ0lMeEVzeW9JSWc2UlA0S05KQURXbEE?oc=5",
       "published": "2026-09-24T20:43:47+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 801,
       "paragraph_count": 30,
@@ -2477,7 +2601,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 48,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "d4aafdca366c486e",
@@ -2587,28 +2718,6 @@
       "info_count": 0,
       "content_status": "full",
       "word_count": 452,
-      "paragraph_count": 13,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "unknown",
-      "local_score": 30,
-      "issues": []
-    },
-    {
-      "id": "5e99e9dc0d73f0bb",
-      "source": "CBC News London",
-      "title": "Simcoe resident dead in Norfolk County house fire",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWlF1WWZ4MXhPZXdRWjQ0OTdHQzE4ZFJ0NmdIZkh6N2VKdF9SMl80eWFUSnRhS2gyS3dQa283elNIUzZBYVltWGpIQmxEOUFqRUdsaTJDZFAzY05hMjI4T05mYS1DTmVOUnB1ZFRYeUl5WWFTSGQ1Q3dYdnZUdnNqSmRUaFBjR2VmTWVNck5EYzlMRG4wdC0taTJyOTYxUQ?oc=5",
-      "published": "2026-09-23T14:13:37+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 460,
       "paragraph_count": 13,
       "inline_image_count": 0,
       "quality_score": 96,
@@ -4551,6 +4660,35 @@
       ]
     },
     {
+      "id": "cfd994be3be2e232",
+      "source": "The Globe and Mail",
+      "title": "Law & Order Toronto returns with familiar scene partners playing new cop partners",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/television/article-law-order-toronto-returns-with-familiar-scene-partners-playing-new-cop",
+      "published": "2026-09-25T12:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1139,
+      "paragraph_count": 36,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3454cff7088a9e0e",
       "source": "The Globe and Mail",
       "title": "Is genius a gift, serendipity or something else?",
@@ -4808,35 +4946,6 @@
       "content_status": "full",
       "word_count": 877,
       "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "52842cfdb017e5d4",
-      "source": "The Globe and Mail",
-      "title": "Fifteen ER nurses leave Ontario hospital citing overcrowding, safety issues, union says",
-      "url": "https://www.theglobeandmail.com/canada/article-fifteen-er-nurses-leave-ontario-hospital-overcrowding-safety-issues",
-      "published": "2026-09-24T23:32:32.774000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 831,
-      "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 86,
       "quality_grade": "excellent",
