@@ -3,12 +3,13 @@ from __future__ import annotations
 """Latency-bounded Scoop entry point for the frequent headline refresh.
 
 The frequent refresh exists to discover new stories and publish them quickly.
-Deep repair, stale-article re-extraction, image processing, archive-wide fuzzy
-clustering and legacy backfill belong to the deferred enrichment workflow.
+Recent event clustering happens before publication. Deep repair, stale-article
+re-extraction, image processing, archive-wide comparisons and legacy backfill
+belong to the deferred enrichment workflow.
 """
 
 from dataclasses import replace
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -46,47 +47,18 @@ def _keep_existing_image_metadata(stories, *args, **kwargs):
     return stories
 
 
+# Capture the full implementation before installing the frequent-path wrapper.
+_cluster_editorial_intelligence = run_scoop.ranking.apply_editorial_intelligence
+FAST_CLUSTER_LOOKBACK_HOURS = 72
+
+
 def _fast_editorial_intelligence(stories, now=None):
-    """Apply the O(n) metadata needed by the live feed.
-
-    Full event clustering performs fuzzy pair comparisons across the archive and
-    is intentionally deferred. The homepage is chronological, so the frequent
-    refresh only needs locality, freshness and safe singleton cluster metadata.
-    Enrichment later replaces these singleton values with real multi-source
-    clusters without delaying discovery of new headlines.
-    """
-    ranking = run_scoop.ranking
+    """Cluster recent events without comparing the entire historical archive."""
     now = now or datetime.now(timezone.utc)
-
-    for story in stories:
-        local, local_reasons = ranking.local_relevance(story)
-        freshness = ranking.freshness_score(story.get("published"), now)
-        story_id = str(story.get("id") or "")
-        source = str(story.get("source") or "")
-
-        story["local_score"] = local
-        story["local_reasons"] = local_reasons
-        story["image_score"] = ranking.image_quality_score(story)
-        story["freshness_score"] = freshness
-        story["cluster_id"] = f"refresh-{story_id}" if story_id else ""
-        story["cluster_size"] = 1
-        story["cluster_source_count"] = 1 if source else 0
-        story["cluster_sources"] = [source] if source else []
-        story["cluster_member_ids"] = [story_id] if story_id else []
-        story["cluster_representative_id"] = story_id
-        story["cluster_representative"] = True
-        story["cluster_local_score"] = local
-        story["cluster_freshness_score"] = freshness
-        story["cluster_latest_published"] = story.get("published", "")
-        story["rank_score"] = freshness
-        story["ranking_reasons"] = ["chronological frequent refresh"]
-
-    return stories, {
-        "clusters": [],
-        "top_story_ids": [],
-        "cluster_count": len(stories),
-        "multi_source_cluster_count": 0,
-    }
+    return _cluster_editorial_intelligence(
+        stories, now,
+        comparison_since=now - timedelta(hours=FAST_CLUSTER_LOOKBACK_HOURS),
+    )
 
 
 def configure_fast_mode() -> None:
@@ -107,7 +79,7 @@ def configure_fast_mode() -> None:
 
     # run_scoop's locality gate calls this ranking function after installing its
     # runtime safeguards, so replacing it here keeps locality filtering intact
-    # while removing archive-wide fuzzy clustering from the frequent path.
+    # while bounding fuzzy comparisons to recent events.
     run_scoop.ranking.apply_editorial_intelligence = _fast_editorial_intelligence
 
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import re
 from datetime import datetime, timezone
+from functools import lru_cache
 from typing import Any
 
 from dateutil import parser as date_parser
@@ -77,12 +78,14 @@ def _clean(value: Any) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
+@lru_cache(maxsize=4096)
 def _key(value: Any) -> str:
     text = _clean(value).lower().replace("’", "'")
     text = re.sub(r"[^a-z0-9']+", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 
 
+@lru_cache(maxsize=4096)
 def _dt(value: Any) -> datetime:
     try:
         parsed = date_parser.parse(str(value or ""))
@@ -93,13 +96,14 @@ def _dt(value: Any) -> datetime:
         return datetime(1970, 1, 1, tzinfo=timezone.utc)
 
 
-def _tokens(value: str) -> set[str]:
+@lru_cache(maxsize=4096)
+def _tokens(value: str) -> frozenset[str]:
     tokens = set()
     for token in re.findall(r"[a-z0-9]+(?:['-][a-z0-9]+)?", _key(value)):
         if len(token) < 4 or token in STOPWORDS or token.isdigit():
             continue
         tokens.add(token)
-    return tokens
+    return frozenset(tokens)
 
 
 def _phrase_hits(text: str, phrases: tuple[str, ...]) -> list[str]:
@@ -185,13 +189,29 @@ def image_quality_score(story: dict[str, Any]) -> int:
     return min(100, score)
 
 
-def _story_entities(story: dict[str, Any]) -> set[str]:
-    text = f"{_clean(story.get('title'))} {_clean(story.get('summary'))}"
-    labels: set[str] = set()
-    for _, label, phrases in LOCAL_TERMS:
-        if _phrase_hits(text, phrases):
-            labels.add(label)
-    return labels
+@lru_cache(maxsize=4096)
+def _text_entities(text: str) -> frozenset[str]:
+    return frozenset(label for _, label, phrases in LOCAL_TERMS if _phrase_hits(text, phrases))
+
+
+def _story_entities(story: dict[str, Any]) -> frozenset[str]:
+    return _text_entities(f"{_clean(story.get('title'))} {_clean(story.get('summary'))}")
+
+
+def _similarity_text(story: dict[str, Any]) -> str:
+    paragraphs = story.get("paragraphs") or []
+    body = " ".join(_clean(value) for value in paragraphs[:8]) if isinstance(paragraphs, list) else ""
+    return f"{story.get('title', '')} {story.get('summary', '')} {body}"
+
+
+@lru_cache(maxsize=4096)
+def _event_anchors(text: str) -> frozenset[str]:
+    # Specific names/places and incident dates, rather than shared police boilerplate.
+    generic = STOPWORDS | {"service", "section", "major", "crime", "canada", "canadian", "press", "public", "safety", "const", "officer"}
+    names = {_key(match) for match in re.findall(r"\b[A-Z][a-z]+(?:[-'][A-Z]?[a-z]+)? [A-Z][a-z]+(?:[-'][A-Z]?[a-z]+)?\b", text)
+             if len(_tokens(match) - generic) >= 2}
+    dates = re.findall(r"\b(?:on|since)\s+((?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2})\b", text, re.I)
+    return frozenset(names | {_key(value) for value in dates})
 
 
 def story_similarity(left: dict[str, Any], right: dict[str, Any]) -> tuple[float, dict[str, float]]:
@@ -200,8 +220,8 @@ def story_similarity(left: dict[str, Any], right: dict[str, Any]) -> tuple[float
     if not left_title or not right_title:
         return 0.0, {}
 
-    left_tokens = _tokens(f"{left.get('title', '')} {left.get('summary', '')}")
-    right_tokens = _tokens(f"{right.get('title', '')} {right.get('summary', '')}")
+    left_tokens = _tokens(_similarity_text(left))
+    right_tokens = _tokens(_similarity_text(right))
     shared = left_tokens & right_tokens
     union = left_tokens | right_tokens
     jaccard = len(shared) / max(1, len(union))
@@ -241,10 +261,22 @@ def _should_cluster(left: dict[str, Any], right: dict[str, Any]) -> bool:
     if delta_hours > CLUSTER_WINDOW_HOURS:
         return False
 
+    left_anchors = _event_anchors(_similarity_text(left))
+    right_anchors = _event_anchors(_similarity_text(right))
+    months = {"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"}
+    left_dates = {value for value in left_anchors if value.split()[0] in months and value.split()[-1].isdigit()}
+    right_dates = {value for value in right_anchors if value.split()[0] in months and value.split()[-1].isdigit()}
+    if left_dates and right_dates and not left_dates & right_dates:
+        return False
+
     score, parts = story_similarity(left, right)
     shared = int(parts.get("shared", 0))
     title_shared = int(parts.get("title_shared", 0))
     same_source = _clean(left.get("source")) == _clean(right.get("source"))
+
+    if (parts.get("containment", 0) >= 0.60 and shared >= 8
+        and left_anchors & right_anchors):
+        return True
 
     if same_source:
         return bool(
@@ -304,7 +336,7 @@ def _ranking(story: dict[str, Any], source_count: int, now: datetime) -> tuple[i
 
 
 def apply_editorial_intelligence(
-    stories: list[dict[str, Any]], now: datetime | None = None
+    stories: list[dict[str, Any]], now: datetime | None = None, *, comparison_since: datetime | None = None
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """Annotate stories with local relevance, event clusters and ranking metadata."""
     now = now or datetime.now(timezone.utc)
@@ -331,9 +363,26 @@ def apply_editorial_intelligence(
         if a != b:
             parent[b] = a
 
+    # Frequent refreshes retain archive groups and only compare the active news
+    # window. Older records still receive consistent coverage/member metadata.
+    if comparison_since is not None:
+        archived_groups: dict[str, int] = {}
+        for idx in ordered_indices:
+            item = stories[idx]
+            if _dt(item.get("published")) >= comparison_since:
+                continue
+            cluster_id = str(item.get("cluster_id") or "")
+            if cluster_id:
+                if cluster_id in archived_groups:
+                    union(idx, archived_groups[cluster_id])
+                else:
+                    archived_groups[cluster_id] = idx
+
     for pos, left_idx in enumerate(ordered_indices):
         left = stories[left_idx]
         left_dt = _dt(left.get("published"))
+        if comparison_since is not None and left_dt < comparison_since:
+            break
         for right_idx in ordered_indices[pos + 1:]:
             right = stories[right_idx]
             age = (left_dt - _dt(right.get("published"))).total_seconds() / 3600
@@ -417,3 +466,9 @@ def apply_editorial_intelligence(
         "multi_source_cluster_count": sum(1 for item in cluster_summaries if item["source_count"] > 1),
     }
     return stories, metadata
+
+
+def apply_recent_editorial_intelligence(stories, now=None):
+    from datetime import timedelta
+    now = now or datetime.now(timezone.utc)
+    return apply_editorial_intelligence(stories, now, comparison_since=now - timedelta(hours=72))

@@ -158,6 +158,9 @@
   $: authorLabel = story?.author
     ? (/^by\s+/i.test(String(story.author).trim()) ? String(story.author).trim() : `By ${String(story.author).trim()}`)
     : '';
+  $: coverage = story?.cluster_id && feed
+    ? (feed.stories || []).filter((item) => item.cluster_id === story.cluster_id && String(item.id) !== String(story.id))
+    : [];
   $: related = story && feed
     ? (feed.stories || [])
         .filter((item) =>
@@ -330,6 +333,17 @@
       </div>
     </article>
 
+    {#if coverage.length}
+      <section class="coverage-section shell" aria-labelledby="coverage-heading">
+        <h2 id="coverage-heading">Also covered by</h2>
+        <ul>
+          {#each coverage as report}
+            <li><a href={`${base}/story/${report.id}/`}><strong>{report.source}</strong><span>{report.title}</span></a></li>
+          {/each}
+        </ul>
+      </section>
+    {/if}
+
     {#if related.length}
       <section class="related-section related-section-refined shell">
         <div class="app-section-heading">
@@ -349,6 +363,14 @@
 </main>
 
 <style>
+  .coverage-section { max-width: 760px; margin: 32px auto; }
+  .coverage-section h2 { font-size: 22px; }
+  .coverage-section ul { padding: 0; list-style: none; }
+  .coverage-section li { border-bottom: 1px solid var(--line); }
+  .coverage-section a { display: grid; gap: 6px; padding: 16px 0; min-height: 44px; font-size: 16px; color: var(--text); text-decoration: none; }
+  .coverage-section a:hover { text-decoration: underline; }
+  .coverage-section span { color: var(--muted); }
+
   :global(body:has(.svelte-article-page) .site-header) {
     position: absolute !important;
     inset: 0 0 auto !important;

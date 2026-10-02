@@ -23,6 +23,13 @@ test.beforeEach(async ({ page }, testInfo) => {
   if (testInfo.title.includes('font downloads')) await page.route(/\.(woff2?|ttf|otf)(\?|$)/, route => route.abort());
   if (testInfo.title.startsWith('background refresh')) await page.clock.install();
   const edition = fixture();
+  if (testInfo.title.startsWith('aggregated coverage')) {
+    const sources = ['Global News London', 'CBC News London', 'CTV News London', 'London Police Service'];
+    edition.stories.slice(0, 4).forEach((story, i) => Object.assign(story, {
+      source: sources[i], cluster_id: 'same-event', cluster_sources: sources,
+      cluster_source_count: 4, cluster_representative: i === 0
+    }));
+  }
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: edition }));
   await page.route('**/data/stories/*.json', route => {
     const id = route.request().url().split('/').pop().replace('.json', '');
@@ -151,4 +158,19 @@ test('mobile navigation stays visible with blocked font downloads', async ({ pag
     await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();
     await checkIcons();
   }
+});
+
+
+test('aggregated coverage occupies one top slot and alternate reports remain readable', async ({ page }) => {
+  for (const id of ['story-1', 'story-2', 'story-3']) await expect(page.locator(`[data-story-id="${id}"]`)).toHaveCount(0);
+  await expect(page.locator('[data-story-id="story-0"]')).toContainText('4 sources');
+  await expect(page.locator('[data-story-id="story-4"]')).toHaveCount(1);
+  await expect(page.locator('[data-story-id="story-5"]')).toHaveCount(1);
+  await page.locator('[data-story-id="story-0"] .news-card-link').click();
+  const coverage = page.getByRole('region', { name: 'Also covered by' });
+  await expect(coverage.getByRole('link')).toHaveCount(3);
+  await coverage.getByRole('link').filter({ hasText: 'CBC News London' }).click();
+  await expect(page.getByRole('heading', { name: 'London report 1', exact: true })).toBeVisible();
+  await page.goBack();
+  await expect(page.getByRole('heading', { name: 'London report 0', exact: true })).toBeVisible();
 });

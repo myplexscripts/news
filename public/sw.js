@@ -1,9 +1,9 @@
-const SHELL_CACHE = 'forest-city-news-shell-v5';
-const ASSET_CACHE = 'forest-city-news-assets-v5';
-const IMAGE_CACHE = 'forest-city-news-images-v5';
+const SHELL_CACHE = 'forest-city-news-shell-v6';
+const ASSET_CACHE = 'forest-city-news-assets-v6';
+const IMAGE_CACHE = 'forest-city-news-images-v6';
 // Replaced with the generated application asset list during the build.
 const PRECACHE_ASSETS = [];
-const DATA_CACHE = 'forest-city-news-data-v5';
+const DATA_CACHE = 'forest-city-news-data-v6';
 const CACHE_PREFIXES = ['forest-city-news-', 'london-news-'];
 
 function scopePath(path = '') {
