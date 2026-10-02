@@ -1,5 +1,6 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
+  import { readScreen, rememberScreen } from '$lib/screenState';
   import { replaceState } from '$app/navigation';
   import { base } from '$app/paths';
   import { getCachedFeed, loadFeed } from '$lib/newsData';
@@ -19,14 +20,18 @@
     'Sports': 'ph-trophy'
   }[category] || 'ph-newspaper-clipping');
 
-  let feed = getCachedFeed();
+  const previous = readScreen('sections');
+  let feed = previous?.feed || getCachedFeed();
+  let restoring = false;
   let error = '';
-  let activeTab = 'sections';
+  let activeTab = previous?.activeTab || 'sections';
+  onDestroy(() => rememberScreen('sections', { feed, activeTab }));
 
   onMount(async () => {
-    activeTab = new URL(window.location.href).searchParams.get('tab') === 'sources' ? 'sources' : 'sections';
+    if (!restoring && new URL(window.location.href).searchParams.has('tab')) activeTab = new URL(window.location.href).searchParams.get('tab') === 'sources' ? 'sources' : 'sections';
     try {
-      feed = await loadFeed();
+      const latest = await loadFeed();
+      if (!feed) feed = latest;
     } catch (reason) {
       error = reason instanceof Error ? reason.message : 'Unable to load sections.';
     }
@@ -86,7 +91,7 @@
   }
   export const snapshot = {
     capture: () => ({ activeTab }),
-    restore: (value) => ({ activeTab } = value)
+    restore: (value) => { restoring = true; ({ activeTab } = value); }
   };
 </script>
 
@@ -129,7 +134,7 @@
             </a>
 
             {#each categories as category}
-              <a class={`section-directory-card ${categoryClass(category)}`} href={`${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
+              <a class={`section-directory-card ${categoryClass(category)}`} href={['Local', 'Canada'].includes(category) ? `${base}/?feed=${category.toLowerCase()}&section=All` : `${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
                 <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
                 <div><strong>{category}</strong></div>
                 <i class="ph ph-caret-right" aria-hidden="true"></i>

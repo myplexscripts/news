@@ -5,7 +5,7 @@
   import { base } from '$app/paths';
   import NewsCard from '$lib/components/NewsCard.svelte';
   import TweetCard from '$lib/components/TweetCard.svelte';
-  import { formatPublished, getCachedFeed, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
+  import { formatPublished, getCachedFeed, getCachedStory, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
   import { markRead } from '$lib/appState';
 
   let feed = getCachedFeed();
@@ -23,15 +23,14 @@
 
   async function openStory(id) {
     currentId = id;
-    loading = true;
+    story = getCachedStory(id);
+    loading = !story;
     error = '';
-    story = undefined;
     clearTimeout(readTimer);
 
     try {
       feed ||= await loadFeed();
       const metadata = (feed.stories || []).find((item) => String(item.id) === id);
-      if (!metadata) throw new Error('This story is no longer available.');
       const loaded = await loadStory(id, metadata);
       if (currentId !== id) return;
       story = loaded;
