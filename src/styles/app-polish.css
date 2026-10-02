@@ -1,92 +1,179 @@
 @font-face {
-  font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
   src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
 }
+
 @font-face {
-  font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
   src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2') format('woff2');
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
-/* Final shared geometry. Legacy selectors stay compatible during migration. */
-html { scroll-behavior: auto; }
-.svelte-route-stage, .shell, .page-heading-copy { min-width: 0; }
-html body .home-page .card-filter-inner {
-  display: flex !important;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between !important;
-  gap: 12px 24px;
-  overflow: visible !important;
-  padding-block: 12px !important;
-}
-html body .home-page .feed-scope-row { width: auto; flex: 0 0 auto; margin: 0; }
-html body .home-page .section-tabs { flex: 0 1 auto; flex-wrap: wrap; max-width: 100%; min-width: 0; }
-html body .section-tab, html body .section-more summary { white-space: nowrap; }
-html body .section-popover { left: auto; right: 0; max-width: calc(100vw - 40px); }
-html body .home-header-updated, html body .masthead-label,
-html body .card-source-name, html body .news-card-coverage,
-html body .article-cover-original { color: var(--ui-accent-text) !important; }
-html body .news-card.no-image::before,
-html body .editorial-carousel-card.news-card.card-featured.no-image .news-card-media,
-html body .news-card.no-image .news-card-media { display: none !important; }
-html body .editorial-carousel-card.news-card.card-featured.no-image {
-  grid-template-columns: minmax(0, 1fr) !important;
-  min-height: clamp(340px, 50svh, 520px) !important;
-}
-html body .editorial-carousel-card.no-image .news-card-body {
-  grid-column: 1 !important;
-  justify-content: center;
-  padding: clamp(24px, 4vw, 52px) !important;
-  padding-bottom: 60px !important;
-}
-html body .editorial-carousel-card.no-image h3 { max-width: 1000px; }
-html body .editorial-carousel-card.no-image .news-card-summary { max-width: 780px; }
-html body .news-card.no-image:not(.card-featured) { grid-template-columns: minmax(0, 1fr) !important; }
-html body .editorial-carousel-dots { gap: 0; padding-top: 4px; }
-html body .editorial-carousel-dot {
-  position: relative;
-  width: 44px; height: 44px; min-width: 44px; min-height: 44px;
-  border-radius: 50%; background: transparent !important; opacity: 1; transform: none;
-  appearance: none; padding: 0; border: 0; box-shadow: none !important;
-}
-html body .editorial-carousel-dot::before {
-  content: ''; display: block; width: 8px; height: 8px; margin: auto;
-  border-radius: 50%; background: var(--gray); transition: background 160ms ease;
-}
-html body .editorial-carousel-dot.active::before { background: var(--ink); }
-html body :is(a, button, summary, input, select, textarea):focus-visible {
-  outline: 2px solid var(--ui-accent-text) !important;
-  outline-offset: 3px;
-}
-html body .page-heading, html body .app-page-heading { margin-bottom: 24px; }
-html body .sections-shell, html body .directory-shell, html body .settings-shell,
-html body .page-heading h1, html body .app-page-heading h1 {
-  font-size: clamp(36px, 4.5vw, 56px) !important;
-  line-height: 1.08;
-  letter-spacing: -0.04em;
-}
-html body .directory-tabs { margin-bottom: 20px !important; }
-.connection-notice, .feed-update-wrap { padding-block: 12px; }
-.connection-notice { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; color: var(--muted); font-size: 14px; }
-.connection-notice button, .feed-update-button {
-  min-height: 44px; padding: 10px 16px; border: 0;
-  border-radius: var(--ui-control-radius); background: var(--gray-6);
-  color: var(--ui-accent-text); font: inherit; font-weight: 650; cursor: pointer;
-}
-.feed-update-button { display: inline-flex; align-items: center; gap: 10px; }
-@media (max-width: 760px) {
-  html body .home-page .feed-scope-row { width: 100%; }
-  html body .sections-shell, html body .directory-shell, html body .settings-shell,
-  html body .editorial-carousel-card.news-card.card-featured.no-image {
-    min-height: 360px !important;
-  }
-  html body .editorial-carousel-card.no-image .news-card-body { padding: 24px 24px 60px !important; }
-  html body .page-heading h1, html body .app-page-heading h1 { font-size: 36px !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  html body .editorial-carousel-track { transition: none !important; }
+
+/* Keep the faster app lifecycle from the polish release without its visual redesign. */
+html {
+  scroll-behavior: auto;
 }
 
-@media (min-width: 761px) {
-  html body .site-header:not(:has(.brand-story-source)) { position: sticky !important; top: 0 !important; z-index: 60; }
+.svelte-route-stage,
+.shell,
+.page-heading-copy {
+  min-width: 0;
+}
+
+.connection-notice,
+.feed-update-wrap {
+  width: min(calc(100% - 40px), var(--content));
+  margin-inline: auto;
+  padding-block: 10px;
+}
+
+.connection-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.connection-notice button,
+.feed-update-button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--surface-subtle);
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.feed-update-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Publisher identity on story cards is always text, never a logo. */
+html body .news-card .card-source-name {
+  color: var(--accent) !important;
+}
+
+/* Apple News inspired category pills on the home screen. */
+html body .home-page .card-filter-inner {
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: 10px 14px;
+  padding-block: 10px !important;
+}
+
+html body .home-page .feed-scope-row {
+  width: auto;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+html body .home-page .category-pill-strip {
+  flex: 1 1 480px;
+  min-width: 0;
+  display: flex !important;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0 4px;
+}
+
+html body .home-page .category-pill-strip::-webkit-scrollbar {
+  display: none;
+}
+
+html body .home-page .category-pill {
+  flex: 0 0 auto;
+  min-height: 44px !important;
+  padding: 0 16px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px !important;
+  border: 0 !important;
+  border-radius: 9999px !important;
+  background: var(--surface-subtle) !important;
+  color: var(--ink) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+  box-shadow: none !important;
+}
+
+html body .home-page .category-pill::after {
+  content: none !important;
+  display: none !important;
+}
+
+html body .home-page .category-pill .svg-icon {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 20px;
+}
+
+html body .home-page .category-pill:hover {
+  background: color-mix(in srgb, var(--surface-subtle) 88%, var(--ink) 12%) !important;
+}
+
+html body .home-page .category-pill.active,
+html body .home-page .category-pill[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface-subtle)) !important;
+  color: var(--accent) !important;
+}
+
+html body .home-page .category-pill.active .svg-icon,
+html body .home-page .category-pill[aria-pressed='true'] .svg-icon {
+  color: var(--accent);
+}
+
+html body .home-page .category-pill:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 2px;
+}
+
+@media (max-width: 760px) {
+  html body .home-page .card-filter-inner {
+    display: block !important;
+    padding: 10px 14px 12px !important;
+    overflow: visible !important;
+  }
+
+  html body .home-page .feed-scope-row {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  html body .home-page .card-filter-inner .category-pill-strip {
+    width: calc(100% + 28px);
+    margin-inline: -14px;
+    padding: 0 14px 4px;
+    display: flex !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body .home-page .category-pill,
+  .connection-notice button,
+  .feed-update-button {
+    transition: none !important;
+  }
 }
