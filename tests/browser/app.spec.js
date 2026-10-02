@@ -56,11 +56,13 @@ test.beforeEach(async ({ page }, testInfo) => {
       cluster_source_count: 4, cluster_representative: i === 0
     }));
   }
+  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: edition }));
   await page.route('**/data/stories/*.json', route => {
     const id = route.request().url().split('/').pop().replace('.json', '');
     const meta = edition.stories.find(s => s.id === id);
-    return route.fulfill({ json: { ...meta, content_blocks: Array.from({ length: 30 }, (_, i) => ({ type: 'paragraph', text: `Paragraph ${i}. This is reporting about London. It includes enough detail to test reading and returning to the same position without refreshing the page.` })) } });
+    const tracking = testInfo.title.startsWith('responsive images') ? [{type:'image',url:`${base}/images/tracking.png`,alt:'Tracking image'}] : [];
+    return route.fulfill({ json: { ...meta, content_blocks: [...tracking, ...Array.from({ length: 30 }, (_, i) => ({ type: 'paragraph', text: `Paragraph ${i}. This is reporting about London. It includes enough detail to test reading and returning to the same position without refreshing the page.` }))] } });
   });
   await page.goto('./');
   await expect(page.locator('.news-card').first()).toBeVisible();
@@ -134,6 +136,7 @@ test('text-only feature cards and carousel controls are intentional and accessib
 test('background refresh offers an edition without replacing the current list', async ({ page }) => {
   const fresh = fixture(1);
   fresh.stories[0].title = 'A newly published London report';
+  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: fresh }));
   await page.clock.fastForward(300001);
   await expect(page.getByRole('button', { name: 'New updates available' })).toBeVisible();
@@ -241,5 +244,9 @@ test('responsive images use card derivatives and higher quality article assets',
   await expect(hero).toHaveAttribute('width','1600');
   await expect(hero).toHaveAttribute('height','900');
   await expect(hero).not.toHaveAttribute('src', /card-/);
+  const tracking = page.getByAltText('Tracking image');
+  await expect.poll(() => tracking.evaluate(image => image.complete)).toBe(true);
+  await expect(tracking).toBeHidden();
+  await expect(tracking.locator('..')).toBeHidden();
   await noOverflow(page);
 });

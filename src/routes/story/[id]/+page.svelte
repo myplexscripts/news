@@ -1,5 +1,5 @@
 <script>
-  import { imageSrcset, originalImageFallback } from '$lib/imageSources';
+  import { imageSrcset, originalImageFallback, checkArticleImage } from '$lib/imageSources';
   import AppIcon from '$lib/components/AppIcon.svelte';
   import { onDestroy } from 'svelte';
   import { browser } from '$app/environment';
@@ -199,7 +199,7 @@
       <header class:cover-no-image={!heroImage} class="article-cover">
         {#if heroImage}
           <div class="article-cover-media" aria-hidden="true">
-            <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={story.original_image} on:error={originalImageFallback} alt="" referrerpolicy="no-referrer" />
+            <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={story.original_image} on:error={originalImageFallback} on:load={checkArticleImage} alt="" referrerpolicy="no-referrer" />
           </div>
         {/if}
         <div class="article-cover-fade article-cover-fade-top" aria-hidden="true"></div>
@@ -239,7 +239,7 @@
                   width={story.image_width || undefined}
                   height={story.image_height || undefined}
                   data-original-src={story.original_image}
-                  on:error={originalImageFallback}
+                  on:error={originalImageFallback} on:load={checkArticleImage}
                   alt={story.image_alt || ''}
                   loading="eager"
                   decoding="async"
@@ -288,7 +288,7 @@
                       srcset={imageSrcset(block.image_variants) || undefined}
                       sizes="(max-width: 800px) calc(100vw - 40px), 760px"
                       data-original-src={block.original_url}
-                      on:error={originalImageFallback}
+                      on:error={originalImageFallback} on:load={checkArticleImage}
                       alt={block.alt || ''}
                       width={block.width || undefined}
                       height={block.height || undefined}

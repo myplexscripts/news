@@ -12,8 +12,19 @@ export function imageSrcset(variants = []) {
 export function originalImageFallback(event) {
   const image = event.currentTarget;
   const original = image.dataset.originalSrc;
-  if (!original || image.dataset.usedOriginal === 'true') { image.hidden = true; return; }
+  if (!original || image.dataset.usedOriginal === 'true') { hideArticleImage(image); return; }
   image.dataset.usedOriginal = 'true';
   image.removeAttribute('srcset');
   image.src = resolveAsset(original);
+}
+
+function hideArticleImage(image) {
+  image.hidden = true;
+  const figure = image.closest('figure.inline-article-image');
+  if (figure) figure.style.display = 'none';
+}
+
+export function checkArticleImage(event) {
+  const image = event.currentTarget;
+  if (image.naturalWidth < 80 || image.naturalHeight < 80) hideArticleImage(image);
 }
