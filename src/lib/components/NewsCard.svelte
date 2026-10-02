@@ -3,8 +3,6 @@
   import { userState } from '$lib/appState';
   import { prefetchStory, resolveAsset, storyHref } from '$lib/newsData';
   import { imageSrcset as responsiveSrcset } from '$lib/imageSources';
-  import { sourceLogoPath } from '$lib/sourceLogos';
-  import { base } from '$app/paths';
 
   export let story;
   export let variant = 'standard';
@@ -16,14 +14,12 @@
 
   let fallbackIndex = 0;
   let fallbackStoryId = '';
-  let logoFailed = false;
   let homeImageActive = false;
 
   $: id = String(story?.id || '');
   $: if (id !== fallbackStoryId) {
     fallbackStoryId = id;
     fallbackIndex = 0;
-    logoFailed = false;
     homeImageActive = !homeLazy || variant === 'featured' || (index >= 3 && index < 6);
   }
   $: if (!homeLazy || variant === 'featured' || (index >= 3 && index < 6)) homeImageActive = true;
@@ -44,8 +40,6 @@
     : '(max-width: 760px) 34vw, 230px';
   $: backdropImage = smallImage || image;
   $: shouldRequestImage = !homeLazy || variant === 'featured' || homeImageActive;
-  $: logo = sourceLogoPath(story?.source || '', `${base}/`);
-  $: usableLogo = Boolean(logo && !logoFailed);
   $: href = storyHref(id);
   $: timestamp = story?.cluster_latest_published || story?.published;
   $: readMinutes = Number(story?.word_count) > 0
@@ -199,19 +193,8 @@
   </div>
 
   <div class="news-card-body">
-    {#if usableLogo}
-      <img
-        class="card-source-mark"
-        src={logo}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        on:error={() => logoFailed = true}
-      />
-    {/if}
-
     {#if story?.source}
-      <span class="card-source-name" hidden={usableLogo}>{story.source}</span>
+      <span class="card-source-name">{story.source}</span>
     {/if}
 
     <h3 title={story?.title || ''}>{title}</h3>
@@ -259,23 +242,11 @@
     padding-bottom: 56px !important;
   }
 
-  .card-source-mark,
   .card-source-name {
     order: 0;
     align-self: flex-start;
     flex: 0 0 auto;
     margin: 0 0 8px !important;
-  }
-
-  .card-source-mark {
-    display: block !important;
-    width: auto !important;
-    height: auto !important;
-    max-width: min(150px, 100%) !important;
-    max-height: 30px !important;
-    object-fit: contain !important;
-    object-position: left center !important;
-    transform: none !important;
   }
 
   .card-source-name {
