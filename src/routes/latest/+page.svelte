@@ -1,21 +1,15 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import { readScreen, rememberScreen } from '$lib/screenState';
+  import { onMount } from 'svelte';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { getCachedFeed, loadFeed, feedUpdates, sortNewest } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
-  let feed = readScreen('latest')?.feed || getCachedFeed();
-  onDestroy(() => rememberScreen('latest', { feed }));
+  let feed = getCachedFeed();
   let error = '';
-  onMount(() => feedUpdates.subscribe((latest) => {
-    if (latest && !feed) { feed = latest; error = ''; }
-  }));
 
   onMount(async () => {
     try {
-      const latest = await loadFeed();
-      if (!feed) feed = latest;
+      feed = await loadFeed();
     } catch (reason) {
       error = reason instanceof Error ? reason.message : 'Unable to load latest stories.';
     }

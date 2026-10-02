@@ -1,30 +1,22 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import { readScreen, rememberScreen } from '$lib/screenState';
+  import { onMount } from 'svelte';
   import { replaceState } from '$app/navigation';
   import { page } from '$app/stores';
-  import { getCachedFeed, loadFeed, feedUpdates, resolveAsset, scopeForStory, sortNewest, storyHref } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, resolveAsset, scopeForStory, sortNewest, storyHref } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
-  const previous = readScreen('search');
-  let feed = previous?.feed || getCachedFeed();
-  let restoring = false;
+  let feed = getCachedFeed();
   let error = '';
-  onMount(() => feedUpdates.subscribe((latest) => {
-    if (latest && !feed) { feed = latest; error = ''; }
-  }));
-  let query = previous?.query || '';
-  let activeScope = previous?.activeScope || 'all';
-  let activeCategory = previous?.activeCategory || '';
-  let activeSource = previous?.activeSource || '';
-  let activeDays = previous?.activeDays || '';
-  onDestroy(() => rememberScreen('search', { feed, query, activeScope, activeCategory, activeSource, activeDays }));
+  let query = '';
+  let activeScope = 'all';
+  let activeCategory = '';
+  let activeSource = '';
+  let activeDays = '';
 
   onMount(async () => {
-    if (!restoring && $page.url.searchParams.has('q')) query = $page.url.searchParams.get('q') || '';
+    query = $page.url.searchParams.get('q') || '';
     try {
-      const latest = await loadFeed();
-      if (!feed) feed = latest;
+      feed = await loadFeed();
     } catch (reason) {
       error = reason instanceof Error ? reason.message : 'Unable to load search.';
     }
@@ -84,7 +76,7 @@
       }).slice(0, 80);
   export const snapshot = {
     capture: () => ({ query, activeScope, activeCategory, activeSource, activeDays }),
-    restore: (value) => { restoring = true; ({ query, activeScope, activeCategory, activeSource, activeDays } = value); }
+    restore: (value) => ({ query, activeScope, activeCategory, activeSource, activeDays } = value)
   };
 </script>
 
@@ -172,7 +164,7 @@
       {#if results.length}
         <div class="archive-search-results">
           {#each results as story (story.id)}
-            <article class="archive-search-hit" class:no-image={!(story.card_image_small || story.card_image || story.image)}>
+            <article class="archive-search-hit">
               {#if story.card_image_small || story.card_image || story.image}
                 <a class="archive-search-hit-image" href={storyHref(story.id)} data-sveltekit-preload-data="tap" tabindex="-1">
                   <img src={resolveAsset(story.card_image_small || story.card_image || story.image)} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
@@ -271,10 +263,6 @@
     gap: 22px;
     padding: 22px 0;
     border-bottom: 1px solid var(--line);
-  }
-
-  .archive-search-hit.no-image {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .archive-search-hit-image {

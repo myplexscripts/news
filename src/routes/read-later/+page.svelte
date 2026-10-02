@@ -1,14 +1,11 @@
 <script>
   import { onMount } from 'svelte';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { getCachedFeed, loadFeed, feedUpdates } from '$lib/newsData';
+  import { getCachedFeed, loadFeed } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
   let feed = getCachedFeed();
   let error = '';
-  onMount(() => feedUpdates.subscribe((latest) => {
-    if (latest && !feed) { feed = latest; error = ''; }
-  }));
 
   onMount(async () => {
     try {

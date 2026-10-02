@@ -1,16 +1,7 @@
 import { base } from '$app/paths';
-import { writable } from 'svelte/store';
-import { cleanTitle, cleanSummary } from './editorialText';
 
 let feedPromise;
 let cachedFeed;
-let checkedAt = 0;
-const FEED_TTL = 5 * 60 * 1000;
-export const feedUpdates = writable(null);
-export const homeEdition = writable(null);
-export const feedStatus = writable({ refreshing: false, unavailable: false });
-const cachedStories = new Map();
-export const getCachedStory = (id) => cachedStories.get(String(id));
 export const getCachedFeed = () => cachedFeed;
 const storyPromises = new Map();
 
@@ -28,8 +19,7 @@ export function storyHref(id) {
 }
 
 function feedCard(story) {
-  const title = cleanTitle(story.title);
-  return { ...story, title, summary: cleanSummary(story.summary, title) };
+  return story;
 }
 
 function applyEditorialImages(story) {
@@ -68,36 +58,20 @@ function applyEditorialImages(story) {
   return changed ? next : story;
 }
 
-export function loadFeed({ force = false } = {}) {
-  if (cachedFeed && !force && Date.now() - checkedAt < FEED_TTL) return Promise.resolve(cachedFeed);
-  if (feedPromise) return feedPromise;
-  feedStatus.set({ refreshing: true, unavailable: false });
-  feedPromise = (async () => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 12000);
-    try {
-      const response = await fetch(dataUrl('app-feed.json'), { cache: 'no-store', signal: controller.signal });
+export async function loadFeed() {
+  if (!feedPromise) {
+    feedPromise = (async () => {
+      const response = await fetch(dataUrl('app-feed.json'), { cache: 'no-store' });
       if (!response.ok) throw new Error(`Unable to load news feed (${response.status})`);
       const feed = await response.json();
-      if (!Array.isArray(feed.stories) || !feed.generated_at) throw new Error('The news feed is temporarily unavailable.');
-      feed.stories = feed.stories.map(feedCard);
-      checkedAt = Date.now();
-      // Retain object identity when the server has no new edition.
-      if (!cachedFeed || cachedFeed.generated_at !== feed.generated_at) {
-        cachedFeed = feed;
-        feedUpdates.set(feed);
-      }
-      feedStatus.set({ refreshing: false, unavailable: false });
-      return cachedFeed;
-    } catch (error) {
-      feedStatus.set({ refreshing: false, unavailable: true });
-      if (cachedFeed) return cachedFeed;
-      throw error;
-    } finally {
-      clearTimeout(timeout);
+      feed.stories = Array.isArray(feed.stories) ? feed.stories.map(feedCard) : [];
+      cachedFeed = feed;
+      return feed;
+    })().catch((error) => {
       feedPromise = undefined;
-    }
-  })();
+      throw error;
+    });
+  }
   return feedPromise;
 }
 
@@ -122,16 +96,7 @@ export async function loadStory(id, metadata) {
         if (!response.ok) throw new Error(`Unable to load article (${response.status})`);
         return response.json();
       })
-      .then((payload) => {
-        const story = applyEditorialImages(feedCard(payload));
-        cachedStories.set(storyId, story);
-        if (cachedStories.size > 80) {
-          const oldest = cachedStories.keys().next().value;
-          cachedStories.delete(oldest);
-          storyPromises.delete(oldest);
-        }
-        return story;
-      })
+      .then(applyEditorialImages)
       .catch((error) => {
         storyPromises.delete(storyId);
         throw error;

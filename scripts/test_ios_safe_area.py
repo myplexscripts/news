@@ -33,7 +33,7 @@ def main() -> int:
     assert "height: 78svh !important;" in css
     assert "height: 70svh !important;" in css
 
-    assert "ios-safe-area.css" in (ROOT / "src/styles/app.css").read_text(encoding="utf-8")
+    assert "ios-safe-area.css?v=20260908-1" in app
     assert "story-status-bar.css" not in app
     assert "story-status-bar.js" not in app
 

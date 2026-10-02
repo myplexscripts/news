@@ -147,7 +147,6 @@
 
 <article
   class={`news-card card-${variant} ${categoryClass} ${className}`}
-  class:no-image={!image}
   class:is-read-story={isRead}
   data-story-id={id}
   data-category={story?.category || ''}

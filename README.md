@@ -19,22 +19,17 @@ npm run dev
 - `public/mobile-nav-stable.css` preserves the navigation geometry and sliding indicator. It must be copied into the production build; `static` is not this project's asset directory.
 - The early navigation animation in `src/app.html` provides immediate touch feedback. Do not add labelled tabs, additional destinations or whole-page transitions without an explicit request.
 - `src/lib/newsData.js` shares feed and article requests. Cached feed data can render synchronously when returning to a screen.
-- Home, Search and Sections expose SvelteKit snapshots for Back/Forward restoration. Destination state also survives tab switching through `src/lib/screenState.js`. Article requests discard superseded results and restore cached bodies synchronously.
-- `src/styles/app.css` is the single ordered style entry in every environment. Deployment does not inject presentation CSS.
-- The feed revalidates after five minutes and on returning online or foregrounding the app. Home offers new editions without replacing the list under a reader. Offline cache storage is bounded. The build precaches its application modules, styles and locally bundled fonts/icons so the installed app can reopen offline.
+- Home, Search and Sections expose SvelteKit snapshots for Back/Forward restoration. Article requests discard superseded results.
 - `src/pages` and `src/layouts` contain the legacy Astro implementation. The deployed app uses `src/routes`.
 
 ## Validation
 
 ```sh
 npm run check
-npm run test:app
 python scripts/check_ui_contracts.py
 python scripts/check_scope_contracts.py
 python scripts/check_home_feed_contracts.py
 npm run build
-npx playwright install chromium webkit
-npm run test:browser
 ```
 
 Also verify primary navigation, article Back, search/filter restoration, mobile safe areas and Reduce Motion in a browser. The production build checks are not a substitute for visual testing on iOS.

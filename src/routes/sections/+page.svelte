@@ -1,9 +1,8 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import { readScreen, rememberScreen } from '$lib/screenState';
+  import { onMount } from 'svelte';
   import { replaceState } from '$app/navigation';
   import { base } from '$app/paths';
-  import { getCachedFeed, loadFeed, feedUpdates } from '$lib/newsData';
+  import { getCachedFeed, loadFeed } from '$lib/newsData';
   import { setHiddenSource, revealAllSources, userState } from '$lib/appState';
   import { sourceLogoPath } from '$lib/sourceLogos';
 
@@ -20,21 +19,14 @@
     'Sports': 'ph-trophy'
   }[category] || 'ph-newspaper-clipping');
 
-  const previous = readScreen('sections');
-  let feed = previous?.feed || getCachedFeed();
-  let restoring = false;
+  let feed = getCachedFeed();
   let error = '';
-  onMount(() => feedUpdates.subscribe((latest) => {
-    if (latest && !feed) { feed = latest; error = ''; }
-  }));
-  let activeTab = previous?.activeTab || 'sections';
-  onDestroy(() => rememberScreen('sections', { feed, activeTab }));
+  let activeTab = 'sections';
 
   onMount(async () => {
-    if (!restoring && new URL(window.location.href).searchParams.has('tab')) activeTab = new URL(window.location.href).searchParams.get('tab') === 'sources' ? 'sources' : 'sections';
+    activeTab = new URL(window.location.href).searchParams.get('tab') === 'sources' ? 'sources' : 'sections';
     try {
-      const latest = await loadFeed();
-      if (!feed) feed = latest;
+      feed = await loadFeed();
     } catch (reason) {
       error = reason instanceof Error ? reason.message : 'Unable to load sections.';
     }
@@ -94,7 +86,7 @@
   }
   export const snapshot = {
     capture: () => ({ activeTab }),
-    restore: (value) => { restoring = true; ({ activeTab } = value); }
+    restore: (value) => ({ activeTab } = value)
   };
 </script>
 
@@ -137,7 +129,7 @@
             </a>
 
             {#each categories as category}
-              <a class={`section-directory-card ${categoryClass(category)}`} href={['Local', 'Canada'].includes(category) ? `${base}/?feed=${category.toLowerCase()}&section=All` : `${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
+              <a class={`section-directory-card ${categoryClass(category)}`} href={`${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
                 <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
                 <div><strong>{category}</strong></div>
                 <i class="ph ph-caret-right" aria-hidden="true"></i>

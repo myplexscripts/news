@@ -1,15 +1,19 @@
 <script>
   import { browser } from '$app/environment';
-  import { onMount, tick } from 'svelte';
-  import { beforeNavigate, afterNavigate, disableScrollHandling, preloadCode } from '$app/navigation';
-  import { rememberPosition, readPosition } from '$lib/screenState';
+  import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
   import { initialiseAppState, userState } from '$lib/appState';
-  import { loadFeed, feedUpdates, feedStatus, homeEdition } from '$lib/newsData';
+  import { loadFeed } from '$lib/newsData';
   import { sourceLogoPath } from '$lib/sourceLogos';
 
-  import '../styles/app.css';
+  import '../styles/global.css';
+  import '../styles/article-rich.css';
+  import '../styles/editorial-home.css';
+  import '../styles/feed-scope.css';
+  import '../styles/mobile-card-fixes.css';
+  import '../styles/polish.css';
+  import '../styles/svelte-app.css';
 
   let homeDate = formatHomeDate(new Date());
   let homeUpdated = '';
@@ -17,31 +21,6 @@
   let storyCompactNav = false;
   let storyMetaVisible = false;
   let shellFeed;
-  let online = true;
-  let navigationVersion = 0;
-  beforeNavigate(({ from }) => {
-    navigationVersion += 1;
-    if (!from || !browser) return;
-    const position = { x: window.scrollX, y: window.scrollY };
-    rememberPosition(from.url.href, position);
-    rememberPosition(from.url.pathname, position);
-  });
-  afterNavigate((navigation) => {
-    // Restore after the destination renders, including rapid cached-article Back.
-    // SvelteKit remains the fallback for history entries no longer in memory.
-    if (!browser || !navigation.from || navigation.to?.url.hash) return;
-    const url = navigation.to?.url;
-    if (!url) return;
-    const saved = navigation.type === 'popstate'
-      ? readPosition(url.href) || readPosition(url.pathname)
-      : url.search ? readPosition(url.href) : readPosition(url.pathname);
-    if (!saved) return;
-    disableScrollHandling();
-    const version = navigationVersion;
-    tick().then(() => {
-      if (version === navigationVersion) window.scrollTo({ left: saved.x, top: saved.y, behavior: 'instant' });
-    });
-  });
 
   function normalizedPath(pathname = '') {
     const withoutBase = base && pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
@@ -101,11 +80,6 @@
 
   $: currentPath = normalizedPath($page.url.pathname);
   $: onHome = currentPath === '/';
-  $: headerEdition = $homeEdition || shellFeed;
-  $: if (headerEdition?.generated_at) {
-    homeDate = formatHomeDate(headerEdition.generated_at);
-    homeUpdated = formatUpdated(headerEdition.generated_at);
-  }
   $: onStory = currentPath.startsWith('/story/');
   $: onDirectory = currentPath.startsWith('/sections/') || currentPath.startsWith('/sources/');
   $: onSearch = currentPath.startsWith('/search/');
@@ -126,6 +100,7 @@
     storyMetaVisible = false;
   }
   $: if (browser && currentPath) queueMicrotask(syncScrollChrome);
+  $: if (browser && onStory && storyMeta) queueMicrotask(() => syncStoryHeroAuthor());
 
   function activeIcon(active, icon) {
     return active ? `ph-fill ph-${icon}` : `ph ph-${icon}`;
@@ -142,6 +117,24 @@
     if (!browser) return;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+  }
+
+  function syncStoryHeroAuthor(attempt = 0) {
+    if (!browser || !onStory || !storyMeta) return;
+    const slot = document.querySelector('.article-cover-source');
+    if (!slot) {
+      if (attempt < 18) requestAnimationFrame(() => syncStoryHeroAuthor(attempt + 1));
+      return;
+    }
+
+    const author = String(storyMeta.author || '').trim();
+    slot.replaceChildren();
+    if (!author) return;
+
+    const label = document.createElement('strong');
+    label.className = 'story-hero-author';
+    label.textContent = /^by\s+/i.test(author) ? author : `By ${author}`;
+    slot.appendChild(label);
   }
 
   function syncScrollChrome() {
@@ -163,22 +156,12 @@
   onMount(() => {
     initialiseAppState().catch(() => {});
 
-    const unsubscribeFeed = feedUpdates.subscribe((feed) => {
-      if (!feed?.generated_at) return;
+    loadFeed().then((feed) => {
       shellFeed = feed;
-
-    });
-    const refresh = () => { if (!document.hidden && navigator.onLine) loadFeed().catch(() => {}); };
-    const connectionChanged = () => { online = navigator.onLine; if (online) refresh(); };
-    online = navigator.onLine;
-    loadFeed().catch(() => {});
-    const refreshTimer = window.setInterval(refresh, 5 * 60 * 1000);
-    document.addEventListener('visibilitychange', refresh);
-    window.addEventListener('online', connectionChanged);
-    window.addEventListener('offline', connectionChanged);
-    // Warm only route code, without downloading articles or resetting screens.
-    const warmRoutes = () => preloadCode(`${base}/*`).catch(() => {});
-    const warmTimer = window.setTimeout(warmRoutes, 1000);
+      if (!feed?.generated_at) return;
+      homeDate = formatHomeDate(feed.generated_at);
+      homeUpdated = formatUpdated(feed.generated_at);
+    }).catch(() => {});
 
     const unsubscribe = userState.subscribe((state) => {
       const root = document.documentElement;
@@ -197,12 +180,6 @@
 
     return () => {
       unsubscribe();
-      unsubscribeFeed();
-      clearInterval(refreshTimer);
-      clearTimeout(warmTimer);
-      document.removeEventListener('visibilitychange', refresh);
-      window.removeEventListener('online', connectionChanged);
-      window.removeEventListener('offline', connectionChanged);
       document.body.classList.remove('story-meta-visible');
       window.removeEventListener('scroll', syncScrollChrome);
       window.removeEventListener('resize', syncScrollChrome);
@@ -273,12 +250,6 @@
   </div>
 {/if}
 
-{#if !online || $feedStatus.unavailable}
-  <div class="connection-notice shell" role="status">
-    <span>{!online ? 'You’re offline. Previously opened news is still available.' : 'News updates are temporarily unavailable. Showing the last loaded edition.'}</span>
-    {#if online}<button type="button" disabled={$feedStatus.refreshing} on:click={() => loadFeed({ force: true }).catch(() => {})}>Try again</button>{/if}
-  </div>
-{/if}
 <div class="svelte-route-stage">
   <slot />
 </div>
