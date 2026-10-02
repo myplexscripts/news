@@ -19,6 +19,7 @@ function fixture(version = 0) {
   };
 }
 test.beforeEach(async ({ page }) => {
+  await page.clock.install();
   const edition = fixture();
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: edition }));
   await page.route('**/data/stories/*.json', route => {
@@ -89,7 +90,6 @@ test('background refresh offers an edition without replacing the current list', 
   const fresh = fixture(1);
   fresh.stories[0].title = 'A newly published London report';
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: fresh }));
-  await page.clock.install();
   await page.clock.fastForward(300001);
   await expect(page.getByRole('button', { name: 'New updates available' })).toBeVisible();
   await expect(page.locator('[data-story-id="story-0"] h3')).toHaveText('London report 0');

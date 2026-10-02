@@ -6,7 +6,7 @@
   import { page } from '$app/stores';
   import { base } from '$app/paths';
   import { initialiseAppState, userState } from '$lib/appState';
-  import { loadFeed, feedUpdates, feedStatus } from '$lib/newsData';
+  import { loadFeed, feedUpdates, feedStatus, homeEdition } from '$lib/newsData';
   import { sourceLogoPath } from '$lib/sourceLogos';
 
   import '../styles/app.css';
@@ -32,7 +32,7 @@
     if (!browser || !navigation.from || navigation.type === 'popstate' || navigation.to?.url.hash) return;
     const url = navigation.to?.url;
     if (!url) return;
-    const saved = readPosition(url.href) || (!url.search ? readPosition(url.pathname) : null);
+    const saved = url.search ? readPosition(url.href) : readPosition(url.pathname);
     if (!saved) return;
     disableScrollHandling();
     const version = navigationVersion;
@@ -99,6 +99,11 @@
 
   $: currentPath = normalizedPath($page.url.pathname);
   $: onHome = currentPath === '/';
+  $: headerEdition = $homeEdition || shellFeed;
+  $: if (headerEdition?.generated_at) {
+    homeDate = formatHomeDate(headerEdition.generated_at);
+    homeUpdated = formatUpdated(headerEdition.generated_at);
+  }
   $: onStory = currentPath.startsWith('/story/');
   $: onDirectory = currentPath.startsWith('/sections/') || currentPath.startsWith('/sources/');
   $: onSearch = currentPath.startsWith('/search/');
@@ -159,8 +164,7 @@
     const unsubscribeFeed = feedUpdates.subscribe((feed) => {
       if (!feed?.generated_at) return;
       shellFeed = feed;
-      homeDate = formatHomeDate(feed.generated_at);
-      homeUpdated = formatUpdated(feed.generated_at);
+
     });
     const refresh = () => { if (!document.hidden && navigator.onLine) loadFeed().catch(() => {}); };
     const connectionChanged = () => { online = navigator.onLine; if (online) refresh(); };

@@ -2,12 +2,15 @@
   import { onMount, onDestroy } from 'svelte';
   import { readScreen, rememberScreen } from '$lib/screenState';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { getCachedFeed, loadFeed, sortNewest } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, feedUpdates, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
   let feed = readScreen('latest')?.feed || getCachedFeed();
   onDestroy(() => rememberScreen('latest', { feed }));
   let error = '';
+  onMount(() => feedUpdates.subscribe((latest) => {
+    if (latest && !feed) { feed = latest; error = ''; }
+  }));
 
   onMount(async () => {
     try {

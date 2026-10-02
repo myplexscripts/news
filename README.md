@@ -21,7 +21,7 @@ npm run dev
 - `src/lib/newsData.js` shares feed and article requests. Cached feed data can render synchronously when returning to a screen.
 - Home, Search and Sections expose SvelteKit snapshots for Back/Forward restoration. Destination state also survives tab switching through `src/lib/screenState.js`. Article requests discard superseded results and restore cached bodies synchronously.
 - `src/styles/app.css` is the single ordered style entry in every environment. Deployment does not inject presentation CSS.
-- The feed revalidates after five minutes and on returning online or foregrounding the app. Home offers new editions without replacing the list under a reader. Offline cache storage is bounded.
+- The feed revalidates after five minutes and on returning online or foregrounding the app. Home offers new editions without replacing the list under a reader. Offline cache storage is bounded. The build precaches its application modules, styles and locally bundled fonts/icons so the installed app can reopen offline.
 - `src/pages` and `src/layouts` contain the legacy Astro implementation. The deployed app uses `src/routes`.
 
 ## Validation

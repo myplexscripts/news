@@ -3,13 +3,16 @@
   import { readScreen, rememberScreen } from '$lib/screenState';
   import { replaceState } from '$app/navigation';
   import { page } from '$app/stores';
-  import { getCachedFeed, loadFeed, resolveAsset, scopeForStory, sortNewest, storyHref } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, feedUpdates, resolveAsset, scopeForStory, sortNewest, storyHref } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
   const previous = readScreen('search');
   let feed = previous?.feed || getCachedFeed();
   let restoring = false;
   let error = '';
+  onMount(() => feedUpdates.subscribe((latest) => {
+    if (latest && !feed) { feed = latest; error = ''; }
+  }));
   let query = previous?.query || '';
   let activeScope = previous?.activeScope || 'all';
   let activeCategory = previous?.activeCategory || '';

@@ -3,7 +3,7 @@
   import { readScreen, rememberScreen } from '$lib/screenState';
   import { page } from '$app/stores';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { getCachedFeed, loadFeed, feedUpdates, scopeForStory, sortNewest } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, feedUpdates, homeEdition, scopeForStory, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
   const preferredCategories = [
@@ -28,6 +28,7 @@
 
   const previous = readScreen('home');
   let feed = previous?.feed || getCachedFeed();
+  $: if (feed) homeEdition.set(feed);
   let pendingFeed;
   let restoring = false;
   let error = '';
@@ -84,6 +85,7 @@
 
     const unsubscribeFeed = feedUpdates.subscribe((next) => {
       if (!next || cancelled) return;
+      error = '';
       if (!feed) feed = next;
       else if (next.generated_at !== feed.generated_at) pendingFeed = next;
     });
@@ -172,12 +174,13 @@
     dragDelta = 0;
     carouselPaused = true;
     clearCarouselTimer();
-    event.currentTarget?.setPointerCapture?.(event.pointerId);
+
   }
 
   function carouselPointerMove(event) {
     if (dragStartX === null) return;
     dragDelta = event.clientX - dragStartX;
+    if (Math.abs(dragDelta) > 8) event.currentTarget?.setPointerCapture?.(event.pointerId);
   }
 
   function carouselPointerUp() {
@@ -269,6 +272,7 @@
 </svelte:head>
 
 <main class="home-page card-home editorial-home" id="main-content">
+  <h1 class="visually-hidden">Forest City News</h1>
   <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
     <div class="shell section-nav-inner card-filter-inner">
       <div class="feed-scope-row">

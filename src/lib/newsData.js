@@ -7,6 +7,7 @@ let cachedFeed;
 let checkedAt = 0;
 const FEED_TTL = 5 * 60 * 1000;
 export const feedUpdates = writable(null);
+export const homeEdition = writable(null);
 export const feedStatus = writable({ refreshing: false, unavailable: false });
 const cachedStories = new Map();
 export const getCachedStory = (id) => cachedStories.get(String(id));

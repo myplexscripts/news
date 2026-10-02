@@ -185,7 +185,7 @@
     </div>
   {:else if error}
     <div class="article-shell shell">
-      <div class="app-error">{error}</div>
+      <div class="app-error" role="alert"><p>{error}</p><button class="bordered-button" type="button" on:click={() => openStory(requestedId)}>Try again</button></div>
     </div>
   {:else if story}
     <article class="editorial-story">

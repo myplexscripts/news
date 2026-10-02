@@ -3,7 +3,7 @@
   import { readScreen, rememberScreen } from '$lib/screenState';
   import { replaceState } from '$app/navigation';
   import { base } from '$app/paths';
-  import { getCachedFeed, loadFeed } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, feedUpdates } from '$lib/newsData';
   import { setHiddenSource, revealAllSources, userState } from '$lib/appState';
   import { sourceLogoPath } from '$lib/sourceLogos';
 
@@ -24,6 +24,9 @@
   let feed = previous?.feed || getCachedFeed();
   let restoring = false;
   let error = '';
+  onMount(() => feedUpdates.subscribe((latest) => {
+    if (latest && !feed) { feed = latest; error = ''; }
+  }));
   let activeTab = previous?.activeTab || 'sections';
   onDestroy(() => rememberScreen('sections', { feed, activeTab }));
 
