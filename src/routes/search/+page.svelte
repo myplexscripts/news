@@ -172,7 +172,7 @@
       {#if results.length}
         <div class="archive-search-results">
           {#each results as story (story.id)}
-            <article class="archive-search-hit" class:no-image={!story.image}>
+            <article class="archive-search-hit" class:no-image={!(story.card_image_small || story.card_image || story.image)}>
               {#if story.card_image_small || story.card_image || story.image}
                 <a class="archive-search-hit-image" href={storyHref(story.id)} data-sveltekit-preload-data="tap" tabindex="-1">
                   <img src={resolveAsset(story.card_image_small || story.card_image || story.image)} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />

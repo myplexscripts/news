@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 test.use({ serviceWorkers: 'allow' });
-test('the app reopens offline with its local font, icons and previously opened article', async ({ page, context }) => {
+test('the app reopens offline with its local font, icons and previously opened article', async ({ page, context, browserName }) => {
+  test.skip(browserName !== 'chromium', 'Playwright supports service worker offline tests on Chromium only. Verify iOS offline reopening on a real device.');
   await page.goto('./');
   await expect(page.locator('.news-card').first()).toBeVisible();
   await page.evaluate(async () => {

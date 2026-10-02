@@ -18,8 +18,8 @@ function fixture(version = 0) {
     }))
   };
 }
-test.beforeEach(async ({ page }) => {
-  await page.clock.install();
+test.beforeEach(async ({ page }, testInfo) => {
+  if (testInfo.title.startsWith('background refresh')) await page.clock.install();
   const edition = fixture();
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: edition }));
   await page.route('**/data/stories/*.json', route => {
@@ -53,7 +53,10 @@ test('all screens fit the viewport in both themes', async ({ page }) => {
 test('article Back and tab return preserve position and search filters', async ({ page }) => {
   const card = page.locator('[data-story-id="story-20"] .news-card-link');
   await card.scrollIntoViewIfNeeded();
-  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(500);
+  await expect.poll(async () => {
+    await card.scrollIntoViewIfNeeded();
+    return page.evaluate(() => scrollY);
+  }).toBeGreaterThan(500);
   const original = await page.evaluate(() => scrollY);
   await card.click();
   await expect(page.getByRole('heading', { name: 'London report 20', exact: true })).toBeVisible();
