@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "python scripts/prepare_frontend.py && vite dev",
-    "build": "python scripts/test_ios_safe_area.py && python scripts/prepare_frontend.py && python scripts/build_search_index.py && vite build && python scripts/verify_svelte_pages_build.py && python scripts/inject_story_social_metadata.py",
+    "build": "python scripts/test_ios_safe_area.py && python scripts/prepare_frontend.py && python scripts/build_search_index.py && vite build && python scripts/verify_svelte_pages_build.py && python scripts/inject_story_social_metadata.py && python scripts/prepare_service_worker.py",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "fetch": "python scripts/run_scoop.py",
@@ -13,6 +13,8 @@
     "test:browser": "playwright test"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@phosphor-icons/web": "^2.1.1",
     "dexie": "^4.4.5",
     "minisearch": "^7.2.0"
   },

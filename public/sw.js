@@ -1,5 +1,8 @@
 const SHELL_CACHE = 'forest-city-news-shell-v4';
 const ASSET_CACHE = 'forest-city-news-assets-v4';
+const IMAGE_CACHE = 'forest-city-news-images-v4';
+// Replaced with the generated application asset list during the build.
+const PRECACHE_ASSETS = [];
 const DATA_CACHE = 'forest-city-news-data-v4';
 const CACHE_PREFIXES = ['forest-city-news-', 'london-news-'];
 
@@ -21,13 +24,17 @@ self.addEventListener('install', (event) => {
       scopePath('manifest.webmanifest')
     ];
     await Promise.all(urls.map((url) => cache.add(url).catch(() => null)));
+    const assets = await caches.open(ASSET_CACHE);
+    await Promise.all(PRECACHE_ASSETS.map((path) => assets.add(scopePath(path))));
+    const data = await caches.open(DATA_CACHE);
+    await data.add(scopePath('data/app-feed.json')).catch(() => null);
     self.skipWaiting();
   })());
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
-    const keep = new Set([SHELL_CACHE, ASSET_CACHE, DATA_CACHE]);
+    const keep = new Set([SHELL_CACHE, ASSET_CACHE, IMAGE_CACHE, DATA_CACHE]);
     const keys = await caches.keys();
     await Promise.all(keys
       .filter((key) => CACHE_PREFIXES.some((prefix) => key.startsWith(prefix)) && !keep.has(key))
@@ -36,10 +43,11 @@ self.addEventListener('activate', (event) => {
   })());
 });
 
-async function putBounded(cache, request, response, limit) {
+async function putBounded(cache, request, response, limit, protectedPaths = []) {
   await cache.put(request, response.clone());
   const keys = await cache.keys();
-  if (keys.length > limit) await Promise.all(keys.slice(0, keys.length - limit).map((key) => cache.delete(key)));
+  const disposable = keys.filter((key) => !protectedPaths.includes(new URL(key.url).pathname));
+  if (keys.length > limit) await Promise.all(disposable.slice(0, keys.length - limit).map((key) => cache.delete(key)));
 }
 
 async function networkFirst(request, cacheName, fallbackRequest) {
@@ -53,7 +61,7 @@ async function networkFirst(request, cacheName, fallbackRequest) {
       if (cached) return cached;
       return response;
     }
-    await putBounded(cache, request, response, cacheName === DATA_CACHE ? 100 : 40).catch(() => {});
+    await putBounded(cache, request, response, cacheName === DATA_CACHE ? 100 : 40, [scopePath(), scopePath('data/app-feed.json')]).catch(() => {});
     return response;
   } catch {
     return (await cache.match(request))
@@ -64,13 +72,13 @@ async function networkFirst(request, cacheName, fallbackRequest) {
   }
 }
 
-async function cacheFirst(request) {
-  const cache = await caches.open(ASSET_CACHE);
+async function cacheFirst(request, cacheName = ASSET_CACHE) {
+  const cache = await caches.open(cacheName);
   const cached = await cache.match(request);
   if (cached) return cached;
   try {
     const response = await fetch(request);
-    if (response?.ok) await putBounded(cache, request, response, 300).catch(() => {});
+    if (response?.ok) await putBounded(cache, request, response, cacheName === IMAGE_CACHE ? 240 : 160, PRECACHE_ASSETS.map((path) => scopePath(path))).catch(() => {});
     return response;
   } catch {
     return Response.error();
@@ -98,7 +106,12 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (event.request.destination === 'image' || event.request.destination === 'font') {
+  if (event.request.destination === 'image') {
+    event.respondWith(cacheFirst(event.request, IMAGE_CACHE));
+    return;
+  }
+
+  if (event.request.destination === 'font') {
     event.respondWith(cacheFirst(event.request));
     return;
   }

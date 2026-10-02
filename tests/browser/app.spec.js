@@ -52,10 +52,12 @@ test('all screens fit the viewport in both themes', async ({ page }) => {
 test('article Back and tab return preserve position and search filters', async ({ page }) => {
   const card = page.locator('[data-story-id="story-20"] .news-card-link');
   await card.scrollIntoViewIfNeeded();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(500);
   const original = await page.evaluate(() => scrollY);
   await card.click();
   await expect(page.getByRole('heading', { name: 'London report 20', exact: true })).toBeVisible();
   await page.goBack();
+  await expect(page.locator('main.home-page')).toBeVisible();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(original - 4);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(original + 4);
   await openNav(page, 'Search');
@@ -81,4 +83,16 @@ test('text-only feature cards and carousel controls are intentional and accessib
   await dot.click();
   await expect(page.locator('.editorial-carousel-slide').nth(0)).toHaveAttribute('inert', '');
   await expect(page.locator('.editorial-carousel-slide').nth(1)).not.toHaveAttribute('inert', '');
+});
+
+test('background refresh offers an edition without replacing the current list', async ({ page }) => {
+  const fresh = fixture(1);
+  fresh.stories[0].title = 'A newly published London report';
+  await page.route('**/data/app-feed.json', route => route.fulfill({ json: fresh }));
+  await page.clock.install();
+  await page.clock.fastForward(300001);
+  await expect(page.getByRole('button', { name: 'New updates available' })).toBeVisible();
+  await expect(page.locator('[data-story-id="story-0"] h3')).toHaveText('London report 0');
+  await page.getByRole('button', { name: 'New updates available' }).click();
+  await expect(page.locator('[data-story-id="story-0"] h3')).toHaveText('A newly published London report');
 });

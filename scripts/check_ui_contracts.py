@@ -113,11 +113,10 @@ def main() -> None:
     require("border: 1px solid var(--ui-border)" not in ui, "persistent control outlines returned")
     require("border: 1px solid var(--ui-selected-border)" not in ui, "selected segment outline returned")
 
-    require_tokens(app_html, (
-        "family=Inter:wght@400;500;600;700;800",
-        "@phosphor-icons/web@2.1.1/src/regular/style.css",
-        "@phosphor-icons/web@2.1.1/src/fill/style.css",
-        "@phosphor-icons/web@2.1.1/src/duotone/style.css",
+    require_tokens(styles, (
+        "@phosphor-icons/web/src/regular/style.css",
+        "@phosphor-icons/web/src/fill/style.css",
+        "@phosphor-icons/web/src/duotone/style.css",
     ), "app head")
 
     require_tokens(styles, ("smart-features.css", "ui-guidelines.css", "mobile-nav-stable.css", "app-polish.css"), "shared stylesheet entry")

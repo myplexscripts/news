@@ -258,8 +258,8 @@
     }))
     .filter((group) => group.stories.length > 0);
   export const snapshot = {
-    capture: () => ({ activeScope, activeCategory, activeSlide, feed }),
-    restore: (value) => { restoring = true; ({ activeScope, activeCategory, activeSlide, feed } = value); }
+    capture: () => ({ activeScope, activeCategory, activeSlide }),
+    restore: (value) => { restoring = true; ({ activeScope, activeCategory, activeSlide } = value); }
   };
 </script>
 

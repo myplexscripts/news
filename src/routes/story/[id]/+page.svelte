@@ -572,7 +572,7 @@
       visibility 0s linear 320ms;
   }
 
-  .article-reveal.article-reveal-visible {
+  .article-reveal:global(.article-reveal-visible) {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
