@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install worker dependencies
+        run: pip install -r requirements.txt
+
       - name: Validate new Python workers
         run: |
           python -m py_compile scripts/fast_refresh.py

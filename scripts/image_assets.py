@@ -12,7 +12,8 @@ def variants_for(path, widths, quality=82):
     path = Path(path)
     results = []
     with Image.open(path) as opened:
-        image = ImageOps.exif_transpose(opened).convert('RGB')
+        image = ImageOps.exif_transpose(opened)
+        image = image.convert('RGBA' if image.mode in {'RGBA', 'LA'} or 'transparency' in image.info else 'RGB')
         used = set()
         for requested in widths:
             width = min(requested, image.width)
