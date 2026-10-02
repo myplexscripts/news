@@ -177,3 +177,104 @@ html body .home-page .category-pill:focus-visible {
     transition: none !important;
   }
 }
+
+
+/* Missing artwork uses the same card geometry as real artwork.
+   This removes the older pseudo-element fallback that could occupy the same
+   grid cell as the headline and produce the green/text overlap. */
+html body .news-card.card-standard.no-image::before {
+  content: none !important;
+  display: none !important;
+}
+
+html body .news-card.card-standard.no-image {
+  grid-template-columns: minmax(0, 1fr) 244px !important;
+  height: 244px !important;
+  min-height: 244px !important;
+}
+
+html body .news-card.card-standard.no-image .news-card-media {
+  display: block !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  width: 244px !important;
+  height: 244px !important;
+  min-width: 244px !important;
+  min-height: 244px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+html body .news-card.card-standard.no-image .news-card-body {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+
+@media (max-width: 1080px) and (min-width: 761px) {
+  html body .news-card.card-standard.no-image {
+    grid-template-columns: minmax(0, 1fr) 230px !important;
+    height: 230px !important;
+    min-height: 230px !important;
+  }
+
+  html body .news-card.card-standard.no-image .news-card-media {
+    width: 230px !important;
+    height: 230px !important;
+    min-width: 230px !important;
+    min-height: 230px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  html body .news-card.card-standard.no-image,
+  html body .latest-card-grid .news-card.card-standard.no-image {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 132px !important;
+    height: 132px !important;
+    min-height: 132px !important;
+  }
+
+  html body .news-card.card-standard.no-image .news-card-media,
+  html body .latest-card-grid .news-card.card-standard.no-image .news-card-media {
+    display: block !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    width: 132px !important;
+    height: 132px !important;
+    min-width: 132px !important;
+    min-height: 132px !important;
+    align-self: stretch !important;
+    justify-self: end !important;
+  }
+
+  html body .news-card.card-standard.no-image .news-card-body,
+  html body .latest-card-grid .news-card.card-standard.no-image .news-card-body {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    min-width: 0 !important;
+    min-height: 132px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  html body .news-card.card-standard.no-image,
+  html body .latest-card-grid .news-card.card-standard.no-image {
+    grid-template-columns: minmax(0, 1fr) 124px !important;
+    height: 124px !important;
+    min-height: 124px !important;
+  }
+
+  html body .news-card.card-standard.no-image .news-card-media,
+  html body .latest-card-grid .news-card.card-standard.no-image .news-card-media {
+    width: 124px !important;
+    height: 124px !important;
+    min-width: 124px !important;
+    min-height: 124px !important;
+  }
+
+  html body .news-card.card-standard.no-image .news-card-body,
+  html body .latest-card-grid .news-card.card-standard.no-image .news-card-body {
+    min-height: 124px !important;
+  }
+}
