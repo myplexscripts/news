@@ -12,7 +12,7 @@ function fixture(version = 0) {
       source: 'CTV News London', scope: 'local', category: i % 2 ? 'Business' : 'Public Safety',
       published: new Date(Date.now() - i * 3600000).toISOString(),
       word_count: 650, url: 'https://example.com/report',
-      image: i === 1 ? `${base}/social.png` : '',
+      image: i === 1 ? `${base}/images/social.png` : '',
       _data_file: `story-${i}.json`, cluster_representative: true,
       content_status: 'full', quality: { score: 90 }
     }))
@@ -41,12 +41,12 @@ test.beforeEach(async ({ page }, testInfo) => {
   });
   const edition = fixture();
   if (testInfo.title.startsWith('responsive images')) Object.assign(edition.stories[0], {
-    image: `${base}/social.png`,
-    editorial_image: `${base}/social.png?hero-1600`, editorial_image_source: `${base}/social.png`,
+    image: `${base}/images/social.png`,
+    editorial_image: `${base}/images/social.png?hero-1600`, editorial_image_source: `${base}/images/social.png`,
     editorial_image_width: 1600, editorial_image_height: 900,
-    editorial_image_variants: [{url:`${base}/social.png?hero-640`,width:640,height:360},{url:`${base}/social.png?hero-1600`,width:1600,height:900}],
-    card_image_small: `${base}/social.png?card-320`, card_image: `${base}/social.png?card-1200`,
-    card_image_variants: [{url:`${base}/social.png?card-320`,width:320,height:180},{url:`${base}/social.png?card-640`,width:640,height:360},{url:`${base}/social.png?card-1200`,width:1200,height:675}]
+    editorial_image_variants: [{url:`${base}/images/social.png?hero-640`,width:640,height:360},{url:`${base}/images/social.png?hero-1600`,width:1600,height:900}],
+    card_image_small: `${base}/images/social.png?card-320`, card_image: `${base}/images/social.png?card-1200`,
+    card_image_variants: [{url:`${base}/images/social.png?card-320`,width:320,height:180},{url:`${base}/images/social.png?card-640`,width:640,height:360},{url:`${base}/images/social.png?card-1200`,width:1200,height:675}]
   });
   if (testInfo.title.startsWith('related recommendations')) edition.stories.slice(-4).forEach(story => { story.scope = 'canada'; });
   if (testInfo.title.startsWith('aggregated coverage')) {
