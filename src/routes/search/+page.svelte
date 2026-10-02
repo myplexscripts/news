@@ -172,7 +172,7 @@
       {#if results.length}
         <div class="archive-search-results">
           {#each results as story (story.id)}
-            <article class="archive-search-hit">
+            <article class="archive-search-hit" class:no-image={!story.image}>
               {#if story.card_image_small || story.card_image || story.image}
                 <a class="archive-search-hit-image" href={storyHref(story.id)} data-sveltekit-preload-data="tap" tabindex="-1">
                   <img src={resolveAsset(story.card_image_small || story.card_image || story.image)} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
@@ -271,6 +271,10 @@
     gap: 22px;
     padding: 22px 0;
     border-bottom: 1px solid var(--line);
+  }
+
+  .archive-search-hit.no-image {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .archive-search-hit-image {
