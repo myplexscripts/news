@@ -65,6 +65,12 @@ test('article Back and tab return preserve position and search filters', async (
   await expect(page.locator('main.home-page')).toBeVisible();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(original - 4);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(original + 4);
+  // A warmed article renders immediately. Returning quickly must still restore.
+  await card.click();
+  await expect(page.getByRole('heading', { name: 'London report 20', exact: true })).toBeVisible();
+  await page.goBack();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(original - 4);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(original + 4);
   await openNav(page, 'Search');
   await page.getByRole('searchbox').fill('London');
   await page.getByRole('combobox', { name: 'Section', exact: true }).selectOption('Business');

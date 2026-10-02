@@ -27,12 +27,14 @@
     rememberPosition(from.url.pathname, position);
   });
   afterNavigate((navigation) => {
-    // Browser Back/Forward retains SvelteKit's history-entry scroll restoration.
-    // Selecting an already visited tab additionally restores that destination.
-    if (!browser || !navigation.from || navigation.type === 'popstate' || navigation.to?.url.hash) return;
+    // Restore after the destination renders, including rapid cached-article Back.
+    // SvelteKit remains the fallback for history entries no longer in memory.
+    if (!browser || !navigation.from || navigation.to?.url.hash) return;
     const url = navigation.to?.url;
     if (!url) return;
-    const saved = url.search ? readPosition(url.href) : readPosition(url.pathname);
+    const saved = navigation.type === 'popstate'
+      ? readPosition(url.href) || readPosition(url.pathname)
+      : url.search ? readPosition(url.href) : readPosition(url.pathname);
     if (!saved) return;
     disableScrollHandling();
     const version = navigationVersion;
