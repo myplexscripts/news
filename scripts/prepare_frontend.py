@@ -25,6 +25,7 @@ FEED_FIELDS = {
     "category",
     "published",
     "cluster_latest_published",
+    "card_image_source",
     "card_image_variants",
     "card_image_small",
     "card_image",

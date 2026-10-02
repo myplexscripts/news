@@ -38,7 +38,7 @@
   $: cachedSrcset = smallImage && largeImage && smallImage !== largeImage
     ? `${smallImage} 420w, ${largeImage} 720w`
     : '';
-  $: imageSrcset = fallbackIndex === 0 ? (responsiveSrcset(story?.card_image_variants) || cachedSrcset) : '';
+  $: imageSrcset = fallbackIndex === 0 ? (responsiveSrcset(story?.card_image_source && story.card_image_source !== story.image ? [] : story?.card_image_variants) || cachedSrcset) : '';
   $: imageSizes = variant === 'featured'
     ? '(max-width: 720px) calc(100vw - 24px), (max-width: 1280px) 44vw, 560px'
     : '(max-width: 760px) 34vw, 230px';

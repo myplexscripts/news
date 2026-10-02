@@ -68,3 +68,17 @@ test('invalid first feed rejects and can retry; article prefetch populates synch
   await mod.loadStory('one');
   assert.equal(calls, 3);
 });
+
+test('article image derivatives only apply to their matching original sources', async () => {
+  const source = 'https://example.test/new-photo.jpg';
+  const mod = await dataModule(async () => ({ok:true,json:async () => ({
+    id:'images', title:'Report', image:source,
+    editorial_image:'cache/old.webp',editorial_image_source:'https://example.test/old-photo.jpg',
+    editorial_image_variants:[{url:'cache/old-640.webp',width:640}],
+    content_blocks:[{type:'image',url:source,optimized_url:'cache/old.webp',optimized_url_source:'https://example.test/old-photo.jpg',image_variants:[{url:'cache/old-640.webp',width:640}]}]
+  })}), () => 1);
+  const article = await mod.loadStory('images',{_data_file:'images.json'});
+  assert.equal(article.image,source);
+  assert.deepEqual(article.editorial_image_variants,[]);
+  assert.deepEqual(article.content_blocks[0].image_variants,[]);
+});
