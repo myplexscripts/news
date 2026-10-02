@@ -1,4 +1,5 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import { onDestroy } from 'svelte';
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
@@ -208,7 +209,7 @@
             {#if story.url}
               <a class="article-cover-original" href={story.url} target="_blank" rel="noopener noreferrer">
                 <span>Original article</span>
-                <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                <AppIcon iconClass="ph ph-arrow-up-right" />
               </a>
             {/if}
           </div>
@@ -308,18 +309,18 @@
                     </div>
                     {#if block.source_url}
                       <a class="article-embed-source" href={block.source_url} target="_blank" rel="noopener noreferrer">
-                        View original post <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                        View original post <AppIcon iconClass="ph ph-arrow-up-right" />
                       </a>
                     {/if}
                   </figure>
                 {:else if block.type === 'media' && block.media_type === 'link' && block.url}
                   <a class="article-media article-media-link" href={block.url} target="_blank" rel="noopener noreferrer">
-                    <i class="ph ph-play-circle" aria-hidden="true"></i>
+                    <AppIcon iconClass="ph ph-play-circle" />
                     <span>
                       <strong>{block.title || 'Open media at source'}</strong>
                       <small>Open media from {story.source}</small>
                     </span>
-                    <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                    <AppIcon iconClass="ph ph-arrow-up-right" />
                   </a>
                 {/if}
               {/each}
@@ -522,7 +523,7 @@
     white-space: nowrap;
   }
 
-  .article-cover-original i {
+  .article-cover-original :global(i) {
     font-size: 17px;
   }
 

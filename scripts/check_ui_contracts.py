@@ -114,9 +114,9 @@ def main() -> None:
     require("border: 1px solid var(--ui-selected-border)" not in ui, "selected segment outline returned")
 
     require_tokens(styles, (
-        "@phosphor-icons/web/src/regular/style.css",
-        "@phosphor-icons/web/src/fill/style.css",
-        "@phosphor-icons/web/src/duotone/style.css",
+
+
+
     ), "app head")
 
     require_tokens(styles, ("smart-features.css", "ui-guidelines.css", "mobile-nav-stable.css", "app-polish.css"), "shared stylesheet entry")

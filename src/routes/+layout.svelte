@@ -1,4 +1,6 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
+  import NavIcon from '$lib/components/NavIcon.svelte';
   import { browser } from '$app/environment';
   import { onMount, tick } from 'svelte';
   import { beforeNavigate, afterNavigate, disableScrollHandling, preloadCode } from '$app/navigation';
@@ -235,7 +237,7 @@
         </a>
       {:else}
         <a class="brand brand-news" href={`${base}/`} data-sveltekit-preload-data="tap" aria-label="Forest City News home">
-          <i class="ph-fill ph-tree brand-news-icon" aria-hidden="true"></i>
+          <AppIcon iconClass="ph-fill ph-tree brand-news-icon" />
           <span class="brand-news-wordmark">News</span>
         </a>
       {/if}
@@ -243,13 +245,13 @@
 
     <div class="header-actions">
       <a class="icon-button header-search-link" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search news" title="Search">
-        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <AppIcon iconClass="ph ph-magnifying-glass" />
       </a>
       <a class:active={onDirectory} class="icon-button desktop-sources-link" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Browse sections and sources" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-        <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
+        <AppIcon iconClass={activeIcon(onDirectory, 'hard-drives')} />
       </a>
       <a class:active={onSettings} class="icon-button settings-link" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-        <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
+        <AppIcon iconClass={activeIcon(onSettings, 'gear-six')} />
       </a>
     </div>
 
@@ -319,7 +321,7 @@
     aria-current={onHome ? 'page' : undefined}
     on:click={handleHomeTab}
   >
-    <i class={onStory && storyCompactNav ? 'ph-fill ph-house' : onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
+    <NavIcon name={onHome && isBackToTop ? 'arrow-up' : 'house'} filled={onHome || onStory} />
     <span class="visually-hidden">Home</span>
   </a>
 
@@ -333,7 +335,7 @@
     aria-hidden="true"
   />
   <a class:active={onDirectory} class="mobile-tab" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-    <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
+    <NavIcon name="hard-drives" filled={onDirectory} />
     <span class="visually-hidden">Sections</span>
   </a>
 
@@ -347,7 +349,7 @@
     aria-hidden="true"
   />
   <a class:active={onSearch} class="mobile-tab" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
-    <i class={activeIcon(onSearch, 'magnifying-glass')} aria-hidden="true"></i>
+    <NavIcon name="magnifying-glass" filled={onSearch} />
     <span class="visually-hidden">Search</span>
   </a>
 
@@ -361,13 +363,13 @@
     aria-hidden="true"
   />
   <a class:active={onSettings} class="mobile-tab" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-    <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
+    <NavIcon name="gear-six" filled={onSettings} />
     <span class="visually-hidden">Settings</span>
   </a>
 
   {#if onStory}
     <button class="story-back-to-top" type="button" aria-label="Back to top" title="Back to top" on:click={handleStoryBackToTop}>
-      <i class="ph ph-arrow-up" aria-hidden="true"></i>
+      <AppIcon iconClass="ph ph-arrow-up" />
     </button>
   {/if}
 </nav>
@@ -387,7 +389,7 @@
     letter-spacing: -0.045em !important;
   }
 
-  .brand-news-icon {
+  :global(.brand-news-icon) {
     flex: 0 0 auto;
     font-size: 34px !important;
     line-height: 1 !important;
@@ -514,7 +516,7 @@
       font-size: 26px !important;
     }
 
-    .brand-news-icon {
+    :global(.brand-news-icon) {
       font-size: 32px !important;
     }
 

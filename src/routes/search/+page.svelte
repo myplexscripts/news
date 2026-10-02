@@ -1,4 +1,5 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import { onMount, onDestroy } from 'svelte';
   import { readScreen, rememberScreen } from '$lib/screenState';
   import { replaceState } from '$app/navigation';
@@ -104,7 +105,7 @@
     </header>
 
     <div class="search-page-field search-page-field-refined">
-      <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+      <AppIcon iconClass="ph ph-magnifying-glass" />
       <input
         id="archiveSearch"
         type="search"
@@ -118,7 +119,7 @@
       />
       {#if query}
         <button class="search-clear-button" type="button" aria-label="Clear search" on:click={clearSearch}>
-          <i class="ph ph-x-circle" aria-hidden="true"></i>
+          <AppIcon iconClass="ph ph-x-circle" />
         </button>
       {/if}
     </div>

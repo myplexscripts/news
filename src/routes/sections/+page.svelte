@@ -1,4 +1,5 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import { onMount, onDestroy } from 'svelte';
   import { readScreen, rememberScreen } from '$lib/screenState';
   import { replaceState } from '$app/navigation';
@@ -131,16 +132,16 @@
         <section class="directory-panel" aria-label="News sections">
           <div class="section-directory-grid">
             <a class="section-directory-card section-all" href={`${base}/latest/`} data-sveltekit-preload-data="tap">
-              <span class="section-directory-icon"><i class="ph ph-clock-countdown" aria-hidden="true"></i></span>
+              <span class="section-directory-icon"><AppIcon iconClass="ph ph-clock-countdown" /></span>
               <div><strong>Latest</strong></div>
-              <i class="ph ph-caret-right" aria-hidden="true"></i>
+              <AppIcon iconClass="ph ph-caret-right" />
             </a>
 
             {#each categories as category}
               <a class={`section-directory-card ${categoryClass(category)}`} href={['Local', 'Canada'].includes(category) ? `${base}/?feed=${category.toLowerCase()}&section=All` : `${base}/?section=${encodeURIComponent(category)}#latest`} data-sveltekit-preload-data="tap">
-                <span class="section-directory-icon"><i class={`ph ${iconFor(category)}`} aria-hidden="true"></i></span>
+                <span class="section-directory-icon"><AppIcon iconClass={`ph ${iconFor(category)}`} /></span>
                 <div><strong>{category}</strong></div>
-                <i class="ph ph-caret-right" aria-hidden="true"></i>
+                <AppIcon iconClass="ph ph-caret-right" />
               </a>
             {/each}
           </div>
@@ -178,7 +179,7 @@
           </div>
 
           <div class="sources-footer-note">
-            <i class="ph ph-device-mobile" aria-hidden="true"></i>
+            <AppIcon iconClass="ph ph-device-mobile" />
             <p>These preferences only affect what Forest City News shows you. They do not change what the collector gathers, and they stay on this browser unless you clear its site data.</p>
           </div>
         </section>
@@ -255,7 +256,7 @@
     color: #000;
   }
 
-  .section-directory-icon i {
+  .section-directory-icon :global(i) {
     color: #000;
     font-size: 25px;
   }
@@ -273,7 +274,7 @@
     line-height: 1.25;
   }
 
-  .section-directory-card > i.ph-caret-right {
+  .section-directory-card > :global(i.ph-caret-right) {
     display: none;
   }
 
@@ -326,7 +327,7 @@
       border-radius: 11px;
     }
 
-    .section-directory-icon i {
+    .section-directory-icon :global(i) {
       font-size: 24px;
     }
 

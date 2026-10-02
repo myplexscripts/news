@@ -19,6 +19,8 @@ function fixture(version = 0) {
   };
 }
 test.beforeEach(async ({ page }, testInfo) => {
+  if (testInfo.project.name.includes('standalone')) await page.addInitScript(() => Object.defineProperty(navigator, 'standalone', { configurable: true, get: () => true }));
+  if (testInfo.title.includes('font downloads')) await page.route(/\.(woff2?|ttf|otf)(\?|$)/, route => route.abort());
   if (testInfo.title.startsWith('background refresh')) await page.clock.install();
   const edition = fixture();
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: edition }));
@@ -105,4 +107,48 @@ test('background refresh offers an edition without replacing the current list', 
   await expect(page.locator('[data-story-id="story-0"] h3')).toHaveText('London report 0');
   await page.getByRole('button', { name: 'New updates available' }).click();
   await expect(page.locator('[data-story-id="story-0"] h3')).toHaveText('A newly published London report');
+});
+
+
+test('mobile navigation stays visible with blocked font downloads', async ({ page }, testInfo) => {
+  test.skip(page.viewportSize().width > 760, 'Mobile navigation is hidden on desktop.');
+  const nav = page.getByRole('navigation', { name: 'Primary navigation' });
+  async function checkIcons() {
+    const bounds = await nav.boundingBox();
+    expect(bounds.height).toBe(68);
+    expect(bounds.y).toBeGreaterThan(0);
+    expect(bounds.y + bounds.height).toBeLessThanOrEqual(page.viewportSize().height);
+    const links = nav.locator('a.mobile-tab');
+    await expect(links).toHaveCount(4);
+    for (const link of await links.all()) {
+      await expect(link).toBeVisible();
+      const rect = await link.boundingBox();
+      expect(rect.width).toBeGreaterThanOrEqual(44);
+      expect(rect.height).toBeGreaterThanOrEqual(44);
+      const icon = link.locator('svg.nav-icon');
+      await expect(icon).toBeVisible();
+      const pixels = await icon.evaluate(el => ({
+        width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height,
+        drawing: el.getBBox().width, colour: getComputedStyle(el).color,
+        opacity: getComputedStyle(el).opacity
+      }));
+      expect(pixels.width).toBe(27); expect(pixels.height).toBe(27);
+      expect(pixels.drawing).toBeGreaterThan(0); expect(pixels.opacity).toBe('1');
+      expect(pixels.colour).not.toBe('rgba(0, 0, 0, 0)');
+      const hit = await page.evaluate(({x,y}) => document.elementFromPoint(x,y)?.closest('a.mobile-tab')?.dataset.mobileTab, { x: rect.x+rect.width/2, y: rect.y+rect.height/2 });
+      expect(hit).toBe(await link.getAttribute('data-mobile-tab'));
+    }
+  }
+  await checkIcons();
+  await page.screenshot({ path: testInfo.outputPath('mobile-navigation-light.png'), fullPage: false });
+  await openNav(page, 'Settings');
+  await page.getByRole('button', { name: 'Dark', exact: true }).click();
+  await openNav(page, 'Home');
+  await checkIcons();
+  await page.screenshot({ path: testInfo.outputPath('mobile-navigation-dark.png'), fullPage: false });
+  for (const name of ['Sections', 'Search', 'Settings']) {
+    await openNav(page, name);
+    await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();
+    await checkIcons();
+  }
 });

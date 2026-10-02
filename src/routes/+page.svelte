@@ -1,4 +1,5 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import { onMount, onDestroy } from 'svelte';
   import { readScreen, rememberScreen } from '$lib/screenState';
   import { page } from '$app/stores';
@@ -299,7 +300,7 @@
           <details class="control-menu section-more">
             <summary>
               <span>{moreCategories.includes(activeCategory) ? activeCategory : 'More'}</span>
-              <i class="ph ph-caret-down" aria-hidden="true"></i>
+              <AppIcon iconClass="ph ph-caret-down" />
             </summary>
             <div class="control-popover section-popover">
               {#each moreCategories as category}
@@ -321,7 +322,7 @@
   </section>
 
   {#if pendingFeed}
-    <div class="shell feed-update-wrap"><button class="feed-update-button" type="button" on:click={showNewStories}>New updates available <i class="ph ph-arrow-clockwise" aria-hidden="true"></i></button></div>
+    <div class="shell feed-update-wrap"><button class="feed-update-button" type="button" on:click={showNewStories}>New updates available <AppIcon iconClass="ph ph-arrow-clockwise" /></button></div>
   {/if}
 
   {#if error}
