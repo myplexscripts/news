@@ -161,6 +161,8 @@ jobs:
             mkdir -p public/cache
             # Overlay newly enriched media without deleting files from newer refreshes.
             rsync -a /tmp/scoop-enriched-output/cache/ public/cache/
+            python scripts/article_retention.py
+            python scripts/run_audit.py
             git add data/news.json data/audit.json public/cache/
 
             if git diff --cached --quiet; then

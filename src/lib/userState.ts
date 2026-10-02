@@ -5,7 +5,6 @@ export type LondonNewsUserState = {
   accent: string;
   hideRead: boolean;
   readIds: string[];
-  savedIds: string[];
   hiddenSources: string[];
 };
 
@@ -20,11 +19,6 @@ type ReadStoryRecord = {
   readAt: number;
 };
 
-type SavedStoryRecord = {
-  id: string;
-  savedAt: number;
-};
-
 type HiddenSourceRecord = {
   name: string;
   hiddenAt: number;
@@ -33,7 +27,6 @@ type HiddenSourceRecord = {
 class LondonNewsDatabase extends Dexie {
   preferences!: Table<PreferenceRecord, string>;
   readStories!: Table<ReadStoryRecord, string>;
-  savedStories!: Table<SavedStoryRecord, string>;
   hiddenSources!: Table<HiddenSourceRecord, string>;
 
   constructor() {
@@ -43,37 +36,23 @@ class LondonNewsDatabase extends Dexie {
       readStories: '&id,readAt',
       hiddenSources: '&name,hiddenAt'
     });
-    this.version(2).stores({
+    // Drop the removed bookmark table while preserving preferences and reads.
+    this.version(4).stores({
       preferences: '&key,updatedAt',
       readStories: '&id,readAt',
-      savedStories: '&id,savedAt',
+      savedStories: null,
       hiddenSources: '&name,hiddenAt'
-    });
-    // Read Later launched with an unsafe legacy-key import that could pull
-    // unrelated browser data into savedStories. Version 3 resets only that
-    // brand-new table once, then all future entries come from explicit saves.
-    this.version(3).stores({
-      preferences: '&key,updatedAt',
-      readStories: '&id,readAt',
-      savedStories: '&id,savedAt',
-      hiddenSources: '&name,hiddenAt'
-    }).upgrade(async (transaction) => {
-      await transaction.table('savedStories').clear();
     });
   }
 }
 
 const db = new LondonNewsDatabase();
 const CHANNEL_NAME = 'london-news-user-state';
-const BAD_READ_LATER_KEY = 'london-news-read-later';
 const LEGACY = {
   theme: 'london-news-theme',
   accent: 'london-news-accent',
   hideRead: 'london-news-hide-read',
   reads: 'london-news-read-articles',
-  // This is a new fallback key, not a legacy migration source. The original
-  // key was already present in some browsers and must never be imported.
-  saved: 'london-news-read-later-v1',
   hiddenSources: 'london-news-hidden-sources'
 };
 
@@ -95,10 +74,9 @@ function preferredTheme(): 'light' | 'dark' {
 }
 
 async function snapshot(): Promise<LondonNewsUserState> {
-  const [preferenceRows, readRows, savedRows, hiddenRows] = await Promise.all([
+  const [preferenceRows, readRows, hiddenRows] = await Promise.all([
     db.preferences.toArray(),
     db.readStories.orderBy('readAt').reverse().toArray(),
-    db.savedStories.orderBy('savedAt').reverse().toArray(),
     db.hiddenSources.toArray()
   ]);
   const preferences = new Map(preferenceRows.map((row) => [row.key, row.value]));
@@ -110,7 +88,6 @@ async function snapshot(): Promise<LondonNewsUserState> {
     accent,
     hideRead,
     readIds: readRows.map((row) => row.id),
-    savedIds: savedRows.map((row) => row.id),
     hiddenSources: hiddenRows.map((row) => row.name).sort((a, b) => a.localeCompare(b))
   };
 }
@@ -121,7 +98,6 @@ function syncLegacyMirrors(state: LondonNewsUserState) {
   localStorage.setItem(LEGACY.accent, state.accent);
   localStorage.setItem(LEGACY.hideRead, state.hideRead ? 'true' : 'false');
   localStorage.setItem(LEGACY.reads, JSON.stringify(state.readIds));
-  localStorage.setItem(LEGACY.saved, JSON.stringify(state.savedIds));
   localStorage.setItem(LEGACY.hiddenSources, JSON.stringify(state.hiddenSources));
 }
 
@@ -142,9 +118,8 @@ async function reconcileLegacyState() {
   const readIds = safeArray(LEGACY.reads);
   const hiddenSources = safeArray(LEGACY.hiddenSources);
 
-  // Never import Read Later from the pre-launch key. Saved stories are new state
-  // and may only be created by an explicit bookmark action.
-  localStorage.removeItem(BAD_READ_LATER_KEY);
+  localStorage.removeItem('london-news-read-later');
+  localStorage.removeItem('london-news-read-later-v1');
 
   await db.transaction('rw', db.preferences, db.readStories, db.hiddenSources, async () => {
     const preferences: PreferenceRecord[] = [];
@@ -187,7 +162,6 @@ export async function initialiseUserState(): Promise<LondonNewsUserState> {
       accent: typeof localStorage !== 'undefined' ? localStorage.getItem(LEGACY.accent) || 'green' : 'green',
       hideRead: typeof localStorage !== 'undefined' && localStorage.getItem(LEGACY.hideRead) === 'true',
       readIds: safeArray(LEGACY.reads),
-      savedIds: safeArray(LEGACY.saved),
       hiddenSources: safeArray(LEGACY.hiddenSources)
     };
     emit(fallback, false);
@@ -239,30 +213,6 @@ export async function clearReadHistory() {
   return state;
 }
 
-export async function setStorySaved(id: string, saved: boolean) {
-  const storyId = String(id || '').trim();
-  if (!storyId) return getUserState();
-  if (saved) await db.savedStories.put({ id: storyId, savedAt: Date.now() });
-  else await db.savedStories.delete(storyId);
-  const state = await snapshot();
-  emit(state);
-  return state;
-}
-
-export async function toggleStorySaved(id: string) {
-  const storyId = String(id || '').trim();
-  if (!storyId) return getUserState();
-  const existing = await db.savedStories.get(storyId);
-  return setStorySaved(storyId, !existing);
-}
-
-export async function clearSavedStories() {
-  await db.savedStories.clear();
-  const state = await snapshot();
-  emit(state);
-  return state;
-}
-
 export async function setSourceHidden(name: string, hidden: boolean) {
   const sourceName = String(name || '').trim();
   if (!sourceName) return getUserState();
@@ -281,11 +231,10 @@ export async function showAllSources() {
 }
 
 export async function clearAllUserData(): Promise<LondonNewsUserState> {
-  await db.transaction('rw', db.preferences, db.readStories, db.savedStories, db.hiddenSources, async () => {
+  await db.transaction('rw', db.preferences, db.readStories, db.hiddenSources, async () => {
     await Promise.all([
       db.preferences.clear(),
       db.readStories.clear(),
-      db.savedStories.clear(),
       db.hiddenSources.clear()
     ]);
   });
@@ -294,7 +243,6 @@ export async function clearAllUserData(): Promise<LondonNewsUserState> {
     for (const key of Object.keys(localStorage)) {
       if (key.startsWith('london-news-')) localStorage.removeItem(key);
     }
-    localStorage.removeItem(BAD_READ_LATER_KEY);
   }
 
   if (typeof sessionStorage !== 'undefined') {
@@ -308,7 +256,6 @@ export async function clearAllUserData(): Promise<LondonNewsUserState> {
     accent: 'green',
     hideRead: false,
     readIds: [],
-    savedIds: [],
     hiddenSources: []
   };
 

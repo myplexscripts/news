@@ -24,12 +24,12 @@ from trafilatura import bare_extraction, extract
 from PIL import Image, ImageFilter
 
 from sources import SOURCES, Source
+from article_retention import retained_stories
 from ranking import GOOGLE_DISCOVERY_MIN_LOCAL_SCORE, apply_editorial_intelligence
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "news.json"
 CARD_IMAGE_DIR = ROOT / "public" / "cache" / "news"
-HISTORY_LIMIT = 750
 REQUEST_TIMEOUT = 30
 ARTICLE_REFRESH_HOURS = 12
 BACKFILL_PER_RUN = 48
@@ -2761,13 +2761,8 @@ def cache_card_images(stories: list[dict[str, Any]], limit: int = 140) -> list[d
             story.pop("card_image_small", None)
         done += 1
 
-    # Avoid unbounded repository growth. Keep cached files still referenced by the latest set.
-    for path in CARD_IMAGE_DIR.glob("*.webp"):
-        if path.name not in wanted:
-            try:
-                path.unlink()
-            except OSError:
-                pass
+    # Repository cleanup uses all retained article references, including articles
+    # outside this processing batch, so it cannot break older image URLs.
     return stories
 
 
@@ -2828,7 +2823,7 @@ def annotate_presentation(stories: list[dict[str, Any]], source_health: list[dic
 
 
 def main() -> int:
-    previous = [story for story in load_existing() if not is_unusable_google_story(story)]
+    previous = [story for story in retained_stories(load_existing()) if not is_unusable_google_story(story)]
     lookup = existing_lookup(previous)
     fresh: list[dict[str, Any]] = []
     errors: list[dict[str, str]] = []
@@ -2859,7 +2854,7 @@ def main() -> int:
         if key:
             merged[key] = story
 
-    stories = dedupe_stories(list(merged.values()))
+    stories = retained_stories(dedupe_stories(list(merged.values())))
     stories = [story for story in stories if not is_unusable_google_story(story)]
     stories = [sanitize_cached_story(story) for story in stories]
     # Do not immediately hammer a source again during backfill if it already failed
@@ -2886,10 +2881,10 @@ def main() -> int:
 
     # Keep the canonical history chronological. Homepage ranking is represented by
     # top_story_ids rather than reordering the archive itself. Re-run the editorial
-    # pass after the history cap so cluster member IDs can never reference records
+    # pass after the retention filter so cluster member IDs can never reference records
     # that are not present in the published JSON.
     stories.sort(key=lambda item: item.get("published", ""), reverse=True)
-    stories = stories[:HISTORY_LIMIT]
+    stories = retained_stories(stories)
     stories, editorial = apply_editorial_intelligence(stories)
 
     source_health = build_source_health(stories, run_counts, run_errors)

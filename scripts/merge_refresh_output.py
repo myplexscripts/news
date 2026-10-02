@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from article_retention import prune_payload
 from typing import Any
 
 
@@ -11,6 +12,8 @@ ARTICLE_KEYS = {
     "image",
     "image_alt",
     "image_caption",
+    "editorial_image", "editorial_image_source", "editorial_image_width", "editorial_image_height", "editorial_image_variants",
+    "card_image", "card_image_small", "card_image_source", "card_image_variants",
     "article_images",
     "content_status",
     "paragraphs",
@@ -160,13 +163,17 @@ def merge(fresh_path: Path, current_path: Path, output_path: Path) -> tuple[int,
         preserved += int(kept)
         stories.append(merged_story)
 
+    fresh_ids = {str(item.get("id")) for item in stories}
+    # A refresh started before another publication must not erase newer records.
+    stories.extend(dict(item) for key, item in current_by_id.items() if key not in fresh_ids)
     fresh_payload["stories"] = stories
     for key in TOP_LEVEL_ARTICLE_KEYS:
         if key in current_payload:
             fresh_payload[key] = current_payload[key]
     recompute_counts(fresh_payload)
+    prune_payload(fresh_payload, recluster=False)
     output_path.write_text(json.dumps(fresh_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return preserved, len(stories)
+    return preserved, len(fresh_payload["stories"])
 
 
 def main() -> int:

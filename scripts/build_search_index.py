@@ -4,6 +4,7 @@ import json
 import re
 from pathlib import Path
 from typing import Any
+from article_retention import retained_stories
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,7 +43,8 @@ def _body(story: dict[str, Any]) -> str:
 
 
 def main() -> int:
-    payload = json.loads(NEWS_FILE.read_text(encoding="utf-8"))
+    prepared = ROOT / "public/data/news.json"
+    payload = json.loads((prepared if prepared.exists() else NEWS_FILE).read_text(encoding="utf-8"))
     source_scopes = {
         _clean(item.get("source")): _clean(item.get("scope")).lower()
         for item in (payload.get("source_health") or [])
@@ -51,7 +53,7 @@ def main() -> int:
 
     documents = []
     cards = []
-    for story in payload.get("stories") or []:
+    for story in retained_stories(payload.get("stories") or []):
         if not isinstance(story, dict) or not story.get("id") or not story.get("title"):
             continue
         source = _clean(story.get("source"))

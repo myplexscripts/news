@@ -12,7 +12,7 @@ function fixture(version = 0) {
       source: 'CTV News London', scope: 'local', category: i % 2 ? 'Business' : 'Public Safety',
       published: new Date(Date.now() - i * 3600000).toISOString(),
       word_count: 650, url: 'https://example.com/report',
-      image: i === 1 ? `${base}/social.png` : '',
+      image: i === 1 ? `${base}/images/social.png` : '',
       _data_file: `story-${i}.json`, cluster_representative: true,
       content_status: 'full', quality: { score: 90 }
     }))
@@ -22,7 +22,33 @@ test.beforeEach(async ({ page }, testInfo) => {
   if (testInfo.project.name.includes('standalone')) await page.addInitScript(() => Object.defineProperty(navigator, 'standalone', { configurable: true, get: () => true }));
   if (testInfo.title.includes('font downloads')) await page.route(/\.(woff2?|ttf|otf)(\?|$)/, route => route.abort());
   if (testInfo.title.startsWith('background refresh')) await page.clock.install();
+  if (testInfo.title.startsWith('removed bookmarks')) await page.addInitScript(() => {
+    const request = indexedDB.open('london-news-user-state', 30);
+    request.onupgradeneeded = () => {
+      const db = request.result;
+      for (const [name, key, index] of [['preferences','key','updatedAt'],['readStories','id','readAt'],['savedStories','id','savedAt'],['hiddenSources','name','hiddenAt']]) {
+        const store = db.createObjectStore(name, { keyPath: key }); store.createIndex(index, index);
+      }
+    };
+    request.onsuccess = () => {
+      const db = request.result; const tx = db.transaction(['preferences','readStories','savedStories','hiddenSources'], 'readwrite');
+      tx.objectStore('preferences').put({key:'theme',value:'dark',updatedAt:1});
+      tx.objectStore('readStories').put({id:'story-10',readAt:1});
+      tx.objectStore('savedStories').put({id:'story-12',savedAt:1});
+      tx.objectStore('hiddenSources').put({name:'Other publisher',hiddenAt:1});
+      tx.oncomplete = () => db.close();
+    };
+  });
   const edition = fixture();
+  if (testInfo.title.startsWith('responsive images')) Object.assign(edition.stories[0], {
+    image: `${base}/images/social.png`,
+    editorial_image: `${base}/images/social.png?hero-1600`, editorial_image_source: `${base}/images/social.png`,
+    editorial_image_width: 1600, editorial_image_height: 900,
+    editorial_image_variants: [{url:`${base}/images/social.png?hero-640`,width:640,height:360},{url:`${base}/images/social.png?hero-1600`,width:1600,height:900}],
+    card_image_small: `${base}/images/social.png?card-320`, card_image: `${base}/images/social.png?card-1200`,
+    card_image_variants: [{url:`${base}/images/social.png?card-320`,width:320,height:180},{url:`${base}/images/social.png?card-640`,width:640,height:360},{url:`${base}/images/social.png?card-1200`,width:1200,height:675}]
+  });
+  if (testInfo.title.startsWith('related recommendations')) edition.stories.slice(-4).forEach(story => { story.scope = 'canada'; });
   if (testInfo.title.startsWith('aggregated coverage')) {
     const sources = ['Global News London', 'CBC News London', 'CTV News London', 'London Police Service'];
     edition.stories.slice(0, 4).forEach((story, i) => Object.assign(story, {
@@ -173,4 +199,47 @@ test('aggregated coverage occupies one top slot and alternate reports remain rea
   await expect(page.getByRole('heading', { name: 'London report 1', exact: true })).toBeVisible();
   await page.goBack();
   await expect(page.getByRole('heading', { name: 'London report 0', exact: true })).toBeVisible();
+});
+
+
+test('removed bookmarks migrate safely without losing preferences or read history', async ({ page }) => {
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(page.locator('.news-card-save')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Read Later', exact: true })).toHaveCount(0);
+  await expect.poll(() => page.evaluate(() => new Promise(resolve => {
+    const request = indexedDB.open('london-news-user-state');
+    request.onsuccess = () => {
+      const db = request.result;
+      const names = Array.from(db.objectStoreNames);
+      const tx = db.transaction(['readStories','hiddenSources']);
+      const reads = tx.objectStore('readStories').get('story-10');
+      const hidden = tx.objectStore('hiddenSources').get('Other publisher');
+      tx.oncomplete = () => { resolve({ removed: !names.includes('savedStories'), read: !!reads.result, hidden: !!hidden.result }); db.close(); };
+    };
+  }))).toEqual({removed:true,read:true,hidden:true});
+});
+
+test('related recommendations separate local reporting from Canada coverage', async ({ page }) => {
+  await page.locator('[data-story-id="story-0"] .news-card-link').click();
+  const london = page.getByRole('region', {name:'More from London',exact:true});
+  const canada = page.getByRole('region', {name:'More from Canada',exact:true});
+  await expect(london.locator('.news-card')).toHaveCount(4);
+  await expect(canada.locator('.news-card')).toHaveCount(4);
+  await expect(london.locator('[data-scope="canada"]')).toHaveCount(0);
+  await expect(canada.locator('[data-scope="local"]')).toHaveCount(0);
+  await expect(page.locator('.news-card-save')).toHaveCount(0);
+});
+
+
+test('responsive images use card derivatives and higher quality article assets', async ({ page }) => {
+  const card = page.locator('[data-story-id="story-0"] .news-card-photo');
+  await expect(card).toHaveAttribute('srcset', /card-320.*320w.*card-640.*640w.*card-1200.*1200w/);
+  await expect(card).not.toHaveAttribute('srcset', /hero/);
+  await page.locator('[data-story-id="story-0"] .news-card-link').click();
+  const hero = page.locator('.article-body-hero img');
+  await expect(hero).toHaveAttribute('srcset', /hero-640.*640w.*hero-1600.*1600w/);
+  await expect(hero).toHaveAttribute('width','1600');
+  await expect(hero).toHaveAttribute('height','900');
+  await expect(hero).not.toHaveAttribute('src', /card-/);
+  await noOverflow(page);
 });

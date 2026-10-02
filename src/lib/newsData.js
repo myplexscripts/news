@@ -44,8 +44,15 @@ function applyEditorialImages(story) {
   let changed = false;
   const next = { ...story };
 
+  if (!validHeroOptimized && story.editorial_image_variants?.length) {
+    next.editorial_image_variants = [];
+    changed = true;
+  }
   if (validHeroOptimized) {
+    next.original_image = originalHero;
     next.image = validHeroOptimized;
+    next.image_width = story.editorial_image_width;
+    next.image_height = story.editorial_image_height;
     changed = true;
   }
 
@@ -58,9 +65,13 @@ function applyEditorialImages(story) {
       const validBlockOptimized = blockOptimized && optimizedSource === source ? blockOptimized : '';
       const optimized = validBlockOptimized
         || (validHeroOptimized && source === heroSource ? validHeroOptimized : '');
-      if (!optimized || optimized === source) return block;
+      if (!optimized) {
+        if (block.image_variants?.length) { changed = true; return { ...block, image_variants: [] }; }
+        return block;
+      }
+      if (optimized === source) return block;
       changed = true;
-      return { ...block, url: optimized };
+      return { ...block, original_url: source, url: optimized, width: block.optimized_url_width || block.width, height: block.optimized_url_height || block.height };
     });
     if (changed) next.content_blocks = blocks;
   }

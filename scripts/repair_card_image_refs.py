@@ -281,6 +281,15 @@ def repair_story(story: dict[str, Any]) -> bool:
             story["card_image_contract_schema"] = SCHEMA
         return changed
 
+    variants = story.get('card_image_variants') or []
+    if story.get('card_image_source') == hero and variants and all(local_exists(item.get('url')) for item in variants):
+        story['card_image_small'] = variants[0]['url']
+        story['card_image'] = variants[-1]['url']
+        story['card_image_contract_schema'] = SCHEMA
+        return changed
+    story.pop('card_image_variants', None)
+    story.pop('card_image_source', None)
+
     if hero.startswith(("http://", "https://")):
         expected, expected_small = expected_remote_cards(hero)
 

@@ -1,7 +1,7 @@
 name: App browser checks
 on:
   push:
-    branches: [main, polish/app-health, polish/story-aggregation]
+    branches: [main, polish/app-health, polish/story-aggregation, polish/weekly-polish]
     paths:
       - 'src/**'
       - 'public/*.css'
@@ -48,6 +48,7 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements.txt
       - run: python scripts/test_editorial.py && python scripts/test_fast_scoop_budget.py && python scripts/test_scoop_runtime.py
+      - run: python scripts/test_article_retention.py && python scripts/test_image_assets.py
       - run: npm ci
       - run: npm run check
       - run: npm run test:app

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from article_retention import prune_payload
 from typing import Any
 
 
@@ -86,9 +87,10 @@ def merge(enriched_path: Path, latest_path: Path, output_path: Path) -> tuple[in
         if key in enriched_payload:
             latest_payload[key] = enriched_payload[key]
     recompute_counts(latest_payload)
+    prune_payload(latest_payload, recluster=False)
 
     output_path.write_text(json.dumps(latest_payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    return merged_count, len(stories)
+    return merged_count, len(latest_payload["stories"])
 
 
 def main() -> int:

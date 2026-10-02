@@ -5,7 +5,6 @@ export const DEFAULT_USER_STATE = {
   accent: 'green',
   hideRead: false,
   readIds: [],
-  savedIds: [],
   hiddenSources: []
 };
 
@@ -31,16 +30,6 @@ export async function initialiseAppState() {
   }
 }
 
-export async function saveStory(id, saved) {
-  const mod = await stateModule();
-  return mod.setStorySaved(id, saved);
-}
-
-export async function toggleSavedStory(id) {
-  const mod = await stateModule();
-  return mod.toggleStorySaved(id);
-}
-
 export async function markRead(id) {
   const mod = await stateModule();
   return mod.markStoryRead(id);
@@ -64,11 +53,6 @@ export async function revealAllSources() {
 export async function clearRead() {
   const mod = await stateModule();
   return mod.clearReadHistory();
-}
-
-export async function clearSaved() {
-  const mod = await stateModule();
-  return mod.clearSavedStories();
 }
 
 export async function clearEverything() {

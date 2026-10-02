@@ -1,9 +1,9 @@
-const SHELL_CACHE = 'forest-city-news-shell-v6';
-const ASSET_CACHE = 'forest-city-news-assets-v6';
-const IMAGE_CACHE = 'forest-city-news-images-v6';
+const SHELL_CACHE = 'forest-city-news-shell-v7';
+const ASSET_CACHE = 'forest-city-news-assets-v7';
+const IMAGE_CACHE = 'forest-city-news-images-v7';
 // Replaced with the generated application asset list during the build.
 const PRECACHE_ASSETS = [];
-const DATA_CACHE = 'forest-city-news-data-v6';
+const DATA_CACHE = 'forest-city-news-data-v7';
 const CACHE_PREFIXES = ['forest-city-news-', 'london-news-'];
 
 function scopePath(path = '') {
@@ -18,7 +18,6 @@ self.addEventListener('install', (event) => {
       scopePath(),
       scopePath('sections/'),
       scopePath('search/'),
-      scopePath('read-later/'),
       scopePath('settings/'),
       scopePath('data/app-feed.json'),
       scopePath('manifest.webmanifest')

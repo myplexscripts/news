@@ -127,7 +127,7 @@
           <div class="settings-row">
             <div class="settings-row-copy">
               <strong>Clear all data</strong>
-              <span>Reset preferences and remove read history, Read Later items and hidden sources from this device.</span>
+              <span>Reset preferences and remove read history and hidden sources from this device.</span>
             </div>
             <button class="settings-action-button" type="button" on:click={clearAll}>Clear all data</button>
           </div>

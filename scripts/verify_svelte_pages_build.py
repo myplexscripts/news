@@ -21,6 +21,9 @@ def main() -> int:
         require(DIST / "mobile-nav-stable.css", "mobile navigation stylesheet")
         require(DIST / "manifest.webmanifest", "web app manifest")
 
+        if (DIST / "read-later/index.html").exists():
+            raise RuntimeError("Removed Read Later route remains in build output")
+
         story_files = list((DIST / "data" / "stories").glob("*.json"))
         if not story_files:
             raise RuntimeError("No per-story JSON files were copied into dist/data/stories")

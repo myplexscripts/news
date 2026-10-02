@@ -6,8 +6,10 @@ import html
 import json
 import os
 import re
+import shutil
 from pathlib import Path
 from typing import Any
+from article_retention import retained_stories
 from urllib.parse import quote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -225,8 +227,14 @@ def main() -> int:
     if not FALLBACK_PATH.exists():
         raise SystemExit("dist/404.html is missing; run this after the Svelte build")
 
-    payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
-    stories = [story for story in payload.get("stories") or [] if isinstance(story, dict)]
+    prepared = ROOT / "public/data/news.json"
+    payload = json.loads((prepared if prepared.exists() else NEWS_PATH).read_text(encoding="utf-8"))
+    stories = retained_stories([story for story in payload.get("stories") or [] if isinstance(story, dict)])
+    # Incremental local builds must not retain HTML shells for expired stories.
+    active_ids = {str(story.get('id')) for story in stories}
+    for directory in (DIST_DIR / 'story').glob('*'):
+        if directory.is_dir() and directory.name not in active_ids:
+            shutil.rmtree(directory)
     fallback = FALLBACK_PATH.read_text(encoding="utf-8")
     origin, base = repository_context()
 
