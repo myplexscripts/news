@@ -86,6 +86,7 @@ def main() -> None:
     ui = UI_CSS.read_text(encoding="utf-8")
     feed = FEED_CSS.read_text(encoding="utf-8")
     app_html = APP_HTML.read_text(encoding="utf-8")
+    styles = (ROOT / "src/styles/app.css").read_text(encoding="utf-8")
     layout = LAYOUT.read_text(encoding="utf-8")
     home = HOME.read_text(encoding="utf-8")
     card = CARD.read_text(encoding="utf-8")
@@ -112,14 +113,13 @@ def main() -> None:
     require("border: 1px solid var(--ui-border)" not in ui, "persistent control outlines returned")
     require("border: 1px solid var(--ui-selected-border)" not in ui, "selected segment outline returned")
 
-    require_tokens(app_html, (
-        "smart-features.css",
-        "family=Inter:wght@400;500;600;700;800",
-        "@phosphor-icons/web@2.1.1/src/regular/style.css",
-        "@phosphor-icons/web@2.1.1/src/fill/style.css",
-        "@phosphor-icons/web@2.1.1/src/duotone/style.css",
+    require_tokens(styles, (
+        "@phosphor-icons/web/src/regular/style.css",
+        "@phosphor-icons/web/src/fill/style.css",
+        "@phosphor-icons/web/src/duotone/style.css",
     ), "app head")
 
+    require_tokens(styles, ("smart-features.css", "ui-guidelines.css", "mobile-nav-stable.css", "app-polish.css"), "shared stylesheet entry")
     require_tokens(layout, (
         'class="site-header"',
         "site-header-home",

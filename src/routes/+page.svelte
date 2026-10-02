@@ -1,8 +1,9 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
+  import { readScreen, rememberScreen } from '$lib/screenState';
   import { page } from '$app/stores';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { getCachedFeed, loadFeed, scopeForStory, sortNewest } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, feedUpdates, homeEdition, scopeForStory, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
   const preferredCategories = [
@@ -25,11 +26,16 @@
 
   const CAROUSEL_DELAY_MS = 7000;
 
-  let feed = getCachedFeed();
+  const previous = readScreen('home');
+  let feed = previous?.feed || getCachedFeed();
+  $: if (feed) homeEdition.set(feed);
+  let pendingFeed;
+  let restoring = false;
   let error = '';
-  let activeScope = 'local';
-  let activeCategory = 'All';
-  let activeSlide = 0;
+  let activeScope = previous?.activeScope || 'local';
+  let activeCategory = previous?.activeCategory || 'All';
+  let activeSlide = previous?.activeSlide || 0;
+  onDestroy(() => rememberScreen('home', { feed, activeScope, activeCategory, activeSlide }));
   let dragStartX = null;
   let dragDelta = 0;
   let carouselPaused = false;
@@ -63,11 +69,11 @@
 
     try {
       const storedScope = localStorage.getItem('london-news-home-feed');
-      if (['local', 'canada', 'all'].includes(storedScope || '')) activeScope = storedScope;
+      if (!previous && !restoring && ['local', 'canada', 'all'].includes(storedScope || '')) activeScope = storedScope;
     } catch {}
 
     loadFeed().then((nextFeed) => {
-      if (!cancelled) feed = nextFeed;
+      if (!cancelled) { if (!feed) feed = nextFeed; else if (feed.generated_at !== nextFeed.generated_at) pendingFeed = nextFeed; }
     }).catch((reason) => {
       if (!cancelled) error = reason instanceof Error ? reason.message : 'Unable to load the latest news.';
     });
@@ -77,15 +83,30 @@
       else scheduleCarouselAdvance();
     };
 
+    const unsubscribeFeed = feedUpdates.subscribe((next) => {
+      if (!next || cancelled) return;
+      error = '';
+      if (!feed) feed = next;
+      else if (next.generated_at !== feed.generated_at) pendingFeed = next;
+    });
     document.addEventListener('visibilitychange', handleVisibilityChange);
     scheduleCarouselAdvance();
 
     return () => {
       cancelled = true;
+      unsubscribeFeed();
       clearCarouselTimer();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   });
+
+  function showNewStories() {
+    if (!pendingFeed) return;
+    feed = pendingFeed;
+    pendingFeed = undefined;
+    activeSlide = 0;
+    resetCarouselTimer();
+  }
 
   function setScope(scope) {
     activeScope = scope;
@@ -127,6 +148,7 @@
   }
 
   function setCategory(category) {
+    document.querySelector('.section-more')?.removeAttribute('open');
     activeCategory = category;
     activeSlide = 0;
     resetCarouselTimer();
@@ -152,12 +174,13 @@
     dragDelta = 0;
     carouselPaused = true;
     clearCarouselTimer();
-    event.currentTarget?.setPointerCapture?.(event.pointerId);
+
   }
 
   function carouselPointerMove(event) {
     if (dragStartX === null) return;
     dragDelta = event.clientX - dragStartX;
+    if (Math.abs(dragDelta) > 8) event.currentTarget?.setPointerCapture?.(event.pointerId);
   }
 
   function carouselPointerUp() {
@@ -183,11 +206,15 @@
     resetCarouselTimer();
   }
 
-  $: requestedSection = $page.url.searchParams.get('section');
-  $: if (requestedSection && requestedSection !== activeCategory) {
-    activeCategory = requestedSection;
-    activeSlide = 0;
+  let appliedSearch = null;
+  $: if ($page.url.search !== appliedSearch) {
+    appliedSearch = $page.url.search;
+    const requestedScope = $page.url.searchParams.get('feed');
+    const requestedSection = $page.url.searchParams.get('section');
+    if (['local', 'canada', 'all'].includes(requestedScope)) activeScope = requestedScope;
+    if (requestedSection) { activeCategory = requestedSection; activeSlide = 0; }
   }
+
 
   $: sourceHealth = feed?.source_health || {};
   $: hiddenSources = new Set(($userState.hiddenSources || []).map((value) => String(value).toLowerCase()));
@@ -235,7 +262,7 @@
     .filter((group) => group.stories.length > 0);
   export const snapshot = {
     capture: () => ({ activeScope, activeCategory, activeSlide }),
-    restore: (value) => ({ activeScope, activeCategory, activeSlide } = value)
+    restore: (value) => { restoring = true; ({ activeScope, activeCategory, activeSlide } = value); }
   };
 </script>
 
@@ -245,6 +272,7 @@
 </svelte:head>
 
 <main class="home-page card-home editorial-home" id="main-content">
+  <h1 class="visually-hidden">Forest City News</h1>
   <section class="section-nav-wrap card-filter-wrap" aria-label="News filters">
     <div class="shell section-nav-inner card-filter-inner">
       <div class="feed-scope-row">
@@ -292,6 +320,10 @@
     </div>
   </section>
 
+  {#if pendingFeed}
+    <div class="shell feed-update-wrap"><button class="feed-update-button" type="button" on:click={showNewStories}>New updates available <i class="ph ph-arrow-clockwise" aria-hidden="true"></i></button></div>
+  {/if}
+
   {#if error}
     <div class="shell home-state-wrap"><div class="app-error">{error}</div></div>
   {:else if !feed}
@@ -305,7 +337,7 @@
   {:else}
     <section class="editorial-front shell" aria-labelledby="today-heading">
       <div class="editorial-home-heading">
-        <div><h2 id="today-heading">Today</h2></div>
+        <div><h2 id="today-heading">Top stories</h2></div>
       </div>
 
       <div class="editorial-front-grid editorial-carousel-ready">
@@ -314,6 +346,8 @@
           role="region"
           aria-roledescription="carousel"
           aria-label="Top stories"
+          on:focusin={carouselPointerEnter}
+          on:focusout={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) carouselPointerLeave(); }}
           on:pointerdown={carouselPointerDown}
           on:pointermove={carouselPointerMove}
           on:pointerup={carouselPointerUp}
@@ -323,7 +357,7 @@
         >
           <div class:dragging={dragStartX !== null} class="editorial-carousel-track" style={`transform:translate3d(-${activeSlide * 100}%,0,0);`}>
             {#each topStories as story, index (story.id)}
-              <div class="editorial-carousel-slide" aria-hidden={index !== activeSlide}>
+              <div class="editorial-carousel-slide" aria-hidden={index !== activeSlide} inert={index !== activeSlide}>
                 <NewsCard
                   {story}
                   {index}

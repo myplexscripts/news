@@ -5,7 +5,7 @@
   import { base } from '$app/paths';
   import NewsCard from '$lib/components/NewsCard.svelte';
   import TweetCard from '$lib/components/TweetCard.svelte';
-  import { formatPublished, getCachedFeed, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
+  import { formatPublished, getCachedFeed, getCachedStory, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
   import { markRead } from '$lib/appState';
 
   let feed = getCachedFeed();
@@ -23,15 +23,14 @@
 
   async function openStory(id) {
     currentId = id;
-    loading = true;
+    story = getCachedStory(id);
+    loading = !story;
     error = '';
-    story = undefined;
     clearTimeout(readTimer);
 
     try {
       feed ||= await loadFeed();
       const metadata = (feed.stories || []).find((item) => String(item.id) === id);
-      if (!metadata) throw new Error('This story is no longer available.');
       const loaded = await loadStory(id, metadata);
       if (currentId !== id) return;
       story = loaded;
@@ -186,7 +185,7 @@
     </div>
   {:else if error}
     <div class="article-shell shell">
-      <div class="app-error">{error}</div>
+      <div class="app-error" role="alert"><p>{error}</p><button class="bordered-button" type="button" on:click={() => openStory(requestedId)}>Try again</button></div>
     </div>
   {:else if story}
     <article class="editorial-story">
@@ -573,7 +572,7 @@
       visibility 0s linear 320ms;
   }
 
-  .article-reveal.article-reveal-visible {
+  .article-reveal:global(.article-reveal-visible) {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
