@@ -21,6 +21,16 @@
   let shellFeed;
   let online = true;
   let navigationVersion = 0;
+
+  function placeViewport(position) {
+    window.scrollTo({
+      left: Math.max(0, Number(position?.x) || 0),
+      top: Math.max(0, Number(position?.y) || 0),
+      behavior: 'auto'
+    });
+    syncScrollChrome();
+  }
+
   beforeNavigate(({ from }) => {
     navigationVersion += 1;
     if (!from || !browser) return;
@@ -28,20 +38,26 @@
     rememberPosition(from.url.href, position);
     rememberPosition(from.url.pathname, position);
   });
+
   afterNavigate((navigation) => {
-    // Restore after the destination renders, including rapid cached-article Back.
-    // SvelteKit remains the fallback for history entries no longer in memory.
     if (!browser || !navigation.from || navigation.to?.url.hash) return;
     const url = navigation.to?.url;
     if (!url) return;
-    const saved = navigation.type === 'popstate'
-      ? readPosition(url.href) || readPosition(url.pathname)
-      : url.search ? readPosition(url.href) : readPosition(url.pathname);
-    if (!saved) return;
+
+    // Every deliberate forward navigation opens at the top. Only browser
+    // Back/Forward restores the exact viewport the reader previously left.
     disableScrollHandling();
     const version = navigationVersion;
+    const target = navigation.type === 'popstate'
+      ? readPosition(url.href) || readPosition(url.pathname) || { x: 0, y: 0 }
+      : { x: 0, y: 0 };
+
+    // Apply before the next paint so the new screen never visibly glides from
+    // the old screen's scroll position. Repeat after Svelte has settled in case
+    // the destination's cached content changes the document height.
+    placeViewport(target);
     tick().then(() => {
-      if (version === navigationVersion) window.scrollTo({ left: saved.x, top: saved.y, behavior: 'instant' });
+      if (version === navigationVersion) placeViewport(target);
     });
   });
 
@@ -164,6 +180,8 @@
 
   onMount(() => {
     initialiseAppState().catch(() => {});
+    const previousScrollRestoration = history.scrollRestoration;
+    history.scrollRestoration = 'manual';
 
     const unsubscribeFeed = feedUpdates.subscribe((feed) => {
       if (!feed?.generated_at) return;
@@ -208,6 +226,7 @@
       document.body.classList.remove('story-meta-visible');
       window.removeEventListener('scroll', syncScrollChrome);
       window.removeEventListener('resize', syncScrollChrome);
+      history.scrollRestoration = previousScrollRestoration;
     };
   });
 </script>
