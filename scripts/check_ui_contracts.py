@@ -135,6 +135,8 @@ def main() -> None:
         "card-filter-wrap",
         "feed-scope-switch",
         "section-tabs",
+        "category-pill-strip",
+        "categoryIcon",
         "editorial-front",
         "editorial-front-grid",
         "news-card-grid",
@@ -148,8 +150,10 @@ def main() -> None:
         'class="news-card-photo"',
         'class="news-card-body"',
         'class="news-card-footer"',
-        "card-source-mark",
+        "card-source-name",
     ), "story card")
+    require("card-source-mark" not in card, "publisher logo returned to story cards")
+    require("sourceLogoPath" not in card, "story cards still load publisher logos")
     require("svelte-news-card" not in card, "temporary generic Svelte story card returned")
 
     require_tokens(sections, (
