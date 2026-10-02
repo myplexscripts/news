@@ -94,7 +94,7 @@ test('all screens fit the viewport in both themes', async ({ page }) => {
   await openNav(page, 'Home');
   await noOverflow(page);
 });
-test('article Back and tab return preserve position and search filters', async ({ page }) => {
+test('forward navigation starts at the top while Back restores the previous position', async ({ page }) => {
   const cardContainer = page.locator('[data-story-id="story-20"]');
   const card = cardContainer.locator('.news-card-link');
   await cardContainer.scrollIntoViewIfNeeded();
@@ -103,30 +103,65 @@ test('article Back and tab return preserve position and search filters', async (
     return page.evaluate(() => scrollY);
   }).toBeGreaterThan(500);
   const original = await page.evaluate(() => scrollY);
+
+  // A newly opened story must render at the top immediately, regardless of the
+  // scroll position of the feed it came from.
   await card.click();
   await expect(page.getByRole('heading', { name: 'London report 20', exact: true })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
+
+  // Browser Back returns to the exact point in the feed.
   await page.goBack();
   await expect(page.locator('main.home-page')).toBeVisible();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(original - 4);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(original + 4);
-  // A warmed article renders immediately. Returning quickly must still restore.
+
+  // A warmed/cached article follows the same rule.
   await card.click();
   await expect(page.getByRole('heading', { name: 'London report 20', exact: true })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
   await page.goBack();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(original - 4);
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(original + 4);
+
+  // Moving to another screen is also a fresh navigation, so it begins at the
+  // top. Returning with Back restores the previous screen position and state.
   await openNav(page, 'Search');
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
   await page.getByRole('searchbox').fill('London');
   await page.getByRole('combobox', { name: 'Section', exact: true }).selectOption('Business');
   await expect(page.getByText('18 results', { exact: true })).toBeVisible();
   await page.locator('.archive-search-hit').last().scrollIntoViewIfNeeded();
   const searchY = await page.evaluate(() => scrollY);
+
   await openNav(page, 'Settings');
-  await openNav(page, 'Search');
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThanOrEqual(1);
+  await page.goBack();
   await expect(page.getByRole('searchbox')).toHaveValue('London');
   await expect(page.getByRole('combobox', { name: 'Section', exact: true })).toHaveValue('Business');
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(searchY - 4);
 });
+test('missing-art cards keep artwork and copy in separate columns', async ({ page }) => {
+  const card = page.locator('[data-story-id="story-10"]');
+  await card.scrollIntoViewIfNeeded();
+
+  const media = card.locator('.news-card-media');
+  const body = card.locator('.news-card-body');
+  await expect(media).toBeVisible();
+  await expect(body).toBeVisible();
+
+  const boxes = await Promise.all([media.boundingBox(), body.boundingBox()]);
+  const [mediaBox, bodyBox] = boxes;
+  expect(mediaBox).not.toBeNull();
+  expect(bodyBox).not.toBeNull();
+
+  // The placeholder must occupy its own image column instead of painting under
+  // the publisher/headline, which caused the green overlap shown in the app.
+  expect(bodyBox.x + bodyBox.width).toBeLessThanOrEqual(mediaBox.x + 1);
+  const pseudo = await card.evaluate((node) => getComputedStyle(node, '::before').display);
+  expect(pseudo).toBe('none');
+});
+
 test('restored feature cards, publisher text and category pills remain functional', async ({ page }) => {
   const first = page.locator('[data-story-id="story-0"]');
   await expect(first.getByRole('heading')).toHaveText('London report 0');
