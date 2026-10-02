@@ -167,7 +167,7 @@ def main() -> None:
         "archive-search-results",
     ), "search page")
     require('news-card-save' not in card, "removed bookmark control returned")
-    require(not (ROOT / "src/routes/read-later/+page.svelte").exists(), "removed bookmark page returned")
+    require(not any((ROOT / "src/routes/read-later").glob("+page.*")), "removed bookmark page returned")
     require_tokens(settings, (
         "settings-page",
         "settings-shell",

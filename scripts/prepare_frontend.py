@@ -70,6 +70,9 @@ def main() -> None:
     with DATA_FILE.open("r", encoding="utf-8") as handle:
         news = json.load(handle)
 
+    retired_page = ROOT / 'dist/read-later'
+    if retired_page.exists():
+        shutil.rmtree(retired_page)
     PUBLIC_DATA.mkdir(parents=True, exist_ok=True)
     if STORY_DATA.exists():
         shutil.rmtree(STORY_DATA)
