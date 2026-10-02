@@ -120,6 +120,20 @@
     return `category-${String(category).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   }
 
+  function categoryIcon(category = '') {
+    const icons = {
+      'Public Safety': 'ph-shield-check',
+      'City Hall': 'ph-buildings',
+      Business: 'ph-briefcase',
+      Traffic: 'ph-car',
+      Education: 'ph-graduation-cap',
+      Health: 'ph-heartbeat',
+      Community: 'ph-users-three',
+      Sports: 'ph-trophy'
+    };
+    return icons[category] || 'ph-newspaper-clipping';
+  }
+
   function localDateKey(value) {
     try {
       const parts = new Intl.DateTimeFormat('en-CA', {
@@ -149,7 +163,6 @@
   }
 
   function setCategory(category) {
-    document.querySelector('.section-more')?.removeAttribute('open');
     activeCategory = category;
     activeSlide = 0;
     resetCarouselTimer();
@@ -235,9 +248,6 @@
     ...discoveredCategories.filter((category) => !preferredCategories.includes(category)).sort()
   ];
 
-  $: primaryCategories = orderedCategories.slice(0, 4);
-  $: moreCategories = orderedCategories.slice(4);
-
   $: filteredStories = allStories.filter((story) => {
     const sources = Array.isArray(story.cluster_sources) && story.cluster_sources.length
       ? story.cluster_sources
@@ -284,39 +294,29 @@
         </div>
       </div>
 
-      <div class="section-tabs" role="group" aria-label="Filter by section">
-        <button class:active={activeCategory === 'All'} class="section-tab" type="button" aria-pressed={activeCategory === 'All'} on:click={() => setCategory('All')}>Latest</button>
-        {#each primaryCategories as category}
+      <div class="section-tabs category-pill-strip" role="group" aria-label="Filter by section">
+        <button
+          class:active={activeCategory === 'All'}
+          class="section-tab category-pill"
+          type="button"
+          aria-pressed={activeCategory === 'All'}
+          on:click={() => setCategory('All')}
+        >
+          <AppIcon iconClass="ph-fill ph-newspaper-clipping" />
+          <span>Latest</span>
+        </button>
+        {#each orderedCategories as category}
           <button
             class:active={activeCategory === category}
-            class={`section-tab ${categoryClass(category)}`}
+            class={`section-tab category-pill ${categoryClass(category)}`}
             type="button"
             aria-pressed={activeCategory === category}
             on:click={() => setCategory(category)}
-          >{category}</button>
+          >
+            <AppIcon iconClass={`ph-fill ${categoryIcon(category)}`} />
+            <span>{category}</span>
+          </button>
         {/each}
-
-        {#if moreCategories.length}
-          <details class="control-menu section-more">
-            <summary>
-              <span>{moreCategories.includes(activeCategory) ? activeCategory : 'More'}</span>
-              <AppIcon iconClass="ph ph-caret-down" />
-            </summary>
-            <div class="control-popover section-popover">
-              {#each moreCategories as category}
-                <button
-                  class:active-filter={activeCategory === category}
-                  class={`control-menu-item ${categoryClass(category)}`}
-                  type="button"
-                  on:click={() => setCategory(category)}
-                >
-                  <span class="section-color" aria-hidden="true"></span>
-                  <span>{category}</span>
-                </button>
-              {/each}
-            </div>
-          </details>
-        {/if}
       </div>
     </div>
   </section>
