@@ -53,6 +53,7 @@ test('all screens fit the viewport in both themes', async ({ page }) => {
 test('article Back and tab return preserve position and search filters', async ({ page }) => {
   const card = page.locator('[data-story-id="story-20"] .news-card-link');
   await card.scrollIntoViewIfNeeded();
+  console.log('scroll surface', await page.evaluate(() => ({ y: scrollY, body: document.body.scrollTop, root: document.documentElement.scrollTop, height: document.documentElement.scrollHeight, rootOverflow: getComputedStyle(document.documentElement).overflow, bodyOverflow: getComputedStyle(document.body).overflow, target: document.querySelector('[data-story-id="story-20"]').getBoundingClientRect().top })));
   await expect.poll(async () => {
     await card.scrollIntoViewIfNeeded();
     return page.evaluate(() => scrollY);
