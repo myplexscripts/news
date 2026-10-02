@@ -1,7 +1,8 @@
 <script>
   import AppIcon from '$lib/components/AppIcon.svelte';
-  import { userState, toggleSavedStory } from '$lib/appState';
+  import { userState } from '$lib/appState';
   import { prefetchStory, resolveAsset, storyHref } from '$lib/newsData';
+  import { imageSrcset as responsiveSrcset } from '$lib/imageSources';
   import { sourceLogoPath } from '$lib/sourceLogos';
   import { base } from '$app/paths';
 
@@ -26,7 +27,6 @@
     homeImageActive = !homeLazy || variant === 'featured' || (index >= 3 && index < 6);
   }
   $: if (!homeLazy || variant === 'featured' || (index >= 3 && index < 6)) homeImageActive = true;
-  $: isSaved = $userState.savedIds.includes(id);
   $: isRead = $userState.readIds.includes(id);
   $: smallImage = resolveAsset(story?.card_image_small || '');
   $: largeImage = resolveAsset(story?.card_image || '');
@@ -38,10 +38,10 @@
   $: cachedSrcset = smallImage && largeImage && smallImage !== largeImage
     ? `${smallImage} 420w, ${largeImage} 720w`
     : '';
-  $: imageSrcset = fallbackIndex === 0 && cachedSrcset ? cachedSrcset : '';
+  $: imageSrcset = fallbackIndex === 0 ? (responsiveSrcset(story?.card_image_variants) || cachedSrcset) : '';
   $: imageSizes = variant === 'featured'
     ? '(max-width: 720px) calc(100vw - 24px), (max-width: 1280px) 44vw, 560px'
-    : '(max-width: 720px) calc(100vw - 24px), (max-width: 1100px) 50vw, 360px';
+    : '(max-width: 760px) 34vw, 230px';
   $: backdropImage = smallImage || image;
   $: shouldRequestImage = !homeLazy || variant === 'featured' || homeImageActive;
   $: logo = sourceLogoPath(story?.source || '', `${base}/`);
@@ -138,12 +138,6 @@
     };
   }
 
-  async function toggle(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!id) return;
-    await toggleSavedStory(id).catch(() => {});
-  }
 </script>
 
 <article
@@ -237,17 +231,6 @@
       <p class="news-card-summary">{story.summary}</p>
     {/if}
 
-    <button
-      class:is-saved={isSaved}
-      class="news-card-save"
-      type="button"
-      aria-label={isSaved ? 'Remove from Read Later' : 'Save to Read Later'}
-      aria-pressed={isSaved}
-      title={isSaved ? 'Remove from Read Later' : 'Save to Read Later'}
-      on:click={toggle}
-    >
-      <AppIcon iconClass={isSaved ? 'ph-fill ph-bookmark-simple' : 'ph ph-bookmark-simple'} />
-    </button>
   </div>
 </article>
 
@@ -363,35 +346,4 @@
     font-size: 16px;
   }
 
-  .news-card-save {
-    position: absolute;
-    z-index: 4;
-    right: 10px;
-    bottom: 8px;
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-  }
-
-  .news-card-save :global(i) {
-    font-size: 22px;
-  }
-
-  .news-card-save:hover,
-  .news-card-save:focus-visible,
-  .news-card-save.is-saved {
-    color: var(--accent);
-  }
-
-  .news-card-save:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
 </style>

@@ -1,4 +1,5 @@
 <script>
+  import { imageSrcset, originalImageFallback } from '$lib/imageSources';
   import AppIcon from '$lib/components/AppIcon.svelte';
   import { onDestroy } from 'svelte';
   import { browser } from '$app/environment';
@@ -6,7 +7,7 @@
   import { base } from '$app/paths';
   import NewsCard from '$lib/components/NewsCard.svelte';
   import TweetCard from '$lib/components/TweetCard.svelte';
-  import { formatPublished, getCachedFeed, getCachedStory, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
+  import { formatPublished, getCachedFeed, getCachedStory, loadFeed, loadStory, resolveAsset, scopeForStory, sortNewest } from '$lib/newsData';
   import { markRead } from '$lib/appState';
 
   let feed = getCachedFeed();
@@ -161,16 +162,18 @@
   $: coverage = story?.cluster_id && feed
     ? (feed.stories || []).filter((item) => item.cluster_id === story.cluster_id && String(item.id) !== String(story.id))
     : [];
-  $: related = story && feed
-    ? (feed.stories || [])
-        .filter((item) =>
-          String(item.id) !== String(story.id)
-          && item.cluster_representative !== false
-          && item.cluster_id !== story.cluster_id
-          && (item.category === story.category || item.source === story.source)
-        )
-        .slice(0, 4)
+  $: relatedPool = story && feed
+    ? sortNewest((feed.stories || []).filter((item) =>
+        String(item.id) !== String(story.id)
+        && item.cluster_representative !== false
+        && (!story.cluster_id || item.cluster_id !== story.cluster_id)
+      ).map((item) => ({ ...item, scope: scopeForStory(item, feed.source_health) })))
     : [];
+  $: relatedGroups = [
+    { scope: 'local', title: 'More from London', stories: relatedPool.filter((item) => item.scope === 'local').slice(0, 4) },
+    { scope: 'canada', title: 'More from Canada', stories: relatedPool.filter((item) => item.scope === 'canada').slice(0, 4) }
+  ].filter((group) => group.stories.length);
+  $: heroSrcset = imageSrcset(story?.editorial_image_variants);
 </script>
 
 <svelte:head>
@@ -196,7 +199,7 @@
       <header class:cover-no-image={!heroImage} class="article-cover">
         {#if heroImage}
           <div class="article-cover-media" aria-hidden="true">
-            <img src={heroImage} alt="" referrerpolicy="no-referrer" />
+            <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={story.original_image} on:error={originalImageFallback} alt="" referrerpolicy="no-referrer" />
           </div>
         {/if}
         <div class="article-cover-fade article-cover-fade-top" aria-hidden="true"></div>
@@ -231,6 +234,12 @@
               <figure class="article-body-hero inline-article-image">
                 <img
                   src={heroImage}
+                  srcset={heroSrcset || undefined}
+                  sizes="(max-width: 800px) calc(100vw - 40px), 760px"
+                  width={story.image_width || undefined}
+                  height={story.image_height || undefined}
+                  data-original-src={story.original_image}
+                  on:error={originalImageFallback}
                   alt={story.image_alt || ''}
                   loading="eager"
                   decoding="async"
@@ -276,6 +285,10 @@
                   <figure class="inline-article-image">
                     <img
                       src={resolveAsset(block.url)}
+                      srcset={imageSrcset(block.image_variants) || undefined}
+                      sizes="(max-width: 800px) calc(100vw - 40px), 760px"
+                      data-original-src={block.original_url}
+                      on:error={originalImageFallback}
                       alt={block.alt || ''}
                       width={block.width || undefined}
                       height={block.height || undefined}
@@ -344,21 +357,21 @@
       </section>
     {/if}
 
-    {#if related.length}
-      <section class="related-section related-section-refined shell">
+    {#each relatedGroups as group (group.scope)}
+      <section class="related-section related-section-refined shell" aria-label={group.title}>
         <div class="app-section-heading">
           <div>
             <p class="eyebrow">Keep reading</p>
-            <h2>More from London</h2>
+            <h2>{group.title}</h2>
           </div>
         </div>
         <div class="app-story-grid two">
-          {#each related as item (item.id)}
+          {#each group.stories as item (item.id)}
             <NewsCard story={item} />
           {/each}
         </div>
       </section>
-    {/if}
+    {/each}
   {/if}
 </main>
 

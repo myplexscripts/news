@@ -1,0 +1,73 @@
+name: Maintain weekly articles and images
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/article_retention.py'
+      - 'scripts/image_assets.py'
+      - 'scripts/optimize_editorial_images.py'
+      - '.github/workflows/retention.yml'
+  schedule:
+    - cron: '23 * * * *'
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: weekly-news-maintenance
+  cancel-in-progress: false
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python scripts/test_article_retention.py && python scripts/test_image_assets.py
+      - name: Remove expired articles and recover valid cached media
+        run: python scripts/article_retention.py
+      - name: Optimize outstanding article and card images
+        env:
+          EDITORIAL_IMAGE_STORIES: '1000'
+          EDITORIAL_IMAGE_LIMIT: '2000'
+          EDITORIAL_IMAGE_TIME_BUDGET: '240'
+        run: python scripts/optimize_editorial_images.py
+      - name: Publish maintenance on the latest feed
+        id: commit
+        shell: bash
+        run: |
+          mkdir -p /tmp/weekly-output/cache
+          cp data/news.json /tmp/weekly-output/news.json
+          rsync -a public/cache/ /tmp/weekly-output/cache/
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/merge_enriched_output.py /tmp/weekly-output/news.json data/news.json /tmp/weekly-merged.json
+            mv /tmp/weekly-merged.json data/news.json
+            rsync -a /tmp/weekly-output/cache/ public/cache/
+            python scripts/article_retention.py
+            python scripts/run_audit.py
+            git add data/news.json data/audit.json public/cache/
+            if git diff --cached --quiet; then
+              echo 'changed=false' >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git commit -m 'Enforce seven-day article retention and optimize responsive media'
+            if git push origin HEAD:main; then
+              echo 'changed=true' >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          exit 1
+      - name: Deploy maintained feed
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run site.yml --repo "$GITHUB_REPOSITORY" --ref main

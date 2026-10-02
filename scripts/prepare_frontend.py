@@ -6,7 +6,8 @@ import re
 import shutil
 from pathlib import Path
 
-from ranking import apply_recent_editorial_intelligence
+from article_retention import prune_payload
+from image_assets import attach_cached_images
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "news.json"
@@ -24,6 +25,7 @@ FEED_FIELDS = {
     "category",
     "published",
     "cluster_latest_published",
+    "card_image_variants",
     "card_image_small",
     "card_image",
     "image",
@@ -72,11 +74,9 @@ def main() -> None:
         shutil.rmtree(STORY_DATA)
     STORY_DATA.mkdir(parents=True, exist_ok=True)
 
-    stories, editorial = apply_recent_editorial_intelligence(news.get("stories") or [])
-    news["stories"] = stories
-    news["editorial_clusters"] = editorial["clusters"]
-    for key in ("cluster_count", "multi_source_cluster_count", "top_story_ids"):
-        news[key] = editorial[key]
+    prune_payload(news)
+    stories = news['stories']
+    attach_cached_images(stories)
     feed_stories = []
 
     for story in stories:

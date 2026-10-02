@@ -45,7 +45,10 @@ function applyEditorialImages(story) {
   const next = { ...story };
 
   if (validHeroOptimized) {
+    next.original_image = originalHero;
     next.image = validHeroOptimized;
+    next.image_width = story.editorial_image_width;
+    next.image_height = story.editorial_image_height;
     changed = true;
   }
 
@@ -60,7 +63,7 @@ function applyEditorialImages(story) {
         || (validHeroOptimized && source === heroSource ? validHeroOptimized : '');
       if (!optimized || optimized === source) return block;
       changed = true;
-      return { ...block, url: optimized };
+      return { ...block, original_url: source, url: optimized, width: block.optimized_url_width || block.width, height: block.optimized_url_height || block.height };
     });
     if (changed) next.content_blocks = blocks;
   }

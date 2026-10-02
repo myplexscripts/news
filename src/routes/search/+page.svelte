@@ -1,4 +1,5 @@
 <script>
+  import { imageSrcset, originalImageFallback } from '$lib/imageSources';
   import AppIcon from '$lib/components/AppIcon.svelte';
   import { onMount, onDestroy } from 'svelte';
   import { readScreen, rememberScreen } from '$lib/screenState';
@@ -176,7 +177,7 @@
             <article class="archive-search-hit" class:no-image={!(story.card_image_small || story.card_image || story.image)}>
               {#if story.card_image_small || story.card_image || story.image}
                 <a class="archive-search-hit-image" href={storyHref(story.id)} data-sveltekit-preload-data="tap" tabindex="-1">
-                  <img src={resolveAsset(story.card_image_small || story.card_image || story.image)} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+                  <img src={resolveAsset(story.card_image_small || story.card_image || story.image)} srcset={imageSrcset(story.card_image_variants) || undefined} sizes="(max-width: 760px) 88px, 128px" data-original-src={story.image} on:error={originalImageFallback} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
                 </a>
               {/if}
 

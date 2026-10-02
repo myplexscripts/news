@@ -467,7 +467,7 @@ def refresh_editorial_metadata(payload: dict[str, Any]) -> None:
     if not isinstance(stories, list):
         return
     stories.sort(key=lambda item: ranking._dt(item.get("published")), reverse=True)
-    stories[:] = stories[: fetch_news.HISTORY_LIMIT]
+    stories[:] = fetch_news.retained_stories(stories)
     stories, editorial = ranking.apply_editorial_intelligence(stories)
     payload["stories"] = stories
     payload["story_count"] = len(stories)

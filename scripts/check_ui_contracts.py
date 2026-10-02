@@ -19,7 +19,6 @@ HOME = ROOT / "src" / "routes" / "+page.svelte"
 CARD = ROOT / "src" / "lib" / "components" / "NewsCard.svelte"
 SECTIONS = ROOT / "src" / "routes" / "sections" / "+page.svelte"
 SEARCH = ROOT / "src" / "routes" / "search" / "+page.svelte"
-READ_LATER = ROOT / "src" / "routes" / "read-later" / "+page.svelte"
 SETTINGS = ROOT / "src" / "routes" / "settings" / "+page.svelte"
 
 LIGHT_ACCENTS = {
@@ -92,7 +91,6 @@ def main() -> None:
     card = CARD.read_text(encoding="utf-8")
     sections = SECTIONS.read_text(encoding="utf-8")
     search = SEARCH.read_text(encoding="utf-8")
-    read_later = READ_LATER.read_text(encoding="utf-8")
     settings = SETTINGS.read_text(encoding="utf-8")
 
     required_css = (
@@ -150,7 +148,6 @@ def main() -> None:
         'class="news-card-photo"',
         'class="news-card-body"',
         'class="news-card-footer"',
-        'class="news-card-save"',
         "card-source-mark",
     ), "story card")
     require("svelte-news-card" not in card, "temporary generic Svelte story card returned")
@@ -169,12 +166,8 @@ def main() -> None:
         "archive-scope-switch",
         "archive-search-results",
     ), "search page")
-    require_tokens(read_later, (
-        "read-later-page",
-        "read-later-shell",
-        "read-later-grid",
-        "read-later-empty",
-    ), "Read Later page")
+    require('news-card-save' not in card, "removed bookmark control returned")
+    require(not (ROOT / "src/routes/read-later/+page.svelte").exists(), "removed bookmark page returned")
     require_tokens(settings, (
         "settings-page",
         "settings-shell",

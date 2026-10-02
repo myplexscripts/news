@@ -10,6 +10,7 @@ import hashlib
 import io
 import json
 import os
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
@@ -18,6 +19,7 @@ from urllib.parse import urlparse
 
 import requests
 from PIL import Image, ImageOps, UnidentifiedImageError
+from image_assets import attach_cached_images
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
@@ -25,9 +27,10 @@ CACHE_DIR = ROOT / "public" / "cache" / "editorial"
 MAX_DIMENSION = max(1200, int(os.getenv("EDITORIAL_IMAGE_MAX_DIMENSION", "1600")))
 WEBP_QUALITY = max(78, min(92, int(os.getenv("EDITORIAL_IMAGE_WEBP_QUALITY", "84"))))
 MAX_STORIES = max(8, int(os.getenv("EDITORIAL_IMAGE_STORIES", "36")))
-MAX_IMAGES_PER_STORY = max(2, int(os.getenv("EDITORIAL_IMAGES_PER_STORY", "8")))
+MAX_IMAGES_PER_STORY = max(2, int(os.getenv("EDITORIAL_IMAGES_PER_STORY", "20")))
 MAX_UNIQUE_IMAGES = max(24, int(os.getenv("EDITORIAL_IMAGE_LIMIT", "160")))
 MAX_DOWNLOAD_BYTES = max(2_000_000, int(os.getenv("EDITORIAL_IMAGE_MAX_DOWNLOAD_BYTES", "18000000")))
+TIME_BUDGET = max(30, int(os.getenv("EDITORIAL_IMAGE_TIME_BUDGET", "240")))
 WORKERS = max(2, min(8, int(os.getenv("EDITORIAL_IMAGE_WORKERS", "6"))))
 CACHE_VERSION = "v1"
 USER_AGENT = "ForestCityNews/2.0 (+https://myplexscripts.github.io/news/)"
@@ -72,7 +75,10 @@ def read_response_bytes(response: requests.Response) -> bytes:
 
     chunks: list[bytes] = []
     total = 0
+    deadline = time.monotonic() + 24
     for chunk in response.iter_content(chunk_size=64 * 1024):
+        if time.monotonic() > deadline:
+            raise ValueError("image download exceeded time budget")
         if not chunk:
             continue
         total += len(chunk)
@@ -117,7 +123,7 @@ def optimize_url(url: str) -> tuple[str, int, int] | None:
         with requests.get(
             url,
             headers={"User-Agent": USER_AGENT, "Accept": "image/avif,image/webp,image/*,*/*;q=0.8"},
-            timeout=(5, 24),
+            timeout=(5, 12),
             stream=True,
         ) as response:
             response.raise_for_status()
@@ -132,8 +138,6 @@ def optimize_url(url: str) -> tuple[str, int, int] | None:
 
         # Keep the publisher file when it is already smaller. Re-encoding should
         # only be selected when it actually reduces transfer size.
-        if len(optimized) >= len(source_bytes):
-            return None
 
         target.parent.mkdir(parents=True, exist_ok=True)
         temp = target.with_suffix(".tmp")
@@ -146,8 +150,11 @@ def optimize_url(url: str) -> tuple[str, int, int] | None:
 
 def selected_stories(payload: dict[str, Any]) -> list[dict[str, Any]]:
     stories = [story for story in payload.get("stories") or [] if isinstance(story, dict)]
-    stories.sort(key=published_timestamp, reverse=True)
-    return stories[:MAX_STORIES]
+    stories.sort(key=lambda story: (str(story.get("image_optimization_checked_at") or ""), -published_timestamp(story)))
+    # Process uncached articles first so later batches cover the entire week.
+    from image_assets import cached_original
+    pending = [story for story in stories if any(cached_original(url) is None for url in collect_targets([story]))]
+    return pending[:MAX_STORIES]
 
 
 def collect_targets(stories: list[dict[str, Any]]) -> list[str]:
@@ -213,25 +220,34 @@ def apply_result(container: dict[str, Any], source_key: str, output_key: str, re
 
 
 def optimize_payload(payload: dict[str, Any]) -> tuple[int, int, int]:
+    attach_cached_images(payload.get("stories") or [])
     stories = selected_stories(payload)
     targets = collect_targets(stories)
     if not targets:
         return 0, 0, 0
 
     results: dict[str, tuple[str, int, int] | None] = {}
+    deadline = time.monotonic() + TIME_BUDGET
+    # Submit only one worker batch at a time so a slow publisher cannot leave
+    # hundreds of queued downloads running after the maintenance budget expires.
     with ThreadPoolExecutor(max_workers=WORKERS) as executor:
-        futures = {executor.submit(optimize_url, url): url for url in targets}
-        for future in as_completed(futures):
-            url = futures[future]
-            try:
-                results[url] = future.result()
-            except Exception:
-                results[url] = None
+        for offset in range(0, len(targets), WORKERS):
+            if time.monotonic() >= deadline:
+                break
+            futures = {executor.submit(optimize_url, url): url for url in targets[offset:offset + WORKERS]}
+            for future in as_completed(futures):
+                url = futures[future]
+                try:
+                    results[url] = future.result()
+                except Exception:
+                    results[url] = None
 
     changed_stories = 0
     optimized_refs = 0
     for story in stories:
         changed = False
+        if any(url in results for url in collect_targets([story])):
+            story["image_optimization_checked_at"] = datetime.now().isoformat()
         hero = str(story.get("image") or "").strip()
         if hero in results:
             result = results[hero]
@@ -253,8 +269,9 @@ def optimize_payload(payload: dict[str, Any]) -> tuple[int, int, int]:
         if changed:
             changed_stories += 1
 
-    payload["editorial_image_schema"] = 1
-    return changed_stories, len(targets), optimized_refs
+    attach_cached_images(stories)
+    payload["editorial_image_schema"] = 2
+    return changed_stories, len(results), optimized_refs
 
 
 def main() -> int:

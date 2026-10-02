@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import json
 import tempfile
+from datetime import datetime, timezone
+from unittest.mock import patch
+from article_retention import prune_payload
 from pathlib import Path
 
 from merge_enriched_output import merge
@@ -65,7 +68,8 @@ def main() -> int:
             ],
         }), encoding="utf-8")
 
-        merged_count, story_count = merge(enriched, latest, output)
+        with patch("merge_enriched_output.prune_payload", lambda payload, **kwargs: prune_payload(payload, datetime(2026, 8, 31, 12, 5, tzinfo=timezone.utc), **kwargs)):
+            merged_count, story_count = merge(enriched, latest, output)
         payload = json.loads(output.read_text(encoding="utf-8"))
         by_id = {story["id"]: story for story in payload["stories"]}
 
