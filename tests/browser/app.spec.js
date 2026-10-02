@@ -51,11 +51,11 @@ test('all screens fit the viewport in both themes', async ({ page }) => {
   await noOverflow(page);
 });
 test('article Back and tab return preserve position and search filters', async ({ page }) => {
-  const card = page.locator('[data-story-id="story-20"] .news-card-link');
-  await card.scrollIntoViewIfNeeded();
-  console.log('scroll surface', await page.evaluate(() => ({ y: scrollY, body: document.body.scrollTop, root: document.documentElement.scrollTop, height: document.documentElement.scrollHeight, rootOverflow: getComputedStyle(document.documentElement).overflow, bodyOverflow: getComputedStyle(document.body).overflow, target: document.querySelector('[data-story-id="story-20"]').getBoundingClientRect().top })));
+  const cardContainer = page.locator('[data-story-id="story-20"]');
+  const card = cardContainer.locator('.news-card-link');
+  await cardContainer.scrollIntoViewIfNeeded();
   await expect.poll(async () => {
-    await card.scrollIntoViewIfNeeded();
+    await cardContainer.scrollIntoViewIfNeeded();
     return page.evaluate(() => scrollY);
   }).toBeGreaterThan(500);
   const original = await page.evaluate(() => scrollY);
