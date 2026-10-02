@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TIMELINE = (ROOT / "src/lib/timelineStories.ts").read_text(encoding="utf-8")
 HOME = (ROOT / "src/pages/index.astro").read_text(encoding="utf-8")
 HOME_CSS = (ROOT / "src/styles/editorial-home.css").read_text(encoding="utf-8")
+SVELTE_HOME = (ROOT / "src/routes/+page.svelte").read_text(encoding="utf-8")
 CARD = (ROOT / "src/components/NewsCard.astro").read_text(encoding="utf-8")
 
 
@@ -25,6 +26,8 @@ def main() -> None:
     require("timelineCards.forEach" in HOME and "cardMatches(item, query)" in HOME, "scope filtering must run across the full homepage timeline")
     require("const scopeMatch = activeScope === 'all' || itemScope === activeScope" in HOME, "every timeline card must respect Local, Canada, and All")
     require(".home-page .news-card.filtered-out" in HOME_CSS and "display: none !important" in HOME_CSS, "cards rejected by the homepage filter must actually be hidden")
+    require(".filter((story) => story?.cluster_representative !== false)" in SVELTE_HOME, "live Svelte homepage must collapse event coverage before selecting top stories")
+    require("topStories = filteredStories.slice(0, 3)" in SVELTE_HOME, "top stories must use the deduplicated filtered pool")
     print("Homepage feed contracts passed: duplicate multi-source events collapse before carousel selection while chronology and scope filtering remain intact.")
 
 
