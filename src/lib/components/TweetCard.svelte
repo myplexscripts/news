@@ -1,4 +1,5 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   export let block;
 
   let videoActive = false;
@@ -46,7 +47,7 @@
         {#if block?.avatar}
           <img src={block.avatar} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
         {:else}
-          <i class="ph ph-user-circle" aria-hidden="true"></i>
+          <AppIcon iconClass="ph ph-user-circle" />
         {/if}
       </div>
       <div class="tweet-author-copy">
@@ -70,7 +71,7 @@
           {#if poster}
             <img src={poster} alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" />
           {/if}
-          <span class="tweet-play-button" aria-hidden="true"><i class="ph-fill ph-play"></i></span>
+          <span class="tweet-play-button" aria-hidden="true"><AppIcon iconClass="ph-fill ph-play" /></span>
         </button>
       {/if}
     </div>
@@ -94,7 +95,7 @@
     {#if publishedLabel}<time datetime={block.published}>{publishedLabel}</time>{/if}
     {#if sourceUrl}
       <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-        View on X <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+        View on X <AppIcon iconClass="ph ph-arrow-up-right" />
       </a>
     {/if}
   </footer>
@@ -145,7 +146,7 @@
     object-fit: cover;
   }
 
-  .tweet-avatar i {
+  .tweet-avatar :global(i) {
     font-size: 28px;
   }
 
@@ -271,7 +272,7 @@
     -webkit-backdrop-filter: blur(12px);
   }
 
-  .tweet-play-button i {
+  .tweet-play-button :global(i) {
     margin-left: 2px;
     font-size: 24px;
   }
@@ -301,7 +302,7 @@
     font-weight: 700;
   }
 
-  .tweet-footer a i {
+  .tweet-footer a :global(i) {
     font-size: 16px;
   }
 

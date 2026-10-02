@@ -1,4 +1,5 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import { userState, toggleSavedStory } from '$lib/appState';
   import { prefetchStory, resolveAsset, storyHref } from '$lib/newsData';
   import { sourceLogoPath } from '$lib/sourceLogos';
@@ -147,6 +148,7 @@
 
 <article
   class={`news-card card-${variant} ${categoryClass} ${className}`}
+  class:no-image={!image}
   class:is-read-story={isRead}
   data-story-id={id}
   data-category={story?.category || ''}
@@ -195,7 +197,7 @@
     {:else}
       <div class="news-card-placeholder" aria-hidden="true">
         <span class="news-card-placeholder-brand">
-          <i class="ph-fill ph-tree"></i>
+          <AppIcon iconClass="ph-fill ph-tree" />
           <strong>News</strong>
         </span>
       </div>
@@ -224,7 +226,7 @@
       <time datetime={timestamp}>{published(timestamp)}</time>
       {#if sourceCount > 1}
         <span class="news-card-coverage" title={`Covered by ${sourceCount} sources`}>
-          <i class="ph ph-stack" aria-hidden="true"></i>
+          <AppIcon iconClass="ph ph-stack" />
           {sourceCount} sources
         </span>
       {/if}
@@ -244,7 +246,7 @@
       title={isSaved ? 'Remove from Read Later' : 'Save to Read Later'}
       on:click={toggle}
     >
-      <i class={isSaved ? 'ph-fill ph-bookmark-simple' : 'ph ph-bookmark-simple'} aria-hidden="true"></i>
+      <AppIcon iconClass={isSaved ? 'ph-fill ph-bookmark-simple' : 'ph ph-bookmark-simple'} />
     </button>
   </div>
 </article>
@@ -335,7 +337,7 @@
     line-height: 1;
   }
 
-  .news-card-placeholder-brand i {
+  .news-card-placeholder-brand :global(i) {
     font-size: 30px;
     line-height: 1;
   }
@@ -357,7 +359,7 @@
     font-weight: 700;
   }
 
-  .news-card-coverage i {
+  .news-card-coverage :global(i) {
     font-size: 16px;
   }
 
@@ -378,7 +380,7 @@
     cursor: pointer;
   }
 
-  .news-card-save i {
+  .news-card-save :global(i) {
     font-size: 22px;
   }
 

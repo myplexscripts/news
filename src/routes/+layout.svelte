@@ -1,19 +1,17 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
+  import NavIcon from '$lib/components/NavIcon.svelte';
   import { browser } from '$app/environment';
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
+  import { beforeNavigate, afterNavigate, disableScrollHandling, preloadCode } from '$app/navigation';
+  import { rememberPosition, readPosition } from '$lib/screenState';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
   import { initialiseAppState, userState } from '$lib/appState';
-  import { loadFeed } from '$lib/newsData';
+  import { loadFeed, feedUpdates, feedStatus, homeEdition } from '$lib/newsData';
   import { sourceLogoPath } from '$lib/sourceLogos';
 
-  import '../styles/global.css';
-  import '../styles/article-rich.css';
-  import '../styles/editorial-home.css';
-  import '../styles/feed-scope.css';
-  import '../styles/mobile-card-fixes.css';
-  import '../styles/polish.css';
-  import '../styles/svelte-app.css';
+  import '../styles/app.css';
 
   let homeDate = formatHomeDate(new Date());
   let homeUpdated = '';
@@ -21,6 +19,31 @@
   let storyCompactNav = false;
   let storyMetaVisible = false;
   let shellFeed;
+  let online = true;
+  let navigationVersion = 0;
+  beforeNavigate(({ from }) => {
+    navigationVersion += 1;
+    if (!from || !browser) return;
+    const position = { x: window.scrollX, y: window.scrollY };
+    rememberPosition(from.url.href, position);
+    rememberPosition(from.url.pathname, position);
+  });
+  afterNavigate((navigation) => {
+    // Restore after the destination renders, including rapid cached-article Back.
+    // SvelteKit remains the fallback for history entries no longer in memory.
+    if (!browser || !navigation.from || navigation.to?.url.hash) return;
+    const url = navigation.to?.url;
+    if (!url) return;
+    const saved = navigation.type === 'popstate'
+      ? readPosition(url.href) || readPosition(url.pathname)
+      : url.search ? readPosition(url.href) : readPosition(url.pathname);
+    if (!saved) return;
+    disableScrollHandling();
+    const version = navigationVersion;
+    tick().then(() => {
+      if (version === navigationVersion) window.scrollTo({ left: saved.x, top: saved.y, behavior: 'instant' });
+    });
+  });
 
   function normalizedPath(pathname = '') {
     const withoutBase = base && pathname.startsWith(base) ? pathname.slice(base.length) : pathname;
@@ -80,6 +103,11 @@
 
   $: currentPath = normalizedPath($page.url.pathname);
   $: onHome = currentPath === '/';
+  $: headerEdition = $homeEdition || shellFeed;
+  $: if (headerEdition?.generated_at) {
+    homeDate = formatHomeDate(headerEdition.generated_at);
+    homeUpdated = formatUpdated(headerEdition.generated_at);
+  }
   $: onStory = currentPath.startsWith('/story/');
   $: onDirectory = currentPath.startsWith('/sections/') || currentPath.startsWith('/sources/');
   $: onSearch = currentPath.startsWith('/search/');
@@ -100,7 +128,6 @@
     storyMetaVisible = false;
   }
   $: if (browser && currentPath) queueMicrotask(syncScrollChrome);
-  $: if (browser && onStory && storyMeta) queueMicrotask(() => syncStoryHeroAuthor());
 
   function activeIcon(active, icon) {
     return active ? `ph-fill ph-${icon}` : `ph ph-${icon}`;
@@ -117,24 +144,6 @@
     if (!browser) return;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
-  }
-
-  function syncStoryHeroAuthor(attempt = 0) {
-    if (!browser || !onStory || !storyMeta) return;
-    const slot = document.querySelector('.article-cover-source');
-    if (!slot) {
-      if (attempt < 18) requestAnimationFrame(() => syncStoryHeroAuthor(attempt + 1));
-      return;
-    }
-
-    const author = String(storyMeta.author || '').trim();
-    slot.replaceChildren();
-    if (!author) return;
-
-    const label = document.createElement('strong');
-    label.className = 'story-hero-author';
-    label.textContent = /^by\s+/i.test(author) ? author : `By ${author}`;
-    slot.appendChild(label);
   }
 
   function syncScrollChrome() {
@@ -156,12 +165,22 @@
   onMount(() => {
     initialiseAppState().catch(() => {});
 
-    loadFeed().then((feed) => {
-      shellFeed = feed;
+    const unsubscribeFeed = feedUpdates.subscribe((feed) => {
       if (!feed?.generated_at) return;
-      homeDate = formatHomeDate(feed.generated_at);
-      homeUpdated = formatUpdated(feed.generated_at);
-    }).catch(() => {});
+      shellFeed = feed;
+
+    });
+    const refresh = () => { if (!document.hidden && navigator.onLine) loadFeed().catch(() => {}); };
+    const connectionChanged = () => { online = navigator.onLine; if (online) refresh(); };
+    online = navigator.onLine;
+    loadFeed().catch(() => {});
+    const refreshTimer = window.setInterval(refresh, 5 * 60 * 1000);
+    document.addEventListener('visibilitychange', refresh);
+    window.addEventListener('online', connectionChanged);
+    window.addEventListener('offline', connectionChanged);
+    // Warm only route code, without downloading articles or resetting screens.
+    const warmRoutes = () => preloadCode(`${base}/*`).catch(() => {});
+    const warmTimer = window.setTimeout(warmRoutes, 1000);
 
     const unsubscribe = userState.subscribe((state) => {
       const root = document.documentElement;
@@ -180,6 +199,12 @@
 
     return () => {
       unsubscribe();
+      unsubscribeFeed();
+      clearInterval(refreshTimer);
+      clearTimeout(warmTimer);
+      document.removeEventListener('visibilitychange', refresh);
+      window.removeEventListener('online', connectionChanged);
+      window.removeEventListener('offline', connectionChanged);
       document.body.classList.remove('story-meta-visible');
       window.removeEventListener('scroll', syncScrollChrome);
       window.removeEventListener('resize', syncScrollChrome);
@@ -212,7 +237,7 @@
         </a>
       {:else}
         <a class="brand brand-news" href={`${base}/`} data-sveltekit-preload-data="tap" aria-label="Forest City News home">
-          <i class="ph-fill ph-tree brand-news-icon" aria-hidden="true"></i>
+          <AppIcon iconClass="ph-fill ph-tree brand-news-icon" />
           <span class="brand-news-wordmark">News</span>
         </a>
       {/if}
@@ -220,13 +245,13 @@
 
     <div class="header-actions">
       <a class="icon-button header-search-link" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search news" title="Search">
-        <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+        <AppIcon iconClass="ph ph-magnifying-glass" />
       </a>
       <a class:active={onDirectory} class="icon-button desktop-sources-link" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Browse sections and sources" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-        <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
+        <AppIcon iconClass={activeIcon(onDirectory, 'hard-drives')} />
       </a>
       <a class:active={onSettings} class="icon-button settings-link" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-        <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
+        <AppIcon iconClass={activeIcon(onSettings, 'gear-six')} />
       </a>
     </div>
 
@@ -250,6 +275,12 @@
   </div>
 {/if}
 
+{#if !online || $feedStatus.unavailable}
+  <div class="connection-notice shell" role="status">
+    <span>{!online ? 'You’re offline. Previously opened news is still available.' : 'News updates are temporarily unavailable. Showing the last loaded edition.'}</span>
+    {#if online}<button type="button" disabled={$feedStatus.refreshing} on:click={() => loadFeed({ force: true }).catch(() => {})}>Try again</button>{/if}
+  </div>
+{/if}
 <div class="svelte-route-stage">
   <slot />
 </div>
@@ -290,7 +321,7 @@
     aria-current={onHome ? 'page' : undefined}
     on:click={handleHomeTab}
   >
-    <i class={onStory && storyCompactNav ? 'ph-fill ph-house' : onHome && isBackToTop ? 'ph ph-arrow-up' : activeIcon(onHome || onStory, 'house')} aria-hidden="true"></i>
+    <NavIcon name={onHome && isBackToTop ? 'arrow-up' : 'house'} filled={onHome || onStory} />
     <span class="visually-hidden">Home</span>
   </a>
 
@@ -304,7 +335,7 @@
     aria-hidden="true"
   />
   <a class:active={onDirectory} class="mobile-tab" data-mobile-tab="sections" href={`${base}/sections/`} data-sveltekit-preload-data="tap" aria-label="Sections" title="Sections" aria-current={onDirectory ? 'page' : undefined}>
-    <i class={activeIcon(onDirectory, 'hard-drives')} aria-hidden="true"></i>
+    <NavIcon name="hard-drives" filled={onDirectory} />
     <span class="visually-hidden">Sections</span>
   </a>
 
@@ -318,7 +349,7 @@
     aria-hidden="true"
   />
   <a class:active={onSearch} class="mobile-tab" data-mobile-tab="search" href={`${base}/search/`} data-sveltekit-preload-data="tap" aria-label="Search" title="Search" aria-current={onSearch ? 'page' : undefined}>
-    <i class={activeIcon(onSearch, 'magnifying-glass')} aria-hidden="true"></i>
+    <NavIcon name="magnifying-glass" filled={onSearch} />
     <span class="visually-hidden">Search</span>
   </a>
 
@@ -332,13 +363,13 @@
     aria-hidden="true"
   />
   <a class:active={onSettings} class="mobile-tab" data-mobile-tab="settings" href={`${base}/settings/`} data-sveltekit-preload-data="tap" aria-label="Settings" title="Settings" aria-current={onSettings ? 'page' : undefined}>
-    <i class={activeIcon(onSettings, 'gear-six')} aria-hidden="true"></i>
+    <NavIcon name="gear-six" filled={onSettings} />
     <span class="visually-hidden">Settings</span>
   </a>
 
   {#if onStory}
     <button class="story-back-to-top" type="button" aria-label="Back to top" title="Back to top" on:click={handleStoryBackToTop}>
-      <i class="ph ph-arrow-up" aria-hidden="true"></i>
+      <AppIcon iconClass="ph ph-arrow-up" />
     </button>
   {/if}
 </nav>
@@ -358,7 +389,7 @@
     letter-spacing: -0.045em !important;
   }
 
-  .brand-news-icon {
+  :global(.brand-news-icon) {
     flex: 0 0 auto;
     font-size: 34px !important;
     line-height: 1 !important;
@@ -485,7 +516,7 @@
       font-size: 26px !important;
     }
 
-    .brand-news-icon {
+    :global(.brand-news-icon) {
       font-size: 32px !important;
     }
 

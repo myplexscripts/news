@@ -1,11 +1,15 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import { onMount } from 'svelte';
   import NewsCard from '$lib/components/NewsCard.svelte';
-  import { getCachedFeed, loadFeed } from '$lib/newsData';
+  import { getCachedFeed, loadFeed, feedUpdates } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
   let feed = getCachedFeed();
   let error = '';
+  onMount(() => feedUpdates.subscribe((latest) => {
+    if (latest && !feed) { feed = latest; error = ''; }
+  }));
 
   onMount(async () => {
     try {
@@ -57,7 +61,7 @@
         </div>
       {:else}
         <div class="read-later-empty">
-          <i class="ph ph-bookmark-simple" aria-hidden="true"></i>
+          <AppIcon iconClass="ph ph-bookmark-simple" />
           <h2>Nothing saved yet</h2>
           <p>Tap the bookmark on any article to keep it here for later.</p>
         </div>
@@ -104,7 +108,7 @@
     text-align: center;
   }
 
-  .read-later-empty > i {
+  .read-later-empty > :global(i) {
     color: var(--accent);
     font-size: 34px;
   }

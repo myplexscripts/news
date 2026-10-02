@@ -1,4 +1,5 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import {
     clearEverything,
     clearRead,
@@ -78,7 +79,7 @@
                   style={`--swatch:var(--${accent[0]});`}
                   on:click={() => preference('accent', accent[0])}
                 >
-                  <i class="ph ph-check" aria-hidden="true"></i>
+                  <AppIcon iconClass="ph ph-check" />
                 </button>
               {/each}
             </div>
@@ -161,7 +162,7 @@
     display: none !important;
   }
 
-  .settings-page .accent-choice i {
+  .settings-page .accent-choice :global(i) {
     opacity: 0;
     color: #000 !important;
     font-size: 22px !important;
@@ -176,7 +177,7 @@
     box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--swatch) !important;
   }
 
-  .settings-page .accent-choice.selected i {
+  .settings-page .accent-choice.selected :global(i) {
     opacity: 1;
     transform: scale(1);
   }
@@ -203,7 +204,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .settings-page .accent-choice i {
+    .settings-page .accent-choice :global(i) {
       transition: none !important;
     }
   }

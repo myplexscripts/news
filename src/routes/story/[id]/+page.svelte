@@ -1,11 +1,12 @@
 <script>
+  import AppIcon from '$lib/components/AppIcon.svelte';
   import { onDestroy } from 'svelte';
   import { browser } from '$app/environment';
   import { page } from '$app/stores';
   import { base } from '$app/paths';
   import NewsCard from '$lib/components/NewsCard.svelte';
   import TweetCard from '$lib/components/TweetCard.svelte';
-  import { formatPublished, getCachedFeed, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
+  import { formatPublished, getCachedFeed, getCachedStory, loadFeed, loadStory, resolveAsset } from '$lib/newsData';
   import { markRead } from '$lib/appState';
 
   let feed = getCachedFeed();
@@ -23,15 +24,14 @@
 
   async function openStory(id) {
     currentId = id;
-    loading = true;
+    story = getCachedStory(id);
+    loading = !story;
     error = '';
-    story = undefined;
     clearTimeout(readTimer);
 
     try {
       feed ||= await loadFeed();
       const metadata = (feed.stories || []).find((item) => String(item.id) === id);
-      if (!metadata) throw new Error('This story is no longer available.');
       const loaded = await loadStory(id, metadata);
       if (currentId !== id) return;
       story = loaded;
@@ -186,7 +186,7 @@
     </div>
   {:else if error}
     <div class="article-shell shell">
-      <div class="app-error">{error}</div>
+      <div class="app-error" role="alert"><p>{error}</p><button class="bordered-button" type="button" on:click={() => openStory(requestedId)}>Try again</button></div>
     </div>
   {:else if story}
     <article class="editorial-story">
@@ -209,7 +209,7 @@
             {#if story.url}
               <a class="article-cover-original" href={story.url} target="_blank" rel="noopener noreferrer">
                 <span>Original article</span>
-                <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                <AppIcon iconClass="ph ph-arrow-up-right" />
               </a>
             {/if}
           </div>
@@ -309,18 +309,18 @@
                     </div>
                     {#if block.source_url}
                       <a class="article-embed-source" href={block.source_url} target="_blank" rel="noopener noreferrer">
-                        View original post <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                        View original post <AppIcon iconClass="ph ph-arrow-up-right" />
                       </a>
                     {/if}
                   </figure>
                 {:else if block.type === 'media' && block.media_type === 'link' && block.url}
                   <a class="article-media article-media-link" href={block.url} target="_blank" rel="noopener noreferrer">
-                    <i class="ph ph-play-circle" aria-hidden="true"></i>
+                    <AppIcon iconClass="ph ph-play-circle" />
                     <span>
                       <strong>{block.title || 'Open media at source'}</strong>
                       <small>Open media from {story.source}</small>
                     </span>
-                    <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                    <AppIcon iconClass="ph ph-arrow-up-right" />
                   </a>
                 {/if}
               {/each}
@@ -523,7 +523,7 @@
     white-space: nowrap;
   }
 
-  .article-cover-original i {
+  .article-cover-original :global(i) {
     font-size: 17px;
   }
 
@@ -573,7 +573,7 @@
       visibility 0s linear 320ms;
   }
 
-  .article-reveal.article-reveal-visible {
+  .article-reveal:global(.article-reveal-visible) {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
