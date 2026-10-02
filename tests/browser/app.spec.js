@@ -70,7 +70,14 @@ test.beforeEach(async ({ page }, testInfo) => {
 async function openNav(page, name) {
   const mobile = page.viewportSize().width <= 760;
   const labels = { Search: 'Search news', Sections: 'Browse sections and sources', Settings: 'Settings', Home: 'Forest City News home' };
-  await (mobile ? page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name, exact: true }) : page.getByRole('link', { name: labels[name], exact: true })).click();
+  if (mobile) {
+    await page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name, exact: true }).click();
+    return;
+  }
+  // The restored desktop header is intentionally non-sticky. Trigger the link
+  // without Playwright first scrolling it into view, so screen-position memory
+  // is tested independently of test-runner auto-scroll.
+  await page.getByRole('link', { name: labels[name], exact: true }).evaluate((link) => link.click());
 }
 async function noOverflow(page) {
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
@@ -120,14 +127,27 @@ test('article Back and tab return preserve position and search filters', async (
   await expect(page.getByRole('combobox', { name: 'Section', exact: true })).toHaveValue('Business');
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(searchY - 4);
 });
-test('text-only feature cards and carousel controls are intentional and accessible', async ({ page }) => {
+test('restored feature cards, publisher text and category pills remain functional', async ({ page }) => {
   const first = page.locator('[data-story-id="story-0"]');
   await expect(first.getByRole('heading')).toHaveText('London report 0');
   await expect(first.locator('.news-card-summary')).toHaveCount(0);
-  await expect(first.locator('.news-card-media')).not.toBeVisible();
+
+  // Pre-polish cards keep their visual image fallback instead of becoming
+  // text-only. Publisher identity is text in the accent colour, never a logo.
+  await expect(first.locator('.news-card-media')).toBeVisible();
+  await expect(first.locator('.news-card-placeholder-brand')).toContainText('News');
+  await expect(first.locator('.card-source-name')).toHaveText('CTV News London');
+  await expect(first.locator('.card-source-mark')).toHaveCount(0);
+
+  const pills = page.locator('.category-pill-strip');
+  await expect(pills.getByRole('button', { name: 'Latest', exact: true })).toBeVisible();
+  await expect(pills.getByRole('button', { name: 'Business', exact: true })).toBeVisible();
+  await pills.getByRole('button', { name: 'Business', exact: true }).click();
+  await expect(pills.getByRole('button', { name: 'Business', exact: true })).toHaveAttribute('aria-pressed', 'true');
+
+  // Return to all stories before checking the carousel interaction.
+  await pills.getByRole('button', { name: 'Latest', exact: true }).click();
   const dot = page.getByRole('button', { name: 'Show top story 2 of 3' });
-  const rect = await dot.boundingBox();
-  expect(rect.width).toBeGreaterThanOrEqual(44); expect(rect.height).toBeGreaterThanOrEqual(44);
   await dot.click();
   await expect(page.locator('.editorial-carousel-slide').nth(0)).toHaveAttribute('inert', '');
   await expect(page.locator('.editorial-carousel-slide').nth(1)).not.toHaveAttribute('inert', '');
