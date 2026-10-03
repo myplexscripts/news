@@ -20,35 +20,35 @@ CARD = ROOT / "src" / "lib" / "components" / "NewsCard.svelte"
 SECTIONS = ROOT / "src" / "routes" / "sections" / "+page.svelte"
 SEARCH = ROOT / "src" / "routes" / "search" / "+page.svelte"
 SETTINGS = ROOT / "src" / "routes" / "settings" / "+page.svelte"
+GLOBAL = ROOT / "src" / "styles" / "global.css"
+POLISH = ROOT / "src" / "styles" / "polish.css"
 
 LIGHT_ACCENTS = {
-    "red": (255, 56, 60),
-    "orange": (255, 141, 40),
-    "yellow": (255, 204, 0),
-    "green": (52, 199, 89),
-    "mint": (0, 200, 179),
-    "teal": (0, 195, 208),
-    "cyan": (0, 192, 232),
-    "blue": (0, 136, 255),
-    "indigo": (97, 85, 245),
-    "purple": (203, 48, 224),
-    "pink": (255, 45, 85),
-    "brown": (172, 127, 94),
+    "red": (213, 0, 0),
+    "orange": (197, 84, 0),
+    "yellow": (255, 214, 0),
+    "green": (58, 134, 61),
+    "teal": (0, 133, 120),
+    "blue": (24, 121, 206),
+    "indigo": (57, 73, 171),
+    "deep-purple": (81, 45, 168),
+    "purple": (142, 36, 170),
+    "pink": (230, 23, 93),
+    "brown": (109, 76, 65),
 }
 
 DARK_ACCENTS = {
-    "red": (255, 66, 69),
-    "orange": (255, 146, 48),
-    "yellow": (255, 214, 0),
-    "green": (48, 209, 88),
-    "mint": (0, 218, 195),
-    "teal": (0, 210, 224),
-    "cyan": (60, 211, 254),
-    "blue": (0, 145, 255),
-    "indigo": (109, 124, 255),
-    "purple": (219, 52, 242),
-    "pink": (255, 55, 95),
-    "brown": (183, 138, 102),
+    "red": (255, 38, 38),
+    "orange": (255, 109, 0),
+    "yellow": (253, 216, 53),
+    "green": (76, 175, 80),
+    "teal": (0, 148, 133),
+    "blue": (30, 136, 229),
+    "indigo": (112, 126, 207),
+    "deep-purple": (144, 114, 217),
+    "purple": (191, 86, 219),
+    "pink": (236, 63, 122),
+    "brown": (166, 121, 105),
 }
 
 
@@ -92,6 +92,8 @@ def main() -> None:
     sections = SECTIONS.read_text(encoding="utf-8")
     search = SEARCH.read_text(encoding="utf-8")
     settings = SETTINGS.read_text(encoding="utf-8")
+    global_css = GLOBAL.read_text(encoding="utf-8")
+    polish = POLISH.read_text(encoding="utf-8")
 
     required_css = (
         "--ui-control-height: 44px;",
@@ -179,6 +181,22 @@ def main() -> None:
         "accent-choice",
         "settings-switch-track",
     ), "settings page")
+    require("['deep-purple', 'Deep Purple']" in settings, "Deep Purple accent choice is missing")
+    require("['mint', 'Mint']" not in settings and "['cyan', 'Cyan']" not in settings, "retired Mint/Cyan accent choices returned")
+    require("html[data-accent='deep-purple'] { --accent: var(--deep-purple); }" in polish, "Deep Purple accent wiring is missing")
+    require("html[data-accent='mint']" not in polish and "html[data-accent='cyan']" not in polish, "retired Mint/Cyan accent wiring returned")
+
+    palette_tokens = (
+        "--red: #D50000;", "--orange: #C55400;", "--yellow: #FFD600;",
+        "--green: #3A863D;", "--teal: #008578;", "--blue: #1879CE;",
+        "--indigo: #3949AB;", "--deep-purple: #512DA8;", "--purple: #8E24AA;",
+        "--pink: #E6175D;", "--brown: #6D4C41;",
+        "--red: #FF2626;", "--orange: #FF6D00;", "--yellow: #FDD835;",
+        "--green: #4CAF50;", "--teal: #009485;", "--blue: #1E88E5;",
+        "--indigo: #707ECF;", "--deep-purple: #9072D9;", "--purple: #BF56DB;",
+        "--pink: #EC3F7A;", "--brown: #A67969;",
+    )
+    require_tokens(global_css, palette_tokens, "accent palette")
 
     light_segment_fill = (242, 242, 247)
     light_muted = (108, 108, 112)

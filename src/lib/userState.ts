@@ -56,6 +56,18 @@ const LEGACY = {
   hiddenSources: 'london-news-hidden-sources'
 };
 
+const ACCENTS = new Set([
+  'red', 'orange', 'yellow', 'green', 'teal', 'blue',
+  'indigo', 'deep-purple', 'purple', 'pink', 'brown'
+]);
+
+function normaliseAccent(value: unknown): string {
+  const accent = String(value || '').trim().toLowerCase();
+  if (accent === 'mint') return 'teal';
+  if (accent === 'cyan') return 'blue';
+  return ACCENTS.has(accent) ? accent : 'green';
+}
+
 const channel = typeof BroadcastChannel !== 'undefined' ? new BroadcastChannel(CHANNEL_NAME) : null;
 
 function safeArray(key: string): string[] {
@@ -81,7 +93,7 @@ async function snapshot(): Promise<LondonNewsUserState> {
   ]);
   const preferences = new Map(preferenceRows.map((row) => [row.key, row.value]));
   const theme = preferences.get('theme') === 'dark' ? 'dark' : preferences.get('theme') === 'light' ? 'light' : preferredTheme();
-  const accent = preferences.get('accent') || 'green';
+  const accent = normaliseAccent(preferences.get('accent'));
   const hideRead = preferences.get('hideRead') === 'true';
   return {
     theme,
@@ -159,7 +171,7 @@ export async function initialiseUserState(): Promise<LondonNewsUserState> {
   } catch {
     const fallback: LondonNewsUserState = {
       theme: (typeof localStorage !== 'undefined' && localStorage.getItem(LEGACY.theme) === 'dark') ? 'dark' : preferredTheme(),
-      accent: typeof localStorage !== 'undefined' ? localStorage.getItem(LEGACY.accent) || 'green' : 'green',
+      accent: normaliseAccent(typeof localStorage !== 'undefined' ? localStorage.getItem(LEGACY.accent) : 'green'),
       hideRead: typeof localStorage !== 'undefined' && localStorage.getItem(LEGACY.hideRead) === 'true',
       readIds: safeArray(LEGACY.reads),
       hiddenSources: safeArray(LEGACY.hiddenSources)
@@ -185,7 +197,9 @@ export async function getUserState(): Promise<LondonNewsUserState> {
 }
 
 export async function setPreference(key: 'theme' | 'accent' | 'hideRead', value: string | boolean) {
-  const text = typeof value === 'boolean' ? (value ? 'true' : 'false') : String(value);
+  const text = key === 'accent'
+    ? normaliseAccent(value)
+    : typeof value === 'boolean' ? (value ? 'true' : 'false') : String(value);
   await db.preferences.put({ key, value: text, updatedAt: Date.now() });
   const state = await snapshot();
   emit(state);

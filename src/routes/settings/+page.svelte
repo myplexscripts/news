@@ -12,11 +12,10 @@
     ['orange', 'Orange'],
     ['yellow', 'Yellow'],
     ['green', 'Green'],
-    ['mint', 'Mint'],
     ['teal', 'Teal'],
-    ['cyan', 'Cyan'],
     ['blue', 'Blue'],
     ['indigo', 'Indigo'],
+    ['deep-purple', 'Deep Purple'],
     ['purple', 'Purple'],
     ['pink', 'Pink'],
     ['brown', 'Brown']
