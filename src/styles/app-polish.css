@@ -179,50 +179,55 @@ html body .home-page .category-pill:focus-visible {
 }
 
 
-/* Missing artwork uses the same card geometry as real artwork.
-   This removes the older pseudo-element fallback that could occupy the same
-   grid cell as the headline and produce the green/text overlap. */
-html body .news-card.card-standard.no-image::before {
+/* Missing artwork uses the real media element rather than a second pseudo
+   placeholder. This keeps placeholder cards aligned with cards that have art. */
+html body .news-card.card-standard.no-image::before,
+html body .home-page .editorial-carousel-card.news-card.card-featured.no-image::before {
   content: none !important;
   display: none !important;
 }
 
+/* Standard feed artwork is flush left, so missing artwork must use that same
+   column instead of flipping to the right. */
 html body .news-card.card-standard.no-image {
-  grid-template-columns: minmax(0, 1fr) 244px !important;
-  height: 244px !important;
-  min-height: 244px !important;
+  display: grid !important;
+  grid-template-columns: 260px minmax(0, 1fr) !important;
+  height: 260px !important;
+  min-height: 260px !important;
 }
 
 html body .news-card.card-standard.no-image .news-card-media {
   display: block !important;
-  grid-column: 2 !important;
+  grid-column: 1 !important;
   grid-row: 1 !important;
-  width: 244px !important;
-  height: 244px !important;
-  min-width: 244px !important;
-  min-height: 244px !important;
+  width: 260px !important;
+  height: 260px !important;
+  min-width: 260px !important;
+  min-height: 260px !important;
   margin: 0 !important;
   border-radius: 0 !important;
+  align-self: stretch !important;
+  justify-self: start !important;
 }
 
 html body .news-card.card-standard.no-image .news-card-body {
-  grid-column: 1 !important;
+  grid-column: 2 !important;
   grid-row: 1 !important;
   min-width: 0 !important;
 }
 
 @media (max-width: 1080px) and (min-width: 761px) {
   html body .news-card.card-standard.no-image {
-    grid-template-columns: minmax(0, 1fr) 230px !important;
-    height: 230px !important;
-    min-height: 230px !important;
+    grid-template-columns: 240px minmax(0, 1fr) !important;
+    height: 240px !important;
+    min-height: 240px !important;
   }
 
   html body .news-card.card-standard.no-image .news-card-media {
-    width: 230px !important;
-    height: 230px !important;
-    min-width: 230px !important;
-    min-height: 230px !important;
+    width: 240px !important;
+    height: 240px !important;
+    min-width: 240px !important;
+    min-height: 240px !important;
   }
 }
 
@@ -230,45 +235,60 @@ html body .news-card.card-standard.no-image .news-card-body {
   html body .news-card.card-standard.no-image,
   html body .latest-card-grid .news-card.card-standard.no-image {
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 132px !important;
-    height: 132px !important;
-    min-height: 132px !important;
+    grid-template-columns: 136px minmax(0, 1fr) !important;
+    height: auto !important;
+    min-height: 136px !important;
   }
 
   html body .news-card.card-standard.no-image .news-card-media,
   html body .latest-card-grid .news-card.card-standard.no-image .news-card-media {
     display: block !important;
-    grid-column: 2 !important;
+    grid-column: 1 !important;
     grid-row: 1 !important;
-    width: 132px !important;
-    height: 132px !important;
-    min-width: 132px !important;
-    min-height: 132px !important;
+    width: 136px !important;
+    height: auto !important;
+    min-width: 136px !important;
+    min-height: 136px !important;
     align-self: stretch !important;
-    justify-self: end !important;
+    justify-self: start !important;
   }
 
   html body .news-card.card-standard.no-image .news-card-body,
   html body .latest-card-grid .news-card.card-standard.no-image .news-card-body {
-    grid-column: 1 !important;
+    grid-column: 2 !important;
     grid-row: 1 !important;
     min-width: 0 !important;
-    min-height: 132px !important;
+    min-height: 136px !important;
+  }
+
+  /* Editorial placeholders use the exact same 16:9 media slot as editorial
+     photos. Removing the old pseudo copy prevents two placeholders stacking. */
+  html body .home-page .editorial-carousel-card.news-card.card-featured.no-image {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+  }
+
+  html body .home-page .editorial-carousel-card.news-card.card-featured.no-image .news-card-media {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 16 / 9 !important;
+    flex: 0 0 auto !important;
   }
 }
 
 @media (max-width: 390px) {
   html body .news-card.card-standard.no-image,
   html body .latest-card-grid .news-card.card-standard.no-image {
-    grid-template-columns: minmax(0, 1fr) 124px !important;
-    height: 124px !important;
+    grid-template-columns: 124px minmax(0, 1fr) !important;
     min-height: 124px !important;
   }
 
   html body .news-card.card-standard.no-image .news-card-media,
   html body .latest-card-grid .news-card.card-standard.no-image .news-card-media {
     width: 124px !important;
-    height: 124px !important;
     min-width: 124px !important;
     min-height: 124px !important;
   }
