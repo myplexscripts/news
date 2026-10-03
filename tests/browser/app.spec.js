@@ -141,7 +141,7 @@ test('forward navigation starts at the top while Back restores the previous posi
   await expect(page.getByRole('combobox', { name: 'Section', exact: true })).toHaveValue('Business');
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(searchY - 4);
 });
-test('missing-art cards keep artwork and copy in separate columns', async ({ page }) => {
+test('missing-art feed cards keep the placeholder on the same left side as real images', async ({ page }) => {
   const card = page.locator('[data-story-id="story-10"]');
   await card.scrollIntoViewIfNeeded();
 
@@ -155,9 +155,9 @@ test('missing-art cards keep artwork and copy in separate columns', async ({ pag
   expect(mediaBox).not.toBeNull();
   expect(bodyBox).not.toBeNull();
 
-  // The placeholder must occupy its own image column instead of painting under
-  // the publisher/headline, which caused the green overlap shown in the app.
-  expect(bodyBox.x + bodyBox.width).toBeLessThanOrEqual(mediaBox.x + 1);
+  // Feed cards with art are image-left/copy-right. Missing art must preserve
+  // that exact order and must not paint a second pseudo placeholder.
+  expect(mediaBox.x + mediaBox.width).toBeLessThanOrEqual(bodyBox.x + 1);
   const pseudo = await card.evaluate((node) => getComputedStyle(node, '::before').display);
   expect(pseudo).toBe('none');
 });
@@ -169,9 +169,21 @@ test('restored feature cards, publisher text and category pills remain functiona
 
   // Pre-polish cards keep their visual image fallback instead of becoming
   // text-only. Publisher identity is text in the accent colour, never a logo.
-  await expect(first.locator('.news-card-media')).toBeVisible();
+  const featureMedia = first.locator('.news-card-media');
+  await expect(featureMedia).toBeVisible();
   await expect(first.locator('.news-card-placeholder-brand')).toContainText('News');
   await expect(first.locator('.card-source-name')).toHaveText('CTV News London');
+
+  // A missing editorial image occupies one 16:9 media slot, not the old
+  // doubled placeholder that stacked two green panels on mobile.
+  const featurePseudo = await first.evaluate((node) => getComputedStyle(node, '::before').display);
+  expect(featurePseudo).toBe('none');
+  if (page.viewportSize().width <= 720) {
+    const featureBox = await featureMedia.boundingBox();
+    expect(featureBox).not.toBeNull();
+    expect(featureBox.height / featureBox.width).toBeGreaterThan(0.54);
+    expect(featureBox.height / featureBox.width).toBeLessThan(0.59);
+  }
   await expect(first.locator('.card-source-mark')).toHaveCount(0);
 
   const pills = page.locator('.category-pill-strip');
