@@ -101,22 +101,36 @@ html body .home-page .category-pill-strip::-webkit-scrollbar {
 }
 
 html body .home-page .category-pill {
+  position: relative;
+  isolation: isolate;
   flex: 0 0 auto;
   min-height: 44px !important;
-  padding: 0 16px !important;
+  padding: 0 13px !important;
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  gap: 8px !important;
+  gap: 7px !important;
   border: 0 !important;
   border-radius: 9999px !important;
-  background: var(--surface-subtle) !important;
+  background: transparent !important;
   color: var(--ink) !important;
-  font-size: 16px !important;
+  font-size: 15px !important;
   font-weight: 700 !important;
   line-height: 1 !important;
   white-space: nowrap;
   box-shadow: none !important;
+}
+
+/* Keep the 44px tap target, but make the visible capsule slightly smaller
+   than the Local / Canada / All segmented selector above it. */
+html body .home-page .category-pill::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 3px 0;
+  border-radius: inherit;
+  background: var(--surface-subtle);
+  pointer-events: none;
 }
 
 html body .home-page .category-pill::after {
@@ -127,17 +141,22 @@ html body .home-page .category-pill::after {
 html body .home-page .category-pill .svg-icon {
   flex: 0 0 auto;
   color: var(--muted);
-  font-size: 20px;
+  font-size: 18px;
 }
 
-html body .home-page .category-pill:hover {
-  background: color-mix(in srgb, var(--surface-subtle) 88%, var(--ink) 12%) !important;
+html body .home-page .category-pill:hover::before {
+  background: color-mix(in srgb, var(--surface-subtle) 88%, var(--ink) 12%);
 }
 
 html body .home-page .category-pill.active,
 html body .home-page .category-pill[aria-pressed='true'] {
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface-subtle)) !important;
+  background: transparent !important;
   color: var(--accent) !important;
+}
+
+html body .home-page .category-pill.active::before,
+html body .home-page .category-pill[aria-pressed='true']::before {
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface-subtle));
 }
 
 html body .home-page .category-pill.active .svg-icon,
