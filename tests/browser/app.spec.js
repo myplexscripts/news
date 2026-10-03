@@ -187,8 +187,25 @@ test('restored feature cards, publisher text and category pills remain functiona
   await expect(first.locator('.card-source-mark')).toHaveCount(0);
 
   const pills = page.locator('.category-pill-strip');
-  await expect(pills.getByRole('button', { name: 'Latest', exact: true })).toBeVisible();
+  const latestPill = pills.getByRole('button', { name: 'Latest', exact: true });
+  await expect(latestPill).toBeVisible();
   await expect(pills.getByRole('button', { name: 'Business', exact: true })).toBeVisible();
+
+  // Section pills are intentionally a little more compact visually than the
+  // feed scope selector, while retaining a 44px tap target.
+  const pillMetrics = await latestPill.evaluate((node) => ({
+    height: node.getBoundingClientRect().height,
+    fontSize: Number.parseFloat(getComputedStyle(node).fontSize),
+    visualInset: Number.parseFloat(getComputedStyle(node, '::before').top)
+  }));
+  const scopeMetrics = await page.locator('.feed-scope-button').first().evaluate((node) => ({
+    height: node.getBoundingClientRect().height,
+    fontSize: Number.parseFloat(getComputedStyle(node).fontSize)
+  }));
+  expect(pillMetrics.height).toBeGreaterThanOrEqual(44);
+  expect(pillMetrics.fontSize).toBeLessThan(scopeMetrics.fontSize);
+  expect(pillMetrics.visualInset).toBeGreaterThan(0);
+
   await pills.getByRole('button', { name: 'Business', exact: true }).click();
   await expect(pills.getByRole('button', { name: 'Business', exact: true })).toHaveAttribute('aria-pressed', 'true');
 
