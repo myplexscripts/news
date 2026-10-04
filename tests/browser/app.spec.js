@@ -49,6 +49,10 @@ test.beforeEach(async ({ page }, testInfo) => {
     card_image_variants: [{url:`${base}/images/social.png?card-320`,width:320,height:180},{url:`${base}/images/social.png?card-640`,width:640,height:360},{url:`${base}/images/social.png?card-1200`,width:1200,height:675}]
   });
   if (testInfo.title.startsWith('related recommendations')) edition.stories.slice(-4).forEach(story => { story.scope = 'canada'; });
+  if (testInfo.title.startsWith('top story card content anchors')) {
+    edition.stories[0].title = 'A much longer top story headline that wraps across several lines without changing where the story content begins or where the timestamp sits';
+    edition.stories[1].title = 'Short top story';
+  }
   if (testInfo.title.startsWith('aggregated coverage')) {
     const sources = ['Global News London', 'CBC News London', 'CTV News London', 'London Police Service'];
     edition.stories.slice(0, 4).forEach((story, i) => Object.assign(story, {
@@ -242,6 +246,98 @@ test('restored feature cards, publisher text and category pills remain functiona
   await dot.click();
   await expect(page.locator('.editorial-carousel-slide').nth(0)).toHaveAttribute('inert', '');
   await expect(page.locator('.editorial-carousel-slide').nth(1)).not.toHaveAttribute('inert', '');
+});
+
+test('top story card content anchors stay stable across title lengths', async ({ page }) => {
+  const cards = page.locator('.editorial-carousel-slide .editorial-carousel-card.news-card.card-featured');
+  await expect(cards).toHaveCount(3);
+
+  const metrics = await cards.evaluateAll((nodes) => nodes.slice(0, 2).map((card) => {
+    const body = card.querySelector('.news-card-body');
+    const source = card.querySelector('.card-source-name');
+    const title = card.querySelector('h3');
+    const footer = card.querySelector('.news-card-footer');
+    const bodyBox = body.getBoundingClientRect();
+    const sourceBox = source.getBoundingClientRect();
+    const titleBox = title.getBoundingClientRect();
+    const footerBox = footer.getBoundingClientRect();
+    return {
+      bodyHeight: bodyBox.height,
+      sourceOffset: sourceBox.top - bodyBox.top,
+      titleOffset: titleBox.top - bodyBox.top,
+      sourceBottom: sourceBox.bottom - bodyBox.top,
+      footerGap: bodyBox.bottom - footerBox.bottom
+    };
+  }));
+
+  expect(Math.abs(metrics[0].bodyHeight - metrics[1].bodyHeight)).toBeLessThanOrEqual(2);
+  for (const item of metrics) {
+    expect(item.sourceOffset).toBeGreaterThanOrEqual(0);
+    expect(item.sourceOffset).toBeLessThanOrEqual(50);
+    expect(item.titleOffset).toBeGreaterThanOrEqual(item.sourceBottom - 1);
+    expect(item.footerGap).toBeGreaterThanOrEqual(6);
+    expect(item.footerGap).toBeLessThanOrEqual(10);
+  }
+});
+
+test('public page headers are shared, subtitle-free and aligned', async ({ page }) => {
+  await expect(page.locator('.home-header-date')).toHaveCount(0);
+
+  const routes = [
+    ['latest/', 'Latest'],
+    ['search/', 'Search'],
+    ['sections/', 'Sections'],
+    ['settings/', 'Settings']
+  ];
+  const metrics = [];
+
+  for (const [route, title] of routes) {
+    await page.goto('./' + route);
+    const heading = page.locator('.standard-page-heading');
+    await expect(heading).toBeVisible();
+    await expect(heading.getByRole('heading', { level: 1 })).toHaveText(title);
+    await expect(heading.locator('.masthead-label')).toHaveCount(0);
+    await expect(heading.locator('.page-heading-description')).toHaveCount(0);
+    metrics.push(await heading.getByRole('heading', { level: 1 }).evaluate((node) => {
+      const box = node.getBoundingClientRect();
+      return {
+        x: box.x,
+        y: box.y,
+        fontSize: Number.parseFloat(getComputedStyle(node).fontSize),
+        lineHeight: Number.parseFloat(getComputedStyle(node).lineHeight)
+      };
+    }));
+  }
+
+  for (const metric of metrics.slice(1)) {
+    expect(Math.abs(metric.x - metrics[0].x)).toBeLessThanOrEqual(1);
+    expect(Math.abs(metric.y - metrics[0].y)).toBeLessThanOrEqual(1);
+    expect(metric.fontSize).toBe(metrics[0].fontSize);
+    expect(metric.lineHeight).toBe(metrics[0].lineHeight);
+  }
+});
+
+test('sections segmented selector matches the shared segmented-control scale', async ({ page }) => {
+  const scopeMetrics = await page.locator('.feed-scope-switch').evaluate((node) => ({
+    height: node.getBoundingClientRect().height,
+    fontSize: Number.parseFloat(getComputedStyle(node.querySelector('button')).fontSize)
+  }));
+
+  await page.goto('./sections/');
+  const tabs = page.locator('.directory-tabs');
+  await expect(tabs).toBeVisible();
+  const tabMetrics = await tabs.evaluate((node) => ({
+    width: node.getBoundingClientRect().width,
+    height: node.getBoundingClientRect().height,
+    shellWidth: node.closest('.standard-page-shell').getBoundingClientRect().width,
+    fontSize: Number.parseFloat(getComputedStyle(node.querySelector('button')).fontSize)
+  }));
+
+  expect(Math.abs(tabMetrics.height - scopeMetrics.height)).toBeLessThanOrEqual(1);
+  expect(tabMetrics.fontSize).toBe(scopeMetrics.fontSize);
+  if (page.viewportSize().width <= 760) {
+    expect(tabMetrics.width / tabMetrics.shellWidth).toBeGreaterThan(0.95);
+  }
 });
 
 test('background refresh offers an edition without replacing the current list', async ({ page }) => {
