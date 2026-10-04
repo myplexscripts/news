@@ -504,34 +504,38 @@ test('responsive images use card derivatives and higher quality full viewport ar
 
   if (page.viewportSize().width <= 760) {
     const mobileLayout = await cover.evaluate((node) => {
-      const title = node.querySelector('h1').getBoundingClientRect();
+      const titleNode = node.querySelector('h1');
+      const title = titleNode.getBoundingClientRect();
       const copy = node.querySelector('.article-cover-copy').getBoundingClientRect();
       const nav = document.querySelector('.mobile-tab-bar')?.getBoundingClientRect();
       return {
         titleWidthRatio: title.width / window.innerWidth,
-        titleTopRatio: title.top / window.innerHeight,
+        titleSize: Number.parseFloat(getComputedStyle(titleNode).fontSize),
         copyBottom: copy.bottom,
         navTop: nav?.top ?? window.innerHeight
       };
     });
     expect(mobileLayout.titleWidthRatio).toBeLessThanOrEqual(0.82);
-    expect(mobileLayout.titleTopRatio).toBeLessThan(0.62);
+    expect(mobileLayout.titleSize).toBe(40);
     expect(mobileLayout.copyBottom).toBeLessThanOrEqual(mobileLayout.navTop + 8);
 
     await page.setViewportSize({ width: 390, height: 667 });
     const shortCover = page.locator('.article-cover');
     const shortLayout = await shortCover.evaluate((node) => {
-      const title = node.querySelector('h1').getBoundingClientRect();
+      const titleNode = node.querySelector('h1');
+      const title = titleNode.getBoundingClientRect();
       const copy = node.querySelector('.article-cover-copy').getBoundingClientRect();
       const nav = document.querySelector('.mobile-tab-bar')?.getBoundingClientRect();
       return {
         titleWidthRatio: title.width / window.innerWidth,
+        titleSize: Number.parseFloat(getComputedStyle(titleNode).fontSize),
         titleTop: title.top,
         copyBottom: copy.bottom,
         navTop: nav?.top ?? window.innerHeight
       };
     });
     expect(shortLayout.titleWidthRatio).toBeLessThanOrEqual(0.82);
+    expect(shortLayout.titleSize).toBe(mobileLayout.titleSize);
     expect(shortLayout.titleTop).toBeGreaterThan(0);
     expect(shortLayout.copyBottom).toBeLessThanOrEqual(shortLayout.navTop + 8);
   }
