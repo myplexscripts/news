@@ -235,6 +235,22 @@ def _cbc_curl_feed_items(
     return items
 
 
+def _resolve_google_cbc_url(google_url: str, source: fetch_news.Source) -> str:
+    """Use Google News only to discover the first-party CBC article URL."""
+    try:
+        response = requests.get(
+            google_url,
+            headers={"User-Agent": fetch_news.USER_AGENT, "Accept-Language": "en-CA,en;q=0.9"},
+            timeout=10,
+            allow_redirects=True,
+        )
+        response.raise_for_status()
+        resolved = fetch_news.resolve_google_news(response.text, response.url, source)
+        return _cbc_london_url(resolved)
+    except requests.RequestException:
+        return ""
+
+
 def _existing_cbc_story_by_title(existing: dict[str, dict[str, Any]], title: str) -> dict[str, Any] | None:
     target = ranking._key(title)
     if not target:
@@ -255,8 +271,8 @@ def _existing_cbc_story_by_title(existing: dict[str, dict[str, Any]], title: str
 def _cbc_google_news_items(source: fetch_news.Source, existing: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     """Discover CBC London stories without requiring any connection to cbc.ca.
 
-    Google News is only a transport and discovery fallback here. Stories retain
-    CBC attribution. The Google News article URL redirects readers to CBC.
+    Google News is only a discovery fallback here. Every published story URL
+    is resolved back to the first-party CBC London article before it is stored.
     """
     response = requests.get(
         CBC_GOOGLE_NEWS_FEED,
@@ -283,22 +299,32 @@ def _cbc_google_news_items(source: fetch_news.Source, existing: dict[str, dict[s
         if not title:
             continue
 
-        url = fetch_news.canonical_url(entry.get("link") or entry.get("guid") or "")
-        if not url or "news.google.com" not in urlparse(url).netloc.lower():
+        google_url = fetch_news.canonical_url(entry.get("link") or entry.get("guid") or "")
+        if not google_url or "news.google.com" not in urlparse(google_url).netloc.lower():
             continue
 
         raw_summary = entry.get("summary") or entry.get("description") or ""
         summary_text = BeautifulSoup(str(raw_summary), "html.parser").get_text(" ", strip=True)
         summary = fetch_news.clean_summary_text(summary_text, title)
         published = entry.get("published") or entry.get("updated") or entry.get("created")
-        identifier = fetch_news.make_id(url)
+
+        old = _existing_cbc_story_by_title(existing, title)
+        old_url = _cbc_london_url(str(old.get("url") or "")) if old else ""
+        cbc_url = old_url or _resolve_google_cbc_url(google_url, source)
+        # Never publish Google News as the article destination. If discovery
+        # cannot be mapped to a first-party CBC URL, keep the cached archive
+        # instead of exposing an intermediary link to readers.
+        if not cbc_url:
+            continue
+
+        identifier = fetch_news.make_id(cbc_url)
         basic = {
             "id": identifier,
             "title": title,
             "source": source.name,
             "source_home": source.homepage,
             "source_accent": source.accent,
-            "url": url,
+            "url": cbc_url,
             "published": fetch_news.parse_date(published),
             "summary": summary,
             "image": "",
@@ -306,18 +332,18 @@ def _cbc_google_news_items(source: fetch_news.Source, existing: dict[str, dict[s
             "category": fetch_news.classify(title, summary, source.name),
         }
 
-        old = _existing_cbc_story_by_title(existing, title)
         if old:
             merged = {**basic, **old}
             merged.update({
+                "id": identifier,
                 "title": title,
                 "source": source.name,
                 "source_home": source.homepage,
                 "source_accent": source.accent,
-                "url": url,
+                "url": cbc_url,
                 "published": basic["published"],
                 "summary": summary or old.get("summary", ""),
-                "ingestion_path": "cbc-google-news-fallback",
+                "ingestion_path": "cbc-google-discovery",
             })
             items.append(merged)
         else:
@@ -327,10 +353,10 @@ def _cbc_google_news_items(source: fetch_news.Source, existing: dict[str, dict[s
                 "content_blocks": [],
                 "scraped_at": datetime.now(timezone.utc).isoformat(),
                 "extraction_schema": fetch_news.EXTRACTION_SCHEMA,
-                "ingestion_path": "cbc-google-news-fallback",
+                "ingestion_path": "cbc-google-discovery",
                 "word_count": len(summary.split()) if summary else 0,
             })
-            basic["quality"] = fetch_news.extraction_quality(basic, {}, "rss:google-cbc-fallback")
+            basic["quality"] = fetch_news.extraction_quality(basic, {}, "rss:google-cbc-discovery")
             items.append(basic)
 
         if len(items) >= source.max_items:
