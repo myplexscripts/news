@@ -105,7 +105,7 @@
   <meta name="description" content="Browse Forest City News by section or choose which sources appear in your feed." />
 </svelte:head>
 
-<main class="sections-page combined-directory-page" id="main-content">
+<main class="sections-page combined-directory-page standard-page" id="main-content">
   <section class="standard-page-shell sections-shell shell">
     <PageHeader title="Sections" />
 
