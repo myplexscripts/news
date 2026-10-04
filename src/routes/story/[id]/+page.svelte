@@ -411,7 +411,7 @@
   .article-cover {
     position: relative;
     min-height: 100svh;
-    height: 100svh;
+    height: 100dvh;
     overflow: hidden;
     background: var(--bg);
     isolation: isolate;
@@ -419,7 +419,7 @@
 
   :global(body:has(.svelte-article-page) .editorial-story .article-cover) {
     min-height: 100svh !important;
-    height: 100svh !important;
+    height: 100dvh !important;
   }
 
   .article-cover-media {
@@ -659,7 +659,7 @@
 
     :global(body:has(.svelte-article-page) .editorial-story .article-cover) {
       min-height: 100svh !important;
-      height: 100svh !important;
+      height: 100dvh !important;
     }
 
     :global(body:has(.svelte-article-page) .editorial-story .article-cover-content) {
