@@ -42,9 +42,9 @@ test.beforeEach(async ({ page }, testInfo) => {
   const edition = fixture();
   if (testInfo.title.startsWith('responsive images')) Object.assign(edition.stories[0], {
     image: `${base}/images/social.png`,
-    editorial_image: `${base}/images/social.png?hero-1600`, editorial_image_source: `${base}/images/social.png`,
-    editorial_image_width: 1600, editorial_image_height: 900,
-    editorial_image_variants: [{url:`${base}/images/social.png?hero-640`,width:640,height:360},{url:`${base}/images/social.png?hero-1600`,width:1600,height:900}],
+    editorial_image: `${base}/images/social.png?hero-2400`, editorial_image_source: `${base}/images/social.png`,
+    editorial_image_width: 2400, editorial_image_height: 1350,
+    editorial_image_variants: [{url:`${base}/images/social.png?hero-640`,width:640,height:360},{url:`${base}/images/social.png?hero-1600`,width:1600,height:900},{url:`${base}/images/social.png?hero-2400`,width:2400,height:1350}],
     card_image_small: `${base}/images/social.png?card-320`, card_image: `${base}/images/social.png?card-1200`,
     card_image_variants: [{url:`${base}/images/social.png?card-320`,width:320,height:180},{url:`${base}/images/social.png?card-640`,width:640,height:360},{url:`${base}/images/social.png?card-1200`,width:1200,height:675}]
   });
@@ -445,16 +445,34 @@ test('related recommendations separate local reporting from Canada coverage', as
 });
 
 
-test('responsive images use card derivatives and higher quality article assets', async ({ page }) => {
+test('responsive images use card derivatives and higher quality full viewport article covers', async ({ page }) => {
   const card = page.locator('[data-story-id="story-0"] .news-card-photo');
   await expect(card).toHaveAttribute('srcset', /card-320.*320w.*card-640.*640w.*card-1200.*1200w/);
   await expect(card).not.toHaveAttribute('srcset', /hero/);
   await page.locator('[data-story-id="story-0"] .news-card-link').click();
-  const hero = page.locator('.article-body-hero img');
-  await expect(hero).toHaveAttribute('srcset', /hero-640.*640w.*hero-1600.*1600w/);
-  await expect(hero).toHaveAttribute('width','1600');
-  await expect(hero).toHaveAttribute('height','900');
+
+  const cover = page.locator('.article-cover');
+  const hero = page.locator('.article-cover-media img');
+  await expect(hero).toHaveAttribute('srcset', /hero-640.*640w.*hero-1600.*1600w.*hero-2400.*2400w/);
   await expect(hero).not.toHaveAttribute('src', /card-/);
+  await expect(page.locator('.article-cover-fade')).toHaveCount(0);
+  await expect(page.locator('.article-body-hero')).toHaveCount(0);
+
+  const geometry = await cover.evaluate((node) => {
+    const box = node.getBoundingClientRect();
+    const image = node.querySelector('.article-cover-media img');
+    const title = node.querySelector('h1');
+    return {
+      height: box.height,
+      viewport: window.innerHeight,
+      imageHeight: image.getBoundingClientRect().height,
+      titleSize: Number.parseFloat(getComputedStyle(title).fontSize)
+    };
+  });
+  expect(Math.abs(geometry.height - geometry.viewport)).toBeLessThanOrEqual(2);
+  expect(Math.abs(geometry.imageHeight - geometry.viewport)).toBeLessThanOrEqual(2);
+  expect(geometry.titleSize).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 48 : 52);
+
   const tracking = page.getByAltText('Tracking image');
   await expect.poll(() => tracking.evaluate(image => image.complete)).toBe(true);
   await expect(tracking).toBeHidden();
