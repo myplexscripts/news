@@ -13,7 +13,6 @@
 
   import '../styles/app.css';
 
-  let homeDate = formatHomeDate(new Date());
   let homeUpdated = '';
   let isBackToTop = false;
   let storyCompactNav = false;
@@ -76,18 +75,6 @@
     }
   }
 
-  function formatHomeDate(value) {
-    try {
-      return new Intl.DateTimeFormat('en-CA', {
-        timeZone: 'America/Toronto',
-        month: 'long',
-        day: 'numeric'
-      }).format(new Date(value));
-    } catch {
-      return '';
-    }
-  }
-
   function formatUpdated(value) {
     try {
       return new Intl.DateTimeFormat('en-CA', {
@@ -120,10 +107,7 @@
   $: currentPath = normalizedPath($page.url.pathname);
   $: onHome = currentPath === '/';
   $: headerEdition = $homeEdition || shellFeed;
-  $: if (headerEdition?.generated_at) {
-    homeDate = formatHomeDate(headerEdition.generated_at);
-    homeUpdated = formatUpdated(headerEdition.generated_at);
-  }
+  $: homeUpdated = headerEdition?.generated_at ? formatUpdated(headerEdition.generated_at) : '';
   $: onStory = currentPath.startsWith('/story/');
   $: onDirectory = currentPath.startsWith('/sections/') || currentPath.startsWith('/sources/');
   $: onSearch = currentPath.startsWith('/search/');
@@ -276,7 +260,6 @@
 
     {#if onHome}
       <div class="home-meta-row">
-        <p class="home-header-date">{homeDate}</p>
         {#if homeUpdated}<p class="home-header-updated">Updated {homeUpdated}</p>{/if}
       </div>
     {/if}
