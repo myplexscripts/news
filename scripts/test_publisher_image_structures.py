@@ -20,6 +20,37 @@ def test_cbc_srcset_keeps_literal_asset_comma() -> None:
     assert "/default.jpg" in best
 
 
+def test_large_responsive_image_beats_small_social_thumbnail_for_cover() -> None:
+    raw = """
+    <html>
+      <head>
+        <meta property="og:image" content="https://images.example.test/social-480.jpg">
+        <meta property="og:image:width" content="480">
+        <meta property="og:image:height" content="270">
+      </head>
+      <body>
+        <article>
+          <picture>
+            <img
+              src="https://images.example.test/story-640.jpg"
+              srcset="https://images.example.test/story-640.jpg 640w, https://images.example.test/story-1600.jpg 1600w, https://images.example.test/story-2400.jpg 2400w"
+              width="640"
+              height="360"
+              alt="People at an event"
+            >
+          </picture>
+          <p>The article body contains enough reporting to make this the primary story image.</p>
+        </article>
+      </body>
+    </html>
+    """
+    soup = BeautifulSoup(raw, "html.parser")
+    candidates = scoop.collect_image_candidates(soup, "https://example.test/story", {}, "")
+    assert candidates
+    assert candidates[0]["url"].endswith("story-2400.jpg"), candidates
+    assert candidates[0]["width"] == 2400
+
+
 def test_cbc_default_jpg_is_not_treated_as_placeholder() -> None:
     url = "https://i.cbc.ca/ais/abc-123,1788727815050/full/max/0/default.jpg?im=Resize%3D1280"
     assert scoop.valid_article_image(url)
@@ -139,6 +170,7 @@ def test_cbc_audio_does_not_prevent_photo_recovery() -> None:
 def main() -> int:
     tests = [
         test_cbc_srcset_keeps_literal_asset_comma,
+        test_large_responsive_image_beats_small_social_thumbnail_for_cover,
         test_cbc_default_jpg_is_not_treated_as_placeholder,
         test_cbc_story_wrapper_keeps_real_photos_and_drops_player_thumbnail,
         test_globe_prefers_content_gate_over_whole_main,
