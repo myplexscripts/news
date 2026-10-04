@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-04T16:18:05.650213+00:00",
-  "generated_at_london": "2026-10-04T12:18:05.650213-04:00",
-  "news_generated_at": "2026-10-04T16:12:53.827860+00:00",
+  "generated_at": "2026-10-04T16:27:35.121062+00:00",
+  "generated_at_london": "2026-10-04T12:27:35.121062-04:00",
+  "news_generated_at": "2026-10-04T16:23:49.100436+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 652,
+    "archive_story_count": 651,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 94,
@@ -257,7 +257,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -276,7 +276,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -693,20 +693,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 790,
-      "average_quality": 80,
+      "average_words": 803,
+      "average_quality": 82,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "dom:semantic-rich-v1": 2,
-        "reader:semantic-rich-v1": 8
+        "reader:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-04T15:07:55+00:00",
+      "latest_published": "2026-10-04T16:14:02+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-04T16:10:48.962887+00:00",
+      "last_scrape": "2026-10-04T16:21:47.464916+00:00",
       "last_error": ""
     },
     {
@@ -2168,15 +2169,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3c6f691d958db746",
+      "story_id": "75666ad1087b07d8",
       "source": "National Post",
-      "title": "Carney launches 13-member national council to advise on artificial intelligence",
-      "url": "https://nationalpost.com/news/canada/mark-carney-artificial-intelligence-council",
-      "published": "2026-10-03T01:29:08+00:00",
+      "title": "Four Canadians aboard Ontario-based air ambulance missing off U.S. coast",
+      "url": "https://nationalpost.com/news/four-canadians-aboard-ontario-based-air-ambulance-missing-off-u-s-coast",
+      "published": "2026-10-04T16:14:02+00:00",
       "content_status": "full",
-      "word_count": 244,
-      "quality_score": 62,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 383,
+      "quality_score": 80,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -5077,6 +5078,35 @@
       ]
     },
     {
+      "id": "75666ad1087b07d8",
+      "source": "National Post",
+      "title": "Four Canadians aboard Ontario-based air ambulance missing off U.S. coast",
+      "url": "https://nationalpost.com/news/four-canadians-aboard-ontario-based-air-ambulance-missing-off-u-s-coast",
+      "published": "2026-10-04T16:14:02+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 383,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b16de97c85e77d9c",
       "source": "National Post",
       "title": "U.S. mayor makes appeal to Canadian travellers: 'We like you guys, we miss you'",
@@ -5325,35 +5355,6 @@
       "inline_image_count": 2,
       "quality_score": 85,
       "quality_grade": "excellent",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3c6f691d958db746",
-      "source": "National Post",
-      "title": "Carney launches 13-member national council to advise on artificial intelligence",
-      "url": "https://nationalpost.com/news/canada/mark-carney-artificial-intelligence-council",
-      "published": "2026-10-03T01:29:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 244,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 62,
-      "quality_grade": "partial",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
