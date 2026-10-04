@@ -70,7 +70,11 @@ test.beforeEach(async ({ page }, testInfo) => {
     const articleImages = responsive ? [
       {
         type:'image',
-        url:`${base}/images/social.png?article-cover`,
+        url:`${base}/images/social.png?article-original`,
+        optimized_url:`${base}/images/social.png?article-2400`,
+        optimized_url_source:`${base}/images/social.png?article-original`,
+        optimized_url_width:2400,
+        optimized_url_height:1350,
         alt:'High resolution article image',
         width:2400,
         height:1350,
@@ -82,7 +86,11 @@ test.beforeEach(async ({ page }, testInfo) => {
       },
       {
         type:'image',
-        url:`${base}/images/logos/CoL.png?body-image`,
+        url:`${base}/images/logos/CoL.png?body-original`,
+        optimized_url:`${base}/images/logos/CoL.png?body-1200`,
+        optimized_url_source:`${base}/images/logos/CoL.png?body-original`,
+        optimized_url_width:1200,
+        optimized_url_height:675,
         alt:'Inline article image',
         caption:'Inline image caption',
         width:1200,
