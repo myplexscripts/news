@@ -470,9 +470,9 @@
     pointer-events: none;
     background: linear-gradient(
       to top,
-      rgb(0 0 0 / 0.62) 0%,
-      rgb(0 0 0 / 0.48) 34%,
-      rgb(0 0 0 / 0.24) 68%,
+      rgb(0 0 0 / 0.48) 0%,
+      rgb(0 0 0 / 0.34) 36%,
+      rgb(0 0 0 / 0.16) 70%,
       transparent 100%
     );
   }
@@ -706,18 +706,19 @@
     }
 
     .article-cover-copy::before {
-      height: calc(100% + var(--cover-bottom-space) + 56px);
+      height: calc(100% + var(--cover-bottom-space) + clamp(40px, 6dvh, 64px));
       background: linear-gradient(
         to top,
-        rgb(0 0 0 / 0.64) 0%,
-        rgb(0 0 0 / 0.48) 36%,
-        rgb(0 0 0 / 0.22) 72%,
+        rgb(0 0 0 / 0.48) 0%,
+        rgb(0 0 0 / 0.34) 38%,
+        rgb(0 0 0 / 0.15) 74%,
         transparent 100%
       );
     }
 
     .article-cover-content h1 {
-      font-size: clamp(2.6rem, 10.5vw, 3.75rem);
+      width: min(80vw, 8.25em);
+      font-size: clamp(2.2rem, min(10.5vw, 5.6dvh), 3.75rem);
       font-weight: 650;
       line-height: 0.96;
       letter-spacing: -0.045em;
@@ -760,6 +761,23 @@
       margin-bottom: 28px;
       padding-bottom: 26px;
       font-size: 18px;
+    }
+  }
+
+  @media (max-height: 700px) and (max-width: 760px) {
+    :global(body:has(.svelte-article-page) .editorial-story .article-cover-content) {
+      --cover-bottom-space: max(96px, calc(78px + env(safe-area-inset-bottom)));
+      padding-bottom: var(--cover-bottom-space) !important;
+    }
+
+    .article-cover-content h1 {
+      width: min(80vw, 8.25em);
+      font-size: clamp(2.1rem, min(10.2vw, 5.35dvh), 3.35rem);
+    }
+
+    .article-cover-source-row {
+      min-height: 40px;
+      margin-top: 14px;
     }
   }
 
