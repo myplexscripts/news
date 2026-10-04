@@ -146,6 +146,18 @@ html body .eyebrow {
   }
 }
 
+/* Every utility page uses one outer geometry. This lives in the last-loaded
+   stylesheet so older route-specific spacing cannot move individual headers. */
+html body #page-content main.standard-page {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+html body #page-content main.standard-page > .standard-page-shell.shell {
+  margin-top: 0 !important;
+  padding-top: var(--canonical-page-top) !important;
+}
+
 /* Keep the faster app lifecycle from the polish release without its visual redesign. */
 html {
   scroll-behavior: auto;
