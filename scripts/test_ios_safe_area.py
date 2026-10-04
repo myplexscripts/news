@@ -27,11 +27,14 @@ def main() -> int:
     assert "html.standalone-webapp.story-route .site-header .header-inner" in css
 
     # Editorial media begins at the physical top of the viewport, behind iOS
-    # system chrome, while preserving the tuned lower edge on mobile.
+    # system chrome, and fills the complete full-screen cover.
     assert "html.standalone-webapp.story-route .article-cover-media" in css
     assert "top: 0 !important;" in css
-    assert "height: 78svh !important;" in css
-    assert "height: 70svh !important;" in css
+    assert "bottom: 0 !important;" in css
+    assert "width: 100% !important;" in css
+    assert "height: 100% !important;" in css
+    assert "height: 78svh !important;" not in css
+    assert "height: 70svh !important;" not in css
 
     assert "ios-safe-area.css" in (ROOT / "src/styles/app.css").read_text(encoding="utf-8")
     assert "story-status-bar.css" not in app
