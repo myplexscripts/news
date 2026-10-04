@@ -205,18 +205,18 @@ def main() -> None:
 
     require_tokens(global_css, (
         '--font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;',
-        "--text-editorial: clamp(2rem, 5vw, 2.5rem);",
-        "--text-story-title: clamp(1.875rem, 4vw, 2.125rem);",
-        "--text-section-title: 1.75rem;",
-        "--text-card-featured: 1.375rem;",
-        "--text-card: 1.125rem;",
-        "--text-card-compact: 1rem;",
-        "--text-body-lg: 1.125rem;",
-        "--text-body: 1rem;",
-        "--text-ui: 0.9375rem;",
-        "--text-secondary: 0.875rem;",
-        "--text-meta: 0.875rem;",
-        "--text-label: 0.875rem;",
+        "--type-size-editorial: clamp(2rem, 5vw, 2.5rem);",
+        "--type-size-story-title: clamp(1.875rem, 4vw, 2.125rem);",
+        "--type-size-section-title: 1.75rem;",
+        "--type-size-card-featured: 1.375rem;",
+        "--type-size-card: 1.125rem;",
+        "--type-size-card-compact: 1rem;",
+        "--type-size-body-lg: 1.125rem;",
+        "--type-size-body: 1rem;",
+        "--type-size-ui: 0.9375rem;",
+        "--type-size-secondary: 0.875rem;",
+        "--type-size-meta: 0.875rem;",
+        "--type-size-label: 0.875rem;",
     ), "typography scale")
     app_polish = (ROOT / "src/styles/app-polish.css").read_text(encoding="utf-8")
     require("../lib/fonts/InterVariable.woff2" in app_polish, "self-hosted Inter variable roman face is missing")
