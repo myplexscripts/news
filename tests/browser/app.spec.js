@@ -65,8 +65,35 @@ test.beforeEach(async ({ page }, testInfo) => {
   await page.route('**/data/stories/*.json', route => {
     const id = route.request().url().split('/').pop().replace('.json', '');
     const meta = edition.stories.find(s => s.id === id);
-    const tracking = testInfo.title.startsWith('responsive images') ? [{type:'image',url:`${base}/images/tracking.png`,alt:'Tracking image'}] : [];
-    return route.fulfill({ json: { ...meta, content_blocks: [...tracking, ...Array.from({ length: 30 }, (_, i) => ({ type: 'paragraph', text: `Paragraph ${i}. This is reporting about London. It includes enough detail to test reading and returning to the same position without refreshing the page.` }))] } });
+    const responsive = testInfo.title.startsWith('responsive images');
+    const tracking = responsive ? [{type:'image',url:`${base}/images/tracking.png`,alt:'Tracking image',width:1,height:1}] : [];
+    const articleImages = responsive ? [
+      {
+        type:'image',
+        url:`${base}/images/social.png?article-cover`,
+        alt:'High resolution article image',
+        width:2400,
+        height:1350,
+        image_variants:[
+          {url:`${base}/images/social.png?article-960`,width:960,height:540},
+          {url:`${base}/images/social.png?article-1600`,width:1600,height:900},
+          {url:`${base}/images/social.png?article-2400`,width:2400,height:1350}
+        ]
+      },
+      {
+        type:'image',
+        url:`${base}/images/social.png?body-image`,
+        alt:'Inline article image',
+        caption:'Inline image caption',
+        width:1200,
+        height:675,
+        image_variants:[
+          {url:`${base}/images/social.png?body-640`,width:640,height:360},
+          {url:`${base}/images/social.png?body-1200`,width:1200,height:675}
+        ]
+      }
+    ] : [];
+    return route.fulfill({ json: { ...meta, content_blocks: [...tracking, ...articleImages, ...Array.from({ length: 30 }, (_, i) => ({ type: 'paragraph', text: `Paragraph ${i}. This is reporting about London. It includes enough detail to test reading and returning to the same position without refreshing the page.` }))] } });
   });
   await page.goto('./');
   await expect(page.locator('.news-card').first()).toBeVisible();
@@ -453,7 +480,8 @@ test('responsive images use card derivatives and higher quality full viewport ar
 
   const cover = page.locator('.article-cover');
   const hero = page.locator('.article-cover-media img');
-  await expect(hero).toHaveAttribute('srcset', /hero-640.*640w.*hero-1600.*1600w.*hero-2400.*2400w/);
+  await expect(hero).toHaveAttribute('srcset', /article-960.*960w.*article-1600.*1600w.*article-2400.*2400w/);
+  await expect(hero).toHaveAttribute('src', /article-2400/);
   await expect(hero).not.toHaveAttribute('src', /card-/);
   await expect(page.locator('.article-cover-fade')).toHaveCount(0);
   await expect(page.locator('.article-body-hero')).toHaveCount(0);
@@ -495,6 +523,7 @@ test('responsive images use card derivatives and higher quality full viewport ar
       gradient: gradientStyle.backgroundImage,
       gradientHeight: Number.parseFloat(gradientStyle.height),
       copyHeight: copy.getBoundingClientRect().height,
+      fadeStrong: getComputedStyle(node).getPropertyValue('--cover-fade-strong').trim(),
       originalShadow: original ? getComputedStyle(original).textShadow : '',
       hasArrow: Boolean(icon)
     };
@@ -507,6 +536,8 @@ test('responsive images use card derivatives and higher quality full viewport ar
   expect(editorialStyle.titleTracking).toBeLessThan(-0.04);
   expect(editorialStyle.gradient).toContain('linear-gradient');
   expect(editorialStyle.gradientHeight).toBeGreaterThan(editorialStyle.copyHeight);
+  expect(Number.parseFloat(editorialStyle.fadeStrong)).toBeGreaterThanOrEqual(0.34);
+  expect(Number.parseFloat(editorialStyle.fadeStrong)).toBeLessThanOrEqual(0.68);
   expect(editorialStyle.hasArrow).toBe(true);
 
   if (page.viewportSize().width <= 760) {
@@ -551,5 +582,44 @@ test('responsive images use card derivatives and higher quality full viewport ar
   await expect.poll(() => tracking.evaluate(image => image.complete)).toBe(true);
   await expect(tracking).toBeHidden();
   await expect(tracking.locator('..')).toBeHidden();
+
+  const inlineImage = page.getByAltText('Inline article image');
+  await inlineImage.scrollIntoViewIfNeeded();
+  await expect(inlineImage).toBeVisible();
+
+  if (page.viewportSize().width <= 760) {
+    const inlineLayout = await inlineImage.evaluate((image) => {
+      const imageBox = image.getBoundingClientRect();
+      const figure = image.closest('figure');
+      const caption = figure.querySelector('figcaption');
+      const imageStyle = getComputedStyle(image);
+      const captionStyle = getComputedStyle(caption);
+      return {
+        left: imageBox.left,
+        rightGap: window.innerWidth - imageBox.right,
+        radius: imageStyle.borderTopLeftRadius,
+        captionGap: Number.parseFloat(captionStyle.marginTop)
+      };
+    });
+    expect(Math.abs(inlineLayout.left)).toBeLessThanOrEqual(1);
+    expect(Math.abs(inlineLayout.rightGap)).toBeLessThanOrEqual(1);
+    expect(inlineLayout.radius).toBe('0px');
+    expect(inlineLayout.captionGap).toBeGreaterThanOrEqual(12);
+  }
+
+  const meta = page.locator('.article-flow-meta');
+  await meta.scrollIntoViewIfNeeded();
+  const afterCover = await meta.evaluate((node) => {
+    const wrapper = node.closest('.article-after-cover');
+    const readTime = node.querySelector('span');
+    return {
+      paddingTop: Number.parseFloat(getComputedStyle(wrapper).paddingTop),
+      readTimeColour: getComputedStyle(readTime).color,
+      pageInk: getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()
+    };
+  });
+  expect(afterCover.paddingTop).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 28 : 32);
+  expect(afterCover.readTimeColour).not.toBe('');
+
   await noOverflow(page);
 });
