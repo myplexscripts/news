@@ -3,16 +3,143 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
+  src: url('../lib/fonts/InterVariable.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter';
-  font-style: normal;
+  font-style: italic;
   font-weight: 100 900;
   font-display: swap;
-  src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2') format('woff2');
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+  src: url('../lib/fonts/InterVariable-Italic.woff2') format('woff2');
+}
+
+
+/* Shared typography roles. These deliberately override older page-specific
+   values so the app has one consistent Inter variable-font hierarchy. */
+html body .editorial-carousel-card.news-card.card-featured h3 {
+  font-size: var(--text-editorial) !important;
+  font-weight: var(--weight-bold) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.035em !important;
+}
+
+html body .svelte-article-page .article-cover-content h1 {
+  font-size: var(--text-story-title) !important;
+  font-weight: var(--weight-bold) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.03em !important;
+}
+
+html body .page-heading h1,
+html body .settings-heading h1,
+html body .directory-heading h1,
+html body .story-date-heading,
+html body .app-section-heading h2 {
+  font-size: var(--text-section-title) !important;
+  font-weight: var(--weight-bold) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.025em !important;
+}
+
+html body .news-card.card-featured:not(.editorial-carousel-card) h3 {
+  font-size: var(--text-card-featured) !important;
+  font-weight: var(--weight-semibold) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+}
+
+html body .news-card.card-standard h3,
+html body .related-card h3,
+html body .search-result-card h3,
+html body .archive-search-hit h3 {
+  font-size: var(--text-card) !important;
+  font-weight: var(--weight-semibold) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.015em !important;
+}
+
+html body .article-copy,
+html body .article-copy p,
+html body .article-copy li {
+  font-size: var(--text-body-lg) !important;
+  font-weight: var(--weight-regular);
+  line-height: 1.55 !important;
+  letter-spacing: -0.006em;
+}
+
+html body .article-copy h2 {
+  font-size: var(--text-section-title) !important;
+  font-weight: var(--weight-bold) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.025em !important;
+}
+
+html body .article-copy h3 {
+  font-size: var(--text-card-featured) !important;
+  font-weight: var(--weight-semibold) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+}
+
+html body .feed-scope-button,
+html body .settings-segmented button,
+html body .settings-action-button,
+html body .source-original-link,
+html body .article-cover-original {
+  font-size: var(--text-ui) !important;
+  font-weight: var(--weight-medium) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.006em !important;
+}
+
+html body .home-page .category-pill {
+  font-size: var(--text-secondary) !important;
+  font-weight: var(--weight-semibold) !important;
+}
+
+html body .card-source-name,
+html body .news-card-source,
+html body .news-card-source strong,
+html body .news-card-footer,
+html body .news-card-footer time,
+html body .news-card-footer span,
+html body .article-flow-meta time,
+html body .article-flow-meta span,
+html body .inline-article-image figcaption,
+html body .article-media figcaption {
+  font-size: var(--text-meta) !important;
+  font-weight: var(--weight-medium) !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.005em !important;
+}
+
+html body .settings-row-copy span,
+html body .settings-footnote,
+html body .page-heading-description,
+html body .secondary-text {
+  font-size: var(--text-secondary) !important;
+  font-weight: var(--weight-secondary) !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+}
+
+html body .masthead-label,
+html body .section-eyebrow,
+html body .eyebrow {
+  font-size: var(--text-label) !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0.015em !important;
+}
+
+@media (max-width: 760px) {
+  html body .news-card.card-standard h3,
+  html body .latest-card-grid .news-card.card-standard h3 {
+    font-size: var(--text-card-compact) !important;
+    line-height: 1.28 !important;
+    letter-spacing: -0.01em !important;
+  }
 }
 
 /* Keep the faster app lifecycle from the polish release without its visual redesign. */

@@ -20,6 +20,7 @@ CARD = ROOT / "src" / "lib" / "components" / "NewsCard.svelte"
 SECTIONS = ROOT / "src" / "routes" / "sections" / "+page.svelte"
 SEARCH = ROOT / "src" / "routes" / "search" / "+page.svelte"
 SETTINGS = ROOT / "src" / "routes" / "settings" / "+page.svelte"
+FONT_DIR = ROOT / "src" / "lib" / "fonts"
 GLOBAL = ROOT / "src" / "styles" / "global.css"
 POLISH = ROOT / "src" / "styles" / "polish.css"
 
@@ -197,6 +198,28 @@ def main() -> None:
         "--pink: #EC3F7A;", "--brown: #A67969;",
     )
     require_tokens(global_css, palette_tokens, "accent palette")
+
+    require_tokens(global_css, (
+        '--font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;',
+        "--text-editorial: clamp(2rem, 5vw, 2.5rem);",
+        "--text-story-title: clamp(1.875rem, 4vw, 2.125rem);",
+        "--text-section-title: 1.75rem;",
+        "--text-card-featured: 1.375rem;",
+        "--text-card: 1.125rem;",
+        "--text-card-compact: 1rem;",
+        "--text-body-lg: 1.125rem;",
+        "--text-body: 1rem;",
+        "--text-ui: 0.9375rem;",
+        "--text-secondary: 0.875rem;",
+        "--text-meta: 0.875rem;",
+        "--text-label: 0.875rem;",
+    ), "typography scale")
+    app_polish = (ROOT / "src/styles/app-polish.css").read_text(encoding="utf-8")
+    require("../lib/fonts/InterVariable.woff2" in app_polish, "self-hosted Inter variable roman face is missing")
+    require("../lib/fonts/InterVariable-Italic.woff2" in app_polish, "self-hosted Inter variable italic face is missing")
+    require((FONT_DIR / "InterVariable.woff2").stat().st_size > 300_000, "Inter variable roman font file is missing or truncated")
+    require((FONT_DIR / "InterVariable-Italic.woff2").stat().st_size > 300_000, "Inter variable italic font file is missing or truncated")
+    require("SIL OPEN FONT LICENSE Version 1.1" in (FONT_DIR / "OFL.txt").read_text(encoding="utf-8"), "Inter OFL licence is missing")
 
     light_segment_fill = (242, 242, 247)
     light_muted = (108, 108, 112)

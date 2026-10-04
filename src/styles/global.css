@@ -33,6 +33,27 @@
   --glass: rgb(255 255 255 / 0.78);
   --category: var(--blue);
 
+  /* Forest City News typography scale. Keep normal UI text at 0.875rem or larger. */
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --text-editorial: clamp(2rem, 5vw, 2.5rem);
+  --text-story-title: clamp(1.875rem, 4vw, 2.125rem);
+  --text-section-title: 1.75rem;
+  --text-card-featured: 1.375rem;
+  --text-card: 1.125rem;
+  --text-card-compact: 1rem;
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-ui: 0.9375rem;
+  --text-secondary: 0.875rem;
+  --text-meta: 0.875rem;
+  --text-label: 0.875rem;
+
+  --weight-regular: 400;
+  --weight-secondary: 450;
+  --weight-medium: 550;
+  --weight-semibold: 650;
+  --weight-bold: 700;
+
   --content: 1320px;
   --gutter: 28px;
   --radius-xl: 28px;
@@ -99,13 +120,21 @@ html[data-theme='dark'] {
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--bg); }
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

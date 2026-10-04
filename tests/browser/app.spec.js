@@ -82,6 +82,33 @@ async function openNav(page, name) {
 async function noOverflow(page) {
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
 }
+test('self-hosted variable Inter and the shared type scale are active', async ({ page }) => {
+  const fontState = await page.evaluate(async () => {
+    await document.fonts.load('650 1rem Inter');
+    await document.fonts.load('italic 400 1rem Inter');
+    await document.fonts.ready;
+    const resources = performance.getEntriesByType('resource').map((entry) => entry.name);
+    return {
+      family: getComputedStyle(document.body).fontFamily,
+      roman: document.fonts.check('650 1rem Inter'),
+      italic: document.fonts.check('italic 400 1rem Inter'),
+      romanAsset: resources.some((url) => /InterVariable[^/]*\.woff2/i.test(url) && !/Italic/i.test(url)),
+      italicAsset: resources.some((url) => /InterVariable[^/]*Italic[^/]*\.woff2/i.test(url))
+    };
+  });
+
+  expect(fontState.family).toContain('Inter');
+  expect(fontState.roman).toBe(true);
+  expect(fontState.italic).toBe(true);
+  expect(fontState.romanAsset).toBe(true);
+  expect(fontState.italicAsset).toBe(true);
+
+  const metaSize = await page.locator('.news-card-footer').first().evaluate(
+    (node) => Number.parseFloat(getComputedStyle(node).fontSize)
+  );
+  expect(metaSize).toBeGreaterThanOrEqual(14);
+});
+
 test('all screens fit the viewport in both themes', async ({ page }) => {
   await noOverflow(page);
   for (const name of ['Sections', 'Search', 'Settings']) {
