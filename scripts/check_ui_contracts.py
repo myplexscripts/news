@@ -225,6 +225,14 @@ def main() -> None:
     require((FONT_DIR / "InterVariable-Italic.woff2").stat().st_size > 300_000, "Inter variable italic font file is missing or truncated")
     require("SIL OPEN FONT LICENSE Version 1.1" in (FONT_DIR / "OFL.txt").read_text(encoding="utf-8"), "Inter OFL licence is missing")
 
+    page_header = (ROOT / "src/lib/components/PageHeader.svelte").read_text(encoding="utf-8")
+    require('class="page-heading standard-page-heading"' in page_header, "shared PageHeader component lost canonical classes")
+    for route in ("latest", "search", "sections", "settings"):
+        page_source = (ROOT / "src/routes" / route / "+page.svelte").read_text(encoding="utf-8")
+        require("PageHeader" in page_source, f"{route} page is not using the shared PageHeader")
+        require("masthead-label" not in page_source, f"{route} page restored a subtitle label")
+        require("page-heading-description" not in page_source, f"{route} page restored a page subtitle")
+
     light_segment_fill = (242, 242, 247)
     light_muted = (108, 108, 112)
     dark_segment_fill = (28, 28, 30)
