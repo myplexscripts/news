@@ -42,8 +42,13 @@ def cached_original(url):
     if local:
         return local
     digest = hashlib.sha256(str(url).encode('utf-8')).hexdigest()[:24]
-    candidate = PUBLIC / 'cache/editorial' / f'v1-{digest}.webp'
-    return candidate if candidate.is_file() else None
+    # Prefer the current higher-resolution cache, but keep v1 as a safe fallback
+    # while the deferred image pass refreshes this week's archive.
+    for version in ('v2', 'v1'):
+        candidate = PUBLIC / 'cache/editorial' / f'{version}-{digest}.webp'
+        if candidate.is_file():
+            return candidate
+    return None
 
 
 def attach_cached_images(stories):
@@ -57,7 +62,7 @@ def attach_cached_images(stories):
                     width, height = image.size
                 story.update(editorial_image=original.relative_to(PUBLIC).as_posix(), editorial_image_source=hero,
                              editorial_image_width=width, editorial_image_height=height)
-                story['editorial_image_variants'] = variants_for(original, [640, 960, 1600], 84)
+                story['editorial_image_variants'] = variants_for(original, [640, 960, 1600, 2400], 86)
                 story['card_image_variants'] = variants_for(original, [320, 640, 1200], 80)
                 story['card_image_source'] = hero
                 story['card_image_small'] = story['card_image_variants'][0]['url']
@@ -91,7 +96,7 @@ def attach_cached_images(stories):
             try:
                 block['optimized_url'] = original.relative_to(PUBLIC).as_posix()
                 block['optimized_url_source'] = block['url']
-                block['image_variants'] = variants_for(original, [640, 960, 1600], 84)
+                block['image_variants'] = variants_for(original, [640, 960, 1600, 2400], 86)
                 with Image.open(original) as image:
                     block['width'], block['height'] = image.size
             except (OSError, ValueError): pass
