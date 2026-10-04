@@ -154,14 +154,29 @@ html body .eyebrow {
 
 /* Every utility page uses one outer geometry. This lives in the last-loaded
    stylesheet so older route-specific spacing cannot move individual headers. */
-html body #page-content main.standard-page {
+html body .svelte-route-stage main.standard-page {
   margin-top: 0 !important;
   padding-top: 0 !important;
 }
 
-html body #page-content main.standard-page > .standard-page-shell.shell {
+html body .svelte-route-stage main.standard-page > .standard-page-shell.shell {
   margin-top: 0 !important;
   padding-top: var(--canonical-page-top) !important;
+}
+
+/* Full-screen editorial cover geometry wins over legacy story CSS. */
+html body:has(.svelte-article-page) .article-cover-media {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html body:has(.svelte-article-page) .article-cover-media > img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: cover !important;
 }
 
 /* Keep the faster app lifecycle from the polish release without its visual redesign. */
