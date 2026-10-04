@@ -96,7 +96,7 @@
   <meta name="description" content="Search Forest City News stories." />
 </svelte:head>
 
-<main class="directory-page search-page" id="main-content">
+<main class="directory-page search-page standard-page" id="main-content">
   <section class="standard-page-shell directory-shell shell">
     <PageHeader title="Search" />
 
