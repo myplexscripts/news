@@ -1,5 +1,6 @@
 <script>
   import AppIcon from '$lib/components/AppIcon.svelte';
+  import PageHeader from '$lib/components/PageHeader.svelte';
   import {
     clearEverything,
     clearRead,
@@ -37,14 +38,8 @@
 </svelte:head>
 
 <main class="settings-page" id="main-content">
-  <section class="settings-shell shell">
-    <header class="page-heading settings-heading directory-heading">
-      <div class="page-heading-copy">
-        <p class="masthead-label">Preferences</p>
-        <h1>Settings</h1>
-        <p class="page-heading-description">Choose how Forest City News looks and how stories behave on this device.</p>
-      </div>
-    </header>
+  <section class="standard-page-shell settings-shell shell">
+    <PageHeader title="Settings" />
 
     <div class="settings-groups">
       <section class="settings-group" aria-labelledby="appearance-heading">
