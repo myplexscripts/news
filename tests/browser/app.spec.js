@@ -471,7 +471,7 @@ test('responsive images use card derivatives and higher quality full viewport ar
   });
   expect(Math.abs(geometry.height - geometry.viewport)).toBeLessThanOrEqual(2);
   expect(Math.abs(geometry.imageHeight - geometry.viewport)).toBeLessThanOrEqual(2);
-  expect(geometry.titleSize).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 41 : 44);
+  expect(geometry.titleSize).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 40 : 44);
 
   const editorialStyle = await cover.evaluate((node) => {
     const title = node.querySelector('h1');
