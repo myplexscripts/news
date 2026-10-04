@@ -24,15 +24,15 @@ from image_assets import attach_cached_images
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
 CACHE_DIR = ROOT / "public" / "cache" / "editorial"
-MAX_DIMENSION = max(1200, int(os.getenv("EDITORIAL_IMAGE_MAX_DIMENSION", "1600")))
-WEBP_QUALITY = max(78, min(92, int(os.getenv("EDITORIAL_IMAGE_WEBP_QUALITY", "84"))))
+MAX_DIMENSION = max(1600, int(os.getenv("EDITORIAL_IMAGE_MAX_DIMENSION", "2400")))
+WEBP_QUALITY = max(82, min(92, int(os.getenv("EDITORIAL_IMAGE_WEBP_QUALITY", "86"))))
 MAX_STORIES = max(8, int(os.getenv("EDITORIAL_IMAGE_STORIES", "36")))
 MAX_IMAGES_PER_STORY = max(2, int(os.getenv("EDITORIAL_IMAGES_PER_STORY", "20")))
 MAX_UNIQUE_IMAGES = max(24, int(os.getenv("EDITORIAL_IMAGE_LIMIT", "160")))
 MAX_DOWNLOAD_BYTES = max(2_000_000, int(os.getenv("EDITORIAL_IMAGE_MAX_DOWNLOAD_BYTES", "18000000")))
 TIME_BUDGET = max(30, int(os.getenv("EDITORIAL_IMAGE_TIME_BUDGET", "240")))
 WORKERS = max(2, min(8, int(os.getenv("EDITORIAL_IMAGE_WORKERS", "6"))))
-CACHE_VERSION = "v1"
+CACHE_VERSION = "v2"
 USER_AGENT = "ForestCityNews/2.0 (+https://myplexscripts.github.io/news/)"
 
 
