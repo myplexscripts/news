@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-04T14:08:07.824990+00:00",
-  "generated_at_london": "2026-10-04T10:08:07.824990-04:00",
-  "news_generated_at": "2026-10-04T13:45:47.168575+00:00",
+  "generated_at": "2026-10-04T14:46:28.588564+00:00",
+  "generated_at_london": "2026-10-04T10:46:28.588564-04:00",
+  "news_generated_at": "2026-10-04T14:40:52.901390+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 648,
+    "archive_story_count": 649,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 96,
@@ -15,12 +15,39 @@
     "critical_issue_count": 1,
     "warning_issue_count": 38,
     "info_issue_count": 84,
-    "healthy_source_count": 11,
+    "healthy_source_count": 10,
     "review_source_count": 6,
-    "error_source_count": 1,
+    "error_source_count": 2,
     "waiting_source_count": 10
   },
   "source_reports": [
+    {
+      "source": "CBC News London",
+      "status": "error",
+      "collector_status": "error",
+      "profile": "cbc",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 563,
+      "average_quality": 83,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 8,
+        "reader:cbc:lite-repair": 2
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-10-04T09:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 0,
+      "last_scrape": "",
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+    },
     {
       "source": "Fanshawe College Newsroom",
       "status": "error",
@@ -85,8 +112,8 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 798,
-      "average_quality": 87,
+      "average_words": 764,
+      "average_quality": 86,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -94,10 +121,10 @@
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 13,
-      "latest_published": "2026-10-04T09:00:00+00:00",
-      "found_this_run": 9,
+      "latest_published": "2026-10-04T14:14:17.960000+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-04T13:11:24.419260+00:00",
+      "last_scrape": "2026-10-04T14:39:16.223595+00:00",
       "last_error": ""
     },
     {
@@ -473,33 +500,6 @@
       "last_error": ""
     },
     {
-      "source": "CBC News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "cbc",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 563,
-      "average_quality": 83,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 8,
-        "reader:cbc:lite-repair": 2
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-10-04T09:00:00+00:00",
-      "found_this_run": 12,
-      "tracked": 27,
-      "last_scrape": "2026-10-04T12:46:25.392409+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -706,7 +706,7 @@
       "latest_published": "2026-10-04T12:00:26+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-04T13:43:38.841036+00:00",
+      "last_scrape": "2026-10-04T14:39:20.805713+00:00",
       "last_error": ""
     },
     {
@@ -1370,21 +1370,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4f472178aac541f8",
-      "source": "CTV News Canada",
-      "title": "Bridal shop owner who hung boy on hook gets absolute discharge",
-      "url": "https://www.ctvnews.ca/canada/article/bridal-shop-owner-gets-absolute-discharge-after-being-found-guilty-of-assaulting-boy",
-      "published": "2026-10-02T20:35:40.780000+00:00",
-      "content_status": "full",
-      "word_count": 687,
-      "quality_score": 86,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1471,6 +1456,21 @@
       "content_status": "full",
       "word_count": 697,
       "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "11a3cbde60ea880c",
+      "source": "CTV News Canada",
+      "title": "Diesel prices could fall below $2 a litre in coming months: expert",
+      "url": "https://www.ctvnews.ca/canada/article/diesel-prices-could-fall-below-2-a-litre-in-coming-months-expert",
+      "published": "2026-10-04T14:14:17.960000+00:00",
+      "content_status": "full",
+      "word_count": 348,
+      "quality_score": 76,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -4404,6 +4404,35 @@
       ]
     },
     {
+      "id": "11a3cbde60ea880c",
+      "source": "CTV News Canada",
+      "title": "Diesel prices could fall below $2 a litre in coming months: expert",
+      "url": "https://www.ctvnews.ca/canada/article/diesel-prices-could-fall-below-2-a-litre-in-coming-months-expert",
+      "published": "2026-10-04T14:14:17.960000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 348,
+      "paragraph_count": 16,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f71840b5f5149a20",
       "source": "CTV News Canada",
       "title": "Military Veterans twice as likely to develop ALS",
@@ -4680,35 +4709,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4f472178aac541f8",
-      "source": "CTV News Canada",
-      "title": "Bridal shop owner who hung boy on hook gets absolute discharge",
-      "url": "https://www.ctvnews.ca/canada/article/bridal-shop-owner-gets-absolute-discharge-after-being-found-guilty-of-assaulting-boy",
-      "published": "2026-10-02T20:35:40.780000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 687,
-      "paragraph_count": 34,
-      "inline_image_count": 5,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
