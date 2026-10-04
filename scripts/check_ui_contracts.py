@@ -21,6 +21,7 @@ SECTIONS = ROOT / "src" / "routes" / "sections" / "+page.svelte"
 SEARCH = ROOT / "src" / "routes" / "search" / "+page.svelte"
 SETTINGS = ROOT / "src" / "routes" / "settings" / "+page.svelte"
 FONT_DIR = ROOT / "src" / "lib" / "fonts"
+SMART = ROOT / "public" / "smart-features.css"
 GLOBAL = ROOT / "src" / "styles" / "global.css"
 POLISH = ROOT / "src" / "styles" / "polish.css"
 
@@ -95,6 +96,7 @@ def main() -> None:
     settings = SETTINGS.read_text(encoding="utf-8")
     global_css = GLOBAL.read_text(encoding="utf-8")
     polish = POLISH.read_text(encoding="utf-8")
+    smart = SMART.read_text(encoding="utf-8")
 
     required_css = (
         "--ui-control-height: 44px;",
@@ -198,6 +200,8 @@ def main() -> None:
         "--pink: #EC3F7A;", "--brown: #A67969;",
     )
     require_tokens(global_css, palette_tokens, "accent palette")
+    require_tokens(smart, palette_tokens, "smart-features accent palette")
+    require("#FF383C" not in smart and "#34C759" not in smart and "#0088FF" not in smart, "legacy accent palette returned in smart-features")
 
     require_tokens(global_css, (
         '--font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;',
