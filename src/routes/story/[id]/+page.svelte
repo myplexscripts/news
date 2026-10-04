@@ -77,13 +77,61 @@
     }
   }
 
-  function coverSourceFor(article) {
-    if (!article) return '';
-    if (article.image) return article.image;
+  function variantArea(variants = []) {
+    return (Array.isArray(variants) ? variants : []).reduce((best, variant) => {
+      const width = Number(variant?.width) || 0;
+      const height = Number(variant?.height) || Math.round(width * 0.5625);
+      return Math.max(best, width * height);
+    }, 0);
+  }
+
+  function imageQuality(candidate = {}) {
+    const width = Number(candidate.width) || 0;
+    const height = Number(candidate.height) || (width ? Math.round(width * 0.5625) : 0);
+    return Math.max(width * height, variantArea(candidate.image_variants));
+  }
+
+  function bestArticleImage(article) {
+    if (!Array.isArray(article?.content_blocks)) return null;
+    return article.content_blocks
+      .filter((block) => block?.type === 'image' && block?.url)
+      .filter((block) => {
+        const width = Number(block.width) || 0;
+        const height = Number(block.height) || 0;
+        return !(width && height && width < 320 && height < 320);
+      })
+      .sort((left, right) => imageQuality(right) - imageQuality(left))[0] || null;
+  }
+
+  function coverCandidateFor(article) {
+    if (!article) return { url: '', image_variants: [] };
+
+    const articleImage = bestArticleImage(article);
+    if (articleImage) {
+      return {
+        url: articleImage.url,
+        image_variants: articleImage.image_variants || [],
+        width: articleImage.width,
+        height: articleImage.height
+      };
+    }
+
     const firstInline = Array.isArray(article.content_blocks)
       ? article.content_blocks.find((block) => block?.type === 'image' && block?.url)
       : null;
-    return firstInline?.url || article.card_image || '';
+    return {
+      url: article.image || firstInline?.url || article.card_image || '',
+      image_variants: article.editorial_image_variants || firstInline?.image_variants || []
+    };
+  }
+
+  function largestVariantUrl(variants = []) {
+    return [...(Array.isArray(variants) ? variants : [])]
+      .sort((a, b) => (Number(b?.width) || 0) - (Number(a?.width) || 0))[0]?.url || '';
+  }
+
+  function coverSourceFor(article) {
+    return coverCandidateFor(article).url;
   }
 
   function buildBlocks(article, coverSource = '') {
@@ -144,9 +192,10 @@
     return { destroy: () => observer.disconnect() };
   }
 
-  $: coverSource = coverSourceFor(story);
+  $: coverCandidate = coverCandidateFor(story);
+  $: coverSource = coverCandidate.url;
   $: blocks = buildBlocks(story, coverSource);
-  $: heroImage = resolveAsset(coverSource);
+  $: heroImage = resolveAsset(largestVariantUrl(coverCandidate.image_variants) || coverSource);
   $: firstTextBlock = blocks.find((block) => ['paragraph', 'quote'].includes(block.type) && block.text);
   $: showDeck = Boolean(
     story?.summary
@@ -173,7 +222,84 @@
     { scope: 'local', title: 'More from London', stories: relatedPool.filter((item) => item.scope === 'local').slice(0, 4) },
     { scope: 'canada', title: 'More from Canada', stories: relatedPool.filter((item) => item.scope === 'canada').slice(0, 4) }
   ].filter((group) => group.stories.length);
-  $: heroSrcset = imageSrcset(story?.editorial_image_variants);
+  $: heroSrcset = imageSrcset(coverCandidate?.image_variants || story?.editorial_image_variants);
+
+  function handleCoverImageLoad(event) {
+    checkArticleImage(event);
+    if (!browser) return;
+
+    const image = event.currentTarget;
+    const cover = image?.closest?.('.article-cover');
+    if (!image || !cover) return;
+
+    const defaults = { strong: 0.40, mid: 0.28, soft: 0.12 };
+    const apply = ({ strong, mid, soft }) => {
+      cover.style.setProperty('--cover-fade-strong', strong.toFixed(3));
+      cover.style.setProperty('--cover-fade-mid', mid.toFixed(3));
+      cover.style.setProperty('--cover-fade-soft', soft.toFixed(3));
+    };
+
+    apply(defaults);
+
+    try {
+      const naturalWidth = image.naturalWidth;
+      const naturalHeight = image.naturalHeight;
+      const box = image.getBoundingClientRect();
+      if (!naturalWidth || !naturalHeight || !box.width || !box.height) return;
+
+      const scale = Math.max(box.width / naturalWidth, box.height / naturalHeight);
+      const cropWidth = box.width / scale;
+      const cropHeight = box.height / scale;
+      const focusX = Math.min(1, Math.max(0, (Number(story?.image_focus_x) || 50) / 100));
+      const focusY = Math.min(1, Math.max(0, (Number(story?.image_focus_y) || 50) / 100));
+      const cropX = (naturalWidth - cropWidth) * focusX;
+      const cropY = (naturalHeight - cropHeight) * focusY;
+
+      const sampleY = cropY + cropHeight * 0.38;
+      const sampleHeight = cropHeight * 0.62;
+      const canvas = document.createElement('canvas');
+      canvas.width = 24;
+      canvas.height = 24;
+      const context = canvas.getContext('2d', { willReadFrequently: true });
+      if (!context) return;
+
+      context.drawImage(
+        image,
+        cropX,
+        sampleY,
+        cropWidth,
+        sampleHeight,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      let luminanceTotal = 0;
+      let brightPixels = 0;
+      const count = pixels.length / 4;
+
+      for (let index = 0; index < pixels.length; index += 4) {
+        const red = pixels[index] / 255;
+        const green = pixels[index + 1] / 255;
+        const blue = pixels[index + 2] / 255;
+        const luminance = (0.2126 * red) + (0.7152 * green) + (0.0722 * blue);
+        luminanceTotal += luminance;
+        if (luminance > 0.68) brightPixels += 1;
+      }
+
+      const average = luminanceTotal / count;
+      const brightShare = brightPixels / count;
+      apply({
+        strong: Math.min(0.68, Math.max(0.34, 0.30 + (average * 0.42) + (brightShare * 0.10))),
+        mid: Math.min(0.54, Math.max(0.22, 0.18 + (average * 0.34) + (brightShare * 0.08))),
+        soft: Math.min(0.30, Math.max(0.08, 0.06 + (average * 0.18) + (brightShare * 0.04)))
+      });
+    } catch {
+      apply(defaults);
+    }
+  }
 </script>
 
 <svelte:head>
@@ -203,7 +329,7 @@
             aria-hidden="true"
             style={`--cover-focus-x: ${story.image_focus_x || 50}%; --cover-focus-y: ${story.image_focus_y || 50}%;`}
           >
-            <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={story.original_image} on:error={originalImageFallback} on:load={checkArticleImage} alt="" referrerpolicy="no-referrer" />
+            <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={story.original_image} on:error={originalImageFallback} on:load={handleCoverImageLoad} alt="" referrerpolicy="no-referrer" />
           </div>
         {/if}
 
@@ -411,6 +537,9 @@
   }
 
   .article-cover {
+    --cover-fade-strong: 0.40;
+    --cover-fade-mid: 0.28;
+    --cover-fade-soft: 0.12;
     position: relative;
     min-height: 100svh;
     height: 100dvh;
@@ -470,9 +599,9 @@
     pointer-events: none;
     background: linear-gradient(
       to top,
-      rgb(0 0 0 / 0.48) 0%,
-      rgb(0 0 0 / 0.34) 36%,
-      rgb(0 0 0 / 0.16) 70%,
+      rgb(0 0 0 / var(--cover-fade-strong)) 0%,
+      rgb(0 0 0 / var(--cover-fade-mid)) 36%,
+      rgb(0 0 0 / var(--cover-fade-soft)) 70%,
       transparent 100%
     );
   }
@@ -563,11 +692,11 @@
   }
 
   .article-after-cover {
-    padding-top: 0;
+    padding-top: 32px;
   }
 
   :global(body:has(.svelte-article-page) .article-after-cover) {
-    padding-top: 0 !important;
+    padding-top: 32px !important;
   }
 
   .article-content-layout {
@@ -588,6 +717,11 @@
   .article-flow-meta time,
   .article-flow-meta span {
     font-size: 14px !important;
+  }
+
+  .article-flow-meta span {
+    color: var(--ink);
+    font-weight: 550;
   }
 
   .article-flow-meta span::before {
@@ -709,9 +843,9 @@
       height: calc(100% + var(--cover-bottom-space) + 52px);
       background: linear-gradient(
         to top,
-        rgb(0 0 0 / 0.40) 0%,
-        rgb(0 0 0 / 0.28) 40%,
-        rgb(0 0 0 / 0.12) 76%,
+        rgb(0 0 0 / var(--cover-fade-strong)) 0%,
+        rgb(0 0 0 / var(--cover-fade-mid)) 40%,
+        rgb(0 0 0 / var(--cover-fade-soft)) 76%,
         transparent 100%
       );
     }
@@ -739,7 +873,7 @@
 
     .article-after-cover,
     :global(body:has(.svelte-article-page) .article-after-cover) {
-      padding-top: 0 !important;
+      padding-top: 28px !important;
     }
 
     .article-content-layout {
@@ -761,6 +895,22 @@
       margin-bottom: 28px;
       padding-bottom: 26px;
       font-size: 18px;
+    }
+
+    .inline-article-image {
+      width: 100vw;
+      max-width: none;
+      margin: 34px calc(50% - 50vw);
+    }
+
+    .inline-article-image img {
+      width: 100%;
+      border-radius: 0 !important;
+    }
+
+    .inline-article-image figcaption {
+      margin-top: 12px;
+      padding-inline: var(--page-gutter-mobile);
     }
   }
 
