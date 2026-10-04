@@ -196,6 +196,8 @@ def is_unusable_google_story(story: dict[str, Any]) -> bool:
         return True
     if via_google and "news.google.com" in host:
         return True
+    if source_name.startswith("CBC News") and "news.google.com" in host:
+        return True
     if via_google and source_name in DIRECT_SOURCE_NAMES:
         return True
     return False
