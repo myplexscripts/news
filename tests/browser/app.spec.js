@@ -462,15 +462,22 @@ test('responsive images use card derivatives and higher quality full viewport ar
     const box = node.getBoundingClientRect();
     const image = node.querySelector('.article-cover-media img');
     const title = node.querySelector('h1');
+    const imageBox = image.getBoundingClientRect();
     return {
+      top: box.top,
+      bottom: box.bottom,
       height: box.height,
       viewport: window.innerHeight,
-      imageHeight: image.getBoundingClientRect().height,
+      imageTop: imageBox.top,
+      imageBottom: imageBox.bottom,
+      imageHeight: imageBox.height,
       titleSize: Number.parseFloat(getComputedStyle(title).fontSize)
     };
   });
   expect(Math.abs(geometry.height - geometry.viewport)).toBeLessThanOrEqual(2);
   expect(Math.abs(geometry.imageHeight - geometry.viewport)).toBeLessThanOrEqual(2);
+  expect(Math.abs(geometry.imageTop - geometry.top)).toBeLessThanOrEqual(1);
+  expect(Math.abs(geometry.imageBottom - geometry.bottom)).toBeLessThanOrEqual(1);
   expect(geometry.titleSize).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 40 : 44);
 
   const editorialStyle = await cover.evaluate((node) => {
