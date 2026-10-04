@@ -207,6 +207,46 @@ def test_cbc_curl_rss_ingestion() -> None:
     mocked.assert_called_once_with(run_scoop.CBC_FEEDS[0], timeout=10)
 
 
+def test_cbc_google_discovery_never_publishes_google_url() -> None:
+    rss = b"""<?xml version='1.0' encoding='utf-8'?>
+    <rss version='2.0'><channel>
+      <item>
+        <title>London hospital announces new program - CBC News</title>
+        <link>https://news.google.com/rss/articles/example</link>
+        <description>London hospital officials announced a new program Friday.</description>
+        <pubDate>Fri, 02 Oct 2026 15:00:00 GMT</pubDate>
+        <source url='https://www.cbc.ca'>CBC News</source>
+      </item>
+    </channel></rss>"""
+    response = requests.Response()
+    response.status_code = 200
+    response._content = rss
+    response.url = run_scoop.CBC_GOOGLE_NEWS_FEED
+    cbc_url = "https://www.cbc.ca/news/canada/london/london-hospital-program-9.9999998"
+    source = run_scoop.fetch_news.Source(
+        name="CBC News London",
+        url=run_scoop.CBC_FEEDS[0],
+        homepage="https://www.cbc.ca/news/canada/london",
+        accent="#ff383c",
+        max_items=25,
+    )
+
+    with patch("run_scoop.requests.get", return_value=response), patch("run_scoop._resolve_google_cbc_url", return_value=cbc_url):
+        items = run_scoop._cbc_google_news_items(source, {})
+
+    assert len(items) == 1
+    story = items[0]
+    assert story["url"] == cbc_url
+    assert "news.google.com" not in story["url"]
+    assert story["id"] == run_scoop.fetch_news.make_id(cbc_url)
+    assert story["ingestion_path"] == "cbc-google-discovery"
+    assert run_scoop.fetch_news.is_unusable_google_story({
+        "source": "CBC News London",
+        "url": "https://news.google.com/rss/articles/example",
+        "title": story["title"],
+    })
+
+
 def main() -> None:
     test_locality_and_source_gate()
     print("PASS test_locality_and_source_gate")
@@ -220,6 +260,8 @@ def main() -> None:
     print("PASS test_cbc_curl_fallback")
     test_cbc_curl_rss_ingestion()
     print("PASS test_cbc_curl_rss_ingestion")
+    test_cbc_google_discovery_never_publishes_google_url()
+    print("PASS test_cbc_google_discovery_never_publishes_google_url")
 
 
 if __name__ == "__main__":
