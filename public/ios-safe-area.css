@@ -19,20 +19,14 @@ html.standalone-webapp.story-route .site-header .header-inner {
   padding-top: 0 !important;
 }
 
-/* The editorial image itself starts at the physical top of the viewport,
-   including behind the iOS status bar. Its lower edge remains unchanged. */
+/* The editorial image starts at the physical top and fills the complete cover,
+   including behind the iOS status bar. */
 html.standalone-webapp.story-route .article-cover-media {
+  inset: 0 !important;
   top: 0 !important;
-  bottom: auto !important;
-  height: 78svh !important;
-}
-
-html.standalone-webapp.story-route .article-cover-fade-top {
-  top: 0 !important;
-}
-
-@media (max-width: 760px) {
-  html.standalone-webapp.story-route .article-cover-media {
-    height: 70svh !important;
-  }
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
 }
