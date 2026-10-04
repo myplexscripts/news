@@ -485,7 +485,7 @@
     width: min(100%, 760px);
     margin: 0;
     color: #fff;
-    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-size: 5rem;
     font-weight: 650;
     line-height: 0.96;
     letter-spacing: -0.045em;
@@ -706,19 +706,19 @@
     }
 
     .article-cover-copy::before {
-      height: calc(100% + var(--cover-bottom-space) + clamp(40px, 6dvh, 64px));
+      height: calc(100% + var(--cover-bottom-space) + 52px);
       background: linear-gradient(
         to top,
-        rgb(0 0 0 / 0.48) 0%,
-        rgb(0 0 0 / 0.34) 38%,
-        rgb(0 0 0 / 0.15) 74%,
+        rgb(0 0 0 / 0.40) 0%,
+        rgb(0 0 0 / 0.28) 40%,
+        rgb(0 0 0 / 0.12) 76%,
         transparent 100%
       );
     }
 
     .article-cover-content h1 {
-      width: min(80vw, 8.25em);
-      font-size: clamp(2.2rem, min(10.5vw, 5.6dvh), 3.75rem);
+      width: min(80vw, 20rem);
+      font-size: 2.5rem;
       font-weight: 650;
       line-height: 0.96;
       letter-spacing: -0.045em;
@@ -761,23 +761,6 @@
       margin-bottom: 28px;
       padding-bottom: 26px;
       font-size: 18px;
-    }
-  }
-
-  @media (max-height: 700px) and (max-width: 760px) {
-    :global(body:has(.svelte-article-page) .editorial-story .article-cover-content) {
-      --cover-bottom-space: max(96px, calc(78px + env(safe-area-inset-bottom)));
-      padding-bottom: var(--cover-bottom-space) !important;
-    }
-
-    .article-cover-content h1 {
-      width: min(80vw, 8.25em);
-      font-size: clamp(2.1rem, min(10.2vw, 5.35dvh), 3.35rem);
-    }
-
-    .article-cover-source-row {
-      min-height: 40px;
-      margin-top: 14px;
     }
   }
 
