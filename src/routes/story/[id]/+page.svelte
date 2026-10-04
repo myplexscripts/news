@@ -198,12 +198,14 @@
     <article class="editorial-story">
       <header class:cover-no-image={!heroImage} class="article-cover">
         {#if heroImage}
-          <div class="article-cover-media" aria-hidden="true">
+          <div
+            class="article-cover-media"
+            aria-hidden="true"
+            style={`--cover-focus-x: ${story.image_focus_x || 50}%; --cover-focus-y: ${story.image_focus_y || 50}%;`}
+          >
             <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={story.original_image} on:error={originalImageFallback} on:load={checkArticleImage} alt="" referrerpolicy="no-referrer" />
           </div>
         {/if}
-        <div class="article-cover-fade article-cover-fade-top" aria-hidden="true"></div>
-        <div class="article-cover-fade article-cover-fade-bottom" aria-hidden="true"></div>
 
         <div class="article-cover-content shell">
           <h1>{story.title}</h1>
@@ -230,23 +232,8 @@
           </div>
 
           <div class="article-reader article-reader-refined article-reveal" use:revealOnScroll>
-            {#if heroImage}
-              <figure class="article-body-hero inline-article-image">
-                <img
-                  src={heroImage}
-                  srcset={heroSrcset || undefined}
-                  sizes="(max-width: 800px) calc(100vw - 40px), 760px"
-                  width={story.image_width || undefined}
-                  height={story.image_height || undefined}
-                  data-original-src={story.original_image}
-                  on:error={originalImageFallback} on:load={checkArticleImage}
-                  alt={story.image_alt || ''}
-                  loading="eager"
-                  decoding="async"
-                  referrerpolicy="no-referrer"
-                />
-                {#if story.image_caption}<figcaption>{story.image_caption}</figcaption>{/if}
-              </figure>
+            {#if story.image_caption}
+              <p class="article-cover-caption">{story.image_caption}</p>
             {/if}
 
             {#if showDeck}
@@ -435,16 +422,12 @@
     height: 100svh !important;
   }
 
-  .article-cover-media,
-  .article-cover-fade {
+  .article-cover-media {
     position: absolute;
     inset: 0;
-  }
-
-  .article-cover-media {
-    z-index: -3;
-    inset: 0 0 auto;
-    height: 78svh;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
   }
 
   .article-cover-media img {
@@ -452,45 +435,7 @@
     height: 100% !important;
     max-height: none !important;
     object-fit: cover !important;
-    object-position: center center;
-  }
-
-  .article-cover-fade {
-    pointer-events: none;
-  }
-
-  .article-cover-fade-top {
-    z-index: -2;
-    bottom: auto;
-    height: 30%;
-    background: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--bg) 58%, transparent) 0%,
-      color-mix(in srgb, var(--bg) 38%, transparent) 34%,
-      color-mix(in srgb, var(--bg) 16%, transparent) 66%,
-      transparent 100%
-    );
-  }
-
-  .article-cover-fade-bottom {
-    z-index: -1;
-    top: 40svh;
-    bottom: auto;
-    height: 40svh;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      color-mix(in srgb, var(--bg) 18%, transparent) 24%,
-      color-mix(in srgb, var(--bg) 62%, transparent) 56%,
-      color-mix(in srgb, var(--bg) 92%, transparent) 78%,
-      var(--bg) 94%,
-      var(--bg) 100%
-    );
-  }
-
-  .cover-no-image .article-cover-fade-top,
-  .cover-no-image .article-cover-fade-bottom {
-    background: var(--bg);
+    object-position: var(--cover-focus-x, 50%) var(--cover-focus-y, 50%);
   }
 
   .article-cover-content {
@@ -507,11 +452,17 @@
   .article-cover-content h1 {
     width: min(100%, 900px);
     margin: 0;
-    color: var(--ink);
-    font-size: clamp(38px, 4.8vw, 62px);
-    line-height: 1.02;
-    letter-spacing: -0.052em;
+    color: #fff;
+    font-size: clamp(52px, 7vw, 104px);
+    line-height: 0.96;
+    letter-spacing: -0.055em;
     text-wrap: balance;
+    text-shadow: 0 2px 28px rgb(0 0 0 / 0.72), 0 1px 4px rgb(0 0 0 / 0.9);
+  }
+
+  .cover-no-image .article-cover-content h1 {
+    color: var(--ink);
+    text-shadow: none;
   }
 
   .article-cover-source-row {
@@ -539,10 +490,16 @@
   }
 
   .article-cover-author strong {
-    color: var(--ink);
-    font-size: 16px;
+    color: #fff;
+    font-size: 17px;
     font-weight: 750;
     line-height: 1.25;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
+  }
+
+  .cover-no-image .article-cover-author strong {
+    color: var(--ink);
+    text-shadow: none;
   }
 
   .article-cover-original {
@@ -552,10 +509,16 @@
     align-items: center;
     justify-content: flex-end;
     gap: 6px;
-    color: var(--accent);
+    color: #fff;
     font-size: 16px;
     font-weight: 750;
     white-space: nowrap;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
+  }
+
+  .cover-no-image .article-cover-original {
+    color: var(--accent);
+    text-shadow: none;
   }
 
   .article-cover-original :global(i) {
@@ -621,8 +584,11 @@
     width: 100%;
   }
 
-  .article-body-hero {
-    margin: 0 0 34px;
+  .article-cover-caption {
+    margin: 0 0 18px;
+    color: var(--text-tertiary);
+    font-size: 14px;
+    line-height: 1.4;
   }
 
   .article-deck-after-cover {
@@ -644,10 +610,6 @@
 
   .inline-article-image {
     margin: 30px 0;
-  }
-
-  .article-body-hero.inline-article-image {
-    margin-top: 0;
   }
 
   .inline-article-image figcaption {
@@ -700,26 +662,14 @@
       height: 100svh !important;
     }
 
-    .article-cover-media {
-      height: 76svh;
-    }
-
-    .article-cover-fade-top {
-      height: 27%;
-    }
-
-    .article-cover-fade-bottom {
-      top: 38svh;
-      height: 40svh;
-    }
-
     :global(body:has(.svelte-article-page) .editorial-story .article-cover-content) {
       padding-top: calc(82px + env(safe-area-inset-top)) !important;
       padding-bottom: max(112px, calc(92px + env(safe-area-inset-bottom))) !important;
     }
 
     .article-cover-content h1 {
-      font-size: clamp(34px, 9vw, 46px);
+      font-size: clamp(48px, 12vw, 76px);
+      line-height: 0.96;
       text-wrap: pretty;
     }
 
@@ -751,10 +701,6 @@
 
     .article-flow-meta span::before {
       margin-right: 10px;
-    }
-
-    .article-body-hero {
-      margin-bottom: 28px;
     }
 
     .article-deck-after-cover {
