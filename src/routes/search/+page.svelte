@@ -1,6 +1,7 @@
 <script>
   import { imageSrcset, originalImageFallback } from '$lib/imageSources';
   import AppIcon from '$lib/components/AppIcon.svelte';
+  import PageHeader from '$lib/components/PageHeader.svelte';
   import { onMount, onDestroy } from 'svelte';
   import { readScreen, rememberScreen } from '$lib/screenState';
   import { replaceState } from '$app/navigation';
@@ -96,14 +97,8 @@
 </svelte:head>
 
 <main class="directory-page search-page" id="main-content">
-  <section class="directory-shell shell">
-    <header class="page-heading directory-heading">
-      <div class="page-heading-copy">
-        <p class="masthead-label">Find stories</p>
-        <h1>Search</h1>
-        <p class="page-heading-description">Search headlines, publishers and topics across Forest City News.</p>
-      </div>
-    </header>
+  <section class="standard-page-shell directory-shell shell">
+    <PageHeader title="Search" />
 
     <div class="search-page-field search-page-field-refined">
       <AppIcon iconClass="ph ph-magnifying-glass" />
