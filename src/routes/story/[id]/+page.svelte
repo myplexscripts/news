@@ -208,18 +208,20 @@
         {/if}
 
         <div class="article-cover-content shell">
-          <h1>{story.title}</h1>
-          <div class="article-cover-source-row">
-            <div class="article-cover-author">
-              {#if authorLabel}<strong>{authorLabel}</strong>{/if}
-            </div>
+          <div class="article-cover-copy">
+            <h1>{story.title}</h1>
+            <div class="article-cover-source-row">
+              <div class="article-cover-author">
+                {#if authorLabel}<strong>{authorLabel}</strong>{/if}
+              </div>
 
-            {#if story.url}
-              <a class="article-cover-original" href={story.url} target="_blank" rel="noopener noreferrer">
-                <span>Original article</span>
-                <AppIcon iconClass="ph ph-arrow-up-right" />
-              </a>
-            {/if}
+              {#if story.url}
+                <a class="article-cover-original" href={story.url} target="_blank" rel="noopener noreferrer">
+                  <span>Original article</span>
+                  <AppIcon iconClass="ph ph-arrow-up-right" />
+                </a>
+              {/if}
+            </div>
           </div>
         </div>
       </header>
@@ -425,7 +427,7 @@
   .article-cover-media {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
     width: 100%;
     height: 100%;
   }
@@ -439,6 +441,7 @@
   }
 
   .article-cover-content {
+    --cover-bottom-space: clamp(42px, 6.5vh, 82px);
     position: relative;
     z-index: 2;
     height: 100%;
@@ -446,18 +449,48 @@
     flex-direction: column;
     justify-content: flex-end;
     padding-top: calc(90px + env(safe-area-inset-top));
-    padding-bottom: clamp(42px, 6.5vh, 82px);
+    padding-bottom: var(--cover-bottom-space);
+  }
+
+  .article-cover-copy {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 900px);
+  }
+
+  .article-cover-copy::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    bottom: calc(-1 * var(--cover-bottom-space));
+    width: 100vw;
+    height: calc(100% + var(--cover-bottom-space) + 72px);
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      rgb(0 0 0 / 0.62) 0%,
+      rgb(0 0 0 / 0.48) 34%,
+      rgb(0 0 0 / 0.24) 68%,
+      transparent 100%
+    );
+  }
+
+  .cover-no-image .article-cover-copy::before {
+    display: none;
   }
 
   .article-cover-content h1 {
-    width: min(100%, 900px);
+    width: min(100%, 760px);
     margin: 0;
     color: #fff;
-    font-size: clamp(52px, 7vw, 104px);
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-weight: 650;
     line-height: 0.96;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.045em;
     text-wrap: balance;
-    text-shadow: 0 2px 28px rgb(0 0 0 / 0.72), 0 1px 4px rgb(0 0 0 / 0.9);
+    text-shadow: none;
   }
 
   .cover-no-image .article-cover-content h1 {
@@ -491,10 +524,11 @@
 
   .article-cover-author strong {
     color: #fff;
-    font-size: 17px;
-    font-weight: 750;
-    line-height: 1.25;
-    text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-shadow: none;
   }
 
   .cover-no-image .article-cover-author strong {
@@ -510,10 +544,13 @@
     justify-content: flex-end;
     gap: 6px;
     color: #fff;
-    font-size: 16px;
-    font-weight: 750;
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
     white-space: nowrap;
-    text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
+    text-shadow: none;
+    text-decoration: none;
   }
 
   .cover-no-image .article-cover-original {
@@ -663,24 +700,40 @@
     }
 
     :global(body:has(.svelte-article-page) .editorial-story .article-cover-content) {
+      --cover-bottom-space: max(112px, calc(92px + env(safe-area-inset-bottom)));
       padding-top: calc(82px + env(safe-area-inset-top)) !important;
-      padding-bottom: max(112px, calc(92px + env(safe-area-inset-bottom))) !important;
+      padding-bottom: var(--cover-bottom-space) !important;
+    }
+
+    .article-cover-copy::before {
+      height: calc(100% + var(--cover-bottom-space) + 56px);
+      background: linear-gradient(
+        to top,
+        rgb(0 0 0 / 0.64) 0%,
+        rgb(0 0 0 / 0.48) 36%,
+        rgb(0 0 0 / 0.22) 72%,
+        transparent 100%
+      );
     }
 
     .article-cover-content h1 {
-      font-size: clamp(48px, 12vw, 76px);
+      font-size: clamp(2.6rem, 10.5vw, 3.75rem);
+      font-weight: 650;
       line-height: 0.96;
+      letter-spacing: -0.045em;
       text-wrap: pretty;
     }
 
     .article-cover-source-row {
-      margin-top: 20px;
+      margin-top: 18px;
       gap: 14px;
     }
 
     .article-cover-author strong,
     .article-cover-original {
-      font-size: 14px !important;
+      font-size: 0.9375rem !important;
+      font-weight: 650 !important;
+      letter-spacing: -0.015em !important;
     }
 
     .article-after-cover,
