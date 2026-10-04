@@ -82,14 +82,14 @@ test.beforeEach(async ({ page }, testInfo) => {
       },
       {
         type:'image',
-        url:`${base}/images/social.png?body-image`,
+        url:`${base}/images/logos/CoL.png?body-image`,
         alt:'Inline article image',
         caption:'Inline image caption',
         width:1200,
         height:675,
         image_variants:[
-          {url:`${base}/images/social.png?body-640`,width:640,height:360},
-          {url:`${base}/images/social.png?body-1200`,width:1200,height:675}
+          {url:`${base}/images/logos/CoL.png?body-640`,width:640,height:360},
+          {url:`${base}/images/logos/CoL.png?body-1200`,width:1200,height:675}
         ]
       }
     ] : [];
@@ -615,11 +615,11 @@ test('responsive images use card derivatives and higher quality full viewport ar
     return {
       paddingTop: Number.parseFloat(getComputedStyle(wrapper).paddingTop),
       readTimeColour: getComputedStyle(readTime).color,
-      pageInk: getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()
+      inkColour: getComputedStyle(document.body).color
     };
   });
   expect(afterCover.paddingTop).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 28 : 32);
-  expect(afterCover.readTimeColour).not.toBe('');
+  expect(afterCover.readTimeColour).toBe(afterCover.inkColour);
 
   await noOverflow(page);
 });
