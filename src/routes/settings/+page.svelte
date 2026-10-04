@@ -37,7 +37,7 @@
   <meta name="description" content="Customize Forest City News appearance and reading preferences." />
 </svelte:head>
 
-<main class="settings-page" id="main-content">
+<main class="settings-page standard-page" id="main-content">
   <section class="standard-page-shell settings-shell shell">
     <PageHeader title="Settings" />
 
