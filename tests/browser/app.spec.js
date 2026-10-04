@@ -471,7 +471,36 @@ test('responsive images use card derivatives and higher quality full viewport ar
   });
   expect(Math.abs(geometry.height - geometry.viewport)).toBeLessThanOrEqual(2);
   expect(Math.abs(geometry.imageHeight - geometry.viewport)).toBeLessThanOrEqual(2);
-  expect(geometry.titleSize).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 48 : 52);
+  expect(geometry.titleSize).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 41 : 44);
+
+  const editorialStyle = await cover.evaluate((node) => {
+    const title = node.querySelector('h1');
+    const copy = node.querySelector('.article-cover-copy');
+    const original = node.querySelector('.article-cover-original');
+    const icon = original?.querySelector('svg, i');
+    const titleStyle = getComputedStyle(title);
+    const gradientStyle = getComputedStyle(copy, '::before');
+    return {
+      titleShadow: titleStyle.textShadow,
+      titleWeight: Number.parseInt(titleStyle.fontWeight, 10),
+      titleLineHeight: Number.parseFloat(titleStyle.lineHeight) / Number.parseFloat(titleStyle.fontSize),
+      titleTracking: Number.parseFloat(titleStyle.letterSpacing) / Number.parseFloat(titleStyle.fontSize),
+      gradient: gradientStyle.backgroundImage,
+      gradientHeight: Number.parseFloat(gradientStyle.height),
+      copyHeight: copy.getBoundingClientRect().height,
+      originalShadow: original ? getComputedStyle(original).textShadow : '',
+      hasArrow: Boolean(icon)
+    };
+  });
+  expect(editorialStyle.titleShadow).toBe('none');
+  expect(editorialStyle.originalShadow).toBe('none');
+  expect(editorialStyle.titleWeight).toBe(650);
+  expect(editorialStyle.titleLineHeight).toBeGreaterThan(0.94);
+  expect(editorialStyle.titleLineHeight).toBeLessThan(0.98);
+  expect(editorialStyle.titleTracking).toBeLessThan(-0.04);
+  expect(editorialStyle.gradient).toContain('linear-gradient');
+  expect(editorialStyle.gradientHeight).toBeGreaterThan(editorialStyle.copyHeight);
+  expect(editorialStyle.hasArrow).toBe(true);
 
   const tracking = page.getByAltText('Tracking image');
   await expect.poll(() => tracking.evaluate(image => image.complete)).toBe(true);
