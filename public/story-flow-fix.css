@@ -25,25 +25,16 @@ body:has(.svelte-article-page) .article-reader.article-reveal {
 }
 
 @media (max-width: 760px) {
-  /* Let the editorial photography occupy more of the opening screen. The
-     headline/meta anchors stay in place while the bottom fade starts later. */
+  /* The editorial image always fills the entire cover. Typography and metadata
+     remain overlaid independently of viewport height. */
   html body:has(.svelte-article-page) .article-cover-media {
-    height: 84svh !important;
-  }
-
-  html body:has(.svelte-article-page) .article-cover-fade-bottom {
-    top: 50svh !important;
-    height: 36svh !important;
-  }
-
-  html body:has(.svelte-article-page) .editorial-story .article-cover-content {
-    padding-bottom: max(72px, calc(60px + env(safe-area-inset-bottom))) !important;
-  }
-
-  /* Match the compact editorial grouping: the byline sits close to the
-     headline instead of leaving the old 20px gap. */
-  html body:has(.svelte-article-page) .article-cover-source-row {
-    margin-top: 2px !important;
+    inset: 0 !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 
   /* Pull the normal-flow metadata up to the bottom of the byline row. This
