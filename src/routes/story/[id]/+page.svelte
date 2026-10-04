@@ -110,6 +110,7 @@
     if (articleImage) {
       return {
         url: articleImage.url,
+        original_url: articleImage.original_url || articleImage.url,
         image_variants: articleImage.image_variants || [],
         width: articleImage.width,
         height: articleImage.height
@@ -121,6 +122,7 @@
       : null;
     return {
       url: article.image || firstInline?.url || article.card_image || '',
+      original_url: article.original_image || firstInline?.original_url || article.image || '',
       image_variants: article.editorial_image_variants || firstInline?.image_variants || []
     };
   }
@@ -329,7 +331,7 @@
             aria-hidden="true"
             style={`--cover-focus-x: ${story.image_focus_x || 50}%; --cover-focus-y: ${story.image_focus_y || 50}%;`}
           >
-            <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={story.original_image} on:error={originalImageFallback} on:load={handleCoverImageLoad} alt="" referrerpolicy="no-referrer" />
+            <img src={heroImage} srcset={heroSrcset || undefined} sizes="100vw" data-original-src={coverCandidate.original_url || story.original_image} on:error={originalImageFallback} on:load={handleCoverImageLoad} alt="" referrerpolicy="no-referrer" />
           </div>
         {/if}
 
