@@ -151,9 +151,13 @@ def optimize_url(url: str) -> tuple[str, int, int] | None:
 def selected_stories(payload: dict[str, Any]) -> list[dict[str, Any]]:
     stories = [story for story in payload.get("stories") or [] if isinstance(story, dict)]
     stories.sort(key=lambda story: (str(story.get("image_optimization_checked_at") or ""), -published_timestamp(story)))
-    # Process uncached articles first so later batches cover the entire week.
-    from image_assets import cached_original
-    pending = [story for story in stories if any(cached_original(url) is None for url in collect_targets([story]))]
+    # Process stories that do not yet have the current high-resolution cache.
+    # Older v1 files remain readable as fallbacks, but they should not prevent a
+    # v2 refresh from upgrading a full-viewport editorial cover.
+    pending = [
+        story for story in stories
+        if any(not cache_path_for(url).is_file() for url in collect_targets([story]))
+    ]
     return pending[:MAX_STORIES]
 
 
@@ -281,7 +285,7 @@ def main() -> int:
 
     payload = json.loads(NEWS_PATH.read_text(encoding="utf-8"))
     changed_stories, attempted, optimized_refs = optimize_payload(payload)
-    payload["editorial_image_schema"] = 1
+    payload["editorial_image_schema"] = 2
     NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"Editorial image optimization: {optimized_refs}/{attempted} references optimized "
