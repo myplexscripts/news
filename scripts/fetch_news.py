@@ -847,6 +847,19 @@ def responsive_image_source(img: Tag) -> bool:
     return isinstance(picture, Tag) and bool(picture.find("source", srcset=True) or picture.find("source", attrs={"data-srcset": True}))
 
 
+def responsive_width_hint(img: Tag) -> int:
+    """Return the largest responsive candidate width/density hint for an image."""
+    hints: list[int] = []
+    hints.extend(score for score, _ in srcset_candidates(img.get("srcset") or img.get("data-srcset")))
+    picture = img.find_parent("picture")
+    if isinstance(picture, Tag):
+        for source in picture.find_all("source"):
+            if not isinstance(source, Tag):
+                continue
+            hints.extend(score for score, _ in srcset_candidates(source.get("srcset") or source.get("data-srcset")))
+    return min(4000, max(hints, default=0))
+
+
 def int_attr(value: Any) -> int:
     try:
         return int(re.sub(r"\D", "", str(value or "0")) or "0")
@@ -923,8 +936,10 @@ def collect_image_candidates(soup: BeautifulSoup, base_url: str, ld: dict[str, A
 
     og_image = soup_meta(soup, ("property", "og:image"))
     twitter_image = soup_meta(soup, ("name", "twitter:image"), ("property", "twitter:image"))
+    og_width = int_attr(soup_meta(soup, ("property", "og:image:width")))
+    og_height = int_attr(soup_meta(soup, ("property", "og:image:height")))
     if og_image:
-        add(og_image, 940)
+        add(og_image, 940, width=og_width, height=og_height)
     if twitter_image:
         add(twitter_image, 900)
     if feed_image:
@@ -943,10 +958,17 @@ def collect_image_candidates(soup: BeautifulSoup, base_url: str, ld: dict[str, A
             if not valid_article_image(url, img):
                 continue
             width, height = int_attr(img.get("width")), int_attr(img.get("height"))
+            responsive_hint = responsive_width_hint(img)
+            if responsive_hint:
+                width = max(width, responsive_hint)
             classes = " ".join(img.get("class", [])).lower()
             parent_classes = " ".join((img.parent.get("class", []) if isinstance(img.parent, Tag) else [])).lower()
             hero_bonus = 120 if any(token in f"{classes} {parent_classes}" for token in ("hero", "lead", "featured", "main-image")) else 0
-            add(url, 720 + hero_bonus - min(order, 80), img.get("alt") or "", figure_caption(img), width, height, img)
+            # A large srcset candidate is a stronger editorial-cover signal than
+            # a tiny social thumbnail. Reward real responsive resolution so the
+            # full-viewport story cover does not stretch a low-resolution OG image.
+            resolution_bonus = min(360, responsive_hint // 4) if responsive_hint else 0
+            add(url, 720 + hero_bonus + resolution_bonus - min(order, 80), img.get("alt") or "", figure_caption(img), width, height, img)
             order += 1
 
     return sorted(candidates.values(), key=lambda item: item["score"], reverse=True)
