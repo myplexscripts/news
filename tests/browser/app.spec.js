@@ -326,17 +326,21 @@ test('sections segmented selector matches the shared segmented-control scale', a
   await page.goto('./sections/');
   const tabs = page.locator('.directory-tabs');
   await expect(tabs).toBeVisible();
-  const tabMetrics = await tabs.evaluate((node) => ({
-    width: node.getBoundingClientRect().width,
-    height: node.getBoundingClientRect().height,
-    shellWidth: node.closest('.standard-page-shell').getBoundingClientRect().width,
-    fontSize: Number.parseFloat(getComputedStyle(node.querySelector('button')).fontSize)
-  }));
+  const tabMetrics = await tabs.evaluate((node) => {
+    const shell = node.closest('.standard-page-shell');
+    const shellStyle = getComputedStyle(shell);
+    return {
+      width: node.getBoundingClientRect().width,
+      height: node.getBoundingClientRect().height,
+      shellContentWidth: shell.clientWidth - Number.parseFloat(shellStyle.paddingLeft) - Number.parseFloat(shellStyle.paddingRight),
+      fontSize: Number.parseFloat(getComputedStyle(node.querySelector('button')).fontSize)
+    };
+  });
 
   expect(Math.abs(tabMetrics.height - scopeMetrics.height)).toBeLessThanOrEqual(1);
   expect(tabMetrics.fontSize).toBe(scopeMetrics.fontSize);
   if (page.viewportSize().width <= 760) {
-    expect(tabMetrics.width / tabMetrics.shellWidth).toBeGreaterThan(0.95);
+    expect(Math.abs(tabMetrics.width - tabMetrics.shellContentWidth)).toBeLessThanOrEqual(1);
   }
 });
 
