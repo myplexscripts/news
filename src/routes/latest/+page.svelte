@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import { readScreen, rememberScreen } from '$lib/screenState';
   import NewsCard from '$lib/components/NewsCard.svelte';
+  import PageHeader from '$lib/components/PageHeader.svelte';
   import { getCachedFeed, loadFeed, feedUpdates, sortNewest } from '$lib/newsData';
   import { userState } from '$lib/appState';
 
@@ -37,13 +38,9 @@
   <title>Latest | Forest City News</title>
 </svelte:head>
 
-<main class="app-page" id="main-content">
-  <section class="shell">
-    <header class="app-page-heading">
-      <p class="eyebrow">Newest first</p>
-      <h1>Latest</h1>
-      <p>The newest stories from every enabled source.</p>
-    </header>
+<main class="app-page standard-page" id="main-content">
+  <section class="standard-page-shell shell">
+    <PageHeader title="Latest" />
 
     {#if error}
       <div class="app-error">{error}</div>
