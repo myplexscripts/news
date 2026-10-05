@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T14:43:12.072947+00:00",
-  "generated_at_london": "2026-10-05T10:43:12.072947-04:00",
-  "news_generated_at": "2026-10-05T14:41:01.654684+00:00",
+  "generated_at": "2026-10-05T14:58:02.438192+00:00",
+  "generated_at_london": "2026-10-05T10:58:02.438192-04:00",
+  "news_generated_at": "2026-10-05T14:55:31.329703+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 668,
+    "archive_story_count": 669,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 112,
@@ -14,9 +14,9 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 9,
-    "info_issue_count": 88,
-    "healthy_source_count": 14,
-    "review_source_count": 4,
+    "info_issue_count": 87,
+    "healthy_source_count": 13,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 9
   },
@@ -111,21 +111,47 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 956,
-      "average_quality": 94,
+      "average_words": 914,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 16,
-      "latest_published": "2026-10-05T14:14:00.557000+00:00",
+      "info_issues": 15,
+      "latest_published": "2026-10-05T14:33:40.683000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T14:23:47.100089+00:00",
+      "last_scrape": "2026-10-05T14:54:12.384188+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 592,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-05T13:20:01+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-05T13:37:00.901644+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "Western News",
@@ -486,20 +512,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 603,
-      "average_quality": 90,
+      "average_words": 600,
+      "average_quality": 87,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:citynews:article": 1
+        "dom:citynews:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-05T13:13:51+00:00",
+      "latest_published": "2026-10-05T14:45:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T14:39:10.619835+00:00",
+      "last_scrape": "2026-10-05T14:54:20.966020+00:00",
       "last_error": ""
     },
     {
@@ -709,33 +735,7 @@
       "latest_published": "2026-10-05T08:00:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T14:39:02.794128+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 592,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-05T13:20:01+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-05T13:37:00.901644+00:00",
+      "last_scrape": "2026-10-05T14:54:15.946426+00:00",
       "last_error": ""
     }
   ],
@@ -1285,21 +1285,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c64b185feb01c116",
-      "source": "CityNews Canada",
-      "title": "Pwhl establishes Eastern and Western conferences, expands to eight-team playoffs",
-      "url": "https://toronto.citynews.ca/2026/10/02/pwhl-establishes-eastern-and-western-conferences-expands-to-eight-team-playoffs",
-      "published": "2026-10-02T15:06:55+00:00",
-      "content_status": "full",
-      "word_count": 224,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "aed4815075bb334d",
       "source": "CityNews Canada",
       "title": "Search continues for survivors aboard missing Ontario air ambulance off U.S. east coast",
@@ -1309,6 +1294,21 @@
       "word_count": 424,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ba4dec0c05664403",
+      "source": "CityNews Canada",
+      "title": "Sign on off-campus property perpetuated rape culture: St. Francis Xavier University",
+      "url": "https://toronto.citynews.ca/2026/10/05/sign-on-off-campus-property-perpetuated-rape-culture-st-francis-xavier-university",
+      "published": "2026-10-05T14:45:04+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 69,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -1867,36 +1867,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "d4057987f6803498",
-      "source": "The Globe and Mail",
-      "title": "Ex-defendant apologizes to Steven Galloway as defamation trial set to begin",
-      "url": "https://www.theglobeandmail.com/canada/article-ex-defendant-apologizes-to-steven-galloway-as-defamation-trial-set-to",
-      "published": "2026-10-05T02:17:59.524000+00:00",
-      "content_status": "full",
-      "word_count": 711,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d4057987f6803498",
-      "source": "The Globe and Mail",
-      "title": "Ex-defendant apologizes to Steven Galloway as defamation trial set to begin",
-      "url": "https://www.theglobeandmail.com/canada/article-ex-defendant-apologizes-to-steven-galloway-as-defamation-trial-set-to",
-      "published": "2026-10-05T02:17:59.524000+00:00",
-      "content_status": "full",
-      "word_count": 711,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1982,6 +1952,21 @@
       "published": "2026-10-05T14:14:00.557000+00:00",
       "content_status": "full",
       "word_count": 383,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b99b43245ac4b59d",
+      "source": "The Globe and Mail",
+      "title": "Trial begins for man accused in Pearson gold heist",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-trial-begins-for-man-accused-in-pearson-gold-heist",
+      "published": "2026-10-05T14:33:40.683000+00:00",
+      "content_status": "full",
+      "word_count": 298,
       "quality_score": 76,
       "extraction_method": "dom:globe:article#content-gate"
     },
@@ -4285,6 +4270,35 @@
       ]
     },
     {
+      "id": "b99b43245ac4b59d",
+      "source": "The Globe and Mail",
+      "title": "Trial begins for man accused in Pearson gold heist",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-trial-begins-for-man-accused-in-pearson-gold-heist",
+      "published": "2026-10-05T14:33:40.683000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 298,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0ca969b30d16aa2c",
       "source": "The Globe and Mail",
       "title": "Toronto’s Harbourfront Centre names arts leader Gideon Arthurs as CEO",
@@ -4561,41 +4575,6 @@
       "word_count": 1279,
       "paragraph_count": 38,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d4057987f6803498",
-      "source": "The Globe and Mail",
-      "title": "Ex-defendant apologizes to Steven Galloway as defamation trial set to begin",
-      "url": "https://www.theglobeandmail.com/canada/article-ex-defendant-apologizes-to-steven-galloway-as-defamation-trial-set-to",
-      "published": "2026-10-05T02:17:59.524000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 711,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -5190,6 +5169,35 @@
       ]
     },
     {
+      "id": "ba4dec0c05664403",
+      "source": "CityNews Canada",
+      "title": "Sign on off-campus property perpetuated rape culture: St. Francis Xavier University",
+      "url": "https://toronto.citynews.ca/2026/10/05/sign-on-off-campus-property-perpetuated-rape-culture-st-francis-xavier-university",
+      "published": "2026-10-05T14:45:04+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 186,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "38cf6ad64b9ddc6a",
       "source": "CityNews Canada",
       "title": "Ontario air ambulance company says 6 aboard missing flight presumed dead",
@@ -5435,35 +5443,6 @@
       "content_status": "full",
       "word_count": 614,
       "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c64b185feb01c116",
-      "source": "CityNews Canada",
-      "title": "Pwhl establishes Eastern and Western conferences, expands to eight-team playoffs",
-      "url": "https://toronto.citynews.ca/2026/10/02/pwhl-establishes-eastern-and-western-conferences-expands-to-eight-team-playoffs",
-      "published": "2026-10-02T15:06:55+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 224,
-      "paragraph_count": 7,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
