@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T09:03:59.790172+00:00",
-  "generated_at_london": "2026-10-05T05:03:59.790172-04:00",
-  "news_generated_at": "2026-10-05T08:59:55.839419+00:00",
+  "generated_at": "2026-10-05T09:16:32.902949+00:00",
+  "generated_at_london": "2026-10-05T05:16:32.902949-04:00",
+  "news_generated_at": "2026-10-05T09:14:10.571177+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 652,
+    "archive_story_count": 654,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 109,
-    "review_story_count": 6,
+    "pass_story_count": 108,
+    "review_story_count": 7,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 10,
-    "info_issue_count": 88,
+    "warning_issue_count": 12,
+    "info_issue_count": 89,
     "healthy_source_count": 11,
     "review_source_count": 6,
     "error_source_count": 1,
@@ -103,7 +103,7 @@
     {
       "source": "CTV News London",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "ctv",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +121,10 @@
       "warning_issues": 2,
       "info_issues": 7,
       "latest_published": "2026-10-05T03:55:22.210000+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-05T04:42:49.199598+00:00",
-      "last_error": "HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Max retries exceeded with url: /london/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Read timed out. (read timeout=8)\"))"
+      "last_error": ""
     },
     {
       "source": "Global News Canada",
@@ -159,24 +159,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 573,
-      "average_quality": 96,
+      "average_words": 496,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-10-05T08:00:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T08:15:47.767314+00:00",
+      "last_scrape": "2026-10-05T09:12:54.472366+00:00",
       "last_error": ""
     },
     {
@@ -706,7 +707,7 @@
       "latest_published": "2026-10-05T08:00:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T08:57:55.605057+00:00",
+      "last_scrape": "2026-10-05T09:12:52.566592+00:00",
       "last_error": ""
     },
     {
@@ -720,19 +721,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 895,
-      "average_quality": 96,
+      "average_words": 897,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 17,
-      "latest_published": "2026-10-05T04:01:00+00:00",
+      "info_issues": 18,
+      "latest_published": "2026-10-05T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T04:20:16.661199+00:00",
+      "last_scrape": "2026-10-05T09:12:49.129192+00:00",
       "last_error": ""
     }
   ],
@@ -901,6 +903,36 @@
       "word_count": 934,
       "quality_score": 95,
       "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "289720159064eb8c",
+      "source": "Toronto Star",
+      "title": "PM Mark Carney pledged to ‘Buy Canadian.’ Since then, $7.8 billion in contracts went to American corporations",
+      "url": "https://www.thestar.com/news/canada/pm-mark-carney-pledged-to-buy-canadian-since-then-7-8-billion-in-contracts-went-to-american-corporations/article_c0a46948-956b-42cd-9cb0-c6a2d8e0e4be.html",
+      "published": "2026-10-05T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "289720159064eb8c",
+      "source": "Toronto Star",
+      "title": "PM Mark Carney pledged to ‘Buy Canadian.’ Since then, $7.8 billion in contracts went to American corporations",
+      "url": "https://www.thestar.com/news/canada/pm-mark-carney-pledged-to-buy-canadian-since-then-7-8-billion-in-contracts-went-to-american-corporations/article_c0a46948-956b-42cd-9cb0-c6a2d8e0e4be.html",
+      "published": "2026-10-05T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1837,6 +1869,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "f7aa90a673101605",
+      "source": "The Globe and Mail",
+      "title": "Designing a solution to homelessness",
+      "url": "https://www.theglobeandmail.com/canada/article-designing-a-solution-to-homelessness",
+      "published": "2026-10-05T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 785,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f7aa90a673101605",
+      "source": "The Globe and Mail",
+      "title": "Designing a solution to homelessness",
+      "url": "https://www.theglobeandmail.com/canada/article-designing-a-solution-to-homelessness",
+      "published": "2026-10-05T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 785,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "d4057987f6803498",
       "source": "The Globe and Mail",
       "title": "Ex-defendant apologizes to Steven Galloway as defamation trial set to begin",
@@ -2011,36 +2073,6 @@
       "word_count": 687,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "43ee560b60b98f03",
-      "source": "The Globe and Mail",
-      "title": "‘Can we chat?’: It’s the small messages that define workplace culture",
-      "url": "https://www.theglobeandmail.com/business/careers/article-can-we-chat-its-the-small-messages-that-define-workplace-culture",
-      "published": "2026-10-04T13:00:00+00:00",
-      "content_status": "full",
-      "word_count": 761,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0f766e106bc8486a",
-      "source": "Toronto Star",
-      "title": "B.C. New Democrats one short of full slate, only Conservatives field 93 candidates",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-new-democrats-one-short-of-full-slate-only-conservatives-field-93-candidates/article_4b13f1f8-c4a2-5449-b313-fcdb890fb9b0.html",
-      "published": "2026-10-04T17:34:35+00:00",
-      "content_status": "full",
-      "word_count": 986,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2071,6 +2103,21 @@
       "word_count": 954,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "289720159064eb8c",
+      "source": "Toronto Star",
+      "title": "PM Mark Carney pledged to ‘Buy Canadian.’ Since then, $7.8 billion in contracts went to American corporations",
+      "url": "https://www.thestar.com/news/canada/pm-mark-carney-pledged-to-buy-canadian-since-then-7-8-billion-in-contracts-went-to-american-corporations/article_c0a46948-956b-42cd-9cb0-c6a2d8e0e4be.html",
+      "published": "2026-10-05T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4289,6 +4336,41 @@
       ]
     },
     {
+      "id": "f7aa90a673101605",
+      "source": "The Globe and Mail",
+      "title": "Designing a solution to homelessness",
+      "url": "https://www.theglobeandmail.com/canada/article-designing-a-solution-to-homelessness",
+      "published": "2026-10-05T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 785,
+      "paragraph_count": 21,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "70200510666dc80c",
       "source": "The Globe and Mail",
       "title": "University of Toronto launching $100-million scholarship fund to attract PhD students",
@@ -4583,35 +4665,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "43ee560b60b98f03",
-      "source": "The Globe and Mail",
-      "title": "‘Can we chat?’: It’s the small messages that define workplace culture",
-      "url": "https://www.theglobeandmail.com/business/careers/article-can-we-chat-its-the-small-messages-that-define-workplace-culture",
-      "published": "2026-10-04T13:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 761,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5027,6 +5080,47 @@
       ]
     },
     {
+      "id": "289720159064eb8c",
+      "source": "Toronto Star",
+      "title": "PM Mark Carney pledged to ‘Buy Canadian.’ Since then, $7.8 billion in contracts went to American corporations",
+      "url": "https://www.thestar.com/news/canada/pm-mark-carney-pledged-to-buy-canadian-since-then-7-8-billion-in-contracts-went-to-american-corporations/article_c0a46948-956b-42cd-9cb0-c6a2d8e0e4be.html",
+      "published": "2026-10-05T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 219,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "115a7f2f41bb202c",
       "source": "Toronto Star",
       "title": "Screen time limits not enough to tackle problematic social media use: experts",
@@ -5162,35 +5256,6 @@
       "content_status": "full",
       "word_count": 507,
       "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0f766e106bc8486a",
-      "source": "Toronto Star",
-      "title": "B.C. New Democrats one short of full slate, only Conservatives field 93 candidates",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-new-democrats-one-short-of-full-slate-only-conservatives-field-93-candidates/article_4b13f1f8-c4a2-5449-b313-fcdb890fb9b0.html",
-      "published": "2026-10-04T17:34:35+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 986,
-      "paragraph_count": 35,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
