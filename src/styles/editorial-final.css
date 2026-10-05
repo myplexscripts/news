@@ -13,6 +13,15 @@ html body .svelte-article-page .article-cover-copy::before {
   ) !important;
 }
 
+/* Editorial cover headlines use roomier tracking and a slightly larger fixed
+   size. The headline size remains stable within each layout breakpoint. */
+html body .svelte-article-page .article-cover-content h1 {
+  font-size: 5.5rem !important;
+  font-weight: 650 !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.025em !important;
+}
+
 /* Reading metadata follows the white editorial treatment in dark article
    presentation instead of reverting to muted grey. */
 html[data-theme='dark'] body .svelte-article-page .article-flow-meta time,
@@ -24,10 +33,10 @@ html[data-theme='dark'] body .svelte-article-page .article-flow-meta span {
   /* The approved cover type is fixed. The viewport changes the photograph,
      not the headline size. */
   html body .svelte-article-page .article-cover-content h1 {
-    font-size: 2.5rem !important;
+    font-size: 2.75rem !important;
     font-weight: 650 !important;
-    line-height: 0.96 !important;
-    letter-spacing: -0.045em !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.025em !important;
   }
 
   /* Give the copy below the cover a little more separation from the image. */
