@@ -11,6 +11,7 @@ on:
       - 'scripts/test_postmedia_navigation.py'
       - 'scripts/cleanup_london_police_navigation.py'
       - 'scripts/test_london_police_navigation.py'
+      - 'scripts/reader_mode_articles.py'
       - 'scripts/optimize_editorial_images.py'
       - 'scripts/repair_ctv_photos_v2.py'
       - 'scripts/test_ctv_photo_repair_v2.py'
@@ -80,7 +81,9 @@ jobs:
           python scripts/hydrate_cbc_lite.py
           python scripts/enrich_article_structure.py
           python scripts/refine_article_formatting.py
-          python scripts/reader_mode_articles.py
+          # Keep native readability/trafilatura/lxml parsing serial in CI. These
+          # parser stacks can corrupt the process heap when run concurrently.
+          READER_WORKERS=1 python scripts/reader_mode_articles.py
           python scripts/enrich_article_media.py
           python scripts/enrich_rich_articles.py --limit 64
           # Publisher profiles run after generic readers so a broad Readability or
@@ -96,6 +99,33 @@ jobs:
           python scripts/sanitize_article_blocks.py
           python scripts/trim_article_tails.py
           python scripts/repair_source_content.py --cbc-limit 0
+          # A failed CTV photo recovery must not permanently mark an image-less
+          # article as current. Reset those stories so the dedicated repair pass
+          # retries them on every enrichment until it recovers real article media.
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          path = Path('data/news.json')
+          payload = json.loads(path.read_text(encoding='utf-8'))
+          changed = 0
+          for story in payload.get('stories', []):
+              if not isinstance(story, dict):
+                  continue
+              source = str(story.get('source') or '').lower()
+              host = urlparse(str(story.get('url') or '')).netloc.lower()
+              if 'ctv' not in source or not (host.endswith('ctvnews.ca') or host.endswith('ctv.ca')):
+                  continue
+              if int(story.get('ctv_photo_count') or 0) > 0:
+                  continue
+              story['ctv_photo_schema'] = 0
+              story.pop('ctv_photo_checked_for_scrape', None)
+              changed += 1
+          if changed:
+              path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          print(f'CTV retry reset: {changed} image-less stories')
+          PY
           python scripts/repair_ctv_photos_v2.py --limit 160
           python scripts/repair_cbc_images.py
           python scripts/repair_cbc_lite_heroes.py
