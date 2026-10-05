@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T16:16:12.964697+00:00",
-  "generated_at_london": "2026-10-05T12:16:12.964697-04:00",
-  "news_generated_at": "2026-10-05T15:58:32.553388+00:00",
+  "generated_at": "2026-10-05T16:17:34.963778+00:00",
+  "generated_at_london": "2026-10-05T12:17:34.963778-04:00",
+  "news_generated_at": "2026-10-05T16:14:26.758752+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 667,
+    "archive_story_count": 669,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 108,
@@ -50,7 +50,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 5,
@@ -69,10 +69,10 @@
       "warning_issues": 6,
       "info_issues": 10,
       "latest_published": "2026-10-05T15:46:15+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-05T15:57:00.459149+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -112,8 +112,8 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 220,
-      "average_quality": 67,
+      "average_words": 231,
+      "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -121,10 +121,10 @@
       "critical_issues": 0,
       "warning_issues": 2,
       "info_issues": 8,
-      "latest_published": "2026-10-05T15:58:23.954000+00:00",
+      "latest_published": "2026-10-05T16:06:42.761000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T13:59:21.824220+00:00",
+      "last_scrape": "2026-10-05T16:10:33.017926+00:00",
       "last_error": ""
     },
     {
@@ -470,7 +470,7 @@
       "warning_issues": 0,
       "info_issues": 12,
       "latest_published": "2026-10-05T14:54:11.854000+00:00",
-      "found_this_run": 7,
+      "found_this_run": 6,
       "tracked": 30,
       "last_scrape": "2026-10-05T15:18:11.821173+00:00",
       "last_error": ""
@@ -512,19 +512,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 736,
-      "average_quality": 92,
+      "average_words": 673,
+      "average_quality": 90,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:citynews:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-05T15:19:37+00:00",
+      "latest_published": "2026-10-05T15:51:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T15:25:39.919727+00:00",
+      "last_scrape": "2026-10-05T16:12:32.167321+00:00",
       "last_error": ""
     },
     {
@@ -735,7 +736,7 @@
       "latest_published": "2026-10-05T08:00:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T15:56:56.797368+00:00",
+      "last_scrape": "2026-10-05T16:12:29.492776+00:00",
       "last_error": ""
     }
   ],
@@ -1240,6 +1241,21 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "a209c8e0a49a9e69",
+      "source": "CTV News London",
+      "title": "Motorcyclist killed in London crash",
+      "url": "https://www.ctvnews.ca/london/article/motorcyclist-killed-in-london-crash",
+      "published": "2026-10-05T16:06:42.761000+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 68,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "5f4ebc07bc431e12",
       "source": "CTV News London",
       "title": "Showers taper off in London as temperatures reach 20 C Sunday",
@@ -1278,21 +1294,6 @@
       "content_status": "full",
       "word_count": 182,
       "quality_score": 66,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "052c2f94bed8f92e",
-      "source": "CTV News London",
-      "title": "Warm, sunny weekend ahead for London",
-      "url": "https://www.ctvnews.ca/london/article/warm-sunny-weekend-ahead-for-london",
-      "published": "2026-10-03T15:38:04.045000+00:00",
-      "content_status": "partial",
-      "word_count": 79,
-      "quality_score": 44,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1405,21 +1406,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "8a36e8a2ad7d5570",
-      "source": "CityNews Canada",
-      "title": "Parti Québécois heads a crowded election field into provincial election vote",
-      "url": "https://toronto.citynews.ca/2026/10/04/parti-quebecois-heads-a-crowded-election-field-into-provincial-election-vote",
-      "published": "2026-10-04T10:00:09+00:00",
-      "content_status": "full",
-      "word_count": 813,
-      "quality_score": 86,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "aed4815075bb334d",
       "source": "CityNews Canada",
       "title": "Search continues for survivors aboard missing Ontario air ambulance off U.S. east coast",
@@ -1444,6 +1430,21 @@
       "word_count": 677,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4e141c9b87faecdc",
+      "source": "CityNews Canada",
+      "title": "Speed Skating Canada working to regain charitable status after missed tax filing",
+      "url": "https://toronto.citynews.ca/2026/10/05/speed-skating-canada-working-to-regain-charitable-status-after-missed-tax-filing",
+      "published": "2026-10-05T15:51:29+00:00",
+      "content_status": "full",
+      "word_count": 188,
+      "quality_score": 69,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -2627,6 +2628,35 @@
       "issues": []
     },
     {
+      "id": "a209c8e0a49a9e69",
+      "source": "CTV News London",
+      "title": "Motorcyclist killed in London crash",
+      "url": "https://www.ctvnews.ca/london/article/motorcyclist-killed-in-london-crash",
+      "published": "2026-10-05T16:06:42.761000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 183,
+      "paragraph_count": 8,
+      "inline_image_count": 1,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 64,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "448bcb81c285eda0",
       "source": "CTV News London",
       "title": "Man taken into custody after southeast London standoff",
@@ -2883,35 +2913,6 @@
       "extraction_profile": "ctv",
       "local_score": 22,
       "issues": []
-    },
-    {
-      "id": "052c2f94bed8f92e",
-      "source": "CTV News London",
-      "title": "Warm, sunny weekend ahead for London",
-      "url": "https://www.ctvnews.ca/london/article/warm-sunny-weekend-ahead-for-london",
-      "published": "2026-10-03T15:38:04.045000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 79,
-      "paragraph_count": 5,
-      "inline_image_count": 0,
-      "quality_score": 44,
-      "quality_grade": "poor",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
-        }
-      ]
     },
     {
       "id": "917c321670d71a14",
@@ -5424,6 +5425,35 @@
       ]
     },
     {
+      "id": "4e141c9b87faecdc",
+      "source": "CityNews Canada",
+      "title": "Speed Skating Canada working to regain charitable status after missed tax filing",
+      "url": "https://toronto.citynews.ca/2026/10/05/speed-skating-canada-working-to-regain-charitable-status-after-missed-tax-filing",
+      "published": "2026-10-05T15:51:29+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 188,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "71c34025afc0bb27",
       "source": "CityNews Canada",
       "title": "Capitals legend Alex Ovechkin to retire at end of season",
@@ -5669,35 +5699,6 @@
       "content_status": "full",
       "word_count": 1114,
       "paragraph_count": 39,
-      "inline_image_count": 0,
-      "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8a36e8a2ad7d5570",
-      "source": "CityNews Canada",
-      "title": "Parti Québécois heads a crowded election field into provincial election vote",
-      "url": "https://toronto.citynews.ca/2026/10/04/parti-quebecois-heads-a-crowded-election-field-into-provincial-election-vote",
-      "published": "2026-10-04T10:00:09+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 813,
-      "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 86,
       "quality_grade": "good",
