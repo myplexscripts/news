@@ -114,16 +114,26 @@ def test_fusion_gallery_still_recovers_all_images() -> None:
     ]
 
 
-def test_schema_three_rechecks_polluted_schema_two_story() -> None:
-    story = {
+def test_schema_four_rechecks_old_and_image_less_stories() -> None:
+    old_story = {
         "source": "CTV News Canada",
         "url": "https://www.ctvnews.ca/canada/article/example",
-        "ctv_photo_schema": 2,
+        "ctv_photo_schema": 3,
+        "ctv_photo_count": 2,
         "scraped_at": "2026-09-13T22:00:00+00:00",
         "ctv_photo_checked_for_scrape": "2026-09-13T22:00:00+00:00",
     }
-    assert photos.CTV_PHOTO_SCHEMA == 3
-    assert photos.story_needs_work(story)
+    image_less_story = {
+        "source": "CTV News",
+        "url": "https://www.ctvnews.ca/london/article/example",
+        "ctv_photo_schema": 4,
+        "ctv_photo_count": 0,
+        "scraped_at": "2026-09-13T22:00:00+00:00",
+        "ctv_photo_checked_for_scrape": "2026-09-13T22:00:00+00:00",
+    }
+    assert photos.CTV_PHOTO_SCHEMA == 4
+    assert photos.story_needs_work(old_story)
+    assert photos.story_needs_work(image_less_story)
 
 
 def test_schema_two_cleanup_removes_polluted_inline_images_but_keeps_text() -> None:
@@ -147,8 +157,8 @@ def main() -> None:
     print("PASS test_modern_ctv_recovers_only_current_article_images")
     test_fusion_gallery_still_recovers_all_images()
     print("PASS test_fusion_gallery_still_recovers_all_images")
-    test_schema_three_rechecks_polluted_schema_two_story()
-    print("PASS test_schema_three_rechecks_polluted_schema_two_story")
+    test_schema_four_rechecks_old_and_image_less_stories()
+    print("PASS test_schema_four_rechecks_old_and_image_less_stories")
     test_schema_two_cleanup_removes_polluted_inline_images_but_keeps_text()
     print("PASS test_schema_two_cleanup_removes_polluted_inline_images_but_keeps_text")
 
