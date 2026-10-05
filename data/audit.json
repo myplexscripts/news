@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T02:19:52.386780+00:00",
-  "generated_at_london": "2026-10-04T22:19:52.386780-04:00",
-  "news_generated_at": "2026-10-05T02:02:54.666029+00:00",
+  "generated_at": "2026-10-05T02:24:55.175445+00:00",
+  "generated_at_london": "2026-10-04T22:24:55.175445-04:00",
+  "news_generated_at": "2026-10-05T02:18:43.952360+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 655,
+    "archive_story_count": 656,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 107,
@@ -14,9 +14,9 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 16,
-    "info_issue_count": 86,
-    "healthy_source_count": 11,
-    "review_source_count": 6,
+    "info_issue_count": 92,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -152,32 +152,6 @@
       "tracked": 30,
       "last_scrape": "2026-10-04T21:23:00.099912+00:00",
       "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 458,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-04T22:30:09+00:00",
-      "found_this_run": 0,
-      "tracked": 30,
-      "last_scrape": "2026-10-04T22:55:04.709977+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "Western News",
@@ -492,7 +466,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 0,
+      "info_issues": 5,
       "latest_published": "2026-10-04T09:00:00+00:00",
       "found_this_run": 6,
       "tracked": 8,
@@ -706,7 +680,7 @@
       "latest_published": "2026-10-04T16:14:02+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T02:01:01.612045+00:00",
+      "last_scrape": "2026-10-05T02:16:44.229221+00:00",
       "last_error": ""
     },
     {
@@ -720,20 +694,46 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 797,
-      "average_quality": 92,
+      "average_words": 872,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "dom:globe:article#content-gate": 2
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-10-05T00:53:13.546000+00:00",
+      "info_issues": 15,
+      "latest_published": "2026-10-05T01:51:41.872000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T01:15:12.275391+00:00",
+      "last_scrape": "2026-10-05T02:16:37.611091+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 458,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-04T22:30:09+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-04T22:55:04.709977+00:00",
       "last_error": ""
     }
   ],
@@ -991,6 +991,81 @@
       "content_status": "full",
       "word_count": 446,
       "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "fa57e7a6c07e0367",
+      "source": "CBC News London",
+      "title": "2 men charged in August northeast London shooting, police say",
+      "url": "https://www.cbc.ca/news/canada/london/2-men-charged-in-august-northeast-london-shooting-police-say-9.7367194",
+      "published": "2026-10-02T18:20:52+00:00",
+      "content_status": "full",
+      "word_count": 277,
+      "quality_score": 80,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "6d23c0609b64fad7",
+      "source": "CBC News London",
+      "title": "3 songs from London Morning to boost your weekend playlist",
+      "url": "https://www.cbc.ca/news/canada/london/3-songs-from-london-morning-to-boost-your-weekend-playlist-9.7366982",
+      "published": "2026-10-03T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 416,
+      "quality_score": 86,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "4b42b51031a80626",
+      "source": "CBC News London",
+      "title": "Calls for improved safety on road favoured by cyclists after 34-year-old fatally struck",
+      "url": "https://www.cbc.ca/news/canada/london/calls-for-improved-safety-on-road-favoured-by-cyclists-after-34-year-old-fatally-struck-9.7367709",
+      "published": "2026-10-03T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 895,
+      "quality_score": 80,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "45d1610fb8626353",
+      "source": "CBC News London",
+      "title": "Memorial ride planned for motorcyclist killed in city's northwest end",
+      "url": "https://www.cbc.ca/news/canada/london/steven-steinsland-9.7367405",
+      "published": "2026-10-02T20:19:00+00:00",
+      "content_status": "full",
+      "word_count": 266,
+      "quality_score": 80,
+      "extraction_method": "reader:cbc:lite-repair"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "162a7fbdb0aa8c22",
+      "source": "CBC News London",
+      "title": "New remote testimony room aims to make court less traumatic for London-area children",
+      "url": "https://www.cbc.ca/news/canada/london/new-remote-testimony-room-aims-to-make-court-less-traumatic-for-london-area-children-9.7362598",
+      "published": "2026-10-04T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 480,
+      "quality_score": 84,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -1973,6 +2048,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "7b581c9c7c951d3d",
+      "source": "The Globe and Mail",
+      "title": "Search ends for 4 Canadians, 2 Bermudians on air ambulance that disappeared off Boston coast",
+      "url": "https://www.theglobeandmail.com/canada/article-search-ends-air-ambulance-that-disappeared-off-boston-coast",
+      "published": "2026-10-05T01:51:41.872000+00:00",
+      "content_status": "full",
+      "word_count": 939,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7b581c9c7c951d3d",
+      "source": "The Globe and Mail",
+      "title": "Search ends for 4 Canadians, 2 Bermudians on air ambulance that disappeared off Boston coast",
+      "url": "https://www.theglobeandmail.com/canada/article-search-ends-air-ambulance-that-disappeared-off-boston-coast",
+      "published": "2026-10-05T01:51:41.872000+00:00",
+      "content_status": "full",
+      "word_count": 939,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "bdca49d75ce60fe1",
       "source": "The Globe and Mail",
       "title": "Steven Galloway accuser apologizes ahead of defamation trial, regrets role in spreading unproven allegations",
@@ -1996,21 +2101,6 @@
       "content_status": "full",
       "word_count": 672,
       "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "dbb08aca5ba056ab",
-      "source": "The Globe and Mail",
-      "title": "Three dead, four injured in crash on rural Saskatchewan road",
-      "url": "https://www.theglobeandmail.com/canada/article-three-dead-four-injured-crash-near-foam-lake-saskatchewan",
-      "published": "2026-10-03T19:44:49.457000+00:00",
-      "content_status": "full",
-      "word_count": 190,
-      "quality_score": 66,
       "extraction_method": "dom:globe:article#content-gate"
     },
     {
@@ -2336,10 +2426,10 @@
       "url": "https://www.cbc.ca/news/canada/london/new-remote-testimony-room-aims-to-make-court-less-traumatic-for-london-area-children-9.7362598",
       "published": "2026-10-04T09:00:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 480,
       "paragraph_count": 20,
@@ -2349,7 +2439,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 65,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "7114b7aded61a747",
@@ -2402,10 +2499,10 @@
       "url": "https://www.cbc.ca/news/canada/london/calls-for-improved-safety-on-road-favoured-by-cyclists-after-34-year-old-fatally-struck-9.7367709",
       "published": "2026-10-03T09:00:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 895,
       "paragraph_count": 27,
@@ -2415,7 +2512,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 68,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "6d23c0609b64fad7",
@@ -2424,10 +2528,10 @@
       "url": "https://www.cbc.ca/news/canada/london/3-songs-from-london-morning-to-boost-your-weekend-playlist-9.7366982",
       "published": "2026-10-03T09:00:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 416,
       "paragraph_count": 13,
@@ -2437,7 +2541,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 42,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "45d1610fb8626353",
@@ -2446,10 +2557,10 @@
       "url": "https://www.cbc.ca/news/canada/london/steven-steinsland-9.7367405",
       "published": "2026-10-02T20:19:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 266,
       "paragraph_count": 13,
@@ -2459,7 +2570,14 @@
       "extraction_method": "reader:cbc:lite-repair",
       "extraction_profile": "unknown",
       "local_score": 42,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "9d2ce0e8154d4b2b",
@@ -2512,10 +2630,10 @@
       "url": "https://www.cbc.ca/news/canada/london/2-men-charged-in-august-northeast-london-shooting-police-say-9.7367194",
       "published": "2026-10-02T18:20:52+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 277,
       "paragraph_count": 11,
@@ -2525,7 +2643,14 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "unknown",
       "local_score": 58,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "82df2bd23dc3f030",
@@ -4400,6 +4525,41 @@
       ]
     },
     {
+      "id": "7b581c9c7c951d3d",
+      "source": "The Globe and Mail",
+      "title": "Search ends for 4 Canadians, 2 Bermudians on air ambulance that disappeared off Boston coast",
+      "url": "https://www.theglobeandmail.com/canada/article-search-ends-air-ambulance-that-disappeared-off-boston-coast",
+      "published": "2026-10-05T01:51:41.872000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 939,
+      "paragraph_count": 30,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "15cda8b1ddf1cd0a",
       "source": "The Globe and Mail",
       "title": "B.C. NDP one candidate short of full slate for snap provincial election",
@@ -4676,35 +4836,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "dbb08aca5ba056ab",
-      "source": "The Globe and Mail",
-      "title": "Three dead, four injured in crash on rural Saskatchewan road",
-      "url": "https://www.theglobeandmail.com/canada/article-three-dead-four-injured-crash-near-foam-lake-saskatchewan",
-      "published": "2026-10-03T19:44:49.457000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 190,
-      "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "dom:globe:article#content-gate",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
