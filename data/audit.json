@@ -1,23 +1,23 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T17:02:26.835135+00:00",
-  "generated_at_london": "2026-10-05T13:02:26.835135-04:00",
-  "news_generated_at": "2026-10-05T16:45:27.774646+00:00",
+  "generated_at": "2026-10-05T17:04:45.748601+00:00",
+  "generated_at_london": "2026-10-05T13:04:45.748601-04:00",
+  "news_generated_at": "2026-10-05T17:01:40.292253+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 671,
+    "archive_story_count": 675,
     "source_count": 28,
     "audited_story_count": 120,
-    "pass_story_count": 113,
-    "review_story_count": 5,
+    "pass_story_count": 108,
+    "review_story_count": 10,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 9,
+    "warning_issue_count": 18,
     "info_issue_count": 91,
     "healthy_source_count": 13,
-    "review_source_count": 5,
-    "error_source_count": 1,
+    "review_source_count": 4,
+    "error_source_count": 2,
     "waiting_source_count": 9
   },
   "source_reports": [
@@ -46,6 +46,33 @@
       "tracked": 1,
       "last_scrape": "2026-09-30T20:13:14.031279+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 4,
+      "fail": 1,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 322,
+      "average_quality": 90,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 4,
+        "reader:semantic-rich-v1": 6
+      },
+      "critical_issues": 1,
+      "warning_issues": 8,
+      "info_issues": 10,
+      "latest_published": "2026-10-05T16:10:23+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-05T16:27:39.859468+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -80,24 +107,24 @@
       "collector_status": "healthy",
       "profile": "ctv",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 231,
+      "average_words": 233,
       "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
-      "warning_issues": 2,
+      "warning_issues": 3,
       "info_issues": 8,
-      "latest_published": "2026-10-05T16:06:42.761000+00:00",
+      "latest_published": "2026-10-05T16:58:03.204000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T16:19:39.628253+00:00",
+      "last_scrape": "2026-10-05T16:33:41.944442+00:00",
       "last_error": ""
     },
     {
@@ -124,32 +151,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-05T14:54:12.384188+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 346,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 1,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-05T16:10:23+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-05T16:27:39.859468+00:00",
       "last_error": ""
     },
     {
@@ -246,7 +247,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 2,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -469,9 +470,9 @@
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-10-05T16:16:42.336000+00:00",
-      "found_this_run": 6,
+      "found_this_run": 5,
       "tracked": 30,
-      "last_scrape": "2026-10-05T16:27:33.308437+00:00",
+      "last_scrape": "2026-10-05T16:33:42.865851+00:00",
       "last_error": ""
     },
     {
@@ -537,19 +538,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 478,
-      "average_quality": 96,
+      "average_words": 440,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-05T16:38:27+00:00",
+      "latest_published": "2026-10-05T16:53:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T16:43:21.429609+00:00",
+      "last_scrape": "2026-10-05T16:59:28.347437+00:00",
       "last_error": ""
     },
     {
@@ -641,12 +644,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 281,
-      "average_quality": 72,
+      "average_words": 262,
+      "average_quality": 70,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:police:main": 1,
-        "reader:semantic-rich-v1": 8,
+        "dom:police:main": 2,
+        "reader:semantic-rich-v1": 7,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
@@ -654,8 +657,8 @@
       "info_issues": 8,
       "latest_published": "2026-10-05T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 10,
-      "last_scrape": "2026-10-05T16:26:04.265843+00:00",
+      "tracked": 11,
+      "last_scrape": "2026-10-05T16:57:38.865219+00:00",
       "last_error": ""
     },
     {
@@ -721,20 +724,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 758,
-      "average_quality": 82,
+      "average_words": 759,
+      "average_quality": 84,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "dom:semantic-rich-v1": 3,
-        "reader:semantic-rich-v1": 7
+        "reader:semantic-rich-v1": 6
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-05T08:00:29+00:00",
+      "latest_published": "2026-10-05T16:46:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T16:43:34.099978+00:00",
+      "last_scrape": "2026-10-05T16:59:36.073670+00:00",
       "last_error": ""
     }
   ],
@@ -831,6 +835,21 @@
     },
     {
       "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "4 consecutive images",
+      "story_id": "14e18780c5f516c1",
+      "source": "CTV News London",
+      "title": "Rollover crash in London leads to charges",
+      "url": "https://www.ctvnews.ca/london/article/rollover-crash-in-london-leads-to-charges",
+      "published": "2026-10-05T16:58:03.204000+00:00",
+      "content_status": "full",
+      "word_count": 146,
+      "quality_score": 62,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
       "detail": "11 inline images",
@@ -888,6 +907,126 @@
       "word_count": 2994,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "d1fb5a10f753654d",
+      "source": "Toronto Star",
+      "title": "Blind voter argues at tribunal hearing that his accessible voting rights were denied",
+      "url": "https://www.thestar.com/news/ontario/blind-voter-argues-at-tribunal-hearing-that-his-accessible-voting-rights-were-denied/article_97e6ebcf-f575-5db4-83b6-c83aa39ff44c.html",
+      "published": "2026-10-05T15:25:31+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "d1fb5a10f753654d",
+      "source": "Toronto Star",
+      "title": "Blind voter argues at tribunal hearing that his accessible voting rights were denied",
+      "url": "https://www.thestar.com/news/ontario/blind-voter-argues-at-tribunal-hearing-that-his-accessible-voting-rights-were-denied/article_97e6ebcf-f575-5db4-83b6-c83aa39ff44c.html",
+      "published": "2026-10-05T15:25:31+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "8a62bff31df1900c",
+      "source": "Toronto Star",
+      "title": "Liberals ask Ontario auditor to probe spending, oversight of Osap at career colleges",
+      "url": "https://www.thestar.com/news/ontario/liberals-ask-ontario-auditor-to-probe-spending-oversight-of-osap-at-career-colleges/article_23d108b7-4824-548d-a1b1-dde356eedb89.html",
+      "published": "2026-10-05T15:27:58+00:00",
+      "content_status": "full",
+      "word_count": 207,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "8a62bff31df1900c",
+      "source": "Toronto Star",
+      "title": "Liberals ask Ontario auditor to probe spending, oversight of Osap at career colleges",
+      "url": "https://www.thestar.com/news/ontario/liberals-ask-ontario-auditor-to-probe-spending-oversight-of-osap-at-career-colleges/article_23d108b7-4824-548d-a1b1-dde356eedb89.html",
+      "published": "2026-10-05T15:27:58+00:00",
+      "content_status": "full",
+      "word_count": 207,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c47fb7bd817a86f8",
+      "source": "Toronto Star",
+      "title": "New legal warranty takes effect ensuring products in Quebec are in good working order",
+      "url": "https://www.thestar.com/news/canada/quebec/new-legal-warranty-takes-effect-ensuring-products-in-quebec-are-in-good-working-order/article_668448b1-df7e-5d87-b533-a9261c7128d7.html",
+      "published": "2026-10-05T16:10:23+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c47fb7bd817a86f8",
+      "source": "Toronto Star",
+      "title": "New legal warranty takes effect ensuring products in Quebec are in good working order",
+      "url": "https://www.thestar.com/news/canada/quebec/new-legal-warranty-takes-effect-ensuring-products-in-quebec-are-in-good-working-order/article_668448b1-df7e-5d87-b533-a9261c7128d7.html",
+      "published": "2026-10-05T16:10:23+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "05553cebf2bd423e",
+      "source": "Toronto Star",
+      "title": "Tory MP says report of Republicans working with Alberta separatists is 'concerning'",
+      "url": "https://www.thestar.com/news/canada/alberta/tory-mp-says-report-of-republicans-working-with-alberta-separatists-is-concerning/article_56a2003c-d7d7-5a0f-bfd6-a69ace095c7d.html",
+      "published": "2026-10-05T15:46:15+00:00",
+      "content_status": "full",
+      "word_count": 225,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "05553cebf2bd423e",
+      "source": "Toronto Star",
+      "title": "Tory MP says report of Republicans working with Alberta separatists is 'concerning'",
+      "url": "https://www.thestar.com/news/canada/alberta/tory-mp-says-report-of-republicans-working-with-alberta-separatists-is-concerning/article_56a2003c-d7d7-5a0f-bfd6-a69ace095c7d.html",
+      "published": "2026-10-05T15:46:15+00:00",
+      "content_status": "full",
+      "word_count": 225,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1419,15 +1558,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "8a0693bac4cfd947",
+      "story_id": "ae7b294898b268ac",
       "source": "Global News Canada",
-      "title": "Debris spotted from missing Ontario air ambulance",
-      "url": "https://globalnews.ca/news/12087090/debris-spotted-from-missing-ontario-air-ambulance",
-      "published": "2026-10-04T12:30:30+00:00",
+      "title": "Family ‘absolutely devastated’ after Biscuit the bunny stolen at Markham Fair",
+      "url": "https://globalnews.ca/news/12087925/markham-fair-bunny-stolen",
+      "published": "2026-10-05T16:45:50+00:00",
       "content_status": "full",
-      "word_count": 729,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 319,
+      "quality_score": 80,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -1441,21 +1580,6 @@
       "published": "2026-10-05T03:15:51+00:00",
       "content_status": "full",
       "word_count": 512,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5e6f576847beb91f",
-      "source": "Global News Canada",
-      "title": "Montreal transit agency investigating death of man who fell onto subway tracks",
-      "url": "https://globalnews.ca/news/12087169/montreal-man-falls-on-subway-tracks",
-      "published": "2026-10-04T16:55:57+00:00",
-      "content_status": "full",
-      "word_count": 122,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1524,6 +1648,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "9ff4ad622fcf17f5",
+      "source": "Global News Canada",
+      "title": "Vancouver’s school support workers vote 97% in favour of strike action",
+      "url": "https://globalnews.ca/news/12088061/vancouver-school-support-workers-authorize-strike-action",
+      "published": "2026-10-05T16:53:00+00:00",
+      "content_status": "full",
+      "word_count": 148,
+      "quality_score": 63,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "f12f25981b09c1c5",
       "source": "Global News Canada",
       "title": "‘Degrading’ sign hung during homecoming prompts response from N.S. university president",
@@ -1548,6 +1687,21 @@
       "word_count": 345,
       "quality_score": 70,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "ba80e0b20d815c67",
+      "source": "London Police Service",
+      "title": "Collision results in charges",
+      "url": "https://www.londonpolice.ca/news/posts/collision-results-in-charges-26-99684",
+      "published": "2026-10-05T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 62,
+      "extraction_method": "dom:police:main"
     },
     {
       "severity": "info",
@@ -1621,21 +1775,6 @@
       "published": "2026-09-29T04:00:00+00:00",
       "content_status": "full",
       "word_count": 223,
-      "quality_score": 74,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "ba52a134395f7dc8",
-      "source": "London Police Service",
-      "title": "Stabbing",
-      "url": "https://www.londonpolice.ca/news/posts/stabbing-26-97809",
-      "published": "2026-09-29T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 372,
       "quality_score": 74,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -1749,6 +1888,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "53c5e9e6bc2d70e1",
+      "source": "National Post",
+      "title": "Flags not permitted on Gordie Howe Bridge's shared-use path",
+      "url": "https://nationalpost.com/news/gordie-howe-bridge-path-no-flags",
+      "published": "2026-10-05T16:46:23+00:00",
+      "content_status": "full",
+      "word_count": 674,
+      "quality_score": 89,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "75666ad1087b07d8",
       "source": "National Post",
       "title": "Four Canadians aboard Ontario-based air ambulance missing off U.S. coast",
@@ -1802,21 +1956,6 @@
       "content_status": "full",
       "word_count": 615,
       "quality_score": 78,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9acf4ed27372b530",
-      "source": "National Post",
-      "title": "Poilievre's popularity lags behind his party, but few options on the horizon, new poll finds",
-      "url": "https://nationalpost.com/news/politics/poilievres-popularity-lags-behind-his-party-but-few-options-on-the-horizon-new-poll-finds",
-      "published": "2026-10-03T10:00:37+00:00",
-      "content_status": "full",
-      "word_count": 667,
-      "quality_score": 72,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -2070,9 +2209,9 @@
       "url": "https://www.thestar.com/news/ontario/blind-voter-argues-at-tribunal-hearing-that-his-accessible-voting-rights-were-denied/article_97e6ebcf-f575-5db4-83b6-c83aa39ff44c.html",
       "published": "2026-10-05T15:25:31+00:00",
       "content_status": "full",
-      "word_count": 268,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2100,9 +2239,9 @@
       "url": "https://www.thestar.com/news/ontario/liberals-ask-ontario-auditor-to-probe-spending-oversight-of-osap-at-career-colleges/article_23d108b7-4824-548d-a1b1-dde356eedb89.html",
       "published": "2026-10-05T15:27:58+00:00",
       "content_status": "full",
-      "word_count": 205,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 207,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2130,9 +2269,9 @@
       "url": "https://www.thestar.com/news/canada/quebec/new-legal-warranty-takes-effect-ensuring-products-in-quebec-are-in-good-working-order/article_668448b1-df7e-5d87-b533-a9261c7128d7.html",
       "published": "2026-10-05T16:10:23+00:00",
       "content_status": "full",
-      "word_count": 362,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2175,9 +2314,9 @@
       "url": "https://www.thestar.com/news/canada/alberta/tory-mp-says-report-of-republicans-working-with-alberta-separatists-is-concerning/article_56a2003c-d7d7-5a0f-bfd6-a69ace095c7d.html",
       "published": "2026-10-05T15:46:15+00:00",
       "content_status": "full",
-      "word_count": 266,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 225,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2318,7 +2457,7 @@
     {
       "id": "162a7fbdb0aa8c22",
       "source": "CBC News London",
-      "title": "New remote testimony room aims to make court less traumatic for London-area children",
+      "title": "New remote testimony room aims to make court less traumatic for London-area children - CBC.CA",
       "url": "https://www.cbc.ca/news/canada/london/new-remote-testimony-room-aims-to-make-court-less-traumatic-for-london-area-children-9.7362598",
       "published": "2026-10-04T09:00:00+00:00",
       "audit_status": "pass",
@@ -2428,7 +2567,7 @@
     {
       "id": "45d1610fb8626353",
       "source": "CBC News London",
-      "title": "Memorial ride planned for motorcyclist killed in city's northwest end",
+      "title": "Memorial ride planned for motorcyclist killed in city's northwest end - CBC.CA",
       "url": "https://www.cbc.ca/news/canada/london/steven-steinsland-9.7367405",
       "published": "2026-10-02T20:19:00+00:00",
       "audit_status": "pass",
@@ -2534,6 +2673,35 @@
       "extraction_profile": "unknown",
       "local_score": 58,
       "issues": []
+    },
+    {
+      "id": "14e18780c5f516c1",
+      "source": "CTV News London",
+      "title": "Rollover crash in London leads to charges",
+      "url": "https://www.ctvnews.ca/london/article/rollover-crash-in-london-leads-to-charges",
+      "published": "2026-10-05T16:58:03.204000+00:00",
+      "audit_status": "review",
+      "audit_score": 88,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 146,
+      "paragraph_count": 6,
+      "inline_image_count": 4,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 38,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "4 consecutive images"
+        }
+      ]
     },
     {
       "id": "a209c8e0a49a9e69",
@@ -2799,28 +2967,6 @@
           "detail": "8 consecutive images"
         }
       ]
-    },
-    {
-      "id": "b8f7c47d528c9f3b",
-      "source": "CTV News London",
-      "title": "One person in custody after vehicle rollover in London",
-      "url": "https://www.ctvnews.ca/london/article/vehicle-rollover-on-euclid-avenue-in-london",
-      "published": "2026-10-03T18:07:56.917000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 121,
-      "paragraph_count": 5,
-      "inline_image_count": 2,
-      "quality_score": 58,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 22,
-      "issues": []
     },
     {
       "id": "917c321670d71a14",
@@ -3123,6 +3269,35 @@
       "issues": []
     },
     {
+      "id": "ba80e0b20d815c67",
+      "source": "London Police Service",
+      "title": "Collision results in charges",
+      "url": "https://www.londonpolice.ca/news/posts/collision-results-in-charges-26-99684",
+      "published": "2026-10-05T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 183,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:police:main",
+      "extraction_profile": "police",
+      "local_score": 100,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "20d3c6a0578bda07",
       "source": "London Police Service",
       "title": "LPS officer facing charge in relation to on-duty incident",
@@ -3303,35 +3478,6 @@
       "content_status": "full",
       "word_count": 223,
       "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 74,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "police",
-      "local_score": 100,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "ba52a134395f7dc8",
-      "source": "London Police Service",
-      "title": "Stabbing",
-      "url": "https://www.londonpolice.ca/news/posts/stabbing-26-97809",
-      "published": "2026-09-29T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 372,
-      "paragraph_count": 15,
       "inline_image_count": 0,
       "quality_score": 74,
       "quality_grade": "good",
@@ -3809,6 +3955,64 @@
       "issues": []
     },
     {
+      "id": "9ff4ad622fcf17f5",
+      "source": "Global News Canada",
+      "title": "Vancouver’s school support workers vote 97% in favour of strike action",
+      "url": "https://globalnews.ca/news/12088061/vancouver-school-support-workers-authorize-strike-action",
+      "published": "2026-10-05T16:53:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 148,
+      "paragraph_count": 6,
+      "inline_image_count": 2,
+      "quality_score": 63,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "ae7b294898b268ac",
+      "source": "Global News Canada",
+      "title": "Family ‘absolutely devastated’ after Biscuit the bunny stolen at Markham Fair",
+      "url": "https://globalnews.ca/news/12087925/markham-fair-bunny-stolen",
+      "published": "2026-10-05T16:45:50+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 319,
+      "paragraph_count": 13,
+      "inline_image_count": 2,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4b629d5f5a6be2a5",
       "source": "Global News Canada",
       "title": "Quebec’s consumer protections updated to ensure good working order of products",
@@ -4026,64 +4230,6 @@
       "word_count": 323,
       "paragraph_count": 12,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5e6f576847beb91f",
-      "source": "Global News Canada",
-      "title": "Montreal transit agency investigating death of man who fell onto subway tracks",
-      "url": "https://globalnews.ca/news/12087169/montreal-man-falls-on-subway-tracks",
-      "published": "2026-10-04T16:55:57+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 122,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8a0693bac4cfd947",
-      "source": "Global News Canada",
-      "title": "Debris spotted from missing Ontario air ambulance",
-      "url": "https://globalnews.ca/news/12087090/debris-spotted-from-missing-ontario-air-ambulance",
-      "published": "2026-10-04T12:30:30+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 729,
-      "paragraph_count": 34,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4733,6 +4879,35 @@
       ]
     },
     {
+      "id": "53c5e9e6bc2d70e1",
+      "source": "National Post",
+      "title": "Flags not permitted on Gordie Howe Bridge's shared-use path",
+      "url": "https://nationalpost.com/news/gordie-howe-bridge-path-no-flags",
+      "published": "2026-10-05T16:46:23+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 674,
+      "paragraph_count": 18,
+      "inline_image_count": 1,
+      "quality_score": 89,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "76aca528826ebd8f",
       "source": "National Post",
       "title": "How Canada's retaliatory tariffs could drive up your winter heating costs",
@@ -4994,55 +5169,38 @@
       ]
     },
     {
-      "id": "9acf4ed27372b530",
-      "source": "National Post",
-      "title": "Poilievre's popularity lags behind his party, but few options on the horizon, new poll finds",
-      "url": "https://nationalpost.com/news/politics/poilievres-popularity-lags-behind-his-party-but-few-options-on-the-horizon-new-poll-finds",
-      "published": "2026-10-03T10:00:37+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 667,
-      "paragraph_count": 21,
-      "inline_image_count": 0,
-      "quality_score": 72,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
       "id": "c47fb7bd817a86f8",
       "source": "Toronto Star",
       "title": "New legal warranty takes effect ensuring products in Quebec are in good working order",
       "url": "https://www.thestar.com/news/canada/quebec/new-legal-warranty-takes-effect-ensuring-products-in-quebec-are-in-good-working-order/article_668448b1-df7e-5d87-b533-a9261c7128d7.html",
       "published": "2026-10-05T16:10:23+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 362,
-      "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
+      "word_count": 211,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5057,21 +5215,33 @@
       "title": "Tory MP says report of Republicans working with Alberta separatists is 'concerning'",
       "url": "https://www.thestar.com/news/canada/alberta/tory-mp-says-report-of-republicans-working-with-alberta-separatists-is-concerning/article_56a2003c-d7d7-5a0f-bfd6-a69ace095c7d.html",
       "published": "2026-10-05T15:46:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 266,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
+      "word_count": 225,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5086,21 +5256,33 @@
       "title": "Liberals ask Ontario auditor to probe spending, oversight of Osap at career colleges",
       "url": "https://www.thestar.com/news/ontario/liberals-ask-ontario-auditor-to-probe-spending-oversight-of-osap-at-career-colleges/article_23d108b7-4824-548d-a1b1-dde356eedb89.html",
       "published": "2026-10-05T15:27:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 205,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
+      "word_count": 207,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5115,21 +5297,33 @@
       "title": "Blind voter argues at tribunal hearing that his accessible voting rights were denied",
       "url": "https://www.thestar.com/news/ontario/blind-voter-argues-at-tribunal-hearing-that-his-accessible-voting-rights-were-denied/article_97e6ebcf-f575-5db4-83b6-c83aa39ff44c.html",
       "published": "2026-10-05T15:25:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 268,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
+      "word_count": 226,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
