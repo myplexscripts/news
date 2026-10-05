@@ -18,7 +18,7 @@ import repair_ctv_photos as legacy
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS_PATH = ROOT / "data" / "news.json"
-CTV_PHOTO_SCHEMA = 3
+CTV_PHOTO_SCHEMA = 4
 MAX_PHOTOS = 40
 WORKERS = 6
 
@@ -84,6 +84,9 @@ def story_needs_work(story: dict[str, Any]) -> bool:
     if not is_ctv_story(story):
         return False
     if int(story.get("ctv_photo_schema") or 0) < CTV_PHOTO_SCHEMA:
+        return True
+    # A previous failed recovery must never make an image-less CTV story look current.
+    if int(story.get("ctv_photo_count") or 0) <= 0:
         return True
     scraped = str(story.get("scraped_at") or "").strip()
     checked = str(story.get("ctv_photo_checked_for_scrape") or "").strip()
@@ -577,7 +580,7 @@ def main() -> int:
         NEWS_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(
-        f"CTV image recovery v3: checked={len(targets)}, changed={changed}, "
+        f"CTV image recovery v4: checked={len(targets)}, changed={changed}, "
         f"images={recovered}, missing={missing}, max_per_story={max_story_photos}"
     )
     return 0
