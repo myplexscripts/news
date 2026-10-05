@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T22:43:32.995373+00:00",
-  "generated_at_london": "2026-10-05T18:43:32.995373-04:00",
-  "news_generated_at": "2026-10-05T22:25:41.066136+00:00",
+  "generated_at": "2026-10-05T22:45:00.599294+00:00",
+  "generated_at_london": "2026-10-05T18:45:00.599294-04:00",
+  "news_generated_at": "2026-10-05T22:41:44.853817+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 672,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 8,
     "info_issue_count": 90,
-    "healthy_source_count": 14,
-    "review_source_count": 4,
+    "healthy_source_count": 13,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 9
   },
@@ -75,6 +75,33 @@
       "last_error": ""
     },
     {
+      "source": "CBC News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "cbc",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 457,
+      "average_quality": 82,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 7,
+        "reader:cbc:lite-repair": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 0,
+      "latest_published": "2026-10-04T09:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 8,
+      "last_scrape": "2026-10-05T02:27:01.683958+00:00",
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+    },
+    {
       "source": "CTV News London",
       "status": "review",
       "collector_status": "healthy",
@@ -98,7 +125,7 @@
       "latest_published": "2026-10-05T22:20:07.914000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T21:58:42.511817+00:00",
+      "last_scrape": "2026-10-05T22:25:47.513131+00:00",
       "last_error": ""
     },
     {
@@ -139,10 +166,11 @@
       "pass_rate": 90,
       "usable_body_rate": 100,
       "average_words": 772,
-      "average_quality": 96,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -204,7 +232,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -220,10 +248,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 2,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -396,33 +424,6 @@
       "last_error": ""
     },
     {
-      "source": "CBC News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "cbc",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 457,
-      "average_quality": 82,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 7,
-        "reader:cbc:lite-repair": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "2026-10-04T09:00:00+00:00",
-      "found_this_run": 3,
-      "tracked": 8,
-      "last_scrape": "2026-10-05T02:27:01.683958+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -445,7 +446,7 @@
       "latest_published": "2026-10-05T21:47:15.353000+00:00",
       "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-10-05T21:58:40.745290+00:00",
+      "last_scrape": "2026-10-05T22:14:52.314888+00:00",
       "last_error": ""
     },
     {
@@ -682,7 +683,7 @@
       "latest_published": "2026-10-05T18:36:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T22:23:46.168279+00:00",
+      "last_scrape": "2026-10-05T22:39:46.506182+00:00",
       "last_error": ""
     },
     {
@@ -1845,10 +1846,10 @@
       "title": "Canadian Opera Company’s Così fan tutte is invariably glorious",
       "url": "https://www.theglobeandmail.com/culture/article-canadian-opera-companys-cosi-fan-tutte-is-invariably-glorious",
       "published": "2026-10-05T22:02:55.296000+00:00",
-      "content_status": "partial",
-      "word_count": 752,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 750,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4401,13 +4402,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 752,
-      "paragraph_count": 20,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "content_status": "full",
+      "word_count": 750,
+      "paragraph_count": 19,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
