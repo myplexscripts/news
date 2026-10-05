@@ -60,7 +60,7 @@ test.beforeEach(async ({ page }, testInfo) => {
       cluster_source_count: 4, cluster_representative: i === 0
     }));
   }
-  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
+  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: edition }));
   await page.route('**/data/stories/*.json', route => {
     const id = route.request().url().split('/').pop().replace('.json', '');
@@ -382,7 +382,7 @@ test('sections segmented selector matches the shared segmented-control scale', a
 test('background refresh offers an edition without replacing the current list', async ({ page }) => {
   const fresh = fixture(1);
   fresh.stories[0].title = 'A newly published London report';
-  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
+  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: fresh }));
   await page.clock.fastForward(300001);
   await expect(page.getByRole('button', { name: 'New updates available' })).toBeVisible();
