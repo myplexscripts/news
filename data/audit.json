@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T18:21:18.696454+00:00",
-  "generated_at_london": "2026-10-05T14:21:18.696454-04:00",
-  "news_generated_at": "2026-10-05T18:03:54.714648+00:00",
+  "generated_at": "2026-10-05T18:23:15.105705+00:00",
+  "generated_at_london": "2026-10-05T14:23:15.105705-04:00",
+  "news_generated_at": "2026-10-05T18:19:10.717383+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 677,
+    "archive_story_count": 678,
     "source_count": 28,
     "audited_story_count": 120,
     "pass_story_count": 112,
@@ -14,9 +14,9 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 11,
-    "info_issue_count": 92,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "info_issue_count": 93,
+    "healthy_source_count": 12,
+    "review_source_count": 6,
     "error_source_count": 1,
     "waiting_source_count": 9
   },
@@ -77,29 +77,28 @@
     {
       "source": "CTV News London",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "ctv",
       "sample_size": 10,
       "pass": 9,
       "review": 1,
       "fail": 0,
       "pass_rate": 90,
-      "usable_body_rate": 90,
-      "average_words": 206,
-      "average_quality": 67,
+      "usable_body_rate": 100,
+      "average_words": 183,
+      "average_quality": 64,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 9,
-        "ctv:summary-fallback": 1
+        "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 8,
-      "latest_published": "2026-10-05T17:54:30.687000+00:00",
-      "found_this_run": 10,
+      "info_issues": 9,
+      "latest_published": "2026-10-05T18:14:46.821000+00:00",
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-05T17:59:41.834446+00:00",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Max retries exceeded with url: /london/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Global News Canada",
@@ -112,19 +111,20 @@
       "fail": 0,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 476,
-      "average_quality": 96,
+      "average_words": 467,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-10-05T17:31:26+00:00",
+      "latest_published": "2026-10-05T18:08:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T17:46:01.824202+00:00",
+      "last_scrape": "2026-10-05T18:17:12.197928+00:00",
       "last_error": ""
     },
     {
@@ -152,6 +152,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-05T14:54:12.384188+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 302,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-05T17:13:12+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-05T18:02:03.976660+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "Western News",
@@ -709,33 +735,7 @@
       "latest_published": "2026-10-05T16:46:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T18:02:00.707275+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 302,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-05T17:13:12+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-10-05T18:02:03.976660+00:00",
+      "last_scrape": "2026-10-05T18:17:20.169955+00:00",
       "last_error": ""
     }
   ],
@@ -1225,6 +1225,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "a755a02d3c49c59b",
+      "source": "CTV News London",
+      "title": "Suspect wanted in connection with Point Edward break-and-enter",
+      "url": "https://www.ctvnews.ca/london/article/suspect-wanted-in-connection-with-point-edward-break-and-enter",
+      "published": "2026-10-05T18:14:46.821000+00:00",
+      "content_status": "full",
+      "word_count": 118,
+      "quality_score": 53,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "82d083f45e1c2029",
       "source": "CTV News London",
       "title": "Teen charged after vehicle plunges down Georgian Bay embankment",
@@ -1480,6 +1495,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "f62dfdc9ec5aaab2",
+      "source": "Global News Canada",
+      "title": "Florida could slash property taxes – but not for Canadian snowbirds",
+      "url": "https://globalnews.ca/news/12088172/florida-slash-property-taxes-canadian-snowbirds",
+      "published": "2026-10-05T18:08:58+00:00",
+      "content_status": "full",
+      "word_count": 592,
+      "quality_score": 85,
+      "extraction_method": "dom:global:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "c7c93c0b4b312771",
       "source": "Global News Canada",
       "title": "Giant pumpkin squashes competition, sets new record at Manitoba fair",
@@ -1517,21 +1547,6 @@
       "published": "2026-10-05T12:45:30+00:00",
       "content_status": "full",
       "word_count": 212,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5ce8609997a3ccf5",
-      "source": "Global News Canada",
-      "title": "U.S. Coast Guard suspends search for missing Ontario air ambulance",
-      "url": "https://globalnews.ca/news/12087720/u-s-coast-guard-suspends-search-for-missing-ontario-air-ambulance",
-      "published": "2026-10-05T12:18:59+00:00",
-      "content_status": "full",
-      "word_count": 688,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2567,6 +2582,35 @@
       "issues": []
     },
     {
+      "id": "a755a02d3c49c59b",
+      "source": "CTV News London",
+      "title": "Suspect wanted in connection with Point Edward break-and-enter",
+      "url": "https://www.ctvnews.ca/london/article/suspect-wanted-in-connection-with-point-edward-break-and-enter",
+      "published": "2026-10-05T18:14:46.821000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 118,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a722ac5779504a45",
       "source": "CTV News London",
       "title": "Frost advisory issued as temperatures set to dip near freezing",
@@ -2612,13 +2656,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 0,
-      "content_status": "summary",
-      "word_count": 20,
-      "paragraph_count": 1,
-      "inline_image_count": 1,
-      "quality_score": 40,
+      "content_status": "partial",
+      "word_count": 69,
+      "paragraph_count": 4,
+      "inline_image_count": 0,
+      "quality_score": 44,
       "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
+      "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 35,
       "issues": []
@@ -2824,28 +2868,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "e8224346c0cd1cfa",
-      "source": "CTV News London",
-      "title": "‘He was larger than life’: Memorial ride honours late motorcyclist Steven Steinsland",
-      "url": "https://www.ctvnews.ca/london/article/he-was-larger-than-life-memorial-ride-honours-late-motorcyclist-steven-steinsland",
-      "published": "2026-10-04T19:07:28.060000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 401,
-      "paragraph_count": 18,
-      "inline_image_count": 2,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": []
     },
     {
       "id": "917c321670d71a14",
@@ -3834,6 +3856,35 @@
       "issues": []
     },
     {
+      "id": "f62dfdc9ec5aaab2",
+      "source": "Global News Canada",
+      "title": "Florida could slash property taxes – but not for Canadian snowbirds",
+      "url": "https://globalnews.ca/news/12088172/florida-slash-property-taxes-canadian-snowbirds",
+      "published": "2026-10-05T18:08:58+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 592,
+      "paragraph_count": 24,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8148570dcb5d63b5",
       "source": "Global News Canada",
       "title": "Chief justice says democratic institutions must be protected",
@@ -4098,35 +4149,6 @@
       "word_count": 706,
       "paragraph_count": 25,
       "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5ce8609997a3ccf5",
-      "source": "Global News Canada",
-      "title": "U.S. Coast Guard suspends search for missing Ontario air ambulance",
-      "url": "https://globalnews.ca/news/12087720/u-s-coast-guard-suspends-search-for-missing-ontario-air-ambulance",
-      "published": "2026-10-05T12:18:59+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 688,
-      "paragraph_count": 25,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
