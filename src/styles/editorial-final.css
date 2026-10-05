@@ -1,0 +1,63 @@
+/* Final editorial article presentation overrides. */
+
+/* The story view computes these fade variables from the lower portion of the
+   actual cover image, so bright photos get a stronger contrast treatment and
+   darker photos keep more of the image visible. */
+html body .svelte-article-page .article-cover-copy::before {
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / var(--cover-fade-strong, 0.48)) 0%,
+    rgb(0 0 0 / var(--cover-fade-mid, 0.34)) 38%,
+    rgb(0 0 0 / var(--cover-fade-soft, 0.16)) 74%,
+    transparent 100%
+  ) !important;
+}
+
+/* Reading metadata follows the white editorial treatment in dark article
+   presentation instead of reverting to muted grey. */
+html[data-theme='dark'] body .svelte-article-page .article-flow-meta time,
+html[data-theme='dark'] body .svelte-article-page .article-flow-meta span {
+  color: #fff !important;
+}
+
+@media (max-width: 760px) {
+  /* The approved cover type is fixed. The viewport changes the photograph,
+     not the headline size. */
+  html body .svelte-article-page .article-cover-content h1 {
+    font-size: 2.5rem !important;
+    font-weight: 650 !important;
+    line-height: 0.96 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  /* Give the copy below the cover a little more separation from the image. */
+  html body .svelte-article-page .article-after-cover {
+    padding-top: 40px !important;
+  }
+
+  /* Article photography is full bleed on phones. Captions return to the text
+     gutter so the image itself can stay edge to edge. */
+  html body .svelte-article-page .article-copy.article-copy-refined > figure.inline-article-image {
+    position: relative !important;
+    left: 50% !important;
+    width: 100vw !important;
+    max-width: none !important;
+    margin: 38px 0 !important;
+    transform: translateX(-50%) !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+  }
+
+  html body .svelte-article-page .article-copy.article-copy-refined > figure.inline-article-image img {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+  }
+
+  html body .svelte-article-page .article-copy.article-copy-refined > figure.inline-article-image figcaption {
+    margin-top: 16px !important;
+    padding-inline: var(--page-gutter-mobile) !important;
+    box-sizing: border-box;
+  }
+}
