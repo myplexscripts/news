@@ -157,8 +157,7 @@
       && qualityScore >= 45;
 
     const reader = usable ? blocks : article.summary ? [{ type: 'paragraph', text: article.summary }] : blocks;
-    const coverKey = normalizeImageKey(coverSource || article.image || article.card_image || '');
-    const seen = new Set(coverKey ? [coverKey] : []);
+    const seen = new Set();
 
     return reader.filter((block) => {
       if (block.type !== 'image' || !block.url) return true;
