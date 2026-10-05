@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-05T23:26:15.853137+00:00",
-  "generated_at_london": "2026-10-05T19:26:15.853137-04:00",
-  "news_generated_at": "2026-10-05T23:13:03.119613+00:00",
+  "generated_at": "2026-10-05T23:29:34.390559+00:00",
+  "generated_at_london": "2026-10-05T19:29:34.390559-04:00",
+  "news_generated_at": "2026-10-05T23:27:24.035195+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 675,
     "source_count": 28,
     "audited_story_count": 121,
-    "pass_story_count": 116,
-    "review_story_count": 4,
+    "pass_story_count": 115,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 90,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 9
   },
@@ -98,7 +98,7 @@
       "latest_published": "2026-10-05T22:20:07.914000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T22:46:32.829369+00:00",
+      "last_scrape": "2026-10-05T23:03:41.735995+00:00",
       "last_error": ""
     },
     {
@@ -125,6 +125,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-05T23:10:46.001788+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 255,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-05T23:04:18+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-05T23:26:08.678175+00:00",
       "last_error": ""
     },
     {
@@ -656,7 +683,7 @@
       "latest_published": "2026-10-05T18:36:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T23:11:06.386889+00:00",
+      "last_scrape": "2026-10-05T23:26:05.021503+00:00",
       "last_error": ""
     },
     {
@@ -683,32 +710,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-05T22:55:13.839227+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 291,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-05T20:44:23+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-05T23:11:14.545471+00:00",
       "last_error": ""
     },
     {
@@ -859,6 +860,36 @@
       "word_count": 380,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "66170f610e43f984",
+      "source": "Toronto Star",
+      "title": "Here is the latest news from the Quebec election",
+      "url": "https://www.thestar.com/news/canada/quebec/here-is-the-latest-news-from-the-quebec-election/article_41c1aa9e-e736-551a-accd-6daf653a4b6b.html",
+      "published": "2026-10-05T23:04:18+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "66170f610e43f984",
+      "source": "Toronto Star",
+      "title": "Here is the latest news from the Quebec election",
+      "url": "https://www.thestar.com/news/canada/quebec/here-is-the-latest-news-from-the-quebec-election/article_41c1aa9e-e736-551a-accd-6daf653a4b6b.html",
+      "published": "2026-10-05T23:04:18+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2050,6 +2081,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "66170f610e43f984",
+      "source": "Toronto Star",
+      "title": "Here is the latest news from the Quebec election",
+      "url": "https://www.thestar.com/news/canada/quebec/here-is-the-latest-news-from-the-quebec-election/article_41c1aa9e-e736-551a-accd-6daf653a4b6b.html",
+      "published": "2026-10-05T23:04:18+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "8a62bff31df1900c",
       "source": "Toronto Star",
       "title": "Liberals ask Ontario auditor to probe spending, oversight of Osap at career colleges",
@@ -2132,21 +2178,6 @@
       "published": "2026-10-05T19:07:03+00:00",
       "content_status": "full",
       "word_count": 242,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ef84f95bbfe1cd66",
-      "source": "Toronto Star",
-      "title": "University of Toronto launches $100 million scholarship program targeting PhD talent",
-      "url": "https://www.thestar.com/news/ontario/university-of-toronto-launches-100-million-scholarship-program-targeting-phd-talent/article_2707da91-c14b-5dd1-9657-640b0faf7039.html",
-      "published": "2026-10-05T13:20:01+00:00",
-      "content_status": "full",
-      "word_count": 569,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4968,6 +4999,47 @@
       ]
     },
     {
+      "id": "66170f610e43f984",
+      "source": "Toronto Star",
+      "title": "Here is the latest news from the Quebec election",
+      "url": "https://www.thestar.com/news/canada/quebec/here-is-the-latest-news-from-the-quebec-election/article_41c1aa9e-e736-551a-accd-6daf653a4b6b.html",
+      "published": "2026-10-05T23:04:18+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 210,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bbc8fa4492063649",
       "source": "Toronto Star",
       "title": "Police recover $10,000 in jewelry, luxury items, stolen during Vancouver open house",
@@ -5212,35 +5284,6 @@
       "info_count": 1,
       "content_status": "full",
       "word_count": 268,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ef84f95bbfe1cd66",
-      "source": "Toronto Star",
-      "title": "University of Toronto launches $100 million scholarship program targeting PhD talent",
-      "url": "https://www.thestar.com/news/ontario/university-of-toronto-launches-100-million-scholarship-program-targeting-phd-talent/article_2707da91-c14b-5dd1-9657-640b0faf7039.html",
-      "published": "2026-10-05T13:20:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 569,
       "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
