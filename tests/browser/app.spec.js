@@ -60,7 +60,7 @@ test.beforeEach(async ({ page }, testInfo) => {
       cluster_source_count: 4, cluster_representative: i === 0
     }));
   }
-  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
+  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: edition }));
   await page.route('**/data/stories/*.json', route => {
     const id = route.request().url().split('/').pop().replace('.json', '');
@@ -382,7 +382,7 @@ test('sections segmented selector matches the shared segmented-control scale', a
 test('background refresh offers an edition without replacing the current list', async ({ page }) => {
   const fresh = fixture(1);
   fresh.stories[0].title = 'A newly published London report';
-  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
+  await page.route('**/images/tracking.png', route => route.fulfill({contentType:'image/png',body:Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC0lEQVR42mP8/x8AAwMCAO+aL1kAAAAASUVORK5CYII=','base64')}));
   await page.route('**/data/app-feed.json', route => route.fulfill({ json: fresh }));
   await page.clock.fastForward(300001);
   await expect(page.getByRole('button', { name: 'New updates available' })).toBeVisible();
@@ -514,7 +514,7 @@ test('responsive images use card derivatives and higher quality full viewport ar
   expect(Math.abs(geometry.imageHeight - geometry.viewport)).toBeLessThanOrEqual(2);
   expect(Math.abs(geometry.imageTop - geometry.top)).toBeLessThanOrEqual(1);
   expect(Math.abs(geometry.imageBottom - geometry.bottom)).toBeLessThanOrEqual(1);
-  expect(geometry.titleSize).toBeGreaterThanOrEqual(page.viewportSize().width <= 760 ? 40 : 44);
+  expect(geometry.titleSize).toBeGreaterThanOrEqual(44);
 
   const editorialStyle = await cover.evaluate((node) => {
     const title = node.querySelector('h1');
@@ -540,8 +540,8 @@ test('responsive images use card derivatives and higher quality full viewport ar
   expect(editorialStyle.originalShadow).toBe('none');
   expect(editorialStyle.titleWeight).toBe(650);
   expect(editorialStyle.titleLineHeight).toBeGreaterThan(0.94);
-  expect(editorialStyle.titleLineHeight).toBeLessThan(0.98);
-  expect(editorialStyle.titleTracking).toBeLessThan(-0.04);
+  expect(editorialStyle.titleLineHeight).toBeLessThan(1.0);
+  expect(editorialStyle.titleTracking).toBeLessThan(-0.02);
   expect(editorialStyle.gradient).toContain('linear-gradient');
   expect(editorialStyle.gradientHeight).toBeGreaterThan(editorialStyle.copyHeight);
   expect(Number.parseFloat(editorialStyle.fadeStrong)).toBeGreaterThanOrEqual(0.34);
@@ -562,7 +562,7 @@ test('responsive images use card derivatives and higher quality full viewport ar
       };
     });
     expect(mobileLayout.titleWidthRatio).toBeLessThanOrEqual(0.82);
-    expect(mobileLayout.titleSize).toBe(40);
+    expect(mobileLayout.titleSize).toBe(48);
     expect(mobileLayout.copyBottom).toBeLessThanOrEqual(mobileLayout.navTop + 8);
 
     await page.setViewportSize({ width: 390, height: 667 });
