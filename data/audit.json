@@ -1,24 +1,24 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-06T03:57:10.476719+00:00",
-  "generated_at_london": "2026-10-05T23:57:10.476719-04:00",
+  "generated_at": "2026-10-06T04:09:22.371804+00:00",
+  "generated_at_london": "2026-10-06T00:09:22.371804-04:00",
   "news_generated_at": "2026-10-06T03:54:11.189203+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 682,
+    "archive_story_count": 672,
     "source_count": 28,
-    "audited_story_count": 121,
-    "pass_story_count": 115,
+    "audited_story_count": 118,
+    "pass_story_count": 112,
     "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 8,
-    "info_issue_count": 88,
-    "healthy_source_count": 14,
+    "info_issue_count": 86,
+    "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 1,
-    "waiting_source_count": 9
+    "waiting_source_count": 10
   },
   "source_reports": [
     {
@@ -176,6 +176,30 @@
       "tracked": 0,
       "last_scrape": "",
       "last_error": "HTTPSConnectionPool(host='www.cbc.ca', port=443): Max retries exceeded with url: /news/canada (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.cbc.ca', port=443): Read timed out. (read timeout=12)\"))"
+    },
+    {
+      "source": "City of London Newsroom",
+      "status": "waiting",
+      "collector_status": "healthy",
+      "profile": "municipal",
+      "sample_size": 0,
+      "pass": 0,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 0,
+      "usable_body_rate": 0,
+      "average_words": 0,
+      "average_quality": 0,
+      "primary_method": "unknown",
+      "method_counts": {},
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 0,
+      "latest_published": "",
+      "found_this_run": 10,
+      "tracked": 1,
+      "last_scrape": "2026-09-29T14:18:29.692455+00:00",
+      "last_error": ""
     },
     {
       "source": "Environment Canada London Alerts",
@@ -449,32 +473,6 @@
       "last_error": ""
     },
     {
-      "source": "City of London Newsroom",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "municipal",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 538,
-      "average_quality": 76,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-09-29T04:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 1,
-      "last_scrape": "2026-09-29T14:18:29.692455+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CityNews Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -485,7 +483,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 523,
+      "average_words": 487,
       "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
@@ -583,23 +581,23 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "police",
-      "sample_size": 10,
-      "pass": 10,
+      "sample_size": 8,
+      "pass": 8,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 274,
+      "average_words": 266,
       "average_quality": 71,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "dom:police:main": 1,
-        "reader:semantic-rich-v1": 6,
-        "dom:semantic-rich-v1": 3
+        "reader:semantic-rich-v1": 5,
+        "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 8,
+      "info_issues": 7,
       "latest_published": "2026-10-05T04:00:00+00:00",
       "found_this_run": 10,
       "tracked": 12,
@@ -1192,21 +1190,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "cf9ba247258720d3",
-      "source": "City of London Newsroom",
-      "title": "Advance Vote opens October 1 for the 2026 Municipal Election",
-      "url": "https://london.ca/newsroom/public-service-announcement/advance-vote-opens-october-1-2026-municipal-election",
-      "published": "2026-09-29T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 538,
-      "quality_score": 76,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1261,7 +1244,7 @@
       "url": "https://toronto.citynews.ca/2026/10/05/canada-closely-following-reports-of-plague-in-russia-health-minister-says",
       "published": "2026-10-05T18:37:51+00:00",
       "content_status": "full",
-      "word_count": 676,
+      "word_count": 323,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -1607,21 +1590,6 @@
       "published": "2026-10-02T04:00:00+00:00",
       "content_status": "full",
       "word_count": 214,
-      "quality_score": 72,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "be911ab3af27187a",
-      "source": "London Police Service",
-      "title": "Statement from chief thai truong - member conduct investigation",
-      "url": "https://www.londonpolice.ca/news/posts/statement-from-chief-thai-truong-member-conduct-investigation",
-      "published": "2026-09-29T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 396,
       "quality_score": 72,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2958,35 +2926,6 @@
       "issues": []
     },
     {
-      "id": "cf9ba247258720d3",
-      "source": "City of London Newsroom",
-      "title": "Advance Vote opens October 1 for the 2026 Municipal Election",
-      "url": "https://london.ca/newsroom/public-service-announcement/advance-vote-opens-october-1-2026-municipal-election",
-      "published": "2026-09-29T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 538,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "municipal",
-      "local_score": 100,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
       "id": "0a4a4fd2965945be",
       "source": "London Police Service",
       "title": "Fatal motor vehicle collision",
@@ -3210,57 +3149,6 @@
           "detail": ""
         }
       ]
-    },
-    {
-      "id": "be911ab3af27187a",
-      "source": "London Police Service",
-      "title": "Statement from chief thai truong - member conduct investigation",
-      "url": "https://www.londonpolice.ca/news/posts/statement-from-chief-thai-truong-member-conduct-investigation",
-      "published": "2026-09-29T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 396,
-      "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 72,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "police",
-      "local_score": 90,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "88b54dca4c284ac6",
-      "source": "London Police Service",
-      "title": "26-97884 Missing Person - Wardia Slifo",
-      "url": "https://www.londonpolice.ca/news/posts/26-97884-missing-person-wardia-slifo",
-      "published": "2026-09-29T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 223,
-      "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 75,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "police",
-      "local_score": 100,
-      "issues": []
     },
     {
       "id": "077c0eb449c2a9eb",
@@ -5267,8 +5155,8 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 676,
-      "paragraph_count": 26,
+      "word_count": 323,
+      "paragraph_count": 14,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
