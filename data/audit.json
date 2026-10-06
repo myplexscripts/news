@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-06T09:06:46.825820+00:00",
-  "generated_at_london": "2026-10-06T05:06:46.825820-04:00",
-  "news_generated_at": "2026-10-06T08:49:58.505272+00:00",
+  "generated_at": "2026-10-06T09:08:07.959796+00:00",
+  "generated_at_london": "2026-10-06T05:08:07.959796-04:00",
+  "news_generated_at": "2026-10-06T09:05:11.759577+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 665,
+    "archive_story_count": 666,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 113,
+    "pass_story_count": 111,
     "review_story_count": 3,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 4,
+    "critical_issue_count": 4,
     "warning_issue_count": 6,
     "info_issue_count": 86,
     "healthy_source_count": 14,
@@ -104,28 +104,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
+      "pass": 7,
       "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "fail": 3,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 225,
-      "average_quality": 96,
+      "average_words": 183,
+      "average_quality": 89,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 8,
+        "dom:star:article": 2
       },
-      "critical_issues": 1,
+      "critical_issues": 3,
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-10-06T08:00:16+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T08:16:36.172017+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-06T09:03:31.106264+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -415,7 +416,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "2026-10-04T09:00:00+00:00",
-      "found_this_run": 3,
+      "found_this_run": 1,
       "tracked": 8,
       "last_scrape": "2026-10-05T02:27:01.683958+00:00",
       "last_error": ""
@@ -680,7 +681,7 @@
       "latest_published": "2026-10-06T00:45:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T08:48:00.705272+00:00",
+      "last_scrape": "2026-10-06T09:03:22.781044+00:00",
       "last_error": ""
     },
     {
@@ -767,6 +768,36 @@
       "word_count": 41,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "57 words",
+      "story_id": "050262a2aa3a17d6",
+      "source": "Toronto Star",
+      "title": "OneBC says former Conservative leader Findlay and husband Chapman were threatened",
+      "url": "https://www.thestar.com/news/canada/british-columbia/onebc-says-former-conservative-leader-findlay-and-husband-chapman-were-threatened/article_bfccd813-edcd-54ff-91eb-0ef71ac3becd.html",
+      "published": "2026-10-06T08:00:15+00:00",
+      "content_status": "full",
+      "word_count": 57,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "62 words",
+      "story_id": "c9446881ceca0b75",
+      "source": "Toronto Star",
+      "title": "‘Luxury’ Muskoka rehab with fake nurses, no on-site doctor is forced into bankruptcy",
+      "url": "https://www.thestar.com/news/investigations/luxury-muskoka-rehab-with-fake-nurses-no-on-site-doctor-is-forced-into-bankruptcy/article_bcd3737a-4e21-4400-a47a-3a107fec5004.html",
+      "published": "2026-10-06T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 62,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -2054,24 +2085,9 @@
       "url": "https://www.thestar.com/news/canada/british-columbia/onebc-says-former-conservative-leader-findlay-and-husband-chapman-were-threatened/article_bfccd813-edcd-54ff-91eb-0ef71ac3becd.html",
       "published": "2026-10-06T08:00:15+00:00",
       "content_status": "full",
-      "word_count": 371,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "84b9a5138181f520",
-      "source": "Toronto Star",
-      "title": "Quebec Conservative Leader Éric Duhaime projected to win riding",
-      "url": "https://www.thestar.com/news/canada/quebec/cp-newsalert-conservative-leader-ric-duhaime-projected-to-win-riding/article_175eb550-992b-52da-b60a-06d45c06e9f0.html",
-      "published": "2026-10-06T00:25:05+00:00",
-      "content_status": "full",
-      "word_count": 170,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 57,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2087,6 +2103,21 @@
       "word_count": 409,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c9446881ceca0b75",
+      "source": "Toronto Star",
+      "title": "‘Luxury’ Muskoka rehab with fake nurses, no on-site doctor is forced into bankruptcy",
+      "url": "https://www.thestar.com/news/investigations/luxury-muskoka-rehab-with-fake-nurses-no-on-site-doctor-is-forced-into-bankruptcy/article_bcd3737a-4e21-4400-a47a-3a107fec5004.html",
+      "published": "2026-10-06T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 62,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4822,21 +4853,27 @@
       "title": "OneBC says former Conservative leader Findlay and husband Chapman were threatened",
       "url": "https://www.thestar.com/news/canada/british-columbia/onebc-says-former-conservative-leader-findlay-and-husband-chapman-were-threatened/article_bfccd813-edcd-54ff-91eb-0ef71ac3becd.html",
       "published": "2026-10-06T08:00:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 371,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "word_count": 57,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "57 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4866,6 +4903,41 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "c9446881ceca0b75",
+      "source": "Toronto Star",
+      "title": "‘Luxury’ Muskoka rehab with fake nurses, no on-site doctor is forced into bankruptcy",
+      "url": "https://www.thestar.com/news/investigations/luxury-muskoka-rehab-with-fake-nurses-no-on-site-doctor-is-forced-into-bankruptcy/article_bcd3737a-4e21-4400-a47a-3a107fec5004.html",
+      "published": "2026-10-06T04:00:00+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 62,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "62 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5064,35 +5136,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "84b9a5138181f520",
-      "source": "Toronto Star",
-      "title": "Quebec Conservative Leader Éric Duhaime projected to win riding",
-      "url": "https://www.thestar.com/news/canada/quebec/cp-newsalert-conservative-leader-ric-duhaime-projected-to-win-riding/article_175eb550-992b-52da-b60a-06d45c06e9f0.html",
-      "published": "2026-10-06T00:25:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 170,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
