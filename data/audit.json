@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-06T22:11:12.900837+00:00",
-  "generated_at_london": "2026-10-06T18:11:12.900837-04:00",
-  "news_generated_at": "2026-10-06T22:00:52.292616+00:00",
+  "generated_at": "2026-10-06T22:21:20.985590+00:00",
+  "generated_at_london": "2026-10-06T18:21:20.985590-04:00",
+  "news_generated_at": "2026-10-06T22:18:07.438113+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 656,
@@ -14,9 +14,9 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 7,
-    "info_issue_count": 88,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "info_issue_count": 89,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -124,6 +124,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-06T21:44:14.048296+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 518,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-06T20:00:47+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-06T20:57:28.469779+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -453,17 +479,17 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 70,
-      "average_words": 130,
-      "average_quality": 56,
+      "average_words": 189,
+      "average_quality": 59,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 3,
-        "embedded-json:ctv": 7
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-06T20:14:24.977000+00:00",
+      "info_issues": 11,
+      "latest_published": "2026-10-06T22:15:26.357000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-06T20:55:22.093760+00:00",
@@ -652,7 +678,7 @@
       "latest_published": "2026-10-06T21:37:47+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T21:59:39.203363+00:00",
+      "last_scrape": "2026-10-06T22:16:07.500429+00:00",
       "last_error": ""
     },
     {
@@ -679,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-06T21:44:16.666516+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 518,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-06T20:00:47+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-06T20:57:28.469779+00:00",
       "last_error": ""
     },
     {
@@ -1185,6 +1185,21 @@
       "word_count": 22,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 14/100",
+      "story_id": "ebfc49ff80e1422d",
+      "source": "CTV News London",
+      "title": "Small community’s development application tests local control and province’s commitment to Ontario farmland",
+      "url": "https://www.ctvnews.ca/london/article/small-communitys-development-application-tests-local-control-and-provinces-commitment-to-ontario-farmland",
+      "published": "2026-10-06T22:15:26.357000+00:00",
+      "content_status": "full",
+      "word_count": 691,
+      "quality_score": 83,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2421,6 +2436,35 @@
       "issues": []
     },
     {
+      "id": "ebfc49ff80e1422d",
+      "source": "CTV News London",
+      "title": "Small community’s development application tests local control and province’s commitment to Ontario farmland",
+      "url": "https://www.ctvnews.ca/london/article/small-communitys-development-application-tests-local-control-and-provinces-commitment-to-ontario-farmland",
+      "published": "2026-10-06T22:15:26.357000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 691,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 14,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 14/100"
+        }
+      ]
+    },
+    {
       "id": "3b4a6718ec23855a",
       "source": "CTV News London",
       "title": "Possible shooting leads to brief hold and secure in Hanover",
@@ -2669,28 +2713,6 @@
       "title": "Crash between cyclist and London police vehicle closes section of Hamilton Road",
       "url": "https://www.ctvnews.ca/london/article/crash-between-cyclist-and-london-police-vehicle-closes-section-of-hamilton-road",
       "published": "2026-10-06T13:16:18.268000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 100,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 57,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 38,
-      "issues": []
-    },
-    {
-      "id": "20acd6aeed3033c4",
-      "source": "CTV News London",
-      "title": "Crash between cyclist and London police vehicle closes section of Hamilton Road",
-      "url": "https://www.ctvnews.ca/london/article/crash-between-cyclist-and-london-police-vehicle-closes-section-of-hamilton-road",
-      "published": "2026-10-06T13:07:56.518000+00:00",
       "audit_status": "pass",
       "audit_score": 100,
       "critical_count": 0,
