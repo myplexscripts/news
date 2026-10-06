@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-06T16:09:00.921406+00:00",
-  "generated_at_london": "2026-10-06T12:09:00.921406-04:00",
-  "news_generated_at": "2026-10-06T15:54:14.603673+00:00",
+  "generated_at": "2026-10-06T16:11:34.916008+00:00",
+  "generated_at_london": "2026-10-06T12:11:34.916008-04:00",
+  "news_generated_at": "2026-10-06T16:09:07.258598+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 661,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 112,
-    "review_story_count": 1,
+    "pass_story_count": 111,
+    "review_story_count": 2,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 3,
+    "warning_issue_count": 5,
     "info_issue_count": 85,
     "healthy_source_count": 14,
     "review_source_count": 2,
@@ -76,28 +76,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 614,
-      "average_quality": 96,
+      "average_words": 492,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-06T14:43:57+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-06T15:50:15+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T15:05:23.054607+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-06T16:07:45.036001+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -222,7 +223,7 @@
     {
       "source": "London Free Press",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "postmedia",
       "sample_size": 0,
       "pass": 0,
@@ -241,7 +242,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "403 Client Error: Forbidden for url: https://lfpress.com"
+      "last_error": ""
     },
     {
       "source": "Middlesex County",
@@ -676,7 +677,7 @@
       "latest_published": "2026-10-06T14:30:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T15:52:15.887856+00:00",
+      "last_scrape": "2026-10-06T16:07:38.566872+00:00",
       "last_error": ""
     },
     {
@@ -793,6 +794,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "df08f942242e7891",
+      "source": "Toronto Star",
+      "title": "Ontario's medical regulator proposing sweeping changes to prescribing safer supply",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-medical-regulator-proposing-sweeping-changes-to-prescribing-safer-supply/article_ad8f0a96-7b1f-5543-826f-f6e1e369da06.html",
+      "published": "2026-10-06T15:50:15+00:00",
+      "content_status": "full",
+      "word_count": 167,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "df08f942242e7891",
+      "source": "Toronto Star",
+      "title": "Ontario's medical regulator proposing sweeping changes to prescribing safer supply",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-medical-regulator-proposing-sweeping-changes-to-prescribing-safer-supply/article_ad8f0a96-7b1f-5543-826f-f6e1e369da06.html",
+      "published": "2026-10-06T15:50:15+00:00",
+      "content_status": "full",
+      "word_count": 167,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1315,7 +1346,7 @@
       "url": "https://globalnews.ca/news/12089464/thankgiving-turkey-meal-dinner-cost",
       "published": "2026-10-06T14:58:34+00:00",
       "content_status": "full",
-      "word_count": 411,
+      "word_count": 414,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1864,21 +1895,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "35d41766b974bcd7",
-      "source": "Toronto Star",
-      "title": "A vibe check from some of Ontario’s mayoral races",
-      "url": "https://www.thestar.com/news/morning-digest/a-vibe-check-from-some-of-ontario-s-mayoral-races/article_ec4a4b5f-5223-4f43-8f1c-39592e0850e3.html",
-      "published": "2026-10-06T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1386,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "0c2c0ee3c85ab3e2",
       "source": "Toronto Star",
       "title": "Business leaders want capital gains deferral to keep money in Canadian firms",
@@ -1963,6 +1979,21 @@
       "word_count": 449,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "df08f942242e7891",
+      "source": "Toronto Star",
+      "title": "Ontario's medical regulator proposing sweeping changes to prescribing safer supply",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-medical-regulator-proposing-sweeping-changes-to-prescribing-safer-supply/article_ad8f0a96-7b1f-5543-826f-f6e1e369da06.html",
+      "published": "2026-10-06T15:50:15+00:00",
+      "content_status": "full",
+      "word_count": 167,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3503,8 +3534,8 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 411,
-      "paragraph_count": 18,
+      "word_count": 414,
+      "paragraph_count": 15,
       "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
@@ -3534,7 +3565,7 @@
       "content_status": "full",
       "word_count": 420,
       "paragraph_count": 11,
-      "inline_image_count": 1,
+      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -3563,7 +3594,7 @@
       "content_status": "full",
       "word_count": 847,
       "paragraph_count": 25,
-      "inline_image_count": 2,
+      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4613,6 +4644,47 @@
       ]
     },
     {
+      "id": "df08f942242e7891",
+      "source": "Toronto Star",
+      "title": "Ontario's medical regulator proposing sweeping changes to prescribing safer supply",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-medical-regulator-proposing-sweeping-changes-to-prescribing-safer-supply/article_ad8f0a96-7b1f-5543-826f-f6e1e369da06.html",
+      "published": "2026-10-06T15:50:15+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 167,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "89c5bb8124ad3d00",
       "source": "Toronto Star",
       "title": "Chris Alexander drops out of Toronto's mayoral race as advance voting begins",
@@ -4859,35 +4931,6 @@
       "word_count": 1103,
       "paragraph_count": 46,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "35d41766b974bcd7",
-      "source": "Toronto Star",
-      "title": "A vibe check from some of Ontario’s mayoral races",
-      "url": "https://www.thestar.com/news/morning-digest/a-vibe-check-from-some-of-ontario-s-mayoral-races/article_ec4a4b5f-5223-4f43-8f1c-39592e0850e3.html",
-      "published": "2026-10-06T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1386,
-      "paragraph_count": 40,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
