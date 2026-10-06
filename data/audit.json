@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-06T09:17:28.512443+00:00",
-  "generated_at_london": "2026-10-06T05:17:28.512443-04:00",
-  "news_generated_at": "2026-10-06T09:05:11.759577+00:00",
+  "generated_at": "2026-10-06T09:24:07.949196+00:00",
+  "generated_at_london": "2026-10-06T05:24:07.949196-04:00",
+  "news_generated_at": "2026-10-06T09:21:13.088327+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 666,
+    "archive_story_count": 669,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 113,
+    "pass_story_count": 112,
     "review_story_count": 3,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 6,
     "info_issue_count": 86,
     "healthy_source_count": 14,
@@ -104,28 +104,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
+      "pass": 8,
       "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "fail": 2,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 356,
-      "average_quality": 96,
+      "average_words": 324,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
-      "critical_issues": 1,
+      "critical_issues": 2,
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-10-06T08:00:16+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-06T09:03:31.106264+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -457,19 +458,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 491,
-      "average_quality": 94,
+      "average_words": 413,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:citynews:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-05T18:37:51+00:00",
+      "latest_published": "2026-10-06T09:13:31+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-05T21:08:03.560484+00:00",
+      "last_scrape": "2026-10-06T09:19:27.754573+00:00",
       "last_error": ""
     },
     {
@@ -678,9 +680,9 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-06T00:45:35+00:00",
-      "found_this_run": 10,
+      "found_this_run": 8,
       "tracked": 30,
-      "last_scrape": "2026-10-06T09:03:22.781044+00:00",
+      "last_scrape": "2026-10-06T09:19:04.333365+00:00",
       "last_error": ""
     },
     {
@@ -694,19 +696,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 814,
-      "average_quality": 96,
+      "average_words": 839,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-06T01:02:32.297000+00:00",
+      "latest_published": "2026-10-06T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T01:31:12.762432+00:00",
+      "last_scrape": "2026-10-06T09:18:52.652322+00:00",
       "last_error": ""
     },
     {
@@ -767,6 +770,21 @@
       "word_count": 41,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "57 words",
+      "story_id": "050262a2aa3a17d6",
+      "source": "Toronto Star",
+      "title": "OneBC says former Conservative leader Findlay and husband Chapman were threatened",
+      "url": "https://www.thestar.com/news/canada/british-columbia/onebc-says-former-conservative-leader-findlay-and-husband-chapman-were-threatened/article_bfccd813-edcd-54ff-91eb-0ef71ac3becd.html",
+      "published": "2026-10-06T08:00:15+00:00",
+      "content_status": "full",
+      "word_count": 57,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1238,21 +1256,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "368f337065aa60e6",
-      "source": "CityNews Canada",
-      "title": "MPs return for break with debate set on key legislation and new bill on the table",
-      "url": "https://toronto.citynews.ca/2026/10/05/mps-return-for-break-with-debate-set-on-key-legislation-and-new-bill-on-the-table",
-      "published": "2026-10-05T08:00:12+00:00",
-      "content_status": "full",
-      "word_count": 915,
-      "quality_score": 86,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "caa7fe54a43c07ab",
       "source": "CityNews Canada",
       "title": "Mother and son from Bermuda named as passengers on missing medical flight from Bermuda to Boston",
@@ -1307,6 +1310,21 @@
       "word_count": 490,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0d27bc1370a3f57c",
+      "source": "CityNews Canada",
+      "title": "What Avi Lewis thinks Ottawa got wrong with Bill C-39",
+      "url": "https://toronto.citynews.ca/2026/10/06/what-avi-lewis-thinks-ottawa-got-wrong-with-bill-c-39",
+      "published": "2026-10-06T09:13:31+00:00",
+      "content_status": "full",
+      "word_count": 140,
+      "quality_score": 57,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -1748,21 +1766,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6e70f6018a6336fa",
-      "source": "The Globe and Mail",
-      "title": "A developer agreed to sell 23 condos at a discount. The lender said no",
-      "url": "https://www.theglobeandmail.com/real-estate/article-a-developer-agreed-to-sell-23-condos-at-a-discount-the-lender-said-no",
-      "published": "2026-10-05T19:08:12.298000+00:00",
-      "content_status": "partial",
-      "word_count": 1094,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "04c3e742e915fc1a",
       "source": "The Globe and Mail",
       "title": "Canadian Opera Company’s Così fan tutte is invariably glorious",
@@ -1772,6 +1775,21 @@
       "word_count": 752,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "36f675a90954d634",
+      "source": "The Globe and Mail",
+      "title": "Demolition plan turns the birthplace of ringette into a political arena",
+      "url": "https://www.theglobeandmail.com/canada/article-north-bay-ringette-arena-demolition-plan-municipal-elections-ontario",
+      "published": "2026-10-06T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1014,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1823,21 +1841,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3155321ab5a9c3a1",
-      "source": "The Globe and Mail",
-      "title": "RCMP cancels Amber Alert for seven-year-old girl",
-      "url": "https://www.theglobeandmail.com/canada/article-amber-alert-alberta-girl",
-      "published": "2026-10-05T16:47:30.440000+00:00",
-      "content_status": "partial",
-      "word_count": 57,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "ccb94c0e0fcc87e8",
       "source": "The Globe and Mail",
       "title": "Steven Galloway accuser will not testify in defamation trial",
@@ -1877,6 +1880,21 @@
       "word_count": 579,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "5f855633f5fa5dac",
+      "source": "The Globe and Mail",
+      "title": "Toronto home sales fall for second straight month",
+      "url": "https://www.theglobeandmail.com/business/article-toronto-home-sales-fall-in-september-declining-for-second-straight",
+      "published": "2026-10-06T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 390,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2054,9 +2072,9 @@
       "url": "https://www.thestar.com/news/canada/british-columbia/onebc-says-former-conservative-leader-findlay-and-husband-chapman-were-threatened/article_bfccd813-edcd-54ff-91eb-0ef71ac3becd.html",
       "published": "2026-10-06T08:00:15+00:00",
       "content_status": "full",
-      "word_count": 371,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 57,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4208,6 +4226,64 @@
       ]
     },
     {
+      "id": "36f675a90954d634",
+      "source": "The Globe and Mail",
+      "title": "Demolition plan turns the birthplace of ringette into a political arena",
+      "url": "https://www.theglobeandmail.com/canada/article-north-bay-ringette-arena-demolition-plan-municipal-elections-ontario",
+      "published": "2026-10-06T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1014,
+      "paragraph_count": 28,
+      "inline_image_count": 8,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "5f855633f5fa5dac",
+      "source": "The Globe and Mail",
+      "title": "Toronto home sales fall for second straight month",
+      "url": "https://www.theglobeandmail.com/business/article-toronto-home-sales-fall-in-september-declining-for-second-straight",
+      "published": "2026-10-06T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 390,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9469d1ae91fbf43a",
       "source": "The Globe and Mail",
       "title": "Parti Québécois projected to form government in Quebec",
@@ -4424,64 +4500,6 @@
       "content_status": "full",
       "word_count": 600,
       "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6e70f6018a6336fa",
-      "source": "The Globe and Mail",
-      "title": "A developer agreed to sell 23 condos at a discount. The lender said no",
-      "url": "https://www.theglobeandmail.com/real-estate/article-a-developer-agreed-to-sell-23-condos-at-a-discount-the-lender-said-no",
-      "published": "2026-10-05T19:08:12.298000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1094,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3155321ab5a9c3a1",
-      "source": "The Globe and Mail",
-      "title": "RCMP cancels Amber Alert for seven-year-old girl",
-      "url": "https://www.theglobeandmail.com/canada/article-amber-alert-alberta-girl",
-      "published": "2026-10-05T16:47:30.440000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 57,
-      "paragraph_count": 6,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4822,21 +4840,27 @@
       "title": "OneBC says former Conservative leader Findlay and husband Chapman were threatened",
       "url": "https://www.thestar.com/news/canada/british-columbia/onebc-says-former-conservative-leader-findlay-and-husband-chapman-were-threatened/article_bfccd813-edcd-54ff-91eb-0ef71ac3becd.html",
       "published": "2026-10-06T08:00:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 371,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "word_count": 57,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "57 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5102,6 +5126,35 @@
       ]
     },
     {
+      "id": "0d27bc1370a3f57c",
+      "source": "CityNews Canada",
+      "title": "What Avi Lewis thinks Ottawa got wrong with Bill C-39",
+      "url": "https://toronto.citynews.ca/2026/10/06/what-avi-lewis-thinks-ottawa-got-wrong-with-bill-c-39",
+      "published": "2026-10-06T09:13:31+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 140,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "117fa7d467b1a3b8",
       "source": "CityNews Canada",
       "title": "Canada closely following reports of plague in Russia, health minister says",
@@ -5349,35 +5402,6 @@
       "paragraph_count": 3,
       "inline_image_count": 0,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "368f337065aa60e6",
-      "source": "CityNews Canada",
-      "title": "MPs return for break with debate set on key legislation and new bill on the table",
-      "url": "https://toronto.citynews.ca/2026/10/05/mps-return-for-break-with-debate-set-on-key-legislation-and-new-bill-on-the-table",
-      "published": "2026-10-05T08:00:12+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 915,
-      "paragraph_count": 34,
-      "inline_image_count": 0,
-      "quality_score": 86,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
