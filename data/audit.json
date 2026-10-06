@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-06T12:44:35.294520+00:00",
-  "generated_at_london": "2026-10-06T08:44:35.294520-04:00",
-  "news_generated_at": "2026-10-06T12:30:22.810452+00:00",
+  "generated_at": "2026-10-06T12:49:49.030405+00:00",
+  "generated_at_london": "2026-10-06T08:49:49.030405-04:00",
+  "news_generated_at": "2026-10-06T12:46:31.277295+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 665,
     "source_count": 28,
-    "audited_story_count": 117,
-    "pass_story_count": 114,
+    "audited_story_count": 116,
+    "pass_story_count": 113,
     "review_story_count": 2,
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 5,
     "info_issue_count": 86,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -74,6 +74,33 @@
       "last_error": ""
     },
     {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 90,
+      "average_words": 227,
+      "average_quality": 66,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 9,
+        "ctv:summary-fallback": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 6,
+      "latest_published": "2026-10-06T10:30:00+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-06T10:44:10.802507+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Max retries exceeded with url: /london/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Read timed out. (read timeout=8)\"))"
+    },
+    {
       "source": "The Globe and Mail",
       "status": "review",
       "collector_status": "healthy",
@@ -84,19 +111,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 693,
-      "average_quality": 96,
+      "average_words": 584,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 2,
       "info_issues": 12,
-      "latest_published": "2026-10-06T12:00:00+00:00",
+      "latest_published": "2026-10-06T12:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T12:12:45.733673+00:00",
+      "last_scrape": "2026-10-06T12:44:28.358102+00:00",
       "last_error": ""
     },
     {
@@ -419,33 +447,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 90,
-      "average_words": 227,
-      "average_quality": 66,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 9,
-        "ctv:summary-fallback": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 6,
-      "latest_published": "2026-10-06T10:30:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-06T10:44:10.802507+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CityNews Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -679,7 +680,7 @@
       "latest_published": "2026-10-06T10:00:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-06T12:28:46.595788+00:00",
+      "last_scrape": "2026-10-06T12:44:33.824228+00:00",
       "last_error": ""
     },
     {
@@ -713,17 +714,17 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "western",
-      "sample_size": 10,
-      "pass": 10,
+      "sample_size": 9,
+      "pass": 9,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 822,
+      "average_words": 829,
       "average_quality": 82,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
+        "reader:semantic-rich-v1": 8,
         "trafilatura:fallback": 1
       },
       "critical_issues": 0,
@@ -731,7 +732,7 @@
       "info_issues": 4,
       "latest_published": "2026-10-05T19:57:16+00:00",
       "found_this_run": 10,
-      "tracked": 10,
+      "tracked": 9,
       "last_scrape": "2026-10-05T21:06:54.674433+00:00",
       "last_error": ""
     }
@@ -1767,10 +1768,10 @@
       "title": "Eight buyers bid on North York bungalow",
       "url": "https://www.theglobeandmail.com/real-estate/toronto/article-eight-buyers-bid-on-north-york-bungalow",
       "published": "2026-10-06T12:00:00+00:00",
-      "content_status": "partial",
+      "content_status": "full",
       "word_count": 314,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1837,21 +1838,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9469d1ae91fbf43a",
-      "source": "The Globe and Mail",
-      "title": "Parti Québécois projected to form government in Quebec",
-      "url": "https://www.theglobeandmail.com/canada/article-provincial-quebec-election-winner-parti-quebecois",
-      "published": "2026-10-06T01:02:32.297000+00:00",
-      "content_status": "full",
-      "word_count": 1395,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "6df22ec15a7b95b6",
       "source": "The Globe and Mail",
       "title": "The wrong way to treat the right to know",
@@ -1906,6 +1892,21 @@
       "word_count": 390,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e6fdef4db98c7e1d",
+      "source": "The Globe and Mail",
+      "title": "Two bids for Welland bungalow drive sale price over asking",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-two-bids-for-welland-bungalow-drive-sale-price-over-asking",
+      "published": "2026-10-06T12:30:00+00:00",
+      "content_status": "full",
+      "word_count": 303,
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3395,28 +3396,6 @@
       ]
     },
     {
-      "id": "4acceb52722775f9",
-      "source": "Western News",
-      "title": "New Western chair honours heart rhythm research pioneer George Klein",
-      "url": "https://news.westernu.ca/2026/09/george-klein-chair-heart-rhythm-research",
-      "published": "2026-09-29T12:45:50+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 757,
-      "paragraph_count": 20,
-      "inline_image_count": 1,
-      "quality_score": 83,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "western",
-      "local_score": 61,
-      "issues": []
-    },
-    {
       "id": "e30af6bebfd3157a",
       "source": "Fanshawe College Newsroom",
       "title": "News Archive",
@@ -4142,6 +4121,35 @@
       ]
     },
     {
+      "id": "e6fdef4db98c7e1d",
+      "source": "The Globe and Mail",
+      "title": "Two bids for Welland bungalow drive sale price over asking",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-two-bids-for-welland-bungalow-drive-sale-price-over-asking",
+      "published": "2026-10-06T12:30:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 303,
+      "paragraph_count": 18,
+      "inline_image_count": 3,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2dc5ab44383e2b51",
       "source": "The Globe and Mail",
       "title": "Eight buyers bid on North York bungalow",
@@ -4152,13 +4160,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
+      "content_status": "full",
       "word_count": 314,
       "paragraph_count": 19,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4412,35 +4420,6 @@
       "word_count": 390,
       "paragraph_count": 12,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9469d1ae91fbf43a",
-      "source": "The Globe and Mail",
-      "title": "Parti Québécois projected to form government in Quebec",
-      "url": "https://www.theglobeandmail.com/canada/article-provincial-quebec-election-winner-parti-quebecois",
-      "published": "2026-10-06T01:02:32.297000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1395,
-      "paragraph_count": 31,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
