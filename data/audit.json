@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-07T12:27:43.829733+00:00",
-  "generated_at_london": "2026-10-07T08:27:43.829733-04:00",
-  "news_generated_at": "2026-10-07T12:14:40.628670+00:00",
+  "generated_at": "2026-10-07T12:32:35.842575+00:00",
+  "generated_at_london": "2026-10-07T08:32:35.842575-04:00",
+  "news_generated_at": "2026-10-07T12:29:40.180250+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 660,
     "source_count": 28,
     "audited_story_count": 111,
-    "pass_story_count": 103,
+    "pass_story_count": 104,
     "review_story_count": 6,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
     "warning_issue_count": 7,
     "info_issue_count": 88,
     "healthy_source_count": 11,
@@ -72,7 +72,7 @@
       "found_this_run": 0,
       "tracked": 8,
       "last_scrape": "2026-10-05T02:27:01.683958+00:00",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "CTV News Canada",
@@ -111,19 +111,20 @@
       "fail": 1,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 550,
-      "average_quality": 96,
+      "average_words": 564,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-06T23:39:16+00:00",
+      "latest_published": "2026-10-07T12:22:05+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T02:24:54.494071+00:00",
+      "last_scrape": "2026-10-07T12:27:37.970431+00:00",
       "last_error": ""
     },
     {
@@ -137,11 +138,12 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 735,
-      "average_quality": 96,
+      "average_words": 740,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 3,
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -155,28 +157,28 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
+      "pass": 10,
       "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "fail": 0,
+      "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 602,
+      "average_words": 636,
       "average_quality": 96,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 10
       },
-      "critical_issues": 1,
+      "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-07T09:00:01+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-07T11:25:58.488530+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -492,7 +494,7 @@
       "latest_published": "2026-10-07T11:48:26.349000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T11:54:50.324340+00:00",
+      "last_scrape": "2026-10-07T12:03:20.540049+00:00",
       "last_error": ""
     },
     {
@@ -704,7 +706,7 @@
       "latest_published": "2026-10-07T11:00:39+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T12:12:37.747081+00:00",
+      "last_scrape": "2026-10-07T12:27:43.818282+00:00",
       "last_error": ""
     },
     {
@@ -750,21 +752,6 @@
       "word_count": 48,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "27 words",
-      "story_id": "102af16caad8ec4b",
-      "source": "Toronto Star",
-      "title": "Three finalists named for inaugural Writers' Trust non-fiction editing prize",
-      "url": "https://www.thestar.com/entertainment/books/three-finalists-named-for-inaugural-writers-trust-non-fiction-editing-prize/article_4cb4e3f0-e57d-5d9c-b73f-d09e1e27682c.html",
-      "published": "2026-10-07T04:01:01+00:00",
-      "content_status": "full",
-      "word_count": 27,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -1371,21 +1358,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c0b1b14b84530815",
-      "source": "Global News Canada",
-      "title": "Advocates say voices will go unheard after Saskatoon cancels in-person homeless count",
-      "url": "https://globalnews.ca/news/12088885/advocates-say-voices-will-go-unheard-after-saskatoon-cancels-in-person-homeless-count",
-      "published": "2026-10-06T17:37:31+00:00",
-      "content_status": "full",
-      "word_count": 581,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "a529fb18261fa373",
       "source": "Global News Canada",
       "title": "Alberta separatists see an ally in Quebec premier-designate St-Pierre Plamondon",
@@ -1440,6 +1412,21 @@
       "word_count": 1108,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "bef495cdf0a78514",
+      "source": "Global News Canada",
+      "title": "Polytechnique looks to revive nuclear studies as Quebec’s only reactor turns 50",
+      "url": "https://globalnews.ca/news/12090899/polytechnique-nuclear-studies",
+      "published": "2026-10-07T12:22:05+00:00",
+      "content_status": "full",
+      "word_count": 723,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1796,10 +1783,10 @@
       "title": "A jerky start as home buyers and sellers in the GTA hit the brakes",
       "url": "https://www.theglobeandmail.com/real-estate/toronto/article-home-buyers-sellers-greater-toronto-area-sales-down",
       "published": "2026-10-07T12:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1086,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 1121,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1811,10 +1798,10 @@
       "title": "A jerky start as home buyers and sellers in the GTA hit the brakes",
       "url": "https://www.theglobeandmail.com/real-estate/toronto/article-home-buyers-sellers-greater-toronto-area-sales-down",
       "published": "2026-10-07T12:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1086,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 1121,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1826,10 +1813,10 @@
       "title": "Buyers in search of affordable homes willing to make trade-offs, survey finds",
       "url": "https://www.theglobeandmail.com/business/article-home-buyers-who-want-affordable-home-trade-offs-remax-survey",
       "published": "2026-10-07T11:47:46.132000+00:00",
-      "content_status": "partial",
-      "word_count": 492,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 505,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1931,10 +1918,10 @@
       "title": "Sellers resigned to getting less than they paid for Hamilton home",
       "url": "https://www.theglobeandmail.com/real-estate/toronto/article-hamilton-brick-bungalow-below-asking-in-law-suite",
       "published": "2026-10-07T12:00:00+00:00",
-      "content_status": "partial",
+      "content_status": "full",
       "word_count": 376,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2112,7 +2099,7 @@
       "url": "https://www.thestar.com/entertainment/books/three-finalists-named-for-inaugural-writers-trust-non-fiction-editing-prize/article_4cb4e3f0-e57d-5d9c-b73f-d09e1e27682c.html",
       "published": "2026-10-07T04:01:01+00:00",
       "content_status": "full",
-      "word_count": 27,
+      "word_count": 362,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3488,6 +3475,35 @@
       ]
     },
     {
+      "id": "bef495cdf0a78514",
+      "source": "Global News Canada",
+      "title": "Polytechnique looks to revive nuclear studies as Quebec’s only reactor turns 50",
+      "url": "https://globalnews.ca/news/12090899/polytechnique-nuclear-studies",
+      "published": "2026-10-07T12:22:05+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 723,
+      "paragraph_count": 23,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "52812d445cf8e8e8",
       "source": "Global News Canada",
       "title": "Thousands of Alberta referendum mail-in ballots invalid due to errors: officials",
@@ -3740,35 +3756,6 @@
       "word_count": 794,
       "paragraph_count": 20,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c0b1b14b84530815",
-      "source": "Global News Canada",
-      "title": "Advocates say voices will go unheard after Saskatoon cancels in-person homeless count",
-      "url": "https://globalnews.ca/news/12088885/advocates-say-voices-will-go-unheard-after-saskatoon-cancels-in-person-homeless-count",
-      "published": "2026-10-06T17:37:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 581,
-      "paragraph_count": 21,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4120,13 +4107,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "partial",
-      "word_count": 1086,
-      "paragraph_count": 43,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "content_status": "full",
+      "word_count": 1121,
+      "paragraph_count": 46,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4155,13 +4142,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
+      "content_status": "full",
       "word_count": 376,
       "paragraph_count": 20,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "inline_image_count": 2,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4184,13 +4171,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 492,
-      "paragraph_count": 14,
+      "content_status": "full",
+      "word_count": 505,
+      "paragraph_count": 15,
       "inline_image_count": 0,
-      "quality_score": 96,
+      "quality_score": 81,
       "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4893,14 +4880,14 @@
       "title": "Three finalists named for inaugural Writers' Trust non-fiction editing prize",
       "url": "https://www.thestar.com/entertainment/books/three-finalists-named-for-inaugural-writers-trust-non-fiction-editing-prize/article_4cb4e3f0-e57d-5d9c-b73f-d09e1e27682c.html",
       "published": "2026-10-07T04:01:01+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 27,
-      "paragraph_count": 2,
+      "word_count": 362,
+      "paragraph_count": 18,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4908,12 +4895,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "27 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
