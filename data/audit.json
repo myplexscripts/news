@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-07T10:19:12.264236+00:00",
-  "generated_at_london": "2026-10-07T06:19:12.264236-04:00",
-  "news_generated_at": "2026-10-07T10:09:59.763776+00:00",
+  "generated_at": "2026-10-07T10:29:13.327867+00:00",
+  "generated_at_london": "2026-10-07T06:29:13.327867-04:00",
+  "news_generated_at": "2026-10-07T10:26:02.178184+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 662,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 6,
     "info_issue_count": 90,
-    "healthy_source_count": 12,
-    "review_source_count": 5,
+    "healthy_source_count": 11,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -72,7 +72,7 @@
       "found_this_run": 0,
       "tracked": 8,
       "last_scrape": "2026-10-05T02:27:01.683958+00:00",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "CTV News Canada",
@@ -97,8 +97,35 @@
       "latest_published": "2026-10-07T09:00:00+00:00",
       "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-10-07T09:43:35.006039+00:00",
+      "last_scrape": "2026-10-07T10:13:13.446642+00:00",
       "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 80,
+      "average_words": 232,
+      "average_quality": 63,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 8,
+        "ctv:summary-fallback": 2
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 12,
+      "latest_published": "2026-10-07T10:00:01+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-07T10:13:13.742193+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Max retries exceeded with url: /london/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Global News Canada",
@@ -444,33 +471,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 80,
-      "average_words": 232,
-      "average_quality": 63,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 8,
-        "ctv:summary-fallback": 2
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-07T10:00:01+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-07T10:06:21.615396+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CityNews Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -481,19 +481,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 625,
-      "average_quality": 92,
+      "average_words": 560,
+      "average_quality": 89,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:citynews:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-07T08:00:09+00:00",
+      "latest_published": "2026-10-07T10:20:30+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T10:08:23.623299+00:00",
+      "last_scrape": "2026-10-07T10:24:05.294816+00:00",
       "last_error": ""
     },
     {
@@ -679,7 +680,7 @@
       "latest_published": "2026-10-07T09:00:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T10:08:16.520948+00:00",
+      "last_scrape": "2026-10-07T10:23:59.773624+00:00",
       "last_error": ""
     },
     {
@@ -1252,21 +1253,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "177b3e46542ae070",
-      "source": "CityNews Canada",
-      "title": "Canadian Dental Association report finds dental care program limits coverage",
-      "url": "https://toronto.citynews.ca/2026/10/06/canadian-dental-association-report-finds-dental-care-program-limits-coverage",
-      "published": "2026-10-06T11:30:10+00:00",
-      "content_status": "full",
-      "word_count": 781,
-      "quality_score": 86,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "c93e07d77b0c7182",
       "source": "CityNews Canada",
       "title": "Canadian firms say cybersecurity budgets falling short as attacks grow: survey",
@@ -1366,6 +1352,21 @@
       "word_count": 212,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "307791394e0195b1",
+      "source": "CityNews Canada",
+      "title": "Why Quebec’s independence debate is back",
+      "url": "https://toronto.citynews.ca/2026/10/07/why-quebecs-independence-debate-is-back",
+      "published": "2026-10-07T10:20:30+00:00",
+      "content_status": "full",
+      "word_count": 134,
+      "quality_score": 57,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -5011,6 +5012,35 @@
       ]
     },
     {
+      "id": "307791394e0195b1",
+      "source": "CityNews Canada",
+      "title": "Why Quebec’s independence debate is back",
+      "url": "https://toronto.citynews.ca/2026/10/07/why-quebecs-independence-debate-is-back",
+      "published": "2026-10-07T10:20:30+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 134,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9f8108214cf6c008",
       "source": "CityNews Canada",
       "title": "Anniversary of Gaza war marks 3 years of pain for Canadians with ties to Middle East",
@@ -5258,35 +5288,6 @@
       "paragraph_count": 28,
       "inline_image_count": 0,
       "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "177b3e46542ae070",
-      "source": "CityNews Canada",
-      "title": "Canadian Dental Association report finds dental care program limits coverage",
-      "url": "https://toronto.citynews.ca/2026/10/06/canadian-dental-association-report-finds-dental-care-program-limits-coverage",
-      "published": "2026-10-06T11:30:10+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 781,
-      "paragraph_count": 37,
-      "inline_image_count": 0,
-      "quality_score": 86,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
