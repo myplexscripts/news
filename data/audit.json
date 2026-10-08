@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T00:13:32.802406+00:00",
-  "generated_at_london": "2026-10-07T20:13:32.802406-04:00",
-  "news_generated_at": "2026-10-08T00:03:20.553335+00:00",
+  "generated_at": "2026-10-08T00:21:17.063090+00:00",
+  "generated_at_london": "2026-10-07T20:21:17.063090-04:00",
+  "news_generated_at": "2026-10-08T00:19:18.828767+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 699,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-07T22:39:26+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-07T23:15:50.148804+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -508,19 +508,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 544,
-      "average_quality": 96,
+      "average_words": 548,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-07T23:12:58+00:00",
+      "latest_published": "2026-10-08T00:03:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T23:15:41.761323+00:00",
+      "last_scrape": "2026-10-08T00:17:21.344015+00:00",
       "last_error": ""
     },
     {
@@ -680,7 +681,7 @@
       "latest_published": "2026-10-07T23:34:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T00:01:36.985206+00:00",
+      "last_scrape": "2026-10-08T00:17:28.795944+00:00",
       "last_error": ""
     },
     {
@@ -694,19 +695,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 883,
-      "average_quality": 96,
+      "average_words": 845,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-10-07T20:36:07.801000+00:00",
+      "latest_published": "2026-10-07T23:50:18.753000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T21:27:03.662952+00:00",
+      "last_scrape": "2026-10-08T00:17:23.950904+00:00",
       "last_error": ""
     },
     {
@@ -1313,6 +1315,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "75502493fac4bf77",
+      "source": "Global News Canada",
+      "title": "Alberta, Saskatchewan premiers shut down Elon Musk’s call for separation",
+      "url": "https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk",
+      "published": "2026-10-08T00:03:48+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 77,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "ae0ebcecd33f516c",
       "source": "Global News Canada",
       "title": "Community calls for justice on what would have been Devon Marsman’s 21st birthday",
@@ -1320,21 +1337,6 @@
       "published": "2026-10-07T20:21:41+00:00",
       "content_status": "full",
       "word_count": 681,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "eb0aede16ca0af02",
-      "source": "Global News Canada",
-      "title": "Defence minister delivers pro-Canada message in Alberta, highlights $8B in funding",
-      "url": "https://globalnews.ca/news/12091592/edmonton-alberta-military-defence-spending-referendum",
-      "published": "2026-10-07T19:50:14+00:00",
-      "content_status": "full",
-      "word_count": 180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1730,36 +1732,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "a834dc421893c1b2",
-      "source": "The Globe and Mail",
-      "title": "A jerky start as home buyers and sellers in the GTA hit the brakes",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-home-buyers-sellers-greater-toronto-area-sales-down",
-      "published": "2026-10-07T12:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1086,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a834dc421893c1b2",
-      "source": "The Globe and Mail",
-      "title": "A jerky start as home buyers and sellers in the GTA hit the brakes",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-home-buyers-sellers-greater-toronto-area-sales-down",
-      "published": "2026-10-07T12:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1086,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1772,6 +1744,36 @@
       "word_count": 973,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "05458fec44e8237d",
+      "source": "The Globe and Mail",
+      "title": "Arkells sell Tdsb hats to support school nutrition programs",
+      "url": "https://www.theglobeandmail.com/canada/article-arkells-sell-toronto-district-school-board-tdsb-hats",
+      "published": "2026-10-07T23:50:18.753000+00:00",
+      "content_status": "full",
+      "word_count": 703,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "05458fec44e8237d",
+      "source": "The Globe and Mail",
+      "title": "Arkells sell Tdsb hats to support school nutrition programs",
+      "url": "https://www.theglobeandmail.com/canada/article-arkells-sell-toronto-district-school-board-tdsb-hats",
+      "published": "2026-10-07T23:50:18.753000+00:00",
+      "content_status": "full",
+      "word_count": 703,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3496,6 +3498,35 @@
       ]
     },
     {
+      "id": "75502493fac4bf77",
+      "source": "Global News Canada",
+      "title": "Alberta, Saskatchewan premiers shut down Elon Musk’s call for separation",
+      "url": "https://globalnews.ca/news/12092032/alberta-saskatchewan-separatism-elon-musk",
+      "published": "2026-10-08T00:03:48+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 222,
+      "paragraph_count": 9,
+      "inline_image_count": 2,
+      "quality_score": 77,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2d073993b529a056",
       "source": "Global News Canada",
       "title": "Premier Smith brushes off Ndp’s Alberta voter list court battle, says legislation coming",
@@ -3742,35 +3773,6 @@
       "word_count": 1071,
       "paragraph_count": 32,
       "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "eb0aede16ca0af02",
-      "source": "Global News Canada",
-      "title": "Defence minister delivers pro-Canada message in Alberta, highlights $8B in funding",
-      "url": "https://globalnews.ca/news/12091592/edmonton-alberta-military-defence-spending-referendum",
-      "published": "2026-10-07T19:50:14+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 180,
-      "paragraph_count": 8,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4106,6 +4108,41 @@
       ]
     },
     {
+      "id": "05458fec44e8237d",
+      "source": "The Globe and Mail",
+      "title": "Arkells sell Tdsb hats to support school nutrition programs",
+      "url": "https://www.theglobeandmail.com/canada/article-arkells-sell-toronto-district-school-board-tdsb-hats",
+      "published": "2026-10-07T23:50:18.753000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 703,
+      "paragraph_count": 22,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7f423a00a74c581b",
       "source": "The Globe and Mail",
       "title": "Writer K.D. Miller crafted stories that glittered like a polished knife edge",
@@ -4351,41 +4388,6 @@
       "content_status": "full",
       "word_count": 845,
       "paragraph_count": 25,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a834dc421893c1b2",
-      "source": "The Globe and Mail",
-      "title": "A jerky start as home buyers and sellers in the GTA hit the brakes",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-home-buyers-sellers-greater-toronto-area-sales-down",
-      "published": "2026-10-07T12:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 1086,
-      "paragraph_count": 43,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
