@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T09:00:07.839639+00:00",
-  "generated_at_london": "2026-10-08T05:00:07.839639-04:00",
-  "news_generated_at": "2026-10-08T08:50:35.590973+00:00",
+  "generated_at": "2026-10-08T09:07:16.644491+00:00",
+  "generated_at_london": "2026-10-08T05:07:16.644491-04:00",
+  "news_generated_at": "2026-10-08T09:04:55.556706+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 693,
+    "archive_story_count": 689,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 105,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-08T08:00:03+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T08:36:23.642410+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -532,19 +532,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 471,
-      "average_quality": 96,
+      "average_words": 503,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-08T00:41:06+00:00",
+      "latest_published": "2026-10-08T09:00:32+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T00:48:07.273264+00:00",
+      "last_scrape": "2026-10-08T09:03:18.202139+00:00",
       "last_error": ""
     },
     {
@@ -677,7 +678,7 @@
       "latest_published": "2026-10-08T08:00:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T08:48:14.425456+00:00",
+      "last_scrape": "2026-10-08T09:03:22.951484+00:00",
       "last_error": ""
     },
     {
@@ -1370,15 +1371,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "357967f8cb2f6a91",
+      "story_id": "3ee980264d9e5f05",
       "source": "Global News Canada",
-      "title": "Halifax hosting defence firms at record-breaking conference amid protests",
-      "url": "https://globalnews.ca/news/12091005/halifax-hosting-defence-firms-at-record-breaking-conference-amid-protests",
-      "published": "2026-10-07T20:12:16+00:00",
+      "title": "Hockey N.S. launches pilot program to teach young players about consent, hazing",
+      "url": "https://globalnews.ca/news/12092286/hockey-n-s-consent-hazing-program",
+      "published": "2026-10-08T09:00:32+00:00",
       "content_status": "full",
-      "word_count": 411,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 733,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3441,6 +3442,35 @@
       ]
     },
     {
+      "id": "3ee980264d9e5f05",
+      "source": "Global News Canada",
+      "title": "Hockey N.S. launches pilot program to teach young players about consent, hazing",
+      "url": "https://globalnews.ca/news/12092286/hockey-n-s-consent-hazing-program",
+      "published": "2026-10-08T09:00:32+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 733,
+      "paragraph_count": 26,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0f3bc020a27b2746",
       "source": "Global News Canada",
       "title": "Ability to fix errors in referendum ballot packages show system works: Alberta premier",
@@ -3686,35 +3716,6 @@
       "content_status": "full",
       "word_count": 681,
       "paragraph_count": 32,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "357967f8cb2f6a91",
-      "source": "Global News Canada",
-      "title": "Halifax hosting defence firms at record-breaking conference amid protests",
-      "url": "https://globalnews.ca/news/12091005/halifax-hosting-defence-firms-at-record-breaking-conference-amid-protests",
-      "published": "2026-10-07T20:12:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 411,
-      "paragraph_count": 16,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
