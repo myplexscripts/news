@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T00:45:34.854060+00:00",
-  "generated_at_london": "2026-10-07T20:45:34.854060-04:00",
-  "news_generated_at": "2026-10-08T00:34:48.318132+00:00",
+  "generated_at": "2026-10-08T00:52:49.526006+00:00",
+  "generated_at_london": "2026-10-07T20:52:49.526006-04:00",
+  "news_generated_at": "2026-10-08T00:50:28.169737+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 698,
+    "archive_story_count": 700,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 108,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 7,
-    "info_issue_count": 83,
+    "info_issue_count": 82,
     "healthy_source_count": 14,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-07T22:39:26+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-07T23:15:50.148804+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -403,8 +403,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 322,
-      "average_quality": 72,
+      "average_words": 360,
+      "average_quality": 75,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -412,11 +412,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-07T22:52:49.499000+00:00",
+      "info_issues": 8,
+      "latest_published": "2026-10-08T00:35:59.169000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T23:19:49.191340+00:00",
+      "last_scrape": "2026-10-08T00:46:19.281520+00:00",
       "last_error": ""
     },
     {
@@ -508,19 +508,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 549,
-      "average_quality": 96,
+      "average_words": 469,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-08T00:03:48+00:00",
+      "latest_published": "2026-10-08T00:41:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T00:17:21.344015+00:00",
+      "last_scrape": "2026-10-08T00:48:07.273264+00:00",
       "last_error": ""
     },
     {
@@ -680,7 +681,7 @@
       "latest_published": "2026-10-07T23:34:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T00:32:36.238275+00:00",
+      "last_scrape": "2026-10-08T00:48:14.276298+00:00",
       "last_error": ""
     },
     {
@@ -694,11 +695,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 822,
-      "average_quality": 96,
+      "average_words": 824,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -1133,21 +1135,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a9f8555212a813aa",
-      "source": "CTV News London",
-      "title": "Portion of Highway 3 reopens after crash involving police cruiser",
-      "url": "https://www.ctvnews.ca/london/article/portion-of-highway-3-reopens-after-crash-involving-police-cruiser",
-      "published": "2026-10-07T11:48:26.349000+00:00",
-      "content_status": "full",
-      "word_count": 117,
-      "quality_score": 53,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "9f8108214cf6c008",
       "source": "CityNews Canada",
       "title": "Anniversary of Gaza war marks 3 years of pain for Canadians with ties to Middle East",
@@ -1313,6 +1300,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "0f3bc020a27b2746",
+      "source": "Global News Canada",
+      "title": "Ability to fix errors in referendum ballot packages show system works: Alberta premier",
+      "url": "https://globalnews.ca/news/12092031/alberta-referendum-ballot-errors-danielle-smith",
+      "published": "2026-10-08T00:41:06+00:00",
+      "content_status": "full",
+      "word_count": 275,
+      "quality_score": 81,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "75502493fac4bf77",
       "source": "Global News Canada",
       "title": "Alberta, Saskatchewan premiers shut down Elon Musk’s call for separation",
@@ -1335,21 +1337,6 @@
       "published": "2026-10-07T20:21:41+00:00",
       "content_status": "full",
       "word_count": 681,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e208d949b62ad728",
-      "source": "Global News Canada",
-      "title": "Dyed diesel is now legal on U.S. roads. What are the rules in Canada?",
-      "url": "https://globalnews.ca/news/12090952/dyed-diesel-canada-rules",
-      "published": "2026-10-07T19:58:48+00:00",
-      "content_status": "full",
-      "word_count": 1071,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1843,10 +1830,10 @@
       "title": "Ontario cancer patient who was denied coverage for U.S. treatment dismayed by province’s revised rules",
       "url": "https://www.theglobeandmail.com/canada/article-ontario-cancer-patient-who-was-denied-coverage-for-us-treatment",
       "published": "2026-10-08T00:12:57.670000+00:00",
-      "content_status": "partial",
-      "word_count": 621,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 634,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2348,6 +2335,28 @@
       "issues": []
     },
     {
+      "id": "dd7a362c986a5c93",
+      "source": "CTV News London",
+      "title": "Accused walks free after pleading guilty to manslaughter in fatal shooting",
+      "url": "https://www.ctvnews.ca/london/article/accused-walks-free-after-pleading-guilty-to-manslaughter-in-fatal-shooting",
+      "published": "2026-10-08T00:35:59.169000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 498,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 22,
+      "issues": []
+    },
+    {
       "id": "5d640478e2e6a3cb",
       "source": "CTV News London",
       "title": "Alleged racist assault sparks outrage in Kincardine",
@@ -2596,35 +2605,6 @@
           "code": "missing_hero_image",
           "message": "Story has no hero image.",
           "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "a9f8555212a813aa",
-      "source": "CTV News London",
-      "title": "Portion of Highway 3 reopens after crash involving police cruiser",
-      "url": "https://www.ctvnews.ca/london/article/portion-of-highway-3-reopens-after-crash-involving-police-cruiser",
-      "published": "2026-10-07T11:48:26.349000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 117,
-      "paragraph_count": 5,
-      "inline_image_count": 0,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
@@ -3481,6 +3461,35 @@
       ]
     },
     {
+      "id": "0f3bc020a27b2746",
+      "source": "Global News Canada",
+      "title": "Ability to fix errors in referendum ballot packages show system works: Alberta premier",
+      "url": "https://globalnews.ca/news/12092031/alberta-referendum-ballot-errors-danielle-smith",
+      "published": "2026-10-08T00:41:06+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 275,
+      "paragraph_count": 10,
+      "inline_image_count": 3,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "75502493fac4bf77",
       "source": "Global News Canada",
       "title": "Alberta, Saskatchewan premiers shut down Elon Musk’s call for separation",
@@ -3727,35 +3736,6 @@
       "word_count": 398,
       "paragraph_count": 15,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e208d949b62ad728",
-      "source": "Global News Canada",
-      "title": "Dyed diesel is now legal on U.S. roads. What are the rules in Canada?",
-      "url": "https://globalnews.ca/news/12090952/dyed-diesel-canada-rules",
-      "published": "2026-10-07T19:58:48+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1071,
-      "paragraph_count": 32,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4101,13 +4081,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 621,
-      "paragraph_count": 20,
+      "content_status": "full",
+      "word_count": 634,
+      "paragraph_count": 21,
       "inline_image_count": 0,
-      "quality_score": 96,
+      "quality_score": 81,
       "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
