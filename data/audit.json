@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T13:38:49.617138+00:00",
-  "generated_at_london": "2026-10-08T09:38:49.617138-04:00",
-  "news_generated_at": "2026-10-08T13:30:08.005184+00:00",
+  "generated_at": "2026-10-08T13:48:23.949075+00:00",
+  "generated_at_london": "2026-10-08T09:48:23.949075-04:00",
+  "news_generated_at": "2026-10-08T13:46:13.001754+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 684,
+    "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 106,
-    "review_story_count": 5,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 5,
+    "review_story_count": 6,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 7,
     "info_issue_count": 83,
     "healthy_source_count": 12,
     "review_source_count": 4,
@@ -108,23 +108,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
-      "review": 0,
-      "fail": 3,
+      "review": 1,
+      "fail": 2,
       "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 366,
-      "average_quality": 96,
+      "average_words": 380,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 3,
-      "warning_issues": 0,
+      "critical_issues": 2,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-08T11:16:00+00:00",
+      "latest_published": "2026-10-08T13:24:19+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T08:36:23.642410+00:00",
+      "last_scrape": "2026-10-08T13:44:00.001369+00:00",
       "last_error": ""
     },
     {
@@ -703,7 +704,7 @@
       "latest_published": "2026-10-08T13:08:27+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T13:27:51.029440+00:00",
+      "last_scrape": "2026-10-08T13:43:56.928612+00:00",
       "last_error": ""
     },
     {
@@ -735,21 +736,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "56 words",
-      "story_id": "92ce1dba52497527",
-      "source": "Toronto Star",
-      "title": "Hit-and-run victim found dead days later in Vaughan, Ont., as police look for suspect",
-      "url": "https://www.thestar.com/news/ontario/hit-and-run-victim-found-dead-days-later-in-vaughan-ont-as-police-look-for-suspect/article_99257023-97dc-5f8a-a4b8-bc4e05c4877a.html",
-      "published": "2026-10-07T16:44:05+00:00",
-      "content_status": "full",
-      "word_count": 56,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -854,6 +840,36 @@
       "word_count": 3685,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f654d7978f1a3f38",
+      "source": "Toronto Star",
+      "title": "List of Canadians who have won the Nobel Prize",
+      "url": "https://www.thestar.com/news/canada/list-of-canadians-who-have-won-the-nobel-prize/article_9aac653f-8eac-5c2c-9eee-1d57e56c9f4e.html",
+      "published": "2026-10-08T13:24:19+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "f654d7978f1a3f38",
+      "source": "Toronto Star",
+      "title": "List of Canadians who have won the Nobel Prize",
+      "url": "https://www.thestar.com/news/canada/list-of-canadians-who-have-won-the-nobel-prize/article_9aac653f-8eac-5c2c-9eee-1d57e56c9f4e.html",
+      "published": "2026-10-08T13:24:19+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1940,21 +1956,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "92ce1dba52497527",
-      "source": "Toronto Star",
-      "title": "Hit-and-run victim found dead days later in Vaughan, Ont., as police look for suspect",
-      "url": "https://www.thestar.com/news/ontario/hit-and-run-victim-found-dead-days-later-in-vaughan-ont-as-police-look-for-suspect/article_99257023-97dc-5f8a-a4b8-bc4e05c4877a.html",
-      "published": "2026-10-07T16:44:05+00:00",
-      "content_status": "full",
-      "word_count": 56,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "80f1e85c0ef48b3c",
       "source": "Toronto Star",
       "title": "Lawyer seeks order forcing Quebec legislature members to swear oath to the King",
@@ -1964,6 +1965,21 @@
       "word_count": 412,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f654d7978f1a3f38",
+      "source": "Toronto Star",
+      "title": "List of Canadians who have won the Nobel Prize",
+      "url": "https://www.thestar.com/news/canada/list-of-canadians-who-have-won-the-nobel-prize/article_9aac653f-8eac-5c2c-9eee-1d57e56c9f4e.html",
+      "published": "2026-10-08T13:24:19+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4636,6 +4652,47 @@
       ]
     },
     {
+      "id": "f654d7978f1a3f38",
+      "source": "Toronto Star",
+      "title": "List of Canadians who have won the Nobel Prize",
+      "url": "https://www.thestar.com/news/canada/list-of-canadians-who-have-won-the-nobel-prize/article_9aac653f-8eac-5c2c-9eee-1d57e56c9f4e.html",
+      "published": "2026-10-08T13:24:19+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 187,
+      "paragraph_count": 1,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c134b6c67c9885da",
       "source": "Toronto Star",
       "title": "Canadian poet Anne Carson wins Nobel Prize in Literature",
@@ -4900,41 +4957,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "92ce1dba52497527",
-      "source": "Toronto Star",
-      "title": "Hit-and-run victim found dead days later in Vaughan, Ont., as police look for suspect",
-      "url": "https://www.thestar.com/news/ontario/hit-and-run-victim-found-dead-days-later-in-vaughan-ont-as-police-look-for-suspect/article_99257023-97dc-5f8a-a4b8-bc4e05c4877a.html",
-      "published": "2026-10-07T16:44:05+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 56,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "56 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
