@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T10:17:01.928081+00:00",
-  "generated_at_london": "2026-10-08T06:17:01.928081-04:00",
-  "news_generated_at": "2026-10-08T10:07:53.202801+00:00",
+  "generated_at": "2026-10-08T10:26:18.617161+00:00",
+  "generated_at_london": "2026-10-08T06:26:18.617161-04:00",
+  "news_generated_at": "2026-10-08T10:23:30.307450+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 690,
+    "archive_story_count": 692,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 105,
-    "review_story_count": 6,
+    "pass_story_count": 104,
+    "review_story_count": 7,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 7,
+    "warning_issue_count": 8,
     "info_issue_count": 82,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -98,6 +98,34 @@
       "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-07T23:19:48.034664+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "The Globe and Mail",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1143,
+      "average_quality": 96,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:globe:article#content-gate": 1,
+        "dom:globe:main": 1,
+        "dom:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 12,
+      "latest_published": "2026-10-08T10:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-08T10:21:11.996358+00:00",
       "last_error": ""
     },
     {
@@ -440,7 +468,7 @@
       "latest_published": "2026-10-08T10:00:01+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T10:03:42.116316+00:00",
+      "last_scrape": "2026-10-08T10:11:49.960828+00:00",
       "last_error": ""
     },
     {
@@ -678,33 +706,7 @@
       "latest_published": "2026-10-08T08:00:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T10:05:35.636494+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "The Globe and Mail",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 954,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-08T09:55:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-08T10:05:30.525331+00:00",
+      "last_scrape": "2026-10-08T10:21:17.868160+00:00",
       "last_error": ""
     },
     {
@@ -885,6 +887,21 @@
       "word_count": 681,
       "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "18 inline images",
+      "story_id": "4fb8bdfa5e66156d",
+      "source": "The Globe and Mail",
+      "title": "The population is shrinking in pockets of Vancouver and Toronto. What if we put more housing there?",
+      "url": "https://www.theglobeandmail.com/canada/article-the-population-is-shrinking-in-pockets-of-vancouver-and-toronto-what",
+      "published": "2026-10-08T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 3733,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1743,21 +1760,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "597921e6ca4751f4",
-      "source": "The Globe and Mail",
-      "title": "An architectural legacy on offer in Toronto’s queer district",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-an-architectural-legacy-on-offer-in-torontos-queer-district",
-      "published": "2026-10-07T19:33:25.309000+00:00",
-      "content_status": "full",
-      "word_count": 973,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1836,15 +1838,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cddd596e3f33db2b",
+      "story_id": "f77a06e069a5ae6f",
       "source": "The Globe and Mail",
-      "title": "Playwright Robert Winslow turned his farm into a theatre that celebrated rural life",
-      "url": "https://www.theglobeandmail.com/canada/article-obituary-playwright-robert-winslow-turned-his-farm-into-a-theatre",
-      "published": "2026-10-07T18:32:45.344000+00:00",
+      "title": "Should you shop around? We tested the old advice on a Thanksgiving feast",
+      "url": "https://www.theglobeandmail.com/investing/personal-finance/household-finances/article-should-you-shop-around-we-tested-the-old-advice-on-a-thanksgiving",
+      "published": "2026-10-08T10:00:00+00:00",
       "content_status": "full",
-      "word_count": 1707,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 841,
+      "quality_score": 97,
+      "extraction_method": "dom:globe:main"
     },
     {
       "severity": "info",
@@ -1860,6 +1862,21 @@
       "word_count": 775,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4fb8bdfa5e66156d",
+      "source": "The Globe and Mail",
+      "title": "The population is shrinking in pockets of Vancouver and Toronto. What if we put more housing there?",
+      "url": "https://www.theglobeandmail.com/canada/article-the-population-is-shrinking-in-pockets-of-vancouver-and-toronto-what",
+      "published": "2026-10-08T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 3733,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4067,6 +4084,70 @@
       ]
     },
     {
+      "id": "4fb8bdfa5e66156d",
+      "source": "The Globe and Mail",
+      "title": "The population is shrinking in pockets of Vancouver and Toronto. What if we put more housing there?",
+      "url": "https://www.theglobeandmail.com/canada/article-the-population-is-shrinking-in-pockets-of-vancouver-and-toronto-what",
+      "published": "2026-10-08T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 3733,
+      "paragraph_count": 100,
+      "inline_image_count": 18,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "18 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "f77a06e069a5ae6f",
+      "source": "The Globe and Mail",
+      "title": "Should you shop around? We tested the old advice on a Thanksgiving feast",
+      "url": "https://www.theglobeandmail.com/investing/personal-finance/household-finances/article-should-you-shop-around-we-tested-the-old-advice-on-a-thanksgiving",
+      "published": "2026-10-08T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 841,
+      "paragraph_count": 25,
+      "inline_image_count": 3,
+      "quality_score": 97,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b2fb9961c6443fd4",
       "source": "The Globe and Mail",
       "title": "‘We don’t want to do a rinse and repeat’: Where Tiff’s big-bet market goes from here",
@@ -4296,64 +4377,6 @@
       "word_count": 796,
       "paragraph_count": 24,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "597921e6ca4751f4",
-      "source": "The Globe and Mail",
-      "title": "An architectural legacy on offer in Toronto’s queer district",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-an-architectural-legacy-on-offer-in-torontos-queer-district",
-      "published": "2026-10-07T19:33:25.309000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 973,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cddd596e3f33db2b",
-      "source": "The Globe and Mail",
-      "title": "Playwright Robert Winslow turned his farm into a theatre that celebrated rural life",
-      "url": "https://www.theglobeandmail.com/canada/article-obituary-playwright-robert-winslow-turned-his-farm-into-a-theatre",
-      "published": "2026-10-07T18:32:45.344000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1707,
-      "paragraph_count": 44,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
