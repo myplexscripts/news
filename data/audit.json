@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T20:45:38.992995+00:00",
-  "generated_at_london": "2026-10-08T16:45:38.992995-04:00",
-  "news_generated_at": "2026-10-08T20:33:37.013949+00:00",
+  "generated_at": "2026-10-08T20:52:02.910791+00:00",
+  "generated_at_london": "2026-10-08T16:52:02.910791-04:00",
+  "news_generated_at": "2026-10-08T20:48:29.794537+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 700,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 114,
-    "review_story_count": 1,
+    "pass_story_count": 113,
+    "review_story_count": 2,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 1,
+    "warning_issue_count": 3,
     "info_issue_count": 92,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -46,7 +46,7 @@
       "found_this_run": 0,
       "tracked": 8,
       "last_scrape": "2026-10-05T02:27:01.683958+00:00",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Global News Canada",
@@ -72,6 +72,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T20:31:04.372957+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 255,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-08T20:05:59+00:00",
+      "found_this_run": 9,
+      "tracked": 30,
+      "last_scrape": "2026-10-08T20:14:38.077682+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +678,7 @@
       "latest_published": "2026-10-08T15:52:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T20:31:11.809756+00:00",
+      "last_scrape": "2026-10-08T20:46:05.069648+00:00",
       "last_error": ""
     },
     {
@@ -665,11 +692,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 379,
-      "average_quality": 96,
+      "average_words": 364,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -678,32 +706,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T20:31:05.943895+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 275,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-08T20:05:59+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-10-08T20:14:38.077682+00:00",
       "last_error": ""
     },
     {
@@ -749,6 +751,36 @@
       "word_count": 360,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "562be6992e1f9c64",
+      "source": "Toronto Star",
+      "title": "Two house explosions shake Hamilton, send three people to hospital",
+      "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
+      "published": "2026-10-08T20:05:59+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "562be6992e1f9c64",
+      "source": "Toronto Star",
+      "title": "Two house explosions shake Hamilton, send three people to hospital",
+      "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
+      "published": "2026-10-08T20:05:59+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1765,10 +1797,10 @@
       "title": "B.C. Conservatives drop candidate over ‘racist’ social media posts",
       "url": "https://www.theglobeandmail.com/canada/article-bc-conservatives-doerkson-agou-racism-twitter",
       "published": "2026-10-08T20:23:11.888000+00:00",
-      "content_status": "partial",
-      "word_count": 302,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 156,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2066,9 +2098,9 @@
       "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
       "published": "2026-10-08T20:05:59+00:00",
       "content_status": "full",
-      "word_count": 391,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4138,13 +4170,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 302,
-      "paragraph_count": 13,
+      "content_status": "full",
+      "word_count": 156,
+      "paragraph_count": 6,
       "inline_image_count": 0,
-      "quality_score": 96,
+      "quality_score": 66,
       "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4725,21 +4757,33 @@
       "title": "Two house explosions shake Hamilton, send three people to hospital",
       "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
       "published": "2026-10-08T20:05:59+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 391,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
+      "word_count": 187,
+      "paragraph_count": 2,
+      "inline_image_count": 10,
+      "quality_score": 80,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
