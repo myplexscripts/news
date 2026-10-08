@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T22:01:12.127395+00:00",
-  "generated_at_london": "2026-10-08T18:01:12.127395-04:00",
-  "news_generated_at": "2026-10-08T21:51:16.539113+00:00",
+  "generated_at": "2026-10-08T22:10:06.580918+00:00",
+  "generated_at_london": "2026-10-08T18:10:06.580918-04:00",
+  "news_generated_at": "2026-10-08T22:06:59.660122+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 705,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 114,
-    "review_story_count": 1,
+    "pass_story_count": 112,
+    "review_story_count": 3,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 1,
+    "warning_issue_count": 5,
     "info_issue_count": 93,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -72,6 +72,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T21:17:22.751140+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 336,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 12,
+      "latest_published": "2026-10-08T21:46:48+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-08T22:04:36.327144+00:00",
       "last_error": ""
     },
     {
@@ -386,7 +413,7 @@
       "warning_issues": 0,
       "info_issues": 17,
       "latest_published": "2026-10-08T19:09:58.783000+00:00",
-      "found_this_run": 7,
+      "found_this_run": 6,
       "tracked": 30,
       "last_scrape": "2026-10-08T19:32:51.232005+00:00",
       "last_error": ""
@@ -415,7 +442,7 @@
       "latest_published": "2026-10-08T21:11:03.620000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T21:25:28.298505+00:00",
+      "last_scrape": "2026-10-08T21:56:23.286771+00:00",
       "last_error": ""
     },
     {
@@ -652,7 +679,7 @@
       "latest_published": "2026-10-08T21:03:39+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T21:48:52.676347+00:00",
+      "last_scrape": "2026-10-08T22:04:29.188668+00:00",
       "last_error": ""
     },
     {
@@ -666,45 +693,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 363,
+      "average_words": 495,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-10-08T21:29:07.519000+00:00",
+      "latest_published": "2026-10-08T21:38:16.098000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T21:48:47.107880+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 349,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-08T21:04:56+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-08T21:33:25.894572+00:00",
+      "last_scrape": "2026-10-08T22:04:23.224047+00:00",
       "last_error": ""
     },
     {
@@ -750,6 +752,66 @@
       "word_count": 360,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "470e99aea122636b",
+      "source": "Toronto Star",
+      "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
+      "published": "2026-10-08T21:46:48+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "470e99aea122636b",
+      "source": "Toronto Star",
+      "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
+      "published": "2026-10-08T21:46:48+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ce1f169a87f56ef5",
+      "source": "Toronto Star",
+      "title": "Corus completes recapitalization transaction, announces new board of directors",
+      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
+      "published": "2026-10-08T21:46:38+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "ce1f169a87f56ef5",
+      "source": "Toronto Star",
+      "title": "Corus completes recapitalization transaction, announces new board of directors",
+      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
+      "published": "2026-10-08T21:46:38+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1758,21 +1820,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4249e68f0f62cd8e",
-      "source": "The Globe and Mail",
-      "title": "Big price cut and an under-asking sale for Summerhill townhouse in Toronto",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-summerhill-townhouse-price-cut-under-asking-subway-station",
-      "published": "2026-10-08T12:30:00+00:00",
-      "content_status": "full",
-      "word_count": 329,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1815,6 +1862,21 @@
       "word_count": 147,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "12d2e612c5488df4",
+      "source": "The Globe and Mail",
+      "title": "Investment guru Stephen Jarislowsky was a crusader for ethical business practices",
+      "url": "https://www.theglobeandmail.com/canada/article-stephen-jarislowsky-investment-guru-crusader-ethical-business",
+      "published": "2026-10-08T21:38:16.098000+00:00",
+      "content_status": "full",
+      "word_count": 1649,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1956,6 +2018,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "470e99aea122636b",
+      "source": "Toronto Star",
+      "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
+      "published": "2026-10-08T21:46:48+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "fb32e4b3fa60ec88",
       "source": "Toronto Star",
       "title": "Carney points to federal review when asked about restricting access to SKS rifle",
@@ -1986,15 +2063,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "42dbce00f902b3e5",
+      "story_id": "ce1f169a87f56ef5",
       "source": "Toronto Star",
-      "title": "Hamilton to pilot bylaw to protect downtown renters from extreme indoor heat",
-      "url": "https://www.thestar.com/news/ontario/hamilton-to-pilot-bylaw-to-protect-downtown-renters-from-extreme-indoor-heat/article_f60b082f-3bb9-50d7-8087-c804cc6595c0.html",
-      "published": "2026-10-08T17:58:35+00:00",
+      "title": "Corus completes recapitalization transaction, announces new board of directors",
+      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
+      "published": "2026-10-08T21:46:38+00:00",
       "content_status": "full",
-      "word_count": 255,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2023,21 +2100,6 @@
       "published": "2026-10-08T21:04:56+00:00",
       "content_status": "full",
       "word_count": 196,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0992ec31c40bb13e",
-      "source": "Toronto Star",
-      "title": "Three horses en route to Equestrian Canada event killed in B.C. highway crash",
-      "url": "https://www.thestar.com/news/canada/three-horses-en-route-to-equestrian-canada-event-killed-in-b-c-highway-crash/article_fd884822-343c-5680-ba7b-7466b303298f.html",
-      "published": "2026-10-08T17:54:08+00:00",
-      "content_status": "full",
-      "word_count": 269,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4139,6 +4201,35 @@
       ]
     },
     {
+      "id": "12d2e612c5488df4",
+      "source": "The Globe and Mail",
+      "title": "Investment guru Stephen Jarislowsky was a crusader for ethical business practices",
+      "url": "https://www.theglobeandmail.com/canada/article-stephen-jarislowsky-investment-guru-crusader-ethical-business",
+      "published": "2026-10-08T21:38:16.098000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1649,
+      "paragraph_count": 36,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bb229a5ccd5c20e6",
       "source": "The Globe and Mail",
       "title": "Ontario to begin removing Toronto bike lanes next week",
@@ -4397,35 +4488,6 @@
       "word_count": 265,
       "paragraph_count": 10,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4249e68f0f62cd8e",
-      "source": "The Globe and Mail",
-      "title": "Big price cut and an under-asking sale for Summerhill townhouse in Toronto",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-summerhill-townhouse-price-cut-under-asking-subway-station",
-      "published": "2026-10-08T12:30:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 329,
-      "paragraph_count": 22,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4731,6 +4793,88 @@
       ]
     },
     {
+      "id": "470e99aea122636b",
+      "source": "Toronto Star",
+      "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
+      "published": "2026-10-08T21:46:48+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 190,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "ce1f169a87f56ef5",
+      "source": "Toronto Star",
+      "title": "Corus completes recapitalization transaction, announces new board of directors",
+      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
+      "published": "2026-10-08T21:46:38+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 202,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e6adf05ce93bdf78",
       "source": "Toronto Star",
       "title": "Province to begin removing stretch of Toronto bike lanes next week after court win",
@@ -4959,64 +5103,6 @@
       "content_status": "full",
       "word_count": 445,
       "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "42dbce00f902b3e5",
-      "source": "Toronto Star",
-      "title": "Hamilton to pilot bylaw to protect downtown renters from extreme indoor heat",
-      "url": "https://www.thestar.com/news/ontario/hamilton-to-pilot-bylaw-to-protect-downtown-renters-from-extreme-indoor-heat/article_f60b082f-3bb9-50d7-8087-c804cc6595c0.html",
-      "published": "2026-10-08T17:58:35+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 255,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0992ec31c40bb13e",
-      "source": "Toronto Star",
-      "title": "Three horses en route to Equestrian Canada event killed in B.C. highway crash",
-      "url": "https://www.thestar.com/news/canada/three-horses-en-route-to-equestrian-canada-event-killed-in-b-c-highway-crash/article_fd884822-343c-5680-ba7b-7466b303298f.html",
-      "published": "2026-10-08T17:54:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 269,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
