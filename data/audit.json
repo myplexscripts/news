@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T17:01:01.711611+00:00",
-  "generated_at_london": "2026-10-08T13:01:01.711611-04:00",
-  "news_generated_at": "2026-10-08T16:52:54.458565+00:00",
+  "generated_at": "2026-10-08T17:11:33.440505+00:00",
+  "generated_at_london": "2026-10-08T13:11:33.440505-04:00",
+  "news_generated_at": "2026-10-08T17:08:44.062104+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 694,
+    "archive_story_count": 693,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 112,
-    "review_story_count": 3,
+    "pass_story_count": 113,
+    "review_story_count": 2,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 3,
-    "info_issue_count": 87,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "warning_issue_count": 2,
+    "info_issue_count": 88,
+    "healthy_source_count": 15,
+    "review_source_count": 2,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -46,7 +46,7 @@
       "found_this_run": 0,
       "tracked": 8,
       "last_scrape": "2026-10-05T02:27:01.683958+00:00",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "CTV News Canada",
@@ -72,33 +72,6 @@
       "found_this_run": 6,
       "tracked": 30,
       "last_scrape": "2026-10-08T16:43:23.439186+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "The Globe and Mail",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 884,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "reader:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 10,
-      "latest_published": "2026-10-08T15:52:29.201000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-08T16:04:56.922422+00:00",
       "last_error": ""
     },
     {
@@ -678,7 +651,35 @@
       "latest_published": "2026-10-08T15:52:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T16:51:22.408421+00:00",
+      "last_scrape": "2026-10-08T17:06:55.467745+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "The Globe and Mail",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 546,
+      "average_quality": 94,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 8,
+        "reader:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 11,
+      "latest_published": "2026-10-08T16:48:14.121000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-08T17:06:50.400855+00:00",
       "last_error": ""
     },
     {
@@ -765,21 +766,6 @@
       "word_count": 681,
       "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "21 inline images",
-      "story_id": "4fb8bdfa5e66156d",
-      "source": "The Globe and Mail",
-      "title": "The population is shrinking in pockets of Vancouver and Toronto. What if we put more housing there?",
-      "url": "https://www.theglobeandmail.com/canada/article-the-population-is-shrinking-in-pockets-of-vancouver-and-toronto-what",
-      "published": "2026-10-08T10:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 3685,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1818,18 +1804,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "4c5f4cffd2087cbf",
+      "source": "The Globe and Mail",
+      "title": "Ottawa to launch $2-billion heat pump rebate program early next year",
+      "url": "https://www.theglobeandmail.com/business/article-ottawa-carney-heat-pump-rebate-program",
+      "published": "2026-10-08T16:48:14.121000+00:00",
+      "content_status": "full",
+      "word_count": 306,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "4fb8bdfa5e66156d",
+      "story_id": "4c5f4cffd2087cbf",
       "source": "The Globe and Mail",
-      "title": "The population is shrinking in pockets of Vancouver and Toronto. What if we put more housing there?",
-      "url": "https://www.theglobeandmail.com/canada/article-the-population-is-shrinking-in-pockets-of-vancouver-and-toronto-what",
-      "published": "2026-10-08T10:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 3685,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "Ottawa to launch $2-billion heat pump rebate program early next year",
+      "url": "https://www.theglobeandmail.com/business/article-ottawa-carney-heat-pump-rebate-program",
+      "published": "2026-10-08T16:48:14.121000+00:00",
+      "content_status": "full",
+      "word_count": 306,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4071,6 +4072,41 @@
       ]
     },
     {
+      "id": "4c5f4cffd2087cbf",
+      "source": "The Globe and Mail",
+      "title": "Ottawa to launch $2-billion heat pump rebate program early next year",
+      "url": "https://www.theglobeandmail.com/business/article-ottawa-carney-heat-pump-rebate-program",
+      "published": "2026-10-08T16:48:14.121000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 306,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "136b071f5ccc0848",
       "source": "The Globe and Mail",
       "title": "Arrests and detentions of Canadians in U.S. spiked last year, report shows",
@@ -4323,41 +4359,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4fb8bdfa5e66156d",
-      "source": "The Globe and Mail",
-      "title": "The population is shrinking in pockets of Vancouver and Toronto. What if we put more housing there?",
-      "url": "https://www.theglobeandmail.com/canada/article-the-population-is-shrinking-in-pockets-of-vancouver-and-toronto-what",
-      "published": "2026-10-08T10:00:00+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 3685,
-      "paragraph_count": 98,
-      "inline_image_count": 21,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "21 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
