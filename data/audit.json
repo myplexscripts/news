@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T20:08:30.329772+00:00",
-  "generated_at_london": "2026-10-08T16:08:30.329772-04:00",
-  "news_generated_at": "2026-10-08T19:59:59.445162+00:00",
+  "generated_at": "2026-10-08T20:20:46.099278+00:00",
+  "generated_at_london": "2026-10-08T16:20:46.099278-04:00",
+  "news_generated_at": "2026-10-08T20:16:37.016056+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 703,
+    "archive_story_count": 701,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 114,
-    "review_story_count": 1,
+    "pass_story_count": 113,
+    "review_story_count": 2,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 1,
+    "warning_issue_count": 3,
     "info_issue_count": 92,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -72,6 +72,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T18:40:50.983392+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 255,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-08T20:05:59+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-08T20:14:38.077682+00:00",
       "last_error": ""
     },
     {
@@ -386,7 +413,7 @@
       "warning_issues": 0,
       "info_issues": 17,
       "latest_published": "2026-10-08T19:09:58.783000+00:00",
-      "found_this_run": 7,
+      "found_this_run": 6,
       "tracked": 30,
       "last_scrape": "2026-10-08T19:32:51.232005+00:00",
       "last_error": ""
@@ -651,7 +678,7 @@
       "latest_published": "2026-10-08T15:52:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T19:58:28.369185+00:00",
+      "last_scrape": "2026-10-08T20:14:32.860434+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T19:43:01.394142+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 264,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-08T18:34:39+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-10-08T18:56:13.205840+00:00",
       "last_error": ""
     },
     {
@@ -749,6 +750,36 @@
       "word_count": 360,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "562be6992e1f9c64",
+      "source": "Toronto Star",
+      "title": "Two house explosions shake Hamilton, send three people to hospital",
+      "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
+      "published": "2026-10-08T20:05:59+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "562be6992e1f9c64",
+      "source": "Toronto Star",
+      "title": "Two house explosions shake Hamilton, send three people to hospital",
+      "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
+      "published": "2026-10-08T20:05:59+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1940,21 +1971,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9109cbd21ec3f757",
-      "source": "Toronto Star",
-      "title": "Alberta's economic prospects depend on immigration, chamber says as referendum nears",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-s-economic-prospects-depend-on-immigration-chamber-says-as-referendum-nears/article_d4a79c19-2622-5d2a-b96a-65dbf396a095.html",
-      "published": "2026-10-08T16:11:52+00:00",
-      "content_status": "full",
-      "word_count": 276,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "dd7ca05a5e3b0b51",
       "source": "Toronto Star",
       "title": "Author Galloway says his defenders lost jobs, friends after letter opposed suspension",
@@ -2069,6 +2085,21 @@
       "word_count": 269,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "562be6992e1f9c64",
+      "source": "Toronto Star",
+      "title": "Two house explosions shake Hamilton, send three people to hospital",
+      "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
+      "published": "2026-10-08T20:05:59+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4720,6 +4751,47 @@
       ]
     },
     {
+      "id": "562be6992e1f9c64",
+      "source": "Toronto Star",
+      "title": "Two house explosions shake Hamilton, send three people to hospital",
+      "url": "https://www.thestar.com/news/ontario/two-house-explosions-shake-hamilton-send-three-people-to-hospital/article_a0f5526a-8efb-5fe3-a5ad-28ea35dc5bc4.html",
+      "published": "2026-10-08T20:05:59+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 187,
+      "paragraph_count": 2,
+      "inline_image_count": 10,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fb32e4b3fa60ec88",
       "source": "Toronto Star",
       "title": "Carney points to federal review when asked about restricting access to SKS rifle",
@@ -4964,35 +5036,6 @@
       "info_count": 1,
       "content_status": "full",
       "word_count": 202,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9109cbd21ec3f757",
-      "source": "Toronto Star",
-      "title": "Alberta's economic prospects depend on immigration, chamber says as referendum nears",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-s-economic-prospects-depend-on-immigration-chamber-says-as-referendum-nears/article_d4a79c19-2622-5d2a-b96a-65dbf396a095.html",
-      "published": "2026-10-08T16:11:52+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 276,
       "paragraph_count": 18,
       "inline_image_count": 0,
       "quality_score": 96,
