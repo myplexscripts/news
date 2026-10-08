@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T10:49:07.231739+00:00",
-  "generated_at_london": "2026-10-08T06:49:07.231739-04:00",
-  "news_generated_at": "2026-10-08T10:39:08.475298+00:00",
+  "generated_at": "2026-10-08T10:56:53.384497+00:00",
+  "generated_at_london": "2026-10-08T06:56:53.384497-04:00",
+  "news_generated_at": "2026-10-08T10:54:11.048688+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 688,
@@ -85,11 +85,12 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 1138,
+      "average_words": 1158,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -97,13 +98,13 @@
       "latest_published": "2026-10-08T10:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T10:21:11.996358+00:00",
+      "last_scrape": "2026-10-08T10:51:50.292225+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -121,15 +122,15 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-08T08:00:03+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-08T08:36:23.642410+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
       "status": "waiting",
-      "collector_status": "healthy",
+      "collector_status": "waiting",
       "profile": "heartfm",
       "sample_size": 0,
       "pass": 0,
@@ -146,8 +147,8 @@
       "info_issues": 0,
       "latest_published": "",
       "found_this_run": 18,
-      "tracked": 1,
-      "last_scrape": "2026-10-01T10:55:29.686662+00:00",
+      "tracked": 0,
+      "last_scrape": "",
       "last_error": ""
     },
     {
@@ -702,7 +703,7 @@
       "latest_published": "2026-10-08T08:00:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T10:36:52.583667+00:00",
+      "last_scrape": "2026-10-08T10:51:55.469072+00:00",
       "last_error": ""
     },
     {
@@ -1774,21 +1775,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "01deec469f589055",
-      "source": "The Globe and Mail",
-      "title": "Cleveland-Cliffs boss dismisses idea of nationalizing Stelco as Ottawa pushes to preserve jobs",
-      "url": "https://www.theglobeandmail.com/business/article-cleveland-cliffs-dismisses-nationalizing-stelco-ottawa-jobs",
-      "published": "2026-10-07T20:08:59.001000+00:00",
-      "content_status": "full",
-      "word_count": 796,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "8fb331e0fd16b1ae",
       "source": "The Globe and Mail",
       "title": "Ontario cancer patient who was denied coverage for U.S. treatment dismayed by province’s revised rules",
@@ -1843,6 +1829,21 @@
       "word_count": 3685,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d9e16b7b4ba7829e",
+      "source": "The Globe and Mail",
+      "title": "Vancouver airport first candidate for private investment, sources say",
+      "url": "https://www.theglobeandmail.com/business/article-vancouver-airport-private-investment-first-candidate-sources-say",
+      "published": "2026-10-08T01:40:34.388000+00:00",
+      "content_status": "full",
+      "word_count": 992,
+      "quality_score": 92,
+      "extraction_method": "dom:globe:main"
     },
     {
       "severity": "info",
@@ -4201,6 +4202,35 @@
       ]
     },
     {
+      "id": "d9e16b7b4ba7829e",
+      "source": "The Globe and Mail",
+      "title": "Vancouver airport first candidate for private investment, sources say",
+      "url": "https://www.theglobeandmail.com/business/article-vancouver-airport-private-investment-first-candidate-sources-say",
+      "published": "2026-10-08T01:40:34.388000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 992,
+      "paragraph_count": 31,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8fb331e0fd16b1ae",
       "source": "The Globe and Mail",
       "title": "Ontario cancer patient who was denied coverage for U.S. treatment dismayed by province’s revised rules",
@@ -4279,35 +4309,6 @@
       "word_count": 1412,
       "paragraph_count": 20,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "01deec469f589055",
-      "source": "The Globe and Mail",
-      "title": "Cleveland-Cliffs boss dismisses idea of nationalizing Stelco as Ottawa pushes to preserve jobs",
-      "url": "https://www.theglobeandmail.com/business/article-cleveland-cliffs-dismisses-nationalizing-stelco-ottawa-jobs",
-      "published": "2026-10-07T20:08:59.001000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 796,
-      "paragraph_count": 24,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
