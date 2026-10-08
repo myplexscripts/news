@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T08:30:58.715806+00:00",
-  "generated_at_london": "2026-10-08T04:30:58.715806-04:00",
-  "news_generated_at": "2026-10-08T08:18:54.885092+00:00",
+  "generated_at": "2026-10-08T08:35:40.423257+00:00",
+  "generated_at_london": "2026-10-08T04:35:40.423257-04:00",
+  "news_generated_at": "2026-10-08T08:34:03.938695+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 692,
+    "archive_story_count": 693,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 104,
+    "pass_story_count": 105,
     "review_story_count": 6,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 7,
     "info_issue_count": 81,
     "healthy_source_count": 13,
@@ -103,28 +103,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 6,
+      "pass": 7,
       "review": 0,
-      "fail": 4,
-      "pass_rate": 60,
-      "usable_body_rate": 100,
-      "average_words": 346,
-      "average_quality": 96,
+      "fail": 3,
+      "pass_rate": 70,
+      "usable_body_rate": 90,
+      "average_words": 378,
+      "average_quality": 89,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:fallback": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 4,
+      "critical_issues": 3,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-07T22:39:26+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-08T08:00:03+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T01:03:46.201163+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-08T08:32:33.433694+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -677,7 +678,7 @@
       "latest_published": "2026-10-08T08:00:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T08:16:56.653331+00:00",
+      "last_scrape": "2026-10-08T08:32:30.058828+00:00",
       "last_error": ""
     },
     {
@@ -691,11 +692,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 862,
-      "average_quality": 96,
+      "average_words": 864,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -760,21 +762,6 @@
       "title": "McGuinty delivers pro-Canada message in Alberta, highlights $8B in funding",
       "url": "https://www.thestar.com/news/canada/alberta/mcguinty-delivers-pro-canada-message-in-alberta-highlights-8b-in-funding/article_3e400eba-f572-54d2-8f6c-10d264dabbcb.html",
       "published": "2026-10-07T19:35:29+00:00",
-      "content_status": "full",
-      "word_count": 59,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "59 words",
-      "story_id": "24898e7cebcf3a1a",
-      "source": "Toronto Star",
-      "title": "One dead in crash between vehicle and motorcycle in Langley, B.C.",
-      "url": "https://www.thestar.com/news/canada/one-dead-in-crash-between-vehicle-and-motorcycle-in-langley-b-c/article_5ad2233c-9756-5c93-9353-f8c6d972fb27.html",
-      "published": "2026-10-07T16:22:00+00:00",
       "content_status": "full",
       "word_count": 59,
       "quality_score": 96,
@@ -1810,10 +1797,10 @@
       "title": "Canada is at risk of missing its emission goals, climate report says",
       "url": "https://www.theglobeandmail.com/business/article-missing-emission-goals-report-canadian-climate-institute",
       "published": "2026-10-08T08:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 724,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 743,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1925,6 +1912,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "4d292904d646e0de",
+      "source": "Toronto Star",
+      "title": "B.C. Conservatives back in battleground Surrey on election trail",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-conservatives-back-in-battleground-surrey-on-election-trail/article_dfe1de0a-79c4-59b5-9c2e-4628c5b7adef.html",
+      "published": "2026-10-08T08:00:03+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "92ce1dba52497527",
       "source": "Toronto Star",
       "title": "Hit-and-run victim found dead days later in Vaughan, Ont., as police look for suspect",
@@ -1992,21 +1994,6 @@
       "published": "2026-10-07T17:21:31+00:00",
       "content_status": "full",
       "word_count": 497,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "24898e7cebcf3a1a",
-      "source": "Toronto Star",
-      "title": "One dead in crash between vehicle and motorcycle in Langley, B.C.",
-      "url": "https://www.thestar.com/news/canada/one-dead-in-crash-between-vehicle-and-motorcycle-in-langley-b-c/article_5ad2233c-9756-5c93-9353-f8c6d972fb27.html",
-      "published": "2026-10-07T16:22:00+00:00",
-      "content_status": "full",
-      "word_count": 59,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4076,13 +4063,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 724,
-      "paragraph_count": 22,
+      "content_status": "full",
+      "word_count": 743,
+      "paragraph_count": 24,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4652,6 +4639,35 @@
       ]
     },
     {
+      "id": "4d292904d646e0de",
+      "source": "Toronto Star",
+      "title": "B.C. Conservatives back in battleground Surrey on election trail",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-conservatives-back-in-battleground-surrey-on-election-trail/article_dfe1de0a-79c4-59b5-9c2e-4628c5b7adef.html",
+      "published": "2026-10-08T08:00:03+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b8264e75751b5541",
       "source": "Toronto Star",
       "title": "Premier Moe shuts down Elon Musk's encouragement for Saskatchewan separation: 'No'",
@@ -4922,41 +4938,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "24898e7cebcf3a1a",
-      "source": "Toronto Star",
-      "title": "One dead in crash between vehicle and motorcycle in Langley, B.C.",
-      "url": "https://www.thestar.com/news/canada/one-dead-in-crash-between-vehicle-and-motorcycle-in-langley-b-c/article_5ad2233c-9756-5c93-9353-f8c6d972fb27.html",
-      "published": "2026-10-07T16:22:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 59,
-      "paragraph_count": 4,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "59 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
