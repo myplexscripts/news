@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T09:14:36.501268+00:00",
-  "generated_at_london": "2026-10-08T05:14:36.501268-04:00",
-  "news_generated_at": "2026-10-08T09:04:55.556706+00:00",
+  "generated_at": "2026-10-08T09:23:41.799182+00:00",
+  "generated_at_london": "2026-10-08T05:23:41.799182-04:00",
+  "news_generated_at": "2026-10-08T09:21:18.749999+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 689,
+    "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 105,
@@ -15,8 +15,8 @@
     "critical_issue_count": 3,
     "warning_issue_count": 7,
     "info_issue_count": 81,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -101,9 +101,35 @@
       "last_error": ""
     },
     {
+      "source": "London Transit Commission",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 172,
+      "average_quality": 78,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-10-05T04:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 1,
+      "last_scrape": "2026-10-05T14:38:22.118112+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7f50b86234a0>, 'Connection to www.londontransit.ca time"
+    },
+    {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -121,10 +147,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-08T08:00:03+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-08T08:36:23.642410+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -480,19 +506,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 772,
-      "average_quality": 91,
+      "average_words": 689,
+      "average_quality": 89,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:citynews:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-07T19:35:29+00:00",
+      "latest_published": "2026-10-08T08:00:01+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-07T22:29:15.730252+00:00",
+      "last_scrape": "2026-10-08T09:19:26.472354+00:00",
       "last_error": ""
     },
     {
@@ -629,32 +656,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 172,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-10-05T04:00:00+00:00",
-      "found_this_run": 3,
-      "tracked": 1,
-      "last_scrape": "2026-10-05T14:38:22.118112+00:00",
-      "last_error": ""
-    },
-    {
       "source": "National Post",
       "status": "healthy",
       "collector_status": "healthy",
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-08T08:00:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T09:03:22.951484+00:00",
+      "last_scrape": "2026-10-08T09:19:22.449114+00:00",
       "last_error": ""
     },
     {
@@ -692,19 +693,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 862,
-      "average_quality": 96,
+      "average_words": 821,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 11,
-      "latest_published": "2026-10-08T08:00:00+00:00",
+      "latest_published": "2026-10-08T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T08:16:49.066727+00:00",
+      "last_scrape": "2026-10-08T09:19:17.482854+00:00",
       "last_error": ""
     },
     {
@@ -1266,21 +1268,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5e37d5e684415ea6",
-      "source": "CityNews Canada",
-      "title": "New details in extensive FBI account of Tumbler Ridge, B.C., mass shooting",
-      "url": "https://toronto.citynews.ca/2026/10/06/new-details-in-extensive-fbi-account-of-tumbler-ridge-b-c-mass-shooting",
-      "published": "2026-10-06T23:16:01+00:00",
-      "content_status": "full",
-      "word_count": 1063,
-      "quality_score": 86,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "2aad7897689ba2fc",
       "source": "CityNews Canada",
       "title": "Oct. 7 anniversary marks three years of threats against Jewish Canadians",
@@ -1290,6 +1277,21 @@
       "word_count": 1090,
       "quality_score": 86,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "8a349e3bf96fda8d",
+      "source": "CityNews Canada",
+      "title": "Traveller costs must stay down in airport privatization plan: industry group",
+      "url": "https://toronto.citynews.ca/2026/10/08/traveller-costs-must-stay-down-in-airport-privatization-plan-industry-group",
+      "published": "2026-10-08T08:00:01+00:00",
+      "content_status": "full",
+      "word_count": 230,
+      "quality_score": 69,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -1731,6 +1733,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "a6c158129a34f4f7",
+      "source": "The Globe and Mail",
+      "title": "A border town on the front lines of the trade war",
+      "url": "https://www.theglobeandmail.com/podcasts/the-decibel/article-a-border-town-on-the-front-lines-of-the-trade-war",
+      "published": "2026-10-08T09:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 99,
+      "quality_score": 53,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "597921e6ca4751f4",
       "source": "The Globe and Mail",
       "title": "An architectural legacy on offer in Toronto’s queer district",
@@ -1768,21 +1785,6 @@
       "published": "2026-10-07T23:50:18.753000+00:00",
       "content_status": "full",
       "word_count": 703,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d554425eee220e78",
-      "source": "The Globe and Mail",
-      "title": "Average asking rents fall 4.2% in September, marking two years of declines",
-      "url": "https://www.theglobeandmail.com/business/article-average-asking-rents-september-2026",
-      "published": "2026-10-07T17:30:02.129000+00:00",
-      "content_status": "full",
-      "word_count": 511,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4052,6 +4054,35 @@
       ]
     },
     {
+      "id": "a6c158129a34f4f7",
+      "source": "The Globe and Mail",
+      "title": "A border town on the front lines of the trade war",
+      "url": "https://www.theglobeandmail.com/podcasts/the-decibel/article-a-border-town-on-the-front-lines-of-the-trade-war",
+      "published": "2026-10-08T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 99,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ade6b28e0e919a1e",
       "source": "The Globe and Mail",
       "title": "Canada is at risk of missing its emission goals, climate report says",
@@ -4304,35 +4335,6 @@
       "word_count": 400,
       "paragraph_count": 15,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d554425eee220e78",
-      "source": "The Globe and Mail",
-      "title": "Average asking rents fall 4.2% in September, marking two years of declines",
-      "url": "https://www.theglobeandmail.com/business/article-average-asking-rents-september-2026",
-      "published": "2026-10-07T17:30:02.129000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 511,
-      "paragraph_count": 13,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4946,6 +4948,35 @@
       ]
     },
     {
+      "id": "8a349e3bf96fda8d",
+      "source": "CityNews Canada",
+      "title": "Traveller costs must stay down in airport privatization plan: industry group",
+      "url": "https://toronto.citynews.ca/2026/10/08/traveller-costs-must-stay-down-in-airport-privatization-plan-industry-group",
+      "published": "2026-10-08T08:00:01+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 230,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7d02605a37b518ad",
       "source": "CityNews Canada",
       "title": "McGuinty delivers pro-Canada message in Alberta, highlights $8B in defence spending",
@@ -5193,35 +5224,6 @@
       "paragraph_count": 34,
       "inline_image_count": 0,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5e37d5e684415ea6",
-      "source": "CityNews Canada",
-      "title": "New details in extensive FBI account of Tumbler Ridge, B.C., mass shooting",
-      "url": "https://toronto.citynews.ca/2026/10/06/new-details-in-extensive-fbi-account-of-tumbler-ridge-b-c-mass-shooting",
-      "published": "2026-10-06T23:16:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1063,
-      "paragraph_count": 46,
-      "inline_image_count": 0,
-      "quality_score": 86,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
