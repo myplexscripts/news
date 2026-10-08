@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T11:17:49.781535+00:00",
-  "generated_at_london": "2026-10-08T07:17:49.781535-04:00",
-  "news_generated_at": "2026-10-08T11:09:00.484655+00:00",
+  "generated_at": "2026-10-08T11:28:33.746863+00:00",
+  "generated_at_london": "2026-10-08T07:28:33.746863-04:00",
+  "news_generated_at": "2026-10-08T11:25:25.183898+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 688,
+    "archive_story_count": 690,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 104,
-    "review_story_count": 6,
+    "pass_story_count": 103,
+    "review_story_count": 7,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 6,
+    "warning_issue_count": 8,
     "info_issue_count": 81,
     "healthy_source_count": 12,
     "review_source_count": 4,
@@ -59,8 +59,8 @@
       "fail": 0,
       "pass_rate": 50,
       "usable_body_rate": 100,
-      "average_words": 576,
-      "average_quality": 79,
+      "average_words": 588,
+      "average_quality": 81,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -68,10 +68,10 @@
       "critical_issues": 0,
       "warning_issues": 5,
       "info_issues": 10,
-      "latest_published": "2026-10-07T23:00:45.886000+00:00",
-      "found_this_run": 3,
+      "latest_published": "2026-10-08T11:16:07.145000+00:00",
+      "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-10-07T23:19:48.034664+00:00",
+      "last_scrape": "2026-10-08T11:23:05.172767+00:00",
       "last_error": ""
     },
     {
@@ -84,20 +84,21 @@
       "review": 1,
       "fail": 0,
       "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 1157,
-      "average_quality": 96,
+      "usable_body_rate": 90,
+      "average_words": 1095,
+      "average_quality": 90,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "trafilatura:fallback": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 11,
-      "latest_published": "2026-10-08T10:43:51.791000+00:00",
+      "latest_published": "2026-10-08T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T11:07:30.887435+00:00",
+      "last_scrape": "2026-10-08T11:23:06.458244+00:00",
       "last_error": ""
     },
     {
@@ -106,24 +107,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 7,
-      "review": 0,
+      "pass": 6,
+      "review": 1,
       "fail": 3,
-      "pass_rate": 70,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 358,
-      "average_quality": 96,
+      "average_words": 374,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 3,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-08T08:00:03+00:00",
+      "latest_published": "2026-10-08T11:16:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T08:36:23.642410+00:00",
+      "last_scrape": "2026-10-08T11:23:15.787452+00:00",
       "last_error": ""
     },
     {
@@ -702,7 +704,7 @@
       "latest_published": "2026-10-08T08:00:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T11:07:34.716371+00:00",
+      "last_scrape": "2026-10-08T11:23:11.435311+00:00",
       "last_error": ""
     },
     {
@@ -870,6 +872,36 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c134b6c67c9885da",
+      "source": "Toronto Star",
+      "title": "Canadian poet Anne Carson wins Nobel Prize in Literature",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-canadian-poet-anne-carson-wins-nobel-prize-in-literature/article_477af426-0a31-5649-884a-331579d7c2ac.html",
+      "published": "2026-10-08T11:16:00+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "c134b6c67c9885da",
+      "source": "Toronto Star",
+      "title": "Canadian poet Anne Carson wins Nobel Prize in Literature",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-canadian-poet-anne-carson-wins-nobel-prize-in-literature/article_477af426-0a31-5649-884a-331579d7c2ac.html",
+      "published": "2026-10-08T11:16:00+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -904,6 +936,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "d6a98a711e1eb90d",
+      "source": "CTV News Canada",
+      "title": "Canadian poet and essayist Anne Carson wins Nobel Prize in literature",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-poet-and-essayist-wins-nobel-prize-in-literature",
+      "published": "2026-10-08T11:16:07.145000+00:00",
+      "content_status": "full",
+      "word_count": 321,
+      "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e73cbc579abe2252",
       "source": "CTV News Canada",
       "title": "Carney government tables legislation to turn Defence Investment Agency into Crown corporation",
@@ -927,21 +974,6 @@
       "content_status": "full",
       "word_count": 774,
       "quality_score": 91,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1d5f7a8e1bb50824",
-      "source": "CTV News Canada",
-      "title": "Is Canada’s new grocery benefit helping you make ends meet?",
-      "url": "https://www.ctvnews.ca/canada/article/is-canadas-new-grocery-benefit-helping-you-make-ends-meet",
-      "published": "2026-10-06T14:57:43.904000+00:00",
-      "content_status": "full",
-      "word_count": 200,
-      "quality_score": 62,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1759,15 +1791,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "8fb331e0fd16b1ae",
+      "story_id": "1a5d13ace0c032f6",
       "source": "The Globe and Mail",
-      "title": "Ontario cancer patient who was denied coverage for U.S. treatment dismayed by province’s revised rules",
-      "url": "https://www.theglobeandmail.com/canada/article-ontario-cancer-patient-who-was-denied-coverage-for-us-treatment",
-      "published": "2026-10-08T00:12:57.670000+00:00",
-      "content_status": "full",
-      "word_count": 621,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "In a Quebec village, francophone cowboy culture is alive and kicking",
+      "url": "https://www.theglobeandmail.com/canada/article-saint-tite-western-festival-francophone-cowboy-culture",
+      "published": "2026-10-08T11:00:00+00:00",
+      "content_status": "summary",
+      "word_count": 7,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -1909,6 +1941,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "c134b6c67c9885da",
+      "source": "Toronto Star",
+      "title": "Canadian poet Anne Carson wins Nobel Prize in Literature",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-canadian-poet-anne-carson-wins-nobel-prize-in-literature/article_477af426-0a31-5649-884a-331579d7c2ac.html",
+      "published": "2026-10-08T11:16:00+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "92ce1dba52497527",
       "source": "Toronto Star",
       "title": "Hit-and-run victim found dead days later in Vaughan, Ont., as police look for suspect",
@@ -1976,21 +2023,6 @@
       "published": "2026-10-07T17:21:31+00:00",
       "content_status": "full",
       "word_count": 497,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "cfed189f4fd4badf",
-      "source": "Toronto Star",
-      "title": "Parti Québécois says it's requesting recount in Montreal-area riding",
-      "url": "https://www.thestar.com/news/canada/quebec/parti-qu-b-cois-says-it-s-requesting-recount-in-montreal-area-riding/article_e000f0a7-7c66-5dab-9aab-1974e5736047.html",
-      "published": "2026-10-07T16:25:47+00:00",
-      "content_status": "partial",
-      "word_count": 27,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3680,6 +3712,35 @@
       ]
     },
     {
+      "id": "d6a98a711e1eb90d",
+      "source": "CTV News Canada",
+      "title": "Canadian poet and essayist Anne Carson wins Nobel Prize in literature",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-poet-and-essayist-wins-nobel-prize-in-literature",
+      "published": "2026-10-08T11:16:07.145000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 321,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bdef75360b807c34",
       "source": "CTV News Canada",
       "title": "After an alarming rise in battery fires, one fire service takes safety message to the big screen",
@@ -3971,24 +4032,24 @@
       ]
     },
     {
-      "id": "1d5f7a8e1bb50824",
-      "source": "CTV News Canada",
-      "title": "Is Canada’s new grocery benefit helping you make ends meet?",
-      "url": "https://www.ctvnews.ca/canada/article/is-canadas-new-grocery-benefit-helping-you-make-ends-meet",
-      "published": "2026-10-06T14:57:43.904000+00:00",
+      "id": "1a5d13ace0c032f6",
+      "source": "The Globe and Mail",
+      "title": "In a Quebec village, francophone cowboy culture is alive and kicking",
+      "url": "https://www.theglobeandmail.com/canada/article-saint-tite-western-festival-francophone-cowboy-culture",
+      "published": "2026-10-08T11:00:00+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 200,
-      "paragraph_count": 5,
-      "inline_image_count": 1,
-      "quality_score": 62,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
+      "content_status": "summary",
+      "word_count": 7,
+      "paragraph_count": 1,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
         {
@@ -4257,35 +4318,6 @@
       "content_status": "partial",
       "word_count": 947,
       "paragraph_count": 27,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8fb331e0fd16b1ae",
-      "source": "The Globe and Mail",
-      "title": "Ontario cancer patient who was denied coverage for U.S. treatment dismayed by province’s revised rules",
-      "url": "https://www.theglobeandmail.com/canada/article-ontario-cancer-patient-who-was-denied-coverage-for-us-treatment",
-      "published": "2026-10-08T00:12:57.670000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 621,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4592,6 +4624,47 @@
       ]
     },
     {
+      "id": "c134b6c67c9885da",
+      "source": "Toronto Star",
+      "title": "Canadian poet Anne Carson wins Nobel Prize in Literature",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-canadian-poet-anne-carson-wins-nobel-prize-in-literature/article_477af426-0a31-5649-884a-331579d7c2ac.html",
+      "published": "2026-10-08T11:16:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 187,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4d292904d646e0de",
       "source": "Toronto Star",
       "title": "B.C. Conservatives back in battleground Surrey on election trail",
@@ -4862,35 +4935,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "56 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cfed189f4fd4badf",
-      "source": "Toronto Star",
-      "title": "Parti Québécois says it's requesting recount in Montreal-area riding",
-      "url": "https://www.thestar.com/news/canada/quebec/parti-qu-b-cois-says-it-s-requesting-recount-in-montreal-area-riding/article_e000f0a7-7c66-5dab-9aab-1974e5736047.html",
-      "published": "2026-10-07T16:25:47+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 27,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
