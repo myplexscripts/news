@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-08T22:17:50.749442+00:00",
-  "generated_at_london": "2026-10-08T18:17:50.749442-04:00",
-  "news_generated_at": "2026-10-08T22:06:59.660122+00:00",
+  "generated_at": "2026-10-08T22:25:41.500625+00:00",
+  "generated_at_london": "2026-10-08T18:25:41.500625-04:00",
+  "news_generated_at": "2026-10-08T22:22:22.091831+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 705,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 114,
-    "review_story_count": 1,
+    "pass_story_count": 112,
+    "review_story_count": 3,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 1,
+    "warning_issue_count": 5,
     "info_issue_count": 93,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -46,7 +46,7 @@
       "found_this_run": 0,
       "tracked": 7,
       "last_scrape": "2026-10-05T02:27:00.352867+00:00",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Global News Canada",
@@ -73,6 +73,33 @@
       "tracked": 30,
       "last_scrape": "2026-10-08T21:17:22.751140+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 336,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 12,
+      "latest_published": "2026-10-08T21:46:48+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-08T22:04:36.327144+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -639,20 +666,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 798,
-      "average_quality": 84,
+      "average_words": 858,
+      "average_quality": 85,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "reader:semantic-rich-v1": 2
+        "dom:postmedia:article:strict": 2,
+        "dom:semantic-rich-v1": 7,
+        "reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-08T21:03:39+00:00",
+      "latest_published": "2026-10-08T22:09:39+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T22:04:29.188668+00:00",
+      "last_scrape": "2026-10-08T22:19:58.547220+00:00",
       "last_error": ""
     },
     {
@@ -666,11 +694,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 493,
+      "average_words": 495,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -679,32 +708,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T22:04:23.224047+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 376,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-08T21:46:48+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-08T22:04:36.327144+00:00",
       "last_error": ""
     },
     {
@@ -750,6 +753,66 @@
       "word_count": 360,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "470e99aea122636b",
+      "source": "Toronto Star",
+      "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
+      "published": "2026-10-08T21:46:48+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "470e99aea122636b",
+      "source": "Toronto Star",
+      "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
+      "published": "2026-10-08T21:46:48+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ce1f169a87f56ef5",
+      "source": "Toronto Star",
+      "title": "Corus completes recapitalization transaction, announces new board of directors",
+      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
+      "published": "2026-10-08T21:46:38+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "ce1f169a87f56ef5",
+      "source": "Toronto Star",
+      "title": "Corus completes recapitalization transaction, announces new board of directors",
+      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
+      "published": "2026-10-08T21:46:38+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1596,6 +1659,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "397deadc44138a19",
+      "source": "National Post",
+      "title": "Canada pulls out of global disinformation conference with panels pointing to U.S. as source of foreign interference",
+      "url": "https://nationalpost.com/news/canada/canada-pulls-out-of-global-disinformation-conference-with-panels-pointing-to-u-s-as-source-of-foreign-interference",
+      "published": "2026-10-08T22:09:39+00:00",
+      "content_status": "full",
+      "word_count": 751,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "7479aa27185a29a8",
       "source": "National Post",
       "title": "Canadian poet Anne Carson wins Nobel literature prize",
@@ -1656,30 +1734,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "45dbe2f3750c7563",
+      "story_id": "0f19f1699916758b",
       "source": "National Post",
-      "title": "Full patch member of the Outlaws Motorcycle Club allowed to keep alcohol delivery licence in Ontario",
-      "url": "https://nationalpost.com/news/canada/outlaws-motorcycle-club-member-allowed-to-deliver-alcohol",
-      "published": "2026-10-07T22:26:48+00:00",
+      "title": "Quebec Conservatives are celebrating wins for the party — and its ideas",
+      "url": "https://nationalpost.com/news/quebec-conservatives-are-celebrating-wins-for-the-party-and-its-ideas",
+      "published": "2026-10-08T18:01:40+00:00",
       "content_status": "full",
-      "word_count": 954,
+      "word_count": 1230,
       "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "be44cb5e46ef4c11",
-      "source": "National Post",
-      "title": "Republican Senate candidate breaks with Trump over trade war with Canada",
-      "url": "https://nationalpost.com/news/republican-senate-candidate-breaks-with-trump-over-trade-war-with-canada",
-      "published": "2026-10-07T19:39:49+00:00",
-      "content_status": "full",
-      "word_count": 426,
-      "quality_score": 78,
-      "extraction_method": "reader:semantic-rich-v1"
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -1811,10 +1874,10 @@
       "title": "Investment guru Stephen Jarislowsky was a crusader for ethical business practices",
       "url": "https://www.theglobeandmail.com/canada/article-stephen-jarislowsky-investment-guru-crusader-ethical-business",
       "published": "2026-10-08T21:38:16.098000+00:00",
-      "content_status": "partial",
-      "word_count": 1625,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 1649,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1962,9 +2025,9 @@
       "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
       "published": "2026-10-08T21:46:48+00:00",
       "content_status": "full",
-      "word_count": 508,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2007,9 +2070,9 @@
       "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
       "published": "2026-10-08T21:46:38+00:00",
       "content_status": "full",
-      "word_count": 283,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4149,13 +4212,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1625,
-      "paragraph_count": 34,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "content_status": "full",
+      "word_count": 1649,
+      "paragraph_count": 36,
+      "inline_image_count": 2,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4441,6 +4504,35 @@
       ]
     },
     {
+      "id": "397deadc44138a19",
+      "source": "National Post",
+      "title": "Canada pulls out of global disinformation conference with panels pointing to U.S. as source of foreign interference",
+      "url": "https://nationalpost.com/news/canada/canada-pulls-out-of-global-disinformation-conference-with-panels-pointing-to-u-s-as-source-of-foreign-interference",
+      "published": "2026-10-08T22:09:39+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 751,
+      "paragraph_count": 17,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0b8c63fcac507cf5",
       "source": "National Post",
       "title": "Conservatives vote in favour of Liberals’ Bill C-39, but promise amendments to 'protect the rights of workers'",
@@ -4458,6 +4550,35 @@
       "quality_score": 35,
       "quality_grade": "poor",
       "extraction_method": "dom:semantic-rich-v1",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0f19f1699916758b",
+      "source": "National Post",
+      "title": "Quebec Conservatives are celebrating wins for the party — and its ideas",
+      "url": "https://nationalpost.com/news/quebec-conservatives-are-celebrating-wins-for-the-party-and-its-ideas",
+      "published": "2026-10-08T18:01:40+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1230,
+      "paragraph_count": 42,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
@@ -4673,84 +4794,38 @@
       ]
     },
     {
-      "id": "45dbe2f3750c7563",
-      "source": "National Post",
-      "title": "Full patch member of the Outlaws Motorcycle Club allowed to keep alcohol delivery licence in Ontario",
-      "url": "https://nationalpost.com/news/canada/outlaws-motorcycle-club-member-allowed-to-deliver-alcohol",
-      "published": "2026-10-07T22:26:48+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 954,
-      "paragraph_count": 30,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "be44cb5e46ef4c11",
-      "source": "National Post",
-      "title": "Republican Senate candidate breaks with Trump over trade war with Canada",
-      "url": "https://nationalpost.com/news/republican-senate-candidate-breaks-with-trump-over-trade-war-with-canada",
-      "published": "2026-10-07T19:39:49+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 426,
-      "paragraph_count": 11,
-      "inline_image_count": 2,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
       "id": "470e99aea122636b",
       "source": "Toronto Star",
       "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
       "url": "https://www.thestar.com/news/canada/british-columbia/b-c-campaign-trail-conservatives-promise-1-000-tax-cut-by-boosting-exemption-level/article_aaf76927-9515-5b31-bce4-53c1fa8808dc.html",
       "published": "2026-10-08T21:46:48+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 508,
-      "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
+      "word_count": 190,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4765,21 +4840,33 @@
       "title": "Corus completes recapitalization transaction, announces new board of directors",
       "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
       "published": "2026-10-08T21:46:38+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 283,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
+      "word_count": 202,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
