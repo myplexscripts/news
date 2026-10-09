@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T23:30:13.511332+00:00",
-  "generated_at_london": "2026-10-09T19:30:13.511332-04:00",
-  "news_generated_at": "2026-10-09T23:25:20.280710+00:00",
+  "generated_at": "2026-10-09T23:44:46.602245+00:00",
+  "generated_at_london": "2026-10-09T19:44:46.602245-04:00",
+  "news_generated_at": "2026-10-09T23:41:56.655697+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 699,
     "source_count": 28,
     "audited_story_count": 112,
-    "pass_story_count": 107,
-    "review_story_count": 5,
+    "pass_story_count": 106,
+    "review_story_count": 6,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 99,
-    "healthy_source_count": 14,
-    "review_source_count": 4,
+    "healthy_source_count": 13,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -125,6 +125,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-09T23:08:29.926115+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 338,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 13,
+      "latest_published": "2026-10-09T23:22:22+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-09T23:39:29.088668+00:00",
       "last_error": ""
     },
     {
@@ -655,7 +682,7 @@
       "latest_published": "2026-10-09T18:55:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T23:23:44.869701+00:00",
+      "last_scrape": "2026-10-09T23:39:27.549550+00:00",
       "last_error": ""
     },
     {
@@ -682,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-09T23:23:41.173942+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 368,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-10-09T22:06:53+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-09T21:35:24.437794+00:00",
       "last_error": ""
     },
     {
@@ -857,6 +858,36 @@
       "word_count": 304,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "9519ac838cf7ad68",
+      "source": "Toronto Star",
+      "title": "Charges laid after 19-year-old dies of carbon monoxide poisoning in Sudbury area",
+      "url": "https://www.thestar.com/news/ontario/charges-laid-after-19-year-old-dies-of-carbon-monoxide-poisoning-in-sudbury-area/article_0608fed2-a086-5f65-8961-ccaf80d227f6.html",
+      "published": "2026-10-09T23:22:22+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "9519ac838cf7ad68",
+      "source": "Toronto Star",
+      "title": "Charges laid after 19-year-old dies of carbon monoxide poisoning in Sudbury area",
+      "url": "https://www.thestar.com/news/ontario/charges-laid-after-19-year-old-dies-of-carbon-monoxide-poisoning-in-sudbury-area/article_0608fed2-a086-5f65-8961-ccaf80d227f6.html",
+      "published": "2026-10-09T23:22:22+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2168,15 +2199,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "dc2ea94fb4ae4c86",
+      "story_id": "9519ac838cf7ad68",
       "source": "Toronto Star",
-      "title": "FBI describes arrest of Tumbler Ridge conspiracy suspect",
-      "url": "https://www.thestar.com/news/canada/fbi-describes-arrest-of-tumbler-ridge-conspiracy-suspect/article_fb726b42-5c32-5068-8f4d-3ff3766ebbfe.html",
-      "published": "2026-10-09T18:09:10+00:00",
+      "title": "Charges laid after 19-year-old dies of carbon monoxide poisoning in Sudbury area",
+      "url": "https://www.thestar.com/news/ontario/charges-laid-after-19-year-old-dies-of-carbon-monoxide-poisoning-in-sudbury-area/article_0608fed2-a086-5f65-8961-ccaf80d227f6.html",
+      "published": "2026-10-09T23:22:22+00:00",
       "content_status": "full",
-      "word_count": 497,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4938,6 +4969,47 @@
       ]
     },
     {
+      "id": "9519ac838cf7ad68",
+      "source": "Toronto Star",
+      "title": "Charges laid after 19-year-old dies of carbon monoxide poisoning in Sudbury area",
+      "url": "https://www.thestar.com/news/ontario/charges-laid-after-19-year-old-dies-of-carbon-monoxide-poisoning-in-sudbury-area/article_0608fed2-a086-5f65-8961-ccaf80d227f6.html",
+      "published": "2026-10-09T23:22:22+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 197,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8c60a5bfea0f2af2",
       "source": "Toronto Star",
       "title": "Another Marineland whale dies at Shedd Aquarium in Chicago",
@@ -5201,35 +5273,6 @@
       "content_status": "full",
       "word_count": 286,
       "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "dc2ea94fb4ae4c86",
-      "source": "Toronto Star",
-      "title": "FBI describes arrest of Tumbler Ridge conspiracy suspect",
-      "url": "https://www.thestar.com/news/canada/fbi-describes-arrest-of-tumbler-ridge-conspiracy-suspect/article_fb726b42-5c32-5068-8f4d-3ff3766ebbfe.html",
-      "published": "2026-10-09T18:09:10+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 497,
-      "paragraph_count": 25,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
