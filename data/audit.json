@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T00:01:36.010690+00:00",
-  "generated_at_london": "2026-10-08T20:01:36.010690-04:00",
-  "news_generated_at": "2026-10-08T23:55:15.596516+00:00",
+  "generated_at": "2026-10-09T00:13:52.129441+00:00",
+  "generated_at_london": "2026-10-08T20:13:52.129441-04:00",
+  "news_generated_at": "2026-10-09T00:11:44.306282+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 703,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 114,
-    "review_story_count": 1,
+    "pass_story_count": 113,
+    "review_story_count": 2,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 1,
-    "info_issue_count": 94,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "warning_issue_count": 3,
+    "info_issue_count": 95,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -72,6 +72,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-08T21:17:22.751140+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 351,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 12,
+      "latest_published": "2026-10-08T23:29:38+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-09T00:09:51.772527+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +678,7 @@
       "latest_published": "2026-10-08T22:40:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T23:53:43.260966+00:00",
+      "last_scrape": "2026-10-09T00:09:49.461795+00:00",
       "last_error": ""
     },
     {
@@ -665,45 +692,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 515,
-      "average_quality": 96,
+      "average_words": 561,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-08T21:38:16.098000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-09T00:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-08T22:04:23.224047+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 376,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-08T21:46:48+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-10-08T22:35:41.323693+00:00",
+      "last_scrape": "2026-10-09T00:09:44.781767+00:00",
       "last_error": ""
     },
     {
@@ -749,6 +751,36 @@
       "word_count": 360,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b00ed8e289f5159f",
+      "source": "Toronto Star",
+      "title": "Michigan Republican faces pressure during heated debate on Trump's Canada tariffs",
+      "url": "https://www.thestar.com/news/canada/michigan-republican-faces-pressure-during-heated-debate-on-trump-s-canada-tariffs/article_bda1f055-47c1-5bdb-8d07-f3e530ec4f70.html",
+      "published": "2026-10-08T23:29:38+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "b00ed8e289f5159f",
+      "source": "Toronto Star",
+      "title": "Michigan Republican faces pressure during heated debate on Trump's Canada tariffs",
+      "url": "https://www.thestar.com/news/canada/michigan-republican-faces-pressure-during-heated-debate-on-trump-s-canada-tariffs/article_bda1f055-47c1-5bdb-8d07-f3e530ec4f70.html",
+      "published": "2026-10-08T23:29:38+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1817,6 +1849,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "e72607b2e432a634",
+      "source": "The Globe and Mail",
+      "title": "Doctors who receive gifts or payment from pharmaceuticals prescribe more frequently, review finds",
+      "url": "https://www.theglobeandmail.com/canada/article-doctors-who-receive-gifts-or-payment-from-pharmaceuticals-prescribe",
+      "published": "2026-10-09T00:00:00+00:00",
+      "content_status": "full",
+      "word_count": 725,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e72607b2e432a634",
+      "source": "The Globe and Mail",
+      "title": "Doctors who receive gifts or payment from pharmaceuticals prescribe more frequently, review finds",
+      "url": "https://www.theglobeandmail.com/canada/article-doctors-who-receive-gifts-or-payment-from-pharmaceuticals-prescribe",
+      "published": "2026-10-09T00:00:00+00:00",
+      "content_status": "full",
+      "word_count": 725,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1902,21 +1964,6 @@
       "published": "2026-10-08T15:46:03.264000+00:00",
       "content_status": "partial",
       "word_count": 1118,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b41b44818844dd7c",
-      "source": "The Globe and Mail",
-      "title": "Voters’ ability to fix errors in mail-in ballot packages show system works, Smith says",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-alberta-smith-ballots-system",
-      "published": "2026-10-08T12:51:43.208000+00:00",
-      "content_status": "full",
-      "word_count": 265,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2030,15 +2077,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "bfa79fbf3ca56f81",
+      "story_id": "b00ed8e289f5159f",
       "source": "Toronto Star",
-      "title": "NewsAlert: Cold Lake First Nations seeks judicial review of pipeline designation",
-      "url": "https://www.thestar.com/news/canada/newsalert-cold-lake-first-nations-seeks-judicial-review-of-pipeline-designation/article_e7f096ee-61e4-54c4-9544-5f3dd9a86e66.html",
-      "published": "2026-10-08T17:58:54+00:00",
+      "title": "Michigan Republican faces pressure during heated debate on Trump's Canada tariffs",
+      "url": "https://www.thestar.com/news/canada/michigan-republican-faces-pressure-during-heated-debate-on-trump-s-canada-tariffs/article_bda1f055-47c1-5bdb-8d07-f3e530ec4f70.html",
+      "published": "2026-10-08T23:29:38+00:00",
       "content_status": "full",
-      "word_count": 445,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4160,6 +4207,41 @@
       ]
     },
     {
+      "id": "e72607b2e432a634",
+      "source": "The Globe and Mail",
+      "title": "Doctors who receive gifts or payment from pharmaceuticals prescribe more frequently, review finds",
+      "url": "https://www.theglobeandmail.com/canada/article-doctors-who-receive-gifts-or-payment-from-pharmaceuticals-prescribe",
+      "published": "2026-10-09T00:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 725,
+      "paragraph_count": 21,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "12d2e612c5488df4",
       "source": "The Globe and Mail",
       "title": "Investment guru Stephen Jarislowsky was a crusader for ethical business practices",
@@ -4417,35 +4499,6 @@
       "content_status": "full",
       "word_count": 370,
       "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b41b44818844dd7c",
-      "source": "The Globe and Mail",
-      "title": "Voters’ ability to fix errors in mail-in ballot packages show system works, Smith says",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-alberta-smith-ballots-system",
-      "published": "2026-10-08T12:51:43.208000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 265,
-      "paragraph_count": 10,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4752,6 +4805,47 @@
       ]
     },
     {
+      "id": "b00ed8e289f5159f",
+      "source": "Toronto Star",
+      "title": "Michigan Republican faces pressure during heated debate on Trump's Canada tariffs",
+      "url": "https://www.thestar.com/news/canada/michigan-republican-faces-pressure-during-heated-debate-on-trump-s-canada-tariffs/article_bda1f055-47c1-5bdb-8d07-f3e530ec4f70.html",
+      "published": "2026-10-08T23:29:38+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 197,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "470e99aea122636b",
       "source": "Toronto Star",
       "title": "B.C. campaign trail: Conservatives promise $1,000 tax cut by boosting exemption level",
@@ -5016,35 +5110,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bfa79fbf3ca56f81",
-      "source": "Toronto Star",
-      "title": "NewsAlert: Cold Lake First Nations seeks judicial review of pipeline designation",
-      "url": "https://www.thestar.com/news/canada/newsalert-cold-lake-first-nations-seeks-judicial-review-of-pipeline-designation/article_e7f096ee-61e4-54c4-9544-5f3dd9a86e66.html",
-      "published": "2026-10-08T17:58:54+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 445,
-      "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
