@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T19:25:00.109791+00:00",
-  "generated_at_london": "2026-10-09T15:25:00.109791-04:00",
-  "news_generated_at": "2026-10-09T19:17:36.644183+00:00",
+  "generated_at": "2026-10-09T19:35:45.885086+00:00",
+  "generated_at_london": "2026-10-09T15:35:45.885086-04:00",
+  "news_generated_at": "2026-10-09T19:33:14.874952+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 699,
+    "archive_story_count": 701,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 110,
-    "review_story_count": 3,
+    "pass_story_count": 108,
+    "review_story_count": 5,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 6,
-    "info_issue_count": 92,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "warning_issue_count": 10,
+    "info_issue_count": 93,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -74,6 +74,33 @@
       "tracked": 4,
       "last_scrape": "2026-10-05T02:26:45.662157+00:00",
       "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 282,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 11,
+      "latest_published": "2026-10-09T19:14:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-09T19:30:53.261628+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -403,20 +430,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 286,
+      "average_words": 288,
       "average_quality": 69,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 1,
-        "embedded-json:ctv": 9
+        "embedded-json:ctv": 9,
+        "ctv:summary-fallback": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 8,
-      "latest_published": "2026-10-09T17:05:11.724000+00:00",
+      "info_issues": 9,
+      "latest_published": "2026-10-09T19:20:02.863000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T17:09:23.648263+00:00",
+      "last_scrape": "2026-10-09T19:29:06.154918+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +681,7 @@
       "latest_published": "2026-10-09T18:55:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T19:15:32.559053+00:00",
+      "last_scrape": "2026-10-09T19:30:50.367138+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +708,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-09T19:15:26.731475+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 278,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-09T18:51:51+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-09T19:15:34.066642+00:00",
       "last_error": ""
     },
     {
@@ -827,6 +828,66 @@
       "word_count": 735,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "cfed963a114201e0",
+      "source": "Toronto Star",
+      "title": "Here's what to know about flu, COVID-19 and RSV this respiratory virus season",
+      "url": "https://www.thestar.com/news/ontario/here-s-what-to-know-about-flu-covid-19-and-rsv-this-respiratory-virus-season/article_1e46e1fe-5a6b-5ddb-8653-6bc86bd2b3c4.html",
+      "published": "2026-10-09T19:05:41+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "cfed963a114201e0",
+      "source": "Toronto Star",
+      "title": "Here's what to know about flu, COVID-19 and RSV this respiratory virus season",
+      "url": "https://www.thestar.com/news/ontario/here-s-what-to-know-about-flu-covid-19-and-rsv-this-respiratory-virus-season/article_1e46e1fe-5a6b-5ddb-8653-6bc86bd2b3c4.html",
+      "published": "2026-10-09T19:05:41+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "044b8bc4bef2b802",
+      "source": "Toronto Star",
+      "title": "Ontario's top court paves way to reopen challenge of Hamilton's anti-encampment law",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-top-court-paves-way-to-reopen-challenge-of-hamilton-s-anti-encampment-law/article_ec72e4eb-1d0b-5b98-903f-64eb529e574a.html",
+      "published": "2026-10-09T19:14:00+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "044b8bc4bef2b802",
+      "source": "Toronto Star",
+      "title": "Ontario's top court paves way to reopen challenge of Hamilton's anti-encampment law",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-top-court-paves-way-to-reopen-challenge-of-hamilton-s-anti-encampment-law/article_ec72e4eb-1d0b-5b98-903f-64eb529e574a.html",
+      "published": "2026-10-09T19:14:00+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1190,16 +1251,31 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "f4e280cde4fb6b9d",
+      "source": "CTV News London",
+      "title": "‘Sometimes I didn’t really have much food to eat at all’: Volunteer reflects on past need as Thanksgiving Food Drive enters final phase",
+      "url": "https://www.ctvnews.ca/london/article/sometimes-i-didnt-really-have-much-food-to-eat-at-all-volunteer-reflects-on-past-need-as-thanksgiving-food-drive-enters-final-phase",
+      "published": "2026-10-09T19:20:02.863000+00:00",
+      "content_status": "full",
+      "word_count": 392,
+      "quality_score": 73,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
-      "story_id": "2402d3b70976f930",
+      "story_id": "f4e280cde4fb6b9d",
       "source": "CTV News London",
-      "title": "‘The explosion would have been a huge ball of flame!’: Suspected chainsaw hydro police cutter risked all for little return",
-      "url": "https://www.ctvnews.ca/london/article/the-explosion-would-have-been-a-huge-ball-of-flame-suspected-chainsaw-hydro-police-cutter-risked-all-for-little-return",
-      "published": "2026-10-08T21:04:44.126000+00:00",
+      "title": "‘Sometimes I didn’t really have much food to eat at all’: Volunteer reflects on past need as Thanksgiving Food Drive enters final phase",
+      "url": "https://www.ctvnews.ca/london/article/sometimes-i-didnt-really-have-much-food-to-eat-at-all-volunteer-reflects-on-past-need-as-thanksgiving-food-drive-enters-final-phase",
+      "published": "2026-10-09T19:20:02.863000+00:00",
       "content_status": "full",
-      "word_count": 371,
+      "word_count": 392,
       "quality_score": 73,
       "extraction_method": "embedded-json:ctv"
     },
@@ -2063,21 +2139,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "bed2199a5f5f756c",
-      "source": "Toronto Star",
-      "title": "Couche-Tard buying fuel retail sites from Irving Oil in Quebec and Ontario",
-      "url": "https://www.thestar.com/business/couche-tard-buying-fuel-retail-sites-from-irving-oil-in-quebec-and-ontario/article_ecf18fb8-6b70-51ee-a27f-f180e454094a.html",
-      "published": "2026-10-09T15:24:36+00:00",
-      "content_status": "full",
-      "word_count": 136,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "dc2ea94fb4ae4c86",
       "source": "Toronto Star",
       "title": "FBI describes arrest of Tumbler Ridge conspiracy suspect",
@@ -2087,6 +2148,21 @@
       "word_count": 497,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "cfed963a114201e0",
+      "source": "Toronto Star",
+      "title": "Here's what to know about flu, COVID-19 and RSV this respiratory virus season",
+      "url": "https://www.thestar.com/news/ontario/here-s-what-to-know-about-flu-covid-19-and-rsv-this-respiratory-virus-season/article_1e46e1fe-5a6b-5ddb-8653-6bc86bd2b3c4.html",
+      "published": "2026-10-09T19:05:41+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2108,6 +2184,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "044b8bc4bef2b802",
+      "source": "Toronto Star",
+      "title": "Ontario's top court paves way to reopen challenge of Hamilton's anti-encampment law",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-top-court-paves-way-to-reopen-challenge-of-hamilton-s-anti-encampment-law/article_ec72e4eb-1d0b-5b98-903f-64eb529e574a.html",
+      "published": "2026-10-09T19:14:00+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "58a9986f51b8ef83",
       "source": "Toronto Star",
       "title": "Parti Québécois leader asks caucus to stay ready for next election after minority win",
@@ -2115,21 +2206,6 @@
       "published": "2026-10-09T18:51:51+00:00",
       "content_status": "full",
       "word_count": 278,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b6da9cda71e41daa",
-      "source": "Toronto Star",
-      "title": "Salah Bachir, film media entrepreneur and philanthropist, dead at 71",
-      "url": "https://www.thestar.com/news/ontario/salah-bachir-film-media-entrepreneur-and-philanthropist-dead-at-71/article_e7a6a105-cd9d-531d-96ca-643be4d20d81.html",
-      "published": "2026-10-09T15:27:35+00:00",
-      "content_status": "full",
-      "word_count": 231,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2387,6 +2463,41 @@
       "issues": []
     },
     {
+      "id": "f4e280cde4fb6b9d",
+      "source": "CTV News London",
+      "title": "‘Sometimes I didn’t really have much food to eat at all’: Volunteer reflects on past need as Thanksgiving Food Drive enters final phase",
+      "url": "https://www.ctvnews.ca/london/article/sometimes-i-didnt-really-have-much-food-to-eat-at-all-volunteer-reflects-on-past-need-as-thanksgiving-food-drive-enters-final-phase",
+      "published": "2026-10-09T19:20:02.863000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 392,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
+    {
       "id": "f68bd008b83f6bfe",
       "source": "CTV News London",
       "title": "Minor injuries reported after SUV strikes restaurant",
@@ -2629,35 +2740,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2402d3b70976f930",
-      "source": "CTV News London",
-      "title": "‘The explosion would have been a huge ball of flame!’: Suspected chainsaw hydro police cutter risked all for little return",
-      "url": "https://www.ctvnews.ca/london/article/the-explosion-would-have-been-a-huge-ball-of-flame-suspected-chainsaw-hydro-police-cutter-risked-all-for-little-return",
-      "published": "2026-10-08T21:04:44.126000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 371,
-      "paragraph_count": 8,
-      "inline_image_count": 2,
-      "quality_score": 73,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
         }
       ]
     },
@@ -4781,6 +4863,88 @@
       ]
     },
     {
+      "id": "044b8bc4bef2b802",
+      "source": "Toronto Star",
+      "title": "Ontario's top court paves way to reopen challenge of Hamilton's anti-encampment law",
+      "url": "https://www.thestar.com/news/ontario/ontario-s-top-court-paves-way-to-reopen-challenge-of-hamilton-s-anti-encampment-law/article_ec72e4eb-1d0b-5b98-903f-64eb529e574a.html",
+      "published": "2026-10-09T19:14:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "cfed963a114201e0",
+      "source": "Toronto Star",
+      "title": "Here's what to know about flu, COVID-19 and RSV this respiratory virus season",
+      "url": "https://www.thestar.com/news/ontario/here-s-what-to-know-about-flu-covid-19-and-rsv-this-respiratory-virus-season/article_1e46e1fe-5a6b-5ddb-8653-6bc86bd2b3c4.html",
+      "published": "2026-10-09T19:05:41+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "58a9986f51b8ef83",
       "source": "Toronto Star",
       "title": "Parti Québécois leader asks caucus to stay ready for next election after minority win",
@@ -5002,64 +5166,6 @@
       "info_count": 1,
       "content_status": "full",
       "word_count": 106,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b6da9cda71e41daa",
-      "source": "Toronto Star",
-      "title": "Salah Bachir, film media entrepreneur and philanthropist, dead at 71",
-      "url": "https://www.thestar.com/news/ontario/salah-bachir-film-media-entrepreneur-and-philanthropist-dead-at-71/article_e7a6a105-cd9d-531d-96ca-643be4d20d81.html",
-      "published": "2026-10-09T15:27:35+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 231,
-      "paragraph_count": 12,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bed2199a5f5f756c",
-      "source": "Toronto Star",
-      "title": "Couche-Tard buying fuel retail sites from Irving Oil in Quebec and Ontario",
-      "url": "https://www.thestar.com/business/couche-tard-buying-fuel-retail-sites-from-irving-oil-in-quebec-and-ontario/article_ecf18fb8-6b70-51ee-a27f-f180e454094a.html",
-      "published": "2026-10-09T15:24:36+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 136,
       "paragraph_count": 10,
       "inline_image_count": 0,
       "quality_score": 96,
