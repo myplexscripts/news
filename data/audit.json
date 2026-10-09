@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T02:43:22.764765+00:00",
-  "generated_at_london": "2026-10-08T22:43:22.764765-04:00",
-  "news_generated_at": "2026-10-09T02:32:42.273059+00:00",
+  "generated_at": "2026-10-09T02:49:47.238081+00:00",
+  "generated_at_london": "2026-10-08T22:49:47.238081-04:00",
+  "news_generated_at": "2026-10-09T02:46:55.213199+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 704,
+    "archive_story_count": 705,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 113,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 1,
-    "info_issue_count": 96,
+    "info_issue_count": 97,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 0,
@@ -77,7 +77,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -95,10 +95,10 @@
       "warning_issues": 0,
       "info_issues": 12,
       "latest_published": "2026-10-08T23:29:38+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-09T01:12:00.165815+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -677,7 +677,7 @@
       "latest_published": "2026-10-08T22:40:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T02:30:14.820578+00:00",
+      "last_scrape": "2026-10-09T02:45:22.377703+00:00",
       "last_error": ""
     },
     {
@@ -691,19 +691,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 674,
-      "average_quality": 96,
+      "average_words": 679,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-10-09T02:06:54.173000+00:00",
+      "info_issues": 15,
+      "latest_published": "2026-10-09T02:16:03.157000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T02:30:09.760715+00:00",
+      "last_scrape": "2026-10-09T02:45:18.977613+00:00",
       "last_error": ""
     },
     {
@@ -1760,21 +1761,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "136b071f5ccc0848",
-      "source": "The Globe and Mail",
-      "title": "Arrests and detentions of Canadians in U.S. spiked last year, report shows",
-      "url": "https://www.theglobeandmail.com/canada/article-arrests-of-canadians-in-us-spiked-last-year",
-      "published": "2026-10-08T15:52:29.201000+00:00",
-      "content_status": "full",
-      "word_count": 883,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "21495616d1a01a37",
       "source": "The Globe and Mail",
       "title": "B.C. Conservatives drop candidate over ‘racist’ social media posts",
@@ -1855,10 +1841,10 @@
       "title": "Ex-Postmedia chair alleges Ford’s office used government contract as ‘leverage’ for an op-ed",
       "url": "https://www.theglobeandmail.com/canada/article-ex-postmedia-chair-alleges-fords-office-used-sons-government-contract",
       "published": "2026-10-09T02:06:54.173000+00:00",
-      "content_status": "partial",
-      "word_count": 845,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "content_status": "full",
+      "word_count": 856,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1964,6 +1950,36 @@
       "word_count": 695,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "6cba5c2057b02c4f",
+      "source": "The Globe and Mail",
+      "title": "Steven Galloway accuser threatened to sue UBC for up to $3-million, defamation trial hears",
+      "url": "https://www.theglobeandmail.com/canada/article-steven-galloway-defamation-trial-accuser-threatened-sue-ubc-3-million",
+      "published": "2026-10-09T02:16:03.157000+00:00",
+      "content_status": "full",
+      "word_count": 917,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "6cba5c2057b02c4f",
+      "source": "The Globe and Mail",
+      "title": "Steven Galloway accuser threatened to sue UBC for up to $3-million, defamation trial hears",
+      "url": "https://www.theglobeandmail.com/canada/article-steven-galloway-defamation-trial-accuser-threatened-sue-ubc-3-million",
+      "published": "2026-10-09T02:16:03.157000+00:00",
+      "content_status": "full",
+      "word_count": 917,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4205,6 +4221,41 @@
       ]
     },
     {
+      "id": "6cba5c2057b02c4f",
+      "source": "The Globe and Mail",
+      "title": "Steven Galloway accuser threatened to sue UBC for up to $3-million, defamation trial hears",
+      "url": "https://www.theglobeandmail.com/canada/article-steven-galloway-defamation-trial-accuser-threatened-sue-ubc-3-million",
+      "published": "2026-10-09T02:16:03.157000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 917,
+      "paragraph_count": 32,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "829a9e01c5363182",
       "source": "The Globe and Mail",
       "title": "Ex-Postmedia chair alleges Ford’s office used government contract as ‘leverage’ for an op-ed",
@@ -4215,13 +4266,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 845,
-      "paragraph_count": 18,
+      "content_status": "full",
+      "word_count": 856,
+      "paragraph_count": 19,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4481,35 +4532,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "136b071f5ccc0848",
-      "source": "The Globe and Mail",
-      "title": "Arrests and detentions of Canadians in U.S. spiked last year, report shows",
-      "url": "https://www.theglobeandmail.com/canada/article-arrests-of-canadians-in-us-spiked-last-year",
-      "published": "2026-10-08T15:52:29.201000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 883,
-      "paragraph_count": 29,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
