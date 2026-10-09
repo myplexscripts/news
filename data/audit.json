@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T22:10:55.260676+00:00",
-  "generated_at_london": "2026-10-09T18:10:55.260676-04:00",
+  "generated_at": "2026-10-09T22:15:15.742419+00:00",
+  "generated_at_london": "2026-10-09T18:15:15.742419-04:00",
   "news_generated_at": "2026-10-09T22:08:51.424526+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 106,
-    "review_story_count": 4,
+    "pass_story_count": 105,
+    "review_story_count": 5,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 7,
+    "warning_issue_count": 8,
     "info_issue_count": 94,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -99,6 +99,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-09T21:41:42.868262+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Global News Canada",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "global",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 346,
+      "average_quality": 96,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 10,
+      "latest_published": "2026-10-09T21:55:28+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-09T22:06:16.630088+00:00",
       "last_error": ""
     },
     {
@@ -498,33 +524,6 @@
       "last_error": ""
     },
     {
-      "source": "Global News Canada",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "global",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 346,
-      "average_quality": 95,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-09T21:55:28+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-09T22:06:16.630088+00:00",
-      "last_error": ""
-    },
-    {
       "source": "London Health Sciences Centre",
       "status": "healthy",
       "collector_status": "healthy",
@@ -841,6 +840,21 @@
       "word_count": 371,
       "quality_score": 73,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "4 consecutive images",
+      "story_id": "6479536806f704f9",
+      "source": "Global News Canada",
+      "title": "7 Alberta referendum signs vandalized in Fort McMurray",
+      "url": "https://globalnews.ca/news/12097746/fort-mcmurray-alberta-referendum-signs-vandalism",
+      "published": "2026-10-09T21:55:28+00:00",
+      "content_status": "full",
+      "word_count": 304,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1424,8 +1438,8 @@
       "published": "2026-10-09T21:55:28+00:00",
       "content_status": "full",
       "word_count": 304,
-      "quality_score": 82,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3568,21 +3582,27 @@
       "title": "7 Alberta referendum signs vandalized in Fort McMurray",
       "url": "https://globalnews.ca/news/12097746/fort-mcmurray-alberta-referendum-signs-vandalism",
       "published": "2026-10-09T21:55:28+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 85,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 1,
       "info_count": 1,
       "content_status": "full",
       "word_count": 304,
       "paragraph_count": 12,
-      "inline_image_count": 2,
-      "quality_score": 82,
+      "inline_image_count": 5,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "4 consecutive images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
