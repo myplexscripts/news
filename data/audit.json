@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T15:50:49.905967+00:00",
-  "generated_at_london": "2026-10-09T11:50:49.905967-04:00",
-  "news_generated_at": "2026-10-09T15:40:55.570188+00:00",
+  "generated_at": "2026-10-09T15:58:36.467326+00:00",
+  "generated_at_london": "2026-10-09T11:58:36.467326-04:00",
+  "news_generated_at": "2026-10-09T15:56:23.099453+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 689,
+    "archive_story_count": 692,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 110,
-    "review_story_count": 4,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
-    "warning_issue_count": 7,
-    "info_issue_count": 92,
+    "pass_story_count": 109,
+    "review_story_count": 6,
+    "fail_story_count": 0,
+    "critical_issue_count": 0,
+    "warning_issue_count": 11,
+    "info_issue_count": 93,
     "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -104,28 +104,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 285,
-      "average_quality": 96,
+      "average_words": 298,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-10-09T15:07:32+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-09T15:27:35+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T15:23:27.114547+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-09T15:54:15.122917+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -441,7 +442,7 @@
       "latest_published": "2026-10-09T15:34:12.805000+00:00",
       "found_this_run": 2,
       "tracked": 30,
-      "last_scrape": "2026-10-09T15:38:25.530120+00:00",
+      "last_scrape": "2026-10-09T15:44:15.596396+00:00",
       "last_error": ""
     },
     {
@@ -679,7 +680,7 @@
       "latest_published": "2026-10-09T15:16:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T15:38:33.725096+00:00",
+      "last_scrape": "2026-10-09T15:54:13.023658+00:00",
       "last_error": ""
     },
     {
@@ -693,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 941,
-      "average_quality": 96,
+      "average_words": 798,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-10-09T12:30:00+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-10-09T15:38:37.756000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T15:38:28.745260+00:00",
+      "last_scrape": "2026-10-09T15:54:08.341250+00:00",
       "last_error": ""
     },
     {
@@ -737,21 +739,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "62 words",
-      "story_id": "ce1f169a87f56ef5",
-      "source": "Toronto Star",
-      "title": "Corus completes recapitalization transaction, announces new board of directors",
-      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
-      "published": "2026-10-08T21:46:38+00:00",
-      "content_status": "full",
-      "word_count": 62,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
     {
       "severity": "warning",
       "code": "too_many_images",
@@ -856,6 +843,66 @@
       "word_count": 577,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "bed2199a5f5f756c",
+      "source": "Toronto Star",
+      "title": "Couche-Tard buying fuel retail sites from Irving Oil in Quebec and Ontario",
+      "url": "https://www.thestar.com/business/couche-tard-buying-fuel-retail-sites-from-irving-oil-in-quebec-and-ontario/article_ecf18fb8-6b70-51ee-a27f-f180e454094a.html",
+      "published": "2026-10-09T15:24:36+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "bed2199a5f5f756c",
+      "source": "Toronto Star",
+      "title": "Couche-Tard buying fuel retail sites from Irving Oil in Quebec and Ontario",
+      "url": "https://www.thestar.com/business/couche-tard-buying-fuel-retail-sites-from-irving-oil-in-quebec-and-ontario/article_ecf18fb8-6b70-51ee-a27f-f180e454094a.html",
+      "published": "2026-10-09T15:24:36+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b6da9cda71e41daa",
+      "source": "Toronto Star",
+      "title": "Salah Bachir, film media entrepreneur and philanthropist, dead at 71",
+      "url": "https://www.thestar.com/news/ontario/salah-bachir-film-media-entrepreneur-and-philanthropist-dead-at-71/article_e7a6a105-cd9d-531d-96ca-643be4d20d81.html",
+      "published": "2026-10-09T15:27:35+00:00",
+      "content_status": "full",
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "b6da9cda71e41daa",
+      "source": "Toronto Star",
+      "title": "Salah Bachir, film media entrepreneur and philanthropist, dead at 71",
+      "url": "https://www.thestar.com/news/ontario/salah-bachir-film-media-entrepreneur-and-philanthropist-dead-at-71/article_e7a6a105-cd9d-531d-96ca-643be4d20d81.html",
+      "published": "2026-10-09T15:27:35+00:00",
+      "content_status": "full",
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1864,21 +1911,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "bf3f418ce9e74faf",
-      "source": "The Globe and Mail",
-      "title": "Diplomat Ian Hamilton led operation to save desperate refugees afloat on the South China Sea",
-      "url": "https://www.theglobeandmail.com/canada/article-diplomat-ian-hamilton-led-operation-to-save-desperate-refugees-afloat",
-      "published": "2026-10-08T20:38:57.923000+00:00",
-      "content_status": "partial",
-      "word_count": 1611,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2029,6 +2061,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "177878d75908153a",
+      "source": "The Globe and Mail",
+      "title": "Supreme Court sets out new sentencing framework for cases involving Indigenous offenders, victims",
+      "url": "https://www.theglobeandmail.com/canada/article-supreme-court-new-sentencing-framework-indigenous-offenders",
+      "published": "2026-10-09T15:38:37.756000+00:00",
+      "content_status": "full",
+      "word_count": 178,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "177878d75908153a",
+      "source": "The Globe and Mail",
+      "title": "Supreme Court sets out new sentencing framework for cases involving Indigenous offenders, victims",
+      "url": "https://www.theglobeandmail.com/canada/article-supreme-court-new-sentencing-framework-indigenous-offenders",
+      "published": "2026-10-09T15:38:37.756000+00:00",
+      "content_status": "full",
+      "word_count": 178,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2047,15 +2109,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ce1f169a87f56ef5",
+      "story_id": "bed2199a5f5f756c",
       "source": "Toronto Star",
-      "title": "Corus completes recapitalization transaction, announces new board of directors",
-      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
-      "published": "2026-10-08T21:46:38+00:00",
+      "title": "Couche-Tard buying fuel retail sites from Irving Oil in Quebec and Ontario",
+      "url": "https://www.thestar.com/business/couche-tard-buying-fuel-retail-sites-from-irving-oil-in-quebec-and-ontario/article_ecf18fb8-6b70-51ee-a27f-f180e454094a.html",
+      "published": "2026-10-09T15:24:36+00:00",
       "content_status": "full",
-      "word_count": 62,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2122,15 +2184,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "e6adf05ce93bdf78",
+      "story_id": "b6da9cda71e41daa",
       "source": "Toronto Star",
-      "title": "Province to begin removing stretch of Toronto bike lanes next week after court win",
-      "url": "https://www.thestar.com/news/ontario/province-to-begin-removing-stretch-of-toronto-bike-lanes-next-week-after-court-win/article_239832cc-951e-5696-a9a6-902d0282dcf3.html",
-      "published": "2026-10-08T21:04:56+00:00",
+      "title": "Salah Bachir, film media entrepreneur and philanthropist, dead at 71",
+      "url": "https://www.thestar.com/news/ontario/salah-bachir-film-media-entrepreneur-and-philanthropist-dead-at-71/article_e7a6a105-cd9d-531d-96ca-643be4d20d81.html",
+      "published": "2026-10-09T15:27:35+00:00",
       "content_status": "full",
-      "word_count": 196,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4268,6 +4330,41 @@
       ]
     },
     {
+      "id": "177878d75908153a",
+      "source": "The Globe and Mail",
+      "title": "Supreme Court sets out new sentencing framework for cases involving Indigenous offenders, victims",
+      "url": "https://www.theglobeandmail.com/canada/article-supreme-court-new-sentencing-framework-indigenous-offenders",
+      "published": "2026-10-09T15:38:37.756000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 178,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "27fc15a744fd7bd6",
       "source": "The Globe and Mail",
       "title": "Buying a home with points, where our cities are shrinking and the Home of the Week: Canadian real estate news for the week of Oct. 9",
@@ -4532,35 +4629,6 @@
       "word_count": 186,
       "paragraph_count": 6,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bf3f418ce9e74faf",
-      "source": "The Globe and Mail",
-      "title": "Diplomat Ian Hamilton led operation to save desperate refugees afloat on the South China Sea",
-      "url": "https://www.theglobeandmail.com/canada/article-diplomat-ian-hamilton-led-operation-to-save-desperate-refugees-afloat",
-      "published": "2026-10-08T20:38:57.923000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1611,
-      "paragraph_count": 30,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4866,6 +4934,88 @@
       ]
     },
     {
+      "id": "b6da9cda71e41daa",
+      "source": "Toronto Star",
+      "title": "Salah Bachir, film media entrepreneur and philanthropist, dead at 71",
+      "url": "https://www.thestar.com/news/ontario/salah-bachir-film-media-entrepreneur-and-philanthropist-dead-at-71/article_e7a6a105-cd9d-531d-96ca-643be4d20d81.html",
+      "published": "2026-10-09T15:27:35+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 191,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "bed2199a5f5f756c",
+      "source": "Toronto Star",
+      "title": "Couche-Tard buying fuel retail sites from Irving Oil in Quebec and Ontario",
+      "url": "https://www.thestar.com/business/couche-tard-buying-fuel-retail-sites-from-irving-oil-in-quebec-and-ontario/article_ecf18fb8-6b70-51ee-a27f-f180e454094a.html",
+      "published": "2026-10-09T15:24:36+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 196,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "40b6eeae31f113bd",
       "source": "Toronto Star",
       "title": "Top court sets sentencing framework for cases involving Indigenous offenders, victims",
@@ -5082,70 +5232,6 @@
       "content_status": "full",
       "word_count": 506,
       "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ce1f169a87f56ef5",
-      "source": "Toronto Star",
-      "title": "Corus completes recapitalization transaction, announces new board of directors",
-      "url": "https://www.thestar.com/business/corus-completes-recapitalization-transaction-announces-new-board-of-directors/article_49037d30-bdfd-5f69-b669-fcd6f50e2a12.html",
-      "published": "2026-10-08T21:46:38+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 62,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "62 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e6adf05ce93bdf78",
-      "source": "Toronto Star",
-      "title": "Province to begin removing stretch of Toronto bike lanes next week after court win",
-      "url": "https://www.thestar.com/news/ontario/province-to-begin-removing-stretch-of-toronto-bike-lanes-next-week-after-court-win/article_239832cc-951e-5696-a9a6-902d0282dcf3.html",
-      "published": "2026-10-08T21:04:56+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 196,
-      "paragraph_count": 10,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
