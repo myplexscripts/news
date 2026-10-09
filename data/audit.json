@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T16:04:12.480317+00:00",
-  "generated_at_london": "2026-10-09T12:04:12.480317-04:00",
-  "news_generated_at": "2026-10-09T15:56:23.099453+00:00",
+  "generated_at": "2026-10-09T16:14:50.265242+00:00",
+  "generated_at_london": "2026-10-09T12:14:50.265242-04:00",
+  "news_generated_at": "2026-10-09T16:12:02.645675+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 111,
-    "review_story_count": 4,
+    "pass_story_count": 112,
+    "review_story_count": 3,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 7,
+    "warning_issue_count": 6,
     "info_issue_count": 93,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 15,
+    "review_source_count": 2,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -74,32 +74,6 @@
       "tracked": 5,
       "last_scrape": "2026-10-05T02:26:59.638803+00:00",
       "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
-    },
-    {
-      "source": "Global News Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "global",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 387,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 10,
-      "latest_published": "2026-10-09T14:31:31+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-09T14:36:46.116161+00:00",
-      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -524,6 +498,33 @@
       "last_error": ""
     },
     {
+      "source": "Global News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "global",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 338,
+      "average_quality": 91,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-09T16:07:43+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-09T16:09:33.758139+00:00",
+      "last_error": ""
+    },
+    {
       "source": "London Health Sciences Centre",
       "status": "healthy",
       "collector_status": "healthy",
@@ -653,7 +654,7 @@
       "latest_published": "2026-10-09T15:16:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-09T15:54:13.023658+00:00",
+      "last_scrape": "2026-10-09T16:09:40.991853+00:00",
       "last_error": ""
     },
     {
@@ -703,7 +704,7 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-09T15:27:35+00:00",
-      "found_this_run": 10,
+      "found_this_run": 9,
       "tracked": 30,
       "last_scrape": "2026-10-09T15:54:15.122917+00:00",
       "last_error": ""
@@ -825,21 +826,6 @@
       "content_status": "full",
       "word_count": 735,
       "quality_score": 76,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "4 consecutive images",
-      "story_id": "97f7aa918fcb02dc",
-      "source": "Global News Canada",
-      "title": "Polar bear cub ready for visitors at Winnipeg zoo, as poll opens for his name",
-      "url": "https://globalnews.ca/news/12092756/polar-bear-visitors-assiniboine-zoo",
-      "published": "2026-10-08T18:37:41+00:00",
-      "content_status": "full",
-      "word_count": 577,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1491,16 +1477,16 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "97f7aa918fcb02dc",
+      "detail": "Local score 10/100",
+      "story_id": "2c310c017266fc6d",
       "source": "Global News Canada",
-      "title": "Polar bear cub ready for visitors at Winnipeg zoo, as poll opens for his name",
-      "url": "https://globalnews.ca/news/12092756/polar-bear-visitors-assiniboine-zoo",
-      "published": "2026-10-08T18:37:41+00:00",
-      "content_status": "full",
-      "word_count": 577,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "Police investigate small plane crash in field near Fergus, Ont.",
+      "url": "https://globalnews.ca/news/12097238/plane-crash-fergus-ontario",
+      "published": "2026-10-09T16:07:43+00:00",
+      "content_status": "partial",
+      "word_count": 78,
+      "quality_score": 50,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3646,6 +3632,35 @@
       ]
     },
     {
+      "id": "2c310c017266fc6d",
+      "source": "Global News Canada",
+      "title": "Police investigate small plane crash in field near Fergus, Ont.",
+      "url": "https://globalnews.ca/news/12097238/plane-crash-fergus-ontario",
+      "published": "2026-10-09T16:07:43+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 78,
+      "paragraph_count": 6,
+      "inline_image_count": 1,
+      "quality_score": 50,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 10,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 10/100"
+        }
+      ]
+    },
+    {
       "id": "561acb5c315486f5",
       "source": "Global News Canada",
       "title": "Workers rescued from Montreal highrise after platform malfunction",
@@ -3898,41 +3913,6 @@
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "97f7aa918fcb02dc",
-      "source": "Global News Canada",
-      "title": "Polar bear cub ready for visitors at Winnipeg zoo, as poll opens for his name",
-      "url": "https://globalnews.ca/news/12092756/polar-bear-visitors-assiniboine-zoo",
-      "published": "2026-10-08T18:37:41+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 577,
-      "paragraph_count": 17,
-      "inline_image_count": 5,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "4 consecutive images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
