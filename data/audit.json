@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-09T17:14:37.168285+00:00",
-  "generated_at_london": "2026-10-09T13:14:37.168285-04:00",
+  "generated_at": "2026-10-09T17:19:24.598336+00:00",
+  "generated_at_london": "2026-10-09T13:19:24.598336-04:00",
   "news_generated_at": "2026-10-09T17:12:43.278307+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 0,
     "critical_issue_count": 0,
     "warning_issue_count": 6,
-    "info_issue_count": 90,
+    "info_issue_count": 92,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 0,
@@ -411,7 +411,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
+      "info_issues": 15,
       "latest_published": "2026-10-09T16:54:51.984000+00:00",
       "found_this_run": 3,
       "tracked": 30,
@@ -429,15 +429,16 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 292,
+      "average_words": 286,
       "average_quality": 71,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 10
+        "ctv:summary-fallback": 1,
+        "embedded-json:ctv": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 7,
+      "info_issues": 8,
       "latest_published": "2026-10-09T17:05:11.724000+00:00",
       "found_this_run": 10,
       "tracked": 30,
@@ -534,12 +535,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 339,
-      "average_quality": 95,
+      "average_words": 342,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -995,6 +995,21 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "a8361cc5a6fb5f59",
+      "source": "CTV News Canada",
+      "title": "Laval, Que., mayor’s 13-hour brain surgery sparks a wave of support",
+      "url": "https://www.ctvnews.ca/canada/article/laval-que-mayors-13-hour-brain-surgery-sparks-a-wave-of-support",
+      "published": "2026-10-09T16:54:51.984000+00:00",
+      "content_status": "full",
+      "word_count": 551,
+      "quality_score": 88,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1005,7 +1020,7 @@
       "published": "2026-10-09T16:54:51.984000+00:00",
       "content_status": "full",
       "word_count": 551,
-      "quality_score": 87,
+      "quality_score": 88,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1112,6 +1127,21 @@
       "word_count": 506,
       "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 10/100",
+      "story_id": "f68bd008b83f6bfe",
+      "source": "CTV News London",
+      "title": "Minor injuries reported after SUV strikes restaurant",
+      "url": "https://www.ctvnews.ca/london/article/minor-injuries-reported-after-suv-strikes-restaurant",
+      "published": "2026-10-09T17:05:11.724000+00:00",
+      "content_status": "partial",
+      "word_count": 26,
+      "quality_score": 55,
+      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -1349,9 +1379,9 @@
       "url": "https://globalnews.ca/news/12097260/aging-population-lower-immigration-reshaping-economy",
       "published": "2026-10-09T17:04:06+00:00",
       "content_status": "full",
-      "word_count": 432,
-      "quality_score": 83,
-      "extraction_method": "dom:global:main:strict"
+      "word_count": 458,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2385,20 +2415,27 @@
       "url": "https://www.ctvnews.ca/london/article/minor-injuries-reported-after-suv-strikes-restaurant",
       "published": "2026-10-09T17:05:11.724000+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 85,
-      "paragraph_count": 5,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 26,
+      "paragraph_count": 1,
       "inline_image_count": 2,
-      "quality_score": 57,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
+      "quality_score": 55,
+      "quality_grade": "fair",
+      "extraction_method": "ctv:summary-fallback",
       "extraction_profile": "ctv",
-      "local_score": 22,
-      "issues": []
+      "local_score": 10,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 10/100"
+        }
+      ]
     },
     {
       "id": "5ec30ecb1386f90f",
@@ -3569,12 +3606,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 432,
+      "word_count": 458,
       "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 83,
+      "inline_image_count": 3,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -3854,20 +3891,26 @@
       "url": "https://www.ctvnews.ca/canada/article/laval-que-mayors-13-hour-brain-surgery-sparks-a-wave-of-support",
       "published": "2026-10-09T16:54:51.984000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 551,
       "paragraph_count": 16,
       "inline_image_count": 0,
-      "quality_score": 87,
+      "quality_score": 88,
       "quality_grade": "excellent",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
