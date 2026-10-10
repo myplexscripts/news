@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-10T13:55:34.511116+00:00",
-  "generated_at_london": "2026-10-10T09:55:34.511116-04:00",
-  "news_generated_at": "2026-10-10T13:39:48.173042+00:00",
+  "generated_at": "2026-10-10T13:57:36.784172+00:00",
+  "generated_at_london": "2026-10-10T09:57:36.784172-04:00",
+  "news_generated_at": "2026-10-10T13:55:15.459875+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 699,
+    "archive_story_count": 700,
     "source_count": 28,
     "audited_story_count": 110,
     "pass_story_count": 101,
@@ -72,7 +72,7 @@
       "found_this_run": 0,
       "tracked": 1,
       "last_scrape": "2026-10-05T02:26:44.265198+00:00",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "CTV News London",
@@ -138,19 +138,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 851,
-      "average_quality": 94,
+      "average_words": 818,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 14,
-      "latest_published": "2026-10-10T12:00:00+00:00",
+      "latest_published": "2026-10-10T13:43:09.256000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T12:19:33.180403+00:00",
+      "last_scrape": "2026-10-10T13:52:34.666282+00:00",
       "last_error": ""
     },
     {
@@ -707,7 +708,7 @@
       "latest_published": "2026-10-10T11:00:50+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T13:37:21.587447+00:00",
+      "last_scrape": "2026-10-10T13:52:40.668207+00:00",
       "last_error": ""
     },
     {
@@ -1895,21 +1896,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a0ba4798e637f84e",
-      "source": "The Globe and Mail",
-      "title": "B.C. parties pitch contrasting income-tax proposals in the third week of election campaign",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-parties-pitch-contrasting-income-tax-proposals-election-campaign",
-      "published": "2026-10-10T00:50:56.267000+00:00",
-      "content_status": "full",
-      "word_count": 1116,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2102,6 +2088,21 @@
       "word_count": 855,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2e73c6e56f24cf0f",
+      "source": "The Globe and Mail",
+      "title": "World Medical Association adopts policy combatting false health information",
+      "url": "https://www.theglobeandmail.com/canada/article-world-medical-association-new-policy-false-online-information",
+      "published": "2026-10-10T13:43:09.256000+00:00",
+      "content_status": "full",
+      "word_count": 793,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4235,6 +4236,35 @@
       ]
     },
     {
+      "id": "2e73c6e56f24cf0f",
+      "source": "The Globe and Mail",
+      "title": "World Medical Association adopts policy combatting false health information",
+      "url": "https://www.theglobeandmail.com/canada/article-world-medical-association-new-policy-false-online-information",
+      "published": "2026-10-10T13:43:09.256000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 793,
+      "paragraph_count": 23,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "196211519d0f6ecd",
       "source": "The Globe and Mail",
       "title": "Changing tastes help Poplar Grove expand its view of the Okanagan",
@@ -4510,35 +4540,6 @@
       "content_status": "full",
       "word_count": 855,
       "paragraph_count": 27,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a0ba4798e637f84e",
-      "source": "The Globe and Mail",
-      "title": "B.C. parties pitch contrasting income-tax proposals in the third week of election campaign",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-parties-pitch-contrasting-income-tax-proposals-election-campaign",
-      "published": "2026-10-10T00:50:56.267000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1116,
-      "paragraph_count": 26,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
