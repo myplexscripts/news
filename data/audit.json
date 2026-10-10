@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-10T21:46:43.758659+00:00",
-  "generated_at_london": "2026-10-10T17:46:43.758659-04:00",
-  "news_generated_at": "2026-10-10T21:40:08.758624+00:00",
+  "generated_at": "2026-10-10T21:59:10.738592+00:00",
+  "generated_at_london": "2026-10-10T17:59:10.738592-04:00",
+  "news_generated_at": "2026-10-10T21:56:54.768468+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 697,
+    "archive_story_count": 698,
     "source_count": 28,
     "audited_story_count": 109,
     "pass_story_count": 99,
-    "review_story_count": 6,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
-    "warning_issue_count": 9,
+    "review_story_count": 7,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 11,
     "info_issue_count": 87,
     "healthy_source_count": 12,
     "review_source_count": 6,
@@ -72,7 +72,7 @@
       "found_this_run": 0,
       "tracked": 1,
       "last_scrape": "2026-10-05T02:26:44.265198+00:00",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "CTV News Canada",
@@ -159,23 +159,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 6,
-      "review": 0,
-      "fail": 4,
+      "review": 1,
+      "fail": 3,
       "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 460,
-      "average_quality": 96,
+      "average_words": 475,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 4,
-      "warning_issues": 0,
+      "critical_issues": 3,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-10T19:39:59+00:00",
+      "latest_published": "2026-10-10T21:30:15+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T20:21:00.303444+00:00",
+      "last_scrape": "2026-10-10T21:54:27.087997+00:00",
       "last_error": ""
     },
     {
@@ -680,7 +681,7 @@
       "latest_published": "2026-10-10T16:42:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T21:38:11.129370+00:00",
+      "last_scrape": "2026-10-10T21:54:19.203082+00:00",
       "last_error": ""
     },
     {
@@ -737,21 +738,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "74 words",
-      "story_id": "8c60a5bfea0f2af2",
-      "source": "Toronto Star",
-      "title": "Another Marineland whale dies at Shedd Aquarium in Chicago",
-      "url": "https://www.thestar.com/news/ontario/another-marineland-whale-dies-at-shedd-aquarium-in-chicago/article_14d00e55-348b-5816-bc71-3b3b524ade4b.html",
-      "published": "2026-10-09T22:06:53+00:00",
-      "content_status": "full",
-      "word_count": 74,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -931,6 +917,36 @@
       "word_count": 304,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "58465a2832b19a3c",
+      "source": "Toronto Star",
+      "title": "B.C.'s Eby asks Doerkson to remove campaign chief over social media slamming Islam",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-s-eby-asks-doerkson-to-remove-campaign-chief-over-social-media-slamming-islam/article_38729679-15b6-5f7d-98c1-43561449bea5.html",
+      "published": "2026-10-10T21:30:15+00:00",
+      "content_status": "full",
+      "word_count": 223,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "58465a2832b19a3c",
+      "source": "Toronto Star",
+      "title": "B.C.'s Eby asks Doerkson to remove campaign chief over social media slamming Islam",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-s-eby-asks-doerkson-to-remove-campaign-chief-over-social-media-slamming-islam/article_38729679-15b6-5f7d-98c1-43561449bea5.html",
+      "published": "2026-10-10T21:30:15+00:00",
+      "content_status": "full",
+      "word_count": 223,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2092,15 +2108,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "8c60a5bfea0f2af2",
+      "story_id": "58465a2832b19a3c",
       "source": "Toronto Star",
-      "title": "Another Marineland whale dies at Shedd Aquarium in Chicago",
-      "url": "https://www.thestar.com/news/ontario/another-marineland-whale-dies-at-shedd-aquarium-in-chicago/article_14d00e55-348b-5816-bc71-3b3b524ade4b.html",
-      "published": "2026-10-09T22:06:53+00:00",
+      "title": "B.C.'s Eby asks Doerkson to remove campaign chief over social media slamming Islam",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-s-eby-asks-doerkson-to-remove-campaign-chief-over-social-media-slamming-islam/article_38729679-15b6-5f7d-98c1-43561449bea5.html",
+      "published": "2026-10-10T21:30:15+00:00",
       "content_status": "full",
-      "word_count": 74,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 223,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4722,6 +4738,47 @@
       ]
     },
     {
+      "id": "58465a2832b19a3c",
+      "source": "Toronto Star",
+      "title": "B.C.'s Eby asks Doerkson to remove campaign chief over social media slamming Islam",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-s-eby-asks-doerkson-to-remove-campaign-chief-over-social-media-slamming-islam/article_38729679-15b6-5f7d-98c1-43561449bea5.html",
+      "published": "2026-10-10T21:30:15+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 223,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "052b969152450098",
       "source": "Toronto Star",
       "title": "2 people dead after small plane crashed and caught fire near Fergus, Ont.",
@@ -4991,41 +5048,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "27 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8c60a5bfea0f2af2",
-      "source": "Toronto Star",
-      "title": "Another Marineland whale dies at Shedd Aquarium in Chicago",
-      "url": "https://www.thestar.com/news/ontario/another-marineland-whale-dies-at-shedd-aquarium-in-chicago/article_14d00e55-348b-5816-bc71-3b3b524ade4b.html",
-      "published": "2026-10-09T22:06:53+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 74,
-      "paragraph_count": 4,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "74 words"
         },
         {
           "severity": "info",
