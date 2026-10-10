@@ -1,26 +1,53 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-10T20:12:42.571497+00:00",
-  "generated_at_london": "2026-10-10T16:12:42.571497-04:00",
-  "news_generated_at": "2026-10-10T20:07:27.043313+00:00",
+  "generated_at": "2026-10-10T20:24:47.288843+00:00",
+  "generated_at_london": "2026-10-10T16:24:47.288843-04:00",
+  "news_generated_at": "2026-10-10T20:22:52.272829+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 695,
+    "archive_story_count": 696,
     "source_count": 28,
     "audited_story_count": 109,
-    "pass_story_count": 100,
-    "review_story_count": 5,
+    "pass_story_count": 99,
+    "review_story_count": 6,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 8,
-    "info_issue_count": 89,
+    "warning_issue_count": 10,
+    "info_issue_count": 88,
     "healthy_source_count": 13,
-    "review_source_count": 5,
-    "error_source_count": 0,
+    "review_source_count": 4,
+    "error_source_count": 1,
     "waiting_source_count": 10
   },
   "source_reports": [
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 1,
+      "fail": 4,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 476,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 4,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-10T19:39:59+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-10T20:21:00.303444+00:00",
+      "last_error": ""
+    },
     {
       "source": "104.7 Heart FM",
       "status": "review",
@@ -128,32 +155,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 6,
-      "review": 0,
-      "fail": 4,
-      "pass_rate": 60,
-      "usable_body_rate": 100,
-      "average_words": 472,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 4,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-10T12:00:10+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-10-10T12:19:39.449860+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -204,7 +205,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -223,7 +224,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -681,7 +682,7 @@
       "latest_published": "2026-10-10T16:42:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T20:05:28.241426+00:00",
+      "last_scrape": "2026-10-10T20:20:54.891841+00:00",
       "last_error": ""
     },
     {
@@ -917,6 +918,36 @@
       "word_count": 304,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "052b969152450098",
+      "source": "Toronto Star",
+      "title": "2 people dead after small plane crashed and caught fire near Fergus, Ont.",
+      "url": "https://www.thestar.com/news/ontario/2-people-dead-after-small-plane-crashed-and-caught-fire-near-fergus-ont/article_7e7302ac-d9e8-5203-9ccc-4d873c6d57c9.html",
+      "published": "2026-10-10T19:39:59+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "052b969152450098",
+      "source": "Toronto Star",
+      "title": "2 people dead after small plane crashed and caught fire near Fergus, Ont.",
+      "url": "https://www.thestar.com/news/ontario/2-people-dead-after-small-plane-crashed-and-caught-fire-near-fergus-ont/article_7e7302ac-d9e8-5203-9ccc-4d873c6d57c9.html",
+      "published": "2026-10-10T19:39:59+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2078,6 +2109,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "052b969152450098",
+      "source": "Toronto Star",
+      "title": "2 people dead after small plane crashed and caught fire near Fergus, Ont.",
+      "url": "https://www.thestar.com/news/ontario/2-people-dead-after-small-plane-crashed-and-caught-fire-near-fergus-ont/article_7e7302ac-d9e8-5203-9ccc-4d873c6d57c9.html",
+      "published": "2026-10-10T19:39:59+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "8c60a5bfea0f2af2",
       "source": "Toronto Star",
       "title": "Another Marineland whale dies at Shedd Aquarium in Chicago",
@@ -2115,36 +2161,6 @@
       "published": "2026-10-10T08:00:10+00:00",
       "content_status": "full",
       "word_count": 1079,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "70ba5bb80743ef3e",
-      "source": "Toronto Star",
-      "title": "Former Isis bride pleads guilty to terror-related charge in B.C. court",
-      "url": "https://www.thestar.com/news/canada/british-columbia/former-isis-bride-pleads-guilty-to-terror-related-charge-in-b-c-court/article_8ecb9952-2d78-5524-a001-08b8fc7df4f6.html",
-      "published": "2026-10-09T21:13:07+00:00",
-      "content_status": "full",
-      "word_count": 158,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "70ba5bb80743ef3e",
-      "source": "Toronto Star",
-      "title": "Former Isis bride pleads guilty to terror-related charge in B.C. court",
-      "url": "https://www.thestar.com/news/canada/british-columbia/former-isis-bride-pleads-guilty-to-terror-related-charge-in-b-c-court/article_8ecb9952-2d78-5524-a001-08b8fc7df4f6.html",
-      "published": "2026-10-09T21:13:07+00:00",
-      "content_status": "full",
-      "word_count": 158,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4738,6 +4754,47 @@
       ]
     },
     {
+      "id": "052b969152450098",
+      "source": "Toronto Star",
+      "title": "2 people dead after small plane crashed and caught fire near Fergus, Ont.",
+      "url": "https://www.thestar.com/news/ontario/2-people-dead-after-small-plane-crashed-and-caught-fire-near-fergus-ont/article_7e7302ac-d9e8-5203-9ccc-4d873c6d57c9.html",
+      "published": "2026-10-10T19:39:59+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 199,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "450dc139cb6efcfa",
       "source": "Toronto Star",
       "title": "'Extra stress': Tension peaking among Albertans as separation vote nears",
@@ -5013,41 +5070,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "74 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "70ba5bb80743ef3e",
-      "source": "Toronto Star",
-      "title": "Former Isis bride pleads guilty to terror-related charge in B.C. court",
-      "url": "https://www.thestar.com/news/canada/british-columbia/former-isis-bride-pleads-guilty-to-terror-related-charge-in-b-c-court/article_8ecb9952-2d78-5524-a001-08b8fc7df4f6.html",
-      "published": "2026-10-09T21:13:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 158,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
         },
         {
           "severity": "info",
