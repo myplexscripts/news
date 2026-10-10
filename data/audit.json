@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-10T16:01:38.188503+00:00",
-  "generated_at_london": "2026-10-10T12:01:38.188503-04:00",
+  "generated_at": "2026-10-10T16:07:02.082710+00:00",
+  "generated_at_london": "2026-10-10T12:07:02.082710-04:00",
   "news_generated_at": "2026-10-10T15:59:02.204075+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 697,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 101,
+    "pass_story_count": 100,
     "review_story_count": 6,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
+    "fail_story_count": 4,
+    "critical_issue_count": 4,
     "warning_issue_count": 9,
     "info_issue_count": 93,
-    "healthy_source_count": 12,
-    "review_source_count": 6,
+    "healthy_source_count": 11,
+    "review_source_count": 7,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -125,6 +125,34 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-10T15:41:10.396378+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "National Post",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "postmedia",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 747,
+      "average_quality": 81,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 7,
+        "reader:semantic-rich-v1": 2,
+        "dom:postmedia:article": 1
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-10T11:00:50+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-10T15:56:39.878205+00:00",
       "last_error": ""
     },
     {
@@ -683,34 +711,6 @@
       "last_error": ""
     },
     {
-      "source": "National Post",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "postmedia",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 749,
-      "average_quality": 81,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 7,
-        "reader:semantic-rich-v1": 2,
-        "dom:postmedia:article": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-10T11:00:50+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-10T15:56:39.878205+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -738,6 +738,21 @@
     }
   ],
   "issues": [
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "73 words",
+      "story_id": "c5c180bd45e24009",
+      "source": "National Post",
+      "title": "10/3 podcast: Quebec’s political shake-up: Are the separatists back for good?",
+      "url": "https://nationalpost.com/news/canada/10-3-podcast-quebecs-political-shake-up-are-the-separatists-back-for-good",
+      "published": "2026-10-09T15:16:58+00:00",
+      "content_status": "full",
+      "word_count": 73,
+      "quality_score": 53,
+      "extraction_method": "dom:postmedia:article"
+    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -1769,7 +1784,7 @@
       "url": "https://nationalpost.com/news/canada/10-3-podcast-quebecs-political-shake-up-are-the-separatists-back-for-good",
       "published": "2026-10-09T15:16:58+00:00",
       "content_status": "full",
-      "word_count": 88,
+      "word_count": 73,
       "quality_score": 53,
       "extraction_method": "dom:postmedia:article"
     },
@@ -4763,14 +4778,14 @@
       "title": "10/3 podcast: Quebec’s political shake-up: Are the separatists back for good?",
       "url": "https://nationalpost.com/news/canada/10-3-podcast-quebecs-political-shake-up-are-the-separatists-back-for-good",
       "published": "2026-10-09T15:16:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 88,
-      "paragraph_count": 4,
+      "word_count": 73,
+      "paragraph_count": 3,
       "inline_image_count": 0,
       "quality_score": 53,
       "quality_grade": "partial",
@@ -4778,6 +4793,12 @@
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "73 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
