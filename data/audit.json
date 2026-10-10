@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-10T10:55:32.501357+00:00",
-  "generated_at_london": "2026-10-10T06:55:32.501357-04:00",
-  "news_generated_at": "2026-10-10T10:48:50.538065+00:00",
+  "generated_at": "2026-10-10T11:06:05.471919+00:00",
+  "generated_at_london": "2026-10-10T07:06:05.471919-04:00",
+  "news_generated_at": "2026-10-10T11:03:50.278451+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 697,
+    "archive_story_count": 698,
     "source_count": 28,
     "audited_story_count": 109,
-    "pass_story_count": 100,
-    "review_story_count": 6,
+    "pass_story_count": 99,
+    "review_story_count": 7,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 9,
+    "warning_issue_count": 11,
     "info_issue_count": 94,
     "healthy_source_count": 12,
     "review_source_count": 6,
@@ -156,28 +156,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 7,
-      "review": 0,
+      "pass": 6,
+      "review": 1,
       "fail": 3,
-      "pass_rate": 70,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 521,
-      "average_quality": 96,
+      "average_words": 428,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 3,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 12,
       "latest_published": "2026-10-10T08:00:17+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T10:30:34.379596+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-10T11:01:32.784091+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -707,7 +708,7 @@
       "latest_published": "2026-10-09T23:59:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T10:46:23.226964+00:00",
+      "last_scrape": "2026-10-10T11:01:31.315769+00:00",
       "last_error": ""
     },
     {
@@ -917,6 +918,36 @@
       "word_count": 963,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "140aa57df9c33022",
+      "source": "Toronto Star",
+      "title": "He challenged Canada's immigration decision over its ‘copied and pasted’ refusal. A judge ruled in his favour",
+      "url": "https://www.thestar.com/news/canada/court-quashes-canadian-copy-and-paste-immigration-refusal-of-afghan-man/article_a09725f2-3a84-4bce-a21b-1634fb6ce395.html",
+      "published": "2026-10-10T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 188,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "15 inline images",
+      "story_id": "140aa57df9c33022",
+      "source": "Toronto Star",
+      "title": "He challenged Canada's immigration decision over its ‘copied and pasted’ refusal. A judge ruled in his favour",
+      "url": "https://www.thestar.com/news/canada/court-quashes-canadian-copy-and-paste-immigration-refusal-of-afghan-man/article_a09725f2-3a84-4bce-a21b-1634fb6ce395.html",
+      "published": "2026-10-10T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 188,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2228,15 +2259,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "fe9afc2f14c52052",
+      "story_id": "140aa57df9c33022",
       "source": "Toronto Star",
-      "title": "Galloway testifies of ‘numerous’ faculty-student relationships in UBC arts program",
-      "url": "https://www.thestar.com/news/canada/british-columbia/galloway-testifies-of-numerous-faculty-student-relationships-in-ubc-arts-program/article_232e5db8-5792-5858-8320-771f7f2f7ced.html",
-      "published": "2026-10-09T20:34:33+00:00",
+      "title": "He challenged Canada's immigration decision over its ‘copied and pasted’ refusal. A judge ruled in his favour",
+      "url": "https://www.thestar.com/news/canada/court-quashes-canadian-copy-and-paste-immigration-refusal-of-afghan-man/article_a09725f2-3a84-4bce-a21b-1634fb6ce395.html",
+      "published": "2026-10-10T04:00:00+00:00",
       "content_status": "full",
-      "word_count": 1122,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 188,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4989,6 +5020,47 @@
       ]
     },
     {
+      "id": "140aa57df9c33022",
+      "source": "Toronto Star",
+      "title": "He challenged Canada's immigration decision over its ‘copied and pasted’ refusal. A judge ruled in his favour",
+      "url": "https://www.thestar.com/news/canada/court-quashes-canadian-copy-and-paste-immigration-refusal-of-afghan-man/article_a09725f2-3a84-4bce-a21b-1634fb6ce395.html",
+      "published": "2026-10-10T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 188,
+      "paragraph_count": 2,
+      "inline_image_count": 15,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "15 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9519ac838cf7ad68",
       "source": "Toronto Star",
       "title": "Charges laid after 19-year-old dies of carbon monoxide poisoning in Sudbury area",
@@ -5120,35 +5192,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "fe9afc2f14c52052",
-      "source": "Toronto Star",
-      "title": "Galloway testifies of ‘numerous’ faculty-student relationships in UBC arts program",
-      "url": "https://www.thestar.com/news/canada/british-columbia/galloway-testifies-of-numerous-faculty-student-relationships-in-ubc-arts-program/article_232e5db8-5792-5858-8320-771f7f2f7ced.html",
-      "published": "2026-10-09T20:34:33+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1122,
-      "paragraph_count": 37,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
