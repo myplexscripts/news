@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-10T08:20:57.357788+00:00",
-  "generated_at_london": "2026-10-10T04:20:57.357788-04:00",
-  "news_generated_at": "2026-10-10T08:13:28.308144+00:00",
+  "generated_at": "2026-10-10T08:31:08.685514+00:00",
+  "generated_at_london": "2026-10-10T04:31:08.685514-04:00",
+  "news_generated_at": "2026-10-10T08:28:46.806612+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 703,
     "source_count": 28,
     "audited_story_count": 111,
-    "pass_story_count": 104,
+    "pass_story_count": 103,
     "review_story_count": 5,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 8,
     "info_issue_count": 95,
     "healthy_source_count": 13,
@@ -133,24 +133,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
+      "pass": 7,
       "review": 0,
-      "fail": 2,
-      "pass_rate": 80,
+      "fail": 3,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 578,
-      "average_quality": 96,
+      "average_words": 464,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
-      "critical_issues": 2,
+      "critical_issues": 3,
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-10-10T08:00:17+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T08:11:07.564795+00:00",
+      "last_scrape": "2026-10-10T08:26:25.014287+00:00",
       "last_error": ""
     },
     {
@@ -681,7 +682,7 @@
       "latest_published": "2026-10-09T23:59:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-10T08:11:03.659454+00:00",
+      "last_scrape": "2026-10-10T08:26:23.300744+00:00",
       "last_error": ""
     },
     {
@@ -767,6 +768,21 @@
       "word_count": 27,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "66 words",
+      "story_id": "2b8b88a638c0aaba",
+      "source": "Toronto Star",
+      "title": "Overlapping local, provincial elections in B.C. causing confusion: candidates",
+      "url": "https://www.thestar.com/news/canada/british-columbia/overlapping-local-provincial-elections-in-b-c-causing-confusion-candidates/article_c07ce8ac-0943-5fe8-8c22-78ea5b24d67b.html",
+      "published": "2026-10-10T08:00:08+00:00",
+      "content_status": "full",
+      "word_count": 66,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -2213,21 +2229,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cfed963a114201e0",
-      "source": "Toronto Star",
-      "title": "Here's what to know about flu, COVID-19 and RSV this respiratory virus season",
-      "url": "https://www.thestar.com/news/ontario/here-s-what-to-know-about-flu-covid-19-and-rsv-this-respiratory-virus-season/article_1e46e1fe-5a6b-5ddb-8653-6bc86bd2b3c4.html",
-      "published": "2026-10-09T19:05:41+00:00",
-      "content_status": "full",
-      "word_count": 1212,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "150f9fefd394bdd1",
       "source": "Toronto Star",
       "title": "Nickelback Plans Massive 2027 World Tour With Seven Canadian Concert Stops.",
@@ -2267,6 +2268,21 @@
       "word_count": 499,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2b8b88a638c0aaba",
+      "source": "Toronto Star",
+      "title": "Overlapping local, provincial elections in B.C. causing confusion: candidates",
+      "url": "https://www.thestar.com/news/canada/british-columbia/overlapping-local-provincial-elections-in-b-c-causing-confusion-candidates/article_c07ce8ac-0943-5fe8-8c22-78ea5b24d67b.html",
+      "published": "2026-10-10T08:00:08+00:00",
+      "content_status": "full",
+      "word_count": 66,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4919,6 +4935,41 @@
       ]
     },
     {
+      "id": "2b8b88a638c0aaba",
+      "source": "Toronto Star",
+      "title": "Overlapping local, provincial elections in B.C. causing confusion: candidates",
+      "url": "https://www.thestar.com/news/canada/british-columbia/overlapping-local-provincial-elections-in-b-c-causing-confusion-candidates/article_c07ce8ac-0943-5fe8-8c22-78ea5b24d67b.html",
+      "published": "2026-10-10T08:00:08+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 66,
+      "paragraph_count": 2,
+      "inline_image_count": 4,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "66 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3dd4d732e368d2fc",
       "source": "Toronto Star",
       "title": "'Home' documentary from 'Degrassi' co-creator explores complexities of Ontario encampment",
@@ -5143,35 +5194,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cfed963a114201e0",
-      "source": "Toronto Star",
-      "title": "Here's what to know about flu, COVID-19 and RSV this respiratory virus season",
-      "url": "https://www.thestar.com/news/ontario/here-s-what-to-know-about-flu-covid-19-and-rsv-this-respiratory-virus-season/article_1e46e1fe-5a6b-5ddb-8653-6bc86bd2b3c4.html",
-      "published": "2026-10-09T19:05:41+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1212,
-      "paragraph_count": 47,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
