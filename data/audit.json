@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-11T14:08:46.778015+00:00",
-  "generated_at_london": "2026-10-11T10:08:46.778015-04:00",
+  "generated_at": "2026-10-11T14:11:32.122583+00:00",
+  "generated_at_london": "2026-10-11T10:11:32.122583-04:00",
   "news_generated_at": "2026-10-11T14:06:59.482356+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -84,12 +84,13 @@
       "review": 1,
       "fail": 0,
       "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 319,
+      "usable_body_rate": 90,
+      "average_words": 314,
       "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 10
+        "ctv:summary-fallback": 1,
+        "embedded-json:ctv": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -1173,16 +1174,16 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
+      "detail": "Local score 0/100",
       "story_id": "8f8e014a2d1df02b",
       "source": "CTV News London",
       "title": "Highway 401 reopens after transport truck incident",
       "url": "https://www.ctvnews.ca/london/article/highway-401-reopens-after-transport-truck-incident",
       "published": "2026-10-11T13:55:52.698000+00:00",
-      "content_status": "partial",
-      "word_count": 70,
-      "quality_score": 44,
-      "extraction_method": "embedded-json:ctv"
+      "content_status": "summary",
+      "word_count": 14,
+      "quality_score": 40,
+      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -2268,21 +2269,21 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 70,
-      "paragraph_count": 3,
-      "inline_image_count": 0,
-      "quality_score": 44,
+      "content_status": "summary",
+      "word_count": 14,
+      "paragraph_count": 1,
+      "inline_image_count": 1,
+      "quality_score": 40,
       "quality_grade": "poor",
-      "extraction_method": "embedded-json:ctv",
+      "extraction_method": "ctv:summary-fallback",
       "extraction_profile": "ctv",
-      "local_score": 12,
+      "local_score": 0,
       "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
+          "detail": "Local score 0/100"
         }
       ]
     },
