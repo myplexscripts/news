@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-11T18:49:16.869031+00:00",
-  "generated_at_london": "2026-10-11T14:49:16.869031-04:00",
-  "news_generated_at": "2026-10-11T18:43:54.471377+00:00",
+  "generated_at": "2026-10-11T18:59:37.221272+00:00",
+  "generated_at_london": "2026-10-11T14:59:37.221272-04:00",
+  "news_generated_at": "2026-10-11T18:58:31.905847+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 686,
+    "archive_story_count": 687,
     "source_count": 28,
     "audited_story_count": 107,
-    "pass_story_count": 102,
-    "review_story_count": 4,
+    "pass_story_count": 101,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 85,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -77,28 +77,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 1216,
-      "average_quality": 96,
+      "average_words": 1154,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-11T14:00:10+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-11T18:22:38+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-11T14:19:54.261387+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-11T18:57:03.958410+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -146,7 +147,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-11T18:19:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-11T18:41:43.142580+00:00",
+      "last_scrape": "2026-10-11T18:57:01.141080+00:00",
       "last_error": ""
     },
     {
@@ -854,6 +855,36 @@
       "word_count": 469,
       "quality_score": 85,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "7f057bfbc86b9200",
+      "source": "Toronto Star",
+      "title": "Turkey gravy brand sold in Canada recalled due to undeclared mustard",
+      "url": "https://www.thestar.com/news/canada/turkey-gravy-brand-sold-in-canada-recalled-due-to-undeclared-mustard/article_701aabe5-b94f-5e4c-b2c5-1edf54de2f62.html",
+      "published": "2026-10-11T18:22:38+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "7f057bfbc86b9200",
+      "source": "Toronto Star",
+      "title": "Turkey gravy brand sold in Canada recalled due to undeclared mustard",
+      "url": "https://www.thestar.com/news/canada/turkey-gravy-brand-sold-in-canada-recalled-due-to-undeclared-mustard/article_701aabe5-b94f-5e4c-b2c5-1edf54de2f62.html",
+      "published": "2026-10-11T18:22:38+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1939,21 +1970,6 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "450dc139cb6efcfa",
-      "source": "Toronto Star",
-      "title": "'Extra stress': Tension peaking among Albertans as separation vote nears",
-      "url": "https://www.thestar.com/news/canada/alberta/extra-stress-tension-peaking-among-albertans-as-separation-vote-nears/article_f30d1836-b4ab-5951-8749-f1e4bcd866bc.html",
-      "published": "2026-10-10T12:00:10+00:00",
-      "content_status": "full",
-      "word_count": 805,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
       "detail": "Local score 10/100",
       "story_id": "052b969152450098",
       "source": "Toronto Star",
@@ -2069,6 +2085,21 @@
       "word_count": 1499,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7f057bfbc86b9200",
+      "source": "Toronto Star",
+      "title": "Turkey gravy brand sold in Canada recalled due to undeclared mustard",
+      "url": "https://www.thestar.com/news/canada/turkey-gravy-brand-sold-in-canada-recalled-due-to-undeclared-mustard/article_701aabe5-b94f-5e4c-b2c5-1edf54de2f62.html",
+      "published": "2026-10-11T18:22:38+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4545,6 +4576,47 @@
       ]
     },
     {
+      "id": "7f057bfbc86b9200",
+      "source": "Toronto Star",
+      "title": "Turkey gravy brand sold in Canada recalled due to undeclared mustard",
+      "url": "https://www.thestar.com/news/canada/turkey-gravy-brand-sold-in-canada-recalled-due-to-undeclared-mustard/article_701aabe5-b94f-5e4c-b2c5-1edf54de2f62.html",
+      "published": "2026-10-11T18:22:38+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 189,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "99591ada987c88e3",
       "source": "Toronto Star",
       "title": "Five things to watch for in the Canadian business world in the coming week",
@@ -4808,35 +4880,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 10/100"
-        }
-      ]
-    },
-    {
-      "id": "450dc139cb6efcfa",
-      "source": "Toronto Star",
-      "title": "'Extra stress': Tension peaking among Albertans as separation vote nears",
-      "url": "https://www.thestar.com/news/canada/alberta/extra-stress-tension-peaking-among-albertans-as-separation-vote-nears/article_f30d1836-b4ab-5951-8749-f1e4bcd866bc.html",
-      "published": "2026-10-10T12:00:10+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 805,
-      "paragraph_count": 37,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
