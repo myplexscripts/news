@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-11T14:11:32.122583+00:00",
-  "generated_at_london": "2026-10-11T10:11:32.122583-04:00",
-  "news_generated_at": "2026-10-11T14:06:59.482356+00:00",
+  "generated_at": "2026-10-11T14:23:06.891758+00:00",
+  "generated_at_london": "2026-10-11T10:23:06.891758-04:00",
+  "news_generated_at": "2026-10-11T14:21:37.203650+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 689,
     "source_count": 28,
     "audited_story_count": 107,
     "pass_story_count": 100,
-    "review_story_count": 5,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 8,
+    "review_story_count": 6,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 10,
     "info_issue_count": 87,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -108,23 +108,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 1201,
-      "average_quality": 96,
+      "average_words": 1212,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-11T12:00:08+00:00",
+      "latest_published": "2026-10-11T14:00:10+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-11T12:17:20.741795+00:00",
+      "last_scrape": "2026-10-11T14:19:54.261387+00:00",
       "last_error": ""
     },
     {
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-11T13:00:19+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-11T14:04:36.997019+00:00",
+      "last_scrape": "2026-10-11T14:19:49.203069+00:00",
       "last_error": ""
     },
     {
@@ -747,21 +748,6 @@
       "published": "2026-10-10T21:30:15+00:00",
       "content_status": "full",
       "word_count": 76,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "66 words",
-      "story_id": "150f9fefd394bdd1",
-      "source": "Toronto Star",
-      "title": "Nickelback Plans Massive 2027 World Tour With Seven Canadian Concert Stops.",
-      "url": "https://www.thestar.com/news/ontario/nickelback-plans-massive-2027-world-tour-with-seven-canadian-concert-stops/article_f2e36135-91cc-5f43-8432-b4d49a5d21f8.html",
-      "published": "2026-10-10T08:00:17+00:00",
-      "content_status": "full",
-      "word_count": 66,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -884,6 +870,36 @@
       "word_count": 371,
       "quality_score": 73,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "99591ada987c88e3",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/business/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_57beb54c-a019-5000-a936-29cfbc2e7cc2.html",
+      "published": "2026-10-11T14:00:10+00:00",
+      "content_status": "full",
+      "word_count": 179,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "99591ada987c88e3",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/business/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_57beb54c-a019-5000-a936-29cfbc2e7cc2.html",
+      "published": "2026-10-11T14:00:10+00:00",
+      "content_status": "full",
+      "word_count": 179,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2105,15 +2121,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "150f9fefd394bdd1",
+      "story_id": "99591ada987c88e3",
       "source": "Toronto Star",
-      "title": "Nickelback Plans Massive 2027 World Tour With Seven Canadian Concert Stops.",
-      "url": "https://www.thestar.com/news/ontario/nickelback-plans-massive-2027-world-tour-with-seven-canadian-concert-stops/article_f2e36135-91cc-5f43-8432-b4d49a5d21f8.html",
-      "published": "2026-10-10T08:00:17+00:00",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/business/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_57beb54c-a019-5000-a936-29cfbc2e7cc2.html",
+      "published": "2026-10-11T14:00:10+00:00",
       "content_status": "full",
-      "word_count": 66,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 179,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4625,6 +4641,47 @@
       ]
     },
     {
+      "id": "99591ada987c88e3",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/business/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_57beb54c-a019-5000-a936-29cfbc2e7cc2.html",
+      "published": "2026-10-11T14:00:10+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 179,
+      "paragraph_count": 1,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8e268385ac964d16",
       "source": "Toronto Star",
       "title": "Elections Alberta 'ready to deliver' as advanced referendum polls to open this week",
@@ -4883,41 +4940,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "150f9fefd394bdd1",
-      "source": "Toronto Star",
-      "title": "Nickelback Plans Massive 2027 World Tour With Seven Canadian Concert Stops.",
-      "url": "https://www.thestar.com/news/ontario/nickelback-plans-massive-2027-world-tour-with-seven-canadian-concert-stops/article_f2e36135-91cc-5f43-8432-b4d49a5d21f8.html",
-      "published": "2026-10-10T08:00:17+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 66,
-      "paragraph_count": 4,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "66 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
