@@ -1,26 +1,53 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-11T11:07:41.901341+00:00",
-  "generated_at_london": "2026-10-11T07:07:41.901341-04:00",
-  "news_generated_at": "2026-10-11T11:02:24.572132+00:00",
+  "generated_at": "2026-10-11T11:19:54.529687+00:00",
+  "generated_at_london": "2026-10-11T07:19:54.529687-04:00",
+  "news_generated_at": "2026-10-11T11:18:08.512640+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 682,
+    "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 97,
-    "review_story_count": 6,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 9,
+    "pass_story_count": 95,
+    "review_story_count": 9,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 15,
     "info_issue_count": 88,
-    "healthy_source_count": 11,
-    "review_source_count": 6,
-    "error_source_count": 0,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
+    "error_source_count": 1,
     "waiting_source_count": 11
   },
   "source_reports": [
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 3,
+      "fail": 2,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 687,
+      "average_quality": 91,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 7,
+        "dom:star:article": 3
+      },
+      "critical_issues": 2,
+      "warning_issues": 6,
+      "info_issues": 10,
+      "latest_published": "2026-10-11T10:00:00+00:00",
+      "found_this_run": 9,
+      "tracked": 30,
+      "last_scrape": "2026-10-11T11:15:52.401434+00:00",
+      "last_error": ""
+    },
     {
       "source": "104.7 Heart FM",
       "status": "review",
@@ -101,32 +128,6 @@
       "last_error": ""
     },
     {
-      "source": "CityNews Canada",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "citynews",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 553,
-      "average_quality": 95,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-10T17:34:03+00:00",
-      "found_this_run": 0,
-      "tracked": 30,
-      "last_scrape": "2026-10-10T17:45:35.767399+00:00",
-      "last_error": "HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Max retries exceeded with url: /category/canada/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Read timed out. (read timeout=8)\"))"
-    },
-    {
       "source": "Global News Canada",
       "status": "review",
       "collector_status": "healthy",
@@ -150,32 +151,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-10T21:38:05.291105+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 7,
-      "review": 0,
-      "fail": 3,
-      "pass_rate": 70,
-      "usable_body_rate": 100,
-      "average_words": 779,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 3,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-11T10:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-11T10:14:07.721920+00:00",
       "last_error": ""
     },
     {
@@ -224,7 +199,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -496,6 +471,32 @@
       "last_error": ""
     },
     {
+      "source": "CityNews Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "citynews",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 553,
+      "average_quality": 95,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-10T17:34:03+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-10T17:45:35.767399+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Fanshawe College Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-10T16:42:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-11T11:00:08.781413+00:00",
+      "last_scrape": "2026-10-11T11:15:42.458490+00:00",
       "last_error": ""
     },
     {
@@ -762,21 +763,6 @@
       "published": "2026-10-10T08:00:17+00:00",
       "content_status": "full",
       "word_count": 66,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "78 words",
-      "story_id": "a9fb50ea6d095f30",
-      "source": "Toronto Star",
-      "title": "Patrick Corrigan: Patrick Corrigan’s cartoon depicts Alberta Premier Danielle Smith’s balancing act",
-      "url": "https://www.thestar.com/opinion/editorial-cartoons/patrick-corrigan-s-cartoon-depicts-alberta-premier-danielle-smith-s-balancing-act/article_4ee430ca-41df-4493-84a6-d3934f86a05b.html",
-      "published": "2026-10-10T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 78,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -914,6 +900,96 @@
       "word_count": 304,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "58c11c8dd44f547d",
+      "source": "Toronto Star",
+      "title": "Alberta separatists are expected to lose. They’re not preparing to quit",
+      "url": "https://www.thestar.com/politics/federal/alberta-separatists-are-expected-to-lose-they-re-not-preparing-to-quit/article_bdb52770-9427-4b2a-a6b8-2f05d300ebe7.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "58c11c8dd44f547d",
+      "source": "Toronto Star",
+      "title": "Alberta separatists are expected to lose. They’re not preparing to quit",
+      "url": "https://www.thestar.com/politics/federal/alberta-separatists-are-expected-to-lose-they-re-not-preparing-to-quit/article_bdb52770-9427-4b2a-a6b8-2f05d300ebe7.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "635cac980bb962c3",
+      "source": "Toronto Star",
+      "title": "TNT shortage has one company angling to get Canada back in the explosives business",
+      "url": "https://www.thestar.com/politics/federal/tnt-shortage-has-one-company-angling-to-get-canada-back-in-the-explosives-business/article_7dddaafe-cc69-42a0-9d7e-5b44bc2015c4.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "635cac980bb962c3",
+      "source": "Toronto Star",
+      "title": "TNT shortage has one company angling to get Canada back in the explosives business",
+      "url": "https://www.thestar.com/politics/federal/tnt-shortage-has-one-company-angling-to-get-canada-back-in-the-explosives-business/article_7dddaafe-cc69-42a0-9d7e-5b44bc2015c4.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "02b74d220dbc5fb8",
+      "source": "Toronto Star",
+      "title": "Why Alberta’s referendum is a political and personal test for Mark Carney",
+      "url": "https://www.thestar.com/politics/federal/why-alberta-s-referendum-is-a-political-and-personal-test-for-mark-carney/article_f3d466d8-2641-40fc-b0bc-babedabbce1b.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "02b74d220dbc5fb8",
+      "source": "Toronto Star",
+      "title": "Why Alberta’s referendum is a political and personal test for Mark Carney",
+      "url": "https://www.thestar.com/politics/federal/why-alberta-s-referendum-is-a-political-and-personal-test-for-mark-carney/article_f3d466d8-2641-40fc-b0bc-babedabbce1b.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2059,21 +2135,6 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3dd4d732e368d2fc",
-      "source": "Toronto Star",
-      "title": "'Home' documentary from 'Degrassi' co-creator explores complexities of Ontario encampment",
-      "url": "https://www.thestar.com/entertainment/movies/home-documentary-from-degrassi-co-creator-explores-complexities-of-ontario-encampment/article_48a19935-c411-5662-87c8-b9ec45014331.html",
-      "published": "2026-10-10T08:00:07+00:00",
-      "content_status": "full",
-      "word_count": 879,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
       "detail": "Local score 10/100",
       "story_id": "052b969152450098",
       "source": "Toronto Star",
@@ -2084,6 +2145,21 @@
       "word_count": 117,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "58c11c8dd44f547d",
+      "source": "Toronto Star",
+      "title": "Alberta separatists are expected to lose. They’re not preparing to quit",
+      "url": "https://www.thestar.com/politics/federal/alberta-separatists-are-expected-to-lose-they-re-not-preparing-to-quit/article_bdb52770-9427-4b2a-a6b8-2f05d300ebe7.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2135,21 +2211,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "140aa57df9c33022",
-      "source": "Toronto Star",
-      "title": "He challenged Canada's immigration decision over its ‘copied and pasted’ refusal. A judge ruled in his favour",
-      "url": "https://www.thestar.com/news/canada/court-quashes-canadian-copy-and-paste-immigration-refusal-of-afghan-man/article_a09725f2-3a84-4bce-a21b-1634fb6ce395.html",
-      "published": "2026-10-10T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 570,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "150f9fefd394bdd1",
       "source": "Toronto Star",
       "title": "Nickelback Plans Massive 2027 World Tour With Seven Canadian Concert Stops.",
@@ -2180,15 +2241,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a9fb50ea6d095f30",
+      "story_id": "635cac980bb962c3",
       "source": "Toronto Star",
-      "title": "Patrick Corrigan: Patrick Corrigan’s cartoon depicts Alberta Premier Danielle Smith’s balancing act",
-      "url": "https://www.thestar.com/opinion/editorial-cartoons/patrick-corrigan-s-cartoon-depicts-alberta-premier-danielle-smith-s-balancing-act/article_4ee430ca-41df-4493-84a6-d3934f86a05b.html",
-      "published": "2026-10-10T04:00:00+00:00",
+      "title": "TNT shortage has one company angling to get Canada back in the explosives business",
+      "url": "https://www.thestar.com/politics/federal/tnt-shortage-has-one-company-angling-to-get-canada-back-in-the-explosives-business/article_7dddaafe-cc69-42a0-9d7e-5b44bc2015c4.html",
+      "published": "2026-10-11T04:00:00+00:00",
       "content_status": "full",
-      "word_count": 78,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "02b74d220dbc5fb8",
+      "source": "Toronto Star",
+      "title": "Why Alberta’s referendum is a political and personal test for Mark Carney",
+      "url": "https://www.thestar.com/politics/federal/why-alberta-s-referendum-is-a-political-and-personal-test-for-mark-carney/article_f3d466d8-2641-40fc-b0bc-babedabbce1b.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4689,6 +4765,129 @@
       ]
     },
     {
+      "id": "58c11c8dd44f547d",
+      "source": "Toronto Star",
+      "title": "Alberta separatists are expected to lose. They’re not preparing to quit",
+      "url": "https://www.thestar.com/politics/federal/alberta-separatists-are-expected-to-lose-they-re-not-preparing-to-quit/article_bdb52770-9427-4b2a-a6b8-2f05d300ebe7.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 196,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "635cac980bb962c3",
+      "source": "Toronto Star",
+      "title": "TNT shortage has one company angling to get Canada back in the explosives business",
+      "url": "https://www.thestar.com/politics/federal/tnt-shortage-has-one-company-angling-to-get-canada-back-in-the-explosives-business/article_7dddaafe-cc69-42a0-9d7e-5b44bc2015c4.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 209,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "02b74d220dbc5fb8",
+      "source": "Toronto Star",
+      "title": "Why Alberta’s referendum is a political and personal test for Mark Carney",
+      "url": "https://www.thestar.com/politics/federal/why-alberta-s-referendum-is-a-political-and-personal-test-for-mark-carney/article_f3d466d8-2641-40fc-b0bc-babedabbce1b.html",
+      "published": "2026-10-11T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 203,
+      "paragraph_count": 3,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "58465a2832b19a3c",
       "source": "Toronto Star",
       "title": "B.C.'s Eby asks Doerkson to remove campaign chief over social media slamming Islam",
@@ -4860,99 +5059,6 @@
       "word_count": 945,
       "paragraph_count": 35,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3dd4d732e368d2fc",
-      "source": "Toronto Star",
-      "title": "'Home' documentary from 'Degrassi' co-creator explores complexities of Ontario encampment",
-      "url": "https://www.thestar.com/entertainment/movies/home-documentary-from-degrassi-co-creator-explores-complexities-of-ontario-encampment/article_48a19935-c411-5662-87c8-b9ec45014331.html",
-      "published": "2026-10-10T08:00:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 879,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a9fb50ea6d095f30",
-      "source": "Toronto Star",
-      "title": "Patrick Corrigan: Patrick Corrigan’s cartoon depicts Alberta Premier Danielle Smith’s balancing act",
-      "url": "https://www.thestar.com/opinion/editorial-cartoons/patrick-corrigan-s-cartoon-depicts-alberta-premier-danielle-smith-s-balancing-act/article_4ee430ca-41df-4493-84a6-d3934f86a05b.html",
-      "published": "2026-10-10T04:00:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 78,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "78 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "140aa57df9c33022",
-      "source": "Toronto Star",
-      "title": "He challenged Canada's immigration decision over its ‘copied and pasted’ refusal. A judge ruled in his favour",
-      "url": "https://www.thestar.com/news/canada/court-quashes-canadian-copy-and-paste-immigration-refusal-of-afghan-man/article_a09725f2-3a84-4bce-a21b-1634fb6ce395.html",
-      "published": "2026-10-10T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 570,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
