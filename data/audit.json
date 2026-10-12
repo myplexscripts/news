@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-12T22:52:24.697853+00:00",
-  "generated_at_london": "2026-10-12T18:52:24.697853-04:00",
-  "news_generated_at": "2026-10-12T22:49:17.434963+00:00",
+  "generated_at": "2026-10-12T23:06:35.864863+00:00",
+  "generated_at_london": "2026-10-12T19:06:35.864863-04:00",
+  "news_generated_at": "2026-10-12T23:05:28.451979+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 615,
+    "archive_story_count": 614,
     "source_count": 28,
     "audited_story_count": 98,
     "pass_story_count": 94,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 6,
-    "info_issue_count": 83,
+    "info_issue_count": 84,
     "healthy_source_count": 12,
     "review_source_count": 2,
     "error_source_count": 0,
@@ -293,7 +293,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -309,10 +309,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 3,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7f31037db980>, 'Connection to www.londontransit.ca time"
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -457,7 +457,7 @@
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-10-12T19:57:18.700000+00:00",
-      "found_this_run": 5,
+      "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-10-12T20:17:55.405444+00:00",
       "last_error": ""
@@ -473,8 +473,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 297,
-      "average_quality": 72,
+      "average_words": 271,
+      "average_quality": 69,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -482,11 +482,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 6,
-      "latest_published": "2026-10-12T19:07:47.214000+00:00",
+      "info_issues": 7,
+      "latest_published": "2026-10-12T23:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-12T19:16:04.506542+00:00",
+      "last_scrape": "2026-10-12T23:01:51.916822+00:00",
       "last_error": ""
     },
     {
@@ -671,7 +671,7 @@
       "latest_published": "2026-10-12T22:03:47+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-12T22:48:04.677121+00:00",
+      "last_scrape": "2026-10-12T23:03:50.830620+00:00",
       "last_error": ""
     },
     {
@@ -1161,6 +1161,21 @@
       "content_status": "full",
       "word_count": 152,
       "quality_score": 66,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "80ba42e9effccd3e",
+      "source": "CTV News London",
+      "title": "Watch: Mayoral hopefuls square off in CTV News London debate",
+      "url": "https://www.ctvnews.ca/london/article/watch-mayoral-hopefuls-square-off-in-ctv-news-london-debate",
+      "published": "2026-10-12T23:00:00+00:00",
+      "content_status": "full",
+      "word_count": 99,
+      "quality_score": 50,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2147,6 +2162,35 @@
       "issues": []
     },
     {
+      "id": "80ba42e9effccd3e",
+      "source": "CTV News London",
+      "title": "Watch: Mayoral hopefuls square off in CTV News London debate",
+      "url": "https://www.ctvnews.ca/london/article/watch-mayoral-hopefuls-square-off-in-ctv-news-london-debate",
+      "published": "2026-10-12T23:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 99,
+      "paragraph_count": 4,
+      "inline_image_count": 1,
+      "quality_score": 50,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 35,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "cc03695877eb101f",
       "source": "CTV News London",
       "title": "“We’re laughing every single night’: Senior theatre company prepares for the Matchmaker at the Grand Theatre",
@@ -2384,28 +2428,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "7ddef55ddaf52bbe",
-      "source": "CTV News London",
-      "title": "‘I’ve been in Canada for 10 days’; Newcomer Day helps connect Londoners with services and organizations",
-      "url": "https://www.ctvnews.ca/london/article/ive-been-in-canada-for-10-days-newcomer-day-helps-connect-londoners-with-services-and-organizations",
-      "published": "2026-10-10T19:43:02.776000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 356,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": []
     },
     {
       "id": "833da8429911d0b4",
