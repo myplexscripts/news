@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-12T15:10:32.644512+00:00",
-  "generated_at_london": "2026-10-12T11:10:32.644512-04:00",
-  "news_generated_at": "2026-10-12T15:05:14.224982+00:00",
+  "generated_at": "2026-10-12T15:21:39.585666+00:00",
+  "generated_at_london": "2026-10-12T11:21:39.585666-04:00",
+  "news_generated_at": "2026-10-12T15:20:16.929569+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 650,
+    "archive_story_count": 651,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 95,
-    "review_story_count": 4,
+    "pass_story_count": 94,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 83,
     "healthy_source_count": 11,
     "review_source_count": 3,
@@ -80,24 +80,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 857,
-      "average_quality": 96,
+      "average_words": 587,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-12T14:45:56+00:00",
+      "latest_published": "2026-10-12T14:58:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-12T15:03:16.920917+00:00",
+      "last_scrape": "2026-10-12T15:18:40.045114+00:00",
       "last_error": ""
     },
     {
@@ -553,19 +554,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 346,
-      "average_quality": 96,
+      "average_words": 302,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-11T12:50:55+00:00",
+      "latest_published": "2026-10-12T15:06:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-11T13:02:55.095939+00:00",
+      "last_scrape": "2026-10-12T15:18:32.146849+00:00",
       "last_error": ""
     },
     {
@@ -671,7 +673,7 @@
       "latest_published": "2026-10-12T10:00:50+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-12T15:03:14.287548+00:00",
+      "last_scrape": "2026-10-12T15:18:37.774617+00:00",
       "last_error": ""
     },
     {
@@ -847,6 +849,36 @@
       "word_count": 469,
       "quality_score": 85,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "657865facd1b2ff7",
+      "source": "Toronto Star",
+      "title": "Toronto voters want action on affordability, housing ahead of municipal election",
+      "url": "https://www.thestar.com/news/ontario/toronto-voters-want-action-on-affordability-housing-ahead-of-municipal-election/article_d97e164c-a6c4-5e49-9c1a-193fb5543953.html",
+      "published": "2026-10-12T14:58:56+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "657865facd1b2ff7",
+      "source": "Toronto Star",
+      "title": "Toronto voters want action on affordability, housing ahead of municipal election",
+      "url": "https://www.thestar.com/news/ontario/toronto-voters-want-action-on-affordability-housing-ahead-of-municipal-election/article_d97e164c-a6c4-5e49-9c1a-193fb5543953.html",
+      "published": "2026-10-12T14:58:56+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1332,6 +1364,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "efd146a0ba2cf8c0",
+      "source": "Global News Canada",
+      "title": "1 dead in collision between motorcycle and SUV in Ottawa",
+      "url": "https://globalnews.ca/news/12099663/fata-motorcycle-collision-ottawa",
+      "published": "2026-10-12T15:06:14+00:00",
+      "content_status": "full",
+      "word_count": 99,
+      "quality_score": 61,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 10/100",
       "story_id": "38e1064ec6ccc058",
       "source": "Global News Canada",
@@ -1445,21 +1492,6 @@
       "published": "2026-10-11T12:50:55+00:00",
       "content_status": "full",
       "word_count": 320,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0f95714d70f8bc38",
-      "source": "Global News Canada",
-      "title": "Second crossing debate resurfaces in Central Okanagan during B.C. election campaign",
-      "url": "https://globalnews.ca/news/12098056/second-crossing-debate-resurfaces-in-central-okanagan-during-b-c-election-campaign",
-      "published": "2026-10-10T02:16:45+00:00",
-      "content_status": "full",
-      "word_count": 536,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1933,21 +1965,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "963ebb787bc82e54",
-      "source": "Toronto Star",
-      "title": "Book excerpt: When Canadians faced danger, defiance — and gruesome evidence we had to preserve",
-      "url": "https://www.thestar.com/news/canada/book-excerpt-when-canadians-faced-danger-defiance-and-gruesome-evidence-we-had-to-preserve/article_660006dd-37f0-4a25-939b-100291b1c30e.html",
-      "published": "2026-10-11T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 2922,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e157c1bf3ab1b284",
       "source": "Toronto Star",
       "title": "Canada Disability Benefit payments go out this week. Here’s how it works",
@@ -2017,6 +2034,21 @@
       "word_count": 2095,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "657865facd1b2ff7",
+      "source": "Toronto Star",
+      "title": "Toronto voters want action on affordability, housing ahead of municipal election",
+      "url": "https://www.thestar.com/news/ontario/toronto-voters-want-action-on-affordability-housing-ahead-of-municipal-election/article_d97e164c-a6c4-5e49-9c1a-193fb5543953.html",
+      "published": "2026-10-12T14:58:56+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3137,6 +3169,35 @@
       ]
     },
     {
+      "id": "efd146a0ba2cf8c0",
+      "source": "Global News Canada",
+      "title": "1 dead in collision between motorcycle and SUV in Ottawa",
+      "url": "https://globalnews.ca/news/12099663/fata-motorcycle-collision-ottawa",
+      "published": "2026-10-12T15:06:14+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 99,
+      "paragraph_count": 6,
+      "inline_image_count": 1,
+      "quality_score": 61,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c62985846af9de85",
       "source": "Global News Canada",
       "title": "Saskatoon woman transforming discarded saris, giving new purpose",
@@ -3383,35 +3444,6 @@
       "word_count": 432,
       "paragraph_count": 16,
       "inline_image_count": 6,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0f95714d70f8bc38",
-      "source": "Global News Canada",
-      "title": "Second crossing debate resurfaces in Central Okanagan during B.C. election campaign",
-      "url": "https://globalnews.ca/news/12098056/second-crossing-debate-resurfaces-in-central-okanagan-during-b-c-election-campaign",
-      "published": "2026-10-10T02:16:45+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 536,
-      "paragraph_count": 18,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4339,6 +4371,47 @@
       ]
     },
     {
+      "id": "657865facd1b2ff7",
+      "source": "Toronto Star",
+      "title": "Toronto voters want action on affordability, housing ahead of municipal election",
+      "url": "https://www.thestar.com/news/ontario/toronto-voters-want-action-on-affordability-housing-ahead-of-municipal-election/article_d97e164c-a6c4-5e49-9c1a-193fb5543953.html",
+      "published": "2026-10-12T14:58:56+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 222,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9cda8e23aba9be62",
       "source": "Toronto Star",
       "title": "Two-vehicle collision leaves one dead, two injured in Scarborough",
@@ -4591,35 +4664,6 @@
       "word_count": 885,
       "paragraph_count": 36,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "963ebb787bc82e54",
-      "source": "Toronto Star",
-      "title": "Book excerpt: When Canadians faced danger, defiance — and gruesome evidence we had to preserve",
-      "url": "https://www.thestar.com/news/canada/book-excerpt-when-canadians-faced-danger-defiance-and-gruesome-evidence-we-had-to-preserve/article_660006dd-37f0-4a25-939b-100291b1c30e.html",
-      "published": "2026-10-11T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 2922,
-      "paragraph_count": 40,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
