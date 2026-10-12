@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-12T20:04:34.299008+00:00",
-  "generated_at_london": "2026-10-12T16:04:34.299008-04:00",
-  "news_generated_at": "2026-10-12T20:00:11.057485+00:00",
+  "generated_at": "2026-10-12T20:16:51.421088+00:00",
+  "generated_at_london": "2026-10-12T16:16:51.421088-04:00",
+  "news_generated_at": "2026-10-12T20:15:43.114826+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 621,
     "source_count": 28,
     "audited_story_count": 98,
-    "pass_story_count": 94,
-    "review_story_count": 4,
+    "pass_story_count": 95,
+    "review_story_count": 3,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 7,
+    "warning_issue_count": 6,
     "info_issue_count": 82,
-    "healthy_source_count": 12,
-    "review_source_count": 2,
+    "healthy_source_count": 13,
+    "review_source_count": 1,
     "error_source_count": 0,
     "waiting_source_count": 14
   },
@@ -46,32 +46,6 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
-    },
-    {
-      "source": "CTV News Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 420,
-      "average_quality": 78,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 12,
-      "latest_published": "2026-10-12T13:37:50.339000+00:00",
-      "found_this_run": 5,
-      "tracked": 30,
-      "last_scrape": "2026-10-12T13:49:54.249149+00:00",
       "last_error": ""
     },
     {
@@ -125,7 +99,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -141,10 +115,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 1,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x7f23b6590fb0>, 'Connection to weather.gc"
     },
     {
       "source": "Fanshawe College Newsroom",
@@ -213,7 +187,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 7,
+      "found_this_run": 6,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -389,7 +363,7 @@
     {
       "source": "Thames Valley District School Board",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -405,10 +379,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "106.9 The X",
@@ -434,6 +408,32 @@
       "found_this_run": 10,
       "tracked": 7,
       "last_scrape": "2026-10-07T19:21:16.579506+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 385,
+      "average_quality": 76,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 12,
+      "latest_published": "2026-10-12T19:57:18.700000+00:00",
+      "found_this_run": 6,
+      "tracked": 30,
+      "last_scrape": "2026-10-12T20:13:36.218956+00:00",
       "last_error": ""
     },
     {
@@ -645,7 +645,7 @@
       "latest_published": "2026-10-12T19:01:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-12T19:58:16.257969+00:00",
+      "last_scrape": "2026-10-12T20:13:42.080426+00:00",
       "last_error": ""
     },
     {
@@ -819,21 +819,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "3 consecutive images",
-      "story_id": "340dc317f1b3dbeb",
-      "source": "CTV News Canada",
-      "title": "Flu season is starting early. Here’s what Canadians need to know",
-      "url": "https://www.ctvnews.ca/canada/article/flu-season-is-starting-early-heres-what-canadians-need-to-know",
-      "published": "2026-10-10T20:25:53.717000+00:00",
-      "content_status": "full",
-      "word_count": 469,
-      "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -958,21 +943,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "340dc317f1b3dbeb",
-      "source": "CTV News Canada",
-      "title": "Flu season is starting early. Here’s what Canadians need to know",
-      "url": "https://www.ctvnews.ca/canada/article/flu-season-is-starting-early-heres-what-canadians-need-to-know",
-      "published": "2026-10-10T20:25:53.717000+00:00",
-      "content_status": "full",
-      "word_count": 469,
-      "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "19223e70f7936ba6",
       "source": "CTV News Canada",
       "title": "GM recalls more trucks over side curtain airbag risk",
@@ -1026,6 +996,21 @@
       "content_status": "full",
       "word_count": 756,
       "quality_score": 91,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7943b71b07d9132d",
+      "source": "CTV News Canada",
+      "title": "SIU invokes mandate after man died in OPP custody in Orillia",
+      "url": "https://www.ctvnews.ca/canada/article/siu-invokes-mandate-after-man-died-in-opp-custody-in-orillia",
+      "published": "2026-10-12T19:57:18.700000+00:00",
+      "content_status": "full",
+      "word_count": 127,
+      "quality_score": 57,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -3339,6 +3324,35 @@
       ]
     },
     {
+      "id": "7943b71b07d9132d",
+      "source": "CTV News Canada",
+      "title": "SIU invokes mandate after man died in OPP custody in Orillia",
+      "url": "https://www.ctvnews.ca/canada/article/siu-invokes-mandate-after-man-died-in-opp-custody-in-orillia",
+      "published": "2026-10-12T19:57:18.700000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 127,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "98999aebbe3bd1fa",
       "source": "CTV News Canada",
       "title": "Trump’s diesel deal with Putin in ‘direct opposition’ to Ukraine’s efforts, Carney’s office says",
@@ -3602,41 +3616,6 @@
           "code": "missing_hero_image",
           "message": "Story has no hero image.",
           "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "340dc317f1b3dbeb",
-      "source": "CTV News Canada",
-      "title": "Flu season is starting early. Here’s what Canadians need to know",
-      "url": "https://www.ctvnews.ca/canada/article/flu-season-is-starting-early-heres-what-canadians-need-to-know",
-      "published": "2026-10-10T20:25:53.717000+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 469,
-      "paragraph_count": 21,
-      "inline_image_count": 5,
-      "quality_score": 85,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "3 consecutive images"
         },
         {
           "severity": "info",
