@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-12T22:20:56.422120+00:00",
-  "generated_at_london": "2026-10-12T18:20:56.422120-04:00",
+  "generated_at": "2026-10-12T22:24:47.205688+00:00",
+  "generated_at_london": "2026-10-12T18:24:47.205688-04:00",
   "news_generated_at": "2026-10-12T22:19:26.734997+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 616,
     "source_count": 28,
     "audited_story_count": 98,
-    "pass_story_count": 95,
+    "pass_story_count": 94,
     "review_story_count": 3,
-    "fail_story_count": 0,
-    "critical_issue_count": 0,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
     "warning_issue_count": 6,
     "info_issue_count": 83,
-    "healthy_source_count": 13,
-    "review_source_count": 1,
+    "healthy_source_count": 12,
+    "review_source_count": 2,
     "error_source_count": 0,
     "waiting_source_count": 14
   },
@@ -46,6 +46,32 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 568,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-12T20:55:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-12T21:15:18.437992+00:00",
       "last_error": ""
     },
     {
@@ -632,13 +658,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 929,
-      "average_quality": 86,
+      "average_words": 935,
+      "average_quality": 85,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:postmedia:article:strict": 1,
-        "reader:semantic-rich-v1": 3,
-        "dom:semantic-rich-v1": 6
+        "dom:semantic-rich-v1": 7,
+        "reader:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -676,32 +701,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 573,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-12T20:55:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-12T21:15:18.437992+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -729,6 +728,21 @@
     }
   ],
   "issues": [
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "59 words",
+      "story_id": "0dd39992997535b9",
+      "source": "Toronto Star",
+      "title": "1 dead in collision between motorcycle and SUV in Ottawa",
+      "url": "https://www.thestar.com/news/ontario/1-dead-in-collision-between-motorcycle-and-suv-in-ottawa/article_de8d577e-e86f-544c-9d2d-43da31868685.html",
+      "published": "2026-10-12T13:16:21+00:00",
+      "content_status": "full",
+      "word_count": 59,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
     {
       "severity": "warning",
       "code": "too_many_images",
@@ -1520,9 +1534,9 @@
       "url": "https://nationalpost.com/news/canada-stronger-together-than-apart-carney-says-in-thanksgiving-message-ahead-of-alberta-visit",
       "published": "2026-10-12T22:03:47+00:00",
       "content_status": "full",
-      "word_count": 865,
-      "quality_score": 92,
-      "extraction_method": "dom:postmedia:article:strict"
+      "word_count": 924,
+      "quality_score": 88,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1895,7 +1909,7 @@
       "url": "https://www.thestar.com/news/ontario/1-dead-in-collision-between-motorcycle-and-suv-in-ottawa/article_de8d577e-e86f-544c-9d2d-43da31868685.html",
       "published": "2026-10-12T13:16:21+00:00",
       "content_status": "full",
-      "word_count": 107,
+      "word_count": 59,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3979,12 +3993,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 865,
-      "paragraph_count": 26,
+      "word_count": 924,
+      "paragraph_count": 25,
       "inline_image_count": 0,
-      "quality_score": 92,
+      "quality_score": 88,
       "quality_grade": "excellent",
-      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
@@ -4437,21 +4451,27 @@
       "title": "1 dead in collision between motorcycle and SUV in Ottawa",
       "url": "https://www.thestar.com/news/ontario/1-dead-in-collision-between-motorcycle-and-suv-in-ottawa/article_de8d577e-e86f-544c-9d2d-43da31868685.html",
       "published": "2026-10-12T13:16:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 107,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
+      "word_count": 59,
+      "paragraph_count": 4,
+      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "59 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
