@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-12T13:37:24.623305+00:00",
-  "generated_at_london": "2026-10-12T09:37:24.623305-04:00",
-  "news_generated_at": "2026-10-12T13:32:17.363592+00:00",
+  "generated_at": "2026-10-12T13:48:54.340202+00:00",
+  "generated_at_london": "2026-10-12T09:48:54.340202-04:00",
+  "news_generated_at": "2026-10-12T13:47:26.516276+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 649,
+    "archive_story_count": 650,
     "source_count": 28,
     "audited_story_count": 100,
     "pass_story_count": 95,
@@ -59,7 +59,7 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 410,
+      "average_words": 420,
       "average_quality": 78,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -68,16 +68,16 @@
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 12,
-      "latest_published": "2026-10-12T11:06:15.760000+00:00",
+      "latest_published": "2026-10-12T13:37:50.339000+00:00",
       "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-10-12T11:15:38.665369+00:00",
+      "last_scrape": "2026-10-12T13:45:18.697833+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -95,10 +95,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-12T04:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-12T11:11:00.962775+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -671,7 +671,7 @@
       "latest_published": "2026-10-12T10:00:50+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-12T13:30:13.838528+00:00",
+      "last_scrape": "2026-10-12T13:45:24.555318+00:00",
       "last_error": ""
     },
     {
@@ -1033,21 +1033,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "124b81eb5a896613",
-      "source": "CTV News Canada",
-      "title": "Nova Scotia shelter serves up 2,000 Thanksgiving dinners",
-      "url": "https://www.ctvnews.ca/canada/article/nova-scotia-shelter-serves-up-2000-thanksgiving-dinners",
-      "published": "2026-10-09T23:49:59.088000+00:00",
-      "content_status": "full",
-      "word_count": 379,
-      "quality_score": 80,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "ae666d4120eea3d6",
       "source": "CTV News Canada",
       "title": "Ottawa food bank holds donation drive to meet ‘never seen before’ demand",
@@ -1056,6 +1041,21 @@
       "content_status": "full",
       "word_count": 756,
       "quality_score": 91,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "98999aebbe3bd1fa",
+      "source": "CTV News Canada",
+      "title": "Trump’s diesel deal with Putin in ‘direct opposition’ to Ukraine’s efforts, Carney’s office says",
+      "url": "https://www.ctvnews.ca/canada/article/trumps-diesel-deal-with-putin-in-direct-opposition-to-ukraines-efforts-carneys-office-says",
+      "published": "2026-10-12T13:37:50.339000+00:00",
+      "content_status": "full",
+      "word_count": 475,
+      "quality_score": 85,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -3405,6 +3405,35 @@
       ]
     },
     {
+      "id": "98999aebbe3bd1fa",
+      "source": "CTV News Canada",
+      "title": "Trump’s diesel deal with Putin in ‘direct opposition’ to Ukraine’s efforts, Carney’s office says",
+      "url": "https://www.ctvnews.ca/canada/article/trumps-diesel-deal-with-putin-in-direct-opposition-to-ukraines-efforts-carneys-office-says",
+      "published": "2026-10-12T13:37:50.339000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 475,
+      "paragraph_count": 14,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e7cee0be311aa54c",
       "source": "CTV News Canada",
       "title": "A new airport facility will speed up vital deliveries to Canada’s northern communities",
@@ -3675,35 +3704,6 @@
           "message": "Several images appear consecutively with no article text between them.",
           "detail": "3 consecutive images"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "124b81eb5a896613",
-      "source": "CTV News Canada",
-      "title": "Nova Scotia shelter serves up 2,000 Thanksgiving dinners",
-      "url": "https://www.ctvnews.ca/canada/article/nova-scotia-shelter-serves-up-2000-thanksgiving-dinners",
-      "published": "2026-10-09T23:49:59.088000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 379,
-      "paragraph_count": 12,
-      "inline_image_count": 2,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
