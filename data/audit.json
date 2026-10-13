@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-13T18:16:43.567797+00:00",
-  "generated_at_london": "2026-10-13T14:16:43.567797-04:00",
-  "news_generated_at": "2026-10-13T18:11:52.699470+00:00",
+  "generated_at": "2026-10-13T18:28:53.801532+00:00",
+  "generated_at_london": "2026-10-13T14:28:53.801532-04:00",
+  "news_generated_at": "2026-10-13T18:27:25.788955+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 602,
+    "archive_story_count": 601,
     "source_count": 28,
     "audited_story_count": 99,
     "pass_story_count": 92,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 12,
     "info_issue_count": 86,
-    "healthy_source_count": 12,
-    "review_source_count": 2,
+    "healthy_source_count": 11,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -101,6 +101,32 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 249,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-13T18:02:06+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-13T18:10:21.490311+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -146,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -555,19 +581,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 314,
-      "average_quality": 96,
+      "average_words": 308,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-13T17:22:28+00:00",
+      "latest_published": "2026-10-13T18:10:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T17:23:25.146009+00:00",
+      "last_scrape": "2026-10-13T18:25:47.518200+00:00",
       "last_error": ""
     },
     {
@@ -660,46 +687,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 850,
-      "average_quality": 86,
+      "average_words": 912,
+      "average_quality": 89,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 2,
         "dom:semantic-rich-v1": 7,
-        "reader:semantic-rich-v1": 3
+        "reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-13T17:47:28+00:00",
+      "latest_published": "2026-10-13T18:13:19+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T18:10:19.949305+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 249,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-13T18:02:06+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-13T18:10:21.490311+00:00",
+      "last_scrape": "2026-10-13T18:25:56.079732+00:00",
       "last_error": ""
     },
     {
@@ -1575,15 +1577,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "66acf49382749483",
+      "story_id": "0f860e08f5399c72",
       "source": "Global News Canada",
-      "title": "Storm to bring up to 60 millimetres of rain to parts of Ontario, Quebec",
-      "url": "https://globalnews.ca/news/12100390/ontario-quebec-heavy-rainfall-storm-warnings",
-      "published": "2026-10-13T14:02:45+00:00",
+      "title": "Swath of Ontario boreal forest larger than Toronto to be protected from development",
+      "url": "https://globalnews.ca/news/12100862/ontario-boreal-forest-development-protection",
+      "published": "2026-10-13T18:10:55+00:00",
       "content_status": "full",
-      "word_count": 233,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 175,
+      "quality_score": 70,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1725,6 +1727,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "804133bff25eb23a",
+      "source": "National Post",
+      "title": "Activist calls on Carney to intervene after Palestinian president postpones elections",
+      "url": "https://nationalpost.com/news/activist-calls-on-carney-to-intervene-after-palestinian-president-postpones-elections",
+      "published": "2026-10-13T18:13:19+00:00",
+      "content_status": "full",
+      "word_count": 997,
+      "quality_score": 94,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "f1f74c5187726fc3",
       "source": "National Post",
       "title": "Canada 'stronger together' than apart, Carney says in Thanksgiving message ahead of Alberta visit",
@@ -1785,21 +1802,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d98b03218869aef5",
-      "source": "National Post",
-      "title": "Democratic congresswoman Ilhan Omar's home raided by U.S. Homeland Security agents",
-      "url": "https://nationalpost.com/news/canada/democratic-congresswoman-ilhan-omars-home-raided-by-u-s-homeland-security-agents",
-      "published": "2026-10-12T19:01:56+00:00",
-      "content_status": "full",
-      "word_count": 518,
-      "quality_score": 74,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "c1d2a4b9230079b2",
       "source": "National Post",
       "title": "Letting Canadians 'know when to be upset': Introducing Benchmark Canada",
@@ -1815,15 +1817,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "35bea8cced391fe0",
+      "story_id": "b87dd2de879637ae",
       "source": "National Post",
-      "title": "Violent incidents caught on camera during anti-Israel protests in Toronto and Montreal",
-      "url": "https://nationalpost.com/news/anti-israel-protest-toronto-montreal-camera",
-      "published": "2026-10-12T17:19:21+00:00",
+      "title": "Man arrested in connection with Israeli flags set alight in Toronto: police",
+      "url": "https://nationalpost.com/news/canada/man-arrested-in-connection-with-israeli-flags-set-alight-in-toronto-police",
+      "published": "2026-10-13T18:09:49+00:00",
       "content_status": "full",
-      "word_count": 422,
-      "quality_score": 78,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 565,
+      "quality_score": 87,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -3275,6 +3277,35 @@
       ]
     },
     {
+      "id": "0f860e08f5399c72",
+      "source": "Global News Canada",
+      "title": "Swath of Ontario boreal forest larger than Toronto to be protected from development",
+      "url": "https://globalnews.ca/news/12100862/ontario-boreal-forest-development-protection",
+      "published": "2026-10-13T18:10:55+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 175,
+      "paragraph_count": 6,
+      "inline_image_count": 2,
+      "quality_score": 70,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1a385435128640f1",
       "source": "Global News Canada",
       "title": "Canadians with children more likely to rely on charities, non-profits: survey",
@@ -3521,35 +3552,6 @@
       "word_count": 296,
       "paragraph_count": 11,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "66acf49382749483",
-      "source": "Global News Canada",
-      "title": "Storm to bring up to 60 millimetres of rain to parts of Ontario, Quebec",
-      "url": "https://globalnews.ca/news/12100390/ontario-quebec-heavy-rainfall-storm-warnings",
-      "published": "2026-10-13T14:02:45+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 233,
-      "paragraph_count": 9,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4199,6 +4201,64 @@
       ]
     },
     {
+      "id": "804133bff25eb23a",
+      "source": "National Post",
+      "title": "Activist calls on Carney to intervene after Palestinian president postpones elections",
+      "url": "https://nationalpost.com/news/activist-calls-on-carney-to-intervene-after-palestinian-president-postpones-elections",
+      "published": "2026-10-13T18:13:19+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 997,
+      "paragraph_count": 23,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "b87dd2de879637ae",
+      "source": "National Post",
+      "title": "Man arrested in connection with Israeli flags set alight in Toronto: police",
+      "url": "https://nationalpost.com/news/canada/man-arrested-in-connection-with-israeli-flags-set-alight-in-toronto-police",
+      "published": "2026-10-13T18:09:49+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 565,
+      "paragraph_count": 15,
+      "inline_image_count": 0,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e5f499247ff49c48",
       "source": "National Post",
       "title": "'I did everything for nothing': Pearson Airport gold heist ringleader says fortune lost",
@@ -4419,64 +4479,6 @@
       "quality_score": 88,
       "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d98b03218869aef5",
-      "source": "National Post",
-      "title": "Democratic congresswoman Ilhan Omar's home raided by U.S. Homeland Security agents",
-      "url": "https://nationalpost.com/news/canada/democratic-congresswoman-ilhan-omars-home-raided-by-u-s-homeland-security-agents",
-      "published": "2026-10-12T19:01:56+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 518,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 74,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "35bea8cced391fe0",
-      "source": "National Post",
-      "title": "Violent incidents caught on camera during anti-Israel protests in Toronto and Montreal",
-      "url": "https://nationalpost.com/news/anti-israel-protest-toronto-montreal-camera",
-      "published": "2026-10-12T17:19:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 422,
-      "paragraph_count": 12,
-      "inline_image_count": 2,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
