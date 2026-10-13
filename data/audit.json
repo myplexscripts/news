@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-13T19:46:07.992022+00:00",
-  "generated_at_london": "2026-10-13T15:46:07.992022-04:00",
+  "generated_at": "2026-10-13T19:49:41.606794+00:00",
+  "generated_at_london": "2026-10-13T15:49:41.606794-04:00",
   "news_generated_at": "2026-10-13T19:45:01.053545+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 606,
+    "archive_story_count": 605,
     "source_count": 28,
     "audited_story_count": 99,
     "pass_story_count": 92,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 12,
-    "info_issue_count": 87,
+    "info_issue_count": 88,
     "healthy_source_count": 12,
     "review_source_count": 2,
     "error_source_count": 1,
@@ -532,8 +532,7 @@
       "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:citynews:article": 1,
-        "dom:semantic-rich-v1": 1,
+        "dom:semantic-rich-v1": 2,
         "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
@@ -635,16 +634,15 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 477,
-      "average_quality": 74,
-      "primary_method": "dom:generic:article",
+      "average_words": 864,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:generic:article": 1,
-        "reader:semantic-rich-v1": 1
+        "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
+      "info_issues": 2,
       "latest_published": "2026-10-08T16:32:13+00:00",
       "found_this_run": 10,
       "tracked": 2,
@@ -1343,9 +1341,9 @@
       "url": "https://toronto.citynews.ca/2026/10/13/bc-photojournalist-documents-ice-operations-rural-us",
       "published": "2026-10-13T19:25:16+00:00",
       "content_status": "full",
-      "word_count": 355,
+      "word_count": 358,
       "quality_score": 81,
-      "extraction_method": "dom:citynews:article"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1689,6 +1687,21 @@
       "published": "2026-10-08T14:56:19+00:00",
       "content_status": "full",
       "word_count": 821,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d8fa7cb198117a25",
+      "source": "Middlesex County",
+      "title": "Notice of Intention to Pass a Procedure By-Law",
+      "url": "https://www.middlesex.ca/news/notice-intention-pass-procedure-law",
+      "published": "2026-10-08T16:32:13+00:00",
+      "content_status": "full",
+      "word_count": 908,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3254,20 +3267,27 @@
       "url": "https://www.middlesex.ca/news/notice-intention-pass-procedure-law",
       "published": "2026-10-08T16:32:13+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
-      "content_status": "partial",
-      "word_count": 133,
-      "paragraph_count": 5,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 908,
+      "paragraph_count": 21,
       "inline_image_count": 0,
-      "quality_score": 51,
-      "quality_grade": "partial",
-      "extraction_method": "dom:generic:article",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "generic",
-      "local_score": 22,
-      "issues": []
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
     },
     {
       "id": "be5ff3afcbb18df3",
@@ -4814,12 +4834,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 355,
-      "paragraph_count": 13,
+      "word_count": 358,
+      "paragraph_count": 14,
       "inline_image_count": 3,
       "quality_score": 81,
       "quality_grade": "good",
-      "extraction_method": "dom:citynews:article",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
