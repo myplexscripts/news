@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-13T19:03:13.813879+00:00",
-  "generated_at_london": "2026-10-13T15:03:13.813879-04:00",
-  "news_generated_at": "2026-10-13T18:58:21.670940+00:00",
+  "generated_at": "2026-10-13T19:15:37.563200+00:00",
+  "generated_at_london": "2026-10-13T15:15:37.563200-04:00",
+  "news_generated_at": "2026-10-13T19:14:10.789734+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 603,
+    "archive_story_count": 604,
     "source_count": 28,
     "audited_story_count": 98,
-    "pass_story_count": 91,
-    "review_story_count": 6,
+    "pass_story_count": 90,
+    "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 12,
+    "warning_issue_count": 14,
     "info_issue_count": 86,
     "healthy_source_count": 11,
     "review_source_count": 3,
@@ -103,28 +103,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 258,
-      "average_quality": 96,
+      "average_words": 248,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-13T18:24:55+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-13T18:37:27+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T18:41:20.287557+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-13T19:12:36.674800+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -554,12 +555,13 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 667,
-      "average_quality": 96,
+      "average_words": 663,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "dom:semantic-rich-v1": 1,
-        "reader:semantic-rich-v1": 9
+        "reader:semantic-rich-v1": 8,
+        "dom:citynews:article": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -567,7 +569,7 @@
       "latest_published": "2026-10-13T17:45:52+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T17:55:22.465936+00:00",
+      "last_scrape": "2026-10-13T19:12:40.318109+00:00",
       "last_error": ""
     },
     {
@@ -581,19 +583,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 332,
+      "average_words": 422,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-13T18:54:18+00:00",
+      "latest_published": "2026-10-13T19:06:08+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T18:56:31.612038+00:00",
+      "last_scrape": "2026-10-13T19:12:28.152792+00:00",
       "last_error": ""
     },
     {
@@ -699,7 +702,7 @@
       "latest_published": "2026-10-13T18:40:50+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T18:56:41.610042+00:00",
+      "last_scrape": "2026-10-13T19:12:35.016752+00:00",
       "last_error": ""
     },
     {
@@ -924,6 +927,36 @@
       "word_count": 1326,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "dafe8ceeaf5905ef",
+      "source": "Toronto Star",
+      "title": "Flu vaccine appointments are now open in Quebec as early flu season looms",
+      "url": "https://www.thestar.com/life/health-wellness/flu-vaccine-appointments-are-now-open-in-quebec-as-early-flu-season-looms/article_b098f436-729f-5fc0-9ea6-e71f285248bd.html",
+      "published": "2026-10-13T18:37:27+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "dafe8ceeaf5905ef",
+      "source": "Toronto Star",
+      "title": "Flu vaccine appointments are now open in Quebec as early flu season looms",
+      "url": "https://www.thestar.com/life/health-wellness/flu-vaccine-appointments-are-now-open-in-quebec-as-early-flu-season-looms/article_b098f436-729f-5fc0-9ea6-e71f285248bd.html",
+      "published": "2026-10-13T18:37:27+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1320,6 +1353,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "0d7de04859143f4f",
+      "source": "CityNews Canada",
+      "title": "B.C.’s Eby declines to reveal size of donation after $10-a-day daycare revelation",
+      "url": "https://toronto.citynews.ca/2026/10/13/b-c-party-leaders-make-campaign-stop-at-vancouver-trade-board-ahead-of-election",
+      "published": "2026-10-13T08:00:13+00:00",
+      "content_status": "full",
+      "word_count": 322,
+      "quality_score": 76,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "1f80a76a63a46a26",
       "source": "CityNews Canada",
       "title": "Canada joins allies in expressing regret over postponed Palestinian elections",
@@ -1440,21 +1488,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "882097ef04a0e60e",
-      "source": "CityNews Canada",
-      "title": "‘Breaking Bad’ actor, RJ Mitte, dead at 34: report",
-      "url": "https://toronto.citynews.ca/2026/10/12/breaking-bad-actor-rj-mitte-dead-at-34-reports",
-      "published": "2026-10-12T21:02:48+00:00",
-      "content_status": "full",
-      "word_count": 358,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "5c488d83e8d82caf",
       "source": "Global News Canada",
       "title": "Bike lane advocates to challenge Ford government’s removal plans at Supreme Court",
@@ -1477,21 +1510,6 @@
       "published": "2026-10-13T17:22:28+00:00",
       "content_status": "full",
       "word_count": 270,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "eab7961e655c27a3",
-      "source": "Global News Canada",
-      "title": "Carney addresses Alberta separation referendum in Thanksgiving message",
-      "url": "https://globalnews.ca/news/12100447/mark-carney-thanksgiving-alberta",
-      "published": "2026-10-13T14:25:34+00:00",
-      "content_status": "full",
-      "word_count": 258,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1584,6 +1602,21 @@
       "word_count": 175,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "37cf5bd9b12a212c",
+      "source": "Global News Canada",
+      "title": "What could happen to home prices if the foreign buyers ban expires?",
+      "url": "https://globalnews.ca/news/12100516/foreign-homebuyers-ban-expiration",
+      "published": "2026-10-13T19:06:08+00:00",
+      "content_status": "full",
+      "word_count": 1155,
+      "quality_score": 94,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2070,15 +2103,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "daf7b3221d112478",
+      "story_id": "dafe8ceeaf5905ef",
       "source": "Toronto Star",
-      "title": "Key figure in Pearson airport gold heist testifying at trial of another accused man",
-      "url": "https://www.thestar.com/news/ontario/key-figure-in-pearson-airport-gold-heist-testifying-at-trial-of-another-accused-man/article_caecc6d7-ddbc-5e0f-9a94-2529a0eba36d.html",
-      "published": "2026-10-13T14:48:00+00:00",
+      "title": "Flu vaccine appointments are now open in Quebec as early flu season looms",
+      "url": "https://www.thestar.com/life/health-wellness/flu-vaccine-appointments-are-now-open-in-quebec-as-early-flu-season-looms/article_b098f436-729f-5fc0-9ea6-e71f285248bd.html",
+      "published": "2026-10-13T18:37:27+00:00",
       "content_status": "full",
-      "word_count": 312,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3253,6 +3286,35 @@
       ]
     },
     {
+      "id": "37cf5bd9b12a212c",
+      "source": "Global News Canada",
+      "title": "What could happen to home prices if the foreign buyers ban expires?",
+      "url": "https://globalnews.ca/news/12100516/foreign-homebuyers-ban-expiration",
+      "published": "2026-10-13T19:06:08+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1155,
+      "paragraph_count": 34,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0ff0a01b8bb64af5",
       "source": "Global News Canada",
       "title": "Ontario NDP urges Ford, Carney to buy Stelco as firm eyes layoffs",
@@ -3499,35 +3561,6 @@
       "word_count": 256,
       "paragraph_count": 10,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "eab7961e655c27a3",
-      "source": "Global News Canada",
-      "title": "Carney addresses Alberta separation referendum in Thanksgiving message",
-      "url": "https://globalnews.ca/news/12100447/mark-carney-thanksgiving-alberta",
-      "published": "2026-10-13T14:25:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 258,
-      "paragraph_count": 9,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4467,6 +4500,47 @@
       ]
     },
     {
+      "id": "dafe8ceeaf5905ef",
+      "source": "Toronto Star",
+      "title": "Flu vaccine appointments are now open in Quebec as early flu season looms",
+      "url": "https://www.thestar.com/life/health-wellness/flu-vaccine-appointments-are-now-open-in-quebec-as-early-flu-season-looms/article_b098f436-729f-5fc0-9ea6-e71f285248bd.html",
+      "published": "2026-10-13T18:37:27+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 205,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "06c0749360c145eb",
       "source": "Toronto Star",
       "title": "Ontario's medical regulator approves changes to prescribing safer supply drugs",
@@ -4712,35 +4786,6 @@
       "content_status": "full",
       "word_count": 164,
       "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "daf7b3221d112478",
-      "source": "Toronto Star",
-      "title": "Key figure in Pearson airport gold heist testifying at trial of another accused man",
-      "url": "https://www.thestar.com/news/ontario/key-figure-in-pearson-airport-gold-heist-testifying-at-trial-of-another-accused-man/article_caecc6d7-ddbc-5e0f-9a94-2529a0eba36d.html",
-      "published": "2026-10-13T14:48:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 312,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -5018,23 +5063,23 @@
       ]
     },
     {
-      "id": "882097ef04a0e60e",
+      "id": "0d7de04859143f4f",
       "source": "CityNews Canada",
-      "title": "‘Breaking Bad’ actor, RJ Mitte, dead at 34: report",
-      "url": "https://toronto.citynews.ca/2026/10/12/breaking-bad-actor-rj-mitte-dead-at-34-reports",
-      "published": "2026-10-12T21:02:48+00:00",
+      "title": "B.C.’s Eby declines to reveal size of donation after $10-a-day daycare revelation",
+      "url": "https://toronto.citynews.ca/2026/10/13/b-c-party-leaders-make-campaign-stop-at-vancouver-trade-board-ahead-of-election",
+      "published": "2026-10-13T08:00:13+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 358,
-      "paragraph_count": 11,
+      "word_count": 322,
+      "paragraph_count": 13,
       "inline_image_count": 0,
-      "quality_score": 96,
+      "quality_score": 76,
       "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
+      "extraction_method": "dom:citynews:article",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
