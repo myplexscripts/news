@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-13T21:07:28.953504+00:00",
-  "generated_at_london": "2026-10-13T17:07:28.953504-04:00",
-  "news_generated_at": "2026-10-13T21:02:32.562179+00:00",
+  "generated_at": "2026-10-13T21:20:01.359935+00:00",
+  "generated_at_london": "2026-10-13T17:20:01.359935-04:00",
+  "news_generated_at": "2026-10-13T21:18:31.917723+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 604,
+    "archive_story_count": 606,
     "source_count": 28,
     "audited_story_count": 99,
-    "pass_story_count": 92,
-    "review_story_count": 6,
+    "pass_story_count": 90,
+    "review_story_count": 8,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 11,
-    "info_issue_count": 88,
-    "healthy_source_count": 12,
-    "review_source_count": 2,
+    "warning_issue_count": 15,
+    "info_issue_count": 89,
+    "healthy_source_count": 11,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -98,6 +98,33 @@
       "found_this_run": 6,
       "tracked": 30,
       "last_scrape": "2026-10-13T20:19:02.719682+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 253,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 11,
+      "latest_published": "2026-10-13T20:54:17+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-13T21:16:57.566304+00:00",
       "last_error": ""
     },
     {
@@ -449,19 +476,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 333,
-      "average_quality": 73,
+      "average_words": 305,
+      "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 6,
-      "latest_published": "2026-10-13T20:31:33.347000+00:00",
+      "info_issues": 8,
+      "latest_published": "2026-10-13T21:03:57.739000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T20:48:13.811459+00:00",
+      "last_scrape": "2026-10-13T21:14:48.774001+00:00",
       "last_error": ""
     },
     {
@@ -647,7 +674,7 @@
       "latest_published": "2026-10-13T19:11:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T21:01:10.608848+00:00",
+      "last_scrape": "2026-10-13T21:16:54.481608+00:00",
       "last_error": ""
     },
     {
@@ -674,32 +701,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-13T20:14:56.331578+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 276,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-13T19:54:33+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-13T21:01:12.037569+00:00",
       "last_error": ""
     },
     {
@@ -909,6 +910,66 @@
       "word_count": 2469,
       "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "fdaffd2334757af4",
+      "source": "Toronto Star",
+      "title": "Carney to attend 'Forever Canadian' rallies in Alberta days before referendum",
+      "url": "https://www.thestar.com/politics/federal/carney-to-attend-forever-canadian-rallies-in-alberta-days-before-referendum/article_451876c2-8275-5e23-af90-662897a9f543.html",
+      "published": "2026-10-13T20:02:59+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "fdaffd2334757af4",
+      "source": "Toronto Star",
+      "title": "Carney to attend 'Forever Canadian' rallies in Alberta days before referendum",
+      "url": "https://www.thestar.com/politics/federal/carney-to-attend-forever-canadian-rallies-in-alberta-days-before-referendum/article_451876c2-8275-5e23-af90-662897a9f543.html",
+      "published": "2026-10-13T20:02:59+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "7324c2db6d03d8ee",
+      "source": "Toronto Star",
+      "title": "Goldentiger King, Cat Guy and wake surfing candidate eye B.C. local elections",
+      "url": "https://www.thestar.com/news/canada/british-columbia/goldentiger-king-cat-guy-and-wake-surfing-candidate-eye-b-c-local-elections/article_1618500e-dd5b-54fb-b6f4-408514f35c68.html",
+      "published": "2026-10-13T20:54:17+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "7324c2db6d03d8ee",
+      "source": "Toronto Star",
+      "title": "Goldentiger King, Cat Guy and wake surfing candidate eye B.C. local elections",
+      "url": "https://www.thestar.com/news/canada/british-columbia/goldentiger-king-cat-guy-and-wake-surfing-candidate-eye-b-c-local-elections/article_1618500e-dd5b-54fb-b6f4-408514f35c68.html",
+      "published": "2026-10-13T20:54:17+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1208,6 +1269,36 @@
       "content_status": "full",
       "word_count": 222,
       "quality_score": 66,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "556b457a9527c9ae",
+      "source": "CTV News London",
+      "title": "Highway 401 closed after two collisions near London",
+      "url": "https://www.ctvnews.ca/london/article/highway-401-closed-after-two-collisions-near-london",
+      "published": "2026-10-13T21:03:57.739000+00:00",
+      "content_status": "partial",
+      "word_count": 61,
+      "quality_score": 44,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
+      "story_id": "556b457a9527c9ae",
+      "source": "CTV News London",
+      "title": "Highway 401 closed after two collisions near London",
+      "url": "https://www.ctvnews.ca/london/article/highway-401-closed-after-two-collisions-near-london",
+      "published": "2026-10-13T21:03:57.739000+00:00",
+      "content_status": "partial",
+      "word_count": 61,
+      "quality_score": 44,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2085,6 +2176,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "fdaffd2334757af4",
+      "source": "Toronto Star",
+      "title": "Carney to attend 'Forever Canadian' rallies in Alberta days before referendum",
+      "url": "https://www.thestar.com/politics/federal/carney-to-attend-forever-canadian-rallies-in-alberta-days-before-referendum/article_451876c2-8275-5e23-af90-662897a9f543.html",
+      "published": "2026-10-13T20:02:59+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "dafe8ceeaf5905ef",
       "source": "Toronto Star",
       "title": "Flu vaccine appointments are now open in Quebec as early flu season looms",
@@ -2100,6 +2206,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "7324c2db6d03d8ee",
+      "source": "Toronto Star",
+      "title": "Goldentiger King, Cat Guy and wake surfing candidate eye B.C. local elections",
+      "url": "https://www.thestar.com/news/canada/british-columbia/goldentiger-king-cat-guy-and-wake-surfing-candidate-eye-b-c-local-elections/article_1618500e-dd5b-54fb-b6f4-408514f35c68.html",
+      "published": "2026-10-13T20:54:17+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "33f4294450599de6",
       "source": "Toronto Star",
       "title": "More than 300 advance polls open across Alberta in historic referendum on separation",
@@ -2107,21 +2228,6 @@
       "published": "2026-10-13T19:54:33+00:00",
       "content_status": "full",
       "word_count": 511,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "dee986f13216888f",
-      "source": "Toronto Star",
-      "title": "Ontario to move northwest regions to permanent daylight time",
-      "url": "https://www.thestar.com/news/ontario/cp-newsalert-ontario-to-move-northwest-regions-to-permanent-daylight-time/article_db72cd31-3c9f-5c15-8544-1dfe3ba7bf7a.html",
-      "published": "2026-10-13T15:20:20+00:00",
-      "content_status": "full",
-      "word_count": 477,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2167,36 +2273,6 @@
       "published": "2026-10-13T16:53:33+00:00",
       "content_status": "full",
       "word_count": 183,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "ebad3797a67c8952",
-      "source": "Toronto Star",
-      "title": "Toronto cyclists ask Canada's top court to weigh in on Ford's bike lane removal plan",
-      "url": "https://www.thestar.com/news/ontario/toronto-cyclists-ask-canada-s-top-court-to-weigh-in-on-ford-s-bike-lane-removal-plan/article_bc87cbc9-4775-5606-b190-07be6db72384.html",
-      "published": "2026-10-13T15:25:39+00:00",
-      "content_status": "full",
-      "word_count": 166,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ebad3797a67c8952",
-      "source": "Toronto Star",
-      "title": "Toronto cyclists ask Canada's top court to weigh in on Ford's bike lane removal plan",
-      "url": "https://www.thestar.com/news/ontario/toronto-cyclists-ask-canada-s-top-court-to-weigh-in-on-ford-s-bike-lane-removal-plan/article_bc87cbc9-4775-5606-b190-07be6db72384.html",
-      "published": "2026-10-13T15:25:39+00:00",
-      "content_status": "full",
-      "word_count": 166,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2297,6 +2373,41 @@
       "extraction_profile": "global",
       "local_score": 30,
       "issues": []
+    },
+    {
+      "id": "556b457a9527c9ae",
+      "source": "CTV News London",
+      "title": "Highway 401 closed after two collisions near London",
+      "url": "https://www.ctvnews.ca/london/article/highway-401-closed-after-two-collisions-near-london",
+      "published": "2026-10-13T21:03:57.739000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "partial",
+      "word_count": 61,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 44,
+      "quality_grade": "poor",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
     },
     {
       "id": "b9a488cfac9c5298",
@@ -2537,28 +2648,6 @@
           "detail": ""
         }
       ]
-    },
-    {
-      "id": "c31ddd49cc6c051f",
-      "source": "CTV News London",
-      "title": "Raise the Roar; Lions fans gather for watch party in London, Ont. as Detroit blows out Arizona",
-      "url": "https://www.ctvnews.ca/london/article/raise-the-roar-lions-fans-gather-for-watch-party-in-london-ont-as-detroit-blows-out-arizona",
-      "published": "2026-10-12T13:57:23.364000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 343,
-      "paragraph_count": 12,
-      "inline_image_count": 3,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 59,
-      "issues": []
     },
     {
       "id": "833da8429911d0b4",
@@ -4499,6 +4588,88 @@
       ]
     },
     {
+      "id": "7324c2db6d03d8ee",
+      "source": "Toronto Star",
+      "title": "Goldentiger King, Cat Guy and wake surfing candidate eye B.C. local elections",
+      "url": "https://www.thestar.com/news/canada/british-columbia/goldentiger-king-cat-guy-and-wake-surfing-candidate-eye-b-c-local-elections/article_1618500e-dd5b-54fb-b6f4-408514f35c68.html",
+      "published": "2026-10-13T20:54:17+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 206,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "fdaffd2334757af4",
+      "source": "Toronto Star",
+      "title": "Carney to attend 'Forever Canadian' rallies in Alberta days before referendum",
+      "url": "https://www.thestar.com/politics/federal/carney-to-attend-forever-canadian-rallies-in-alberta-days-before-referendum/article_451876c2-8275-5e23-af90-662897a9f543.html",
+      "published": "2026-10-13T20:02:59+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 215,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "33f4294450599de6",
       "source": "Toronto Star",
       "title": "More than 300 advance polls open across Alberta in historic referendum on separation",
@@ -4728,70 +4899,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ebad3797a67c8952",
-      "source": "Toronto Star",
-      "title": "Toronto cyclists ask Canada's top court to weigh in on Ford's bike lane removal plan",
-      "url": "https://www.thestar.com/news/ontario/toronto-cyclists-ask-canada-s-top-court-to-weigh-in-on-ford-s-bike-lane-removal-plan/article_bc87cbc9-4775-5606-b190-07be6db72384.html",
-      "published": "2026-10-13T15:25:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 166,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "dee986f13216888f",
-      "source": "Toronto Star",
-      "title": "Ontario to move northwest regions to permanent daylight time",
-      "url": "https://www.thestar.com/news/ontario/cp-newsalert-ontario-to-move-northwest-regions-to-permanent-daylight-time/article_db72cd31-3c9f-5c15-8544-1dfe3ba7bf7a.html",
-      "published": "2026-10-13T15:20:20+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 477,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
