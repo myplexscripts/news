@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-13T15:09:12.742282+00:00",
-  "generated_at_london": "2026-10-13T11:09:12.742282-04:00",
-  "news_generated_at": "2026-10-13T15:05:26.059985+00:00",
+  "generated_at": "2026-10-13T15:22:23.919035+00:00",
+  "generated_at_london": "2026-10-13T11:22:23.919035-04:00",
+  "news_generated_at": "2026-10-13T15:21:17.013947+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 594,
+    "archive_story_count": 595,
     "source_count": 28,
     "audited_story_count": 98,
-    "pass_story_count": 90,
-    "review_story_count": 6,
+    "pass_story_count": 89,
+    "review_story_count": 7,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 12,
+    "warning_issue_count": 14,
     "info_issue_count": 82,
-    "healthy_source_count": 11,
-    "review_source_count": 3,
+    "healthy_source_count": 10,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -75,6 +75,32 @@
       "last_error": ""
     },
     {
+      "source": "CityNews Canada",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "citynews",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 499,
+      "average_quality": 95,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-13T12:21:04+00:00",
+      "found_this_run": 0,
+      "tracked": 27,
+      "last_scrape": "2026-10-13T13:32:10.059196+00:00",
+      "last_error": "HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Max retries exceeded with url: /category/canada/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Read timed out. (read timeout=8)\"))"
+    },
+    {
       "source": "The Globe and Mail",
       "status": "review",
       "collector_status": "healthy",
@@ -106,24 +132,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 383,
-      "average_quality": 96,
+      "average_words": 348,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-13T14:16:30+00:00",
+      "latest_published": "2026-10-13T14:48:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T14:34:07.476001+00:00",
+      "last_scrape": "2026-10-13T15:20:00.326877+00:00",
       "last_error": ""
     },
     {
@@ -544,32 +571,6 @@
       "last_error": ""
     },
     {
-      "source": "CityNews Canada",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "citynews",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 499,
-      "average_quality": 95,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-13T12:21:04+00:00",
-      "found_this_run": 10,
-      "tracked": 27,
-      "last_scrape": "2026-10-13T13:32:10.059196+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Global News Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -698,7 +699,7 @@
       "latest_published": "2026-10-13T10:01:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T15:04:16.223645+00:00",
+      "last_scrape": "2026-10-13T15:19:59.195076+00:00",
       "last_error": ""
     },
     {
@@ -938,6 +939,36 @@
       "word_count": 1316,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "daf7b3221d112478",
+      "source": "Toronto Star",
+      "title": "Key figure in Pearson airport gold heist testifying at trial of another accused man",
+      "url": "https://www.thestar.com/news/ontario/key-figure-in-pearson-airport-gold-heist-testifying-at-trial-of-another-accused-man/article_caecc6d7-ddbc-5e0f-9a94-2529a0eba36d.html",
+      "published": "2026-10-13T14:48:00+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "daf7b3221d112478",
+      "source": "Toronto Star",
+      "title": "Key figure in Pearson airport gold heist testifying at trial of another accused man",
+      "url": "https://www.thestar.com/news/ontario/key-figure-in-pearson-airport-gold-heist-testifying-at-trial-of-another-accused-man/article_caecc6d7-ddbc-5e0f-9a94-2529a0eba36d.html",
+      "published": "2026-10-13T14:48:00+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2009,21 +2040,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "2062cc91a64b7552",
-      "source": "Toronto Star",
-      "title": "As protests continue in their home country, Indians in Montreal gather in solidarity",
-      "url": "https://www.thestar.com/news/canada/as-protests-continue-in-their-home-country-indians-in-montreal-gather-in-solidarity/article_4739f75c-c6e0-5405-9a0a-a50c4da61ea3.html",
-      "published": "2026-10-12T19:45:13+00:00",
-      "content_status": "full",
-      "word_count": 576,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "1cc2c414ec84a490",
       "source": "Toronto Star",
       "title": "B.C. party leaders make campaign stop at Vancouver trade board ahead of election",
@@ -2078,6 +2094,21 @@
       "word_count": 29,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "daf7b3221d112478",
+      "source": "Toronto Star",
+      "title": "Key figure in Pearson airport gold heist testifying at trial of another accused man",
+      "url": "https://www.thestar.com/news/ontario/key-figure-in-pearson-airport-gold-heist-testifying-at-trial-of-another-accused-man/article_caecc6d7-ddbc-5e0f-9a94-2529a0eba36d.html",
+      "published": "2026-10-13T14:48:00+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4402,6 +4433,47 @@
       ]
     },
     {
+      "id": "daf7b3221d112478",
+      "source": "Toronto Star",
+      "title": "Key figure in Pearson airport gold heist testifying at trial of another accused man",
+      "url": "https://www.thestar.com/news/ontario/key-figure-in-pearson-airport-gold-heist-testifying-at-trial-of-another-accused-man/article_caecc6d7-ddbc-5e0f-9a94-2529a0eba36d.html",
+      "published": "2026-10-13T14:48:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 224,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d4157e4c5e6a3b8a",
       "source": "Toronto Star",
       "title": "Rides closed at Canadian theme parks after deadly U.S. fall from Six Flags coaster",
@@ -4654,35 +4726,6 @@
       "word_count": 716,
       "paragraph_count": 23,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2062cc91a64b7552",
-      "source": "Toronto Star",
-      "title": "As protests continue in their home country, Indians in Montreal gather in solidarity",
-      "url": "https://www.thestar.com/news/canada/as-protests-continue-in-their-home-country-indians-in-montreal-gather-in-solidarity/article_4739f75c-c6e0-5405-9a0a-a50c4da61ea3.html",
-      "published": "2026-10-12T19:45:13+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 576,
-      "paragraph_count": 22,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
