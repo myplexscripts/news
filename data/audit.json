@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-13T15:41:52.815997+00:00",
-  "generated_at_london": "2026-10-13T11:41:52.815997-04:00",
-  "news_generated_at": "2026-10-13T15:37:20.100711+00:00",
+  "generated_at": "2026-10-13T15:54:04.323809+00:00",
+  "generated_at_london": "2026-10-13T11:54:04.323809-04:00",
+  "news_generated_at": "2026-10-13T15:52:38.883274+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 599,
+    "archive_story_count": 598,
     "source_count": 28,
     "audited_story_count": 98,
     "pass_story_count": 90,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-13T15:10:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-13T15:35:43.257060+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -475,8 +475,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 334,
-      "average_quality": 74,
+      "average_words": 368,
+      "average_quality": 76,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -484,10 +484,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-10-13T15:33:05.974000+00:00",
+      "latest_published": "2026-10-13T15:41:42.812000+00:00",
       "found_this_run": 5,
       "tracked": 30,
-      "last_scrape": "2026-10-13T15:35:33.389138+00:00",
+      "last_scrape": "2026-10-13T15:50:48.742755+00:00",
       "last_error": ""
     },
     {
@@ -579,20 +579,21 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 247,
-      "average_quality": 96,
+      "usable_body_rate": 90,
+      "average_words": 236,
+      "average_quality": 90,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:partial-strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-13T15:33:02+00:00",
+      "latest_published": "2026-10-13T15:40:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T15:35:32.156684+00:00",
+      "last_scrape": "2026-10-13T15:50:47.168085+00:00",
       "last_error": ""
     },
     {
@@ -685,20 +686,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 976,
-      "average_quality": 87,
+      "average_words": 948,
+      "average_quality": 88,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 7,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-13T10:01:07+00:00",
+      "latest_published": "2026-10-13T15:39:39+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T15:35:41.592303+00:00",
+      "last_scrape": "2026-10-13T15:50:59.742282+00:00",
       "last_error": ""
     },
     {
@@ -1049,21 +1051,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a9ecd709819800e0",
-      "source": "CTV News Canada",
-      "title": "Canada advises no travel to Riyadh airport after Houthi attacks, embassy remains open",
-      "url": "https://www.ctvnews.ca/canada/article/canada-advises-no-travel-to-riyadh-airport-after-houthi-attacks-embassy-remains-open",
-      "published": "2026-10-11T16:33:38.362000+00:00",
-      "content_status": "full",
-      "word_count": 183,
-      "quality_score": 68,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "269a8ea4362ef3ca",
       "source": "CTV News Canada",
       "title": "Carney says U.S.-Russia diesel supply deal hurts Ukraine peace cause: PMO",
@@ -1162,6 +1149,21 @@
       "content_status": "full",
       "word_count": 473,
       "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c1d03d16ee78c096",
+      "source": "CTV News Canada",
+      "title": "Trans Canada Trail urges Ottawa to continue funding world’s longest trail system",
+      "url": "https://www.ctvnews.ca/canada/article/trans-canada-trail-urges-ottawa-to-continue-funding-worlds-longest-trail-system",
+      "published": "2026-10-13T15:41:42.812000+00:00",
+      "content_status": "full",
+      "word_count": 530,
+      "quality_score": 83,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1454,21 +1456,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "74d50db188a6fc93",
-      "source": "Global News Canada",
-      "title": "B.C. party leaders make campaign stop at Vancouver trade board ahead of election",
-      "url": "https://globalnews.ca/news/12100359/b-c-party-leaders-make-campaign-stop-at-vancouver-trade-board-ahead-of-election",
-      "published": "2026-10-13T12:46:02+00:00",
-      "content_status": "full",
-      "word_count": 133,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "f14541faefe8956f",
       "source": "Global News Canada",
       "title": "Canada joins other nations denouncing Iran’s air base attack plot in the UK",
@@ -1538,6 +1525,21 @@
       "word_count": 413,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4a95757c72421277",
+      "source": "Global News Canada",
+      "title": "Part of Ontario to move to permanent daylight time. Here’s where",
+      "url": "https://globalnews.ca/news/12100578/ontario-northwest-regions-no-time-change",
+      "published": "2026-10-13T15:40:49+00:00",
+      "content_status": "summary",
+      "word_count": 21,
+      "quality_score": 37,
+      "extraction_method": "dom:global:main:partial-strict"
     },
     {
       "severity": "info",
@@ -1679,6 +1681,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "6089617649ed60e1",
+      "source": "National Post",
+      "title": "Canada trade ties run deep in Republican strongholds. But will it matter to Trump?",
+      "url": "https://nationalpost.com/news/canada-trade-ties-run-deep-in-republican-strongholds-but-will-it-matter-to-trump",
+      "published": "2026-10-13T15:39:39+00:00",
+      "content_status": "full",
+      "word_count": 1034,
+      "quality_score": 90,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6bfd2bd5548fb555",
       "source": "National Post",
       "title": "Canada's air force doesn't have enough people to run two fighter programs, says retired lieutenant general",
@@ -1687,21 +1704,6 @@
       "content_status": "full",
       "word_count": 1094,
       "quality_score": 90,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "c72ed3a8d7f71544",
-      "source": "National Post",
-      "title": "Danielle Smith's dream: A post-uncertainty Alberta",
-      "url": "https://nationalpost.com/news/danielle-smiths-dream-a-post-uncertainty-alberta",
-      "published": "2026-10-11T13:00:19+00:00",
-      "content_status": "full",
-      "word_count": 1315,
-      "quality_score": 88,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -3200,6 +3202,35 @@
       ]
     },
     {
+      "id": "4a95757c72421277",
+      "source": "Global News Canada",
+      "title": "Part of Ontario to move to permanent daylight time. Here’s where",
+      "url": "https://globalnews.ca/news/12100578/ontario-northwest-regions-no-time-change",
+      "published": "2026-10-13T15:40:49+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 21,
+      "paragraph_count": 1,
+      "inline_image_count": 1,
+      "quality_score": 37,
+      "quality_grade": "poor",
+      "extraction_method": "dom:global:main:partial-strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d0bf31e2b4a7f9e2",
       "source": "Global News Canada",
       "title": "Quebec author admits to plagiarism in earlier work, denies AI use",
@@ -3461,24 +3492,24 @@
       ]
     },
     {
-      "id": "74d50db188a6fc93",
-      "source": "Global News Canada",
-      "title": "B.C. party leaders make campaign stop at Vancouver trade board ahead of election",
-      "url": "https://globalnews.ca/news/12100359/b-c-party-leaders-make-campaign-stop-at-vancouver-trade-board-ahead-of-election",
-      "published": "2026-10-13T12:46:02+00:00",
+      "id": "c1d03d16ee78c096",
+      "source": "CTV News Canada",
+      "title": "Trans Canada Trail urges Ottawa to continue funding world’s longest trail system",
+      "url": "https://www.ctvnews.ca/canada/article/trans-canada-trail-urges-ottawa-to-continue-funding-worlds-longest-trail-system",
+      "published": "2026-10-13T15:41:42.812000+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 133,
-      "paragraph_count": 6,
-      "inline_image_count": 2,
-      "quality_score": 96,
+      "word_count": 530,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 83,
       "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
         {
@@ -3748,35 +3779,6 @@
       "word_count": 231,
       "paragraph_count": 8,
       "inline_image_count": 2,
-      "quality_score": 68,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a9ecd709819800e0",
-      "source": "CTV News Canada",
-      "title": "Canada advises no travel to Riyadh airport after Houthi attacks, embassy remains open",
-      "url": "https://www.ctvnews.ca/canada/article/canada-advises-no-travel-to-riyadh-airport-after-houthi-attacks-embassy-remains-open",
-      "published": "2026-10-11T16:33:38.362000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 183,
-      "paragraph_count": 8,
-      "inline_image_count": 1,
       "quality_score": 68,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
@@ -4112,6 +4114,35 @@
       ]
     },
     {
+      "id": "6089617649ed60e1",
+      "source": "National Post",
+      "title": "Canada trade ties run deep in Republican strongholds. But will it matter to Trump?",
+      "url": "https://nationalpost.com/news/canada-trade-ties-run-deep-in-republican-strongholds-but-will-it-matter-to-trump",
+      "published": "2026-10-13T15:39:39+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1034,
+      "paragraph_count": 32,
+      "inline_image_count": 0,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "93cccad50a1475ee",
       "source": "National Post",
       "title": "A military underfunded, undermanned and underprepared",
@@ -4357,35 +4388,6 @@
       "content_status": "full",
       "word_count": 1144,
       "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c72ed3a8d7f71544",
-      "source": "National Post",
-      "title": "Danielle Smith's dream: A post-uncertainty Alberta",
-      "url": "https://nationalpost.com/news/danielle-smiths-dream-a-post-uncertainty-alberta",
-      "published": "2026-10-11T13:00:19+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1315,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 88,
       "quality_grade": "excellent",
