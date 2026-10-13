@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-13T22:09:48.379049+00:00",
-  "generated_at_london": "2026-10-13T18:09:48.379049-04:00",
-  "news_generated_at": "2026-10-13T22:05:01.512955+00:00",
+  "generated_at": "2026-10-13T22:22:07.241705+00:00",
+  "generated_at_london": "2026-10-13T18:22:07.241705-04:00",
+  "news_generated_at": "2026-10-13T22:20:39.800826+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 607,
+    "archive_story_count": 606,
     "source_count": 28,
     "audited_story_count": 99,
     "pass_story_count": 90,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -122,10 +122,10 @@
       "warning_issues": 0,
       "info_issues": 11,
       "latest_published": "2026-10-13T20:54:17+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-13T21:16:57.566304+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -556,19 +556,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 501,
-      "average_quality": 96,
+      "average_words": 490,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-13T21:26:48+00:00",
+      "latest_published": "2026-10-13T22:04:16+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T21:31:58.819163+00:00",
+      "last_scrape": "2026-10-13T22:18:57.889902+00:00",
       "last_error": ""
     },
     {
@@ -661,20 +662,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 903,
+      "average_words": 871,
       "average_quality": 87,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 7,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-13T19:11:45+00:00",
+      "latest_published": "2026-10-13T22:10:11+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-13T22:03:26.816039+00:00",
+      "last_scrape": "2026-10-13T22:19:06.092025+00:00",
       "last_error": ""
     },
     {
@@ -1501,21 +1503,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5c488d83e8d82caf",
-      "source": "Global News Canada",
-      "title": "Bike lane advocates to challenge Ford government’s removal plans at Supreme Court",
-      "url": "https://globalnews.ca/news/12100590/bike-lane-advocates-to-challenge-ford-governments-removal-plans-at-supreme-court",
-      "published": "2026-10-13T16:06:49+00:00",
-      "content_status": "full",
-      "word_count": 469,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "1a385435128640f1",
       "source": "Global News Canada",
       "title": "Canadians with children more likely to rely on charities, non-profits: survey",
@@ -1555,6 +1542,21 @@
       "word_count": 766,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0151f7dfdf5663b1",
+      "source": "Global News Canada",
+      "title": "Mark Carney to attend ‘Forever Canadian’ rallies ahead of Alberta referendum",
+      "url": "https://globalnews.ca/news/12101228/alberta-referendum-forever-canadian-mark-carney",
+      "published": "2026-10-13T22:04:16+00:00",
+      "content_status": "full",
+      "word_count": 356,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1831,15 +1833,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6bfd2bd5548fb555",
+      "story_id": "9c8acb6a3b000c71",
       "source": "National Post",
-      "title": "Canada's air force doesn't have enough people to run two fighter programs, says retired lieutenant general",
-      "url": "https://nationalpost.com/news/canada/canadas-air-force-doesnt-have-enough-people-to-run-two-fighter-programs-says-retired-lieutenant-general",
-      "published": "2026-10-13T10:00:34+00:00",
+      "title": "Gus, the world's oldest tortoise, wished a speedy recovery from surgery by N.S. politicians",
+      "url": "https://nationalpost.com/news/canada/gus-tortoise-halifax",
+      "published": "2026-10-13T22:10:11+00:00",
       "content_status": "full",
-      "word_count": 1094,
-      "quality_score": 90,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 772,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -3350,6 +3352,35 @@
       ]
     },
     {
+      "id": "0151f7dfdf5663b1",
+      "source": "Global News Canada",
+      "title": "Mark Carney to attend ‘Forever Canadian’ rallies ahead of Alberta referendum",
+      "url": "https://globalnews.ca/news/12101228/alberta-referendum-forever-canadian-mark-carney",
+      "published": "2026-10-13T22:04:16+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 356,
+      "paragraph_count": 15,
+      "inline_image_count": 1,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8dbe6338786c030a",
       "source": "Global News Canada",
       "title": "Changes to prescribing safer supply drugs approved by Ontario medical regulator",
@@ -3595,35 +3626,6 @@
       "content_status": "full",
       "word_count": 650,
       "paragraph_count": 21,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5c488d83e8d82caf",
-      "source": "Global News Canada",
-      "title": "Bike lane advocates to challenge Ford government’s removal plans at Supreme Court",
-      "url": "https://globalnews.ca/news/12100590/bike-lane-advocates-to-challenge-ford-governments-removal-plans-at-supreme-court",
-      "published": "2026-10-13T16:06:49+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 469,
-      "paragraph_count": 15,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4268,6 +4270,35 @@
       ]
     },
     {
+      "id": "9c8acb6a3b000c71",
+      "source": "National Post",
+      "title": "Gus, the world's oldest tortoise, wished a speedy recovery from surgery by N.S. politicians",
+      "url": "https://nationalpost.com/news/canada/gus-tortoise-halifax",
+      "published": "2026-10-13T22:10:11+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 772,
+      "paragraph_count": 30,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8f9a49390eeebf00",
       "source": "National Post",
       "title": "Ontario woman once charged with witchcraft convicted in Buddha statue fraud",
@@ -4515,35 +4546,6 @@
       "paragraph_count": 25,
       "inline_image_count": 5,
       "quality_score": 93,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6bfd2bd5548fb555",
-      "source": "National Post",
-      "title": "Canada's air force doesn't have enough people to run two fighter programs, says retired lieutenant general",
-      "url": "https://nationalpost.com/news/canada/canadas-air-force-doesnt-have-enough-people-to-run-two-fighter-programs-says-retired-lieutenant-general",
-      "published": "2026-10-13T10:00:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1094,
-      "paragraph_count": 29,
-      "inline_image_count": 0,
-      "quality_score": 90,
       "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
