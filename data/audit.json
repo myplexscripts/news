@@ -1,23 +1,23 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-14T15:30:09.089003+00:00",
-  "generated_at_london": "2026-10-14T11:30:09.089003-04:00",
+  "generated_at": "2026-10-14T15:33:53.257570+00:00",
+  "generated_at_london": "2026-10-14T11:33:53.257570-04:00",
   "news_generated_at": "2026-10-14T15:28:42.901026+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 602,
+    "archive_story_count": 601,
     "source_count": 28,
     "audited_story_count": 96,
-    "pass_story_count": 82,
-    "review_story_count": 10,
+    "pass_story_count": 84,
+    "review_story_count": 8,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 18,
+    "warning_issue_count": 14,
     "info_issue_count": 85,
     "healthy_source_count": 10,
-    "review_source_count": 3,
-    "error_source_count": 2,
+    "review_source_count": 4,
+    "error_source_count": 1,
     "waiting_source_count": 13
   },
   "source_reports": [
@@ -45,33 +45,6 @@
       "found_this_run": 7,
       "tracked": 1,
       "last_scrape": "2026-10-13T13:15:00.014082+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "error",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 5,
-      "review": 2,
-      "fail": 3,
-      "pass_rate": 50,
-      "usable_body_rate": 100,
-      "average_words": 306,
-      "average_quality": 93,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:star:article": 2,
-        "reader:semantic-rich-v1": 8
-      },
-      "critical_issues": 3,
-      "warning_issues": 4,
-      "info_issues": 10,
-      "latest_published": "2026-10-14T15:07:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-14T15:27:03.397648+00:00",
       "last_error": ""
     },
     {
@@ -138,12 +111,11 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 667,
+      "average_words": 664,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "dom:globe:article#content-gate": 1
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 2,
@@ -152,6 +124,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-14T15:26:51.967361+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 7,
+      "review": 0,
+      "fail": 3,
+      "pass_rate": 70,
+      "usable_body_rate": 100,
+      "average_words": 438,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 3,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-14T15:07:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-14T15:27:03.397648+00:00",
       "last_error": ""
     },
     {
@@ -585,11 +583,10 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 420,
-      "average_quality": 93,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -1003,66 +1000,6 @@
       "word_count": 1239,
       "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "9643279be1a2018c",
-      "source": "Toronto Star",
-      "title": "Former CP health reporter Helen Branswell remembered as excellent journalist and loving person",
-      "url": "https://www.thestar.com/news/canada/former-cp-health-reporter-helen-branswell-remembered-as-excellent-journalist-and-loving-person/article_04543752-3388-59a9-ac28-74840f6c47c5.html",
-      "published": "2026-10-14T15:03:05+00:00",
-      "content_status": "full",
-      "word_count": 202,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "11 inline images",
-      "story_id": "9643279be1a2018c",
-      "source": "Toronto Star",
-      "title": "Former CP health reporter Helen Branswell remembered as excellent journalist and loving person",
-      "url": "https://www.thestar.com/news/canada/former-cp-health-reporter-helen-branswell-remembered-as-excellent-journalist-and-loving-person/article_04543752-3388-59a9-ac28-74840f6c47c5.html",
-      "published": "2026-10-14T15:03:05+00:00",
-      "content_status": "full",
-      "word_count": 202,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "e5a677503350ff57",
-      "source": "Toronto Star",
-      "title": "Longtime London MP Irene Mathyssen dies at age 75",
-      "url": "https://www.thestar.com/news/canada/longtime-london-mp-irene-mathyssen-dies-at-age-75/article_4a990940-9c7a-51c9-9e92-20cd193e1c2c.html",
-      "published": "2026-10-14T15:07:00+00:00",
-      "content_status": "full",
-      "word_count": 197,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "11 inline images",
-      "story_id": "e5a677503350ff57",
-      "source": "Toronto Star",
-      "title": "Longtime London MP Irene Mathyssen dies at age 75",
-      "url": "https://www.thestar.com/news/canada/longtime-london-mp-irene-mathyssen-dies-at-age-75/article_4a990940-9c7a-51c9-9e92-20cd193e1c2c.html",
-      "published": "2026-10-14T15:07:00+00:00",
-      "content_status": "full",
-      "word_count": 197,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1721,8 +1658,8 @@
       "published": "2026-10-14T15:11:34+00:00",
       "content_status": "full",
       "word_count": 130,
-      "quality_score": 63,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2124,10 +2061,10 @@
       "title": "In the aftermath of the Okanagan wildfire, winemakers are harvesting grapes with caution",
       "url": "https://www.theglobeandmail.com/life/style/food-and-drink/article-aftermath-okanagan-bc-wildfire-winemakers-harvesting-grapes-with",
       "published": "2026-10-14T13:00:00+00:00",
-      "content_status": "full",
-      "word_count": 819,
-      "quality_score": 90,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 797,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2139,10 +2076,10 @@
       "title": "In the aftermath of the Okanagan wildfire, winemakers are harvesting grapes with caution",
       "url": "https://www.theglobeandmail.com/life/style/food-and-drink/article-aftermath-okanagan-bc-wildfire-winemakers-harvesting-grapes-with",
       "published": "2026-10-14T13:00:00+00:00",
-      "content_status": "full",
-      "word_count": 819,
-      "quality_score": 90,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 797,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2245,9 +2182,9 @@
       "url": "https://www.thestar.com/news/canada/former-cp-health-reporter-helen-branswell-remembered-as-excellent-journalist-and-loving-person/article_04543752-3388-59a9-ac28-74840f6c47c5.html",
       "published": "2026-10-14T15:03:05+00:00",
       "content_status": "full",
-      "word_count": 202,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
+      "word_count": 1223,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2260,9 +2197,9 @@
       "url": "https://www.thestar.com/news/canada/longtime-london-mp-irene-mathyssen-dies-at-age-75/article_4a990940-9c7a-51c9-9e92-20cd193e1c2c.html",
       "published": "2026-10-14T15:07:00+00:00",
       "content_status": "full",
-      "word_count": 197,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
+      "word_count": 502,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3348,9 +3285,9 @@
       "word_count": 130,
       "paragraph_count": 6,
       "inline_image_count": 2,
-      "quality_score": 63,
-      "quality_grade": "partial",
-      "extraction_method": "dom:global:main:strict",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -3376,7 +3313,7 @@
       "content_status": "full",
       "word_count": 130,
       "paragraph_count": 7,
-      "inline_image_count": 2,
+      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4030,13 +3967,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "full",
-      "word_count": 819,
-      "paragraph_count": 19,
-      "inline_image_count": 2,
-      "quality_score": 90,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "content_status": "partial",
+      "word_count": 797,
+      "paragraph_count": 17,
+      "inline_image_count": 3,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4559,33 +4496,21 @@
       "title": "Longtime London MP Irene Mathyssen dies at age 75",
       "url": "https://www.thestar.com/news/canada/longtime-london-mp-irene-mathyssen-dies-at-age-75/article_4a990940-9c7a-51c9-9e92-20cd193e1c2c.html",
       "published": "2026-10-14T15:07:00+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
+      "audit_status": "pass",
+      "audit_score": 97,
       "critical_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 197,
-      "paragraph_count": 2,
-      "inline_image_count": 11,
-      "quality_score": 80,
+      "word_count": 502,
+      "paragraph_count": 28,
+      "inline_image_count": 0,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:star:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 12,
       "issues": [
-        {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "11 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4600,33 +4525,21 @@
       "title": "Former CP health reporter Helen Branswell remembered as excellent journalist and loving person",
       "url": "https://www.thestar.com/news/canada/former-cp-health-reporter-helen-branswell-remembered-as-excellent-journalist-and-loving-person/article_04543752-3388-59a9-ac28-74840f6c47c5.html",
       "published": "2026-10-14T15:03:05+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
+      "audit_status": "pass",
+      "audit_score": 97,
       "critical_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 202,
-      "paragraph_count": 2,
-      "inline_image_count": 11,
-      "quality_score": 80,
+      "word_count": 1223,
+      "paragraph_count": 42,
+      "inline_image_count": 0,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:star:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "11 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
