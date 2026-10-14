@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-14T12:38:41.342545+00:00",
-  "generated_at_london": "2026-10-14T08:38:41.342545-04:00",
+  "generated_at": "2026-10-14T12:41:59.570553+00:00",
+  "generated_at_london": "2026-10-14T08:41:59.570553-04:00",
   "news_generated_at": "2026-10-14T12:37:10.191099+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 14,
-    "info_issue_count": 84,
+    "info_issue_count": 85,
     "healthy_source_count": 10,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -93,7 +93,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 2,
-      "info_issues": 12,
+      "info_issues": 13,
       "latest_published": "2026-10-14T12:24:00.447000+00:00",
       "found_this_run": 7,
       "tracked": 30,
@@ -556,12 +556,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 512,
-      "average_quality": 91,
+      "average_words": 551,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:citynews:article": 1,
-        "reader:semantic-rich-v1": 7,
+        "reader:semantic-rich-v1": 8,
         "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
@@ -1110,6 +1109,21 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "1f83d16047c8713c",
+      "source": "CTV News Canada",
+      "title": "Canadian Armed Forces race to expand drone capabilities",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-armed-forces-race-to-expand-drone-capabilities",
+      "published": "2026-10-14T12:24:00.447000+00:00",
+      "content_status": "full",
+      "word_count": 816,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1494,9 +1508,9 @@
       "url": "https://toronto.citynews.ca/2026/10/14/olg-lotto-max-jackpot-record-90-million-draw-friday",
       "published": "2026-10-14T12:19:44+00:00",
       "content_status": "full",
-      "word_count": 275,
-      "quality_score": 76,
-      "extraction_method": "dom:citynews:article"
+      "word_count": 662,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3538,10 +3552,10 @@
       "url": "https://www.ctvnews.ca/canada/article/canadian-armed-forces-race-to-expand-drone-capabilities",
       "published": "2026-10-14T12:24:00.447000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 816,
       "paragraph_count": 28,
@@ -3552,6 +3566,12 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4751,12 +4771,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 275,
-      "paragraph_count": 11,
+      "word_count": 662,
+      "paragraph_count": 22,
       "inline_image_count": 0,
-      "quality_score": 76,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:citynews:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
