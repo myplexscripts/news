@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-14T15:33:53.257570+00:00",
-  "generated_at_london": "2026-10-14T11:33:53.257570-04:00",
-  "news_generated_at": "2026-10-14T15:28:42.901026+00:00",
+  "generated_at": "2026-10-14T15:46:19.923358+00:00",
+  "generated_at_london": "2026-10-14T11:46:19.923358-04:00",
+  "news_generated_at": "2026-10-14T15:44:55.614520+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 601,
+    "archive_story_count": 603,
     "source_count": 28,
     "audited_story_count": 96,
     "pass_story_count": 84,
@@ -14,7 +14,7 @@
     "fail_story_count": 4,
     "critical_issue_count": 4,
     "warning_issue_count": 14,
-    "info_issue_count": 85,
+    "info_issue_count": 84,
     "healthy_source_count": 10,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -111,25 +111,26 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 664,
-      "average_quality": 96,
+      "average_words": 608,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 2,
-      "info_issues": 13,
-      "latest_published": "2026-10-14T13:39:45.825000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-10-14T14:42:39.510000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-14T15:26:51.967361+00:00",
+      "last_scrape": "2026-10-14T15:43:04.348991+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -147,10 +148,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-14T15:07:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-14T15:27:03.397648+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -555,20 +556,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 677,
+      "average_words": 694,
       "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 9,
-        "dom:semantic-rich-v1": 1
+        "dom:citynews:article": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-14T14:56:41+00:00",
       "found_this_run": 10,
-      "tracked": 28,
-      "last_scrape": "2026-10-14T15:11:22.530301+00:00",
+      "tracked": 29,
+      "last_scrape": "2026-10-14T15:43:15.957722+00:00",
       "last_error": ""
     },
     {
@@ -700,7 +701,7 @@
       "latest_published": "2026-10-14T11:00:26+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-14T15:27:00.683406+00:00",
+      "last_scrape": "2026-10-14T15:43:10.425624+00:00",
       "last_error": ""
     },
     {
@@ -1411,6 +1412,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "663e200b17cdebe6",
+      "source": "CityNews Canada",
+      "title": "3 Canadian Armed Forces members among 7 charged in Toronto crypto-motivated kidnapping investigation",
+      "url": "https://toronto.citynews.ca/2026/10/14/toronto-police-abduction-investigation-canadian-armed-forces",
+      "published": "2026-10-14T10:23:17+00:00",
+      "content_status": "full",
+      "word_count": 533,
+      "quality_score": 87,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "8e8397f1b552d598",
       "source": "CityNews Canada",
       "title": "As drones reshape war around the world, the Canadian Armed Forces sprints to catch up",
@@ -1420,21 +1436,6 @@
       "word_count": 837,
       "quality_score": 86,
       "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "bb139a0c8beeb3c3",
-      "source": "CityNews Canada",
-      "title": "B.C. photojournalist documents ICE operations in rural United States",
-      "url": "https://toronto.citynews.ca/2026/10/13/bc-photojournalist-documents-ice-operations-rural-us",
-      "published": "2026-10-13T19:25:16+00:00",
-      "content_status": "full",
-      "word_count": 358,
-      "quality_score": 81,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1933,36 +1934,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "eab7773843fc6948",
-      "source": "The Globe and Mail",
-      "title": "As drones reshape modern warfare, the Canadian Army races to catch up",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-armed-forces-minerva-drone-program",
-      "published": "2026-10-14T10:42:43.312000+00:00",
-      "content_status": "partial",
-      "word_count": 798,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "eab7773843fc6948",
-      "source": "The Globe and Mail",
-      "title": "As drones reshape modern warfare, the Canadian Army races to catch up",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-armed-forces-minerva-drone-program",
-      "published": "2026-10-14T10:42:43.312000+00:00",
-      "content_status": "partial",
-      "word_count": 798,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2080,6 +2051,21 @@
       "word_count": 797,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "aa3f1920e907c098",
+      "source": "The Globe and Mail",
+      "title": "Montreal father sentenced to life in prison for killing nine-year-old daughter in upstate New York",
+      "url": "https://www.theglobeandmail.com/world/article-luciano-frattolin-sentencing-montreal-daughter-murder",
+      "published": "2026-10-14T14:42:39.510000+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 69,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3881,6 +3867,35 @@
       ]
     },
     {
+      "id": "aa3f1920e907c098",
+      "source": "The Globe and Mail",
+      "title": "Montreal father sentenced to life in prison for killing nine-year-old daughter in upstate New York",
+      "url": "https://www.theglobeandmail.com/world/article-luciano-frattolin-sentencing-montreal-daughter-murder",
+      "published": "2026-10-14T14:42:39.510000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 234,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4eb549fd26f6f70c",
       "source": "The Globe and Mail",
       "title": "How a Bay Street legend taught Ryan Bushell to make clients his priority",
@@ -4157,41 +4172,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "eab7773843fc6948",
-      "source": "The Globe and Mail",
-      "title": "As drones reshape modern warfare, the Canadian Army races to catch up",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-armed-forces-minerva-drone-program",
-      "published": "2026-10-14T10:42:43.312000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 798,
-      "paragraph_count": 26,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4973,6 +4953,35 @@
       ]
     },
     {
+      "id": "663e200b17cdebe6",
+      "source": "CityNews Canada",
+      "title": "3 Canadian Armed Forces members among 7 charged in Toronto crypto-motivated kidnapping investigation",
+      "url": "https://toronto.citynews.ca/2026/10/14/toronto-police-abduction-investigation-canadian-armed-forces",
+      "published": "2026-10-14T10:23:17+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 533,
+      "paragraph_count": 24,
+      "inline_image_count": 1,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8e8397f1b552d598",
       "source": "CityNews Canada",
       "title": "As drones reshape war around the world, the Canadian Armed Forces sprints to catch up",
@@ -5048,35 +5057,6 @@
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bb139a0c8beeb3c3",
-      "source": "CityNews Canada",
-      "title": "B.C. photojournalist documents ICE operations in rural United States",
-      "url": "https://toronto.citynews.ca/2026/10/13/bc-photojournalist-documents-ice-operations-rural-us",
-      "published": "2026-10-13T19:25:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 358,
-      "paragraph_count": 14,
-      "inline_image_count": 3,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
