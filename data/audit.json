@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-14T23:37:47.450816+00:00",
-  "generated_at_london": "2026-10-14T19:37:47.450816-04:00",
+  "generated_at": "2026-10-14T23:42:19.578905+00:00",
+  "generated_at_london": "2026-10-14T19:42:19.578905-04:00",
   "news_generated_at": "2026-10-14T23:36:10.408499+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 617,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 90,
+    "pass_story_count": 91,
     "review_story_count": 8,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
     "warning_issue_count": 13,
     "info_issue_count": 82,
-    "healthy_source_count": 11,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 2,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -99,33 +99,6 @@
       "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-10-14T18:57:20.147704+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "CityNews Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "citynews",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 445,
-      "average_quality": 95,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 1,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-14T17:43:06+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-14T20:41:35.748997+00:00",
       "last_error": ""
     },
     {
@@ -520,6 +493,33 @@
       "last_error": ""
     },
     {
+      "source": "CityNews Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "citynews",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 445,
+      "average_quality": 95,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 9,
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-14T17:43:06+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-14T20:41:35.748997+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Global News Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -662,12 +662,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 727,
+      "average_words": 724,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "dom:globe:main": 1
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -732,21 +731,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "79 words",
-      "story_id": "610c37765b6a98d8",
-      "source": "CityNews Canada",
-      "title": "Faster, greener, riskier? The micromobility debate",
-      "url": "https://toronto.citynews.ca/2026/10/14/micromobility-debate-big-story-podcast",
-      "published": "2026-10-14T11:12:13+00:00",
-      "content_status": "full",
-      "word_count": 79,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -1403,7 +1387,7 @@
       "url": "https://toronto.citynews.ca/2026/10/14/micromobility-debate-big-story-podcast",
       "published": "2026-10-14T11:12:13+00:00",
       "content_status": "full",
-      "word_count": 79,
+      "word_count": 84,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -1867,10 +1851,10 @@
       "title": "Canada would never interfere in U.S. elections, Joly says after ambassador’s accusation",
       "url": "https://www.theglobeandmail.com/canada/article-pete-hoekstra-podcast-canada-melanie-joly-us-midterm-elections-october",
       "published": "2026-10-14T20:39:46.067000+00:00",
-      "content_status": "full",
-      "word_count": 896,
-      "quality_score": 92,
-      "extraction_method": "dom:globe:main"
+      "content_status": "partial",
+      "word_count": 869,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3976,13 +3960,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 896,
-      "paragraph_count": 32,
+      "content_status": "partial",
+      "word_count": 869,
+      "paragraph_count": 30,
       "inline_image_count": 0,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:main",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4991,14 +4975,14 @@
       "title": "Faster, greener, riskier? The micromobility debate",
       "url": "https://toronto.citynews.ca/2026/10/14/micromobility-debate-big-story-podcast",
       "published": "2026-10-14T11:12:13+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 79,
-      "paragraph_count": 3,
+      "word_count": 84,
+      "paragraph_count": 4,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
@@ -5006,12 +4990,6 @@
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "79 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
