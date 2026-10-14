@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-14T11:23:47.970727+00:00",
-  "generated_at_london": "2026-10-14T07:23:47.970727-04:00",
-  "news_generated_at": "2026-10-14T11:18:50.321490+00:00",
+  "generated_at": "2026-10-14T11:35:40.457795+00:00",
+  "generated_at_london": "2026-10-14T07:35:40.457795-04:00",
+  "news_generated_at": "2026-10-14T11:34:18.204594+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 590,
+    "archive_story_count": 592,
     "source_count": 28,
     "audited_story_count": 96,
-    "pass_story_count": 87,
-    "review_story_count": 7,
+    "pass_story_count": 86,
+    "review_story_count": 8,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 12,
+    "warning_issue_count": 14,
     "info_issue_count": 85,
-    "healthy_source_count": 11,
-    "review_source_count": 3,
+    "healthy_source_count": 10,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -98,6 +98,35 @@
       "found_this_run": 7,
       "tracked": 30,
       "last_scrape": "2026-10-14T09:47:19.583959+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "The Globe and Mail",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 910,
+      "average_quality": 94,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 7,
+        "dom:globe:main": 1,
+        "reader:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 12,
+      "latest_published": "2026-10-14T11:15:50.184000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-14T11:32:33.764647+00:00",
       "last_error": ""
     },
     {
@@ -488,7 +517,7 @@
       "latest_published": "2026-10-14T11:08:34.746000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-14T11:15:14.170712+00:00",
+      "last_scrape": "2026-10-14T11:21:27.763751+00:00",
       "last_error": ""
     },
     {
@@ -674,34 +703,7 @@
       "latest_published": "2026-10-14T11:00:26+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-14T11:17:14.119991+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "The Globe and Mail",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 830,
-      "average_quality": 95,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "reader:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-14T10:42:43.312000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-14T11:01:43.321963+00:00",
+      "last_scrape": "2026-10-14T11:32:39.282840+00:00",
       "last_error": ""
     },
     {
@@ -941,6 +943,36 @@
       "word_count": 2469,
       "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "16 inline images",
+      "story_id": "94efdb29d3a54a6c",
+      "source": "The Globe and Mail",
+      "title": "What about Alberta’s nine other referendum questions?",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-what-are-the-alberta-referendum-questions",
+      "published": "2026-10-14T09:07:56.239000+00:00",
+      "content_status": "full",
+      "word_count": 1882,
+      "quality_score": 97,
+      "extraction_method": "dom:globe:main"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "3 consecutive images",
+      "story_id": "94efdb29d3a54a6c",
+      "source": "The Globe and Mail",
+      "title": "What about Alberta’s nine other referendum questions?",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-what-are-the-alberta-referendum-questions",
+      "published": "2026-10-14T09:07:56.239000+00:00",
+      "content_status": "full",
+      "word_count": 1882,
+      "quality_score": 97,
+      "extraction_method": "dom:globe:main"
     },
     {
       "severity": "info",
@@ -1922,21 +1954,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a292a0c6e716f21c",
-      "source": "The Globe and Mail",
-      "title": "Canadian astronaut Joshua Kutryk shares first impressions from space",
-      "url": "https://www.theglobeandmail.com/canada/science/article-canadian-astronaut-joshua-kutryk-shares-first-impressions-from-space",
-      "published": "2026-10-13T21:14:53.238000+00:00",
-      "content_status": "full",
-      "word_count": 672,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "11881b35f224a0ca",
       "source": "The Globe and Mail",
       "title": "Cycling advocates rally, petition Supreme Court to rule on Toronto bike-lane removal",
@@ -2012,6 +2029,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "a4542ac349c24df7",
+      "source": "The Globe and Mail",
+      "title": "Ontario extends Osap ban for three career colleges until at least 2030",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-ontario-extends-osap-ban-career-colleges",
+      "published": "2026-10-14T11:15:50.184000+00:00",
+      "content_status": "full",
+      "word_count": 783,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "924c5a8c75c46a4c",
       "source": "The Globe and Mail",
       "title": "Steven Galloway accuses UBC of making up excuses to fire him to protect it’s reputation",
@@ -2042,15 +2074,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ed1e8e4f02c0b0b4",
+      "story_id": "94efdb29d3a54a6c",
       "source": "The Globe and Mail",
-      "title": "Woman who allegedly aided Tumbler Ridge shooter to remain in custody pending further court appearances",
-      "url": "https://www.theglobeandmail.com/canada/article-tumbler-ridge-shooter-alleged-conspirator-remain-custody-pending",
-      "published": "2026-10-13T21:51:08.178000+00:00",
+      "title": "What about Alberta’s nine other referendum questions?",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-what-are-the-alberta-referendum-questions",
+      "published": "2026-10-14T09:07:56.239000+00:00",
       "content_status": "full",
-      "word_count": 1194,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 1882,
+      "quality_score": 97,
+      "extraction_method": "dom:globe:main"
     },
     {
       "severity": "info",
@@ -3830,6 +3862,35 @@
       ]
     },
     {
+      "id": "a4542ac349c24df7",
+      "source": "The Globe and Mail",
+      "title": "Ontario extends Osap ban for three career colleges until at least 2030",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-ontario-extends-osap-ban-career-colleges",
+      "published": "2026-10-14T11:15:50.184000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 783,
+      "paragraph_count": 22,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "eab7773843fc6948",
       "source": "The Globe and Mail",
       "title": "As drones reshape modern warfare, the Canadian Army races to catch up",
@@ -3914,6 +3975,47 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "94efdb29d3a54a6c",
+      "source": "The Globe and Mail",
+      "title": "What about Alberta’s nine other referendum questions?",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-what-are-the-alberta-referendum-questions",
+      "published": "2026-10-14T09:07:56.239000+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1882,
+      "paragraph_count": 57,
+      "inline_image_count": 16,
+      "quality_score": 97,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "16 inline images"
+        },
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "3 consecutive images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4059,64 +4161,6 @@
       "word_count": 733,
       "paragraph_count": 18,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ed1e8e4f02c0b0b4",
-      "source": "The Globe and Mail",
-      "title": "Woman who allegedly aided Tumbler Ridge shooter to remain in custody pending further court appearances",
-      "url": "https://www.theglobeandmail.com/canada/article-tumbler-ridge-shooter-alleged-conspirator-remain-custody-pending",
-      "published": "2026-10-13T21:51:08.178000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1194,
-      "paragraph_count": 38,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a292a0c6e716f21c",
-      "source": "The Globe and Mail",
-      "title": "Canadian astronaut Joshua Kutryk shares first impressions from space",
-      "url": "https://www.theglobeandmail.com/canada/science/article-canadian-astronaut-joshua-kutryk-shares-first-impressions-from-space",
-      "published": "2026-10-13T21:14:53.238000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 672,
-      "paragraph_count": 19,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
