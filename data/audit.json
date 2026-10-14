@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-14T02:48:29.056850+00:00",
-  "generated_at_london": "2026-10-13T22:48:29.056850-04:00",
-  "news_generated_at": "2026-10-14T02:43:43.411199+00:00",
+  "generated_at": "2026-10-14T03:02:09.642253+00:00",
+  "generated_at_london": "2026-10-13T23:02:09.642253-04:00",
+  "news_generated_at": "2026-10-14T03:00:42.177349+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 607,
+    "archive_story_count": 608,
     "source_count": 28,
     "audited_story_count": 99,
     "pass_story_count": 88,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -122,10 +122,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-13T22:07:00+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-14T00:39:07.150161+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -476,20 +476,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 218,
-      "average_quality": 61,
+      "average_words": 209,
+      "average_quality": 60,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 2,
-        "embedded-json:ctv": 8
+        "embedded-json:ctv": 8,
+        "ctv:summary-fallback": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-14T02:40:57.178000+00:00",
+      "latest_published": "2026-10-14T02:56:20.664000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-14T02:40:56.719386+00:00",
+      "last_scrape": "2026-10-14T02:45:44.831204+00:00",
       "last_error": ""
     },
     {
@@ -675,7 +675,7 @@
       "latest_published": "2026-10-13T22:10:11+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-14T02:42:35.716853+00:00",
+      "last_scrape": "2026-10-14T02:58:55.949291+00:00",
       "last_error": ""
     },
     {
@@ -1274,21 +1274,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "bf4746131a91e383",
-      "source": "CTV News London",
-      "title": "Federal government expands expands AI program with $500M boost",
-      "url": "https://www.ctvnews.ca/london/article/federal-government-expands-expands-ai-program-with-500m-boost",
-      "published": "2026-10-13T17:48:53.329000+00:00",
-      "content_status": "full",
-      "word_count": 222,
-      "quality_score": 66,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1301,6 +1286,21 @@
       "word_count": 20,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "457120fab14a8b18",
+      "source": "CTV News London",
+      "title": "Knights survive comeback, defeat Rangers in shootout",
+      "url": "https://www.ctvnews.ca/london/article/knights-survive-comeback-defeat-rangers-in-shootout",
+      "published": "2026-10-14T02:56:20.664000+00:00",
+      "content_status": "full",
+      "word_count": 124,
+      "quality_score": 55,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2346,6 +2346,35 @@
       "issues": []
     },
     {
+      "id": "457120fab14a8b18",
+      "source": "CTV News London",
+      "title": "Knights survive comeback, defeat Rangers in shootout",
+      "url": "https://www.ctvnews.ca/london/article/knights-survive-comeback-defeat-rangers-in-shootout",
+      "published": "2026-10-14T02:56:20.664000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 124,
+      "paragraph_count": 4,
+      "inline_image_count": 0,
+      "quality_score": 55,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 36,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "297ad0bcf215ef01",
       "source": "CTV News London",
       "title": "Unemployment rate falls to two-year low in midwestern Ontario",
@@ -2576,35 +2605,6 @@
       "title": "Federal government expands AI program with $500M boost",
       "url": "https://www.ctvnews.ca/london/article/federal-government-expands-ai-program-with-500m-boost",
       "published": "2026-10-13T19:35:18.852000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 222,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "bf4746131a91e383",
-      "source": "CTV News London",
-      "title": "Federal government expands expands AI program with $500M boost",
-      "url": "https://www.ctvnews.ca/london/article/federal-government-expands-expands-ai-program-with-500m-boost",
-      "published": "2026-10-13T17:48:53.329000+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
