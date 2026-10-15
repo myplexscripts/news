@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T12:28:59.059523+00:00",
-  "generated_at_london": "2026-10-15T08:28:59.059523-04:00",
+  "generated_at": "2026-10-15T12:32:01.671651+00:00",
+  "generated_at_london": "2026-10-15T08:32:01.671651-04:00",
   "news_generated_at": "2026-10-15T12:27:11.110136+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 618,
+    "archive_story_count": 617,
     "source_count": 28,
     "audited_story_count": 97,
-    "pass_story_count": 86,
+    "pass_story_count": 85,
     "review_story_count": 9,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 14,
     "info_issue_count": 81,
-    "healthy_source_count": 10,
-    "review_source_count": 4,
+    "healthy_source_count": 9,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -112,12 +112,11 @@
       "fail": 1,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 509,
-      "average_quality": 95,
+      "average_words": 511,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 1,
       "warning_issues": 0,
@@ -152,6 +151,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-15T12:09:20.034099+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 628,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T08:00:11+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T09:15:01.874602+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +703,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 645,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-15T08:00:11+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T09:15:01.874602+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -760,6 +759,21 @@
       "word_count": 41,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "59 words",
+      "story_id": "8170e599666df837",
+      "source": "Toronto Star",
+      "title": "B.C. restaurant Baan Lao wins best in North America award for 2026",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-restaurant-baan-lao-wins-best-in-north-america-award-for-2026/article_e9fef9ac-2e1e-591b-bd30-76d1e35409c2.html",
+      "published": "2026-10-15T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 59,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -1627,9 +1641,9 @@
       "url": "https://globalnews.ca/news/12103457/ontario-place-redevelopment-supreme-court-challenge",
       "published": "2026-10-15T12:22:26+00:00",
       "content_status": "full",
-      "word_count": 764,
-      "quality_score": 90,
-      "extraction_method": "dom:global:main:strict"
+      "word_count": 787,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2062,7 +2076,7 @@
       "url": "https://www.thestar.com/news/canada/british-columbia/b-c-restaurant-baan-lao-wins-best-in-north-america-award-for-2026/article_e9fef9ac-2e1e-591b-bd30-76d1e35409c2.html",
       "published": "2026-10-15T04:00:00+00:00",
       "content_status": "full",
-      "word_count": 231,
+      "word_count": 59,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3193,12 +3207,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 764,
+      "word_count": 787,
       "paragraph_count": 27,
-      "inline_image_count": 1,
-      "quality_score": 90,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:global:main:strict",
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -4616,14 +4630,14 @@
       "title": "B.C. restaurant Baan Lao wins best in North America award for 2026",
       "url": "https://www.thestar.com/news/canada/british-columbia/b-c-restaurant-baan-lao-wins-best-in-north-america-award-for-2026/article_e9fef9ac-2e1e-591b-bd30-76d1e35409c2.html",
       "published": "2026-10-15T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 231,
-      "paragraph_count": 19,
+      "word_count": 59,
+      "paragraph_count": 2,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4631,6 +4645,12 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "59 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
