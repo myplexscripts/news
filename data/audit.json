@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T00:27:20.877935+00:00",
-  "generated_at_london": "2026-10-14T20:27:20.877935-04:00",
-  "news_generated_at": "2026-10-15T00:22:43.522975+00:00",
+  "generated_at": "2026-10-15T00:40:34.797871+00:00",
+  "generated_at_london": "2026-10-14T20:40:34.797871-04:00",
+  "news_generated_at": "2026-10-15T00:38:54.277610+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 615,
+    "archive_story_count": 617,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 91,
-    "review_story_count": 8,
+    "pass_story_count": 89,
+    "review_story_count": 10,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 13,
+    "warning_issue_count": 17,
     "info_issue_count": 82,
-    "healthy_source_count": 12,
-    "review_source_count": 2,
+    "healthy_source_count": 11,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -102,6 +102,33 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 223,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T00:13:58+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T00:37:04.024081+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -147,7 +174,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -648,7 +675,7 @@
       "latest_published": "2026-10-14T21:04:28+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T00:21:05.399206+00:00",
+      "last_scrape": "2026-10-15T00:36:57.274380+00:00",
       "last_error": ""
     },
     {
@@ -675,32 +702,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-14T23:34:16.856366+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 239,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-14T21:44:30+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-14T22:16:33.323178+00:00",
       "last_error": ""
     },
     {
@@ -940,6 +941,66 @@
       "word_count": 2469,
       "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "93b8e6daa0e5b1df",
+      "source": "Toronto Star",
+      "title": "U.S. grand jury indicts alleged Tumbler Ridge conspirator James Bryant",
+      "url": "https://www.thestar.com/news/canada/u-s-grand-jury-indicts-alleged-tumbler-ridge-conspirator-james-bryant/article_122be945-0b9c-53ac-8a42-a648693b4109.html",
+      "published": "2026-10-15T00:13:58+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "93b8e6daa0e5b1df",
+      "source": "Toronto Star",
+      "title": "U.S. grand jury indicts alleged Tumbler Ridge conspirator James Bryant",
+      "url": "https://www.thestar.com/news/canada/u-s-grand-jury-indicts-alleged-tumbler-ridge-conspirator-james-bryant/article_122be945-0b9c-53ac-8a42-a648693b4109.html",
+      "published": "2026-10-15T00:13:58+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "1475c616d8842fdf",
+      "source": "Toronto Star",
+      "title": "U.S. sets tax total for Canadian softwood lumber exports at almost 35 per cent",
+      "url": "https://www.thestar.com/news/canada/u-s-sets-tax-total-for-canadian-softwood-lumber-exports-at-almost-35-per-cent/article_1e14282b-ddde-5611-ac8a-46cba949f992.html",
+      "published": "2026-10-15T00:12:17+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "1475c616d8842fdf",
+      "source": "Toronto Star",
+      "title": "U.S. sets tax total for Canadian softwood lumber exports at almost 35 per cent",
+      "url": "https://www.thestar.com/news/canada/u-s-sets-tax-total-for-canadian-softwood-lumber-exports-at-almost-35-per-cent/article_1e14282b-ddde-5611-ac8a-46cba949f992.html",
+      "published": "2026-10-15T00:12:17+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2071,21 +2132,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f53fe81b815fbc4d",
-      "source": "Toronto Star",
-      "title": "First Nation in N.S. launches joint venture using sea water to produce jet fuel",
-      "url": "https://www.thestar.com/business/first-nation-in-n-s-launches-joint-venture-using-sea-water-to-produce-jet-fuel/article_67b90740-1b77-5813-9e2b-ae1bb77f8ad1.html",
-      "published": "2026-10-14T18:02:39+00:00",
-      "content_status": "full",
-      "word_count": 241,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "1d61edb2a1db229c",
       "source": "Toronto Star",
       "title": "July and August drug deaths in B.C. fall to lowest levels since 2019",
@@ -2161,15 +2207,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "db55c2874093ff31",
+      "story_id": "93b8e6daa0e5b1df",
       "source": "Toronto Star",
-      "title": "Some Farm Boy, L'Ancêtre and Life Smart cheeses recalled due to possible listeria",
-      "url": "https://www.thestar.com/news/ontario/some-farm-boy-l-anc-tre-and-life-smart-cheeses-recalled-due-to-possible-listeria/article_f6de83b3-5eae-58dd-a690-716b5807bab6.html",
-      "published": "2026-10-14T18:20:45+00:00",
+      "title": "U.S. grand jury indicts alleged Tumbler Ridge conspirator James Bryant",
+      "url": "https://www.thestar.com/news/canada/u-s-grand-jury-indicts-alleged-tumbler-ridge-conspirator-james-bryant/article_122be945-0b9c-53ac-8a42-a648693b4109.html",
+      "published": "2026-10-15T00:13:58+00:00",
       "content_status": "full",
-      "word_count": 328,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1475c616d8842fdf",
+      "source": "Toronto Star",
+      "title": "U.S. sets tax total for Canadian softwood lumber exports at almost 35 per cent",
+      "url": "https://www.thestar.com/news/canada/u-s-sets-tax-total-for-canadian-softwood-lumber-exports-at-almost-35-per-cent/article_1e14282b-ddde-5611-ac8a-46cba949f992.html",
+      "published": "2026-10-15T00:12:17+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     }
   ],
   "stories": [
@@ -4455,6 +4516,88 @@
       ]
     },
     {
+      "id": "93b8e6daa0e5b1df",
+      "source": "Toronto Star",
+      "title": "U.S. grand jury indicts alleged Tumbler Ridge conspirator James Bryant",
+      "url": "https://www.thestar.com/news/canada/u-s-grand-jury-indicts-alleged-tumbler-ridge-conspirator-james-bryant/article_122be945-0b9c-53ac-8a42-a648693b4109.html",
+      "published": "2026-10-15T00:13:58+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 197,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "1475c616d8842fdf",
+      "source": "Toronto Star",
+      "title": "U.S. sets tax total for Canadian softwood lumber exports at almost 35 per cent",
+      "url": "https://www.thestar.com/news/canada/u-s-sets-tax-total-for-canadian-softwood-lumber-exports-at-almost-35-per-cent/article_1e14282b-ddde-5611-ac8a-46cba949f992.html",
+      "published": "2026-10-15T00:12:17+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 208,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5f2c151cb0aa94d9",
       "source": "Toronto Star",
       "title": "Alberta's Smith casts vote to stay in Canada, urges support for other nine questions",
@@ -4671,64 +4814,6 @@
       "content_status": "full",
       "word_count": 190,
       "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "db55c2874093ff31",
-      "source": "Toronto Star",
-      "title": "Some Farm Boy, L'Ancêtre and Life Smart cheeses recalled due to possible listeria",
-      "url": "https://www.thestar.com/news/ontario/some-farm-boy-l-anc-tre-and-life-smart-cheeses-recalled-due-to-possible-listeria/article_f6de83b3-5eae-58dd-a690-716b5807bab6.html",
-      "published": "2026-10-14T18:20:45+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 328,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f53fe81b815fbc4d",
-      "source": "Toronto Star",
-      "title": "First Nation in N.S. launches joint venture using sea water to produce jet fuel",
-      "url": "https://www.thestar.com/business/first-nation-in-n-s-launches-joint-venture-using-sea-water-to-produce-jet-fuel/article_67b90740-1b77-5813-9e2b-ae1bb77f8ad1.html",
-      "published": "2026-10-14T18:02:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 241,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
