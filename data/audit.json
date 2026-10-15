@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T10:56:07.434125+00:00",
-  "generated_at_london": "2026-10-15T06:56:07.434125-04:00",
-  "news_generated_at": "2026-10-15T10:51:49.876394+00:00",
+  "generated_at": "2026-10-15T11:10:17.297230+00:00",
+  "generated_at_london": "2026-10-15T07:10:17.297230-04:00",
+  "news_generated_at": "2026-10-15T11:08:36.425010+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 622,
@@ -138,19 +138,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 991,
-      "average_quality": 96,
+      "average_words": 983,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 14,
-      "latest_published": "2026-10-15T10:45:00+00:00",
+      "latest_published": "2026-10-15T10:53:27.722000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T10:50:26.267732+00:00",
+      "last_scrape": "2026-10-15T11:06:27.580013+00:00",
       "last_error": ""
     },
     {
@@ -699,7 +700,7 @@
       "latest_published": "2026-10-15T10:00:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T10:50:29.900322+00:00",
+      "last_scrape": "2026-10-15T11:06:32.985136+00:00",
       "last_error": ""
     },
     {
@@ -1842,21 +1843,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "db0caa105d877302",
-      "source": "The Globe and Mail",
-      "title": "Alleged Tumbler Ridge conspirator indicted by grand jury in U.S.",
-      "url": "https://www.theglobeandmail.com/canada/article-tumbler-ridge-conspirator-james-bryant-rootselaar",
-      "published": "2026-10-15T00:32:25.351000+00:00",
-      "content_status": "full",
-      "word_count": 273,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1914,6 +1900,21 @@
       "word_count": 695,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "dce0e46ff7f959a0",
+      "source": "The Globe and Mail",
+      "title": "Cyberattack May have leaked student and parent information, Burnaby school district says",
+      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-cyberattack-burnaby-school-district-student-parent-information",
+      "published": "2026-10-15T10:53:27.722000+00:00",
+      "content_status": "full",
+      "word_count": 193,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3818,6 +3819,35 @@
       ]
     },
     {
+      "id": "dce0e46ff7f959a0",
+      "source": "The Globe and Mail",
+      "title": "Cyberattack May have leaked student and parent information, Burnaby school district says",
+      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-cyberattack-burnaby-school-district-student-parent-information",
+      "published": "2026-10-15T10:53:27.722000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 193,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "76533f1de6e1e983",
       "source": "The Globe and Mail",
       "title": "The right to know about Tumbler Ridge",
@@ -4100,35 +4130,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "db0caa105d877302",
-      "source": "The Globe and Mail",
-      "title": "Alleged Tumbler Ridge conspirator indicted by grand jury in U.S.",
-      "url": "https://www.theglobeandmail.com/canada/article-tumbler-ridge-conspirator-james-bryant-rootselaar",
-      "published": "2026-10-15T00:32:25.351000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 273,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
