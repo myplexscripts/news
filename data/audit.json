@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T08:44:38.154292+00:00",
-  "generated_at_london": "2026-10-15T04:44:38.154292-04:00",
+  "generated_at": "2026-10-15T08:48:11.854688+00:00",
+  "generated_at_london": "2026-10-15T04:48:11.854688-04:00",
   "news_generated_at": "2026-10-15T08:43:41.718312+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 616,
     "source_count": 28,
     "audited_story_count": 97,
-    "pass_story_count": 86,
+    "pass_story_count": 85,
     "review_story_count": 8,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
+    "fail_story_count": 4,
+    "critical_issue_count": 4,
     "warning_issue_count": 13,
     "info_issue_count": 81,
-    "healthy_source_count": 10,
-    "review_source_count": 4,
+    "healthy_source_count": 9,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -152,6 +152,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-15T02:26:14.501458+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 476,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T08:00:11+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T08:16:30.634345+00:00",
       "last_error": ""
     },
     {
@@ -665,8 +691,7 @@
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -675,32 +700,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-15T08:42:23.747874+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 502,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-15T08:00:11+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T08:16:30.634345+00:00",
       "last_error": ""
     },
     {
@@ -775,6 +774,21 @@
       "word_count": 41,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "57 words",
+      "story_id": "1475c616d8842fdf",
+      "source": "Toronto Star",
+      "title": "U.S. sets tax total for Canadian softwood lumber exports at almost 35 per cent",
+      "url": "https://www.thestar.com/news/canada/u-s-sets-tax-total-for-canadian-softwood-lumber-exports-at-almost-35-per-cent/article_1e14282b-ddde-5611-ac8a-46cba949f992.html",
+      "published": "2026-10-15T00:12:17+00:00",
+      "content_status": "full",
+      "word_count": 57,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -1926,10 +1940,10 @@
       "title": "Five takeaways from the B.C. leaders’ debate",
       "url": "https://www.theglobeandmail.com/canada/article-five-takeaways-from-the-bc-leaders-debate",
       "published": "2026-10-15T06:01:28.940000+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 823,
-      "quality_score": 94,
-      "extraction_method": "dom:globe:article#content-gate"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1941,10 +1955,10 @@
       "title": "Five takeaways from the B.C. leaders’ debate",
       "url": "https://www.theglobeandmail.com/canada/article-five-takeaways-from-the-bc-leaders-debate",
       "published": "2026-10-15T06:01:28.940000+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 823,
-      "quality_score": 94,
-      "extraction_method": "dom:globe:article#content-gate"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2182,7 +2196,7 @@
       "url": "https://www.thestar.com/news/canada/u-s-sets-tax-total-for-canadian-softwood-lumber-exports-at-almost-35-per-cent/article_1e14282b-ddde-5611-ac8a-46cba949f992.html",
       "published": "2026-10-15T00:12:17+00:00",
       "content_status": "full",
-      "word_count": 325,
+      "word_count": 57,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     }
@@ -3821,13 +3835,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 823,
       "paragraph_count": 23,
-      "inline_image_count": 1,
-      "quality_score": 94,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4669,14 +4683,14 @@
       "title": "U.S. sets tax total for Canadian softwood lumber exports at almost 35 per cent",
       "url": "https://www.thestar.com/news/canada/u-s-sets-tax-total-for-canadian-softwood-lumber-exports-at-almost-35-per-cent/article_1e14282b-ddde-5611-ac8a-46cba949f992.html",
       "published": "2026-10-15T00:12:17+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 325,
-      "paragraph_count": 21,
+      "word_count": 57,
+      "paragraph_count": 2,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4684,6 +4698,12 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "57 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
