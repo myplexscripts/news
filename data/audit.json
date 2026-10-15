@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T15:54:50.789284+00:00",
-  "generated_at_london": "2026-10-15T11:54:50.789284-04:00",
-  "news_generated_at": "2026-10-15T15:52:54.293389+00:00",
+  "generated_at": "2026-10-15T16:10:54.683938+00:00",
+  "generated_at_london": "2026-10-15T12:10:54.683938-04:00",
+  "news_generated_at": "2026-10-15T16:09:01.245646+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 623,
     "source_count": 28,
-    "audited_story_count": 98,
-    "pass_story_count": 89,
+    "audited_story_count": 99,
+    "pass_story_count": 90,
     "review_story_count": 8,
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 13,
     "info_issue_count": 83,
-    "healthy_source_count": 10,
-    "review_source_count": 4,
+    "healthy_source_count": 11,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -126,32 +126,6 @@
       "tracked": 30,
       "last_scrape": "2026-10-15T15:34:52.198551+00:00",
       "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 376,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-15T14:17:58+00:00",
-      "found_this_run": 0,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T14:31:35.806957+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -391,7 +365,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "403 Client Error: Forbidden for url: https://www.healthunit.com/news/"
+      "last_error": "HTTPSConnectionPool(host='www.healthunit.com', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.healthunit.com', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Ontario Newsroom",
@@ -515,7 +489,7 @@
       "latest_published": "2026-10-15T15:52:15.275000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T14:05:04.006475+00:00",
+      "last_scrape": "2026-10-15T15:52:58.329746+00:00",
       "last_error": ""
     },
     {
@@ -700,7 +674,33 @@
       "latest_published": "2026-10-15T14:58:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T15:50:41.304760+00:00",
+      "last_scrape": "2026-10-15T16:06:45.731642+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 376,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T14:17:58+00:00",
+      "found_this_run": 9,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T14:31:35.806957+00:00",
       "last_error": ""
     },
     {
@@ -708,25 +708,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "western",
-      "sample_size": 7,
-      "pass": 7,
+      "sample_size": 8,
+      "pass": 8,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 830,
+      "average_words": 860,
       "average_quality": 81,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "trafilatura:fallback": 1,
         "reader:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 0,
-      "latest_published": "2026-10-14T19:37:04+00:00",
+      "latest_published": "2026-10-15T16:02:17+00:00",
       "found_this_run": 10,
-      "tracked": 7,
-      "last_scrape": "2026-10-14T19:53:32.753009+00:00",
+      "tracked": 8,
+      "last_scrape": "2026-10-15T16:05:30.460785+00:00",
       "last_error": ""
     }
   ],
@@ -2972,6 +2973,28 @@
           "detail": "Local score 10/100"
         }
       ]
+    },
+    {
+      "id": "05b9d4d8e0a126a1",
+      "source": "Western News",
+      "title": "Western electrochemists found silicon inside nuclear fuel before it ever entered a reactor",
+      "url": "https://news.westernu.ca/2026/10/silicon-nuclear-discovery",
+      "published": "2026-10-15T16:02:17+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 1070,
+      "paragraph_count": 28,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "western",
+      "local_score": 26,
+      "issues": []
     },
     {
       "id": "e557d669caa86fbd",
