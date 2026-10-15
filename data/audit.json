@@ -1,15 +1,15 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T17:47:55.217453+00:00",
-  "generated_at_london": "2026-10-15T13:47:55.217453-04:00",
-  "news_generated_at": "2026-10-15T17:41:39.203578+00:00",
+  "generated_at": "2026-10-15T17:59:07.059580+00:00",
+  "generated_at_london": "2026-10-15T13:59:07.059580-04:00",
+  "news_generated_at": "2026-10-15T17:57:13.055669+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 620,
     "source_count": 28,
-    "audited_story_count": 99,
-    "pass_story_count": 92,
+    "audited_story_count": 100,
+    "pass_story_count": 93,
     "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
@@ -248,7 +248,7 @@
     {
       "source": "London Free Press",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "postmedia",
       "sample_size": 0,
       "pass": 0,
@@ -267,7 +267,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "403 Client Error: Forbidden for url: https://lfpress.com"
     },
     {
       "source": "London Transit Commission",
@@ -394,25 +394,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "wordpress",
-      "sample_size": 2,
-      "pass": 2,
+      "sample_size": 3,
+      "pass": 3,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 169,
-      "average_quality": 78,
+      "average_words": 218,
+      "average_quality": 76,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:wordpress:article": 1,
         "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 0,
-      "latest_published": "2026-10-14T19:16:33+00:00",
+      "latest_published": "2026-10-15T17:32:25+00:00",
       "found_this_run": 10,
-      "tracked": 2,
-      "last_scrape": "2026-10-14T19:21:12.929077+00:00",
+      "tracked": 3,
+      "last_scrape": "2026-10-15T17:52:52.400038+00:00",
       "last_error": ""
     },
     {
@@ -479,20 +480,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 540,
-      "average_quality": 94,
+      "average_words": 521,
+      "average_quality": 89,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
+        "dom:citynews:article": 1,
+        "reader:semantic-rich-v1": 8,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-15T12:06:26+00:00",
+      "latest_published": "2026-10-15T17:43:02+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T13:12:13.221142+00:00",
+      "last_scrape": "2026-10-15T17:55:07.764451+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +652,7 @@
       "latest_published": "2026-10-15T14:58:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T17:39:34.579821+00:00",
+      "last_scrape": "2026-10-15T17:55:01.335430+00:00",
       "last_error": ""
     },
     {
@@ -1428,21 +1430,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7b5089ac060a341a",
-      "source": "CityNews Canada",
-      "title": "Cross-border visits by Canadian and U.S. residents up from last year: StatCan",
-      "url": "https://toronto.citynews.ca/2026/10/14/cross-border-visits-by-canadian-and-u-s-residents-up-from-last-year-statcan",
-      "published": "2026-10-14T13:20:00+00:00",
-      "content_status": "full",
-      "word_count": 265,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "d737a1306be71876",
       "source": "CityNews Canada",
       "title": "Father receives life sentence in New York for murder of Montreal girl",
@@ -1452,6 +1439,21 @@
       "word_count": 246,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "3e12807ab618c7a5",
+      "source": "CityNews Canada",
+      "title": "Flintstones multivitamins recalled due to distribution error",
+      "url": "https://toronto.citynews.ca/2026/10/15/flintstones-multivitamins-recalled-due-to-distribution-error",
+      "published": "2026-10-15T17:43:02+00:00",
+      "content_status": "partial",
+      "word_count": 74,
+      "quality_score": 44,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -2563,6 +2565,28 @@
           "detail": "Local score 12/100"
         }
       ]
+    },
+    {
+      "id": "29d85bfc824f113e",
+      "source": "106.9 The X",
+      "title": "Fanshawe College Unveils New Simulator Centre to help with Ptsd",
+      "url": "https://www.1069thex.com/2026/10/15/fanshawe-college-unveils-new-simulator-centre-to-help-with-ptsd",
+      "published": "2026-10-15T17:32:25+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 315,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "dom:wordpress:article",
+      "extraction_profile": "wordpress",
+      "local_score": 61,
+      "issues": []
     },
     {
       "id": "24b0fa3fc16ef4cf",
@@ -4724,6 +4748,35 @@
       ]
     },
     {
+      "id": "3e12807ab618c7a5",
+      "source": "CityNews Canada",
+      "title": "Flintstones multivitamins recalled due to distribution error",
+      "url": "https://toronto.citynews.ca/2026/10/15/flintstones-multivitamins-recalled-due-to-distribution-error",
+      "published": "2026-10-15T17:43:02+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 74,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 44,
+      "quality_grade": "poor",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fb0b5b3acd1a2246",
       "source": "CityNews Canada",
       "title": "Health ministers set to meet in Winnipeg after Ottawa announces funding extension",
@@ -4963,35 +5016,6 @@
       "word_count": 299,
       "paragraph_count": 9,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7b5089ac060a341a",
-      "source": "CityNews Canada",
-      "title": "Cross-border visits by Canadian and U.S. residents up from last year: StatCan",
-      "url": "https://toronto.citynews.ca/2026/10/14/cross-border-visits-by-canadian-and-u-s-residents-up-from-last-year-statcan",
-      "published": "2026-10-14T13:20:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 265,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
