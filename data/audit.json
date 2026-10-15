@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T10:38:21.570003+00:00",
-  "generated_at_london": "2026-10-15T06:38:21.570003-04:00",
+  "generated_at": "2026-10-15T10:40:57.827665+00:00",
+  "generated_at_london": "2026-10-15T06:40:57.827665-04:00",
   "news_generated_at": "2026-10-15T10:37:11.479444+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 14,
-    "info_issue_count": 80,
+    "info_issue_count": 81,
     "healthy_source_count": 9,
     "review_source_count": 5,
     "error_source_count": 1,
@@ -536,7 +536,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 6,
+      "info_issues": 7,
       "latest_published": "2026-10-15T10:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
@@ -1313,6 +1313,21 @@
       "content_status": "full",
       "word_count": 292,
       "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "4fd4a270cb6f6c3c",
+      "source": "CTV News London",
+      "title": "Nan’s House (still) slated for demolition",
+      "url": "https://www.ctvnews.ca/london/article/nans-house-still-slated-for-demolition",
+      "published": "2026-10-15T10:30:00+00:00",
+      "content_status": "full",
+      "word_count": 390,
+      "quality_score": 80,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2245,10 +2260,10 @@
       "url": "https://www.ctvnews.ca/london/article/nans-house-still-slated-for-demolition",
       "published": "2026-10-15T10:30:00+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 390,
       "paragraph_count": 14,
@@ -2258,7 +2273,14 @@
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 30,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "6c16eaf9dcc3c0cd",
@@ -3317,7 +3339,7 @@
       "content_status": "full",
       "word_count": 41,
       "paragraph_count": 2,
-      "inline_image_count": 2,
+      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
