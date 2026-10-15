@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T14:23:17.806588+00:00",
-  "generated_at_london": "2026-10-15T10:23:17.806588-04:00",
-  "news_generated_at": "2026-10-15T14:17:11.937846+00:00",
+  "generated_at": "2026-10-15T14:35:42.060876+00:00",
+  "generated_at_london": "2026-10-15T10:35:42.060876-04:00",
+  "news_generated_at": "2026-10-15T14:33:48.121070+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 626,
+    "archive_story_count": 627,
     "source_count": 28,
     "audited_story_count": 99,
-    "pass_story_count": 88,
-    "review_story_count": 9,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 14,
-    "info_issue_count": 84,
+    "pass_story_count": 86,
+    "review_story_count": 12,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 20,
+    "info_issue_count": 83,
     "healthy_source_count": 10,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -112,46 +112,48 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 950,
-      "average_quality": 96,
+      "average_words": 883,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 12,
-      "latest_published": "2026-10-15T13:00:00+00:00",
+      "info_issues": 11,
+      "latest_published": "2026-10-15T14:13:17.758000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T13:12:05.646570+00:00",
+      "last_scrape": "2026-10-15T14:31:23.602802+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 7,
+      "review": 3,
+      "fail": 0,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 552,
-      "average_quality": 96,
+      "average_words": 400,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 3,
+        "reader:semantic-rich-v1": 7
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 6,
       "info_issues": 10,
-      "latest_published": "2026-10-15T08:00:11+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-15T14:17:58+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T09:15:01.874602+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-15T14:31:37.083567+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -700,7 +702,7 @@
       "latest_published": "2026-10-15T13:47:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T14:15:14.776943+00:00",
+      "last_scrape": "2026-10-15T14:31:31.046006+00:00",
       "last_error": ""
     },
     {
@@ -745,21 +747,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "59 words",
-      "story_id": "8170e599666df837",
-      "source": "Toronto Star",
-      "title": "B.C. restaurant Baan Lao wins best in North America award for 2026",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-restaurant-baan-lao-wins-best-in-north-america-award-for-2026/article_e9fef9ac-2e1e-591b-bd30-76d1e35409c2.html",
-      "published": "2026-10-15T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 59,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -970,6 +957,96 @@
       "word_count": 3203,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "af9763edcc75ac65",
+      "source": "Toronto Star",
+      "title": "Ontario fines SeatGeek Canada $22,500 more over ticket resale violations",
+      "url": "https://www.thestar.com/news/ontario/ontario-fines-seatgeek-canada-22-500-more-over-ticket-resale-violations/article_aeb53103-cc70-5b97-ae67-65c26c7e8f88.html",
+      "published": "2026-10-15T14:06:00+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "af9763edcc75ac65",
+      "source": "Toronto Star",
+      "title": "Ontario fines SeatGeek Canada $22,500 more over ticket resale violations",
+      "url": "https://www.thestar.com/news/ontario/ontario-fines-seatgeek-canada-22-500-more-over-ticket-resale-violations/article_aeb53103-cc70-5b97-ae67-65c26c7e8f88.html",
+      "published": "2026-10-15T14:06:00+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "d09da12ea88dbf46",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada to hear appeal of First Nation's Nootka Island claim",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-to-hear-appeal-of-first-nation-s-nootka-island-claim/article_363b6240-73da-504c-aaa0-729c6adfee11.html",
+      "published": "2026-10-15T14:17:58+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "d09da12ea88dbf46",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada to hear appeal of First Nation's Nootka Island claim",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-to-hear-appeal-of-first-nation-s-nootka-island-claim/article_363b6240-73da-504c-aaa0-729c6adfee11.html",
+      "published": "2026-10-15T14:17:58+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "753dd6fe67537650",
+      "source": "Toronto Star",
+      "title": "Supreme Court will rule on Ottawa's single-use plastics ban",
+      "url": "https://www.thestar.com/news/cp-newsalert-supreme-court-will-rule-on-ottawa-s-single-use-plastics-ban/article_e7602944-9d08-52ee-8e76-0167cd075006.html",
+      "published": "2026-10-15T13:55:00+00:00",
+      "content_status": "full",
+      "word_count": 184,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "753dd6fe67537650",
+      "source": "Toronto Star",
+      "title": "Supreme Court will rule on Ottawa's single-use plastics ban",
+      "url": "https://www.thestar.com/news/cp-newsalert-supreme-court-will-rule-on-ottawa-s-single-use-plastics-ban/article_e7602944-9d08-52ee-8e76-0167cd075006.html",
+      "published": "2026-10-15T13:55:00+00:00",
+      "content_status": "full",
+      "word_count": 184,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1918,36 +1995,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "3a07d6759e313f66",
-      "source": "The Globe and Mail",
-      "title": "Five takeaways from the B.C. leaders’ debate",
-      "url": "https://www.theglobeandmail.com/canada/article-five-takeaways-from-the-bc-leaders-debate",
-      "published": "2026-10-15T06:01:28.940000+00:00",
-      "content_status": "partial",
-      "word_count": 823,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3a07d6759e313f66",
-      "source": "The Globe and Mail",
-      "title": "Five takeaways from the B.C. leaders’ debate",
-      "url": "https://www.theglobeandmail.com/canada/article-five-takeaways-from-the-bc-leaders-debate",
-      "published": "2026-10-15T06:01:28.940000+00:00",
-      "content_status": "partial",
-      "word_count": 823,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2071,6 +2118,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "fcdec1f237ba97a1",
+      "source": "The Globe and Mail",
+      "title": "SeatGeek Canada faces two more fines from Ontario over ticket resale violations",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-seatgeek-ticket-resale-ontario-fines",
+      "published": "2026-10-15T14:13:17.758000+00:00",
+      "content_status": "full",
+      "word_count": 154,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "76533f1de6e1e983",
       "source": "The Globe and Mail",
       "title": "The right to know about Tumbler Ridge",
@@ -2093,36 +2155,6 @@
       "published": "2026-10-15T08:00:01+00:00",
       "content_status": "partial",
       "word_count": 28,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8170e599666df837",
-      "source": "Toronto Star",
-      "title": "B.C. restaurant Baan Lao wins best in North America award for 2026",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-restaurant-baan-lao-wins-best-in-north-america-award-for-2026/article_e9fef9ac-2e1e-591b-bd30-76d1e35409c2.html",
-      "published": "2026-10-15T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 59,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1096b59bf62f7b10",
-      "source": "Toronto Star",
-      "title": "Canada Child Benefit payments go out next week",
-      "url": "https://www.thestar.com/news/canada/canada-child-benefit-payment-coming-tuesday/article_50c25adb-3cbf-4cf1-85a8-f626f165b0d9.html",
-      "published": "2026-10-15T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 929,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2191,15 +2223,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "444905be22faef96",
+      "story_id": "af9763edcc75ac65",
       "source": "Toronto Star",
-      "title": "Ontario signs contract to import electricity from U.S.",
-      "url": "https://www.thestar.com/news/ontario/ontario-signs-contract-to-import-electricity-from-u-s/article_7753d8a3-7d4f-4b60-a300-9c6e1e00acf0.html",
-      "published": "2026-10-15T04:00:00+00:00",
+      "title": "Ontario fines SeatGeek Canada $22,500 more over ticket resale violations",
+      "url": "https://www.thestar.com/news/ontario/ontario-fines-seatgeek-canada-22-500-more-over-ticket-resale-violations/article_aeb53103-cc70-5b97-ae67-65c26c7e8f88.html",
+      "published": "2026-10-15T14:06:00+00:00",
       "content_status": "full",
-      "word_count": 1107,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2230,6 +2262,36 @@
       "word_count": 855,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d09da12ea88dbf46",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada to hear appeal of First Nation's Nootka Island claim",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-to-hear-appeal-of-first-nation-s-nootka-island-claim/article_363b6240-73da-504c-aaa0-729c6adfee11.html",
+      "published": "2026-10-15T14:17:58+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "753dd6fe67537650",
+      "source": "Toronto Star",
+      "title": "Supreme Court will rule on Ottawa's single-use plastics ban",
+      "url": "https://www.thestar.com/news/cp-newsalert-supreme-court-will-rule-on-ottawa-s-single-use-plastics-ban/article_e7602944-9d08-52ee-8e76-0167cd075006.html",
+      "published": "2026-10-15T13:55:00+00:00",
+      "content_status": "full",
+      "word_count": 184,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     }
   ],
   "stories": [
@@ -3914,6 +3976,35 @@
       ]
     },
     {
+      "id": "fcdec1f237ba97a1",
+      "source": "The Globe and Mail",
+      "title": "SeatGeek Canada faces two more fines from Ontario over ticket resale violations",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-seatgeek-ticket-resale-ontario-fines",
+      "published": "2026-10-15T14:13:17.758000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 154,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "58fd6f78fc2f418b",
       "source": "The Globe and Mail",
       "title": "How these book publishers balance business risk and personal security",
@@ -4178,41 +4269,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3a07d6759e313f66",
-      "source": "The Globe and Mail",
-      "title": "Five takeaways from the B.C. leaders’ debate",
-      "url": "https://www.theglobeandmail.com/canada/article-five-takeaways-from-the-bc-leaders-debate",
-      "published": "2026-10-15T06:01:28.940000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 823,
-      "paragraph_count": 23,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4512,6 +4568,129 @@
       ]
     },
     {
+      "id": "d09da12ea88dbf46",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada to hear appeal of First Nation's Nootka Island claim",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-to-hear-appeal-of-first-nation-s-nootka-island-claim/article_363b6240-73da-504c-aaa0-729c6adfee11.html",
+      "published": "2026-10-15T14:17:58+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 190,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "af9763edcc75ac65",
+      "source": "Toronto Star",
+      "title": "Ontario fines SeatGeek Canada $22,500 more over ticket resale violations",
+      "url": "https://www.thestar.com/news/ontario/ontario-fines-seatgeek-canada-22-500-more-over-ticket-resale-violations/article_aeb53103-cc70-5b97-ae67-65c26c7e8f88.html",
+      "published": "2026-10-15T14:06:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 194,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "753dd6fe67537650",
+      "source": "Toronto Star",
+      "title": "Supreme Court will rule on Ottawa's single-use plastics ban",
+      "url": "https://www.thestar.com/news/cp-newsalert-supreme-court-will-rule-on-ottawa-s-single-use-plastics-ban/article_e7602944-9d08-52ee-8e76-0167cd075006.html",
+      "published": "2026-10-15T13:55:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 184,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "04bcdebcbc758c6e",
       "source": "Toronto Star",
       "title": "Here are five things to know about B.C.'s only televised election debate",
@@ -4699,99 +4878,6 @@
       "content_status": "full",
       "word_count": 742,
       "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8170e599666df837",
-      "source": "Toronto Star",
-      "title": "B.C. restaurant Baan Lao wins best in North America award for 2026",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-restaurant-baan-lao-wins-best-in-north-america-award-for-2026/article_e9fef9ac-2e1e-591b-bd30-76d1e35409c2.html",
-      "published": "2026-10-15T04:00:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 59,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "59 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1096b59bf62f7b10",
-      "source": "Toronto Star",
-      "title": "Canada Child Benefit payments go out next week",
-      "url": "https://www.thestar.com/news/canada/canada-child-benefit-payment-coming-tuesday/article_50c25adb-3cbf-4cf1-85a8-f626f165b0d9.html",
-      "published": "2026-10-15T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 929,
-      "paragraph_count": 39,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "444905be22faef96",
-      "source": "Toronto Star",
-      "title": "Ontario signs contract to import electricity from U.S.",
-      "url": "https://www.thestar.com/news/ontario/ontario-signs-contract-to-import-electricity-from-u-s/article_7753d8a3-7d4f-4b60-a300-9c6e1e00acf0.html",
-      "published": "2026-10-15T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1107,
-      "paragraph_count": 38,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
