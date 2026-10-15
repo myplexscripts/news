@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T20:05:42.054135+00:00",
-  "generated_at_london": "2026-10-15T16:05:42.054135-04:00",
-  "news_generated_at": "2026-10-15T20:01:28.146716+00:00",
+  "generated_at": "2026-10-15T20:18:42.952432+00:00",
+  "generated_at_london": "2026-10-15T16:18:42.952432-04:00",
+  "news_generated_at": "2026-10-15T20:16:52.691375+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 621,
+    "archive_story_count": 622,
     "source_count": 28,
     "audited_story_count": 100,
     "pass_story_count": 92,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 13,
     "info_issue_count": 86,
-    "healthy_source_count": 12,
-    "review_source_count": 3,
+    "healthy_source_count": 11,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -112,20 +112,47 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 442,
+      "average_words": 462,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 2,
-      "info_issues": 13,
+      "info_issues": 12,
       "latest_published": "2026-10-15T19:41:16.795000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T19:59:10.464911+00:00",
+      "last_scrape": "2026-10-15T20:14:44.749427+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 322,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T18:50:09+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T19:12:51.751807+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -452,17 +479,17 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 60,
-      "average_words": 176,
-      "average_quality": 59,
+      "average_words": 141,
+      "average_quality": 56,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 4,
-        "embedded-json:ctv": 6
+        "embedded-json:ctv": 6,
+        "ctv:summary-fallback": 4
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-10-15T19:41:17.528000+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-10-15T20:11:32.432000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-15T19:41:41.345933+00:00",
@@ -532,19 +559,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 394,
-      "average_quality": 96,
+      "average_words": 413,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-15T19:22:39+00:00",
+      "latest_published": "2026-10-15T20:10:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T19:27:23.828705+00:00",
+      "last_scrape": "2026-10-15T20:14:41.643602+00:00",
       "last_error": ""
     },
     {
@@ -676,33 +704,7 @@
       "latest_published": "2026-10-15T19:15:15+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T19:59:15.764008+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 322,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-15T18:50:09+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T19:12:51.751807+00:00",
+      "last_scrape": "2026-10-15T20:14:50.083242+00:00",
       "last_error": ""
     },
     {
@@ -1218,6 +1220,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "1447fb26bb7df519",
+      "source": "CTV News London",
+      "title": "All-way stop installed at Fairview Road and John Wise Line",
+      "url": "https://www.ctvnews.ca/london/article/all-way-stop-installed-at-fairview-road-and-john-wise-line",
+      "published": "2026-10-15T20:11:32.432000+00:00",
+      "content_status": "partial",
+      "word_count": 84,
+      "quality_score": 53,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1447fb26bb7df519",
+      "source": "CTV News London",
+      "title": "All-way stop installed at Fairview Road and John Wise Line",
+      "url": "https://www.ctvnews.ca/london/article/all-way-stop-installed-at-fairview-road-and-john-wise-line",
+      "published": "2026-10-15T20:11:32.432000+00:00",
+      "content_status": "partial",
+      "word_count": 84,
+      "quality_score": 53,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "2ee4853b8dd27dc5",
       "source": "CTV News London",
       "title": "Halloween displays in and around the London area",
@@ -1242,21 +1274,6 @@
       "word_count": 19,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "c4c9ddd688604ce4",
-      "source": "CTV News London",
-      "title": "London politicians hope the legacy of Irene Mathyssen will be carried on",
-      "url": "https://www.ctvnews.ca/london/article/london-politicians-hope-the-legacy-of-irene-mathyssen-will-be-carried-on",
-      "published": "2026-10-14T22:58:57.823000+00:00",
-      "content_status": "full",
-      "word_count": 433,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -1698,15 +1715,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9292d0b427b056bf",
+      "story_id": "6a6aeab08800e87a",
       "source": "Global News Canada",
-      "title": "Toronto police to update catalytic converter theft that disabled 7 Second Harvest trucks",
-      "url": "https://globalnews.ca/news/12103620/second-harvest-catalytic-converters-thefts",
-      "published": "2026-10-15T15:25:21+00:00",
+      "title": "Stelco negotiations still on the table, Joly says amid layoffs",
+      "url": "https://globalnews.ca/news/12103896/stelco-layoffs-looming-joly",
+      "published": "2026-10-15T20:10:59+00:00",
       "content_status": "full",
-      "word_count": 203,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 389,
+      "quality_score": 78,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1945,21 +1962,6 @@
       "published": "2026-10-15T17:50:59.071000+00:00",
       "content_status": "partial",
       "word_count": 542,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "58fd6f78fc2f418b",
-      "source": "The Globe and Mail",
-      "title": "How these book publishers balance business risk and personal security",
-      "url": "https://www.theglobeandmail.com/business/article-how-these-book-publishers-balance-business-risk-and-personal-security",
-      "published": "2026-10-15T13:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 695,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2324,6 +2326,41 @@
       "issues": []
     },
     {
+      "id": "1447fb26bb7df519",
+      "source": "CTV News London",
+      "title": "All-way stop installed at Fairview Road and John Wise Line",
+      "url": "https://www.ctvnews.ca/london/article/all-way-stop-installed-at-fairview-road-and-john-wise-line",
+      "published": "2026-10-15T20:11:32.432000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "partial",
+      "word_count": 84,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3bb53a3041234c48",
       "source": "CTV News London",
       "title": "Person in custody after police investigation in London",
@@ -2592,35 +2629,6 @@
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 35,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "c4c9ddd688604ce4",
-      "source": "CTV News London",
-      "title": "London politicians hope the legacy of Irene Mathyssen will be carried on",
-      "url": "https://www.ctvnews.ca/london/article/london-politicians-hope-the-legacy-of-irene-mathyssen-will-be-carried-on",
-      "published": "2026-10-14T22:58:57.823000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 433,
-      "paragraph_count": 15,
-      "inline_image_count": 0,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 56,
       "issues": [
         {
           "severity": "info",
@@ -3326,6 +3334,35 @@
       "issues": []
     },
     {
+      "id": "6a6aeab08800e87a",
+      "source": "Global News Canada",
+      "title": "Stelco negotiations still on the table, Joly says amid layoffs",
+      "url": "https://globalnews.ca/news/12103896/stelco-layoffs-looming-joly",
+      "published": "2026-10-15T20:10:59+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 389,
+      "paragraph_count": 14,
+      "inline_image_count": 1,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "46c9b6e9b7ef25e8",
       "source": "Global News Canada",
       "title": "Why Trump is reviving 51st state rhetoric with midterms in less than 3 weeks",
@@ -3572,35 +3609,6 @@
       "word_count": 516,
       "paragraph_count": 17,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9292d0b427b056bf",
-      "source": "Global News Canada",
-      "title": "Toronto police to update catalytic converter theft that disabled 7 Second Harvest trucks",
-      "url": "https://globalnews.ca/news/12103620/second-harvest-catalytic-converters-thefts",
-      "published": "2026-10-15T15:25:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 203,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4221,33 +4229,26 @@
       ]
     },
     {
-      "id": "58fd6f78fc2f418b",
+      "id": "1ed92b791c739f97",
       "source": "The Globe and Mail",
-      "title": "How these book publishers balance business risk and personal security",
-      "url": "https://www.theglobeandmail.com/business/article-how-these-book-publishers-balance-business-risk-and-personal-security",
-      "published": "2026-10-15T13:00:00+00:00",
+      "title": "Rosemead House hotel helps guests discover a stylish side of Victoria",
+      "url": "https://www.theglobeandmail.com/life/style/style-magazine/article-rosemead-house-hotel-helps-guests-discover-a-stylish-side-of-victoria",
+      "published": "2026-10-15T13:33:38.680000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 100,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 695,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 894,
+      "paragraph_count": 16,
+      "inline_image_count": 5,
+      "quality_score": 97,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
       "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
+      "local_score": 26,
+      "issues": []
     },
     {
       "id": "1c2d38cc6fb501fc",
