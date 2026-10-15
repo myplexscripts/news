@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T17:32:01.442102+00:00",
-  "generated_at_london": "2026-10-15T13:32:01.442102-04:00",
-  "news_generated_at": "2026-10-15T17:25:44.422669+00:00",
+  "generated_at": "2026-10-15T17:43:32.219706+00:00",
+  "generated_at_london": "2026-10-15T13:43:32.219706-04:00",
+  "news_generated_at": "2026-10-15T17:41:39.203578+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 622,
     "source_count": 28,
     "audited_story_count": 99,
-    "pass_story_count": 92,
-    "review_story_count": 6,
+    "pass_story_count": 91,
+    "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 11,
+    "warning_issue_count": 13,
     "info_issue_count": 84,
-    "healthy_source_count": 13,
-    "review_source_count": 2,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -99,6 +99,33 @@
       "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-10-15T16:43:26.282133+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 297,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T17:17:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T17:39:37.828716+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +677,7 @@
       "latest_published": "2026-10-15T14:58:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T17:23:41.692226+00:00",
+      "last_scrape": "2026-10-15T17:39:34.579821+00:00",
       "last_error": ""
     },
     {
@@ -677,32 +704,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-15T16:21:58.189181+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 280,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-15T16:28:36+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T16:53:21.413425+00:00",
       "last_error": ""
     },
     {
@@ -912,6 +913,36 @@
       "word_count": 2543,
       "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3a0c0ea51715839f",
+      "source": "Toronto Star",
+      "title": "Dozens of drivers went wrong way on Highway 401 since Gordie Howe bridge opened: OPP",
+      "url": "https://www.thestar.com/news/ontario/dozens-of-drivers-went-wrong-way-on-highway-401-since-gordie-howe-bridge-opened-opp/article_91da577d-bd7f-58ae-ba61-987ea4406da2.html",
+      "published": "2026-10-15T17:17:00+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "3a0c0ea51715839f",
+      "source": "Toronto Star",
+      "title": "Dozens of drivers went wrong way on Highway 401 since Gordie Howe bridge opened: OPP",
+      "url": "https://www.thestar.com/news/ontario/dozens-of-drivers-went-wrong-way-on-highway-401-since-gordie-howe-bridge-opened-opp/article_91da577d-bd7f-58ae-ba61-987ea4406da2.html",
+      "published": "2026-10-15T17:17:00+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2043,6 +2074,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3a0c0ea51715839f",
+      "source": "Toronto Star",
+      "title": "Dozens of drivers went wrong way on Highway 401 since Gordie Howe bridge opened: OPP",
+      "url": "https://www.thestar.com/news/ontario/dozens-of-drivers-went-wrong-way-on-highway-401-since-gordie-howe-bridge-opened-opp/article_91da577d-bd7f-58ae-ba61-987ea4406da2.html",
+      "published": "2026-10-15T17:17:00+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "dfcfe60a932a5b2a",
       "source": "Toronto Star",
       "title": "Four-year-old child drowned in neighbour's backyard pool: Ottawa police",
@@ -2050,21 +2096,6 @@
       "published": "2026-10-15T16:28:36+00:00",
       "content_status": "full",
       "word_count": 111,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "04bcdebcbc758c6e",
-      "source": "Toronto Star",
-      "title": "Here are five things to know about B.C.'s only televised election debate",
-      "url": "https://www.thestar.com/news/canada/british-columbia/here-are-five-things-to-know-about-b-c-s-only-televised-election-debate/article_eaf1566d-f562-50e3-9e3c-0b529f2098cc.html",
-      "published": "2026-10-15T08:00:11+00:00",
-      "content_status": "partial",
-      "word_count": 58,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4434,6 +4465,47 @@
       ]
     },
     {
+      "id": "3a0c0ea51715839f",
+      "source": "Toronto Star",
+      "title": "Dozens of drivers went wrong way on Highway 401 since Gordie Howe bridge opened: OPP",
+      "url": "https://www.thestar.com/news/ontario/dozens-of-drivers-went-wrong-way-on-highway-401-since-gordie-howe-bridge-opened-opp/article_91da577d-bd7f-58ae-ba61-987ea4406da2.html",
+      "published": "2026-10-15T17:17:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 227,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "dfcfe60a932a5b2a",
       "source": "Toronto Star",
       "title": "Four-year-old child drowned in neighbour's backyard pool: Ottawa police",
@@ -4679,35 +4751,6 @@
       "content_status": "full",
       "word_count": 161,
       "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "04bcdebcbc758c6e",
-      "source": "Toronto Star",
-      "title": "Here are five things to know about B.C.'s only televised election debate",
-      "url": "https://www.thestar.com/news/canada/british-columbia/here-are-five-things-to-know-about-b-c-s-only-televised-election-debate/article_eaf1566d-f562-50e3-9e3c-0b529f2098cc.html",
-      "published": "2026-10-15T08:00:11+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 58,
-      "paragraph_count": 2,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
