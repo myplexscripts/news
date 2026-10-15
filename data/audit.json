@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T18:50:03.332994+00:00",
-  "generated_at_london": "2026-10-15T14:50:03.332994-04:00",
-  "news_generated_at": "2026-10-15T18:43:54.309702+00:00",
+  "generated_at": "2026-10-15T19:00:19.049635+00:00",
+  "generated_at_london": "2026-10-15T15:00:19.049635-04:00",
+  "news_generated_at": "2026-10-15T18:58:55.262405+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 612,
+    "archive_story_count": 614,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 93,
-    "review_story_count": 6,
+    "pass_story_count": 92,
+    "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 11,
-    "info_issue_count": 84,
-    "healthy_source_count": 13,
-    "review_source_count": 2,
+    "warning_issue_count": 13,
+    "info_issue_count": 85,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -99,6 +99,33 @@
       "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-10-15T16:43:26.282133+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 292,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T18:38:40+00:00",
+      "found_this_run": 9,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T18:57:00.534907+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +677,7 @@
       "latest_published": "2026-10-15T18:23:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T18:41:44.394372+00:00",
+      "last_scrape": "2026-10-15T18:56:57.924454+00:00",
       "last_error": ""
     },
     {
@@ -664,45 +691,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 468,
-      "average_quality": 96,
+      "average_words": 436,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-15T17:50:59.071000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-15T18:43:56.058000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T18:10:32.812209+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 295,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-15T18:26:58+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T18:41:48.335912+00:00",
+      "last_scrape": "2026-10-15T18:56:53.277787+00:00",
       "last_error": ""
     },
     {
@@ -912,6 +914,36 @@
       "word_count": 2543,
       "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "91b266f2e33801cb",
+      "source": "Toronto Star",
+      "title": "Sunnybrook hospital parts ways with worker caught on video using 'racist language'",
+      "url": "https://www.thestar.com/news/ontario/sunnybrook-hospital-parts-ways-with-worker-caught-on-video-using-racist-language/article_0f6686da-26a3-5916-8e65-415e33831a8f.html",
+      "published": "2026-10-15T18:38:40+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "91b266f2e33801cb",
+      "source": "Toronto Star",
+      "title": "Sunnybrook hospital parts ways with worker caught on video using 'racist language'",
+      "url": "https://www.thestar.com/news/ontario/sunnybrook-hospital-parts-ways-with-worker-caught-on-video-using-racist-language/article_0f6686da-26a3-5916-8e65-415e33831a8f.html",
+      "published": "2026-10-15T18:38:40+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1848,6 +1880,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "1240fdd4a3dca6b1",
+      "source": "The Globe and Mail",
+      "title": "Carney stumps for unity as Alberta referendum approaches",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-unity-alberta-referendum-secession-independence",
+      "published": "2026-10-15T18:43:56.058000+00:00",
+      "content_status": "full",
+      "word_count": 513,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1240fdd4a3dca6b1",
+      "source": "The Globe and Mail",
+      "title": "Carney stumps for unity as Alberta referendum approaches",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-unity-alberta-referendum-secession-independence",
+      "published": "2026-10-15T18:43:56.058000+00:00",
+      "content_status": "full",
+      "word_count": 513,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "e1bd6157b9edc81c",
       "source": "The Globe and Mail",
       "title": "Cohere announces plan to buy European AI cybersecurity startup Aisle",
@@ -1931,21 +1993,6 @@
       "content_status": "partial",
       "word_count": 787,
       "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "af915515e002b48d",
-      "source": "The Globe and Mail",
-      "title": "Ken Sim and Pete Fry face off in Vancouver mayoral race",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-vancouver-mayoral-race-ken-sim-sim-pete-fry",
-      "published": "2026-10-15T10:24:48.004000+00:00",
-      "content_status": "partial",
-      "word_count": 832,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -2103,21 +2150,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "af9763edcc75ac65",
-      "source": "Toronto Star",
-      "title": "Ontario fines SeatGeek Canada $22,500 more over ticket resale violations",
-      "url": "https://www.thestar.com/news/ontario/ontario-fines-seatgeek-canada-22-500-more-over-ticket-resale-violations/article_aeb53103-cc70-5b97-ae67-65c26c7e8f88.html",
-      "published": "2026-10-15T14:06:00+00:00",
-      "content_status": "full",
-      "word_count": 249,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "c5a58e411b1c798c",
       "source": "Toronto Star",
       "title": "Ottawa cautions Canadians against travel to Saudi Arabia after airports targeted",
@@ -2142,6 +2174,21 @@
       "word_count": 835,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "91b266f2e33801cb",
+      "source": "Toronto Star",
+      "title": "Sunnybrook hospital parts ways with worker caught on video using 'racist language'",
+      "url": "https://www.thestar.com/news/ontario/sunnybrook-hospital-parts-ways-with-worker-caught-on-video-using-racist-language/article_0f6686da-26a3-5916-8e65-415e33831a8f.html",
+      "published": "2026-10-15T18:38:40+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3864,6 +3911,41 @@
       ]
     },
     {
+      "id": "1240fdd4a3dca6b1",
+      "source": "The Globe and Mail",
+      "title": "Carney stumps for unity as Alberta referendum approaches",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-unity-alberta-referendum-secession-independence",
+      "published": "2026-10-15T18:43:56.058000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 513,
+      "paragraph_count": 26,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e1bd6157b9edc81c",
       "source": "The Globe and Mail",
       "title": "Cohere announces plan to buy European AI cybersecurity startup Aisle",
@@ -4122,35 +4204,6 @@
       "word_count": 714,
       "paragraph_count": 15,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "af915515e002b48d",
-      "source": "The Globe and Mail",
-      "title": "Ken Sim and Pete Fry face off in Vancouver mayoral race",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-vancouver-mayoral-race-ken-sim-sim-pete-fry",
-      "published": "2026-10-15T10:24:48.004000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 832,
-      "paragraph_count": 33,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4456,6 +4509,47 @@
       ]
     },
     {
+      "id": "91b266f2e33801cb",
+      "source": "Toronto Star",
+      "title": "Sunnybrook hospital parts ways with worker caught on video using 'racist language'",
+      "url": "https://www.thestar.com/news/ontario/sunnybrook-hospital-parts-ways-with-worker-caught-on-video-using-racist-language/article_0f6686da-26a3-5916-8e65-415e33831a8f.html",
+      "published": "2026-10-15T18:38:40+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 219,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e625d1dfff0233b4",
       "source": "Toronto Star",
       "title": "Fifty-nine Parti Québécois members swear oath at provincial legislature",
@@ -4701,35 +4795,6 @@
       "content_status": "full",
       "word_count": 140,
       "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "af9763edcc75ac65",
-      "source": "Toronto Star",
-      "title": "Ontario fines SeatGeek Canada $22,500 more over ticket resale violations",
-      "url": "https://www.thestar.com/news/ontario/ontario-fines-seatgeek-canada-22-500-more-over-ticket-resale-violations/article_aeb53103-cc70-5b97-ae67-65c26c7e8f88.html",
-      "published": "2026-10-15T14:06:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 249,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
