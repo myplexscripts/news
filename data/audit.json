@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-15T10:25:27.925486+00:00",
-  "generated_at_london": "2026-10-15T06:25:27.925486-04:00",
-  "news_generated_at": "2026-10-15T10:19:42.988843+00:00",
+  "generated_at": "2026-10-15T10:38:21.570003+00:00",
+  "generated_at_london": "2026-10-15T06:38:21.570003-04:00",
+  "news_generated_at": "2026-10-15T10:37:11.479444+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 619,
+    "archive_story_count": 620,
     "source_count": 28,
     "audited_story_count": 97,
     "pass_story_count": 86,
@@ -14,9 +14,9 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 14,
-    "info_issue_count": 81,
-    "healthy_source_count": 10,
-    "review_source_count": 4,
+    "info_issue_count": 80,
+    "healthy_source_count": 9,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -154,6 +154,32 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 645,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-15T08:00:11+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T09:15:01.874602+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -276,7 +302,7 @@
     {
       "source": "London District Catholic School Board",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -292,10 +318,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 9,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.ldcsb.ca', port=443): Max retries exceeded with url: /apps/news/category/11195?pageIndex=1 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ldcsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "London Free Press",
@@ -502,19 +528,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 239,
-      "average_quality": 68,
+      "average_words": 268,
+      "average_quality": 71,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 7,
-      "latest_published": "2026-10-15T10:00:01+00:00",
+      "info_issues": 6,
+      "latest_published": "2026-10-15T10:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T10:07:17.556590+00:00",
+      "last_scrape": "2026-10-15T10:33:12.134298+00:00",
       "last_error": ""
     },
     {
@@ -673,33 +699,7 @@
       "latest_published": "2026-10-15T10:00:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-15T10:17:34.498123+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 645,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-15T08:00:11+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T09:15:01.874602+00:00",
+      "last_scrape": "2026-10-15T10:35:20.321947+00:00",
       "last_error": ""
     },
     {
@@ -1238,21 +1238,6 @@
       "content_status": "full",
       "word_count": 2469,
       "quality_score": 91,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e3b9dd64550d7099",
-      "source": "CTV News London",
-      "title": "3 people suffer life-threatening injuries in Kincardine crash",
-      "url": "https://www.ctvnews.ca/london/article/3-people-suffer-life-threatening-injuries-in-kincardine-crash",
-      "published": "2026-10-14T14:25:50.994000+00:00",
-      "content_status": "full",
-      "word_count": 101,
-      "quality_score": 53,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2254,6 +2239,28 @@
       "issues": []
     },
     {
+      "id": "4fd4a270cb6f6c3c",
+      "source": "CTV News London",
+      "title": "Nan’s House (still) slated for demolition",
+      "url": "https://www.ctvnews.ca/london/article/nans-house-still-slated-for-demolition",
+      "published": "2026-10-15T10:30:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 390,
+      "paragraph_count": 14,
+      "inline_image_count": 0,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 30,
+      "issues": []
+    },
+    {
       "id": "6c16eaf9dcc3c0cd",
       "source": "CTV News London",
       "title": "Rain expected overnight ahead of chilly weekend in London",
@@ -2480,35 +2487,6 @@
       "paragraph_count": 6,
       "inline_image_count": 2,
       "quality_score": 59,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e3b9dd64550d7099",
-      "source": "CTV News London",
-      "title": "3 people suffer life-threatening injuries in Kincardine crash",
-      "url": "https://www.ctvnews.ca/london/article/3-people-suffer-life-threatening-injuries-in-kincardine-crash",
-      "published": "2026-10-14T14:25:50.994000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 101,
-      "paragraph_count": 5,
-      "inline_image_count": 0,
-      "quality_score": 53,
       "quality_grade": "partial",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
