@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T17:37:18.449519+00:00",
-  "generated_at_london": "2026-10-16T13:37:18.449519-04:00",
-  "news_generated_at": "2026-10-16T17:31:34.244788+00:00",
+  "generated_at": "2026-10-16T17:50:07.335760+00:00",
+  "generated_at_london": "2026-10-16T13:50:07.335760-04:00",
+  "news_generated_at": "2026-10-16T17:47:49.886260+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 659,
+    "archive_story_count": 660,
     "source_count": 28,
-    "audited_story_count": 100,
-    "pass_story_count": 96,
+    "audited_story_count": 101,
+    "pass_story_count": 97,
     "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 4,
-    "info_issue_count": 76,
-    "healthy_source_count": 13,
-    "review_source_count": 2,
+    "info_issue_count": 77,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -73,6 +73,32 @@
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
+    },
+    {
+      "source": "CTV News Canada",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 312,
+      "average_quality": 74,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 13,
+      "latest_published": "2026-10-16T15:09:02.381000+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-16T15:29:47.715846+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.ctvnews.ca', port=443): Max retries exceeded with url: /canada/ (Caused by SSLError(SSLError(1, '[SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)')))"
     },
     {
       "source": "CityNews Canada",
@@ -416,32 +442,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News Canada",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 312,
-      "average_quality": 74,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-10-16T15:09:02.381000+00:00",
-      "found_this_run": 2,
-      "tracked": 30,
-      "last_scrape": "2026-10-16T15:29:47.715846+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News London",
       "status": "healthy",
       "collector_status": "healthy",
@@ -465,7 +465,7 @@
       "latest_published": "2026-10-16T17:19:51.405000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T17:27:22.366659+00:00",
+      "last_scrape": "2026-10-16T17:34:19.318140+00:00",
       "last_error": ""
     },
     {
@@ -505,19 +505,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 468,
-      "average_quality": 96,
+      "average_words": 418,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-16T17:24:35+00:00",
+      "latest_published": "2026-10-16T17:44:42+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T17:29:23.297642+00:00",
+      "last_scrape": "2026-10-16T17:45:04.767390+00:00",
       "last_error": ""
     },
     {
@@ -577,26 +578,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "police",
-      "sample_size": 4,
-      "pass": 4,
+      "sample_size": 5,
+      "pass": 5,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 221,
-      "average_quality": 73,
+      "average_words": 222,
+      "average_quality": 71,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:police:main": 1,
         "reader:semantic-rich-v1": 3,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-10-15T04:00:00+00:00",
+      "info_issues": 2,
+      "latest_published": "2026-10-16T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 4,
-      "last_scrape": "2026-10-16T14:35:17.790832+00:00",
+      "tracked": 5,
+      "last_scrape": "2026-10-16T17:43:10.393897+00:00",
       "last_error": ""
     },
     {
@@ -636,20 +638,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 882,
-      "average_quality": 86,
+      "average_words": 855,
+      "average_quality": 85,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 7,
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 6,
         "reader:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-16T16:12:47+00:00",
+      "latest_published": "2026-10-16T17:29:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T17:29:30.092470+00:00",
+      "last_scrape": "2026-10-16T17:45:17.816765+00:00",
       "last_error": ""
     },
     {
@@ -1352,6 +1355,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "7bc92acd99a5b9d1",
+      "source": "Global News Canada",
+      "title": "Court documents show Fsin knew ISC audit decision months before informing members",
+      "url": "https://globalnews.ca/news/12104840/court-documents-show-fsin-knew-isc-audit-decision-months-before-informing-members",
+      "published": "2026-10-16T17:44:42+00:00",
+      "content_status": "full",
+      "word_count": 590,
+      "quality_score": 83,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e79a157c7b38984d",
       "source": "Global News Canada",
       "title": "EverWind announces $10B investment in N.S. data centre campus, wind projects",
@@ -1367,6 +1385,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "4e1cc3be49d6f0b4",
+      "source": "Global News Canada",
+      "title": "France to decide next month on extradition of ex-Manitoba law dean in fraud case",
+      "url": "https://globalnews.ca/news/12105393/jonathan-black-branch-extradition-hearing",
+      "published": "2026-10-16T17:36:45+00:00",
+      "content_status": "full",
+      "word_count": 135,
+      "quality_score": 59,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "41ba715c21819cc9",
       "source": "Global News Canada",
       "title": "Guelph homecoming drew up to 15,000 people, generated $91K in policing costs",
@@ -1374,21 +1407,6 @@
       "published": "2026-10-16T15:01:00+00:00",
       "content_status": "full",
       "word_count": 433,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "71f7d736fa2fd591",
-      "source": "Global News Canada",
-      "title": "Quebec sovereigntists see fundamental rift with Alberta separatists",
-      "url": "https://globalnews.ca/news/12104996/quebec-sovereigntists-see-fundamental-rift-with-alberta-separatists",
-      "published": "2026-10-16T11:59:43+00:00",
-      "content_status": "full",
-      "word_count": 1033,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1442,21 +1460,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "e5828abd30471362",
-      "source": "Global News Canada",
-      "title": "Waymo to launch robotaxis in Toronto under pilot program for self-driving vehicles",
-      "url": "https://globalnews.ca/news/12105000/waymo-robotaxis-toronto",
-      "published": "2026-10-16T12:15:34+00:00",
-      "content_status": "full",
-      "word_count": 183,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "417fc49c6209b698",
       "source": "Global News Canada",
       "title": "What Albertans need to know about voting in the referendum",
@@ -1481,6 +1484,21 @@
       "word_count": 109,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "7d7d72ae782d1a67",
+      "source": "London Police Service",
+      "title": "THREATS",
+      "url": "https://www.londonpolice.ca/news/posts/threats-26-103881",
+      "published": "2026-10-16T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 63,
+      "extraction_method": "dom:police:main"
     },
     {
       "severity": "info",
@@ -1547,6 +1565,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "f10e7e322943f7a7",
+      "source": "National Post",
+      "title": "Canadians most likely to be born on Sept. 20, Statistics Canada reports",
+      "url": "https://nationalpost.com/news/canada/virgo-libra-cuspers-rule-the-birthday-calendar-statistics-canada-reports",
+      "published": "2026-10-16T17:29:44+00:00",
+      "content_status": "full",
+      "word_count": 677,
+      "quality_score": 87,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "b70387c046f80799",
       "source": "National Post",
       "title": "Carney's comment irks Smith, and a jab at sensitive Americans: 6 key moments from PM's Calgary visit",
@@ -1585,21 +1618,6 @@
       "content_status": "full",
       "word_count": 1056,
       "quality_score": 90,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ad3ecd59a04a0895",
-      "source": "National Post",
-      "title": "Sophie Grégoire Trudeau didn't see Justin Trudeau as a PM: 'I knew it was his job, but come on'",
-      "url": "https://nationalpost.com/news/canada/sophie-gregoire-trudeau-didnt-see-justin-trudeau-as-a-pm-i-knew-it-was-his-job-but-come-on",
-      "published": "2026-10-15T18:23:23+00:00",
-      "content_status": "full",
-      "word_count": 951,
-      "quality_score": 92,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -2466,6 +2484,35 @@
       ]
     },
     {
+      "id": "7d7d72ae782d1a67",
+      "source": "London Police Service",
+      "title": "THREATS",
+      "url": "https://www.londonpolice.ca/news/posts/threats-26-103881",
+      "published": "2026-10-16T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 227,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 63,
+      "quality_grade": "partial",
+      "extraction_method": "dom:police:main",
+      "extraction_profile": "police",
+      "local_score": 100,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "fa6e75c66dd6f426",
       "source": "London Police Service",
       "title": "Missing Person – Layla Hart",
@@ -2958,6 +3005,64 @@
       "issues": []
     },
     {
+      "id": "7bc92acd99a5b9d1",
+      "source": "Global News Canada",
+      "title": "Court documents show Fsin knew ISC audit decision months before informing members",
+      "url": "https://globalnews.ca/news/12104840/court-documents-show-fsin-knew-isc-audit-decision-months-before-informing-members",
+      "published": "2026-10-16T17:44:42+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 590,
+      "paragraph_count": 21,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "4e1cc3be49d6f0b4",
+      "source": "Global News Canada",
+      "title": "France to decide next month on extradition of ex-Manitoba law dean in fraud case",
+      "url": "https://globalnews.ca/news/12105393/jonathan-black-branch-extradition-hearing",
+      "published": "2026-10-16T17:36:45+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 135,
+      "paragraph_count": 6,
+      "inline_image_count": 1,
+      "quality_score": 59,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "03f4987ff9c22feb",
       "source": "Global News Canada",
       "title": "Youth found guilty in Ottawa 2023 terror plot to kill Jewish people",
@@ -3175,64 +3280,6 @@
       "word_count": 162,
       "paragraph_count": 6,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e5828abd30471362",
-      "source": "Global News Canada",
-      "title": "Waymo to launch robotaxis in Toronto under pilot program for self-driving vehicles",
-      "url": "https://globalnews.ca/news/12105000/waymo-robotaxis-toronto",
-      "published": "2026-10-16T12:15:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 183,
-      "paragraph_count": 6,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "71f7d736fa2fd591",
-      "source": "Global News Canada",
-      "title": "Quebec sovereigntists see fundamental rift with Alberta separatists",
-      "url": "https://globalnews.ca/news/12104996/quebec-sovereigntists-see-fundamental-rift-with-alberta-separatists",
-      "published": "2026-10-16T11:59:43+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1033,
-      "paragraph_count": 38,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -3858,6 +3905,35 @@
       ]
     },
     {
+      "id": "f10e7e322943f7a7",
+      "source": "National Post",
+      "title": "Canadians most likely to be born on Sept. 20, Statistics Canada reports",
+      "url": "https://nationalpost.com/news/canada/virgo-libra-cuspers-rule-the-birthday-calendar-statistics-canada-reports",
+      "published": "2026-10-16T17:29:44+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 677,
+      "paragraph_count": 14,
+      "inline_image_count": 0,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ed9558a7125e678d",
       "source": "National Post",
       "title": "Toyota commits to making cars in Canada as rivals downsize",
@@ -4107,35 +4183,6 @@
       "quality_score": 74,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ad3ecd59a04a0895",
-      "source": "National Post",
-      "title": "Sophie Grégoire Trudeau didn't see Justin Trudeau as a PM: 'I knew it was his job, but come on'",
-      "url": "https://nationalpost.com/news/canada/sophie-gregoire-trudeau-didnt-see-justin-trudeau-as-a-pm-i-knew-it-was-his-job-but-come-on",
-      "published": "2026-10-15T18:23:23+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 951,
-      "paragraph_count": 19,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
