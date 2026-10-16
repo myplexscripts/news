@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T18:25:22.022685+00:00",
-  "generated_at_london": "2026-10-16T14:25:22.022685-04:00",
-  "news_generated_at": "2026-10-16T18:18:34.783983+00:00",
+  "generated_at": "2026-10-16T18:36:01.016824+00:00",
+  "generated_at_london": "2026-10-16T14:36:01.016824-04:00",
+  "news_generated_at": "2026-10-16T18:34:19.768799+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 660,
+    "archive_story_count": 661,
     "source_count": 28,
     "audited_story_count": 102,
     "pass_story_count": 98,
@@ -14,9 +14,9 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 4,
-    "info_issue_count": 77,
-    "healthy_source_count": 13,
-    "review_source_count": 2,
+    "info_issue_count": 78,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -100,6 +100,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-16T17:29:41.635601+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 278,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-16T18:01:52+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-16T18:16:35.689814+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -506,19 +532,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 442,
-      "average_quality": 96,
+      "average_words": 413,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-16T18:05:12+00:00",
+      "latest_published": "2026-10-16T18:27:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T18:16:19.083824+00:00",
+      "last_scrape": "2026-10-16T18:32:08.633877+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +678,7 @@
       "latest_published": "2026-10-16T17:50:31+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T18:16:26.761382+00:00",
+      "last_scrape": "2026-10-16T18:32:17.773488+00:00",
       "last_error": ""
     },
     {
@@ -665,45 +692,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 608,
-      "average_quality": 96,
+      "average_words": 519,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-16T18:00:00+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-16T18:14:16.639000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T18:16:22.298529+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 278,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-16T18:01:52+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-16T18:16:35.689814+00:00",
+      "last_scrape": "2026-10-16T18:32:11.912541+00:00",
       "last_error": ""
     },
     {
@@ -1399,15 +1401,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "41ba715c21819cc9",
+      "story_id": "5dbe950e28550b2d",
       "source": "Global News Canada",
-      "title": "Guelph homecoming drew up to 15,000 people, generated $91K in policing costs",
-      "url": "https://globalnews.ca/news/12105026/guelph-homecoming-party-police-cost-report",
-      "published": "2026-10-16T15:01:00+00:00",
+      "title": "Pierre Poilievre urges Albertans not to ‘quit’ on Canada ahead of separation vote",
+      "url": "https://globalnews.ca/news/12105479/alberta-referendum-pierre-poilievre-friday",
+      "published": "2026-10-16T18:27:58+00:00",
       "content_status": "full",
-      "word_count": 433,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 145,
+      "quality_score": 61,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1756,18 +1758,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "3fa40ca481d7acc4",
+      "source": "The Globe and Mail",
+      "title": "Joly warns Stelco owner to uphold jobs or risk forced sale of Canadian assets",
+      "url": "https://www.theglobeandmail.com/business/article-melanie-joly-warns-stelco-owner-cleveland-cliffs-to-uphold-jobs",
+      "published": "2026-10-16T18:14:16.639000+00:00",
+      "content_status": "full",
+      "word_count": 148,
+      "quality_score": 57,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "2a252d893bf2ba0a",
+      "story_id": "3fa40ca481d7acc4",
       "source": "The Globe and Mail",
-      "title": "Quebec sovereigntists see fundamental rift with Alberta separatists",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-quebec-sovereigntists-rift-alberta-separatists",
-      "published": "2026-10-16T11:31:27.031000+00:00",
-      "content_status": "partial",
-      "word_count": 1033,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "Joly warns Stelco owner to uphold jobs or risk forced sale of Canadian assets",
+      "url": "https://www.theglobeandmail.com/business/article-melanie-joly-warns-stelco-owner-cleveland-cliffs-to-uphold-jobs",
+      "published": "2026-10-16T18:14:16.639000+00:00",
+      "content_status": "full",
+      "word_count": 148,
+      "quality_score": 57,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3026,6 +3043,35 @@
       "issues": []
     },
     {
+      "id": "5dbe950e28550b2d",
+      "source": "Global News Canada",
+      "title": "Pierre Poilievre urges Albertans not to ‘quit’ on Canada ahead of separation vote",
+      "url": "https://globalnews.ca/news/12105479/alberta-referendum-pierre-poilievre-friday",
+      "published": "2026-10-16T18:27:58+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 145,
+      "paragraph_count": 7,
+      "inline_image_count": 2,
+      "quality_score": 61,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5ed9446ab3835102",
       "source": "Global News Canada",
       "title": "Stelco layoff legal challenge timeline is in ‘days,’ Joly says",
@@ -3264,35 +3310,6 @@
       "content_status": "full",
       "word_count": 88,
       "paragraph_count": 7,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "41ba715c21819cc9",
-      "source": "Global News Canada",
-      "title": "Guelph homecoming drew up to 15,000 people, generated $91K in policing costs",
-      "url": "https://globalnews.ca/news/12105026/guelph-homecoming-party-police-cost-report",
-      "published": "2026-10-16T15:01:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 433,
-      "paragraph_count": 18,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
@@ -3617,6 +3634,41 @@
       ]
     },
     {
+      "id": "3fa40ca481d7acc4",
+      "source": "The Globe and Mail",
+      "title": "Joly warns Stelco owner to uphold jobs or risk forced sale of Canadian assets",
+      "url": "https://www.theglobeandmail.com/business/article-melanie-joly-warns-stelco-owner-cleveland-cliffs-to-uphold-jobs",
+      "published": "2026-10-16T18:14:16.639000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 148,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c4d485c91298df7f",
       "source": "The Globe and Mail",
       "title": "Interest-rate myth distracts from Canada’s continuing housing crisis",
@@ -3876,35 +3928,6 @@
       "paragraph_count": 27,
       "inline_image_count": 4,
       "quality_score": 97,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2a252d893bf2ba0a",
-      "source": "The Globe and Mail",
-      "title": "Quebec sovereigntists see fundamental rift with Alberta separatists",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-quebec-sovereigntists-rift-alberta-separatists",
-      "published": "2026-10-16T11:31:27.031000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1033,
-      "paragraph_count": 38,
-      "inline_image_count": 2,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
