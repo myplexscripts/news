@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T12:09:40.760858+00:00",
-  "generated_at_london": "2026-10-16T08:09:40.760858-04:00",
-  "news_generated_at": "2026-10-16T12:03:18.321463+00:00",
+  "generated_at": "2026-10-16T12:21:11.752770+00:00",
+  "generated_at_london": "2026-10-16T08:21:11.752770-04:00",
+  "news_generated_at": "2026-10-16T12:19:24.073506+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 640,
+    "archive_story_count": 642,
     "source_count": 28,
     "audited_story_count": 97,
-    "pass_story_count": 88,
-    "review_story_count": 7,
+    "pass_story_count": 89,
+    "review_story_count": 6,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 12,
+    "warning_issue_count": 10,
     "info_issue_count": 78,
-    "healthy_source_count": 10,
-    "review_source_count": 5,
+    "healthy_source_count": 11,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -128,32 +128,6 @@
       "last_error": ""
     },
     {
-      "source": "The Globe and Mail",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 1048,
-      "average_quality": 95,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 2,
-      "info_issues": 10,
-      "latest_published": "2026-10-16T11:31:27.031000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-16T11:30:16.025010+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Toronto Star",
       "status": "review",
       "collector_status": "healthy",
@@ -225,7 +199,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -557,19 +531,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 550,
-      "average_quality": 96,
+      "average_words": 529,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-16T11:59:43+00:00",
+      "latest_published": "2026-10-16T12:15:34+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T12:00:49.613155+00:00",
+      "last_scrape": "2026-10-16T12:16:47.293806+00:00",
       "last_error": ""
     },
     {
@@ -701,7 +676,34 @@
       "latest_published": "2026-10-16T08:00:34+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T12:00:57.392112+00:00",
+      "last_scrape": "2026-10-16T12:16:56.070261+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "The Globe and Mail",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 1016,
+      "average_quality": 95,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-16T12:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-16T12:16:50.463669+00:00",
       "last_error": ""
     },
     {
@@ -896,36 +898,6 @@
       "word_count": 2543,
       "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "10 inline images",
-      "story_id": "d57ce96e1dec886a",
-      "source": "The Globe and Mail",
-      "title": "In Oak Bay’s debate over density, voters get two elections to speak their minds",
-      "url": "https://www.theglobeandmail.com/canada/article-in-oak-bays-debate-over-density-voters-get-two-elections-to-speak",
-      "published": "2026-10-16T09:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1527,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "3 consecutive images",
-      "story_id": "d57ce96e1dec886a",
-      "source": "The Globe and Mail",
-      "title": "In Oak Bay’s debate over density, voters get two elections to speak their minds",
-      "url": "https://www.theglobeandmail.com/canada/article-in-oak-bays-debate-over-density-voters-get-two-elections-to-speak",
-      "published": "2026-10-16T09:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1527,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -1592,21 +1564,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6a6aeab08800e87a",
-      "source": "Global News Canada",
-      "title": "Stelco negotiations still on the table, Joly says amid layoffs",
-      "url": "https://globalnews.ca/news/12103896/stelco-layoffs-looming-joly",
-      "published": "2026-10-15T20:10:59+00:00",
-      "content_status": "full",
-      "word_count": 389,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "89ff932837895109",
       "source": "Global News Canada",
       "title": "The poll-ar bear results are in, Winnipeg zoo reveals cub’s new name",
@@ -1616,6 +1573,21 @@
       "word_count": 217,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e5828abd30471362",
+      "source": "Global News Canada",
+      "title": "Waymo to launch robotaxis in Toronto under pilot program for self-driving vehicles",
+      "url": "https://globalnews.ca/news/12105000/waymo-robotaxis-toronto",
+      "published": "2026-10-16T12:15:34+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 70,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1816,6 +1788,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "52fa86327627d0aa",
+      "source": "The Globe and Mail",
+      "title": "A modernist homestead in an orchard",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-770-millgrove-side-road-millgrove-ont-home-of-the-week",
+      "published": "2026-10-16T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1210,
+      "quality_score": 97,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
       "story_id": "ffcada7c34f307de",
       "source": "The Globe and Mail",
@@ -1840,21 +1827,6 @@
       "content_status": "partial",
       "word_count": 1238,
       "quality_score": 91,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d57ce96e1dec886a",
-      "source": "The Globe and Mail",
-      "title": "In Oak Bay’s debate over density, voters get two elections to speak their minds",
-      "url": "https://www.theglobeandmail.com/canada/article-in-oak-bays-debate-over-density-voters-get-two-elections-to-speak",
-      "published": "2026-10-16T09:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1527,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -3092,6 +3064,35 @@
       "issues": []
     },
     {
+      "id": "e5828abd30471362",
+      "source": "Global News Canada",
+      "title": "Waymo to launch robotaxis in Toronto under pilot program for self-driving vehicles",
+      "url": "https://globalnews.ca/news/12105000/waymo-robotaxis-toronto",
+      "published": "2026-10-16T12:15:34+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 183,
+      "paragraph_count": 6,
+      "inline_image_count": 2,
+      "quality_score": 70,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "71f7d736fa2fd591",
       "source": "Global News Canada",
       "title": "Quebec sovereigntists see fundamental rift with Alberta separatists",
@@ -3338,35 +3339,6 @@
       "word_count": 737,
       "paragraph_count": 25,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6a6aeab08800e87a",
-      "source": "Global News Canada",
-      "title": "Stelco negotiations still on the table, Joly says amid layoffs",
-      "url": "https://globalnews.ca/news/12103896/stelco-layoffs-looming-joly",
-      "published": "2026-10-15T20:10:59+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 389,
-      "paragraph_count": 14,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -3690,6 +3662,35 @@
       ]
     },
     {
+      "id": "52fa86327627d0aa",
+      "source": "The Globe and Mail",
+      "title": "A modernist homestead in an orchard",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-770-millgrove-side-road-millgrove-ont-home-of-the-week",
+      "published": "2026-10-16T12:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1210,
+      "paragraph_count": 27,
+      "inline_image_count": 4,
+      "quality_score": 97,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2a252d893bf2ba0a",
       "source": "The Globe and Mail",
       "title": "Quebec sovereigntists see fundamental rift with Alberta separatists",
@@ -3942,47 +3943,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d57ce96e1dec886a",
-      "source": "The Globe and Mail",
-      "title": "In Oak Bay’s debate over density, voters get two elections to speak their minds",
-      "url": "https://www.theglobeandmail.com/canada/article-in-oak-bays-debate-over-density-voters-get-two-elections-to-speak",
-      "published": "2026-10-16T09:00:00+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
-      "critical_count": 0,
-      "warning_count": 2,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1527,
-      "paragraph_count": 36,
-      "inline_image_count": 10,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "10 inline images"
-        },
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "3 consecutive images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
