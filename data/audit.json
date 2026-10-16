@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T14:43:41.145923+00:00",
-  "generated_at_london": "2026-10-16T10:43:41.145923-04:00",
-  "news_generated_at": "2026-10-16T14:38:56.098753+00:00",
+  "generated_at": "2026-10-16T14:56:19.265306+00:00",
+  "generated_at_london": "2026-10-16T10:56:19.265306-04:00",
+  "news_generated_at": "2026-10-16T14:55:00.781736+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 650,
+    "archive_story_count": 651,
     "source_count": 28,
     "audited_story_count": 99,
     "pass_story_count": 94,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 5,
-    "info_issue_count": 75,
+    "info_issue_count": 76,
     "healthy_source_count": 12,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -104,7 +104,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -122,10 +122,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-10-16T14:02:00+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-16T14:21:43.108319+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -675,7 +675,7 @@
       "latest_published": "2026-10-16T13:44:30+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T14:37:09.532063+00:00",
+      "last_scrape": "2026-10-16T14:52:57.776214+00:00",
       "last_error": ""
     },
     {
@@ -689,19 +689,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 862,
-      "average_quality": 95,
+      "average_words": 766,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-16T13:35:07.298000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-10-16T14:28:00.731000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T13:50:29.685246+00:00",
+      "last_scrape": "2026-10-16T14:52:52.875304+00:00",
       "last_error": ""
     },
     {
@@ -1709,18 +1710,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "c73118b594134af7",
+      "source": "The Globe and Mail",
+      "title": "How to apply to The Globe and Mail’s Academic Internship Program",
+      "url": "https://www.theglobeandmail.com/canada/article-how-to-apply-to-the-globe-and-mails-academic-internship-program",
+      "published": "2026-10-16T14:28:00.731000+00:00",
+      "content_status": "full",
+      "word_count": 283,
+      "quality_score": 69,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "590d497f8bc114d2",
+      "story_id": "c73118b594134af7",
       "source": "The Globe and Mail",
-      "title": "I spent a year visiting ‘world-class’ cities. Here’s how Canada compares on the global stage",
-      "url": "https://www.theglobeandmail.com/opinion/article-i-spent-a-year-visiting-world-class-cities-heres-how-canada-compares",
-      "published": "2026-10-16T10:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1238,
-      "quality_score": 91,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "How to apply to The Globe and Mail’s Academic Internship Program",
+      "url": "https://www.theglobeandmail.com/canada/article-how-to-apply-to-the-globe-and-mails-academic-internship-program",
+      "published": "2026-10-16T14:28:00.731000+00:00",
+      "content_status": "full",
+      "word_count": 283,
+      "quality_score": 69,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3527,6 +3543,41 @@
       ]
     },
     {
+      "id": "c73118b594134af7",
+      "source": "The Globe and Mail",
+      "title": "How to apply to The Globe and Mail’s Academic Internship Program",
+      "url": "https://www.theglobeandmail.com/canada/article-how-to-apply-to-the-globe-and-mails-academic-internship-program",
+      "published": "2026-10-16T14:28:00.731000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 283,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7a49af5a54ebf7c8",
       "source": "The Globe and Mail",
       "title": "Self-driving taxi company Waymo to launch in Toronto, plans to begin service in 2028",
@@ -3790,35 +3841,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "590d497f8bc114d2",
-      "source": "The Globe and Mail",
-      "title": "I spent a year visiting ‘world-class’ cities. Here’s how Canada compares on the global stage",
-      "url": "https://www.theglobeandmail.com/opinion/article-i-spent-a-year-visiting-world-class-cities-heres-how-canada-compares",
-      "published": "2026-10-16T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1238,
-      "paragraph_count": 25,
-      "inline_image_count": 3,
-      "quality_score": 91,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
