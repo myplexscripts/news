@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T18:56:49.016278+00:00",
-  "generated_at_london": "2026-10-16T14:56:49.016278-04:00",
-  "news_generated_at": "2026-10-16T18:50:53.341015+00:00",
+  "generated_at": "2026-10-16T19:07:49.473717+00:00",
+  "generated_at_london": "2026-10-16T15:07:49.473717-04:00",
+  "news_generated_at": "2026-10-16T19:06:06.551235+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 656,
+    "archive_story_count": 655,
     "source_count": 28,
     "audited_story_count": 102,
     "pass_story_count": 97,
@@ -15,8 +15,8 @@
     "critical_issue_count": 2,
     "warning_issue_count": 5,
     "info_issue_count": 78,
-    "healthy_source_count": 12,
-    "review_source_count": 3,
+    "healthy_source_count": 11,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -126,6 +126,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-16T18:32:08.633877+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 278,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-16T18:01:52+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-16T18:16:35.689814+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -298,7 +324,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -314,10 +340,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 3,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7ff59dd99730>, 'Connection to www.londontransit.ca time"
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -637,21 +663,22 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 834,
+      "average_words": 799,
       "average_quality": 81,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 7,
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 6,
         "merge:dom:semantic-rich-v1": 1,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-16T17:50:31+00:00",
+      "latest_published": "2026-10-16T18:49:39+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T18:48:19.245712+00:00",
+      "last_scrape": "2026-10-16T19:04:05.005248+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-16T18:32:11.912541+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 278,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-16T18:01:52+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-16T18:16:35.689814+00:00",
       "last_error": ""
     },
     {
@@ -1519,21 +1520,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1c2d38cc6fb501fc",
-      "source": "National Post",
-      "title": "7 times Trump reignited '51st state' rhetoric, suggesting 'that's the only way it works' for Canada",
-      "url": "https://nationalpost.com/news/politics/7-times-trump-reignited-51st-state-rhetoric-suggesting-thats-the-only-way-it-works-for-canada",
-      "published": "2026-10-15T19:15:15+00:00",
-      "content_status": "full",
-      "word_count": 1258,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "413bb4ff474b43e3",
       "source": "National Post",
       "title": "B.C. Conservatives cut ties with candidate over posts about the Holocaust and Hitler",
@@ -1618,6 +1604,21 @@
       "word_count": 940,
       "quality_score": 92,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a7f11228192152ee",
+      "source": "National Post",
+      "title": "Former politician Perrin Beatty tragically loses second son, who died four days after his wedding",
+      "url": "https://nationalpost.com/news/former-politician-perrin-beatty-tragically-loses-second-son-who-died-four-days-after-his-wedding",
+      "published": "2026-10-16T18:49:39+00:00",
+      "content_status": "full",
+      "word_count": 906,
+      "quality_score": 96,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -3961,6 +3962,35 @@
       ]
     },
     {
+      "id": "a7f11228192152ee",
+      "source": "National Post",
+      "title": "Former politician Perrin Beatty tragically loses second son, who died four days after his wedding",
+      "url": "https://nationalpost.com/news/former-politician-perrin-beatty-tragically-loses-second-son-who-died-four-days-after-his-wedding",
+      "published": "2026-10-16T18:49:39+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 906,
+      "paragraph_count": 20,
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "19fb5b4f959715e8",
       "source": "National Post",
       "title": "Claims made by Jewish Canadian Armed Forces members in $150M racism class action rejected: report",
@@ -4208,35 +4238,6 @@
       "paragraph_count": 26,
       "inline_image_count": 0,
       "quality_score": 90,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1c2d38cc6fb501fc",
-      "source": "National Post",
-      "title": "7 times Trump reignited '51st state' rhetoric, suggesting 'that's the only way it works' for Canada",
-      "url": "https://nationalpost.com/news/politics/7-times-trump-reignited-51st-state-rhetoric-suggesting-thats-the-only-way-it-works-for-canada",
-      "published": "2026-10-15T19:15:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1258,
-      "paragraph_count": 30,
-      "inline_image_count": 0,
-      "quality_score": 92,
       "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
