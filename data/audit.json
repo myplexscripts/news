@@ -1,15 +1,15 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T14:30:03.912772+00:00",
-  "generated_at_london": "2026-10-16T10:30:03.912772-04:00",
-  "news_generated_at": "2026-10-16T14:24:00.842249+00:00",
+  "generated_at": "2026-10-16T14:40:39.656447+00:00",
+  "generated_at_london": "2026-10-16T10:40:39.656447-04:00",
+  "news_generated_at": "2026-10-16T14:38:56.098753+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 650,
     "source_count": 28,
-    "audited_story_count": 98,
-    "pass_story_count": 93,
+    "audited_story_count": 99,
+    "pass_story_count": 94,
     "review_story_count": 3,
     "fail_story_count": 2,
     "critical_issue_count": 2,
@@ -104,7 +104,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -122,10 +122,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-10-16T14:02:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-16T14:21:43.108319+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -178,7 +178,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -194,10 +194,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 1,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='weather.gc.ca', port=443): Read timed out. (read timeout=8)\"))"
+      "last_error": ""
     },
     {
       "source": "Google News London Discovery",
@@ -603,26 +603,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "police",
-      "sample_size": 3,
-      "pass": 3,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 220,
-      "average_quality": 73,
+      "average_words": 210,
+      "average_quality": 71,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 2,
-        "dom:semantic-rich-v1": 1
+        "dom:semantic-rich-v1": 1,
+        "dom:police:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 1,
       "latest_published": "2026-10-15T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 3,
-      "last_scrape": "2026-10-15T14:13:26.929660+00:00",
+      "tracked": 4,
+      "last_scrape": "2026-10-16T14:35:17.790832+00:00",
       "last_error": ""
     },
     {
@@ -675,7 +676,7 @@
       "latest_published": "2026-10-16T13:44:30+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T14:21:37.282938+00:00",
+      "last_scrape": "2026-10-16T14:37:09.532063+00:00",
       "last_error": ""
     },
     {
@@ -2536,6 +2537,28 @@
           "detail": ""
         }
       ]
+    },
+    {
+      "id": "8959360674c28379",
+      "source": "London Police Service",
+      "title": "Missing person –",
+      "url": "https://www.londonpolice.ca/news/posts/missing-person-26-103132",
+      "published": "2026-10-13T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 179,
+      "paragraph_count": 6,
+      "inline_image_count": 1,
+      "quality_score": 64,
+      "quality_grade": "partial",
+      "extraction_method": "dom:police:main",
+      "extraction_profile": "police",
+      "local_score": 100,
+      "issues": []
     },
     {
       "id": "9512a15275d1fc00",
