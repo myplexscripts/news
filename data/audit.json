@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T10:20:48.724735+00:00",
-  "generated_at_london": "2026-10-16T06:20:48.724735-04:00",
-  "news_generated_at": "2026-10-16T10:14:18.725502+00:00",
+  "generated_at": "2026-10-16T10:29:51.361174+00:00",
+  "generated_at_london": "2026-10-16T06:29:51.361174-04:00",
+  "news_generated_at": "2026-10-16T10:28:49.198179+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 642,
+    "archive_story_count": 643,
     "source_count": 28,
     "audited_story_count": 98,
     "pass_story_count": 87,
@@ -139,11 +139,12 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 892,
-      "average_quality": 96,
+      "average_words": 993,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 2,
@@ -151,7 +152,7 @@
       "latest_published": "2026-10-16T10:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T10:11:51.536420+00:00",
+      "last_scrape": "2026-10-16T10:27:11.712876+00:00",
       "last_error": ""
     },
     {
@@ -448,7 +449,7 @@
     {
       "source": "Thames Valley District School Board",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -464,10 +465,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "106.9 The X",
@@ -703,7 +704,7 @@
       "latest_published": "2026-10-16T08:00:34+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T10:11:57.355026+00:00",
+      "last_scrape": "2026-10-16T10:27:15.365768+00:00",
       "last_error": ""
     },
     {
@@ -1939,21 +1940,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ea9c45cc5cfde1a6",
-      "source": "The Globe and Mail",
-      "title": "Cyber intelligence agency planning large data centre in Ottawa area",
-      "url": "https://www.theglobeandmail.com/politics/article-cyber-intelligence-data-centre-ottawa-area-sovereign-system",
-      "published": "2026-10-16T02:08:59.127000+00:00",
-      "content_status": "partial",
-      "word_count": 785,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "f2603cdbecc52f2b",
       "source": "The Globe and Mail",
       "title": "Getting out the Indigenous vote for the Alberta referendum",
@@ -2038,6 +2024,21 @@
       "word_count": 809,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "5e6ff26df64b7549",
+      "source": "The Globe and Mail",
+      "title": "The seduction of Hudson Williams",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/television/article-hudson-william-yaga-carrie-anne-moss-witchy-television-series-kat",
+      "published": "2026-10-16T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1794,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3866,6 +3867,35 @@
       ]
     },
     {
+      "id": "5e6ff26df64b7549",
+      "source": "The Globe and Mail",
+      "title": "The seduction of Hudson Williams",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/television/article-hudson-william-yaga-carrie-anne-moss-witchy-television-series-kat",
+      "published": "2026-10-16T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1794,
+      "paragraph_count": 49,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3c116f8321277254",
       "source": "The Globe and Mail",
       "title": "Stelco owner Cleveland-Cliffs is playing a classic game of chicken with Ottawa",
@@ -4071,35 +4101,6 @@
       "content_status": "partial",
       "word_count": 727,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ea9c45cc5cfde1a6",
-      "source": "The Globe and Mail",
-      "title": "Cyber intelligence agency planning large data centre in Ottawa area",
-      "url": "https://www.theglobeandmail.com/politics/article-cyber-intelligence-data-centre-ottawa-area-sovereign-system",
-      "published": "2026-10-16T02:08:59.127000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 785,
-      "paragraph_count": 26,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
