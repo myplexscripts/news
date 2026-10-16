@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T14:14:20.291415+00:00",
-  "generated_at_london": "2026-10-16T10:14:20.291415-04:00",
-  "news_generated_at": "2026-10-16T14:08:25.443126+00:00",
+  "generated_at": "2026-10-16T14:25:47.633563+00:00",
+  "generated_at_london": "2026-10-16T10:25:47.633563-04:00",
+  "news_generated_at": "2026-10-16T14:24:00.842249+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 649,
+    "archive_story_count": 650,
     "source_count": 28,
     "audited_story_count": 98,
-    "pass_story_count": 93,
-    "review_story_count": 3,
+    "pass_story_count": 92,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 75,
     "healthy_source_count": 12,
     "review_source_count": 3,
@@ -107,24 +107,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 859,
-      "average_quality": 96,
+      "average_words": 794,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 1,
+      "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-10-16T09:00:08+00:00",
-      "found_this_run": 9,
+      "latest_published": "2026-10-16T14:02:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T09:25:32.132318+00:00",
+      "last_scrape": "2026-10-16T14:21:43.108319+00:00",
       "last_error": ""
     },
     {
@@ -178,7 +179,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -194,10 +195,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 1,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='weather.gc.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Google News London Discovery",
@@ -675,7 +676,7 @@
       "latest_published": "2026-10-16T13:44:30+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T14:06:07.722371+00:00",
+      "last_scrape": "2026-10-16T14:21:37.282938+00:00",
       "last_error": ""
     },
     {
@@ -821,6 +822,36 @@
       "word_count": 813,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3f6d6c2381387164",
+      "source": "Toronto Star",
+      "title": "EverWind says $10B AI data centre proposal largest private investment in N.S. history",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/everwind-says-10b-ai-data-centre-proposal-largest-private-investment-in-n-s-history/article_4625c5f1-0dc8-543d-9edf-f438c9548bef.html",
+      "published": "2026-10-16T14:02:00+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "3f6d6c2381387164",
+      "source": "Toronto Star",
+      "title": "EverWind says $10B AI data centre proposal largest private investment in N.S. history",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/everwind-says-10b-ai-data-centre-proposal-largest-private-investment-in-n-s-history/article_4625c5f1-0dc8-543d-9edf-f438c9548bef.html",
+      "published": "2026-10-16T14:02:00+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1862,6 +1893,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3f6d6c2381387164",
+      "source": "Toronto Star",
+      "title": "EverWind says $10B AI data centre proposal largest private investment in N.S. history",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/everwind-says-10b-ai-data-centre-proposal-largest-private-investment-in-n-s-history/article_4625c5f1-0dc8-543d-9edf-f438c9548bef.html",
+      "published": "2026-10-16T14:02:00+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0dd7c7021f833dde",
       "source": "Toronto Star",
       "title": "Experts say Indigenous communities deserve say John Risley's art collection sale",
@@ -1944,21 +1990,6 @@
       "published": "2026-10-16T08:00:27+00:00",
       "content_status": "full",
       "word_count": 524,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1c8e448838be9738",
-      "source": "Toronto Star",
-      "title": "Why the Bank of Canada says declining immigration is 'reshaping' the economy",
-      "url": "https://www.thestar.com/news/canada/low-birth-rate-declining-immigration-are-reshaping-our-economy-bank-of-canada-warns/article_b8785463-eb68-43ea-a9b6-ce6b74aac846.html",
-      "published": "2026-10-16T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 869,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     }
@@ -4091,6 +4122,47 @@
       ]
     },
     {
+      "id": "3f6d6c2381387164",
+      "source": "Toronto Star",
+      "title": "EverWind says $10B AI data centre proposal largest private investment in N.S. history",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/everwind-says-10b-ai-data-centre-proposal-largest-private-investment-in-n-s-history/article_4625c5f1-0dc8-543d-9edf-f438c9548bef.html",
+      "published": "2026-10-16T14:02:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 224,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cc266b0a96c881e6",
       "source": "Toronto Star",
       "title": "Crea downgrades home sales forecast for the third time this year",
@@ -4349,35 +4421,6 @@
           "message": "Possible publisher module leaked into the article body.",
           "detail": "Comments"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1c8e448838be9738",
-      "source": "Toronto Star",
-      "title": "Why the Bank of Canada says declining immigration is 'reshaping' the economy",
-      "url": "https://www.thestar.com/news/canada/low-birth-rate-declining-immigration-are-reshaping-our-economy-bank-of-canada-warns/article_b8785463-eb68-43ea-a9b6-ce6b74aac846.html",
-      "published": "2026-10-16T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 869,
-      "paragraph_count": 34,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
