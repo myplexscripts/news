@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T03:36:39.995535+00:00",
-  "generated_at_london": "2026-10-15T23:36:39.995535-04:00",
-  "news_generated_at": "2026-10-16T03:30:57.592909+00:00",
+  "generated_at": "2026-10-16T03:48:11.476500+00:00",
+  "generated_at_london": "2026-10-15T23:48:11.476500-04:00",
+  "news_generated_at": "2026-10-16T03:46:36.086527+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 627,
+    "archive_story_count": 628,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 90,
-    "review_story_count": 7,
+    "pass_story_count": 89,
+    "review_story_count": 8,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 13,
-    "info_issue_count": 81,
+    "warning_issue_count": 14,
+    "info_issue_count": 82,
     "healthy_source_count": 10,
     "review_source_count": 5,
     "error_source_count": 1,
@@ -134,24 +134,25 @@
       "collector_status": "healthy",
       "profile": "globe",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 618,
-      "average_quality": 96,
+      "average_words": 687,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 2,
-      "info_issues": 12,
-      "latest_published": "2026-10-16T02:10:17.556000+00:00",
+      "warning_issues": 3,
+      "info_issues": 13,
+      "latest_published": "2026-10-16T02:17:40.234000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T02:26:29.026823+00:00",
+      "last_scrape": "2026-10-16T03:44:12.643720+00:00",
       "last_error": ""
     },
     {
@@ -703,7 +704,7 @@
       "latest_published": "2026-10-15T22:58:30+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-16T03:28:40.541984+00:00",
+      "last_scrape": "2026-10-16T03:44:18.358933+00:00",
       "last_error": ""
     },
     {
@@ -973,6 +974,21 @@
       "word_count": 940,
       "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "duplicate_body",
+      "message": "Duplicate article paragraphs were detected.",
+      "detail": "1 duplicated paragraph pattern(s)",
+      "story_id": "d78d00e80c0bb6ae",
+      "source": "The Globe and Mail",
+      "title": "Carney urges Albertans to vote against separating from Canada",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-alberta-referendum-vote-remain-in-canada-reject-ballot",
+      "published": "2026-10-16T02:17:40.234000+00:00",
+      "content_status": "full",
+      "word_count": 1432,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1891,6 +1907,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "d78d00e80c0bb6ae",
+      "source": "The Globe and Mail",
+      "title": "Carney urges Albertans to vote against separating from Canada",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-alberta-referendum-vote-remain-in-canada-reject-ballot",
+      "published": "2026-10-16T02:17:40.234000+00:00",
+      "content_status": "full",
+      "word_count": 1432,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d78d00e80c0bb6ae",
+      "source": "The Globe and Mail",
+      "title": "Carney urges Albertans to vote against separating from Canada",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-alberta-referendum-vote-remain-in-canada-reject-ballot",
+      "published": "2026-10-16T02:17:40.234000+00:00",
+      "content_status": "full",
+      "word_count": 1432,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1991,21 +2037,6 @@
       "published": "2026-10-15T19:34:14.220000+00:00",
       "content_status": "partial",
       "word_count": 159,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a0d2c00f479c4565",
-      "source": "The Globe and Mail",
-      "title": "Supreme Court to take on B.C. Aboriginal title case after province appeals",
-      "url": "https://www.theglobeandmail.com/canada/article-supreme-court-of-canada-bc-aboriginal-title-nootka-island",
-      "published": "2026-10-15T19:32:35.400000+00:00",
-      "content_status": "partial",
-      "word_count": 743,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3859,6 +3890,47 @@
       ]
     },
     {
+      "id": "d78d00e80c0bb6ae",
+      "source": "The Globe and Mail",
+      "title": "Carney urges Albertans to vote against separating from Canada",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-alberta-referendum-vote-remain-in-canada-reject-ballot",
+      "published": "2026-10-16T02:17:40.234000+00:00",
+      "audit_status": "review",
+      "audit_score": 82,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 1432,
+      "paragraph_count": 43,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "duplicate_body",
+          "message": "Duplicate article paragraphs were detected.",
+          "detail": "1 duplicated paragraph pattern(s)"
+        },
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f2603cdbecc52f2b",
       "source": "The Globe and Mail",
       "title": "Getting out the Indigenous vote for the Alberta referendum",
@@ -4130,35 +4202,6 @@
       "paragraph_count": 8,
       "inline_image_count": 0,
       "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a0d2c00f479c4565",
-      "source": "The Globe and Mail",
-      "title": "Supreme Court to take on B.C. Aboriginal title case after province appeals",
-      "url": "https://www.theglobeandmail.com/canada/article-supreme-court-of-canada-bc-aboriginal-title-nootka-island",
-      "published": "2026-10-15T19:32:35.400000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 743,
-      "paragraph_count": 19,
-      "inline_image_count": 1,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
