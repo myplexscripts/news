@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T18:20:13.193563+00:00",
-  "generated_at_london": "2026-10-16T14:20:13.193563-04:00",
+  "generated_at": "2026-10-16T18:25:22.022685+00:00",
+  "generated_at_london": "2026-10-16T14:25:22.022685-04:00",
   "news_generated_at": "2026-10-16T18:18:34.783983+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 660,
     "source_count": 28,
     "audited_story_count": 102,
-    "pass_story_count": 96,
-    "review_story_count": 4,
+    "pass_story_count": 98,
+    "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 8,
+    "warning_issue_count": 4,
     "info_issue_count": 77,
-    "healthy_source_count": 12,
-    "review_source_count": 3,
+    "healthy_source_count": 13,
+    "review_source_count": 2,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -99,33 +99,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-16T17:29:41.635601+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 8,
-      "review": 2,
-      "fail": 0,
-      "pass_rate": 80,
-      "usable_body_rate": 100,
-      "average_words": 289,
-      "average_quality": 93,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:star:article": 2,
-        "reader:semantic-rich-v1": 8
-      },
-      "critical_issues": 0,
-      "warning_issues": 4,
-      "info_issues": 10,
-      "latest_published": "2026-10-16T18:01:52+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-16T18:16:35.689814+00:00",
       "last_error": ""
     },
     {
@@ -507,11 +480,11 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 1968,
-      "average_quality": 82,
+      "average_quality": 84,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 2,
-        "dom:municipal:.field--name-body": 1
+        "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -534,11 +507,10 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 442,
-      "average_quality": 94,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -693,12 +665,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 610,
+      "average_words": 608,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:main": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -707,6 +678,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-16T18:16:22.298529+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 278,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-16T18:01:52+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-16T18:16:35.689814+00:00",
       "last_error": ""
     },
     {
@@ -826,66 +823,6 @@
       "word_count": 813,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "83c785dac69ffa65",
-      "source": "Toronto Star",
-      "title": "Durham Region constable charged with assault over incident during arrest: police",
-      "url": "https://www.thestar.com/news/ontario/durham-region-constable-charged-with-assault-over-incident-during-arrest-police/article_fd4e86fa-d805-5b08-a930-f6af413e2f94.html",
-      "published": "2026-10-16T18:01:52+00:00",
-      "content_status": "full",
-      "word_count": 216,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "13 inline images",
-      "story_id": "83c785dac69ffa65",
-      "source": "Toronto Star",
-      "title": "Durham Region constable charged with assault over incident during arrest: police",
-      "url": "https://www.thestar.com/news/ontario/durham-region-constable-charged-with-assault-over-incident-during-arrest-police/article_fd4e86fa-d805-5b08-a930-f6af413e2f94.html",
-      "published": "2026-10-16T18:01:52+00:00",
-      "content_status": "full",
-      "word_count": 216,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "c479fa3c32e954b1",
-      "source": "Toronto Star",
-      "title": "Police look to cause of fiery Calgary bus crash, try to identity third person killed",
-      "url": "https://www.thestar.com/news/canada/alberta/police-look-to-cause-of-fiery-calgary-bus-crash-try-to-identity-third-person-killed/article_43e3cc92-f2f4-5591-a4c9-ced82add577f.html",
-      "published": "2026-10-16T17:58:21+00:00",
-      "content_status": "full",
-      "word_count": 224,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "13 inline images",
-      "story_id": "c479fa3c32e954b1",
-      "source": "Toronto Star",
-      "title": "Police look to cause of fiery Calgary bus crash, try to identity third person killed",
-      "url": "https://www.thestar.com/news/canada/alberta/police-look-to-cause-of-fiery-calgary-bus-crash-try-to-identity-third-person-killed/article_43e3cc92-f2f4-5591-a4c9-ced82add577f.html",
-      "published": "2026-10-16T17:58:21+00:00",
-      "content_status": "full",
-      "word_count": 224,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1499,8 +1436,8 @@
       "published": "2026-10-16T18:05:12+00:00",
       "content_status": "full",
       "word_count": 248,
-      "quality_score": 73,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1812,10 +1749,10 @@
       "title": "Interest-rate myth distracts from Canada’s continuing housing crisis",
       "url": "https://www.theglobeandmail.com/investing/personal-finance/young-money/article-interest-rate-myth-distracts-from-canadas-continuing-housing-crisis",
       "published": "2026-10-16T18:00:00+00:00",
-      "content_status": "full",
-      "word_count": 812,
+      "content_status": "partial",
+      "word_count": 791,
       "quality_score": 97,
-      "extraction_method": "dom:globe:main"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1933,9 +1870,9 @@
       "url": "https://www.thestar.com/news/ontario/durham-region-constable-charged-with-assault-over-incident-during-arrest-police/article_fd4e86fa-d805-5b08-a930-f6af413e2f94.html",
       "published": "2026-10-16T18:01:52+00:00",
       "content_status": "full",
-      "word_count": 216,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
+      "word_count": 98,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2023,9 +1960,9 @@
       "url": "https://www.thestar.com/news/canada/alberta/police-look-to-cause-of-fiery-calgary-bus-crash-try-to-identity-third-person-killed/article_43e3cc92-f2f4-5591-a4c9-ced82add577f.html",
       "published": "2026-10-16T17:58:21+00:00",
       "content_status": "full",
-      "word_count": 224,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
+      "word_count": 235,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2530,10 +2467,10 @@
       "content_status": "full",
       "word_count": 361,
       "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 71,
+      "inline_image_count": 2,
+      "quality_score": 76,
       "quality_grade": "good",
-      "extraction_method": "dom:municipal:.field--name-body",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "municipal",
       "local_score": 100,
       "issues": []
@@ -3102,10 +3039,10 @@
       "content_status": "full",
       "word_count": 248,
       "paragraph_count": 9,
-      "inline_image_count": 1,
-      "quality_score": 73,
+      "inline_image_count": 3,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -3690,13 +3627,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 812,
-      "paragraph_count": 21,
+      "content_status": "partial",
+      "word_count": 791,
+      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 97,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:main",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4277,33 +4214,21 @@
       "title": "Durham Region constable charged with assault over incident during arrest: police",
       "url": "https://www.thestar.com/news/ontario/durham-region-constable-charged-with-assault-over-incident-during-arrest-police/article_fd4e86fa-d805-5b08-a930-f6af413e2f94.html",
       "published": "2026-10-16T18:01:52+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
+      "audit_status": "pass",
+      "audit_score": 97,
       "critical_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 216,
-      "paragraph_count": 2,
-      "inline_image_count": 13,
-      "quality_score": 80,
+      "word_count": 98,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:star:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "13 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4318,33 +4243,21 @@
       "title": "Police look to cause of fiery Calgary bus crash, try to identity third person killed",
       "url": "https://www.thestar.com/news/canada/alberta/police-look-to-cause-of-fiery-calgary-bus-crash-try-to-identity-third-person-killed/article_43e3cc92-f2f4-5591-a4c9-ced82add577f.html",
       "published": "2026-10-16T17:58:21+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
+      "audit_status": "pass",
+      "audit_score": 97,
       "critical_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 224,
-      "paragraph_count": 2,
-      "inline_image_count": 13,
-      "quality_score": 80,
+      "word_count": 235,
+      "paragraph_count": 19,
+      "inline_image_count": 0,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:star:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "13 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
