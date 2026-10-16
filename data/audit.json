@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-16T01:59:50.208917+00:00",
-  "generated_at_london": "2026-10-15T21:59:50.208917-04:00",
+  "generated_at": "2026-10-16T02:03:23.600780+00:00",
+  "generated_at_london": "2026-10-15T22:03:23.600780-04:00",
   "news_generated_at": "2026-10-16T01:58:11.111242+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 628,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 91,
+    "pass_story_count": 90,
     "review_story_count": 7,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 13,
     "info_issue_count": 82,
-    "healthy_source_count": 11,
-    "review_source_count": 4,
+    "healthy_source_count": 10,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -99,6 +99,33 @@
       "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-10-15T23:56:49.733225+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CityNews Canada",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "citynews",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 566,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 9,
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-15T19:35:17+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-15T20:30:09.543679+00:00",
       "last_error": ""
     },
     {
@@ -522,33 +549,6 @@
       "last_error": ""
     },
     {
-      "source": "CityNews Canada",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "citynews",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 614,
-      "average_quality": 94,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-15T19:35:17+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-15T20:30:09.543679+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Global News Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -734,6 +734,21 @@
     }
   ],
   "issues": [
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "67 words",
+      "story_id": "3e12807ab618c7a5",
+      "source": "CityNews Canada",
+      "title": "Flintstones multivitamins recalled due to distribution error",
+      "url": "https://toronto.citynews.ca/2026/10/15/flintstones-multivitamins-recalled-due-to-distribution-error",
+      "published": "2026-10-15T17:43:02+00:00",
+      "content_status": "full",
+      "word_count": 67,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -1435,7 +1450,7 @@
       "url": "https://toronto.citynews.ca/2026/10/15/flintstones-multivitamins-recalled-due-to-distribution-error",
       "published": "2026-10-15T17:43:02+00:00",
       "content_status": "full",
-      "word_count": 539,
+      "word_count": 67,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4799,14 +4814,14 @@
       "title": "Flintstones multivitamins recalled due to distribution error",
       "url": "https://toronto.citynews.ca/2026/10/15/flintstones-multivitamins-recalled-due-to-distribution-error",
       "published": "2026-10-15T17:43:02+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 539,
-      "paragraph_count": 18,
+      "word_count": 67,
+      "paragraph_count": 4,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4814,6 +4829,12 @@
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "67 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
