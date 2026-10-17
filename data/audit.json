@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-17T17:36:46.004270+00:00",
-  "generated_at_london": "2026-10-17T13:36:46.004270-04:00",
-  "news_generated_at": "2026-10-17T17:31:29.230736+00:00",
+  "generated_at": "2026-10-17T17:48:50.663751+00:00",
+  "generated_at_london": "2026-10-17T13:48:50.663751-04:00",
+  "news_generated_at": "2026-10-17T17:46:51.704799+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 675,
+    "archive_story_count": 676,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 99,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 7,
-    "info_issue_count": 79,
+    "info_issue_count": 78,
     "healthy_source_count": 11,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -99,7 +99,7 @@
       "latest_published": "2026-10-17T15:00:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-17T17:28:58.183914+00:00",
+      "last_scrape": "2026-10-17T17:44:32.687644+00:00",
       "last_error": ""
     },
     {
@@ -113,19 +113,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 1366,
+      "average_words": 1308,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 2,
-      "info_issues": 14,
+      "info_issues": 13,
       "latest_published": "2026-10-17T15:48:45.361000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-17T16:10:35.934216+00:00",
+      "last_scrape": "2026-10-17T17:44:27.380170+00:00",
       "last_error": ""
     },
     {
@@ -1740,33 +1741,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "7329e5484d204ff7",
-      "source": "The Globe and Mail",
-      "title": "Smith, Carney rally support for Alberta to remain in Canada ahead of referendum",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-smith-carney-rally-support-for-alberta-to-remain-in-canada-ahead-of",
-      "published": "2026-10-17T02:05:46.044000+00:00",
-      "content_status": "full",
-      "word_count": 1379,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7329e5484d204ff7",
+      "story_id": "9bab77dd33f9436b",
       "source": "The Globe and Mail",
-      "title": "Smith, Carney rally support for Alberta to remain in Canada ahead of referendum",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-smith-carney-rally-support-for-alberta-to-remain-in-canada-ahead-of",
-      "published": "2026-10-17T02:05:46.044000+00:00",
+      "title": "How Canadian artists are reimagining the age-old quilt",
+      "url": "https://www.theglobeandmail.com/life/style/design/article-how-canadian-artists-are-reimagining-the-age-old-quilt",
+      "published": "2026-10-17T12:00:00+00:00",
       "content_status": "full",
-      "word_count": 1379,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 802,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3788,6 +3774,35 @@
       ]
     },
     {
+      "id": "9bab77dd33f9436b",
+      "source": "The Globe and Mail",
+      "title": "How Canadian artists are reimagining the age-old quilt",
+      "url": "https://www.theglobeandmail.com/life/style/design/article-how-canadian-artists-are-reimagining-the-age-old-quilt",
+      "published": "2026-10-17T12:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 802,
+      "paragraph_count": 23,
+      "inline_image_count": 4,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1df7dcc9b9440b11",
       "source": "The Globe and Mail",
       "title": "Toronto’s Studio La Beauté custom textile work stands out in a sea of mass-produced decor",
@@ -4028,41 +4043,6 @@
       "content_status": "full",
       "word_count": 949,
       "paragraph_count": 27,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7329e5484d204ff7",
-      "source": "The Globe and Mail",
-      "title": "Smith, Carney rally support for Alberta to remain in Canada ahead of referendum",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-smith-carney-rally-support-for-alberta-to-remain-in-canada-ahead-of",
-      "published": "2026-10-17T02:05:46.044000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 1379,
-      "paragraph_count": 48,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
