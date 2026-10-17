@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-17T03:18:08.850071+00:00",
-  "generated_at_london": "2026-10-16T23:18:08.850071-04:00",
-  "news_generated_at": "2026-10-17T03:11:44.210883+00:00",
+  "generated_at": "2026-10-17T03:28:39.289747+00:00",
+  "generated_at_london": "2026-10-16T23:28:39.289747-04:00",
+  "news_generated_at": "2026-10-17T03:26:48.473239+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 662,
+    "archive_story_count": 663,
     "source_count": 28,
     "audited_story_count": 104,
     "pass_story_count": 97,
@@ -14,7 +14,7 @@
     "fail_story_count": 5,
     "critical_issue_count": 5,
     "warning_issue_count": 4,
-    "info_issue_count": 78,
+    "info_issue_count": 79,
     "healthy_source_count": 12,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -178,7 +178,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -194,10 +194,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 1,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x7fba3e6e03b0>, 'Connection to weather.gc"
+      "last_error": ""
     },
     {
       "source": "Google News London Discovery",
@@ -242,7 +242,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 6,
+      "found_this_run": 7,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -677,7 +677,7 @@
       "latest_published": "2026-10-16T22:56:20+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-17T03:08:54.402328+00:00",
+      "last_scrape": "2026-10-17T03:24:26.356915+00:00",
       "last_error": ""
     },
     {
@@ -691,19 +691,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 729,
-      "average_quality": 96,
+      "average_words": 743,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-10-17T02:05:46.044000+00:00",
+      "info_issues": 15,
+      "latest_published": "2026-10-17T03:06:19.723000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-17T02:21:29.640193+00:00",
+      "last_scrape": "2026-10-17T03:24:22.242166+00:00",
       "last_error": ""
     },
     {
@@ -1669,21 +1670,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0fe0b65d43cd6bf4",
-      "source": "The Globe and Mail",
-      "title": "Carney continues pro-Canada campaign in Red Deer and Edmonton with referendum days away",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-pro-canada-campaign-alberta-referendum",
-      "published": "2026-10-16T16:14:10.916000+00:00",
-      "content_status": "full",
-      "word_count": 833,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e7e09cb241055b50",
       "source": "The Globe and Mail",
       "title": "Flu virus hits harder and earlier as some provinces adjust vaccination plans",
@@ -1693,6 +1679,36 @@
       "word_count": 757,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "405105bed4d145bf",
+      "source": "The Globe and Mail",
+      "title": "Health Ministers secure funding extensions from Ottawa, but long-term commitments remain in limbo",
+      "url": "https://www.theglobeandmail.com/canada/article-health-ministers-secure-funding-extensions-from-ottawa-but-long-term",
+      "published": "2026-10-17T03:06:19.723000+00:00",
+      "content_status": "full",
+      "word_count": 974,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "405105bed4d145bf",
+      "source": "The Globe and Mail",
+      "title": "Health Ministers secure funding extensions from Ottawa, but long-term commitments remain in limbo",
+      "url": "https://www.theglobeandmail.com/canada/article-health-ministers-secure-funding-extensions-from-ottawa-but-long-term",
+      "published": "2026-10-17T03:06:19.723000+00:00",
+      "content_status": "full",
+      "word_count": 974,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3716,6 +3732,41 @@
       ]
     },
     {
+      "id": "405105bed4d145bf",
+      "source": "The Globe and Mail",
+      "title": "Health Ministers secure funding extensions from Ottawa, but long-term commitments remain in limbo",
+      "url": "https://www.theglobeandmail.com/canada/article-health-ministers-secure-funding-extensions-from-ottawa-but-long-term",
+      "published": "2026-10-17T03:06:19.723000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 974,
+      "paragraph_count": 29,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7329e5484d204ff7",
       "source": "The Globe and Mail",
       "title": "Smith, Carney rally support for Alberta to remain in Canada ahead of referendum",
@@ -3986,35 +4037,6 @@
       "word_count": 216,
       "paragraph_count": 8,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0fe0b65d43cd6bf4",
-      "source": "The Globe and Mail",
-      "title": "Carney continues pro-Canada campaign in Red Deer and Edmonton with referendum days away",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-carney-pro-canada-campaign-alberta-referendum",
-      "published": "2026-10-16T16:14:10.916000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 833,
-      "paragraph_count": 31,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
