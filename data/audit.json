@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-17T06:08:33.965638+00:00",
-  "generated_at_london": "2026-10-17T02:08:33.965638-04:00",
-  "news_generated_at": "2026-10-17T06:02:43.431879+00:00",
+  "generated_at": "2026-10-17T06:20:13.908666+00:00",
+  "generated_at_london": "2026-10-17T02:20:13.908666-04:00",
+  "news_generated_at": "2026-10-17T06:18:18.641787+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 663,
+    "archive_story_count": 664,
     "source_count": 28,
-    "audited_story_count": 105,
-    "pass_story_count": 98,
+    "audited_story_count": 106,
+    "pass_story_count": 99,
     "review_story_count": 2,
     "fail_story_count": 5,
     "critical_issue_count": 5,
     "warning_issue_count": 4,
-    "info_issue_count": 80,
+    "info_issue_count": 81,
     "healthy_source_count": 12,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -77,7 +77,7 @@
     {
       "source": "CityNews Canada",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "citynews",
       "sample_size": 10,
       "pass": 9,
@@ -96,10 +96,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-16T19:35:48+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-16T17:29:41.635601+00:00",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Max retries exceeded with url: /category/canada/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Toronto Star",
@@ -173,7 +173,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -604,26 +604,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "police",
-      "sample_size": 7,
-      "pass": 7,
+      "sample_size": 8,
+      "pass": 8,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 211,
-      "average_quality": 73,
+      "average_words": 215,
+      "average_quality": 72,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "dom:semantic-rich-v1": 2,
-        "reader:semantic-rich-v1": 5
+        "reader:semantic-rich-v1": 5,
+        "dom:police:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 2,
+      "info_issues": 3,
       "latest_published": "2026-10-17T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 7,
-      "last_scrape": "2026-10-17T05:58:30.574887+00:00",
+      "tracked": 8,
+      "last_scrape": "2026-10-17T06:14:04.562597+00:00",
       "last_error": ""
     },
     {
@@ -677,7 +678,7 @@
       "latest_published": "2026-10-16T22:56:20+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-17T06:00:19.840914+00:00",
+      "last_scrape": "2026-10-17T06:15:52.669888+00:00",
       "last_error": ""
     },
     {
@@ -1483,6 +1484,21 @@
       "word_count": 1006,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "fa261afe20fac0cc",
+      "source": "London Police Service",
+      "title": "Missing person - 26-103535 - located",
+      "url": "https://www.londonpolice.ca/news/posts/missing-person-26-103535-located",
+      "published": "2026-10-15T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 242,
+      "quality_score": 62,
+      "extraction_method": "dom:police:main"
     },
     {
       "severity": "info",
@@ -2713,6 +2729,35 @@
       "extraction_profile": "police",
       "local_score": 100,
       "issues": []
+    },
+    {
+      "id": "fa261afe20fac0cc",
+      "source": "London Police Service",
+      "title": "Missing person - 26-103535 - located",
+      "url": "https://www.londonpolice.ca/news/posts/missing-person-26-103535-located",
+      "published": "2026-10-15T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 242,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:police:main",
+      "extraction_profile": "police",
+      "local_score": 100,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "04e90d28ea7e3b94",
