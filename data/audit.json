@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-17T09:16:10.119771+00:00",
-  "generated_at_london": "2026-10-17T05:16:10.119771-04:00",
-  "news_generated_at": "2026-10-17T09:10:30.106903+00:00",
+  "generated_at": "2026-10-17T09:28:14.716646+00:00",
+  "generated_at_london": "2026-10-17T05:28:14.716646-04:00",
+  "news_generated_at": "2026-10-17T09:26:11.099191+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 663,
+    "archive_story_count": 665,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 99,
-    "review_story_count": 2,
+    "pass_story_count": 98,
+    "review_story_count": 3,
     "fail_story_count": 5,
     "critical_issue_count": 5,
-    "warning_issue_count": 4,
-    "info_issue_count": 81,
-    "healthy_source_count": 12,
-    "review_source_count": 3,
+    "warning_issue_count": 6,
+    "info_issue_count": 80,
+    "healthy_source_count": 11,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -102,6 +102,33 @@
       "last_error": ""
     },
     {
+      "source": "The Globe and Mail",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1186,
+      "average_quality": 96,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 15,
+      "latest_published": "2026-10-17T09:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-17T09:23:42.516868+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Toronto Star",
       "status": "review",
       "collector_status": "healthy",
@@ -122,7 +149,7 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-17T08:00:08+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-17T08:26:54.277116+00:00",
       "last_error": ""
@@ -464,7 +491,7 @@
       "latest_published": "2026-10-17T09:00:00+00:00",
       "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-10-17T09:07:59.716577+00:00",
+      "last_scrape": "2026-10-17T09:14:01.617174+00:00",
       "last_error": ""
     },
     {
@@ -678,33 +705,7 @@
       "latest_published": "2026-10-17T08:00:36+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-17T09:08:03.890903+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "The Globe and Mail",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 767,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 16,
-      "latest_published": "2026-10-17T03:56:34.291000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-17T04:26:30.665205+00:00",
+      "last_scrape": "2026-10-17T09:23:46.391541+00:00",
       "last_error": ""
     },
     {
@@ -869,6 +870,36 @@
       "word_count": 813,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "25 inline images",
+      "story_id": "21d27f04fdd36fa8",
+      "source": "The Globe and Mail",
+      "title": "The Alberta voters who want leverage – but not independence",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-separation-sovereignty",
+      "published": "2026-10-17T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 3463,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "3 consecutive images",
+      "story_id": "21d27f04fdd36fa8",
+      "source": "The Globe and Mail",
+      "title": "The Alberta voters who want leverage – but not independence",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-separation-sovereignty",
+      "published": "2026-10-17T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 3463,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1805,36 +1836,6 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
-      "story_id": "031a2d60f1736727",
-      "source": "The Globe and Mail",
-      "title": "Pitching in: Family helping raise $8-million for BC Children’s Hospital",
-      "url": "https://www.theglobeandmail.com/business/article-pitching-in-family-helping-raise-8-million-for-bc-childrens-hospital",
-      "published": "2026-10-16T17:37:53.256000+00:00",
-      "content_status": "full",
-      "word_count": 387,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "031a2d60f1736727",
-      "source": "The Globe and Mail",
-      "title": "Pitching in: Family helping raise $8-million for BC Children’s Hospital",
-      "url": "https://www.theglobeandmail.com/business/article-pitching-in-family-helping-raise-8-million-for-bc-childrens-hospital",
-      "published": "2026-10-16T17:37:53.256000+00:00",
-      "content_status": "full",
-      "word_count": 387,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
       "story_id": "7329e5484d204ff7",
       "source": "The Globe and Mail",
       "title": "Smith, Carney rally support for Alberta to remain in Canada ahead of referendum",
@@ -1877,6 +1878,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "21d27f04fdd36fa8",
+      "source": "The Globe and Mail",
+      "title": "The Alberta voters who want leverage – but not independence",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-separation-sovereignty",
+      "published": "2026-10-17T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 3463,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1910,15 +1926,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3fb5683c52b3bbf5",
+      "story_id": "1271efaf24fd13a6",
       "source": "The Globe and Mail",
-      "title": "Youth found guilty of terrorism charges tied to alleged plan to kill Jewish people",
-      "url": "https://www.theglobeandmail.com/canada/article-youth-guilty-terrorism-charges-jewish-people-ottawa",
-      "published": "2026-10-16T17:21:22.619000+00:00",
+      "title": "What the Alberta referendum on separation could mean for the province and Canada, according to our reporters",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-separation-reader-answers",
+      "published": "2026-10-17T09:00:00+00:00",
       "content_status": "full",
-      "word_count": 696,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 1802,
+      "quality_score": 95,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3813,6 +3829,76 @@
       ]
     },
     {
+      "id": "1271efaf24fd13a6",
+      "source": "The Globe and Mail",
+      "title": "What the Alberta referendum on separation could mean for the province and Canada, according to our reporters",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-separation-reader-answers",
+      "published": "2026-10-17T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1802,
+      "paragraph_count": 50,
+      "inline_image_count": 3,
+      "quality_score": 95,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "21d27f04fdd36fa8",
+      "source": "The Globe and Mail",
+      "title": "The Alberta voters who want leverage – but not independence",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-separation-sovereignty",
+      "published": "2026-10-17T09:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 3463,
+      "paragraph_count": 101,
+      "inline_image_count": 25,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "25 inline images"
+        },
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "3 consecutive images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e85f2ab003bc69a0",
       "source": "The Globe and Mail",
       "title": "Dissident Turkish author says she was unable to enter Canada for book tour",
@@ -4066,70 +4152,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "031a2d60f1736727",
-      "source": "The Globe and Mail",
-      "title": "Pitching in: Family helping raise $8-million for BC Children’s Hospital",
-      "url": "https://www.theglobeandmail.com/business/article-pitching-in-family-helping-raise-8-million-for-bc-childrens-hospital",
-      "published": "2026-10-16T17:37:53.256000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 387,
-      "paragraph_count": 13,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3fb5683c52b3bbf5",
-      "source": "The Globe and Mail",
-      "title": "Youth found guilty of terrorism charges tied to alleged plan to kill Jewish people",
-      "url": "https://www.theglobeandmail.com/canada/article-youth-guilty-terrorism-charges-jewish-people-ottawa",
-      "published": "2026-10-16T17:21:22.619000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 696,
-      "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
