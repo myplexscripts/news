@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-18T21:08:04.953342+00:00",
-  "generated_at_london": "2026-10-18T17:08:04.953342-04:00",
-  "news_generated_at": "2026-10-18T21:03:10.351748+00:00",
+  "generated_at": "2026-10-18T21:20:32.127286+00:00",
+  "generated_at_london": "2026-10-18T17:20:32.127286-04:00",
+  "news_generated_at": "2026-10-18T21:18:44.497312+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 682,
+    "archive_story_count": 683,
     "source_count": 28,
     "audited_story_count": 106,
     "pass_story_count": 101,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 5,
-    "info_issue_count": 81,
+    "info_issue_count": 82,
     "healthy_source_count": 12,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -297,7 +297,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -313,10 +313,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 3,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.londontransit.ca', port=443): Read timed out. (read timeout=8)\"))"
+      "last_error": ""
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -675,7 +675,7 @@
       "latest_published": "2026-10-18T14:22:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T21:01:15.108683+00:00",
+      "last_scrape": "2026-10-18T21:16:44.049140+00:00",
       "last_error": ""
     },
     {
@@ -689,19 +689,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 639,
-      "average_quality": 96,
+      "average_words": 700,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-18T18:51:41.264000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-18T20:52:24.990000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T19:12:36.999927+00:00",
+      "last_scrape": "2026-10-18T21:16:35.952483+00:00",
       "last_error": ""
     },
     {
@@ -1784,6 +1785,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "33ad8fc9fc8e414f",
+      "source": "The Globe and Mail",
+      "title": "Lender says it won’t relax construction loan standards for condo developers hit by sales downturn",
+      "url": "https://www.theglobeandmail.com/business/article-construction-loan-standards-condo-developers-sales-downturn",
+      "published": "2026-10-18T20:52:24.990000+00:00",
+      "content_status": "full",
+      "word_count": 754,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "33ad8fc9fc8e414f",
+      "source": "The Globe and Mail",
+      "title": "Lender says it won’t relax construction loan standards for condo developers hit by sales downturn",
+      "url": "https://www.theglobeandmail.com/business/article-construction-loan-standards-condo-developers-sales-downturn",
+      "published": "2026-10-18T20:52:24.990000+00:00",
+      "content_status": "full",
+      "word_count": 754,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1794,21 +1825,6 @@
       "published": "2026-10-17T20:09:59.975000+00:00",
       "content_status": "full",
       "word_count": 260,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f97412437e4d8470",
-      "source": "The Globe and Mail",
-      "title": "Stellantis workers begin two-day vote on strike mandate",
-      "url": "https://www.theglobeandmail.com/business/article-stellantis-workers-begin-two-day-vote-on-strike-mandate",
-      "published": "2026-10-17T15:48:45.361000+00:00",
-      "content_status": "full",
-      "word_count": 142,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3813,6 +3829,41 @@
       ]
     },
     {
+      "id": "33ad8fc9fc8e414f",
+      "source": "The Globe and Mail",
+      "title": "Lender says it won’t relax construction loan standards for condo developers hit by sales downturn",
+      "url": "https://www.theglobeandmail.com/business/article-construction-loan-standards-condo-developers-sales-downturn",
+      "published": "2026-10-18T20:52:24.990000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 754,
+      "paragraph_count": 23,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "75f4fc6ac90d9167",
       "source": "The Globe and Mail",
       "title": "Tech worker making $175,000 lives with her parents while she saves for their retirement",
@@ -4070,35 +4121,6 @@
       "content_status": "full",
       "word_count": 260,
       "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f97412437e4d8470",
-      "source": "The Globe and Mail",
-      "title": "Stellantis workers begin two-day vote on strike mandate",
-      "url": "https://www.theglobeandmail.com/business/article-stellantis-workers-begin-two-day-vote-on-strike-mandate",
-      "published": "2026-10-17T15:48:45.361000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 142,
-      "paragraph_count": 6,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
