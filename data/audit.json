@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-18T20:51:58.992443+00:00",
-  "generated_at_london": "2026-10-18T16:51:58.992443-04:00",
-  "news_generated_at": "2026-10-18T20:47:45.779028+00:00",
+  "generated_at": "2026-10-18T21:04:44.727415+00:00",
+  "generated_at_london": "2026-10-18T17:04:44.727415-04:00",
+  "news_generated_at": "2026-10-18T21:03:10.351748+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 680,
+    "archive_story_count": 682,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 101,
-    "review_story_count": 3,
+    "pass_story_count": 100,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 81,
     "healthy_source_count": 12,
     "review_source_count": 3,
@@ -106,25 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 499,
-      "average_quality": 94,
+      "average_words": 446,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-10-18T20:29:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T20:45:47.513897+00:00",
+      "last_scrape": "2026-10-18T21:01:17.894589+00:00",
       "last_error": ""
     },
     {
@@ -298,7 +298,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -314,10 +314,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 3,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.londontransit.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -532,19 +532,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 562,
+      "average_words": 609,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-18T17:44:31+00:00",
+      "latest_published": "2026-10-18T20:54:42+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T17:55:37.203124+00:00",
+      "last_scrape": "2026-10-18T21:01:08.126786+00:00",
       "last_error": ""
     },
     {
@@ -676,7 +677,7 @@
       "latest_published": "2026-10-18T14:22:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T20:45:44.244222+00:00",
+      "last_scrape": "2026-10-18T21:01:15.108683+00:00",
       "last_error": ""
     },
     {
@@ -837,6 +838,36 @@
       "word_count": 91,
       "quality_score": 57,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "58ecaebadb3112d4",
+      "source": "Toronto Star",
+      "title": "The latest developments on the deadly fire at CFB Wainwright in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/the-latest-developments-on-the-deadly-fire-at-cfb-wainwright-in-alberta/article_8e36fd83-5fb6-54b2-b404-7b78f2c0c041.html",
+      "published": "2026-10-18T15:20:00+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "58ecaebadb3112d4",
+      "source": "Toronto Star",
+      "title": "The latest developments on the deadly fire at CFB Wainwright in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/the-latest-developments-on-the-deadly-fire-at-cfb-wainwright-in-alberta/article_8e36fd83-5fb6-54b2-b404-7b78f2c0c041.html",
+      "published": "2026-10-18T15:20:00+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1398,6 +1429,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "a0a5c4547161673c",
+      "source": "Global News Canada",
+      "title": "CFB Wainwright: Latest on deadly explosion, fire at Alberta military base",
+      "url": "https://globalnews.ca/news/12107237/cfb-wainwright-latest",
+      "published": "2026-10-18T20:54:42+00:00",
+      "content_status": "full",
+      "word_count": 796,
+      "quality_score": 92,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0f818fd12e45d77a",
       "source": "Global News Canada",
       "title": "Canadians react to CFB Wainwright explosion and fire",
@@ -1450,21 +1496,6 @@
       "published": "2026-10-17T13:37:44+00:00",
       "content_status": "full",
       "word_count": 1339,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ea949ab6695c777f",
-      "source": "Global News Canada",
-      "title": "Millions in funding put toward Manitoba First Nations Police, safety officers",
-      "url": "https://globalnews.ca/news/12105944/funding-manitoba-first-nations-police",
-      "published": "2026-10-17T00:34:30+00:00",
-      "content_status": "full",
-      "word_count": 319,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1938,21 +1969,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1b2ca021846e76ed",
-      "source": "Toronto Star",
-      "title": "Deaths and injuries after explosion at Alberta military base: McGuinty",
-      "url": "https://www.thestar.com/news/canada/alberta/cp-newsalert-carney-says-serious-incident-fire-at-cfb-wainwright-in-alberta/article_f6abe777-f8ba-58fa-af22-4f82dfde9efb.html",
-      "published": "2026-10-18T02:23:00+00:00",
-      "content_status": "full",
-      "word_count": 738,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "450b23ec12d3f474",
       "source": "Toronto Star",
       "title": "Five things to watch for in the Canadian business world in the coming week",
@@ -2007,6 +2023,21 @@
       "word_count": 182,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "58ecaebadb3112d4",
+      "source": "Toronto Star",
+      "title": "The latest developments on the deadly fire at CFB Wainwright in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/the-latest-developments-on-the-deadly-fire-at-cfb-wainwright-in-alberta/article_8e36fd83-5fb6-54b2-b404-7b78f2c0c041.html",
+      "published": "2026-10-18T15:20:00+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3210,6 +3241,35 @@
       "issues": []
     },
     {
+      "id": "a0a5c4547161673c",
+      "source": "Global News Canada",
+      "title": "CFB Wainwright: Latest on deadly explosion, fire at Alberta military base",
+      "url": "https://globalnews.ca/news/12107237/cfb-wainwright-latest",
+      "published": "2026-10-18T20:54:42+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 796,
+      "paragraph_count": 39,
+      "inline_image_count": 2,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "dab0c4cb045c8497",
       "source": "Global News Canada",
       "title": "CFB Wainwright fire: What we know and don’t know so far",
@@ -3456,35 +3516,6 @@
       "word_count": 1339,
       "paragraph_count": 43,
       "inline_image_count": 8,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ea949ab6695c777f",
-      "source": "Global News Canada",
-      "title": "Millions in funding put toward Manitoba First Nations Police, safety officers",
-      "url": "https://globalnews.ca/news/12105944/funding-manitoba-first-nations-police",
-      "published": "2026-10-17T00:34:30+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 319,
-      "paragraph_count": 8,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4522,6 +4553,47 @@
       ]
     },
     {
+      "id": "58ecaebadb3112d4",
+      "source": "Toronto Star",
+      "title": "The latest developments on the deadly fire at CFB Wainwright in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/the-latest-developments-on-the-deadly-fire-at-cfb-wainwright-in-alberta/article_8e36fd83-5fb6-54b2-b404-7b78f2c0c041.html",
+      "published": "2026-10-18T15:20:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 205,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "450b23ec12d3f474",
       "source": "Toronto Star",
       "title": "Five things to watch for in the Canadian business world in the coming week",
@@ -4657,35 +4729,6 @@
       "content_status": "full",
       "word_count": 385,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1b2ca021846e76ed",
-      "source": "Toronto Star",
-      "title": "Deaths and injuries after explosion at Alberta military base: McGuinty",
-      "url": "https://www.thestar.com/news/canada/alberta/cp-newsalert-carney-says-serious-incident-fire-at-cfb-wainwright-in-alberta/article_f6abe777-f8ba-58fa-af22-4f82dfde9efb.html",
-      "published": "2026-10-18T02:23:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 738,
-      "paragraph_count": 32,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
