@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-18T20:36:14.827565+00:00",
-  "generated_at_london": "2026-10-18T16:36:14.827565-04:00",
-  "news_generated_at": "2026-10-18T20:32:04.884770+00:00",
+  "generated_at": "2026-10-18T20:49:34.151055+00:00",
+  "generated_at_london": "2026-10-18T16:49:34.151055-04:00",
+  "news_generated_at": "2026-10-18T20:47:45.779028+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 680,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 101,
-    "review_story_count": 3,
+    "pass_story_count": 100,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 81,
     "healthy_source_count": 12,
     "review_source_count": 3,
@@ -106,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 523,
-      "average_quality": 96,
+      "average_words": 481,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-18T17:47:54+00:00",
+      "latest_published": "2026-10-18T20:29:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T18:11:11.056353+00:00",
+      "last_scrape": "2026-10-18T20:45:47.513897+00:00",
       "last_error": ""
     },
     {
@@ -675,7 +676,7 @@
       "latest_published": "2026-10-18T14:22:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T20:30:28.859644+00:00",
+      "last_scrape": "2026-10-18T20:45:44.244222+00:00",
       "last_error": ""
     },
     {
@@ -836,6 +837,36 @@
       "word_count": 91,
       "quality_score": 57,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "e9858f9fa983a4e8",
+      "source": "Toronto Star",
+      "title": "Here's a look at past fatalities on Canadian military bases",
+      "url": "https://www.thestar.com/news/canada/alberta/here-s-a-look-at-past-fatalities-on-canadian-military-bases/article_b8fb51a8-78fb-568f-8f14-6b819b5a1a0a.html",
+      "published": "2026-10-18T20:29:57+00:00",
+      "content_status": "full",
+      "word_count": 193,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "e9858f9fa983a4e8",
+      "source": "Toronto Star",
+      "title": "Here's a look at past fatalities on Canadian military bases",
+      "url": "https://www.thestar.com/news/canada/alberta/here-s-a-look-at-past-fatalities-on-canadian-military-bases/article_b8fb51a8-78fb-568f-8f14-6b819b5a1a0a.html",
+      "published": "2026-10-18T20:29:57+00:00",
+      "content_status": "full",
+      "word_count": 193,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1982,15 +2013,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ae0af5481e369cf5",
+      "story_id": "e9858f9fa983a4e8",
       "source": "Toronto Star",
-      "title": "More than one in four Montreal-area adults experienced poverty over eight years",
-      "url": "https://www.thestar.com/news/canada/quebec/more-than-one-in-four-montreal-area-adults-experienced-poverty-over-eight-years/article_07e28c2c-b161-5179-8e48-441481e80280.html",
-      "published": "2026-10-17T18:04:03+00:00",
+      "title": "Here's a look at past fatalities on Canadian military bases",
+      "url": "https://www.thestar.com/news/canada/alberta/here-s-a-look-at-past-fatalities-on-canadian-military-bases/article_b8fb51a8-78fb-568f-8f14-6b819b5a1a0a.html",
+      "published": "2026-10-18T20:29:57+00:00",
       "content_status": "full",
-      "word_count": 611,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 193,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4405,6 +4436,47 @@
       ]
     },
     {
+      "id": "e9858f9fa983a4e8",
+      "source": "Toronto Star",
+      "title": "Here's a look at past fatalities on Canadian military bases",
+      "url": "https://www.thestar.com/news/canada/alberta/here-s-a-look-at-past-fatalities-on-canadian-military-bases/article_b8fb51a8-78fb-568f-8f14-6b819b5a1a0a.html",
+      "published": "2026-10-18T20:29:57+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 193,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d01f673d5a05f4e5",
       "source": "Toronto Star",
       "title": "British Columbia NDP Leader Eby asks Green voters to think carefully about vote",
@@ -4656,35 +4728,6 @@
       "content_status": "full",
       "word_count": 738,
       "paragraph_count": 32,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ae0af5481e369cf5",
-      "source": "Toronto Star",
-      "title": "More than one in four Montreal-area adults experienced poverty over eight years",
-      "url": "https://www.thestar.com/news/canada/quebec/more-than-one-in-four-montreal-area-adults-experienced-poverty-over-eight-years/article_07e28c2c-b161-5179-8e48-441481e80280.html",
-      "published": "2026-10-17T18:04:03+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 611,
-      "paragraph_count": 21,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
