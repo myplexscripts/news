@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-18T11:06:17.917169+00:00",
-  "generated_at_london": "2026-10-18T07:06:17.917169-04:00",
-  "news_generated_at": "2026-10-18T11:01:17.471728+00:00",
+  "generated_at": "2026-10-18T11:19:28.457381+00:00",
+  "generated_at_london": "2026-10-18T07:19:28.457381-04:00",
+  "news_generated_at": "2026-10-18T11:17:37.722421+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 682,
     "source_count": 28,
     "audited_story_count": 107,
-    "pass_story_count": 103,
-    "review_story_count": 3,
+    "pass_story_count": 102,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 78,
-    "healthy_source_count": 13,
-    "review_source_count": 2,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -85,20 +85,48 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 884,
-      "average_quality": 85,
+      "average_words": 1073,
+      "average_quality": 90,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 6,
-        "reader:semantic-rich-v1": 4
+        "dom:postmedia:article:strict": 2,
+        "dom:semantic-rich-v1": 5,
+        "reader:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-10-18T10:17:18+00:00",
+      "latest_published": "2026-10-18T11:00:28+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-18T10:59:49.390159+00:00",
+      "last_scrape": "2026-10-18T11:15:27.031216+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 646,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-18T10:00:10+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-18T11:15:30.460366+00:00",
       "last_error": ""
     },
     {
@@ -679,32 +707,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 831,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-18T10:00:10+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-18T10:29:17.236516+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -821,6 +823,36 @@
       "word_count": 980,
       "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f7872c322ab25362",
+      "source": "Toronto Star",
+      "title": "Why Canada's immigration cuts aren't fixing the system's problems",
+      "url": "https://www.thestar.com/news/canada/carney-government-says-canada-s-immigration-is-under-control-but-those-in-the-know-highlight-what-s-going-wrong/article_5f2c6481-d70b-4987-9fbe-05855589f470.html",
+      "published": "2026-10-18T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 179,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "f7872c322ab25362",
+      "source": "Toronto Star",
+      "title": "Why Canada's immigration cuts aren't fixing the system's problems",
+      "url": "https://www.thestar.com/news/canada/carney-government-says-canada-s-immigration-is-under-control-but-those-in-the-know-highlight-what-s-going-wrong/article_5f2c6481-d70b-4987-9fbe-05855589f470.html",
+      "published": "2026-10-18T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 179,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1562,6 +1594,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "f63a4b6351f8a573",
+      "source": "National Post",
+      "title": "During waves of separation ideation, national poll probes Canadians' attachment to Canada, their province, and each other",
+      "url": "https://nationalpost.com/news/during-waves-of-separation-ideation-national-poll-probes-canadians-attachment-to-canada-their-province-and-each-other",
+      "published": "2026-10-18T11:00:28+00:00",
+      "content_status": "full",
+      "word_count": 1604,
+      "quality_score": 94,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "99649d439a755969",
       "source": "National Post",
       "title": "Emergency crews respond to major fire at CFB Wainwright in Alberta",
@@ -1586,21 +1633,6 @@
       "word_count": 371,
       "quality_score": 75,
       "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9f3333fd8544982f",
-      "source": "National Post",
-      "title": "Kenney says UCP must ‘lay down the law’ with separatist members, Smith skirts question on enforcement",
-      "url": "https://nationalpost.com/news/kenney-says-ucp-must-lay-down-the-law-with-separatist-members-smith-skirts-question-on-enforcement/wcm/437191b7-0eb5-4f6c-b226-92ccb675e9fe",
-      "published": "2026-10-17T00:18:06+00:00",
-      "content_status": "full",
-      "word_count": 751,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1637,15 +1669,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "774d5ad50f2cbe85",
+      "story_id": "7b132d5909fb5b61",
       "source": "National Post",
-      "title": "Murder charges laid in 2022 double homicide of Coquitlam couple",
-      "url": "https://nationalpost.com/news/murder-charges-laid-2022-double-homicide-coquitlam-couple",
-      "published": "2026-10-16T22:56:20+00:00",
+      "title": "Pete Fry unseats Ken Sim to become Vancouver's first Green mayor as city hall swings left",
+      "url": "https://nationalpost.com/news/municipal-election-vancouver-results-2026/wcm/4968e281-264c-41d2-b1be-daa98ed13a12",
+      "published": "2026-10-17T14:59:48+00:00",
       "content_status": "full",
-      "word_count": 249,
-      "quality_score": 57,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 1280,
+      "quality_score": 97,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -1832,21 +1864,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "2982fb1bd521b3a1",
-      "source": "Toronto Star",
-      "title": "Althia Raj: A closer look at six controversial powers inside Mark Carney’s Building Canada Strong Act",
-      "url": "https://www.thestar.com/politics/political-opinion/a-closer-look-at-six-controversial-powers-inside-carney-s-building-canada-strong-act/article_f4febc73-3e96-4716-a287-44a30bd0d555.html",
-      "published": "2026-10-17T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 2032,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "2c6b9fb125271c51",
       "source": "Toronto Star",
       "title": "B.C. votes for mayors and councillors before general election next week",
@@ -1976,6 +1993,21 @@
       "word_count": 515,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f7872c322ab25362",
+      "source": "Toronto Star",
+      "title": "Why Canada's immigration cuts aren't fixing the system's problems",
+      "url": "https://www.thestar.com/news/canada/carney-government-says-canada-s-immigration-is-under-control-but-those-in-the-know-highlight-what-s-going-wrong/article_5f2c6481-d70b-4987-9fbe-05855589f470.html",
+      "published": "2026-10-18T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 179,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4052,6 +4084,35 @@
       ]
     },
     {
+      "id": "f63a4b6351f8a573",
+      "source": "National Post",
+      "title": "During waves of separation ideation, national poll probes Canadians' attachment to Canada, their province, and each other",
+      "url": "https://nationalpost.com/news/during-waves-of-separation-ideation-national-poll-probes-canadians-attachment-to-canada-their-province-and-each-other",
+      "published": "2026-10-18T11:00:28+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1604,
+      "paragraph_count": 39,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0f1974b45748d380",
       "source": "National Post",
       "title": "More than 1,800 arrested in France during violent protests leaving devastation in their wakes",
@@ -4156,6 +4217,35 @@
       "quality_score": 88,
       "quality_grade": "excellent",
       "extraction_method": "reader:semantic-rich-v1",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "7b132d5909fb5b61",
+      "source": "National Post",
+      "title": "Pete Fry unseats Ken Sim to become Vancouver's first Green mayor as city hall swings left",
+      "url": "https://nationalpost.com/news/municipal-election-vancouver-results-2026/wcm/4968e281-264c-41d2-b1be-daa98ed13a12",
+      "published": "2026-10-17T14:59:48+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1280,
+      "paragraph_count": 35,
+      "inline_image_count": 3,
+      "quality_score": 97,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
@@ -4290,64 +4380,6 @@
       ]
     },
     {
-      "id": "9f3333fd8544982f",
-      "source": "National Post",
-      "title": "Kenney says UCP must ‘lay down the law’ with separatist members, Smith skirts question on enforcement",
-      "url": "https://nationalpost.com/news/kenney-says-ucp-must-lay-down-the-law-with-separatist-members-smith-skirts-question-on-enforcement/wcm/437191b7-0eb5-4f6c-b226-92ccb675e9fe",
-      "published": "2026-10-17T00:18:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 751,
-      "paragraph_count": 20,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "774d5ad50f2cbe85",
-      "source": "National Post",
-      "title": "Murder charges laid in 2022 double homicide of Coquitlam couple",
-      "url": "https://nationalpost.com/news/murder-charges-laid-2022-double-homicide-coquitlam-couple",
-      "published": "2026-10-16T22:56:20+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 249,
-      "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 57,
-      "quality_grade": "partial",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
       "id": "7aea687a54495741",
       "source": "Toronto Star",
       "title": "Behind the push to make smoking and vaping illegal for a generation of Canadians",
@@ -4368,6 +4400,47 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "f7872c322ab25362",
+      "source": "Toronto Star",
+      "title": "Why Canada's immigration cuts aren't fixing the system's problems",
+      "url": "https://www.thestar.com/news/canada/carney-government-says-canada-s-immigration-is-under-control-but-those-in-the-know-highlight-what-s-going-wrong/article_5f2c6481-d70b-4987-9fbe-05855589f470.html",
+      "published": "2026-10-18T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 179,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4594,35 +4667,6 @@
       "word_count": 605,
       "paragraph_count": 27,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2982fb1bd521b3a1",
-      "source": "Toronto Star",
-      "title": "Althia Raj: A closer look at six controversial powers inside Mark Carney’s Building Canada Strong Act",
-      "url": "https://www.thestar.com/politics/political-opinion/a-closer-look-at-six-controversial-powers-inside-carney-s-building-canada-strong-act/article_f4febc73-3e96-4716-a287-44a30bd0d555.html",
-      "published": "2026-10-17T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 2032,
-      "paragraph_count": 47,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
