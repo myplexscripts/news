@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-19T12:52:46.545649+00:00",
-  "generated_at_london": "2026-10-19T08:52:46.545649-04:00",
-  "news_generated_at": "2026-10-19T12:47:23.622628+00:00",
+  "generated_at": "2026-10-19T13:04:34.637857+00:00",
+  "generated_at_london": "2026-10-19T09:04:34.637857-04:00",
+  "news_generated_at": "2026-10-19T13:03:04.297098+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 710,
+    "archive_story_count": 711,
     "source_count": 28,
     "audited_story_count": 108,
-    "pass_story_count": 101,
-    "review_story_count": 6,
+    "pass_story_count": 100,
+    "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 84,
-    "healthy_source_count": 13,
-    "review_source_count": 2,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -95,9 +95,36 @@
       "warning_issues": 4,
       "info_issues": 13,
       "latest_published": "2026-10-19T01:08:38.145000+00:00",
-      "found_this_run": 3,
+      "found_this_run": 2,
       "tracked": 30,
       "last_scrape": "2026-10-19T01:28:32.496949+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 792,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-19T12:44:26+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-19T13:01:25.161812+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +678,7 @@
       "latest_published": "2026-10-19T10:00:32+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T12:45:55.567361+00:00",
+      "last_scrape": "2026-10-19T13:01:22.708646+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-19T12:14:55.977993+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 796,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-19T08:43:36+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-19T09:07:42.866722+00:00",
       "last_error": ""
     },
     {
@@ -868,6 +869,36 @@
       "word_count": 2103,
       "quality_score": 96,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "7b016d3278d54ac0",
+      "source": "Toronto Star",
+      "title": "Timeline: How the deadly fire spread at CFB Wainwright",
+      "url": "https://www.thestar.com/news/canada/alberta/timeline-how-the-deadly-fire-spread-at-cfb-wainwright/article_f28ca1b7-95b8-5a03-b169-13f702b853f5.html",
+      "published": "2026-10-19T12:44:26+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "7b016d3278d54ac0",
+      "source": "Toronto Star",
+      "title": "Timeline: How the deadly fire spread at CFB Wainwright",
+      "url": "https://www.thestar.com/news/canada/alberta/timeline-how-the-deadly-fire-spread-at-cfb-wainwright/article_f28ca1b7-95b8-5a03-b169-13f702b853f5.html",
+      "published": "2026-10-19T12:44:26+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2059,21 +2090,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c8d8967bfead7a50",
-      "source": "Toronto Star",
-      "title": "Former Quebec minister named interim CAQ leader after election wipeout",
-      "url": "https://www.thestar.com/news/canada/quebec/former-quebec-minister-named-interim-caq-leader-after-election-wipeout/article_590fed03-12d2-595c-9a23-4c4df22f6222.html",
-      "published": "2026-10-18T16:54:24+00:00",
-      "content_status": "full",
-      "word_count": 227,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e9858f9fa983a4e8",
       "source": "Toronto Star",
       "title": "Here's a look at past fatalities on Canadian military bases",
@@ -2098,6 +2114,21 @@
       "word_count": 1254,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7b016d3278d54ac0",
+      "source": "Toronto Star",
+      "title": "Timeline: How the deadly fire spread at CFB Wainwright",
+      "url": "https://www.thestar.com/news/canada/alberta/timeline-how-the-deadly-fire-spread-at-cfb-wainwright/article_f28ca1b7-95b8-5a03-b169-13f702b853f5.html",
+      "published": "2026-10-19T12:44:26+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4563,6 +4594,47 @@
       ]
     },
     {
+      "id": "7b016d3278d54ac0",
+      "source": "Toronto Star",
+      "title": "Timeline: How the deadly fire spread at CFB Wainwright",
+      "url": "https://www.thestar.com/news/canada/alberta/timeline-how-the-deadly-fire-spread-at-cfb-wainwright/article_f28ca1b7-95b8-5a03-b169-13f702b853f5.html",
+      "published": "2026-10-19T12:44:26+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 192,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bbdf2140ca9ca57e",
       "source": "Toronto Star",
       "title": "Canadians step up to give blood after fire at Alberta military base kills four",
@@ -4808,35 +4880,6 @@
       "content_status": "full",
       "word_count": 760,
       "paragraph_count": 30,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c8d8967bfead7a50",
-      "source": "Toronto Star",
-      "title": "Former Quebec minister named interim CAQ leader after election wipeout",
-      "url": "https://www.thestar.com/news/canada/quebec/former-quebec-minister-named-interim-caq-leader-after-election-wipeout/article_590fed03-12d2-595c-9a23-4c4df22f6222.html",
-      "published": "2026-10-18T16:54:24+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 227,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
