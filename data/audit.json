@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-19T20:47:48.930622+00:00",
-  "generated_at_london": "2026-10-19T16:47:48.930622-04:00",
-  "news_generated_at": "2026-10-19T20:40:59.281536+00:00",
+  "generated_at": "2026-10-19T20:56:18.910543+00:00",
+  "generated_at_london": "2026-10-19T16:56:18.910543-04:00",
+  "news_generated_at": "2026-10-19T20:55:08.596398+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 753,
+    "archive_story_count": 754,
     "source_count": 28,
-    "audited_story_count": 115,
-    "pass_story_count": 108,
+    "audited_story_count": 116,
+    "pass_story_count": 109,
     "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 9,
-    "info_issue_count": 94,
+    "info_issue_count": 93,
     "healthy_source_count": 15,
     "review_source_count": 2,
     "error_source_count": 1,
@@ -51,27 +51,28 @@
     {
       "source": "104.7 Heart FM",
       "status": "review",
-      "collector_status": "waiting",
+      "collector_status": "healthy",
       "profile": "heartfm",
-      "sample_size": 2,
-      "pass": 0,
+      "sample_size": 3,
+      "pass": 1,
       "review": 2,
       "fail": 0,
-      "pass_rate": 0,
+      "pass_rate": 33,
       "usable_body_rate": 100,
-      "average_words": 770,
-      "average_quality": 76,
+      "average_words": 587,
+      "average_quality": 73,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:heartfm:main": 1,
         "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 4,
       "info_issues": 2,
-      "latest_published": "2026-10-13T11:29:44+00:00",
+      "latest_published": "2026-10-19T20:39:41+00:00",
       "found_this_run": 18,
-      "tracked": 0,
-      "last_scrape": "",
+      "tracked": 1,
+      "last_scrape": "2026-10-19T20:52:19.311866+00:00",
       "last_error": ""
     },
     {
@@ -95,7 +96,7 @@
       "warning_issues": 4,
       "info_issues": 13,
       "latest_published": "2026-10-19T18:13:56.359000+00:00",
-      "found_this_run": 1,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-19T18:20:21.548498+00:00",
       "last_error": ""
@@ -146,7 +147,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -215,7 +216,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 6,
+      "found_this_run": 7,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -628,7 +629,7 @@
       "latest_published": "2026-10-19T20:27:20+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T20:38:43.391114+00:00",
+      "last_scrape": "2026-10-19T20:53:43.946926+00:00",
       "last_error": ""
     },
     {
@@ -668,19 +669,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 562,
+      "average_words": 565,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 13,
+      "info_issues": 12,
       "latest_published": "2026-10-19T19:23:56.599000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T19:50:14.938520+00:00",
+      "last_scrape": "2026-10-19T20:53:40.463953+00:00",
       "last_error": ""
     },
     {
@@ -1939,6 +1941,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2c9fbd3c6639cd7b",
+      "source": "The Globe and Mail",
+      "title": "Cleveland-Cliffs boss criticizes Carney, praises Trump, escalating conflict with Ottawa",
+      "url": "https://www.theglobeandmail.com/business/article-cleveland-cliffs-lourenco-goncalves-criticizes-carney-praises-trump",
+      "published": "2026-10-19T14:46:54.807000+00:00",
+      "content_status": "full",
+      "word_count": 719,
+      "quality_score": 92,
+      "extraction_method": "dom:globe:main"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2084,36 +2101,6 @@
       "published": "2026-10-19T15:19:03.349000+00:00",
       "content_status": "partial",
       "word_count": 405,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "ecea0f369fbd6276",
-      "source": "The Globe and Mail",
-      "title": "Students are paying the price for Ontario’s neglect of private colleges",
-      "url": "https://www.theglobeandmail.com/opinion/editorials/article-students-are-paying-the-price-for-ontarios-neglect-of-private-colleges",
-      "published": "2026-10-19T10:45:00+00:00",
-      "content_status": "full",
-      "word_count": 689,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ecea0f369fbd6276",
-      "source": "The Globe and Mail",
-      "title": "Students are paying the price for Ontario’s neglect of private colleges",
-      "url": "https://www.theglobeandmail.com/opinion/editorials/article-students-are-paying-the-price-for-ontarios-neglect-of-private-colleges",
-      "published": "2026-10-19T10:45:00+00:00",
-      "content_status": "full",
-      "word_count": 689,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3171,6 +3158,28 @@
           "detail": ""
         }
       ]
+    },
+    {
+      "id": "3f6c0542b273d0fa",
+      "source": "104.7 Heart FM",
+      "title": "Swph is Offering Vaccination Clinics",
+      "url": "https://www.heartfm.ca/news/local-news/swph-is-offering-vaccination-clinics",
+      "published": "2026-10-19T20:39:41+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 221,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:heartfm:main",
+      "extraction_profile": "heartfm",
+      "local_score": 28,
+      "issues": []
     },
     {
       "id": "9512a15275d1fc00",
@@ -4542,6 +4551,35 @@
       ]
     },
     {
+      "id": "2c9fbd3c6639cd7b",
+      "source": "The Globe and Mail",
+      "title": "Cleveland-Cliffs boss criticizes Carney, praises Trump, escalating conflict with Ottawa",
+      "url": "https://www.theglobeandmail.com/business/article-cleveland-cliffs-lourenco-goncalves-criticizes-carney-praises-trump",
+      "published": "2026-10-19T14:46:54.807000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 719,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a693b204ca1d7da7",
       "source": "The Globe and Mail",
       "title": "Low price on Pickering home gets low bids; higher price gets a deal",
@@ -4614,41 +4652,6 @@
       "word_count": 1087,
       "paragraph_count": 27,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ecea0f369fbd6276",
-      "source": "The Globe and Mail",
-      "title": "Students are paying the price for Ontario’s neglect of private colleges",
-      "url": "https://www.theglobeandmail.com/opinion/editorials/article-students-are-paying-the-price-for-ontarios-neglect-of-private-colleges",
-      "published": "2026-10-19T10:45:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 689,
-      "paragraph_count": 12,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
