@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-19T13:07:27.844725+00:00",
-  "generated_at_london": "2026-10-19T09:07:27.844725-04:00",
-  "news_generated_at": "2026-10-19T13:03:04.297098+00:00",
+  "generated_at": "2026-10-19T13:21:51.333723+00:00",
+  "generated_at_london": "2026-10-19T09:21:51.333723-04:00",
+  "news_generated_at": "2026-10-19T13:19:53.567049+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 711,
+    "archive_story_count": 710,
     "source_count": 28,
-    "audited_story_count": 108,
-    "pass_story_count": 101,
+    "audited_story_count": 109,
+    "pass_story_count": 102,
     "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 8,
-    "info_issue_count": 84,
-    "healthy_source_count": 13,
-    "review_source_count": 2,
+    "info_issue_count": 85,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -99,6 +99,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-19T01:28:32.496949+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 822,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-19T12:44:26+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-19T13:01:25.161812+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -445,26 +471,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 3,
-      "pass": 3,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1968,
-      "average_quality": 84,
+      "average_words": 1499,
+      "average_quality": 74,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:municipal:.field--name-body": 1,
         "reader:semantic-rich-v1": 2,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-10-16T04:00:00+00:00",
+      "info_issues": 2,
+      "latest_published": "2026-10-19T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 3,
-      "last_scrape": "2026-10-16T18:14:24.413748+00:00",
+      "tracked": 4,
+      "last_scrape": "2026-10-19T13:15:31.244477+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +678,7 @@
       "latest_published": "2026-10-19T10:00:32+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T13:01:22.708646+00:00",
+      "last_scrape": "2026-10-19T13:17:56.380353+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-19T12:14:55.977993+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 822,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-19T12:44:26+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-19T13:01:25.161812+00:00",
       "last_error": ""
     },
     {
@@ -1228,6 +1229,21 @@
       "word_count": 2991,
       "quality_score": 88,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "1da506e2a449b804",
+      "source": "City of London Newsroom",
+      "title": "Temporary lane restrictions along Highbury Avenue North between Florence and Beattie Streets",
+      "url": "https://london.ca/newsroom/public-service-announcement/temporary-lane-restrictions-along-highbury-avenue-north",
+      "published": "2026-10-19T04:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 91,
+      "quality_score": 42,
+      "extraction_method": "dom:municipal:.field--name-body"
     },
     {
       "severity": "info",
@@ -2603,6 +2619,35 @@
       "extraction_profile": "wordpress",
       "local_score": 47,
       "issues": []
+    },
+    {
+      "id": "1da506e2a449b804",
+      "source": "City of London Newsroom",
+      "title": "Temporary lane restrictions along Highbury Avenue North between Florence and Beattie Streets",
+      "url": "https://london.ca/newsroom/public-service-announcement/temporary-lane-restrictions-along-highbury-avenue-north",
+      "published": "2026-10-19T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 91,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 42,
+      "quality_grade": "poor",
+      "extraction_method": "dom:municipal:.field--name-body",
+      "extraction_profile": "municipal",
+      "local_score": 100,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "df0cc77174d0042e",
