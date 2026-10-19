@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-19T08:42:50.463903+00:00",
-  "generated_at_london": "2026-10-19T04:42:50.463903-04:00",
-  "news_generated_at": "2026-10-19T08:38:55.207082+00:00",
+  "generated_at": "2026-10-19T08:56:12.907317+00:00",
+  "generated_at_london": "2026-10-19T04:56:12.907317-04:00",
+  "news_generated_at": "2026-10-19T08:54:25.676187+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 696,
+    "archive_story_count": 697,
     "source_count": 28,
     "audited_story_count": 107,
-    "pass_story_count": 99,
-    "review_story_count": 7,
+    "pass_story_count": 98,
+    "review_story_count": 8,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 9,
+    "warning_issue_count": 10,
     "info_issue_count": 84,
-    "healthy_source_count": 12,
-    "review_source_count": 3,
+    "healthy_source_count": 11,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -127,6 +127,33 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 693,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "trafilatura:fallback": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 10,
+      "latest_published": "2026-10-19T08:43:36+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-19T08:52:30.609134+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -172,7 +199,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -676,33 +703,7 @@
       "latest_published": "2026-10-18T14:22:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T08:37:12.328707+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 656,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-19T08:01:10+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-19T08:21:37.877028+00:00",
+      "last_scrape": "2026-10-19T08:52:26.538887+00:00",
       "last_error": ""
     },
     {
@@ -882,6 +883,21 @@
       "word_count": 3890,
       "quality_score": 95,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "9 inline images",
+      "story_id": "bbdf2140ca9ca57e",
+      "source": "Toronto Star",
+      "title": "Canadians step up to give blood after fire at Alberta military base kills four",
+      "url": "https://www.thestar.com/news/canada/alberta/canadians-step-up-to-give-blood-after-fire-at-alberta-military-base-kills-four/article_a887f4bc-bfe5-51a2-97ee-68d1218a6027.html",
+      "published": "2026-10-19T08:43:36+00:00",
+      "content_status": "full",
+      "word_count": 685,
+      "quality_score": 81,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2043,15 +2059,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "450b23ec12d3f474",
+      "story_id": "bbdf2140ca9ca57e",
       "source": "Toronto Star",
-      "title": "Five things to watch for in the Canadian business world in the coming week",
-      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_ed577073-b3d5-56a1-9cd9-953c4d3fe2b7.html",
-      "published": "2026-10-18T14:00:11+00:00",
+      "title": "Canadians step up to give blood after fire at Alberta military base kills four",
+      "url": "https://www.thestar.com/news/canada/alberta/canadians-step-up-to-give-blood-after-fire-at-alberta-military-base-kills-four/article_a887f4bc-bfe5-51a2-97ee-68d1218a6027.html",
+      "published": "2026-10-19T08:43:36+00:00",
       "content_status": "full",
-      "word_count": 313,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 685,
+      "quality_score": 81,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -4561,6 +4577,41 @@
       ]
     },
     {
+      "id": "bbdf2140ca9ca57e",
+      "source": "Toronto Star",
+      "title": "Canadians step up to give blood after fire at Alberta military base kills four",
+      "url": "https://www.thestar.com/news/canada/alberta/canadians-step-up-to-give-blood-after-fire-at-alberta-military-base-kills-four/article_a887f4bc-bfe5-51a2-97ee-68d1218a6027.html",
+      "published": "2026-10-19T08:43:36+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 685,
+      "paragraph_count": 27,
+      "inline_image_count": 9,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "9 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "abba0acd5722570a",
       "source": "Toronto Star",
       "title": "How community organizations are trying to fight voter apathy in this Toronto election",
@@ -4806,35 +4857,6 @@
       "content_status": "full",
       "word_count": 1075,
       "paragraph_count": 52,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "450b23ec12d3f474",
-      "source": "Toronto Star",
-      "title": "Five things to watch for in the Canadian business world in the coming week",
-      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_ed577073-b3d5-56a1-9cd9-953c4d3fe2b7.html",
-      "published": "2026-10-18T14:00:11+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 313,
-      "paragraph_count": 12,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
