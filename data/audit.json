@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-19T15:30:56.137515+00:00",
-  "generated_at_london": "2026-10-19T11:30:56.137515-04:00",
-  "news_generated_at": "2026-10-19T15:24:23.998769+00:00",
+  "generated_at": "2026-10-19T15:41:12.285763+00:00",
+  "generated_at_london": "2026-10-19T11:41:12.285763-04:00",
+  "news_generated_at": "2026-10-19T15:39:49.983140+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 719,
+    "archive_story_count": 723,
     "source_count": 28,
-    "audited_story_count": 111,
-    "pass_story_count": 104,
+    "audited_story_count": 113,
+    "pass_story_count": 106,
     "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 9,
-    "info_issue_count": 85,
+    "info_issue_count": 87,
     "healthy_source_count": 14,
     "review_source_count": 2,
     "error_source_count": 1,
@@ -24,7 +24,7 @@
     {
       "source": "Fanshawe College Newsroom",
       "status": "error",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "generic",
       "sample_size": 2,
       "pass": 1,
@@ -454,14 +454,14 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 637,
-      "average_quality": 91,
+      "average_words": 594,
+      "average_quality": 88,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 6,
+        "dom:citynews:article": 1,
         "dom:semantic-rich-v1": 2,
-        "merge:dom:semantic-rich-v1": 1,
-        "dom:citynews:article": 1
+        "merge:dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -469,7 +469,7 @@
       "latest_published": "2026-10-19T15:13:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T15:22:36.743076+00:00",
+      "last_scrape": "2026-10-19T15:38:14.101411+00:00",
       "last_error": ""
     },
     {
@@ -627,7 +627,7 @@
       "latest_published": "2026-10-19T10:00:32+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T15:22:24.366675+00:00",
+      "last_scrape": "2026-10-19T15:38:08.847761+00:00",
       "last_error": ""
     },
     {
@@ -635,25 +635,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
+      "sample_size": 3,
+      "pass": 3,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 686,
-      "average_quality": 73,
-      "primary_method": "reader:semantic-rich-v1",
+      "average_words": 322,
+      "average_quality": 52,
+      "primary_method": "dom:generic:main",
       "method_counts": {
-        "reader:semantic-rich-v1": 1
+        "reader:semantic-rich-v1": 1,
+        "dom:generic:main": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
+      "info_issues": 3,
       "latest_published": "2026-10-19T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 1,
-      "last_scrape": "2026-10-19T15:21:22.736935+00:00",
+      "tracked": 3,
+      "last_scrape": "2026-10-19T15:36:59.382115+00:00",
       "last_error": ""
     },
     {
@@ -667,19 +668,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 744,
-      "average_quality": 96,
+      "average_words": 718,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-10-19T15:00:00+00:00",
+      "latest_published": "2026-10-19T15:19:03.349000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T15:22:19.903133+00:00",
+      "last_scrape": "2026-10-19T15:37:58.052315+00:00",
       "last_error": ""
     },
     {
@@ -1281,6 +1283,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "bcff96f4e220875b",
+      "source": "CityNews Canada",
+      "title": "Former broadcaster Pamela Wallin resigns from Senate",
+      "url": "https://toronto.citynews.ca/2026/10/19/former-broadcaster-pamela-wallin-resigns-from-senate",
+      "published": "2026-10-19T15:02:44+00:00",
+      "content_status": "partial",
+      "word_count": 59,
+      "quality_score": 48,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "681a7acc4a79f21a",
       "source": "CityNews Canada",
       "title": "Here are the 4 soldiers killed in fast-moving fire at CFB Wainwright in Alberta",
@@ -1320,21 +1337,6 @@
       "word_count": 512,
       "quality_score": 89,
       "extraction_method": "merge:dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "bd1fe274fd4f31ac",
-      "source": "CityNews Canada",
-      "title": "No sign of ‘terrorist activity’ in deadly fire at Alberta military base: Forces",
-      "url": "https://toronto.citynews.ca/2026/10/18/no-sign-of-terrorist-activity-in-deadly-fire-at-alberta-military-base-forces",
-      "published": "2026-10-18T15:46:34+00:00",
-      "content_status": "full",
-      "word_count": 488,
-      "quality_score": 85,
-      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -1791,6 +1793,21 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "8f7f58336c97ba55",
+      "source": "Thames Valley District School Board",
+      "title": "All Notices and Updates",
+      "url": "https://www.tvdsb.ca/news/all-notices-and-updates",
+      "published": "2026-10-19T04:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 83,
+      "quality_score": 37,
+      "extraction_method": "dom:generic:main"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "5d69a18e7bb1350d",
       "source": "Thames Valley District School Board",
       "title": "Apprenticeship Pathway Parent Information Evening",
@@ -1800,6 +1817,21 @@
       "word_count": 686,
       "quality_score": 73,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "6edb82ec3d29b2c9",
+      "source": "Thames Valley District School Board",
+      "title": "General News",
+      "url": "https://www.tvdsb.ca/news/general-news",
+      "published": "2026-10-19T04:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 198,
+      "quality_score": 46,
+      "extraction_method": "dom:generic:main"
     },
     {
       "severity": "info",
@@ -1953,6 +1985,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4d7983ad715ea925",
+      "source": "The Globe and Mail",
+      "title": "Stellantis workers hand Unifor leaders a strike mandate amid stalled talks",
+      "url": "https://www.theglobeandmail.com/business/article-unifor-stellantis-workers-vote-in-favour-of-strike-mandate",
+      "published": "2026-10-19T15:19:03.349000+00:00",
+      "content_status": "full",
+      "word_count": 392,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1978,21 +2025,6 @@
       "published": "2026-10-19T10:45:00+00:00",
       "content_status": "partial",
       "word_count": 689,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "53fb55762493f7cc",
-      "source": "The Globe and Mail",
-      "title": "The 4 soldiers killed in fast-moving fire at CFB Wainwright",
-      "url": "https://www.theglobeandmail.com/canada/article-the-4-soldiers-killed-in-fast-moving-fire-at-cfb-wainwright",
-      "published": "2026-10-19T02:25:22.021000+00:00",
-      "content_status": "full",
-      "word_count": 645,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3389,6 +3421,64 @@
       ]
     },
     {
+      "id": "6edb82ec3d29b2c9",
+      "source": "Thames Valley District School Board",
+      "title": "General News",
+      "url": "https://www.tvdsb.ca/news/general-news",
+      "published": "2026-10-19T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 198,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 46,
+      "quality_grade": "partial",
+      "extraction_method": "dom:generic:main",
+      "extraction_profile": "generic",
+      "local_score": 24,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "8f7f58336c97ba55",
+      "source": "Thames Valley District School Board",
+      "title": "All Notices and Updates",
+      "url": "https://www.tvdsb.ca/news/all-notices-and-updates",
+      "published": "2026-10-19T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 83,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 37,
+      "quality_grade": "poor",
+      "extraction_method": "dom:generic:main",
+      "extraction_profile": "generic",
+      "local_score": 24,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "e8757c5b3dc3609e",
       "source": "Middlesex County",
       "title": "Middlesex County celebrates Local Government Week",
@@ -4077,6 +4167,35 @@
       ]
     },
     {
+      "id": "4d7983ad715ea925",
+      "source": "The Globe and Mail",
+      "title": "Stellantis workers hand Unifor leaders a strike mandate amid stalled talks",
+      "url": "https://www.theglobeandmail.com/business/article-unifor-stellantis-workers-vote-in-favour-of-strike-mandate",
+      "published": "2026-10-19T15:19:03.349000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 392,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ed01ca58bd4154d0",
       "source": "The Globe and Mail",
       "title": "Live updates: Polls open across Alberta in historic referendum vote",
@@ -4342,35 +4461,6 @@
       "paragraph_count": 19,
       "inline_image_count": 6,
       "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "53fb55762493f7cc",
-      "source": "The Globe and Mail",
-      "title": "The 4 soldiers killed in fast-moving fire at CFB Wainwright",
-      "url": "https://www.theglobeandmail.com/canada/article-the-4-soldiers-killed-in-fast-moving-fire-at-cfb-wainwright",
-      "published": "2026-10-19T02:25:22.021000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 645,
-      "paragraph_count": 28,
-      "inline_image_count": 1,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
@@ -4994,6 +5084,35 @@
       ]
     },
     {
+      "id": "bcff96f4e220875b",
+      "source": "CityNews Canada",
+      "title": "Former broadcaster Pamela Wallin resigns from Senate",
+      "url": "https://toronto.citynews.ca/2026/10/19/former-broadcaster-pamela-wallin-resigns-from-senate",
+      "published": "2026-10-19T15:02:44+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 59,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9494572fc5bca672",
       "source": "CityNews Canada",
       "title": "Stellantis workers give union authorization to strike as talks with automaker stalled",
@@ -5214,35 +5333,6 @@
       "quality_score": 81,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bd1fe274fd4f31ac",
-      "source": "CityNews Canada",
-      "title": "No sign of ‘terrorist activity’ in deadly fire at Alberta military base: Forces",
-      "url": "https://toronto.citynews.ca/2026/10/18/no-sign-of-terrorist-activity-in-deadly-fire-at-alberta-military-base-forces",
-      "published": "2026-10-18T15:46:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 488,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 85,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:citynews:article",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
