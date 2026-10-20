@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T23:32:34.081335+00:00",
-  "generated_at_london": "2026-10-20T19:32:34.081335-04:00",
-  "news_generated_at": "2026-10-20T23:26:12.884281+00:00",
+  "generated_at": "2026-10-20T23:44:04.460063+00:00",
+  "generated_at_london": "2026-10-20T19:44:04.460063-04:00",
+  "news_generated_at": "2026-10-20T23:42:01.745882+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 791,
+    "archive_story_count": 792,
     "source_count": 28,
     "audited_story_count": 117,
     "pass_story_count": 113,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 5,
-    "info_issue_count": 91,
+    "info_issue_count": 92,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -110,19 +110,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 672,
-      "average_quality": 96,
+      "average_words": 639,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 11,
+      "info_issues": 12,
       "latest_published": "2026-10-20T20:04:12.683000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T20:30:55.008857+00:00",
+      "last_scrape": "2026-10-20T23:39:20.566034+00:00",
       "last_error": ""
     },
     {
@@ -171,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -652,7 +653,7 @@
       "latest_published": "2026-10-20T20:53:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T23:23:52.341872+00:00",
+      "last_scrape": "2026-10-20T23:39:24.783826+00:00",
       "last_error": ""
     },
     {
@@ -1847,18 +1848,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "93f0a2501c215d23",
+      "source": "The Globe and Mail",
+      "title": "Albertans largely support measures aimed at reducing immigration, split on constitutional questions",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-nine-questions-immigration-constitution",
+      "published": "2026-10-20T19:50:53.011000+00:00",
+      "content_status": "full",
+      "word_count": 960,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "2cb760e33dccac49",
+      "story_id": "93f0a2501c215d23",
       "source": "The Globe and Mail",
-      "title": "A family looks for just enough space in Niagara Falls",
-      "url": "https://www.theglobeandmail.com/real-estate/article-a-family-looks-for-just-enough-space-in-niagara-falls",
-      "published": "2026-10-20T12:00:00+00:00",
+      "title": "Albertans largely support measures aimed at reducing immigration, split on constitutional questions",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-nine-questions-immigration-constitution",
+      "published": "2026-10-20T19:50:53.011000+00:00",
       "content_status": "full",
-      "word_count": 1286,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 960,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4294,6 +4310,41 @@
       ]
     },
     {
+      "id": "93f0a2501c215d23",
+      "source": "The Globe and Mail",
+      "title": "Albertans largely support measures aimed at reducing immigration, split on constitutional questions",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-referendum-nine-questions-immigration-constitution",
+      "published": "2026-10-20T19:50:53.011000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 960,
+      "paragraph_count": 31,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9f786a7900f21896",
       "source": "The Globe and Mail",
       "title": "La Bola Negra movie review: Netflix’s epic Oscar hopeful takes a big swing, and misses",
@@ -4517,35 +4568,6 @@
       "word_count": 346,
       "paragraph_count": 20,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2cb760e33dccac49",
-      "source": "The Globe and Mail",
-      "title": "A family looks for just enough space in Niagara Falls",
-      "url": "https://www.theglobeandmail.com/real-estate/article-a-family-looks-for-just-enough-space-in-niagara-falls",
-      "published": "2026-10-20T12:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1286,
-      "paragraph_count": 20,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
