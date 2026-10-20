@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T20:40:56.153062+00:00",
-  "generated_at_london": "2026-10-20T16:40:56.153062-04:00",
-  "news_generated_at": "2026-10-20T20:33:29.715263+00:00",
+  "generated_at": "2026-10-20T20:49:36.999043+00:00",
+  "generated_at_london": "2026-10-20T16:49:36.999043-04:00",
+  "news_generated_at": "2026-10-20T20:48:05.114064+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 788,
+    "archive_story_count": 789,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 115,
@@ -171,7 +171,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -455,11 +455,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 498,
-      "average_quality": 94,
+      "average_words": 547,
+      "average_quality": 92,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:citynews:article": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -467,7 +468,7 @@
       "latest_published": "2026-10-20T19:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T19:12:40.322671+00:00",
+      "last_scrape": "2026-10-20T20:46:11.550207+00:00",
       "last_error": ""
     },
     {
@@ -652,7 +653,7 @@
       "latest_published": "2026-10-20T19:48:18+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T20:30:59.017207+00:00",
+      "last_scrape": "2026-10-20T20:46:03.910160+00:00",
       "last_error": ""
     },
     {
@@ -1325,15 +1326,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "b21ee19c3f333abf",
+      "story_id": "8a110c8d79f6cb27",
       "source": "CityNews Canada",
-      "title": "Sentiment improved, but new tariffs weigh on business outlook: BoC report",
-      "url": "https://toronto.citynews.ca/2026/10/19/sentiment-improved-but-new-tariffs-weigh-on-business-outlook-boc-report",
-      "published": "2026-10-19T15:55:31+00:00",
+      "title": "Residents of Wainwright, Alta., grieving but resilient after tragic fire on army base",
+      "url": "https://toronto.citynews.ca/2026/10/20/wainwright-alta-residents-grieving-but-resilient-after-tragic-fire-on-army-base",
+      "published": "2026-10-20T08:00:01+00:00",
       "content_status": "full",
-      "word_count": 382,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 874,
+      "quality_score": 86,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -5338,6 +5339,35 @@
       ]
     },
     {
+      "id": "8a110c8d79f6cb27",
+      "source": "CityNews Canada",
+      "title": "Residents of Wainwright, Alta., grieving but resilient after tragic fire on army base",
+      "url": "https://toronto.citynews.ca/2026/10/20/wainwright-alta-residents-grieving-but-resilient-after-tragic-fire-on-army-base",
+      "published": "2026-10-20T08:00:01+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 874,
+      "paragraph_count": 35,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1eb38babdac45d89",
       "source": "CityNews Canada",
       "title": "Alberta votes in referendum to stay in Canada. A timeline on how we got here",
@@ -5409,35 +5439,6 @@
       "content_status": "full",
       "word_count": 329,
       "paragraph_count": 13,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b21ee19c3f333abf",
-      "source": "CityNews Canada",
-      "title": "Sentiment improved, but new tariffs weigh on business outlook: BoC report",
-      "url": "https://toronto.citynews.ca/2026/10/19/sentiment-improved-but-new-tariffs-weigh-on-business-outlook-boc-report",
-      "published": "2026-10-19T15:55:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 382,
-      "paragraph_count": 14,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
