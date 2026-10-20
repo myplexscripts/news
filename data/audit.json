@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T19:51:24.978377+00:00",
-  "generated_at_london": "2026-10-20T15:51:24.978377-04:00",
-  "news_generated_at": "2026-10-20T19:44:57.984729+00:00",
+  "generated_at": "2026-10-20T20:04:03.573407+00:00",
+  "generated_at_london": "2026-10-20T16:04:03.573407-04:00",
+  "news_generated_at": "2026-10-20T20:01:39.005990+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 786,
+    "archive_story_count": 788,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 116,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 4,
-    "info_issue_count": 88,
+    "info_issue_count": 89,
     "healthy_source_count": 15,
     "review_source_count": 2,
     "error_source_count": 1,
@@ -174,7 +174,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -193,7 +193,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -376,19 +376,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 236,
-      "average_quality": 68,
+      "average_words": 231,
+      "average_quality": 69,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 7,
-      "latest_published": "2026-10-20T19:11:29.676000+00:00",
+      "info_issues": 8,
+      "latest_published": "2026-10-20T19:54:34.967000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T19:19:04.618636+00:00",
+      "last_scrape": "2026-10-20T19:57:18.735317+00:00",
       "last_error": ""
     },
     {
@@ -455,19 +455,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 782,
-      "average_quality": 96,
+      "average_words": 934,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-20T19:09:47+00:00",
+      "latest_published": "2026-10-20T19:54:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T19:12:28.035616+00:00",
+      "last_scrape": "2026-10-20T19:59:01.908665+00:00",
       "last_error": ""
     },
     {
@@ -613,20 +614,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 932,
-      "average_quality": 84,
+      "average_words": 989,
+      "average_quality": 87,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "dom:semantic-rich-v1": 6,
-        "reader:semantic-rich-v1": 4
+        "reader:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-20T19:37:53+00:00",
+      "latest_published": "2026-10-20T19:48:18+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T19:43:19.155809+00:00",
+      "last_scrape": "2026-10-20T19:59:09.686923+00:00",
       "last_error": ""
     },
     {
@@ -1022,6 +1024,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "684f0c7b72a21410",
+      "source": "CTV News London",
+      "title": "Protesters return to defence trade show as attendees position for increased defence spending",
+      "url": "https://www.ctvnews.ca/london/article/protesters-return-to-defence-trade-show-as-attendees-position-for-increased-defence-spending",
+      "published": "2026-10-20T19:54:34.967000+00:00",
+      "content_status": "full",
+      "word_count": 339,
+      "quality_score": 78,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1325,6 +1342,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "9ea6a28ad5b94b3a",
+      "source": "Global News Canada",
+      "title": "As Stelco reports soaring earnings, how solid is their layoff legal case?",
+      "url": "https://globalnews.ca/news/12103489/stelco-layoffs-ottawa-court",
+      "published": "2026-10-20T19:54:59+00:00",
+      "content_status": "full",
+      "word_count": 1208,
+      "quality_score": 94,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "42a1ba65456a3308",
       "source": "Global News Canada",
       "title": "Canada’s federal budget date revealed as trade war continues to bite",
@@ -1363,36 +1395,6 @@
       "content_status": "full",
       "word_count": 1958,
       "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "cdca84582b18f324",
-      "source": "Global News Canada",
-      "title": "High turnout caused referendum delays for some Indigenous voters: officials",
-      "url": "https://globalnews.ca/news/12109138/alberta-referendum-voting-delays-indigenous-communities",
-      "published": "2026-10-20T15:02:20+00:00",
-      "content_status": "full",
-      "word_count": 273,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "61f499e0b9846e97",
-      "source": "Global News Canada",
-      "title": "Is Canada in an ‘affordability crisis’? Conservative motion heads to a vote",
-      "url": "https://globalnews.ca/news/12109120/poilievre-affordability-crisis",
-      "published": "2026-10-20T15:03:11+00:00",
-      "content_status": "full",
-      "word_count": 213,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1439,6 +1441,21 @@
       "word_count": 452,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fd6b05b8cb0a43f6",
+      "source": "Global News Canada",
+      "title": "The end of the beginning: Alberta’s real referendum message for Carney",
+      "url": "https://globalnews.ca/news/12109735/the-end-of-the-beginning-albertas-real-referendum-message-for-carney",
+      "published": "2026-10-20T19:54:13+00:00",
+      "content_status": "full",
+      "word_count": 800,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1610,6 +1627,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "8939010abef3f08f",
+      "source": "National Post",
+      "title": "Bradford slightly ahead of Chow in Toronto mayoral race, two new polls show",
+      "url": "https://nationalpost.com/news/canada/bradford-slightly-ahead-of-chow-in-toronto-mayoral-race-two-new-polls-show",
+      "published": "2026-10-20T19:48:18+00:00",
+      "content_status": "full",
+      "word_count": 1015,
+      "quality_score": 94,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "b96891a0b9cfdefc",
       "source": "National Post",
       "title": "Canadian man guilty of animal cruelty after stealing a flamingo in Las Vegas as a drunken joke",
@@ -1649,21 +1681,6 @@
       "word_count": 680,
       "quality_score": 83,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "37d264aa8cf75475",
-      "source": "National Post",
-      "title": "Poilievre defends Alberta referendum, says ‘the goal should not be to beat one side or the other’",
-      "url": "https://nationalpost.com/news/local-news/poilievre-defends-referendum-promotes-pro-canada-vote/wcm/ed1c5caf-2cd6-4d33-8473-ffedf61da160",
-      "published": "2026-10-19T22:48:00+00:00",
-      "content_status": "full",
-      "word_count": 443,
-      "quality_score": 72,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2177,6 +2194,35 @@
       "issues": []
     },
     {
+      "id": "684f0c7b72a21410",
+      "source": "CTV News London",
+      "title": "Protesters return to defence trade show as attendees position for increased defence spending",
+      "url": "https://www.ctvnews.ca/london/article/protesters-return-to-defence-trade-show-as-attendees-position-for-increased-defence-spending",
+      "published": "2026-10-20T19:54:34.967000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 339,
+      "paragraph_count": 17,
+      "inline_image_count": 0,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "de30b0db27390364",
       "source": "CTV News London",
       "title": "Three ‘armed and dangerous’ suspects sought after weekend shooting",
@@ -2420,28 +2466,6 @@
           "detail": ""
         }
       ]
-    },
-    {
-      "id": "a089364c18571afa",
-      "source": "CTV News London",
-      "title": "Retired teacher faces historical sexual assault trial",
-      "url": "https://www.ctvnews.ca/london/article/retired-teacher-faces-historical-sexual-assault-trial",
-      "published": "2026-10-20T00:49:41.984000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 394,
-      "paragraph_count": 13,
-      "inline_image_count": 0,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 22,
-      "issues": []
     },
     {
       "id": "cdddd7287f04430b",
@@ -3620,6 +3644,64 @@
       "issues": []
     },
     {
+      "id": "9ea6a28ad5b94b3a",
+      "source": "Global News Canada",
+      "title": "As Stelco reports soaring earnings, how solid is their layoff legal case?",
+      "url": "https://globalnews.ca/news/12103489/stelco-layoffs-ottawa-court",
+      "published": "2026-10-20T19:54:59+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1208,
+      "paragraph_count": 41,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "fd6b05b8cb0a43f6",
+      "source": "Global News Canada",
+      "title": "The end of the beginning: Alberta’s real referendum message for Carney",
+      "url": "https://globalnews.ca/news/12109735/the-end-of-the-beginning-albertas-real-referendum-message-for-carney",
+      "published": "2026-10-20T19:54:13+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 800,
+      "paragraph_count": 15,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "51a33bfbd53ba568",
       "source": "Global News Canada",
       "title": "Mother of First Nation woman who couldn’t get medical transport and died seeks reform",
@@ -3836,64 +3918,6 @@
       "content_status": "full",
       "word_count": 634,
       "paragraph_count": 25,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "61f499e0b9846e97",
-      "source": "Global News Canada",
-      "title": "Is Canada in an ‘affordability crisis’? Conservative motion heads to a vote",
-      "url": "https://globalnews.ca/news/12109120/poilievre-affordability-crisis",
-      "published": "2026-10-20T15:03:11+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 213,
-      "paragraph_count": 8,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cdca84582b18f324",
-      "source": "Global News Canada",
-      "title": "High turnout caused referendum delays for some Indigenous voters: officials",
-      "url": "https://globalnews.ca/news/12109138/alberta-referendum-voting-delays-indigenous-communities",
-      "published": "2026-10-20T15:02:20+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 273,
-      "paragraph_count": 12,
       "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4520,6 +4544,35 @@
       ]
     },
     {
+      "id": "8939010abef3f08f",
+      "source": "National Post",
+      "title": "Bradford slightly ahead of Chow in Toronto mayoral race, two new polls show",
+      "url": "https://nationalpost.com/news/canada/bradford-slightly-ahead-of-chow-in-toronto-mayoral-race-two-new-polls-show",
+      "published": "2026-10-20T19:48:18+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1015,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "07216cab28406631",
       "source": "National Post",
       "title": "Slowing economy will mean more red ink and debt costs for Carney's budget, PBO says",
@@ -4769,35 +4822,6 @@
       "quality_score": 93,
       "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "37d264aa8cf75475",
-      "source": "National Post",
-      "title": "Poilievre defends Alberta referendum, says ‘the goal should not be to beat one side or the other’",
-      "url": "https://nationalpost.com/news/local-news/poilievre-defends-referendum-promotes-pro-canada-vote/wcm/ed1c5caf-2cd6-4d33-8473-ffedf61da160",
-      "published": "2026-10-19T22:48:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 443,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 72,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
