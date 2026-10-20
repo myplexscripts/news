@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T14:36:59.412641+00:00",
-  "generated_at_london": "2026-10-20T10:36:59.412641-04:00",
-  "news_generated_at": "2026-10-20T14:30:53.757796+00:00",
+  "generated_at": "2026-10-20T14:49:44.557293+00:00",
+  "generated_at_london": "2026-10-20T10:49:44.557293-04:00",
+  "news_generated_at": "2026-10-20T14:47:26.993660+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 780,
+    "archive_story_count": 779,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 111,
-    "review_story_count": 4,
+    "pass_story_count": 112,
+    "review_story_count": 3,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 7,
-    "info_issue_count": 87,
+    "warning_issue_count": 6,
+    "info_issue_count": 88,
     "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -79,24 +79,24 @@
       "collector_status": "healthy",
       "profile": "ctv",
       "sample_size": 10,
-      "pass": 8,
-      "review": 2,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 80,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 879,
-      "average_quality": 83,
+      "average_words": 704,
+      "average_quality": 81,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
-      "warning_issues": 2,
-      "info_issues": 12,
-      "latest_published": "2026-10-20T13:58:16.975000+00:00",
-      "found_this_run": 4,
+      "warning_issues": 1,
+      "info_issues": 13,
+      "latest_published": "2026-10-20T14:30:33.500000+00:00",
+      "found_this_run": 5,
       "tracked": 30,
-      "last_scrape": "2026-10-20T14:13:25.951237+00:00",
+      "last_scrape": "2026-10-20T14:44:49.486230+00:00",
       "last_error": ""
     },
     {
@@ -274,7 +274,7 @@
     {
       "source": "London District Catholic School Board",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -290,10 +290,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 9,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='www.ldcsb.ca', port=443): Max retries exceeded with url: /apps/news/category/11195?pageIndex=1 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ldcsb.ca', port=443): Read timed out. (read timeout=8)\"))"
+      "last_error": ""
     },
     {
       "source": "London Free Press",
@@ -481,19 +481,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 509,
-      "average_quality": 93,
+      "average_words": 463,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:citynews:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-20T11:07:30+00:00",
+      "latest_published": "2026-10-20T14:09:09+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T11:21:27.905341+00:00",
+      "last_scrape": "2026-10-20T14:45:01.906821+00:00",
       "last_error": ""
     },
     {
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-20T10:00:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T14:29:15.070108+00:00",
+      "last_scrape": "2026-10-20T14:44:56.563145+00:00",
       "last_error": ""
     },
     {
@@ -812,21 +813,6 @@
     },
     {
       "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "4 consecutive images",
-      "story_id": "81edbba5995d8203",
-      "source": "CTV News Canada",
-      "title": "What we know about the deadly fire at CFB Wainwright",
-      "url": "https://www.ctvnews.ca/canada/article/what-we-know-about-deadly-fire-at-cfb-wainwright",
-      "published": "2026-10-19T01:07:29.461000+00:00",
-      "content_status": "full",
-      "word_count": 2103,
-      "quality_score": 96,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "warning",
       "code": "truncated_ending",
       "message": "Article body appears to end with an ellipsis.",
       "detail": "",
@@ -928,6 +914,36 @@
       "content_status": "full",
       "word_count": 317,
       "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "868f7927a927144b",
+      "source": "CTV News Canada",
+      "title": "Canada urges travellers to avoid demonstrations as France grapples with rioting",
+      "url": "https://www.ctvnews.ca/canada/article/canada-urges-travellers-to-avoid-demonstrations-as-france-grapples-with-rioting",
+      "published": "2026-10-20T14:30:33.500000+00:00",
+      "content_status": "full",
+      "word_count": 346,
+      "quality_score": 78,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "868f7927a927144b",
+      "source": "CTV News Canada",
+      "title": "Canada urges travellers to avoid demonstrations as France grapples with rioting",
+      "url": "https://www.ctvnews.ca/canada/article/canada-urges-travellers-to-avoid-demonstrations-as-france-grapples-with-rioting",
+      "published": "2026-10-20T14:30:33.500000+00:00",
+      "content_status": "full",
+      "word_count": 346,
+      "quality_score": 78,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1045,21 +1061,6 @@
       "title": "What we know about the deadly fire at CFB Wainwright",
       "url": "https://www.ctvnews.ca/canada/article/what-we-know-about-the-deadly-fire-at-cfb-wainwright",
       "published": "2026-10-19T01:08:38.145000+00:00",
-      "content_status": "full",
-      "word_count": 2103,
-      "quality_score": 96,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "81edbba5995d8203",
-      "source": "CTV News Canada",
-      "title": "What we know about the deadly fire at CFB Wainwright",
-      "url": "https://www.ctvnews.ca/canada/article/what-we-know-about-deadly-fire-at-cfb-wainwright",
-      "published": "2026-10-19T01:07:29.461000+00:00",
       "content_status": "full",
       "word_count": 2103,
       "quality_score": 96,
@@ -1250,6 +1251,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "dbc8ea40fabb70e4",
+      "source": "CityNews Canada",
+      "title": "Carney says Alberta’s choice of unity is ‘a great result’ for Canada",
+      "url": "https://toronto.citynews.ca/2026/10/20/carney-says-albertas-choice-of-unity-is-a-great-result-for-canada",
+      "published": "2026-10-20T14:09:09+00:00",
+      "content_status": "full",
+      "word_count": 176,
+      "quality_score": 69,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "bcff96f4e220875b",
       "source": "CityNews Canada",
       "title": "Former broadcaster Pamela Wallin resigns from Senate",
@@ -1333,21 +1349,6 @@
       "content_status": "full",
       "word_count": 147,
       "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8fc2f77af4700499",
-      "source": "CityNews Canada",
-      "title": "What we know about the 4 soldiers who died in fire at CFB Wainwright in Alberta",
-      "url": "https://toronto.citynews.ca/2026/10/19/wainwright-alberta-fatal-fire-victims",
-      "published": "2026-10-19T13:48:50+00:00",
-      "content_status": "full",
-      "word_count": 643,
-      "quality_score": 93,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -3912,6 +3913,41 @@
       ]
     },
     {
+      "id": "868f7927a927144b",
+      "source": "CTV News Canada",
+      "title": "Canada urges travellers to avoid demonstrations as France grapples with rioting",
+      "url": "https://www.ctvnews.ca/canada/article/canada-urges-travellers-to-avoid-demonstrations-as-france-grapples-with-rioting",
+      "published": "2026-10-20T14:30:33.500000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 346,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "85cdc8c8473f2ebd",
       "source": "CTV News Canada",
       "title": "Air Canada adds fee for phone bookings. Here’s how much",
@@ -4161,41 +4197,6 @@
       "title": "What we know about the deadly fire at CFB Wainwright",
       "url": "https://www.ctvnews.ca/canada/article/what-we-know-about-the-deadly-fire-at-cfb-wainwright",
       "published": "2026-10-19T01:08:38.145000+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 2103,
-      "paragraph_count": 85,
-      "inline_image_count": 6,
-      "quality_score": 96,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "4 consecutive images"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "81edbba5995d8203",
-      "source": "CTV News Canada",
-      "title": "What we know about the deadly fire at CFB Wainwright",
-      "url": "https://www.ctvnews.ca/canada/article/what-we-know-about-deadly-fire-at-cfb-wainwright",
-      "published": "2026-10-19T01:07:29.461000+00:00",
       "audit_status": "review",
       "audit_score": 85,
       "critical_count": 0,
@@ -5120,6 +5121,35 @@
       ]
     },
     {
+      "id": "dbc8ea40fabb70e4",
+      "source": "CityNews Canada",
+      "title": "Carney says Alberta’s choice of unity is ‘a great result’ for Canada",
+      "url": "https://toronto.citynews.ca/2026/10/20/carney-says-albertas-choice-of-unity-is-a-great-result-for-canada",
+      "published": "2026-10-20T14:09:09+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 176,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5461d452da37714b",
       "source": "CityNews Canada",
       "title": "Keith Morrison and Diana Swain on the case of Elizabeth Bain",
@@ -5367,35 +5397,6 @@
       "paragraph_count": 16,
       "inline_image_count": 0,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8fc2f77af4700499",
-      "source": "CityNews Canada",
-      "title": "What we know about the 4 soldiers who died in fire at CFB Wainwright in Alberta",
-      "url": "https://toronto.citynews.ca/2026/10/19/wainwright-alberta-fatal-fire-victims",
-      "published": "2026-10-19T13:48:50+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 643,
-      "paragraph_count": 29,
-      "inline_image_count": 4,
-      "quality_score": 93,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
