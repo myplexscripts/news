@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T09:26:25.492611+00:00",
-  "generated_at_london": "2026-10-20T05:26:25.492611-04:00",
-  "news_generated_at": "2026-10-20T09:19:21.783658+00:00",
+  "generated_at": "2026-10-20T09:35:18.120332+00:00",
+  "generated_at_london": "2026-10-20T05:35:18.120332-04:00",
+  "news_generated_at": "2026-10-20T09:33:55.842608+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 786,
+    "archive_story_count": 789,
     "source_count": 28,
     "audited_story_count": 117,
     "pass_story_count": 109,
@@ -102,7 +102,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -120,10 +120,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-20T08:36:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
-      "last_scrape": "2026-10-20T09:17:11.391425+00:00",
-      "last_error": ""
+      "last_scrape": "2026-10-20T09:17:10.180316+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -455,19 +455,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 576,
-      "average_quality": 95,
+      "average_words": 513,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:citynews:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-20T01:45:32+00:00",
+      "latest_published": "2026-10-20T08:36:15+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T01:47:55.527779+00:00",
+      "last_scrape": "2026-10-20T09:32:25.488520+00:00",
       "last_error": ""
     },
     {
@@ -481,19 +482,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 575,
+      "average_words": 652,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-20T09:00:35+00:00",
+      "latest_published": "2026-10-20T09:19:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T09:01:08.980565+00:00",
+      "last_scrape": "2026-10-20T09:32:13.422572+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +653,7 @@
       "latest_published": "2026-10-20T08:00:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T09:17:05.500163+00:00",
+      "last_scrape": "2026-10-20T09:32:18.452567+00:00",
       "last_error": ""
     },
     {
@@ -1324,6 +1326,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "d5d20e35941a765d",
+      "source": "CityNews Canada",
+      "title": "A look at past referendums in Canada as Albertans reject future separation vote",
+      "url": "https://toronto.citynews.ca/2026/10/20/a-look-at-past-referendums-in-canada-as-albertans-reject-future-separation-vote",
+      "published": "2026-10-20T08:36:15+00:00",
+      "content_status": "full",
+      "word_count": 619,
+      "quality_score": 81,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "01f2d946a8cb3056",
       "source": "CityNews Canada",
       "title": "Alberta referendum sparks Chinese community push to vote",
@@ -1333,6 +1350,21 @@
       "word_count": 329,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1eb38babdac45d89",
+      "source": "CityNews Canada",
+      "title": "Alberta votes in referendum to stay in Canada. A timeline on how we got here",
+      "url": "https://toronto.citynews.ca/2026/10/20/alberta-votes-in-referendum-to-stay-in-canada-a-timeline-on-how-we-got-here",
+      "published": "2026-10-20T06:37:27+00:00",
+      "content_status": "full",
+      "word_count": 822,
+      "quality_score": 86,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -1362,36 +1394,6 @@
       "content_status": "full",
       "word_count": 847,
       "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "32b874c7de5a90d1",
-      "source": "CityNews Canada",
-      "title": "House of Commons holds moment of silence over Wainwright tragedy",
-      "url": "https://toronto.citynews.ca/2026/10/19/canadians-step-up-to-give-blood-after-fire-at-alberta-military-base-kills-four",
-      "published": "2026-10-19T08:43:36+00:00",
-      "content_status": "full",
-      "word_count": 893,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8baa2e36c60a7a05",
-      "source": "CityNews Canada",
-      "title": "Late start, delayed results for historic Alberta referendum on remaining in Canada",
-      "url": "https://toronto.citynews.ca/2026/10/19/albertans-head-to-polls-in-historic-referendum-on-whether-they-want-to-stay-in-canada",
-      "published": "2026-10-19T08:00:15+00:00",
-      "content_status": "full",
-      "word_count": 1181,
-      "quality_score": 86,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -1474,6 +1476,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "337c14664110662b",
+      "source": "Global News Canada",
+      "title": "Alberta referendum a notable chapter in long history of grievance with Ottawa",
+      "url": "https://globalnews.ca/news/12108828/alberta-referendum-western-alienation-history",
+      "published": "2026-10-20T09:19:12+00:00",
+      "content_status": "full",
+      "word_count": 1015,
+      "quality_score": 94,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "4472bc844b086e9c",
       "source": "Global News Canada",
       "title": "Alberta referendum voters reject separatism, choose to stay in Canada",
@@ -1541,21 +1558,6 @@
       "published": "2026-10-19T22:30:57+00:00",
       "content_status": "full",
       "word_count": 462,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "fed7f41ffd660a14",
-      "source": "Global News Canada",
-      "title": "Harness racer dies in multi-horse collision at South Okanagan race course",
-      "url": "https://globalnews.ca/news/12108332/harness-racer-dies-multi-horse-collision-south-okanagan-race-course",
-      "published": "2026-10-19T20:10:30+00:00",
-      "content_status": "full",
-      "word_count": 249,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3829,6 +3831,35 @@
       "issues": []
     },
     {
+      "id": "337c14664110662b",
+      "source": "Global News Canada",
+      "title": "Alberta referendum a notable chapter in long history of grievance with Ottawa",
+      "url": "https://globalnews.ca/news/12108828/alberta-referendum-western-alienation-history",
+      "published": "2026-10-20T09:19:12+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1015,
+      "paragraph_count": 41,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "532f6143c28fcd08",
       "source": "Global News Canada",
       "title": "McGill law students petition for convicted murderer to return to studies",
@@ -4075,35 +4106,6 @@
       "word_count": 1057,
       "paragraph_count": 33,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "fed7f41ffd660a14",
-      "source": "Global News Canada",
-      "title": "Harness racer dies in multi-horse collision at South Okanagan race course",
-      "url": "https://globalnews.ca/news/12108332/harness-racer-dies-multi-horse-collision-south-okanagan-race-course",
-      "published": "2026-10-19T20:10:30+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 249,
-      "paragraph_count": 11,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -5333,6 +5335,64 @@
       ]
     },
     {
+      "id": "d5d20e35941a765d",
+      "source": "CityNews Canada",
+      "title": "A look at past referendums in Canada as Albertans reject future separation vote",
+      "url": "https://toronto.citynews.ca/2026/10/20/a-look-at-past-referendums-in-canada-as-albertans-reject-future-separation-vote",
+      "published": "2026-10-20T08:36:15+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 619,
+      "paragraph_count": 37,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "1eb38babdac45d89",
+      "source": "CityNews Canada",
+      "title": "Alberta votes in referendum to stay in Canada. A timeline on how we got here",
+      "url": "https://toronto.citynews.ca/2026/10/20/alberta-votes-in-referendum-to-stay-in-canada-a-timeline-on-how-we-got-here",
+      "published": "2026-10-20T06:37:27+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 822,
+      "paragraph_count": 24,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "dcfbcca7e471f717",
       "source": "CityNews Canada",
       "title": "Two charged, 127 kg of cocaine seized at Ambassador Bridge: Cbsa",
@@ -5551,64 +5611,6 @@
       "paragraph_count": 4,
       "inline_image_count": 0,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "32b874c7de5a90d1",
-      "source": "CityNews Canada",
-      "title": "House of Commons holds moment of silence over Wainwright tragedy",
-      "url": "https://toronto.citynews.ca/2026/10/19/canadians-step-up-to-give-blood-after-fire-at-alberta-military-base-kills-four",
-      "published": "2026-10-19T08:43:36+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 893,
-      "paragraph_count": 34,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8baa2e36c60a7a05",
-      "source": "CityNews Canada",
-      "title": "Late start, delayed results for historic Alberta referendum on remaining in Canada",
-      "url": "https://toronto.citynews.ca/2026/10/19/albertans-head-to-polls-in-historic-referendum-on-whether-they-want-to-stay-in-canada",
-      "published": "2026-10-19T08:00:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1181,
-      "paragraph_count": 51,
-      "inline_image_count": 0,
-      "quality_score": 86,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
