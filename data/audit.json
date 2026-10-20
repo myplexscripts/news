@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T00:09:08.987004+00:00",
-  "generated_at_london": "2026-10-19T20:09:08.987004-04:00",
-  "news_generated_at": "2026-10-20T00:02:04.229246+00:00",
+  "generated_at": "2026-10-20T00:19:59.063957+00:00",
+  "generated_at_london": "2026-10-19T20:19:59.063957-04:00",
+  "news_generated_at": "2026-10-20T00:18:04.396187+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 775,
+    "archive_story_count": 777,
     "source_count": 28,
-    "audited_story_count": 117,
+    "audited_story_count": 118,
     "pass_story_count": 107,
-    "review_story_count": 9,
+    "review_story_count": 10,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 14,
+    "warning_issue_count": 16,
     "info_issue_count": 96,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-19T23:53:02.548000+00:00",
       "found_this_run": 2,
       "tracked": 30,
-      "last_scrape": "2026-10-19T23:59:34.484467+00:00",
+      "last_scrape": "2026-10-20T00:05:34.206310+00:00",
       "last_error": ""
     },
     {
@@ -132,24 +132,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 1888,
-      "average_quality": 96,
+      "average_words": 1886,
+      "average_quality": 95,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 1,
+      "warning_issues": 3,
       "info_issues": 11,
-      "latest_published": "2026-10-19T22:29:07+00:00",
+      "latest_published": "2026-10-19T23:52:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T23:28:52.658891+00:00",
+      "last_scrape": "2026-10-20T00:15:46.166836+00:00",
       "last_error": ""
     },
     {
@@ -397,25 +398,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "wordpress",
-      "sample_size": 7,
-      "pass": 7,
+      "sample_size": 8,
+      "pass": 8,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 268,
-      "average_quality": 79,
+      "average_quality": 78,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:wordpress:article": 1,
         "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 0,
-      "latest_published": "2026-10-18T22:45:24+00:00",
+      "latest_published": "2026-10-20T00:05:11+00:00",
       "found_this_run": 10,
-      "tracked": 7,
-      "last_scrape": "2026-10-18T23:02:33.481529+00:00",
+      "tracked": 8,
+      "last_scrape": "2026-10-20T00:13:41.728469+00:00",
       "last_error": ""
     },
     {
@@ -678,7 +680,7 @@
       "latest_published": "2026-10-19T23:21:28+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T23:59:41.726677+00:00",
+      "last_scrape": "2026-10-20T00:15:42.716415+00:00",
       "last_error": ""
     },
     {
@@ -959,6 +961,36 @@
       "word_count": 16130,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b9267a5f778b9120",
+      "source": "Toronto Star",
+      "title": "Election results are tied between mayoral candidates in Lytton, B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/election-results-are-tied-between-mayoral-candidates-in-lytton-b-c/article_e68e2070-2e33-5c9d-8f1c-b885bbbab428.html",
+      "published": "2026-10-19T23:52:54+00:00",
+      "content_status": "full",
+      "word_count": 251,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "b9267a5f778b9120",
+      "source": "Toronto Star",
+      "title": "Election results are tied between mayoral candidates in Lytton, B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/election-results-are-tied-between-mayoral-candidates-in-lytton-b-c/article_e68e2070-2e33-5c9d-8f1c-b885bbbab428.html",
+      "published": "2026-10-19T23:52:54+00:00",
+      "content_status": "full",
+      "word_count": 251,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2270,21 +2302,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d7c2f264366002a0",
-      "source": "Toronto Star",
-      "title": "CP NewsAlert: B.C. judge says parole rules for murderers unconstitutional",
-      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-b-c-judge-says-parole-rules-for-murderers-unconstitutional/article_fe299624-6a63-5d4f-b1b3-5dc0ffbb4d5f.html",
-      "published": "2026-10-19T17:50:05+00:00",
-      "content_status": "full",
-      "word_count": 274,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "728403fee534126c",
       "source": "Toronto Star",
       "title": "Doerkson says B.C. Conservative growth projection of 3.2% 'absolutely doable'",
@@ -2294,6 +2311,21 @@
       "word_count": 343,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b9267a5f778b9120",
+      "source": "Toronto Star",
+      "title": "Election results are tied between mayoral candidates in Lytton, B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/election-results-are-tied-between-mayoral-candidates-in-lytton-b-c/article_e68e2070-2e33-5c9d-8f1c-b885bbbab428.html",
+      "published": "2026-10-19T23:52:54+00:00",
+      "content_status": "full",
+      "word_count": 251,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2740,6 +2772,28 @@
           "detail": "Local score 0/100"
         }
       ]
+    },
+    {
+      "id": "3d739f1e73381ed1",
+      "source": "106.9 The X",
+      "title": "Coven Fest 2026",
+      "url": "https://www.1069thex.com/2026/10/19/coven-fest-2026",
+      "published": "2026-10-20T00:05:11+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 264,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "dom:wordpress:article",
+      "extraction_profile": "wordpress",
+      "local_score": 47,
+      "issues": []
     },
     {
       "id": "558291e3013ee9a0",
@@ -5138,6 +5192,47 @@
       ]
     },
     {
+      "id": "b9267a5f778b9120",
+      "source": "Toronto Star",
+      "title": "Election results are tied between mayoral candidates in Lytton, B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/election-results-are-tied-between-mayoral-candidates-in-lytton-b-c/article_e68e2070-2e33-5c9d-8f1c-b885bbbab428.html",
+      "published": "2026-10-19T23:52:54+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 251,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "937c29c9dbdf9e2a",
       "source": "Toronto Star",
       "title": "Two charged, 127 kg of cocaine seized at Ambassador Bridge: Cbsa",
@@ -5395,35 +5490,6 @@
       "content_status": "full",
       "word_count": 343,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d7c2f264366002a0",
-      "source": "Toronto Star",
-      "title": "CP NewsAlert: B.C. judge says parole rules for murderers unconstitutional",
-      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-b-c-judge-says-parole-rules-for-murderers-unconstitutional/article_fe299624-6a63-5d4f-b1b3-5dc0ffbb4d5f.html",
-      "published": "2026-10-19T17:50:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 274,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
