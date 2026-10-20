@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T13:49:49.663431+00:00",
-  "generated_at_london": "2026-10-20T09:49:49.663431-04:00",
-  "news_generated_at": "2026-10-20T13:44:45.206558+00:00",
+  "generated_at": "2026-10-20T14:02:30.365811+00:00",
+  "generated_at_london": "2026-10-20T10:02:30.365811-04:00",
+  "news_generated_at": "2026-10-20T14:00:27.572109+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 781,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 111,
-    "review_story_count": 5,
+    "pass_story_count": 110,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 87,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -128,28 +128,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 859,
-      "average_quality": 96,
+      "average_words": 791,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-20T09:30:00+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-20T13:20:46+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T10:19:00.708517+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-20T13:58:09.849125+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-20T10:00:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T13:42:20.280896+00:00",
+      "last_scrape": "2026-10-20T13:58:05.639918+00:00",
       "last_error": ""
     },
     {
@@ -869,6 +870,36 @@
       "word_count": 1330,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3dd9974b2b9fb65c",
+      "source": "Toronto Star",
+      "title": "Person found dead in suspicious boat fire at Kingston, Ont. marina",
+      "url": "https://www.thestar.com/news/ontario/person-found-dead-in-suspicious-boat-fire-at-kingston-ont-marina/article_00b0f3a4-ebbb-50d6-a341-dbf4546aaaf9.html",
+      "published": "2026-10-20T13:20:46+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "3dd9974b2b9fb65c",
+      "source": "Toronto Star",
+      "title": "Person found dead in suspicious boat fire at Kingston, Ont. marina",
+      "url": "https://www.thestar.com/news/ontario/person-found-dead-in-suspicious-boat-fire-at-kingston-ont-marina/article_00b0f3a4-ebbb-50d6-a341-dbf4546aaaf9.html",
+      "published": "2026-10-20T13:20:46+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2090,21 +2121,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cd76773d347afcab",
-      "source": "Toronto Star",
-      "title": "Amira Elghawaby launches portal to turn Muslim research into policy briefs",
-      "url": "https://www.thestar.com/news/canada/amira-elghawaby-launches-portal-to-turn-muslim-research-into-policy-briefs/article_9623d863-9880-4b89-8019-83dc800f70b3.html",
-      "published": "2026-10-20T00:48:00+00:00",
-      "content_status": "full",
-      "word_count": 861,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "543e39d66bc7ef81",
       "source": "Toronto Star",
       "title": "More than half of Canadian toddlers get too much screen time — but this Toronto family is an outlier",
@@ -2114,6 +2130,21 @@
       "word_count": 1022,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "3dd9974b2b9fb65c",
+      "source": "Toronto Star",
+      "title": "Person found dead in suspicious boat fire at Kingston, Ont. marina",
+      "url": "https://www.thestar.com/news/ontario/person-found-dead-in-suspicious-boat-fire-at-kingston-ont-marina/article_00b0f3a4-ebbb-50d6-a341-dbf4546aaaf9.html",
+      "published": "2026-10-20T13:20:46+00:00",
+      "content_status": "full",
+      "word_count": 187,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4830,6 +4861,47 @@
       ]
     },
     {
+      "id": "3dd9974b2b9fb65c",
+      "source": "Toronto Star",
+      "title": "Person found dead in suspicious boat fire at Kingston, Ont. marina",
+      "url": "https://www.thestar.com/news/ontario/person-found-dead-in-suspicious-boat-fire-at-kingston-ont-marina/article_00b0f3a4-ebbb-50d6-a341-dbf4546aaaf9.html",
+      "published": "2026-10-20T13:20:46+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 187,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c99c4ed576a32fbd",
       "source": "Toronto Star",
       "title": "Alberta referendum results: Province rejects separation; Albertans appear split on immigration in early vote counts",
@@ -5075,35 +5147,6 @@
       "content_status": "full",
       "word_count": 1022,
       "paragraph_count": 45,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cd76773d347afcab",
-      "source": "Toronto Star",
-      "title": "Amira Elghawaby launches portal to turn Muslim research into policy briefs",
-      "url": "https://www.thestar.com/news/canada/amira-elghawaby-launches-portal-to-turn-muslim-research-into-policy-briefs/article_9623d863-9880-4b89-8019-83dc800f70b3.html",
-      "published": "2026-10-20T00:48:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 861,
-      "paragraph_count": 25,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
