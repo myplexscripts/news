@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T00:52:51.354087+00:00",
-  "generated_at_london": "2026-10-19T20:52:51.354087-04:00",
-  "news_generated_at": "2026-10-20T00:47:35.005147+00:00",
+  "generated_at": "2026-10-20T01:04:06.218001+00:00",
+  "generated_at_london": "2026-10-19T21:04:06.218001-04:00",
+  "news_generated_at": "2026-10-20T01:02:55.671266+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 777,
+    "archive_story_count": 778,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 108,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 14,
-    "info_issue_count": 96,
+    "info_issue_count": 95,
     "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -147,10 +147,10 @@
       "warning_issues": 1,
       "info_issues": 11,
       "latest_published": "2026-10-19T23:52:54+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-20T00:15:46.166836+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -429,19 +429,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 242,
-      "average_quality": 70,
+      "average_words": 266,
+      "average_quality": 71,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-19T22:38:37.074000+00:00",
+      "info_issues": 10,
+      "latest_published": "2026-10-20T00:49:41.984000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-19T22:46:15.909501+00:00",
+      "last_scrape": "2026-10-20T00:59:50.723417+00:00",
       "last_error": ""
     },
     {
@@ -678,7 +678,7 @@
       "latest_published": "2026-10-19T23:21:28+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T00:46:06.393248+00:00",
+      "last_scrape": "2026-10-20T01:01:26.589018+00:00",
       "last_error": ""
     },
     {
@@ -1303,21 +1303,6 @@
       "content_status": "full",
       "word_count": 402,
       "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1dd8309ad1e0c530",
-      "source": "CTV News London",
-      "title": "Retirement home inviting public to ‘Walk the Kindness Way’ fundraiser",
-      "url": "https://www.ctvnews.ca/london/article/retirement-home-inviting-public-to-walk-the-kindness-way-fundraiser",
-      "published": "2026-10-17T19:03:12.671000+00:00",
-      "content_status": "full",
-      "word_count": 151,
-      "quality_score": 62,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2447,6 +2432,28 @@
       "issues": []
     },
     {
+      "id": "a089364c18571afa",
+      "source": "CTV News London",
+      "title": "Retired teacher faces historical sexual assault trial",
+      "url": "https://www.ctvnews.ca/london/article/retired-teacher-faces-historical-sexual-assault-trial",
+      "published": "2026-10-20T00:49:41.984000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 394,
+      "paragraph_count": 13,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 22,
+      "issues": []
+    },
+    {
       "id": "23d53896a21c3c7f",
       "source": "CTV News London",
       "title": "Repair bills piling up for aging Sarnia Police Headquarters",
@@ -2709,35 +2716,6 @@
           "code": "missing_hero_image",
           "message": "Story has no hero image.",
           "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "1dd8309ad1e0c530",
-      "source": "CTV News London",
-      "title": "Retirement home inviting public to ‘Walk the Kindness Way’ fundraiser",
-      "url": "https://www.ctvnews.ca/london/article/retirement-home-inviting-public-to-walk-the-kindness-way-fundraiser",
-      "published": "2026-10-17T19:03:12.671000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 151,
-      "paragraph_count": 4,
-      "inline_image_count": 1,
-      "quality_score": 62,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
