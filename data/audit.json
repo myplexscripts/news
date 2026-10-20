@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-20T14:16:49.303060+00:00",
-  "generated_at_london": "2026-10-20T10:16:49.303060-04:00",
+  "generated_at": "2026-10-20T14:26:35.779283+00:00",
+  "generated_at_london": "2026-10-20T10:26:35.779283-04:00",
   "news_generated_at": "2026-10-20T14:15:13.161908+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 781,
+    "archive_story_count": 778,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 112,
+    "pass_story_count": 111,
     "review_story_count": 4,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
     "warning_issue_count": 7,
     "info_issue_count": 87,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -149,6 +149,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-20T13:26:03.597000+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 745,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-20T13:20:46+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-20T13:58:09.849125+00:00",
       "last_error": ""
     },
     {
@@ -482,11 +508,10 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 642,
-      "average_quality": 93,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -683,32 +708,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 781,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-20T13:20:46+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-20T13:58:09.849125+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -750,6 +749,21 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "54 words",
+      "story_id": "fc5f42594a7d2083",
+      "source": "Toronto Star",
+      "title": "Wainwright, Alta., residents grieving but resilient after tragic fire on army base",
+      "url": "https://www.thestar.com/news/canada/alberta/wainwright-alta-residents-grieving-but-resilient-after-tragic-fire-on-army-base/article_5b472540-cb26-5af0-934e-f29728cedab7.html",
+      "published": "2026-10-20T08:00:01+00:00",
+      "content_status": "full",
+      "word_count": 54,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -1438,8 +1452,8 @@
       "published": "2026-10-20T14:08:59+00:00",
       "content_status": "full",
       "word_count": 161,
-      "quality_score": 68,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2127,7 +2141,7 @@
       "url": "https://www.thestar.com/news/canada/alberta/wainwright-alta-residents-grieving-but-resilient-after-tragic-fire-on-army-base/article_5b472540-cb26-5af0-934e-f29728cedab7.html",
       "published": "2026-10-20T08:00:01+00:00",
       "content_status": "full",
-      "word_count": 418,
+      "word_count": 54,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3621,10 +3635,10 @@
       "content_status": "full",
       "word_count": 161,
       "paragraph_count": 6,
-      "inline_image_count": 1,
-      "quality_score": 68,
+      "inline_image_count": 2,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -4931,21 +4945,27 @@
       "title": "Wainwright, Alta., residents grieving but resilient after tragic fire on army base",
       "url": "https://www.thestar.com/news/canada/alberta/wainwright-alta-residents-grieving-but-resilient-after-tragic-fire-on-army-base/article_5b472540-cb26-5af0-934e-f29728cedab7.html",
       "published": "2026-10-20T08:00:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 418,
-      "paragraph_count": 25,
-      "inline_image_count": 0,
+      "word_count": 54,
+      "paragraph_count": 2,
+      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "54 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
