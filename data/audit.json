@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T16:16:06.460206+00:00",
-  "generated_at_london": "2026-10-21T12:16:06.460206-04:00",
-  "news_generated_at": "2026-10-21T16:09:39.103661+00:00",
+  "generated_at": "2026-10-21T16:27:41.886647+00:00",
+  "generated_at_london": "2026-10-21T12:27:41.886647-04:00",
+  "news_generated_at": "2026-10-21T16:25:08.917317+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 794,
+    "archive_story_count": 796,
     "source_count": 28,
     "audited_story_count": 120,
-    "pass_story_count": 116,
-    "review_story_count": 2,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 4,
+    "pass_story_count": 115,
+    "review_story_count": 4,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 8,
     "info_issue_count": 97,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -105,24 +105,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 296,
-      "average_quality": 96,
+      "average_words": 331,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 4,
       "info_issues": 11,
-      "latest_published": "2026-10-21T15:53:12+00:00",
+      "latest_published": "2026-10-21T16:09:22+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T16:06:55.629574+00:00",
+      "last_scrape": "2026-10-21T16:22:32.370457+00:00",
       "last_error": ""
     },
     {
@@ -469,7 +470,7 @@
       "latest_published": "2026-10-21T15:31:34+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T16:07:04.472024+00:00",
+      "last_scrape": "2026-10-21T16:07:02.704856+00:00",
       "last_error": ""
     },
     {
@@ -483,19 +484,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 449,
-      "average_quality": 96,
+      "average_words": 425,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-21T15:57:39+00:00",
+      "latest_published": "2026-10-21T16:14:24+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T16:06:41.491781+00:00",
+      "last_scrape": "2026-10-21T16:22:19.185861+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +656,7 @@
       "latest_published": "2026-10-21T11:00:28+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T16:06:47.925428+00:00",
+      "last_scrape": "2026-10-21T16:22:26.295093+00:00",
       "last_error": ""
     },
     {
@@ -754,21 +756,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "38 words",
-      "story_id": "4b1703236a51d669",
-      "source": "Toronto Star",
-      "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
-      "published": "2026-10-21T08:00:19+00:00",
-      "content_status": "full",
-      "word_count": 38,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -827,6 +814,66 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "215a8a7c0bb403ba",
+      "source": "Toronto Star",
+      "title": "New southern resident killer whale calf spotted in waters near B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/new-southern-resident-killer-whale-calf-spotted-in-waters-near-b-c/article_b87580de-89c5-5309-890f-6d44a3c25dc9.html",
+      "published": "2026-10-21T16:07:40+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "215a8a7c0bb403ba",
+      "source": "Toronto Star",
+      "title": "New southern resident killer whale calf spotted in waters near B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/new-southern-resident-killer-whale-calf-spotted-in-waters-near-b-c/article_b87580de-89c5-5309-890f-6d44a3c25dc9.html",
+      "published": "2026-10-21T16:07:40+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "efac812d371e449a",
+      "source": "Toronto Star",
+      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
+      "published": "2026-10-21T16:09:22+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "efac812d371e449a",
+      "source": "Toronto Star",
+      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
+      "published": "2026-10-21T16:09:22+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1358,6 +1405,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "156d1c6ac95ff13e",
+      "source": "Global News Canada",
+      "title": "Angine de Poitrine announce 2027 world tour",
+      "url": "https://globalnews.ca/news/12111170/angine-de-poitrine-announce-2027-world-tour",
+      "published": "2026-10-21T16:14:24+00:00",
+      "content_status": "full",
+      "word_count": 127,
+      "quality_score": 59,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "5ab08d58b6216733",
       "source": "Global News Canada",
       "title": "Appeal of an N.S. RCMP officer’s sexual assault acquittal has been abandoned by Crown",
@@ -1485,21 +1547,6 @@
       "published": "2026-10-21T13:11:15+00:00",
       "content_status": "full",
       "word_count": 100,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "13cdcdaca796c240",
-      "source": "Global News Canada",
-      "title": "‘Hurting’: Vigil in Wainwright, Alta., for soldiers caught in deadly fire",
-      "url": "https://globalnews.ca/news/12110836/cfb-wainwright-vigil",
-      "published": "2026-10-21T12:29:14+00:00",
-      "content_status": "full",
-      "word_count": 370,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2090,36 +2137,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8e965a08cb08c653",
-      "source": "Toronto Star",
-      "title": "'Hurting': Vigil in Wainwright, Alta., for soldiers caught in deadly fire",
-      "url": "https://www.thestar.com/news/canada/alberta/hurting-vigil-in-wainwright-alta-for-soldiers-caught-in-deadly-fire/article_88ca77f3-9932-5712-ad28-c66f2b57f242.html",
-      "published": "2026-10-21T08:00:17+00:00",
-      "content_status": "partial",
-      "word_count": 27,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4b1703236a51d669",
-      "source": "Toronto Star",
-      "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
-      "published": "2026-10-21T08:00:19+00:00",
-      "content_status": "full",
-      "word_count": 38,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2222,6 +2239,36 @@
       "word_count": 1069,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "215a8a7c0bb403ba",
+      "source": "Toronto Star",
+      "title": "New southern resident killer whale calf spotted in waters near B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/new-southern-resident-killer-whale-calf-spotted-in-waters-near-b-c/article_b87580de-89c5-5309-890f-6d44a3c25dc9.html",
+      "published": "2026-10-21T16:07:40+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "efac812d371e449a",
+      "source": "Toronto Star",
+      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
+      "published": "2026-10-21T16:09:22+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3844,6 +3891,35 @@
       "issues": []
     },
     {
+      "id": "156d1c6ac95ff13e",
+      "source": "Global News Canada",
+      "title": "Angine de Poitrine announce 2027 world tour",
+      "url": "https://globalnews.ca/news/12111170/angine-de-poitrine-announce-2027-world-tour",
+      "published": "2026-10-21T16:14:24+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 127,
+      "paragraph_count": 7,
+      "inline_image_count": 1,
+      "quality_score": 59,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c8f9b753667a1133",
       "source": "Global News Canada",
       "title": "First Nations say Elections Alberta unprepared for referendum turnout",
@@ -4089,35 +4165,6 @@
       "content_status": "full",
       "word_count": 564,
       "paragraph_count": 19,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "13cdcdaca796c240",
-      "source": "Global News Canada",
-      "title": "‘Hurting’: Vigil in Wainwright, Alta., for soldiers caught in deadly fire",
-      "url": "https://globalnews.ca/news/12110836/cfb-wainwright-vigil",
-      "published": "2026-10-21T12:29:14+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 370,
-      "paragraph_count": 18,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
@@ -5040,6 +5087,88 @@
       ]
     },
     {
+      "id": "efac812d371e449a",
+      "source": "Toronto Star",
+      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
+      "published": "2026-10-21T16:09:22+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 203,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "215a8a7c0bb403ba",
+      "source": "Toronto Star",
+      "title": "New southern resident killer whale calf spotted in waters near B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/new-southern-resident-killer-whale-calf-spotted-in-waters-near-b-c/article_b87580de-89c5-5309-890f-6d44a3c25dc9.html",
+      "published": "2026-10-21T16:07:40+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 206,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8af76128be89d059",
       "source": "Toronto Star",
       "title": "Most Canadian actors earn less than $20K per year from screen work, survey finds",
@@ -5263,70 +5392,6 @@
       "word_count": 208,
       "paragraph_count": 19,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4b1703236a51d669",
-      "source": "Toronto Star",
-      "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
-      "published": "2026-10-21T08:00:19+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 38,
-      "paragraph_count": 2,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "38 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8e965a08cb08c653",
-      "source": "Toronto Star",
-      "title": "'Hurting': Vigil in Wainwright, Alta., for soldiers caught in deadly fire",
-      "url": "https://www.thestar.com/news/canada/alberta/hurting-vigil-in-wainwright-alta-for-soldiers-caught-in-deadly-fire/article_88ca77f3-9932-5712-ad28-c66f2b57f242.html",
-      "published": "2026-10-21T08:00:17+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 27,
-      "paragraph_count": 2,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
