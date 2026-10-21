@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T14:52:22.726907+00:00",
-  "generated_at_london": "2026-10-21T10:52:22.726907-04:00",
+  "generated_at": "2026-10-21T14:56:51.184844+00:00",
+  "generated_at_london": "2026-10-21T10:56:51.184844-04:00",
   "news_generated_at": "2026-10-21T14:50:46.319714+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 791,
     "source_count": 28,
     "audited_story_count": 120,
-    "pass_story_count": 117,
+    "pass_story_count": 115,
     "review_story_count": 2,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 4,
     "info_issue_count": 95,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -97,6 +97,32 @@
       "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-21T13:37:49.180160+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 0,
+      "fail": 2,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 381,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 2,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-21T13:00:31+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-21T12:44:58.055275+00:00",
       "last_error": ""
     },
     {
@@ -375,12 +401,13 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 258,
-      "average_quality": 71,
+      "usable_body_rate": 90,
+      "average_words": 252,
+      "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 10
+        "ctv:summary-fallback": 1,
+        "embedded-json:ctv": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -433,7 +460,7 @@
       "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:citynews:article": 1,
+        "dom:semantic-rich-v1": 1,
         "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
@@ -457,11 +484,10 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 624,
-      "average_quality": 94,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -685,32 +711,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 378,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-21T13:00:31+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-21T12:44:58.055275+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -752,6 +752,36 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "38 words",
+      "story_id": "4b1703236a51d669",
+      "source": "Toronto Star",
+      "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
+      "published": "2026-10-21T08:00:19+00:00",
+      "content_status": "full",
+      "word_count": 38,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "31 words",
+      "story_id": "cb0426e75d0b7321",
+      "source": "Toronto Star",
+      "title": "Quebec premier-designate Paul St-Pierre Plamondon to be sworn in and unveil cabinet",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-designate-paul-st-pierre-plamondon-to-be-sworn-in-and-unveil-cabinet/article_b9f3e4fb-2198-5bb4-8967-7fdfe605fb52.html",
+      "published": "2026-10-21T08:00:08+00:00",
+      "content_status": "full",
+      "word_count": 31,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -1153,10 +1183,10 @@
       "title": "Tire-slashing incidents under investigation in St. Thomas",
       "url": "https://www.ctvnews.ca/london/article/tire-slashing-incidents-under-investigation-in-st-thomas",
       "published": "2026-10-21T14:37:24.092000+00:00",
-      "content_status": "partial",
-      "word_count": 82,
-      "quality_score": 53,
-      "extraction_method": "embedded-json:ctv"
+      "content_status": "summary",
+      "word_count": 17,
+      "quality_score": 40,
+      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -1336,7 +1366,7 @@
       "content_status": "full",
       "word_count": 639,
       "quality_score": 85,
-      "extraction_method": "dom:citynews:article"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1365,8 +1395,8 @@
       "published": "2026-10-21T14:47:20+00:00",
       "content_status": "full",
       "word_count": 323,
-      "quality_score": 80,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2098,8 +2128,8 @@
       "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
       "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
       "published": "2026-10-21T08:00:19+00:00",
-      "content_status": "partial",
-      "word_count": 23,
+      "content_status": "full",
+      "word_count": 38,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2158,8 +2188,8 @@
       "title": "Quebec premier-designate Paul St-Pierre Plamondon to be sworn in and unveil cabinet",
       "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-designate-paul-st-pierre-plamondon-to-be-sworn-in-and-unveil-cabinet/article_b9f3e4fb-2198-5bb4-8967-7fdfe605fb52.html",
       "published": "2026-10-21T08:00:08+00:00",
-      "content_status": "partial",
-      "word_count": 17,
+      "content_status": "full",
+      "word_count": 31,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2295,13 +2325,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 82,
-      "paragraph_count": 5,
+      "content_status": "summary",
+      "word_count": 17,
+      "paragraph_count": 1,
       "inline_image_count": 0,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
+      "quality_score": 40,
+      "quality_grade": "poor",
+      "extraction_method": "ctv:summary-fallback",
       "extraction_profile": "ctv",
       "local_score": 18,
       "issues": [
@@ -3811,10 +3841,10 @@
       "content_status": "full",
       "word_count": 323,
       "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 80,
+      "inline_image_count": 4,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -5022,13 +5052,13 @@
       "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
       "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
       "published": "2026-10-21T08:00:19+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 23,
+      "content_status": "full",
+      "word_count": 38,
       "paragraph_count": 2,
       "inline_image_count": 1,
       "quality_score": 96,
@@ -5037,6 +5067,12 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "38 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5138,13 +5174,13 @@
       "title": "Quebec premier-designate Paul St-Pierre Plamondon to be sworn in and unveil cabinet",
       "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-designate-paul-st-pierre-plamondon-to-be-sworn-in-and-unveil-cabinet/article_b9f3e4fb-2198-5bb4-8967-7fdfe605fb52.html",
       "published": "2026-10-21T08:00:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 17,
+      "content_status": "full",
+      "word_count": 31,
       "paragraph_count": 2,
       "inline_image_count": 1,
       "quality_score": 96,
@@ -5153,6 +5189,12 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "31 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5293,8 +5335,8 @@
       "paragraph_count": 27,
       "inline_image_count": 0,
       "quality_score": 85,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:citynews:article",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
