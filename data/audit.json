@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T08:12:29.164428+00:00",
-  "generated_at_london": "2026-10-21T04:12:29.164428-04:00",
-  "news_generated_at": "2026-10-21T08:05:05.764277+00:00",
+  "generated_at": "2026-10-21T08:21:03.708025+00:00",
+  "generated_at_london": "2026-10-21T04:21:03.708025-04:00",
+  "news_generated_at": "2026-10-21T08:19:47.421237+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 781,
+    "archive_story_count": 786,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 112,
-    "review_story_count": 2,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 4,
+    "pass_story_count": 111,
+    "review_story_count": 4,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 6,
     "info_issue_count": 94,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -102,28 +102,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
-      "fail": 2,
-      "pass_rate": 80,
-      "usable_body_rate": 100,
-      "average_words": 592,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
+      "pass": 7,
+      "review": 2,
+      "fail": 1,
+      "pass_rate": 70,
+      "usable_body_rate": 80,
+      "average_words": 530,
+      "average_quality": 79,
+      "primary_method": "trafilatura:fallback",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:fallback": 5,
+        "reader:semantic-rich-v1": 5
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-20T22:36:27+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-21T08:00:19+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-20T22:52:23.676885+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-21T08:18:10.565719+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -652,7 +653,7 @@
       "latest_published": "2026-10-21T01:41:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T08:02:46.320769+00:00",
+      "last_scrape": "2026-10-21T08:18:04.502229+00:00",
       "last_error": ""
     },
     {
@@ -766,21 +767,6 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "60 words",
-      "story_id": "6b9f9ab11e84282e",
-      "source": "Toronto Star",
-      "title": "Quebec opposition parties want Parti Québécois to take note of Alberta referendum",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-opposition-parties-want-parti-qu-b-cois-to-take-note-of-alberta-referendum/article_80cf7508-b745-5d96-a84a-d963b8ad38c7.html",
-      "published": "2026-10-20T17:46:57+00:00",
-      "content_status": "full",
-      "word_count": 60,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -839,6 +825,36 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "9 inline images",
+      "story_id": "1e118e93d3ebbb1e",
+      "source": "Toronto Star",
+      "title": "Ontario drug funding decision leaves cancer patients disappointed, with few options",
+      "url": "https://www.thestar.com/news/ontario/ontario-drug-funding-decision-leaves-cancer-patients-disappointed-with-few-options/article_08e230c0-f785-5471-a23a-41fb6c5618b2.html",
+      "published": "2026-10-21T08:00:10+00:00",
+      "content_status": "full",
+      "word_count": 923,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "0d229c6b00d821ac",
+      "source": "Toronto Star",
+      "title": "Young anglophones are still leaving Quebec, but at much lower rates, find researchers",
+      "url": "https://www.thestar.com/news/canada/quebec/young-anglophones-are-still-leaving-quebec-but-at-much-lower-rates-find-researchers/article_e34788f3-7a4a-5ded-ae4d-5ecfa423fdb7.html",
+      "published": "2026-10-21T08:00:13+00:00",
+      "content_status": "full",
+      "word_count": 931,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2075,6 +2091,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "8e965a08cb08c653",
+      "source": "Toronto Star",
+      "title": "'Hurting': Vigil in Wainwright, Alta., for soldiers caught in deadly fire",
+      "url": "https://www.thestar.com/news/canada/alberta/hurting-vigil-in-wainwright-alta-for-soldiers-caught-in-deadly-fire/article_88ca77f3-9932-5712-ad28-c66f2b57f242.html",
+      "published": "2026-10-21T08:00:17+00:00",
+      "content_status": "full",
+      "word_count": 487,
+      "quality_score": 81,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0cae0f8da570b489",
       "source": "Toronto Star",
       "title": "'Perfect storm': Extreme weather fuelled Wainwright military base fire, expert says",
@@ -2105,60 +2136,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ac05b3acbbd32c44",
+      "story_id": "4b1703236a51d669",
       "source": "Toronto Star",
-      "title": "Canada's Culture Minister touts commercial deals with creative sector in China",
-      "url": "https://www.thestar.com/news/canada/canada-s-culture-minister-touts-commercial-deals-with-creative-sector-in-china/article_463f217d-56fa-504a-a5d0-2c078f20bcc2.html",
-      "published": "2026-10-20T18:26:57+00:00",
-      "content_status": "full",
-      "word_count": 139,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
+      "published": "2026-10-21T08:00:19+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5184a8ede7f323b0",
+      "story_id": "1e118e93d3ebbb1e",
       "source": "Toronto Star",
-      "title": "Fact File: Misinformation spreads after deadly fire at CFB Wainwright",
-      "url": "https://www.thestar.com/news/canada/fact-file-misinformation-spreads-after-deadly-fire-at-cfb-wainwright/article_bcac3422-8ed1-571a-b2ce-f552a230d349.html",
-      "published": "2026-10-20T18:57:00+00:00",
+      "title": "Ontario drug funding decision leaves cancer patients disappointed, with few options",
+      "url": "https://www.thestar.com/news/ontario/ontario-drug-funding-decision-leaves-cancer-patients-disappointed-with-few-options/article_08e230c0-f785-5471-a23a-41fb6c5618b2.html",
+      "published": "2026-10-21T08:00:10+00:00",
       "content_status": "full",
-      "word_count": 732,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1fa10990aa7a86ea",
-      "source": "Toronto Star",
-      "title": "Lawsuit filed challenging Trump's tariffs on Canada",
-      "url": "https://www.thestar.com/news/canada/cp-newsalert-lawsuit-filed-challenging-trump-s-tariffs-on-canada/article_eaad9f26-c6f1-5c4b-b8f5-ac63f18d7aae.html",
-      "published": "2026-10-20T19:20:00+00:00",
-      "content_status": "full",
-      "word_count": 858,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9bd6bec0de514c90",
-      "source": "Toronto Star",
-      "title": "Mother of First Nation woman who couldn't get medical transport and died seeks reform",
-      "url": "https://www.thestar.com/news/ontario/mother-of-first-nation-woman-who-couldn-t-get-medical-transport-and-died-seeks-reform/article_10c2ae85-b06c-5abb-b809-8327764dc52b.html",
-      "published": "2026-10-20T18:21:09+00:00",
-      "content_status": "full",
-      "word_count": 2228,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 923,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2195,15 +2196,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6b9f9ab11e84282e",
+      "story_id": "cb0426e75d0b7321",
       "source": "Toronto Star",
-      "title": "Quebec opposition parties want Parti Québécois to take note of Alberta referendum",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-opposition-parties-want-parti-qu-b-cois-to-take-note-of-alberta-referendum/article_80cf7508-b745-5d96-a84a-d963b8ad38c7.html",
-      "published": "2026-10-20T17:46:57+00:00",
-      "content_status": "full",
-      "word_count": 60,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "title": "Quebec premier-designate Paul St-Pierre Plamondon to be sworn in and unveil cabinet",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-designate-paul-st-pierre-plamondon-to-be-sworn-in-and-unveil-cabinet/article_b9f3e4fb-2198-5bb4-8967-7fdfe605fb52.html",
+      "published": "2026-10-21T08:00:08+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2219,6 +2220,21 @@
       "word_count": 887,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0d229c6b00d821ac",
+      "source": "Toronto Star",
+      "title": "Young anglophones are still leaving Quebec, but at much lower rates, find researchers",
+      "url": "https://www.thestar.com/news/canada/quebec/young-anglophones-are-still-leaving-quebec-but-at-much-lower-rates-find-researchers/article_e34788f3-7a4a-5ded-ae4d-5ecfa423fdb7.html",
+      "published": "2026-10-21T08:00:13+00:00",
+      "content_status": "full",
+      "word_count": 931,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -4924,6 +4940,163 @@
       ]
     },
     {
+      "id": "4b1703236a51d669",
+      "source": "Toronto Star",
+      "title": "Alberta Premier Danielle Smith to take questions for first time since separation vote",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-premier-danielle-smith-to-take-questions-for-first-time-since-separation-vote/article_d2347d88-5749-51c6-93b7-c387d73d9354.html",
+      "published": "2026-10-21T08:00:19+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "8e965a08cb08c653",
+      "source": "Toronto Star",
+      "title": "'Hurting': Vigil in Wainwright, Alta., for soldiers caught in deadly fire",
+      "url": "https://www.thestar.com/news/canada/alberta/hurting-vigil-in-wainwright-alta-for-soldiers-caught-in-deadly-fire/article_88ca77f3-9932-5712-ad28-c66f2b57f242.html",
+      "published": "2026-10-21T08:00:17+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 487,
+      "paragraph_count": 22,
+      "inline_image_count": 7,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0d229c6b00d821ac",
+      "source": "Toronto Star",
+      "title": "Young anglophones are still leaving Quebec, but at much lower rates, find researchers",
+      "url": "https://www.thestar.com/news/canada/quebec/young-anglophones-are-still-leaving-quebec-but-at-much-lower-rates-find-researchers/article_e34788f3-7a4a-5ded-ae4d-5ecfa423fdb7.html",
+      "published": "2026-10-21T08:00:13+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 931,
+      "paragraph_count": 34,
+      "inline_image_count": 10,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "1e118e93d3ebbb1e",
+      "source": "Toronto Star",
+      "title": "Ontario drug funding decision leaves cancer patients disappointed, with few options",
+      "url": "https://www.thestar.com/news/ontario/ontario-drug-funding-decision-leaves-cancer-patients-disappointed-with-few-options/article_08e230c0-f785-5471-a23a-41fb6c5618b2.html",
+      "published": "2026-10-21T08:00:10+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 923,
+      "paragraph_count": 28,
+      "inline_image_count": 9,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "9 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "cb0426e75d0b7321",
+      "source": "Toronto Star",
+      "title": "Quebec premier-designate Paul St-Pierre Plamondon to be sworn in and unveil cabinet",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-designate-paul-st-pierre-plamondon-to-be-sworn-in-and-unveil-cabinet/article_b9f3e4fb-2198-5bb4-8967-7fdfe605fb52.html",
+      "published": "2026-10-21T08:00:08+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "44bd61a4f7651776",
       "source": "Toronto Star",
       "title": "The 4 soldiers killed in fast-moving fire at CFB Wainwright in Alberta",
@@ -5065,157 +5238,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "78 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1fa10990aa7a86ea",
-      "source": "Toronto Star",
-      "title": "Lawsuit filed challenging Trump's tariffs on Canada",
-      "url": "https://www.thestar.com/news/canada/cp-newsalert-lawsuit-filed-challenging-trump-s-tariffs-on-canada/article_eaad9f26-c6f1-5c4b-b8f5-ac63f18d7aae.html",
-      "published": "2026-10-20T19:20:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 858,
-      "paragraph_count": 29,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5184a8ede7f323b0",
-      "source": "Toronto Star",
-      "title": "Fact File: Misinformation spreads after deadly fire at CFB Wainwright",
-      "url": "https://www.thestar.com/news/canada/fact-file-misinformation-spreads-after-deadly-fire-at-cfb-wainwright/article_bcac3422-8ed1-571a-b2ce-f552a230d349.html",
-      "published": "2026-10-20T18:57:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 732,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ac05b3acbbd32c44",
-      "source": "Toronto Star",
-      "title": "Canada's Culture Minister touts commercial deals with creative sector in China",
-      "url": "https://www.thestar.com/news/canada/canada-s-culture-minister-touts-commercial-deals-with-creative-sector-in-china/article_463f217d-56fa-504a-a5d0-2c078f20bcc2.html",
-      "published": "2026-10-20T18:26:57+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 139,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9bd6bec0de514c90",
-      "source": "Toronto Star",
-      "title": "Mother of First Nation woman who couldn't get medical transport and died seeks reform",
-      "url": "https://www.thestar.com/news/ontario/mother-of-first-nation-woman-who-couldn-t-get-medical-transport-and-died-seeks-reform/article_10c2ae85-b06c-5abb-b809-8327764dc52b.html",
-      "published": "2026-10-20T18:21:09+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 2228,
-      "paragraph_count": 83,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6b9f9ab11e84282e",
-      "source": "Toronto Star",
-      "title": "Quebec opposition parties want Parti Québécois to take note of Alberta referendum",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-opposition-parties-want-parti-qu-b-cois-to-take-note-of-alberta-referendum/article_80cf7508-b745-5d96-a84a-d963b8ad38c7.html",
-      "published": "2026-10-20T17:46:57+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 60,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "60 words"
         },
         {
           "severity": "info",
