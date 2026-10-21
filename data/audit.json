@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T21:56:54.695000+00:00",
-  "generated_at_london": "2026-10-21T17:56:54.695000-04:00",
-  "news_generated_at": "2026-10-21T21:51:23.466139+00:00",
+  "generated_at": "2026-10-21T22:08:11.342800+00:00",
+  "generated_at_london": "2026-10-21T18:08:11.342800-04:00",
+  "news_generated_at": "2026-10-21T22:06:36.345306+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 786,
+    "archive_story_count": 793,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 115,
-    "review_story_count": 2,
+    "pass_story_count": 114,
+    "review_story_count": 3,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 4,
+    "warning_issue_count": 6,
     "info_issue_count": 98,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -102,28 +102,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 382,
-      "average_quality": 96,
+      "average_words": 253,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-21T18:35:35+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-21T21:26:20+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T18:58:03.405430+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-21T22:04:44.196193+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -483,19 +484,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 426,
-      "average_quality": 96,
+      "average_words": 466,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-21T21:44:55+00:00",
+      "latest_published": "2026-10-21T21:59:02+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T21:48:57.930610+00:00",
+      "last_scrape": "2026-10-21T22:04:28.526023+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +656,7 @@
       "latest_published": "2026-10-21T21:11:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T21:49:05.802883+00:00",
+      "last_scrape": "2026-10-21T22:04:37.869048+00:00",
       "last_error": ""
     },
     {
@@ -708,7 +710,7 @@
       "latest_published": "2026-10-21T21:04:33.104000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T21:49:00.796395+00:00",
+      "last_scrape": "2026-10-21T22:04:30.366686+00:00",
       "last_error": ""
     },
     {
@@ -813,6 +815,36 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c935eb6081205cc9",
+      "source": "Toronto Star",
+      "title": "B.C. billionaire's real estate firms allege 'pattern of misconduct' by CRA in tax row",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-billionaire-s-real-estate-firms-allege-pattern-of-misconduct-by-cra-in-tax-row/article_e42f97fb-9975-5595-8d50-9ef1bb066a2e.html",
+      "published": "2026-10-21T21:26:20+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c935eb6081205cc9",
+      "source": "Toronto Star",
+      "title": "B.C. billionaire's real estate firms allege 'pattern of misconduct' by CRA in tax row",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-billionaire-s-real-estate-firms-allege-pattern-of-misconduct-by-cra-in-tax-row/article_e42f97fb-9975-5595-8d50-9ef1bb066a2e.html",
+      "published": "2026-10-21T21:26:20+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1344,15 +1376,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "156d1c6ac95ff13e",
+      "story_id": "16e24d35db87add4",
       "source": "Global News Canada",
-      "title": "Angine de Poitrine announce 2027 world tour",
-      "url": "https://globalnews.ca/news/12111170/angine-de-poitrine-announce-2027-world-tour",
-      "published": "2026-10-21T16:14:24+00:00",
+      "title": "B.C.’s newest multi-millionaire waited 10 months to claim lottery prize",
+      "url": "https://globalnews.ca/news/12112309/bc-newest-multi-millionaire-waited-claim-lottery-prize",
+      "published": "2026-10-21T21:59:02+00:00",
       "content_status": "full",
-      "word_count": 127,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 220,
+      "quality_score": 68,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1381,21 +1413,6 @@
       "published": "2026-10-21T20:46:46+00:00",
       "content_status": "full",
       "word_count": 503,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "c8f9b753667a1133",
-      "source": "Global News Canada",
-      "title": "First Nations say Elections Alberta unprepared for referendum turnout",
-      "url": "https://globalnews.ca/news/12111144/first-nations-alberta-referendum-turnout",
-      "published": "2026-10-21T15:57:39+00:00",
-      "content_status": "full",
-      "word_count": 148,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1443,6 +1460,21 @@
       "word_count": 650,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0e9a9e15c51b06b8",
+      "source": "Global News Canada",
+      "title": "Psac announces nationwide strike votes set for November",
+      "url": "https://globalnews.ca/news/12112316/psac-strike-votes-november",
+      "published": "2026-10-21T21:50:25+00:00",
+      "content_status": "full",
+      "word_count": 459,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2094,6 +2126,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "c935eb6081205cc9",
+      "source": "Toronto Star",
+      "title": "B.C. billionaire's real estate firms allege 'pattern of misconduct' by CRA in tax row",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-billionaire-s-real-estate-firms-allege-pattern-of-misconduct-by-cra-in-tax-row/article_e42f97fb-9975-5595-8d50-9ef1bb066a2e.html",
+      "published": "2026-10-21T21:26:20+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "11016b1c6b498016",
       "source": "Toronto Star",
       "title": "CP NewsAlert: Publisher cuts ties with Quebec author after finding evidence of AI use",
@@ -2131,21 +2178,6 @@
       "published": "2026-10-21T18:30:51+00:00",
       "content_status": "full",
       "word_count": 241,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0edaecfa43ffaf35",
-      "source": "Toronto Star",
-      "title": "In some Ontario municipalities, acclamations mean no elections next week",
-      "url": "https://www.thestar.com/news/ontario/in-some-ontario-municipalities-acclamations-mean-no-elections-next-week/article_f13af450-bd72-5c83-ba72-d19ab22f958b.html",
-      "published": "2026-10-21T16:31:40+00:00",
-      "content_status": "full",
-      "word_count": 1504,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3802,6 +3834,64 @@
       "issues": []
     },
     {
+      "id": "16e24d35db87add4",
+      "source": "Global News Canada",
+      "title": "B.C.’s newest multi-millionaire waited 10 months to claim lottery prize",
+      "url": "https://globalnews.ca/news/12112309/bc-newest-multi-millionaire-waited-claim-lottery-prize",
+      "published": "2026-10-21T21:59:02+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 220,
+      "paragraph_count": 9,
+      "inline_image_count": 1,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0e9a9e15c51b06b8",
+      "source": "Global News Canada",
+      "title": "Psac announces nationwide strike votes set for November",
+      "url": "https://globalnews.ca/news/12112316/psac-strike-votes-november",
+      "published": "2026-10-21T21:50:25+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 459,
+      "paragraph_count": 16,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3dc8d7cac4dd010e",
       "source": "Global News Canada",
       "title": "Royal Regina Rifles colours return to Legislative Building after decades",
@@ -4019,64 +4109,6 @@
       "word_count": 222,
       "paragraph_count": 8,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "156d1c6ac95ff13e",
-      "source": "Global News Canada",
-      "title": "Angine de Poitrine announce 2027 world tour",
-      "url": "https://globalnews.ca/news/12111170/angine-de-poitrine-announce-2027-world-tour",
-      "published": "2026-10-21T16:14:24+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 127,
-      "paragraph_count": 7,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c8f9b753667a1133",
-      "source": "Global News Canada",
-      "title": "First Nations say Elections Alberta unprepared for referendum turnout",
-      "url": "https://globalnews.ca/news/12111144/first-nations-alberta-referendum-turnout",
-      "published": "2026-10-21T15:57:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 148,
-      "paragraph_count": 6,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -5010,6 +5042,47 @@
       ]
     },
     {
+      "id": "c935eb6081205cc9",
+      "source": "Toronto Star",
+      "title": "B.C. billionaire's real estate firms allege 'pattern of misconduct' by CRA in tax row",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-billionaire-s-real-estate-firms-allege-pattern-of-misconduct-by-cra-in-tax-row/article_e42f97fb-9975-5595-8d50-9ef1bb066a2e.html",
+      "published": "2026-10-21T21:26:20+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 214,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "98680b14c947c9a7",
       "source": "Toronto Star",
       "title": "Union issues 72-hour strike notice for Teck copper mine in B.C.",
@@ -5255,35 +5328,6 @@
       "content_status": "full",
       "word_count": 216,
       "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0edaecfa43ffaf35",
-      "source": "Toronto Star",
-      "title": "In some Ontario municipalities, acclamations mean no elections next week",
-      "url": "https://www.thestar.com/news/ontario/in-some-ontario-municipalities-acclamations-mean-no-elections-next-week/article_f13af450-bd72-5c83-ba72-d19ab22f958b.html",
-      "published": "2026-10-21T16:31:40+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1504,
-      "paragraph_count": 51,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
