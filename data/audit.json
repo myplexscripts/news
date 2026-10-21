@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T20:57:40.716870+00:00",
-  "generated_at_london": "2026-10-21T16:57:40.716870-04:00",
-  "news_generated_at": "2026-10-21T20:50:01.170423+00:00",
+  "generated_at": "2026-10-21T21:06:17.214248+00:00",
+  "generated_at_london": "2026-10-21T17:06:17.214248-04:00",
+  "news_generated_at": "2026-10-21T21:04:25.207516+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 784,
@@ -14,9 +14,9 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 4,
-    "info_issue_count": 98,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "info_issue_count": 97,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -84,20 +84,46 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 434,
-      "average_quality": 79,
+      "average_words": 417,
+      "average_quality": 78,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 13,
-      "latest_published": "2026-10-21T19:26:13.221000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-10-21T20:49:01.551000+00:00",
       "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-10-21T19:35:32.740392+00:00",
+      "last_scrape": "2026-10-21T21:02:12.544084+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 382,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-21T18:35:35+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-21T18:58:03.405430+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -376,8 +402,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 170,
-      "average_quality": 61,
+      "average_words": 146,
+      "average_quality": 60,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -386,7 +412,7 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-21T19:35:00.896000+00:00",
+      "latest_published": "2026-10-21T21:00:58.085000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-21T19:50:31.157538+00:00",
@@ -628,7 +654,7 @@
       "latest_published": "2026-10-21T19:07:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T20:47:03.534696+00:00",
+      "last_scrape": "2026-10-21T21:02:17.865369+00:00",
       "last_error": ""
     },
     {
@@ -683,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-21T20:14:56.921560+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 382,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-21T18:35:35+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-21T18:58:03.405430+00:00",
       "last_error": ""
     },
     {
@@ -861,32 +861,17 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "868f7927a927144b",
-      "source": "CTV News Canada",
-      "title": "Canada urges travellers to avoid demonstrations as France grapples with rioting",
-      "url": "https://www.ctvnews.ca/canada/article/canada-urges-travellers-to-avoid-demonstrations-as-france-grapples-with-rioting",
-      "published": "2026-10-20T14:30:33.500000+00:00",
-      "content_status": "full",
-      "word_count": 346,
-      "quality_score": 78,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "868f7927a927144b",
+      "story_id": "22d79f39da1267ed",
       "source": "CTV News Canada",
-      "title": "Canada urges travellers to avoid demonstrations as France grapples with rioting",
-      "url": "https://www.ctvnews.ca/canada/article/canada-urges-travellers-to-avoid-demonstrations-as-france-grapples-with-rioting",
-      "published": "2026-10-20T14:30:33.500000+00:00",
+      "title": "Canadian news publishers worried about Meta’s new terms of service",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-news-publishers-worried-about-metas-new-terms-of-service",
+      "published": "2026-10-21T20:49:01.551000+00:00",
       "content_status": "full",
-      "word_count": 346,
-      "quality_score": 78,
+      "word_count": 176,
+      "quality_score": 66,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1058,6 +1043,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 18/100",
+      "story_id": "fdef7846f688383a",
+      "source": "CTV News London",
+      "title": "Deceased male found in St. Thomas park",
+      "url": "https://www.ctvnews.ca/london/article/deceased-male-found-in-st-thomas-park",
+      "published": "2026-10-21T21:00:58.085000+00:00",
+      "content_status": "full",
+      "word_count": 96,
+      "quality_score": 59,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
       "story_id": "173a8604be35f0c6",
       "source": "CTV News London",
@@ -1067,21 +1067,6 @@
       "content_status": "full",
       "word_count": 91,
       "quality_score": 53,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "d1193d4c6834f0f8",
-      "source": "CTV News London",
-      "title": "Local developer commits to affordable apartments under $1,000 a month",
-      "url": "https://www.ctvnews.ca/london/article/local-developer-commits-to-affordable-apartments-under-1000-a-month",
-      "published": "2026-10-20T23:59:36.932000+00:00",
-      "content_status": "full",
-      "word_count": 333,
-      "quality_score": 76,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2331,6 +2316,35 @@
       "issues": []
     },
     {
+      "id": "fdef7846f688383a",
+      "source": "CTV News London",
+      "title": "Deceased male found in St. Thomas park",
+      "url": "https://www.ctvnews.ca/london/article/deceased-male-found-in-st-thomas-park",
+      "published": "2026-10-21T21:00:58.085000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 96,
+      "paragraph_count": 7,
+      "inline_image_count": 1,
+      "quality_score": 59,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 18,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 18/100"
+        }
+      ]
+    },
+    {
       "id": "1853334b8406f0e4",
       "source": "CTV News London",
       "title": "‘We build it like a jigsaw puzzle’: Canada’s first robotic roof truss manufacturing line opens in Huron County, Ont.",
@@ -2580,35 +2594,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d1193d4c6834f0f8",
-      "source": "CTV News London",
-      "title": "Local developer commits to affordable apartments under $1,000 a month",
-      "url": "https://www.ctvnews.ca/london/article/local-developer-commits-to-affordable-apartments-under-1000-a-month",
-      "published": "2026-10-20T23:59:36.932000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 333,
-      "paragraph_count": 12,
-      "inline_image_count": 0,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
         }
       ]
     },
@@ -4063,6 +4048,35 @@
       ]
     },
     {
+      "id": "22d79f39da1267ed",
+      "source": "CTV News Canada",
+      "title": "Canadian news publishers worried about Meta’s new terms of service",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-news-publishers-worried-about-metas-new-terms-of-service",
+      "published": "2026-10-21T20:49:01.551000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 176,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "40173d9af185a2f6",
       "source": "CTV News Canada",
       "title": "Federal government announces billions for tariff-impacted industries in Ontario",
@@ -4312,41 +4326,6 @@
       "title": "Travelling to France? Make sure you read Canada’s updated travel advice first",
       "url": "https://www.ctvnews.ca/canada/article/travelling-to-france-make-sure-you-read-canadas-updated-travel-advice-first",
       "published": "2026-10-20T15:33:55.938000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 346,
-      "paragraph_count": 12,
-      "inline_image_count": 1,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "868f7927a927144b",
-      "source": "CTV News Canada",
-      "title": "Canada urges travellers to avoid demonstrations as France grapples with rioting",
-      "url": "https://www.ctvnews.ca/canada/article/canada-urges-travellers-to-avoid-demonstrations-as-france-grapples-with-rioting",
-      "published": "2026-10-20T14:30:33.500000+00:00",
       "audit_status": "pass",
       "audit_score": 94,
       "critical_count": 0,
