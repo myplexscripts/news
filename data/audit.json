@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T00:34:50.630670+00:00",
-  "generated_at_london": "2026-10-20T20:34:50.630670-04:00",
-  "news_generated_at": "2026-10-21T00:29:04.728714+00:00",
+  "generated_at": "2026-10-21T00:46:55.210222+00:00",
+  "generated_at_london": "2026-10-20T20:46:55.210222-04:00",
+  "news_generated_at": "2026-10-21T00:44:37.622452+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 794,
+    "archive_story_count": 793,
     "source_count": 28,
     "audited_story_count": 117,
     "pass_story_count": 113,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 5,
     "info_issue_count": 92,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -124,6 +124,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-20T23:39:20.566034+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 532,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-20T22:36:27+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-20T22:52:23.676885+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -639,20 +665,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 884,
-      "average_quality": 86,
+      "average_words": 913,
+      "average_quality": 87,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 7,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-20T23:40:26+00:00",
+      "latest_published": "2026-10-21T00:33:13+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T00:26:28.759051+00:00",
+      "last_scrape": "2026-10-21T00:42:08.564125+00:00",
       "last_error": ""
     },
     {
@@ -679,32 +706,6 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-10-19T15:36:59.382115+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 532,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-20T22:36:27+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-20T22:52:23.676885+00:00",
       "last_error": ""
     },
     {
@@ -1625,21 +1626,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d0badf4c960aac09",
-      "source": "National Post",
-      "title": "'Is this a joke?': Cruise ship heading for the Bahamas rerouted to Nova Scotia instead",
-      "url": "https://nationalpost.com/news/canada/royal-caribbean-cruise-ship-bahamas-rerouted-halifax",
-      "published": "2026-10-20T16:20:34+00:00",
-      "content_status": "full",
-      "word_count": 851,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e480b3c99eab7333",
       "source": "National Post",
       "title": "'Stay the hell out of bargaining': Unions blast Bill C-39's labour provisions during committee testimony",
@@ -1649,6 +1635,21 @@
       "word_count": 1079,
       "quality_score": 88,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "32c996993175c2a9",
+      "source": "National Post",
+      "title": "Accused Toronto airport gold heist gang turned on each other in nasty fight for loot",
+      "url": "https://nationalpost.com/news/accused-toronto-airport-gold-heist-gang-turned-on-each-other-in-nasty-fight-for-loot",
+      "published": "2026-10-21T00:33:13+00:00",
+      "content_status": "full",
+      "word_count": 1148,
+      "quality_score": 96,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4583,6 +4584,35 @@
       ]
     },
     {
+      "id": "32c996993175c2a9",
+      "source": "National Post",
+      "title": "Accused Toronto airport gold heist gang turned on each other in nasty fight for loot",
+      "url": "https://nationalpost.com/news/accused-toronto-airport-gold-heist-gang-turned-on-each-other-in-nasty-fight-for-loot",
+      "published": "2026-10-21T00:33:13+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1148,
+      "paragraph_count": 37,
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "caf288e7151f5aae",
       "source": "National Post",
       "title": "U.S. food importer sues Trump administration over 50% tariffs on Canadian goods",
@@ -4832,35 +4862,6 @@
       "quality_score": 79,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d0badf4c960aac09",
-      "source": "National Post",
-      "title": "'Is this a joke?': Cruise ship heading for the Bahamas rerouted to Nova Scotia instead",
-      "url": "https://nationalpost.com/news/canada/royal-caribbean-cruise-ship-bahamas-rerouted-halifax",
-      "published": "2026-10-20T16:20:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 851,
-      "paragraph_count": 23,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
