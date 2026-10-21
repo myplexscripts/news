@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T18:53:12.559565+00:00",
-  "generated_at_london": "2026-10-21T14:53:12.559565-04:00",
-  "news_generated_at": "2026-10-21T18:45:22.984009+00:00",
+  "generated_at": "2026-10-21T19:03:14.773113+00:00",
+  "generated_at_london": "2026-10-21T15:03:14.773113-04:00",
+  "news_generated_at": "2026-10-21T19:00:45.366436+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 792,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 115,
-    "review_story_count": 2,
+    "pass_story_count": 114,
+    "review_story_count": 3,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 4,
-    "info_issue_count": 97,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "warning_issue_count": 6,
+    "info_issue_count": 96,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -97,6 +97,33 @@
       "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-21T13:37:49.180160+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 376,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-21T18:35:35+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-21T18:58:03.405430+00:00",
       "last_error": ""
     },
     {
@@ -615,20 +642,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1149,
+      "average_words": 1135,
       "average_quality": 90,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "reader:semantic-rich-v1": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-21T17:41:57+00:00",
+      "latest_published": "2026-10-21T18:50:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T18:42:30.562679+00:00",
+      "last_scrape": "2026-10-21T18:58:01.715479+00:00",
       "last_error": ""
     },
     {
@@ -683,32 +711,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-21T18:26:40.556284+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 367,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-21T18:30:51+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-21T18:42:37.138641+00:00",
       "last_error": ""
     },
     {
@@ -813,6 +815,36 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "98680b14c947c9a7",
+      "source": "Toronto Star",
+      "title": "Union issues 72-hour strike notice for Teck copper mine in B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/union-issues-72-hour-strike-notice-for-teck-copper-mine-in-b-c/article_9eba89bf-c772-53a0-bf84-0c7417288061.html",
+      "published": "2026-10-21T18:35:35+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "98680b14c947c9a7",
+      "source": "Toronto Star",
+      "title": "Union issues 72-hour strike notice for Teck copper mine in B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/union-issues-72-hour-strike-notice-for-teck-copper-mine-in-b-c/article_9eba89bf-c772-53a0-bf84-0c7417288061.html",
+      "published": "2026-10-21T18:35:35+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1644,21 +1676,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "8939010abef3f08f",
-      "source": "National Post",
-      "title": "Bradford slightly ahead of Chow in Toronto mayoral race, two new polls show",
-      "url": "https://nationalpost.com/news/canada/bradford-slightly-ahead-of-chow-in-toronto-mayoral-race-two-new-polls-show",
-      "published": "2026-10-20T19:48:18+00:00",
-      "content_status": "full",
-      "word_count": 1056,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "12d144d580fac6fa",
       "source": "National Post",
       "title": "Danielle Smith makes plea to separatists in televised speech, vows no more secession referendums",
@@ -1683,6 +1700,21 @@
       "word_count": 637,
       "quality_score": 74,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c780f288809fa4cd",
+      "source": "National Post",
+      "title": "Security camera in Air Canada cargo warehouse could have caught insider in Toronto airport gold heist but wasn't working",
+      "url": "https://nationalpost.com/news/security-camera-in-air-canada-cargo-warehouse-could-have-caught-insider-in-toronto-airport-gold-heist-but-wasnt-working",
+      "published": "2026-10-21T18:50:43+00:00",
+      "content_status": "full",
+      "word_count": 920,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -2166,36 +2198,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "efac812d371e449a",
-      "source": "Toronto Star",
-      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
-      "published": "2026-10-21T16:09:22+00:00",
-      "content_status": "full",
-      "word_count": 115,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "efac812d371e449a",
-      "source": "Toronto Star",
-      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
-      "published": "2026-10-21T16:09:22+00:00",
-      "content_status": "full",
-      "word_count": 115,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2238,6 +2240,21 @@
       "word_count": 393,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "98680b14c947c9a7",
+      "source": "Toronto Star",
+      "title": "Union issues 72-hour strike notice for Teck copper mine in B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/union-issues-72-hour-strike-notice-for-teck-copper-mine-in-b-c/article_9eba89bf-c772-53a0-bf84-0c7417288061.html",
+      "published": "2026-10-21T18:35:35+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4691,6 +4708,35 @@
       ]
     },
     {
+      "id": "c780f288809fa4cd",
+      "source": "National Post",
+      "title": "Security camera in Air Canada cargo warehouse could have caught insider in Toronto airport gold heist but wasn't working",
+      "url": "https://nationalpost.com/news/security-camera-in-air-canada-cargo-warehouse-could-have-caught-insider-in-toronto-airport-gold-heist-but-wasnt-working",
+      "published": "2026-10-21T18:50:43+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 920,
+      "paragraph_count": 29,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d489fede471bda4b",
       "source": "National Post",
       "title": "Mother of Isis terrorist from Ontario running for school board trustee in Milton",
@@ -4952,26 +4998,38 @@
       ]
     },
     {
-      "id": "8939010abef3f08f",
-      "source": "National Post",
-      "title": "Bradford slightly ahead of Chow in Toronto mayoral race, two new polls show",
-      "url": "https://nationalpost.com/news/canada/bradford-slightly-ahead-of-chow-in-toronto-mayoral-race-two-new-polls-show",
-      "published": "2026-10-20T19:48:18+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "id": "98680b14c947c9a7",
+      "source": "Toronto Star",
+      "title": "Union issues 72-hour strike notice for Teck copper mine in B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/union-issues-72-hour-strike-notice-for-teck-copper-mine-in-b-c/article_9eba89bf-c772-53a0-bf84-0c7417288061.html",
+      "published": "2026-10-21T18:35:35+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 1056,
-      "paragraph_count": 19,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
+      "word_count": 200,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5233,41 +5291,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "efac812d371e449a",
-      "source": "Toronto Star",
-      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
-      "published": "2026-10-21T16:09:22+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 115,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
