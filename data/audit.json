@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T21:27:46.976351+00:00",
-  "generated_at_london": "2026-10-21T17:27:46.976351-04:00",
-  "news_generated_at": "2026-10-21T21:20:41.513476+00:00",
+  "generated_at": "2026-10-21T21:38:26.054774+00:00",
+  "generated_at_london": "2026-10-21T17:38:26.054774-04:00",
+  "news_generated_at": "2026-10-21T21:36:15.698415+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 784,
+    "archive_story_count": 785,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 115,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 4,
     "info_issue_count": 97,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -94,10 +94,36 @@
       "warning_issues": 1,
       "info_issues": 12,
       "latest_published": "2026-10-21T20:49:01.551000+00:00",
-      "found_this_run": 4,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-21T21:07:29.217088+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 382,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-21T18:35:35+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-21T18:58:03.405430+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -457,19 +483,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 494,
-      "average_quality": 96,
+      "average_words": 480,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-21T21:05:19+00:00",
+      "latest_published": "2026-10-21T21:29:02+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T21:18:07.158734+00:00",
+      "last_scrape": "2026-10-21T21:33:19.919634+00:00",
       "last_error": ""
     },
     {
@@ -628,7 +655,7 @@
       "latest_published": "2026-10-21T21:11:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T21:18:15.613633+00:00",
+      "last_scrape": "2026-10-21T21:33:26.697463+00:00",
       "last_error": ""
     },
     {
@@ -683,32 +710,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-21T20:14:56.921560+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 382,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-21T18:35:35+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-21T18:58:03.405430+00:00",
       "last_error": ""
     },
     {
@@ -1329,6 +1330,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "e1ecaee54f521302",
+      "source": "Global News Canada",
+      "title": "$463M Port of Saint John project aims to boost New Brunswick exports",
+      "url": "https://globalnews.ca/news/12112012/saint-john-port-upgrades-federal-funding",
+      "published": "2026-10-21T21:29:02+00:00",
+      "content_status": "full",
+      "word_count": 474,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "156d1c6ac95ff13e",
       "source": "Global News Canada",
       "title": "Angine de Poitrine announce 2027 world tour",
@@ -1441,21 +1457,6 @@
       "published": "2026-10-21T19:01:48+00:00",
       "content_status": "full",
       "word_count": 650,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b5188e46f1bfdb07",
-      "source": "Global News Canada",
-      "title": "New poll shows deadlock between Chow and Bradford days before Toronto election",
-      "url": "https://globalnews.ca/news/12110991/poll-chow-bradford-toronto-election",
-      "published": "2026-10-21T15:42:49+00:00",
-      "content_status": "full",
-      "word_count": 619,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3787,6 +3788,35 @@
       "issues": []
     },
     {
+      "id": "e1ecaee54f521302",
+      "source": "Global News Canada",
+      "title": "$463M Port of Saint John project aims to boost New Brunswick exports",
+      "url": "https://globalnews.ca/news/12112012/saint-john-port-upgrades-federal-funding",
+      "published": "2026-10-21T21:29:02+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 474,
+      "paragraph_count": 17,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5f5199d6de03eb3d",
       "source": "Global News Canada",
       "title": "Jeremy Hansen tapped by Carney as special adviser to feds on space",
@@ -4033,35 +4063,6 @@
       "word_count": 947,
       "paragraph_count": 26,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b5188e46f1bfdb07",
-      "source": "Global News Canada",
-      "title": "New poll shows deadlock between Chow and Bradford days before Toronto election",
-      "url": "https://globalnews.ca/news/12110991/poll-chow-bradford-toronto-election",
-      "published": "2026-10-21T15:42:49+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 619,
-      "paragraph_count": 15,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
