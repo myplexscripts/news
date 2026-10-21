@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T22:32:26.169972+00:00",
-  "generated_at_london": "2026-10-21T18:32:26.169972-04:00",
-  "news_generated_at": "2026-10-21T22:22:57.615710+00:00",
+  "generated_at": "2026-10-21T22:40:56.824513+00:00",
+  "generated_at_london": "2026-10-21T18:40:56.824513-04:00",
+  "news_generated_at": "2026-10-21T22:38:42.141651+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 791,
+    "archive_story_count": 793,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 114,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 6,
-    "info_issue_count": 99,
+    "info_issue_count": 100,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -84,7 +84,7 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 417,
+      "average_words": 434,
       "average_quality": 78,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -92,17 +92,17 @@
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 12,
-      "latest_published": "2026-10-21T20:49:01.551000+00:00",
-      "found_this_run": 3,
+      "info_issues": 11,
+      "latest_published": "2026-10-21T22:33:41.438000+00:00",
+      "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-10-21T21:07:29.217088+00:00",
+      "last_scrape": "2026-10-21T22:35:43.520574+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +121,10 @@
       "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-10-21T21:26:20+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-21T22:04:44.196193+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -403,8 +403,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 176,
-      "average_quality": 62,
+      "average_words": 193,
+      "average_quality": 63,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -412,8 +412,8 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-21T22:15:49.285000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-10-21T22:36:10.498000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-21T22:18:12.874008+00:00",
@@ -468,7 +468,7 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-21T19:49:14+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-21T19:59:56.497755+00:00",
       "last_error": ""
@@ -656,7 +656,7 @@
       "latest_published": "2026-10-21T21:11:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T22:20:01.964001+00:00",
+      "last_scrape": "2026-10-21T22:35:47.447993+00:00",
       "last_error": ""
     },
     {
@@ -896,6 +896,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "2f2c41e8cf49f47c",
+      "source": "CTV News Canada",
+      "title": "Canadian apps and government websites go offline to ward off online danger",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-apps-and-government-websites-go-offline-to-ward-off-online-danger",
+      "published": "2026-10-21T22:33:41.438000+00:00",
+      "content_status": "full",
+      "word_count": 510,
+      "quality_score": 83,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "22d79f39da1267ed",
       "source": "CTV News Canada",
       "title": "Canadian news publishers worried about Meta’s new terms of service",
@@ -979,36 +994,6 @@
       "content_status": "full",
       "word_count": 416,
       "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "82f0ab66bade584c",
-      "source": "CTV News Canada",
-      "title": "Travelling to France? Make sure you read Canada’s updated travel advice first",
-      "url": "https://www.ctvnews.ca/canada/article/travelling-to-france-make-sure-you-read-canadas-updated-travel-advice-first",
-      "published": "2026-10-20T15:33:55.938000+00:00",
-      "content_status": "full",
-      "word_count": 346,
-      "quality_score": 78,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "82f0ab66bade584c",
-      "source": "CTV News Canada",
-      "title": "Travelling to France? Make sure you read Canada’s updated travel advice first",
-      "url": "https://www.ctvnews.ca/canada/article/travelling-to-france-make-sure-you-read-canadas-updated-travel-advice-first",
-      "published": "2026-10-20T15:33:55.938000+00:00",
-      "content_status": "full",
-      "word_count": 346,
-      "quality_score": 78,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1174,6 +1159,36 @@
       "content_status": "full",
       "word_count": 119,
       "quality_score": 59,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "d1795b076b4b6abb",
+      "source": "CTV News London",
+      "title": "Ward 3 candidate pitches village concept to help solve homelessness",
+      "url": "https://www.ctvnews.ca/london/article/ward-3-candidate-pitches-village-concept-to-help-solve-homelessness",
+      "published": "2026-10-21T22:36:10.498000+00:00",
+      "content_status": "full",
+      "word_count": 338,
+      "quality_score": 78,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d1795b076b4b6abb",
+      "source": "CTV News London",
+      "title": "Ward 3 candidate pitches village concept to help solve homelessness",
+      "url": "https://www.ctvnews.ca/london/article/ward-3-candidate-pitches-village-concept-to-help-solve-homelessness",
+      "published": "2026-10-21T22:36:10.498000+00:00",
+      "content_status": "full",
+      "word_count": 338,
+      "quality_score": 78,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2378,6 +2393,41 @@
       "issues": []
     },
     {
+      "id": "d1795b076b4b6abb",
+      "source": "CTV News London",
+      "title": "Ward 3 candidate pitches village concept to help solve homelessness",
+      "url": "https://www.ctvnews.ca/london/article/ward-3-candidate-pitches-village-concept-to-help-solve-homelessness",
+      "published": "2026-10-21T22:36:10.498000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 338,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "af6245a30f62f884",
       "source": "CTV News London",
       "title": "Retired teacher testifies he didn’t initiate sexual activity with former student at trial",
@@ -2642,28 +2692,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "d11bd25d198bf7ff",
-      "source": "CTV News London",
-      "title": "One person dead after early morning blaze damages London home",
-      "url": "https://www.ctvnews.ca/london/article/one-person-dead-after-early-morning-blaze-damages-london-home",
-      "published": "2026-10-21T13:41:04.819000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 165,
-      "paragraph_count": 8,
-      "inline_image_count": 3,
-      "quality_score": 71,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 38,
-      "issues": []
     },
     {
       "id": "2dd33642d9e55239",
@@ -4145,6 +4173,35 @@
       ]
     },
     {
+      "id": "2f2c41e8cf49f47c",
+      "source": "CTV News Canada",
+      "title": "Canadian apps and government websites go offline to ward off online danger",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-apps-and-government-websites-go-offline-to-ward-off-online-danger",
+      "published": "2026-10-21T22:33:41.438000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 510,
+      "paragraph_count": 14,
+      "inline_image_count": 0,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "22d79f39da1267ed",
       "source": "CTV News Canada",
       "title": "Canadian news publishers worried about Meta’s new terms of service",
@@ -4408,41 +4465,6 @@
           "code": "image_gallery_leak",
           "message": "Several images appear consecutively with no article text between them.",
           "detail": "6 consecutive images"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "82f0ab66bade584c",
-      "source": "CTV News Canada",
-      "title": "Travelling to France? Make sure you read Canada’s updated travel advice first",
-      "url": "https://www.ctvnews.ca/canada/article/travelling-to-france-make-sure-you-read-canadas-updated-travel-advice-first",
-      "published": "2026-10-20T15:33:55.938000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 346,
-      "paragraph_count": 12,
-      "inline_image_count": 1,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
         },
         {
           "severity": "info",
