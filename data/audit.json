@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-21T17:19:54.723565+00:00",
-  "generated_at_london": "2026-10-21T13:19:54.723565-04:00",
-  "news_generated_at": "2026-10-21T17:11:47.735103+00:00",
+  "generated_at": "2026-10-21T17:29:54.494831+00:00",
+  "generated_at_london": "2026-10-21T13:29:54.494831-04:00",
+  "news_generated_at": "2026-10-21T17:27:30.125597+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 799,
     "source_count": 28,
-    "audited_story_count": 120,
-    "pass_story_count": 117,
-    "review_story_count": 2,
+    "audited_story_count": 119,
+    "pass_story_count": 114,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 4,
-    "info_issue_count": 97,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "warning_issue_count": 8,
+    "info_issue_count": 98,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -97,6 +97,33 @@
       "found_this_run": 2,
       "tracked": 30,
       "last_scrape": "2026-10-21T13:37:49.180160+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 438,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 12,
+      "latest_published": "2026-10-21T17:15:22+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-21T17:24:48.177714+00:00",
       "last_error": ""
     },
     {
@@ -626,9 +653,9 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-21T11:00:28+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-21T17:08:52.116172+00:00",
+      "last_scrape": "2026-10-21T17:24:40.814278+00:00",
       "last_error": ""
     },
     {
@@ -685,54 +712,28 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 438,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-21T16:45:20+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-21T17:09:03.404506+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "western",
-      "sample_size": 9,
-      "pass": 9,
+      "sample_size": 8,
+      "pass": 8,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 859,
+      "average_words": 898,
       "average_quality": 83,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 2,
       "latest_published": "2026-10-21T13:26:16+00:00",
       "found_this_run": 10,
-      "tracked": 8,
+      "tracked": 7,
       "last_scrape": "2026-10-21T13:30:12.444394+00:00",
       "last_error": ""
     }
@@ -812,6 +813,66 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f08be4297deaecb9",
+      "source": "Toronto Star",
+      "title": "Ottawa announces $254 million for New Brunswick port upgrades",
+      "url": "https://www.thestar.com/news/canada/new-brunswick/ottawa-announces-254-million-for-new-brunswick-port-upgrades/article_4d8cd14c-dc9d-50f7-9025-d57be5f24b42.html",
+      "published": "2026-10-21T17:05:42+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "f08be4297deaecb9",
+      "source": "Toronto Star",
+      "title": "Ottawa announces $254 million for New Brunswick port upgrades",
+      "url": "https://www.thestar.com/news/canada/new-brunswick/ottawa-announces-254-million-for-new-brunswick-port-upgrades/article_4d8cd14c-dc9d-50f7-9025-d57be5f24b42.html",
+      "published": "2026-10-21T17:05:42+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "530a91c9941de6d6",
+      "source": "Toronto Star",
+      "title": "The number of people using food banks continues to rise in Quebec",
+      "url": "https://www.thestar.com/news/canada/quebec/the-number-of-people-using-food-banks-continues-to-rise-in-quebec/article_fa8f7db9-ae57-59e0-8121-c2778d891779.html",
+      "published": "2026-10-21T17:15:22+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "530a91c9941de6d6",
+      "source": "Toronto Star",
+      "title": "The number of people using food banks continues to rise in Quebec",
+      "url": "https://www.thestar.com/news/canada/quebec/the-number-of-people-using-food-banks-continues-to-rise-in-quebec/article_fa8f7db9-ae57-59e0-8121-c2778d891779.html",
+      "published": "2026-10-21T17:15:22+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2090,51 +2151,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "9cbcc4a9727146f6",
-      "source": "Toronto Star",
-      "title": "Carney appoints astronaut Jeremy Hansen to advise government on new space strategy",
-      "url": "https://www.thestar.com/news/canada/carney-appoints-astronaut-jeremy-hansen-to-advise-government-on-new-space-strategy/article_3ae41e47-a5fe-5385-b978-2847da79174c.html",
-      "published": "2026-10-21T15:04:21+00:00",
-      "content_status": "full",
-      "word_count": 149,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9cbcc4a9727146f6",
-      "source": "Toronto Star",
-      "title": "Carney appoints astronaut Jeremy Hansen to advise government on new space strategy",
-      "url": "https://www.thestar.com/news/canada/carney-appoints-astronaut-jeremy-hansen-to-advise-government-on-new-space-strategy/article_3ae41e47-a5fe-5385-b978-2847da79174c.html",
-      "published": "2026-10-21T15:04:21+00:00",
-      "content_status": "full",
-      "word_count": 149,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "92f86d0f60204166",
-      "source": "Toronto Star",
-      "title": "Court of Quebec orders a judicial recount in riding Parti Québécois lost narrowly",
-      "url": "https://www.thestar.com/news/canada/quebec/court-of-quebec-orders-a-judicial-recount-in-riding-parti-qu-b-cois-lost-narrowly/article_8a84172d-f0c9-5e5d-b012-07fcbc943656.html",
-      "published": "2026-10-21T15:18:25+00:00",
-      "content_status": "full",
-      "word_count": 247,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2195,6 +2211,21 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "215a8a7c0bb403ba",
+      "source": "Toronto Star",
+      "title": "New southern resident killer whale calf spotted in waters near B.C.",
+      "url": "https://www.thestar.com/news/canada/british-columbia/new-southern-resident-killer-whale-calf-spotted-in-waters-near-b-c/article_b87580de-89c5-5309-890f-6d44a3c25dc9.html",
+      "published": "2026-10-21T16:07:40+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2205,6 +2236,36 @@
       "published": "2026-10-21T16:07:40+00:00",
       "content_status": "full",
       "word_count": 186,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f08be4297deaecb9",
+      "source": "Toronto Star",
+      "title": "Ottawa announces $254 million for New Brunswick port upgrades",
+      "url": "https://www.thestar.com/news/canada/new-brunswick/ottawa-announces-254-million-for-new-brunswick-port-upgrades/article_4d8cd14c-dc9d-50f7-9025-d57be5f24b42.html",
+      "published": "2026-10-21T17:05:42+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "efac812d371e449a",
+      "source": "Toronto Star",
+      "title": "Quebec police investigating after man in 40s killed in Sorel-Tracy, Que.",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
+      "published": "2026-10-21T16:09:22+00:00",
+      "content_status": "full",
+      "word_count": 115,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2237,6 +2298,21 @@
       "word_count": 248,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "530a91c9941de6d6",
+      "source": "Toronto Star",
+      "title": "The number of people using food banks continues to rise in Quebec",
+      "url": "https://www.thestar.com/news/canada/quebec/the-number-of-people-using-food-banks-continues-to-rise-in-quebec/article_fa8f7db9-ae57-59e0-8121-c2778d891779.html",
+      "published": "2026-10-21T17:15:22+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3488,28 +3564,6 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "western",
       "local_score": 64,
-      "issues": []
-    },
-    {
-      "id": "44c999cfc05a59f2",
-      "source": "Western News",
-      "title": "Mustangs men’s tennis team wins provincial title",
-      "url": "https://news.westernu.ca/2026/10/mustangs-mens-tennis-team-wins-oua-title-2026",
-      "published": "2026-10-14T17:26:13+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 553,
-      "paragraph_count": 27,
-      "inline_image_count": 0,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "western",
-      "local_score": 26,
       "issues": []
     },
     {
@@ -5025,6 +5079,88 @@
       ]
     },
     {
+      "id": "530a91c9941de6d6",
+      "source": "Toronto Star",
+      "title": "The number of people using food banks continues to rise in Quebec",
+      "url": "https://www.thestar.com/news/canada/quebec/the-number-of-people-using-food-banks-continues-to-rise-in-quebec/article_fa8f7db9-ae57-59e0-8121-c2778d891779.html",
+      "published": "2026-10-21T17:15:22+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 194,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "f08be4297deaecb9",
+      "source": "Toronto Star",
+      "title": "Ottawa announces $254 million for New Brunswick port upgrades",
+      "url": "https://www.thestar.com/news/canada/new-brunswick/ottawa-announces-254-million-for-new-brunswick-port-upgrades/article_4d8cd14c-dc9d-50f7-9025-d57be5f24b42.html",
+      "published": "2026-10-21T17:05:42+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 197,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "11016b1c6b498016",
       "source": "Toronto Star",
       "title": "CP NewsAlert: Publisher cuts ties with Quebec author after finding evidence of AI use",
@@ -5089,10 +5225,10 @@
       "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigating-after-man-in-40s-killed-in-sorel-tracy-que/article_14a8d7fa-eb10-5637-b132-96418b82d481.html",
       "published": "2026-10-21T16:09:22+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 115,
       "paragraph_count": 9,
@@ -5103,6 +5239,12 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5118,10 +5260,10 @@
       "url": "https://www.thestar.com/news/canada/british-columbia/new-southern-resident-killer-whale-calf-spotted-in-waters-near-b-c/article_b87580de-89c5-5309-890f-6d44a3c25dc9.html",
       "published": "2026-10-21T16:07:40+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 186,
       "paragraph_count": 11,
@@ -5132,6 +5274,12 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5248,70 +5396,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "92f86d0f60204166",
-      "source": "Toronto Star",
-      "title": "Court of Quebec orders a judicial recount in riding Parti Québécois lost narrowly",
-      "url": "https://www.thestar.com/news/canada/quebec/court-of-quebec-orders-a-judicial-recount-in-riding-parti-qu-b-cois-lost-narrowly/article_8a84172d-f0c9-5e5d-b012-07fcbc943656.html",
-      "published": "2026-10-21T15:18:25+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 247,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9cbcc4a9727146f6",
-      "source": "Toronto Star",
-      "title": "Carney appoints astronaut Jeremy Hansen to advise government on new space strategy",
-      "url": "https://www.thestar.com/news/canada/carney-appoints-astronaut-jeremy-hansen-to-advise-government-on-new-space-strategy/article_3ae41e47-a5fe-5385-b978-2847da79174c.html",
-      "published": "2026-10-21T15:04:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 149,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
