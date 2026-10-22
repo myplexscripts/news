@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-22T23:18:57.628828+00:00",
-  "generated_at_london": "2026-10-22T19:18:57.628828-04:00",
-  "news_generated_at": "2026-10-22T23:11:38.477234+00:00",
+  "generated_at": "2026-10-22T23:27:39.662076+00:00",
+  "generated_at_london": "2026-10-22T19:27:39.662076-04:00",
+  "news_generated_at": "2026-10-22T23:26:18.865003+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 789,
+    "archive_story_count": 790,
     "source_count": 28,
     "audited_story_count": 120,
     "pass_story_count": 117,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 4,
     "info_issue_count": 101,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -98,6 +98,32 @@
       "tracked": 4,
       "last_scrape": "2026-10-22T18:54:50.153860+00:00",
       "last_error": ""
+    },
+    {
+      "source": "London Transit Commission",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 225,
+      "average_quality": 78,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-10-19T04:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 1,
+      "last_scrape": "2026-10-19T20:37:58.529094+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.londontransit.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "CBC News Canada",
@@ -551,32 +577,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 225,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-10-19T04:00:00+00:00",
-      "found_this_run": 3,
-      "tracked": 1,
-      "last_scrape": "2026-10-19T20:37:58.529094+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Middlesex County",
       "status": "healthy",
       "collector_status": "healthy",
@@ -613,11 +613,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 845,
+      "average_words": 836,
       "average_quality": 87,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
+        "dom:semantic-rich-v1": 7,
+        "dom:postmedia:article:strict": 1,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
@@ -626,7 +627,7 @@
       "latest_published": "2026-10-22T20:47:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T23:08:33.970308+00:00",
+      "last_scrape": "2026-10-22T23:24:13.177673+00:00",
       "last_error": ""
     },
     {
@@ -1641,6 +1642,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "38fa33ee3843cebf",
+      "source": "National Post",
+      "title": "Deadly CFB Wainwright brush fire was caused by training on grenade launcher range, officials say",
+      "url": "https://nationalpost.com/news/cfb-wainwright-brush-fire-update/wcm/42be615d-178d-419c-9f1e-6e051927b82f",
+      "published": "2026-10-22T17:43:58+00:00",
+      "content_status": "full",
+      "word_count": 649,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "4fb9e6909f8c5b81",
       "source": "National Post",
       "title": "Global Affairs did not Google staff during vetting when Nato spy suspect was given clearance",
@@ -1648,21 +1664,6 @@
       "published": "2026-10-22T18:23:25+00:00",
       "content_status": "full",
       "word_count": 909,
-      "quality_score": 88,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d709e3f933d850d8",
-      "source": "National Post",
-      "title": "Here’s how much you need to earn to afford a home in Canada’s major cities",
-      "url": "https://nationalpost.com/news/canada/heres-how-much-you-need-to-earn-to-afford-a-home-in-canadas-major-cities",
-      "published": "2026-10-22T11:00:46+00:00",
-      "content_status": "full",
-      "word_count": 746,
       "quality_score": 88,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4935,6 +4936,35 @@
       ]
     },
     {
+      "id": "38fa33ee3843cebf",
+      "source": "National Post",
+      "title": "Deadly CFB Wainwright brush fire was caused by training on grenade launcher range, officials say",
+      "url": "https://nationalpost.com/news/cfb-wainwright-brush-fire-update/wcm/42be615d-178d-419c-9f1e-6e051927b82f",
+      "published": "2026-10-22T17:43:58+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 649,
+      "paragraph_count": 21,
+      "inline_image_count": 3,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3e9373b1458cd971",
       "source": "National Post",
       "title": "Ontario sending 28 burn-care workers to help with soldiers critically injured in CFB Wainwright fire",
@@ -5067,35 +5097,6 @@
       "inline_image_count": 0,
       "quality_score": 83,
       "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d709e3f933d850d8",
-      "source": "National Post",
-      "title": "Here’s how much you need to earn to afford a home in Canada’s major cities",
-      "url": "https://nationalpost.com/news/canada/heres-how-much-you-need-to-earn-to-afford-a-home-in-canadas-major-cities",
-      "published": "2026-10-22T11:00:46+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 746,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 88,
-      "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
