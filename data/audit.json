@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-22T01:20:39.282671+00:00",
-  "generated_at_london": "2026-10-21T21:20:39.282671-04:00",
-  "news_generated_at": "2026-10-22T01:13:46.267608+00:00",
+  "generated_at": "2026-10-22T01:30:54.056446+00:00",
+  "generated_at_london": "2026-10-21T21:30:54.056446-04:00",
+  "news_generated_at": "2026-10-22T01:29:29.878912+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 797,
+    "archive_story_count": 798,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 115,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 3,
-    "info_issue_count": 99,
+    "info_issue_count": 100,
     "healthy_source_count": 15,
     "review_source_count": 2,
     "error_source_count": 1,
@@ -76,7 +76,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -95,10 +95,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-22T00:56:33+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-22T01:11:24.682228+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -403,17 +403,17 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 237,
-      "average_quality": 65,
+      "average_words": 262,
+      "average_quality": 66,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 1,
-        "embedded-json:ctv": 9
+        "embedded-json:ctv": 9,
+        "ctv:summary-fallback": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-21T23:15:41.904000+00:00",
+      "info_issues": 11,
+      "latest_published": "2026-10-22T01:25:21.315000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-21T23:28:40.181051+00:00",
@@ -656,7 +656,7 @@
       "latest_published": "2026-10-21T21:11:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T01:11:22.182444+00:00",
+      "last_scrape": "2026-10-22T01:27:34.763196+00:00",
       "last_error": ""
     },
     {
@@ -998,6 +998,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "524c0ffd14412683",
+      "source": "CTV News London",
+      "title": "Candidates Talk Trash: Stevenson promises to review weekly garbage collection, Morgan challenges costs",
+      "url": "https://www.ctvnews.ca/london/article/candidates-talk-trash-stevenson-promises-to-review-weekly-garbage-collection-morgan-challenges-costs",
+      "published": "2026-10-22T01:25:21.315000+00:00",
+      "content_status": "full",
+      "word_count": 369,
+      "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
+      "story_id": "524c0ffd14412683",
+      "source": "CTV News London",
+      "title": "Candidates Talk Trash: Stevenson promises to review weekly garbage collection, Morgan challenges costs",
+      "url": "https://www.ctvnews.ca/london/article/candidates-talk-trash-stevenson-promises-to-review-weekly-garbage-collection-morgan-challenges-costs",
+      "published": "2026-10-22T01:25:21.315000+00:00",
+      "content_status": "full",
+      "word_count": 369,
+      "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 18/100",
@@ -1084,21 +1114,6 @@
       "content_status": "full",
       "word_count": 438,
       "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "1203cc72acb9f6af",
-      "source": "CTV News London",
-      "title": "Two taken to hospital after garage fire damages London home",
-      "url": "https://www.ctvnews.ca/london/article/two-taken-to-hospital-after-garage-fire-damages-london-home",
-      "published": "2026-10-21T15:13:50.996000+00:00",
-      "content_status": "full",
-      "word_count": 119,
-      "quality_score": 59,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2348,6 +2363,41 @@
       "issues": []
     },
     {
+      "id": "524c0ffd14412683",
+      "source": "CTV News London",
+      "title": "Candidates Talk Trash: Stevenson promises to review weekly garbage collection, Morgan challenges costs",
+      "url": "https://www.ctvnews.ca/london/article/candidates-talk-trash-stevenson-promises-to-review-weekly-garbage-collection-morgan-challenges-costs",
+      "published": "2026-10-22T01:25:21.315000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 369,
+      "paragraph_count": 13,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
+    {
       "id": "23f28281d1bfab40",
       "source": "CTV News London",
       "title": "Highway 26 reopens in Meaford following crash",
@@ -2603,35 +2653,6 @@
           "code": "missing_hero_image",
           "message": "Story has no hero image.",
           "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "1203cc72acb9f6af",
-      "source": "CTV News London",
-      "title": "Two taken to hospital after garage fire damages London home",
-      "url": "https://www.ctvnews.ca/london/article/two-taken-to-hospital-after-garage-fire-damages-london-home",
-      "published": "2026-10-21T15:13:50.996000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 119,
-      "paragraph_count": 7,
-      "inline_image_count": 1,
-      "quality_score": 59,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
         }
       ]
     },
