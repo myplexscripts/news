@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-22T03:54:07.809208+00:00",
-  "generated_at_london": "2026-10-21T23:54:07.809208-04:00",
-  "news_generated_at": "2026-10-22T03:49:19.463178+00:00",
+  "generated_at": "2026-10-22T04:06:31.500408+00:00",
+  "generated_at_london": "2026-10-22T00:06:31.500408-04:00",
+  "news_generated_at": "2026-10-22T04:04:55.762731+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 796,
+    "archive_story_count": 784,
     "source_count": 28,
-    "audited_story_count": 119,
-    "pass_story_count": 113,
+    "audited_story_count": 117,
+    "pass_story_count": 111,
     "review_story_count": 1,
     "fail_story_count": 5,
     "critical_issue_count": 5,
     "warning_issue_count": 3,
-    "info_issue_count": 99,
+    "info_issue_count": 98,
     "healthy_source_count": 15,
     "review_source_count": 3,
     "error_source_count": 0,
@@ -76,7 +76,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 6,
@@ -95,10 +95,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-22T00:56:33+00:00",
-      "found_this_run": 0,
+      "found_this_run": 9,
       "tracked": 30,
       "last_scrape": "2026-10-22T01:11:24.682228+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -146,7 +146,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -424,25 +424,25 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 5,
-      "pass": 5,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1742,
-      "average_quality": 83,
+      "average_words": 1430,
+      "average_quality": 82,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 3,
+        "reader:semantic-rich-v1": 2,
         "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 2,
+      "info_issues": 1,
       "latest_published": "2026-10-19T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 5,
+      "tracked": 4,
       "last_scrape": "2026-10-19T14:49:27.857974+00:00",
       "last_error": ""
     },
@@ -531,25 +531,24 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "generic",
-      "sample_size": 2,
-      "pass": 2,
+      "sample_size": 1,
+      "pass": 1,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 638,
-      "average_quality": 78,
+      "average_words": 758,
+      "average_quality": 82,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 1,
-        "reader:semantic-rich-v1": 1
+        "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "2026-10-20T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 2,
+      "tracked": 1,
       "last_scrape": "2026-10-20T12:22:44.529710+00:00",
       "last_error": ""
     },
@@ -576,7 +575,7 @@
       "info_issues": 7,
       "latest_published": "2026-10-21T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 13,
+      "tracked": 11,
       "last_scrape": "2026-10-21T15:18:12.770771+00:00",
       "last_error": ""
     },
@@ -656,7 +655,7 @@
       "latest_published": "2026-10-21T21:11:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T03:47:26.072775+00:00",
+      "last_scrape": "2026-10-22T04:02:59.303625+00:00",
       "last_error": ""
     },
     {
@@ -1205,21 +1204,6 @@
       "word_count": 410,
       "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "6b24fe9d61d06b1e",
-      "source": "City of London Newsroom",
-      "title": "Londoners invited to review and explore new draft zoning by-law",
-      "url": "https://london.ca/newsroom/londoners-invited-review-explore-new-draft-zoning-law",
-      "published": "2026-10-15T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 2991,
-      "quality_score": 88,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3002,35 +2986,6 @@
       "issues": []
     },
     {
-      "id": "6b24fe9d61d06b1e",
-      "source": "City of London Newsroom",
-      "title": "Londoners invited to review and explore new draft zoning by-law",
-      "url": "https://london.ca/newsroom/londoners-invited-review-explore-new-draft-zoning-law",
-      "published": "2026-10-15T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 2991,
-      "paragraph_count": 134,
-      "inline_image_count": 0,
-      "quality_score": 88,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "municipal",
-      "local_score": 100,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
       "id": "a9a8614278b47a79",
       "source": "London Police Service",
       "title": "Death investigation",
@@ -3360,28 +3315,6 @@
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "generic",
       "local_score": 38,
-      "issues": []
-    },
-    {
-      "id": "adc6b366afc44e8d",
-      "source": "London Health Sciences Centre",
-      "title": "London researchers explore outcomes for patients with high potassium",
-      "url": "https://www.lhscri.ca/news/london-researchers-explore-outcomes-for-patients-with-high-potassium",
-      "published": "2026-10-15T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 519,
-      "paragraph_count": 10,
-      "inline_image_count": 1,
-      "quality_score": 73,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "generic",
-      "local_score": 64,
       "issues": []
     },
     {
