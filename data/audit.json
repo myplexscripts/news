@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-22T21:46:18.133499+00:00",
-  "generated_at_london": "2026-10-22T17:46:18.133499-04:00",
-  "news_generated_at": "2026-10-22T21:38:15.718256+00:00",
+  "generated_at": "2026-10-22T21:55:24.402119+00:00",
+  "generated_at_london": "2026-10-22T17:55:24.402119-04:00",
+  "news_generated_at": "2026-10-22T21:53:15.561116+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 786,
+    "archive_story_count": 787,
     "source_count": 28,
     "audited_story_count": 120,
     "pass_story_count": 117,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 4,
     "info_issue_count": 99,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -98,6 +98,32 @@
       "tracked": 4,
       "last_scrape": "2026-10-22T18:54:50.153860+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 402,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-22T21:22:11+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-22T21:34:47.351896+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -389,7 +415,7 @@
       "latest_published": "2026-10-22T21:28:38.135000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T21:32:45.063511+00:00",
+      "last_scrape": "2026-10-22T21:42:16.672183+00:00",
       "last_error": ""
     },
     {
@@ -456,19 +482,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 567,
+      "average_words": 582,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-22T21:18:34+00:00",
+      "latest_published": "2026-10-22T21:45:13+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T21:34:36.909402+00:00",
+      "last_scrape": "2026-10-22T21:50:14.841375+00:00",
       "last_error": ""
     },
     {
@@ -626,7 +653,7 @@
       "latest_published": "2026-10-22T20:47:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T21:34:43.559040+00:00",
+      "last_scrape": "2026-10-22T21:50:20.031970+00:00",
       "last_error": ""
     },
     {
@@ -680,32 +707,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-22T21:34:38.951376+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 402,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-22T21:22:11+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-22T21:34:47.351896+00:00",
       "last_error": ""
     },
     {
@@ -1326,6 +1327,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "0e6f6e66349b5eea",
+      "source": "Global News Canada",
+      "title": "Canada Post CEO touts ‘early signs’ of recovery even as financial woes persist",
+      "url": "https://globalnews.ca/news/12114210/canada-post-financial-recovery-progress",
+      "published": "2026-10-22T21:45:13+00:00",
+      "content_status": "full",
+      "word_count": 763,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "77dfdd829cbe5894",
       "source": "Global News Canada",
       "title": "Crown drops sex offender registry charge against former Nova Scotia police chief",
@@ -1438,21 +1454,6 @@
       "published": "2026-10-22T21:18:34+00:00",
       "content_status": "full",
       "word_count": 778,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "16aebbc65e1cc478",
-      "source": "Global News Canada",
-      "title": "Ottawa ‘not responsible’ for regulating AI data centre power use: minister",
-      "url": "https://globalnews.ca/news/12113481/ottawa-not-responsible-for-regulating-ai-data-centre-electricity-use-minister",
-      "published": "2026-10-22T17:21:43+00:00",
-      "content_status": "full",
-      "word_count": 610,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3864,6 +3865,35 @@
       "issues": []
     },
     {
+      "id": "0e6f6e66349b5eea",
+      "source": "Global News Canada",
+      "title": "Canada Post CEO touts ‘early signs’ of recovery even as financial woes persist",
+      "url": "https://globalnews.ca/news/12114210/canada-post-financial-recovery-progress",
+      "published": "2026-10-22T21:45:13+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 763,
+      "paragraph_count": 22,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a99ed836fc980a6c",
       "source": "Global News Canada",
       "title": "Ottawa tells its diplomats not to meet with U.S. midterm candidates",
@@ -4110,35 +4140,6 @@
       "word_count": 220,
       "paragraph_count": 6,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "16aebbc65e1cc478",
-      "source": "Global News Canada",
-      "title": "Ottawa ‘not responsible’ for regulating AI data centre power use: minister",
-      "url": "https://globalnews.ca/news/12113481/ottawa-not-responsible-for-regulating-ai-data-centre-electricity-use-minister",
-      "published": "2026-10-22T17:21:43+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 610,
-      "paragraph_count": 21,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
