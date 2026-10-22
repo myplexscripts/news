@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-22T08:06:15.243200+00:00",
-  "generated_at_london": "2026-10-22T04:06:15.243200-04:00",
-  "news_generated_at": "2026-10-22T07:58:56.489813+00:00",
+  "generated_at": "2026-10-22T08:16:50.052246+00:00",
+  "generated_at_london": "2026-10-22T04:16:50.052246-04:00",
+  "news_generated_at": "2026-10-22T08:15:10.175191+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 776,
+    "archive_story_count": 777,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 112,
-    "review_story_count": 1,
+    "pass_story_count": 111,
+    "review_story_count": 2,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 3,
+    "warning_issue_count": 4,
     "info_issue_count": 98,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -74,9 +74,37 @@
       "last_error": ""
     },
     {
+      "source": "National Post",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "postmedia",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1028,
+      "average_quality": 89,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 7,
+        "reader:semantic-rich-v1": 2
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 10,
+      "latest_published": "2026-10-22T08:00:38+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-22T08:12:49.684908+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -95,10 +123,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-22T00:56:33+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-22T01:11:24.682228+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -632,33 +660,6 @@
       "last_error": ""
     },
     {
-      "source": "National Post",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "postmedia",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1033,
-      "average_quality": 89,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "reader:semantic-rich-v1": 2
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-21T21:11:03+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-22T07:56:56.554741+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Thames Valley District School Board",
       "status": "healthy",
       "collector_status": "healthy",
@@ -844,6 +845,21 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "duplicate_body",
+      "message": "Duplicate article paragraphs were detected.",
+      "detail": "1 duplicated paragraph pattern(s)",
+      "story_id": "c4f8b6f200b37b35",
+      "source": "National Post",
+      "title": "Mark Carney seeks closer Turkey ties. Will Trump object? Should Canada?",
+      "url": "https://nationalpost.com/news/carney-seeks-closer-turkey-ties-will-trump-object-should-canada",
+      "published": "2026-10-22T08:00:38+00:00",
+      "content_status": "full",
+      "word_count": 1192,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -1645,21 +1661,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "32c996993175c2a9",
-      "source": "National Post",
-      "title": "Accused Toronto airport gold heist gang turned on each other in nasty fight for loot",
-      "url": "https://nationalpost.com/news/accused-toronto-airport-gold-heist-gang-turned-on-each-other-in-nasty-fight-for-loot",
-      "published": "2026-10-21T00:33:13+00:00",
-      "content_status": "full",
-      "word_count": 1237,
-      "quality_score": 93,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "d03c7c68747f0018",
       "source": "National Post",
       "title": "Alberta will take inspiration from Quebec on immigration issues, Danielle Smith says",
@@ -1714,6 +1715,21 @@
       "word_count": 561,
       "quality_score": 77,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c4f8b6f200b37b35",
+      "source": "National Post",
+      "title": "Mark Carney seeks closer Turkey ties. Will Trump object? Should Canada?",
+      "url": "https://nationalpost.com/news/carney-seeks-closer-turkey-ties-will-trump-object-should-canada",
+      "published": "2026-10-22T08:00:38+00:00",
+      "content_status": "full",
+      "word_count": 1192,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4722,6 +4738,41 @@
       ]
     },
     {
+      "id": "c4f8b6f200b37b35",
+      "source": "National Post",
+      "title": "Mark Carney seeks closer Turkey ties. Will Trump object? Should Canada?",
+      "url": "https://nationalpost.com/news/carney-seeks-closer-turkey-ties-will-trump-object-should-canada",
+      "published": "2026-10-22T08:00:38+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1192,
+      "paragraph_count": 33,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "duplicate_body",
+          "message": "Duplicate article paragraphs were detected.",
+          "detail": "1 duplicated paragraph pattern(s)"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "631099b4af053464",
       "source": "National Post",
       "title": "Carney says Canada is holding the Palestinian Authority 'to account' on elections commitment",
@@ -4969,35 +5020,6 @@
       "paragraph_count": 16,
       "inline_image_count": 0,
       "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "32c996993175c2a9",
-      "source": "National Post",
-      "title": "Accused Toronto airport gold heist gang turned on each other in nasty fight for loot",
-      "url": "https://nationalpost.com/news/accused-toronto-airport-gold-heist-gang-turned-on-each-other-in-nasty-fight-for-loot",
-      "published": "2026-10-21T00:33:13+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1237,
-      "paragraph_count": 37,
-      "inline_image_count": 3,
-      "quality_score": 93,
       "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
