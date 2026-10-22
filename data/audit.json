@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-22T12:49:13.345990+00:00",
-  "generated_at_london": "2026-10-22T08:49:13.345990-04:00",
-  "news_generated_at": "2026-10-22T12:41:37.000196+00:00",
+  "generated_at": "2026-10-22T12:58:51.444970+00:00",
+  "generated_at_london": "2026-10-22T08:58:51.444970-04:00",
+  "news_generated_at": "2026-10-22T12:56:41.836534+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 786,
+    "archive_story_count": 787,
     "source_count": 28,
-    "audited_story_count": 117,
+    "audited_story_count": 118,
     "pass_story_count": 113,
-    "review_story_count": 3,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
-    "info_issue_count": 97,
+    "warning_issue_count": 8,
+    "info_issue_count": 98,
     "healthy_source_count": 13,
     "review_source_count": 5,
     "error_source_count": 0,
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 691,
-      "average_quality": 96,
+      "average_words": 610,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-22T10:53:57+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-22T12:25:07+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T11:36:46.588095+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-22T12:54:22.921499+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -556,25 +557,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
+      "sample_size": 2,
+      "pass": 2,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 758,
+      "average_words": 770,
       "average_quality": 82,
-      "primary_method": "dom:semantic-rich-v1",
+      "primary_method": "dom:generic:main",
       "method_counts": {
+        "dom:generic:main": 1,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "2026-10-20T04:00:00+00:00",
+      "info_issues": 1,
+      "latest_published": "2026-10-22T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 1,
-      "last_scrape": "2026-10-20T12:22:44.529710+00:00",
+      "tracked": 2,
+      "last_scrape": "2026-10-22T12:53:12.840578+00:00",
       "last_error": ""
     },
     {
@@ -680,7 +682,7 @@
       "latest_published": "2026-10-22T11:00:46+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T12:38:44.734887+00:00",
+      "last_scrape": "2026-10-22T12:54:20.407189+00:00",
       "last_error": ""
     },
     {
@@ -842,6 +844,36 @@
       "word_count": 4072,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "dded0c81a5af8b95",
+      "source": "Toronto Star",
+      "title": "Ontario to table fall fiscal update next week with 'disciplined' spending approach",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-table-fall-fiscal-update-next-week-with-disciplined-spending-approach/article_f9db737f-c113-585a-839c-166601a7dfb5.html",
+      "published": "2026-10-22T12:25:07+00:00",
+      "content_status": "full",
+      "word_count": 181,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "dded0c81a5af8b95",
+      "source": "Toronto Star",
+      "title": "Ontario to table fall fiscal update next week with 'disciplined' spending approach",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-table-fall-fiscal-update-next-week-with-disciplined-spending-approach/article_f9db737f-c113-585a-839c-166601a7dfb5.html",
+      "published": "2026-10-22T12:25:07+00:00",
+      "content_status": "full",
+      "word_count": 181,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1508,6 +1540,21 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "644de1600a20a5cd",
+      "source": "London Health Sciences Centre",
+      "title": "Healing through presence and grace",
+      "url": "https://www.lhsc.on.ca/news/healing-through-presence-and-grace",
+      "published": "2026-10-22T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 782,
+      "quality_score": 82,
+      "extraction_method": "dom:generic:main"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "a9a8614278b47a79",
       "source": "London Police Service",
       "title": "Death investigation",
@@ -2123,21 +2170,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6c29c4bb5c221651",
-      "source": "Toronto Star",
-      "title": "Althia Raj: Danielle Smith’s pledge to Canada rests on what Ottawa delivers",
-      "url": "https://www.thestar.com/news/canada/danielle-smith-s-pledge-to-canada-rests-on-what-ottawa-delivers/article_e71713c3-cdaa-4b4c-aefb-ef481eaf729d.html",
-      "published": "2026-10-22T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 991,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "2c1b1a51585f77d5",
       "source": "Toronto Star",
       "title": "B.C. NDP Leader Eby campaigns in Vancouver, while Tories heads to Surrey",
@@ -2222,6 +2254,21 @@
       "word_count": 239,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "dded0c81a5af8b95",
+      "source": "Toronto Star",
+      "title": "Ontario to table fall fiscal update next week with 'disciplined' spending approach",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-table-fall-fiscal-update-next-week-with-disciplined-spending-approach/article_f9db737f-c113-585a-839c-166601a7dfb5.html",
+      "published": "2026-10-22T12:25:07+00:00",
+      "content_status": "full",
+      "word_count": 181,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3260,6 +3307,35 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 10/100"
+        }
+      ]
+    },
+    {
+      "id": "644de1600a20a5cd",
+      "source": "London Health Sciences Centre",
+      "title": "Healing through presence and grace",
+      "url": "https://www.lhsc.on.ca/news/healing-through-presence-and-grace",
+      "published": "2026-10-22T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 782,
+      "paragraph_count": 14,
+      "inline_image_count": 0,
+      "quality_score": 82,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:main",
+      "extraction_profile": "generic",
+      "local_score": 26,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
         }
       ]
     },
@@ -5007,6 +5083,47 @@
       ]
     },
     {
+      "id": "dded0c81a5af8b95",
+      "source": "Toronto Star",
+      "title": "Ontario to table fall fiscal update next week with 'disciplined' spending approach",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-table-fall-fiscal-update-next-week-with-disciplined-spending-approach/article_f9db737f-c113-585a-839c-166601a7dfb5.html",
+      "published": "2026-10-22T12:25:07+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 181,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ce6a8d1d508c671e",
       "source": "Toronto Star",
       "title": "Canadian convicted in U.S. terror plot gets 50 more years for stabbing prison staff",
@@ -5252,35 +5369,6 @@
       "content_status": "full",
       "word_count": 1598,
       "paragraph_count": 56,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6c29c4bb5c221651",
-      "source": "Toronto Star",
-      "title": "Althia Raj: Danielle Smith’s pledge to Canada rests on what Ottawa delivers",
-      "url": "https://www.thestar.com/news/canada/danielle-smith-s-pledge-to-canada-rests-on-what-ottawa-delivers/article_e71713c3-cdaa-4b4c-aefb-ef481eaf729d.html",
-      "published": "2026-10-22T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 991,
-      "paragraph_count": 33,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
