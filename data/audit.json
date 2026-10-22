@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-22T13:19:53.540337+00:00",
-  "generated_at_london": "2026-10-22T09:19:53.540337-04:00",
-  "news_generated_at": "2026-10-22T13:12:51.586447+00:00",
+  "generated_at": "2026-10-22T13:31:20.449539+00:00",
+  "generated_at_london": "2026-10-22T09:31:20.449539-04:00",
+  "news_generated_at": "2026-10-22T13:28:37.578209+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 787,
+    "archive_story_count": 788,
     "source_count": 28,
-    "audited_story_count": 118,
+    "audited_story_count": 119,
     "pass_story_count": 114,
-    "review_story_count": 3,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
-    "info_issue_count": 97,
-    "healthy_source_count": 14,
-    "review_source_count": 4,
+    "warning_issue_count": 8,
+    "info_issue_count": 98,
+    "healthy_source_count": 13,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -68,7 +68,7 @@
       "warning_issues": 1,
       "info_issues": 11,
       "latest_published": "2026-10-22T11:35:47.426000+00:00",
-      "found_this_run": 4,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-22T11:58:00.952557+00:00",
       "last_error": ""
@@ -124,6 +124,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-22T13:10:19.466818+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 470,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-22T13:08:05+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-22T13:25:55.595830+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +681,7 @@
       "latest_published": "2026-10-22T11:00:46+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-22T13:10:30.098024+00:00",
+      "last_scrape": "2026-10-22T13:25:52.271537+00:00",
       "last_error": ""
     },
     {
@@ -685,55 +712,30 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 609,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-22T12:25:07+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-22T12:54:22.921499+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "western",
-      "sample_size": 7,
-      "pass": 7,
+      "sample_size": 8,
+      "pass": 8,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 915,
+      "average_words": 932,
       "average_quality": 83,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "trafilatura:fallback": 1,
         "reader:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 3,
-      "latest_published": "2026-10-21T21:04:41+00:00",
+      "info_issues": 4,
+      "latest_published": "2026-10-22T13:22:23+00:00",
       "found_this_run": 10,
-      "tracked": 7,
-      "last_scrape": "2026-10-21T21:17:07.991288+00:00",
+      "tracked": 8,
+      "last_scrape": "2026-10-22T13:24:46.826792+00:00",
       "last_error": ""
     }
   ],
@@ -842,6 +844,36 @@
       "word_count": 4072,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "e4f556a7f41675e2",
+      "source": "Toronto Star",
+      "title": "Some referendum questions flip to 'no' as the count continues in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/some-referendum-questions-flip-to-no-as-the-count-continues-in-alberta/article_bb4432cd-d285-5a56-b173-f1e85566efb0.html",
+      "published": "2026-10-22T13:08:05+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "e4f556a7f41675e2",
+      "source": "Toronto Star",
+      "title": "Some referendum questions flip to 'no' as the count continues in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/some-referendum-questions-flip-to-no-as-the-count-continues-in-alberta/article_bb4432cd-d285-5a56-b173-f1e85566efb0.html",
+      "published": "2026-10-22T13:08:05+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2228,15 +2260,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6552b2b6bcf685bd",
+      "story_id": "e4f556a7f41675e2",
       "source": "Toronto Star",
-      "title": "Rising diesel prices are causing pain for Canadians and their political leaders",
-      "url": "https://www.thestar.com/news/canada/why-rising-diesel-prices-are-squeezing-canadians-from-grocery-aisles-to-home-heating/article_a308a93d-0501-4154-aecc-a2e55e427314.html",
-      "published": "2026-10-22T04:00:00+00:00",
+      "title": "Some referendum questions flip to 'no' as the count continues in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/some-referendum-questions-flip-to-no-as-the-count-continues-in-alberta/article_bb4432cd-d285-5a56-b173-f1e85566efb0.html",
+      "published": "2026-10-22T13:08:05+00:00",
       "content_status": "full",
-      "word_count": 1598,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2282,6 +2314,21 @@
       "word_count": 922,
       "quality_score": 83,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ebfc30286295e305",
+      "source": "Western News",
+      "title": "Sports, stats and politics: Intersecting interests fuel grad’s PhD",
+      "url": "https://news.westernu.ca/2026/10/sports-politics-noah-vanderhoeven-phd",
+      "published": "2026-10-22T13:22:23+00:00",
+      "content_status": "full",
+      "word_count": 1051,
+      "quality_score": 83,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -3313,6 +3360,35 @@
       "extraction_profile": "generic",
       "local_score": 38,
       "issues": []
+    },
+    {
+      "id": "ebfc30286295e305",
+      "source": "Western News",
+      "title": "Sports, stats and politics: Intersecting interests fuel grad’s PhD",
+      "url": "https://news.westernu.ca/2026/10/sports-politics-noah-vanderhoeven-phd",
+      "published": "2026-10-22T13:22:23+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1051,
+      "paragraph_count": 39,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "western",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
     },
     {
       "id": "7399a98f926a5c99",
@@ -5030,6 +5106,47 @@
       ]
     },
     {
+      "id": "e4f556a7f41675e2",
+      "source": "Toronto Star",
+      "title": "Some referendum questions flip to 'no' as the count continues in Alberta",
+      "url": "https://www.thestar.com/news/canada/alberta/some-referendum-questions-flip-to-no-as-the-count-continues-in-alberta/article_bb4432cd-d285-5a56-b173-f1e85566efb0.html",
+      "published": "2026-10-22T13:08:05+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 206,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "dded0c81a5af8b95",
       "source": "Toronto Star",
       "title": "Ontario to table fall fiscal update next week with 'disciplined' spending approach",
@@ -5275,35 +5392,6 @@
       "content_status": "full",
       "word_count": 978,
       "paragraph_count": 39,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6552b2b6bcf685bd",
-      "source": "Toronto Star",
-      "title": "Rising diesel prices are causing pain for Canadians and their political leaders",
-      "url": "https://www.thestar.com/news/canada/why-rising-diesel-prices-are-squeezing-canadians-from-grocery-aisles-to-home-heating/article_a308a93d-0501-4154-aecc-a2e55e427314.html",
-      "published": "2026-10-22T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1598,
-      "paragraph_count": 56,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
