@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T03:45:56.401769+00:00",
-  "generated_at_london": "2026-10-22T23:45:56.401769-04:00",
-  "news_generated_at": "2026-10-23T03:39:55.347154+00:00",
+  "generated_at": "2026-10-23T03:59:07.653368+00:00",
+  "generated_at_london": "2026-10-22T23:59:07.653368-04:00",
+  "news_generated_at": "2026-10-23T03:56:50.665926+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 790,
+    "archive_story_count": 791,
     "source_count": 28,
     "audited_story_count": 120,
     "pass_story_count": 115,
-    "review_story_count": 2,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 4,
+    "review_story_count": 3,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 6,
     "info_issue_count": 102,
     "healthy_source_count": 14,
     "review_source_count": 4,
@@ -102,28 +102,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 459,
-      "average_quality": 96,
+      "average_words": 475,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 11,
-      "latest_published": "2026-10-23T00:06:45+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-23T03:11:05+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T00:27:46.543370+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-23T03:53:51.581086+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -652,7 +653,7 @@
       "latest_published": "2026-10-22T20:47:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T03:37:59.449067+00:00",
+      "last_scrape": "2026-10-23T03:53:49.995720+00:00",
       "last_error": ""
     },
     {
@@ -767,21 +768,6 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "66 words",
-      "story_id": "db7b5a093b87ccbf",
-      "source": "Toronto Star",
-      "title": "Ottawa to announce funding for 60 national sport organizations",
-      "url": "https://www.thestar.com/news/canada/ottawa-to-announce-funding-for-60-national-sport-organizations/article_281784dd-2e04-5226-9b19-a95a1a6149a0.html",
-      "published": "2026-10-22T16:29:57+00:00",
-      "content_status": "full",
-      "word_count": 66,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -840,6 +826,36 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "cefb33e20e93b75b",
+      "source": "Toronto Star",
+      "title": "'Comfort kills dreams': Family says soldier killed in base fire was living his dream",
+      "url": "https://www.thestar.com/politics/comfort-kills-dreams-family-says-soldier-killed-in-base-fire-was-living-his-dream/article_4ec56d05-74a3-51b7-bd9b-5f499b2433d8.html",
+      "published": "2026-10-23T03:11:05+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "cefb33e20e93b75b",
+      "source": "Toronto Star",
+      "title": "'Comfort kills dreams': Family says soldier killed in base fire was living his dream",
+      "url": "https://www.thestar.com/politics/comfort-kills-dreams-family-says-soldier-killed-in-base-fire-was-living-his-dream/article_4ec56d05-74a3-51b7-bd9b-5f499b2433d8.html",
+      "published": "2026-10-23T03:11:05+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2136,6 +2152,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "cefb33e20e93b75b",
+      "source": "Toronto Star",
+      "title": "'Comfort kills dreams': Family says soldier killed in base fire was living his dream",
+      "url": "https://www.thestar.com/politics/comfort-kills-dreams-family-says-soldier-killed-in-base-fire-was-living-his-dream/article_4ec56d05-74a3-51b7-bd9b-5f499b2433d8.html",
+      "published": "2026-10-23T03:11:05+00:00",
+      "content_status": "full",
+      "word_count": 219,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "465cecf14f2f2245",
       "source": "Toronto Star",
       "title": "Atikamekw baby to be reburied in home community more than 70 years after death",
@@ -2188,21 +2219,6 @@
       "published": "2026-10-22T19:52:00+00:00",
       "content_status": "full",
       "word_count": 833,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "db7b5a093b87ccbf",
-      "source": "Toronto Star",
-      "title": "Ottawa to announce funding for 60 national sport organizations",
-      "url": "https://www.thestar.com/news/canada/ottawa-to-announce-funding-for-60-national-sport-organizations/article_281784dd-2e04-5226-9b19-a95a1a6149a0.html",
-      "published": "2026-10-22T16:29:57+00:00",
-      "content_status": "full",
-      "word_count": 66,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -5160,6 +5176,47 @@
       ]
     },
     {
+      "id": "cefb33e20e93b75b",
+      "source": "Toronto Star",
+      "title": "'Comfort kills dreams': Family says soldier killed in base fire was living his dream",
+      "url": "https://www.thestar.com/politics/comfort-kills-dreams-family-says-soldier-killed-in-base-fire-was-living-his-dream/article_4ec56d05-74a3-51b7-bd9b-5f499b2433d8.html",
+      "published": "2026-10-23T03:11:05+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 219,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "17f391a387d1b0f7",
       "source": "Toronto Star",
       "title": "The 4 soldiers killed in fast-moving fire at CFB Wainwright in Alberta",
@@ -5424,41 +5481,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "db7b5a093b87ccbf",
-      "source": "Toronto Star",
-      "title": "Ottawa to announce funding for 60 national sport organizations",
-      "url": "https://www.thestar.com/news/canada/ottawa-to-announce-funding-for-60-national-sport-organizations/article_281784dd-2e04-5226-9b19-a95a1a6149a0.html",
-      "published": "2026-10-22T16:29:57+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 66,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "66 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
