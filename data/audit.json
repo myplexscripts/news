@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T14:37:02.130303+00:00",
-  "generated_at_london": "2026-10-23T10:37:02.130303-04:00",
-  "news_generated_at": "2026-10-23T14:29:29.815786+00:00",
+  "generated_at": "2026-10-23T14:46:30.476748+00:00",
+  "generated_at_london": "2026-10-23T10:46:30.476748-04:00",
+  "news_generated_at": "2026-10-23T14:44:48.806098+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 786,
+    "archive_story_count": 789,
     "source_count": 28,
     "audited_story_count": 120,
     "pass_story_count": 113,
@@ -14,7 +14,7 @@
     "fail_story_count": 3,
     "critical_issue_count": 3,
     "warning_issue_count": 8,
-    "info_issue_count": 97,
+    "info_issue_count": 98,
     "healthy_source_count": 14,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -102,7 +102,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -120,10 +120,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-23T13:24:15+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-23T13:39:50.164512+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -428,8 +428,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 288,
-      "average_quality": 71,
+      "average_words": 305,
+      "average_quality": 73,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -437,11 +437,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 8,
-      "latest_published": "2026-10-23T12:19:37.303000+00:00",
+      "info_issues": 9,
+      "latest_published": "2026-10-23T14:31:39.394000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T12:29:32.026645+00:00",
+      "last_scrape": "2026-10-23T14:40:08.067159+00:00",
       "last_error": ""
     },
     {
@@ -482,11 +482,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 679,
-      "average_quality": 95,
+      "average_words": 669,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:citynews:article": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -494,7 +495,7 @@
       "latest_published": "2026-10-23T11:14:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T13:39:52.476322+00:00",
+      "last_scrape": "2026-10-23T14:42:27.391576+00:00",
       "last_error": ""
     },
     {
@@ -508,19 +509,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 519,
-      "average_quality": 96,
+      "average_words": 503,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-23T14:05:56+00:00",
+      "latest_published": "2026-10-23T14:39:13+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T14:10:52.786699+00:00",
+      "last_scrape": "2026-10-23T14:42:17.524713+00:00",
       "last_error": ""
     },
     {
@@ -679,7 +681,7 @@
       "latest_published": "2026-10-23T11:00:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T14:26:28.550636+00:00",
+      "last_scrape": "2026-10-23T14:42:23.446128+00:00",
       "last_error": ""
     },
     {
@@ -1114,21 +1116,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "939d10b5a35c67df",
-      "source": "CTV News London",
-      "title": "Five suspects receive warning in Tillsonburg weapons incident",
-      "url": "https://www.ctvnews.ca/london/article/five-suspects-receive-warning-in-tillsonburg-weapons-incident",
-      "published": "2026-10-22T17:07:11.261000+00:00",
-      "content_status": "full",
-      "word_count": 103,
-      "quality_score": 53,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1171,6 +1158,36 @@
       "word_count": 22,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "ea556e0bc62a2ee6",
+      "source": "CTV News London",
+      "title": "St. Thomas police suspend Crime Stoppers participation after cybersecurity breach",
+      "url": "https://www.ctvnews.ca/london/article/st-thomas-police-suspend-crime-stoppers-participation-after-cybersecurity-breach",
+      "published": "2026-10-23T14:31:39.394000+00:00",
+      "content_status": "full",
+      "word_count": 277,
+      "quality_score": 73,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 18/100",
+      "story_id": "ea556e0bc62a2ee6",
+      "source": "CTV News London",
+      "title": "St. Thomas police suspend Crime Stoppers participation after cybersecurity breach",
+      "url": "https://www.ctvnews.ca/london/article/st-thomas-police-suspend-crime-stoppers-participation-after-cybersecurity-breach",
+      "published": "2026-10-23T14:31:39.394000+00:00",
+      "content_status": "full",
+      "word_count": 277,
+      "quality_score": 73,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -1312,15 +1329,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f8a616cec0ec6e2b",
+      "story_id": "1018932dca57b507",
       "source": "CityNews Canada",
-      "title": "Carney arrives in Turkey for meetings with Turkish president, business leaders",
-      "url": "https://toronto.citynews.ca/2026/10/22/carney-arrives-in-turkey-for-meetings-with-turkish-president-business-leaders",
-      "published": "2026-10-22T08:00:16+00:00",
+      "title": "Carney not worried about Turkish ties despite nation’s treatment of Lgbtq+ groups",
+      "url": "https://toronto.citynews.ca/2026/10/23/carney-not-worried-about-closer-turkish-ties-amid-nations-treatment-of-lgbtq-groups",
+      "published": "2026-10-23T08:27:14+00:00",
       "content_status": "full",
-      "word_count": 663,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 559,
+      "quality_score": 81,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -1417,6 +1434,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "e95d3a051e31ca01",
+      "source": "Global News Canada",
+      "title": "AI concerns continue to hit Big Tech stocks Friday as oil prices rise again",
+      "url": "https://globalnews.ca/news/12118396/stock-markets-ai-tech-oil",
+      "published": "2026-10-23T14:39:13+00:00",
+      "content_status": "full",
+      "word_count": 597,
+      "quality_score": 87,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "d928023765cd7151",
       "source": "Global News Canada",
       "title": "Boon or boondoggle? N.S. weighs $10B data centre’s promised economic benefits",
@@ -1424,21 +1456,6 @@
       "published": "2026-10-23T12:02:20+00:00",
       "content_status": "full",
       "word_count": 1228,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0e6f6e66349b5eea",
-      "source": "Global News Canada",
-      "title": "Canada Post CEO touts ‘early signs’ of recovery even as financial woes persist",
-      "url": "https://globalnews.ca/news/12114210/canada-post-financial-recovery-progress",
-      "published": "2026-10-22T21:45:13+00:00",
-      "content_status": "full",
-      "word_count": 763,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2382,6 +2399,41 @@
       "issues": []
     },
     {
+      "id": "ea556e0bc62a2ee6",
+      "source": "CTV News London",
+      "title": "St. Thomas police suspend Crime Stoppers participation after cybersecurity breach",
+      "url": "https://www.ctvnews.ca/london/article/st-thomas-police-suspend-crime-stoppers-participation-after-cybersecurity-breach",
+      "published": "2026-10-23T14:31:39.394000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 277,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 18,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 18/100"
+        }
+      ]
+    },
+    {
       "id": "29a60a54dfabd266",
       "source": "CTV News London",
       "title": "Trailer park users seek answers as their summer home set to close next October",
@@ -2626,35 +2678,6 @@
       "extraction_profile": "ctv",
       "local_score": 22,
       "issues": []
-    },
-    {
-      "id": "939d10b5a35c67df",
-      "source": "CTV News London",
-      "title": "Five suspects receive warning in Tillsonburg weapons incident",
-      "url": "https://www.ctvnews.ca/london/article/five-suspects-receive-warning-in-tillsonburg-weapons-incident",
-      "published": "2026-10-22T17:07:11.261000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 103,
-      "paragraph_count": 4,
-      "inline_image_count": 0,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
     },
     {
       "id": "95775e3ae807f23e",
@@ -3952,6 +3975,35 @@
       "issues": []
     },
     {
+      "id": "e95d3a051e31ca01",
+      "source": "Global News Canada",
+      "title": "AI concerns continue to hit Big Tech stocks Friday as oil prices rise again",
+      "url": "https://globalnews.ca/news/12118396/stock-markets-ai-tech-oil",
+      "published": "2026-10-23T14:39:13+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 597,
+      "paragraph_count": 18,
+      "inline_image_count": 2,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0c2aa118ff29d8c3",
       "source": "Global News Canada",
       "title": "More Ontario police forces pause Crime Stoppers use after cyber breach",
@@ -4197,35 +4249,6 @@
       "content_status": "full",
       "word_count": 658,
       "paragraph_count": 23,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0e6f6e66349b5eea",
-      "source": "Global News Canada",
-      "title": "Canada Post CEO touts ‘early signs’ of recovery even as financial woes persist",
-      "url": "https://globalnews.ca/news/12114210/canada-post-financial-recovery-progress",
-      "published": "2026-10-22T21:45:13+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 763,
-      "paragraph_count": 22,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
@@ -5537,6 +5560,35 @@
       ]
     },
     {
+      "id": "1018932dca57b507",
+      "source": "CityNews Canada",
+      "title": "Carney not worried about Turkish ties despite nation’s treatment of Lgbtq+ groups",
+      "url": "https://toronto.citynews.ca/2026/10/23/carney-not-worried-about-closer-turkish-ties-amid-nations-treatment-of-lgbtq-groups",
+      "published": "2026-10-23T08:27:14+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 559,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "48a0128755ea5b2c",
       "source": "CityNews Canada",
       "title": "Canada working closely with EU on foreign aid as U.S. pulls back, Sarai says",
@@ -5696,35 +5748,6 @@
       "word_count": 759,
       "paragraph_count": 30,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f8a616cec0ec6e2b",
-      "source": "CityNews Canada",
-      "title": "Carney arrives in Turkey for meetings with Turkish president, business leaders",
-      "url": "https://toronto.citynews.ca/2026/10/22/carney-arrives-in-turkey-for-meetings-with-turkish-president-business-leaders",
-      "published": "2026-10-22T08:00:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 663,
-      "paragraph_count": 27,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
