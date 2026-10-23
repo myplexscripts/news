@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T03:32:54.784270+00:00",
-  "generated_at_london": "2026-10-22T23:32:54.784270-04:00",
-  "news_generated_at": "2026-10-23T03:25:57.435486+00:00",
+  "generated_at": "2026-10-23T03:41:14.333043+00:00",
+  "generated_at_london": "2026-10-22T23:41:14.333043-04:00",
+  "news_generated_at": "2026-10-23T03:39:55.347154+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 788,
+    "archive_story_count": 790,
     "source_count": 28,
     "audited_story_count": 120,
     "pass_story_count": 115,
@@ -102,7 +102,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -120,10 +120,10 @@
       "warning_issues": 0,
       "info_issues": 11,
       "latest_published": "2026-10-23T00:06:45+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-23T00:27:46.543370+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -652,7 +652,7 @@
       "latest_published": "2026-10-22T20:47:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T03:22:52.548564+00:00",
+      "last_scrape": "2026-10-23T03:37:59.449067+00:00",
       "last_error": ""
     },
     {
@@ -693,19 +693,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 854,
-      "average_quality": 96,
+      "average_words": 929,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 15,
-      "latest_published": "2026-10-23T02:00:08.917000+00:00",
+      "latest_published": "2026-10-23T02:40:37.675000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T02:18:36.269256+00:00",
+      "last_scrape": "2026-10-23T03:37:55.218978+00:00",
       "last_error": ""
     },
     {
@@ -1911,6 +1912,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "033c0c08a38c39ab",
+      "source": "The Globe and Mail",
+      "title": "B.C. online furniture retailer Cymax, once a COVID winner, is shutting down",
+      "url": "https://www.theglobeandmail.com/business/article-bc-online-furniture-retailer-cymax-once-a-covid-winner-is-shutting",
+      "published": "2026-10-23T02:40:37.675000+00:00",
+      "content_status": "full",
+      "word_count": 712,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "033c0c08a38c39ab",
+      "source": "The Globe and Mail",
+      "title": "B.C. online furniture retailer Cymax, once a COVID winner, is shutting down",
+      "url": "https://www.theglobeandmail.com/business/article-bc-online-furniture-retailer-cymax-once-a-covid-winner-is-shutting",
+      "published": "2026-10-23T02:40:37.675000+00:00",
+      "content_status": "full",
+      "word_count": 712,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "6a1e53e679d1d339",
       "source": "The Globe and Mail",
       "title": "CentreBC and OneBC vie for attention against major provincial parties ahead of election",
@@ -1948,21 +1979,6 @@
       "published": "2026-10-22T22:35:25.262000+00:00",
       "content_status": "partial",
       "word_count": 1828,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "846fb4e205c86c31",
-      "source": "The Globe and Mail",
-      "title": "Cleveland-Cliffs CEO’s Stelco stance is rife with contradictions",
-      "url": "https://www.theglobeandmail.com/business/commentary/article-cleveland-cliffs-stelco-layoffs-steelworkers-tariffs-marty-warren",
-      "published": "2026-10-22T16:50:46.133000+00:00",
-      "content_status": "full",
-      "word_count": 722,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2103,33 +2119,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "67cfa150a7574200",
-      "source": "The Globe and Mail",
-      "title": "Why do daycare costs vary so much between Vancouver, Toronto and Calgary?",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-daycare-costs-vancouver-toronto-calgary",
-      "published": "2026-10-22T17:40:56.288000+00:00",
-      "content_status": "full",
-      "word_count": 843,
-      "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "67cfa150a7574200",
+      "story_id": "5e73374ba3067666",
       "source": "The Globe and Mail",
-      "title": "Why do daycare costs vary so much between Vancouver, Toronto and Calgary?",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-daycare-costs-vancouver-toronto-calgary",
-      "published": "2026-10-22T17:40:56.288000+00:00",
+      "title": "What you need to know ahead of B.C.’s provincial election, according to our experts",
+      "url": "https://www.theglobeandmail.com/canada/article-bc-provincial-election-answered",
+      "published": "2026-10-22T22:04:44.796000+00:00",
       "content_status": "full",
-      "word_count": 843,
-      "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 1594,
+      "quality_score": 95,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4550,6 +4551,41 @@
       ]
     },
     {
+      "id": "033c0c08a38c39ab",
+      "source": "The Globe and Mail",
+      "title": "B.C. online furniture retailer Cymax, once a COVID winner, is shutting down",
+      "url": "https://www.theglobeandmail.com/business/article-bc-online-furniture-retailer-cymax-once-a-covid-winner-is-shutting",
+      "published": "2026-10-23T02:40:37.675000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 712,
+      "paragraph_count": 16,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "095eedb3b9513fc5",
       "source": "The Globe and Mail",
       "title": "Mixed results on Alberta referendum questions highlight urban-rural divide",
@@ -4748,6 +4784,35 @@
       ]
     },
     {
+      "id": "5e73374ba3067666",
+      "source": "The Globe and Mail",
+      "title": "What you need to know ahead of B.C.’s provincial election, according to our experts",
+      "url": "https://www.theglobeandmail.com/canada/article-bc-provincial-election-answered",
+      "published": "2026-10-22T22:04:44.796000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1594,
+      "paragraph_count": 33,
+      "inline_image_count": 3,
+      "quality_score": 95,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "40ab3cba68ac4c31",
       "source": "The Globe and Mail",
       "title": "Officials provide update on fatal fire at CFB Wainwright",
@@ -4802,70 +4867,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "67cfa150a7574200",
-      "source": "The Globe and Mail",
-      "title": "Why do daycare costs vary so much between Vancouver, Toronto and Calgary?",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-daycare-costs-vancouver-toronto-calgary",
-      "published": "2026-10-22T17:40:56.288000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 843,
-      "paragraph_count": 23,
-      "inline_image_count": 1,
-      "quality_score": 97,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "846fb4e205c86c31",
-      "source": "The Globe and Mail",
-      "title": "Cleveland-Cliffs CEO’s Stelco stance is rife with contradictions",
-      "url": "https://www.theglobeandmail.com/business/commentary/article-cleveland-cliffs-stelco-layoffs-steelworkers-tariffs-marty-warren",
-      "published": "2026-10-22T16:50:46.133000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 722,
-      "paragraph_count": 15,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
