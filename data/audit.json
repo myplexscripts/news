@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T08:38:45.226481+00:00",
-  "generated_at_london": "2026-10-23T04:38:45.226481-04:00",
-  "news_generated_at": "2026-10-23T08:32:55.577984+00:00",
+  "generated_at": "2026-10-23T08:51:39.815772+00:00",
+  "generated_at_london": "2026-10-23T04:51:39.815772-04:00",
+  "news_generated_at": "2026-10-23T08:49:26.594777+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 776,
+    "archive_story_count": 778,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 114,
@@ -109,20 +109,21 @@
       "review": 0,
       "fail": 1,
       "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 566,
-      "average_quality": 96,
+      "usable_body_rate": 90,
+      "average_words": 565,
+      "average_quality": 89,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:fallback": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-23T08:00:24+00:00",
+      "latest_published": "2026-10-23T08:27:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T08:15:21.489215+00:00",
+      "last_scrape": "2026-10-23T08:46:22.883940+00:00",
       "last_error": ""
     },
     {
@@ -652,7 +653,7 @@
       "latest_published": "2026-10-23T08:00:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T08:30:32.259697+00:00",
+      "last_scrape": "2026-10-23T08:46:21.303899+00:00",
       "last_error": ""
     },
     {
@@ -693,11 +694,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1067,
-      "average_quality": 96,
+      "average_words": 1004,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -705,7 +707,7 @@
       "latest_published": "2026-10-23T02:40:37.675000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T03:37:55.218978+00:00",
+      "last_scrape": "2026-10-23T08:46:14.814371+00:00",
       "last_error": ""
     },
     {
@@ -1893,6 +1895,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "215b01686d08f4e5",
+      "source": "The Globe and Mail",
+      "title": "An ‘avalanche’ of foreign steel dumping in Canada? Stelco owner’s gripes don’t hold up to scrutiny",
+      "url": "https://www.theglobeandmail.com/business/article-an-avalanche-of-foreign-steel-dumping-in-canada-stelco-owners-gripes",
+      "published": "2026-10-22T22:58:56.727000+00:00",
+      "content_status": "full",
+      "word_count": 325,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1993,21 +2010,6 @@
       "published": "2026-10-22T22:37:49.774000+00:00",
       "content_status": "full",
       "word_count": 909,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "48e79b4f59d84a8e",
-      "source": "The Globe and Mail",
-      "title": "Fashion runways are featuring older models, including Toronto’s Shani Feldman",
-      "url": "https://www.theglobeandmail.com/life/article-fashion-runways-are-featuring-older-models-including-torontos-shani",
-      "published": "2026-10-22T19:23:23.391000+00:00",
-      "content_status": "full",
-      "word_count": 953,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2151,21 +2153,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "465cecf14f2f2245",
-      "source": "Toronto Star",
-      "title": "Atikamekw baby to be reburied in home community more than 70 years after death",
-      "url": "https://www.thestar.com/news/canada/quebec/atikamekw-baby-to-be-reburied-in-home-community-more-than-70-years-after-death/article_bba764fb-9fac-5d0a-b7f7-7a2c9af9dd8f.html",
-      "published": "2026-10-22T21:36:06+00:00",
-      "content_status": "full",
-      "word_count": 575,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "92b8b9d061ae26a4",
       "source": "Toronto Star",
       "title": "Ballots cast on election day in B.C. will be counted by hand, Elections BC says",
@@ -2190,6 +2177,21 @@
       "word_count": 1322,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "38b5ecb76e8313ea",
+      "source": "Toronto Star",
+      "title": "Carney not worried about closer Turkish ties amid nation's treatment of Lgbtq+ groups",
+      "url": "https://www.thestar.com/news/canada/carney-not-worried-about-closer-turkish-ties-amid-nation-s-treatment-of-lgbtq-groups/article_d01a42c9-956a-5dec-bef0-7eac83b44b3a.html",
+      "published": "2026-10-23T08:27:14+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -4610,6 +4612,35 @@
       ]
     },
     {
+      "id": "215b01686d08f4e5",
+      "source": "The Globe and Mail",
+      "title": "An ‘avalanche’ of foreign steel dumping in Canada? Stelco owner’s gripes don’t hold up to scrutiny",
+      "url": "https://www.theglobeandmail.com/business/article-an-avalanche-of-foreign-steel-dumping-in-canada-stelco-owners-gripes",
+      "published": "2026-10-22T22:58:56.727000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 325,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "04a661f6f25fca87",
       "source": "The Globe and Mail",
       "title": "Devastating fire at CFB Wainwright started on automatic grenade launcher range, official says",
@@ -4763,35 +4794,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "48e79b4f59d84a8e",
-      "source": "The Globe and Mail",
-      "title": "Fashion runways are featuring older models, including Toronto’s Shani Feldman",
-      "url": "https://www.theglobeandmail.com/life/article-fashion-runways-are-featuring-older-models-including-torontos-shani",
-      "published": "2026-10-22T19:23:23.391000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 953,
-      "paragraph_count": 22,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
         }
       ]
     },
@@ -5086,6 +5088,35 @@
       ]
     },
     {
+      "id": "38b5ecb76e8313ea",
+      "source": "Toronto Star",
+      "title": "Carney not worried about closer Turkish ties amid nation's treatment of Lgbtq+ groups",
+      "url": "https://www.thestar.com/news/canada/carney-not-worried-about-closer-turkish-ties-amid-nation-s-treatment-of-lgbtq-groups/article_d01a42c9-956a-5dec-bef0-7eac83b44b3a.html",
+      "published": "2026-10-23T08:27:14+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "92b8b9d061ae26a4",
       "source": "Toronto Star",
       "title": "Ballots cast on election day in B.C. will be counted by hand, Elections BC says",
@@ -5344,35 +5375,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "71 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "465cecf14f2f2245",
-      "source": "Toronto Star",
-      "title": "Atikamekw baby to be reburied in home community more than 70 years after death",
-      "url": "https://www.thestar.com/news/canada/quebec/atikamekw-baby-to-be-reburied-in-home-community-more-than-70-years-after-death/article_bba764fb-9fac-5d0a-b7f7-7a2c9af9dd8f.html",
-      "published": "2026-10-22T21:36:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 575,
-      "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
