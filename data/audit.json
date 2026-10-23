@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T16:05:55.003288+00:00",
-  "generated_at_london": "2026-10-23T12:05:55.003288-04:00",
+  "generated_at": "2026-10-23T16:10:29.641608+00:00",
+  "generated_at_london": "2026-10-23T12:10:29.641608-04:00",
   "news_generated_at": "2026-10-23T16:03:13.663525+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 3,
     "critical_issue_count": 3,
     "warning_issue_count": 8,
-    "info_issue_count": 99,
+    "info_issue_count": 100,
     "healthy_source_count": 14,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -640,16 +640,15 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 704,
-      "average_quality": 75,
+      "average_words": 972,
+      "average_quality": 96,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "trafilatura:fallback": 1,
-        "reader:semantic-rich-v1": 2
+        "reader:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 2,
+      "info_issues": 3,
       "latest_published": "2026-10-23T15:41:45+00:00",
       "found_this_run": 10,
       "tracked": 3,
@@ -1723,10 +1722,25 @@
       "title": "Road Closure - Saintsbury Line",
       "url": "https://www.middlesex.ca/news/road-closure-saintsbury-line-0",
       "published": "2026-10-23T15:41:45+00:00",
-      "content_status": "partial",
-      "word_count": 56,
-      "quality_score": 34,
-      "extraction_method": "trafilatura:fallback"
+      "content_status": "full",
+      "word_count": 859,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0338d35ffc58af5b",
+      "source": "Middlesex County",
+      "title": "Road Closure - Saintsbury Line",
+      "url": "https://www.middlesex.ca/news/road-closure-saintsbury-line-0",
+      "published": "2026-10-23T15:41:45+00:00",
+      "content_status": "full",
+      "word_count": 859,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3922,25 +3936,31 @@
       "url": "https://www.middlesex.ca/news/road-closure-saintsbury-line-0",
       "published": "2026-10-23T15:41:45+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 56,
-      "paragraph_count": 3,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 859,
+      "paragraph_count": 20,
       "inline_image_count": 0,
-      "quality_score": 34,
-      "quality_grade": "poor",
-      "extraction_method": "trafilatura:fallback",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "generic",
-      "local_score": 22,
+      "local_score": 0,
       "issues": [
         {
           "severity": "info",
           "code": "missing_hero_image",
           "message": "Story has no hero image.",
           "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
         }
       ]
     },
