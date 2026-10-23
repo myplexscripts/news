@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T20:04:21.167372+00:00",
-  "generated_at_london": "2026-10-23T16:04:21.167372-04:00",
-  "news_generated_at": "2026-10-23T19:56:20.021760+00:00",
+  "generated_at": "2026-10-23T20:13:50.197611+00:00",
+  "generated_at_london": "2026-10-23T16:13:50.197611-04:00",
+  "news_generated_at": "2026-10-23T20:11:54.544890+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 774,
+    "archive_story_count": 778,
     "source_count": 28,
     "audited_story_count": 121,
-    "pass_story_count": 116,
-    "review_story_count": 4,
+    "pass_story_count": 114,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 12,
     "info_issue_count": 106,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -98,6 +98,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-23T19:38:02.841600+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 396,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 10,
+      "latest_published": "2026-10-23T19:50:08+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-23T20:09:25.884900+00:00",
       "last_error": ""
     },
     {
@@ -411,9 +438,9 @@
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-10-23T19:48:08.283000+00:00",
-      "found_this_run": 6,
+      "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-10-23T19:53:10.095642+00:00",
+      "last_scrape": "2026-10-23T20:00:21.643809+00:00",
       "last_error": ""
     },
     {
@@ -506,19 +533,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 314,
-      "average_quality": 96,
+      "average_words": 319,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-23T19:38:23+00:00",
+      "latest_published": "2026-10-23T20:03:16+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T19:53:08.958538+00:00",
+      "last_scrape": "2026-10-23T20:09:16.799897+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +678,7 @@
       "latest_published": "2026-10-23T19:01:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T19:53:22.692470+00:00",
+      "last_scrape": "2026-10-23T20:09:23.211527+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +706,6 @@
       "found_this_run": 10,
       "tracked": 5,
       "last_scrape": "2026-10-21T14:16:50.366873+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 401,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-23T19:35:51+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-23T19:53:24.309274+00:00",
       "last_error": ""
     },
     {
@@ -868,6 +870,66 @@
       "word_count": 1812,
       "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "123915c375094ab8",
+      "source": "Toronto Star",
+      "title": "B.C. election at a glance: Hand count for most votes due to snap call's 'logistics'",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-election-at-a-glance-hand-count-for-most-votes-due-to-snap-call-s-logistics/article_cbcd2a62-a987-5acb-a815-a13ebf3f754e.html",
+      "published": "2026-10-23T19:46:50+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "123915c375094ab8",
+      "source": "Toronto Star",
+      "title": "B.C. election at a glance: Hand count for most votes due to snap call's 'logistics'",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-election-at-a-glance-hand-count-for-most-votes-due-to-snap-call-s-logistics/article_cbcd2a62-a987-5acb-a815-a13ebf3f754e.html",
+      "published": "2026-10-23T19:46:50+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "aa7ce476be81b7f3",
+      "source": "Toronto Star",
+      "title": "Israeli companies misled Canadians about West Bank real estate, complaint alleges",
+      "url": "https://www.thestar.com/news/ontario/israeli-companies-misled-canadians-about-west-bank-real-estate-complaint-alleges/article_3ea90d4f-9061-5998-9d3d-53504de53897.html",
+      "published": "2026-10-23T19:50:08+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "aa7ce476be81b7f3",
+      "source": "Toronto Star",
+      "title": "Israeli companies misled Canadians about West Bank real estate, complaint alleges",
+      "url": "https://www.thestar.com/news/ontario/israeli-companies-misled-canadians-about-west-bank-real-estate-complaint-alleges/article_3ea90d4f-9061-5998-9d3d-53504de53897.html",
+      "published": "2026-10-23T19:50:08+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1474,6 +1536,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "0f51d78c4c817d68",
+      "source": "Global News Canada",
+      "title": "Canada plunges into early flu season as vaccines begin to roll out",
+      "url": "https://globalnews.ca/news/12118832/canada-early-flu-season",
+      "published": "2026-10-23T19:59:16+00:00",
+      "content_status": "full",
+      "word_count": 723,
+      "quality_score": 92,
+      "extraction_method": "dom:global:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "939d314f569e6daa",
       "source": "Global News Canada",
       "title": "Canada, EU ‘closing in’ on digital trade deal ahead of summit: minister",
@@ -1489,15 +1566,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "2757d8542efaec32",
+      "story_id": "a4a3ceb584a383ee",
       "source": "Global News Canada",
-      "title": "Canadian banking fees hard for consumers to see or anticipate, report says",
-      "url": "https://globalnews.ca/news/12118394/banking-fees-consumers",
-      "published": "2026-10-23T16:32:38+00:00",
+      "title": "Elks, Riders turn to backups for season finale",
+      "url": "https://globalnews.ca/news/12119054/elks-riders-turn-to-backups-for-season-finale",
+      "published": "2026-10-23T20:03:16+00:00",
       "content_status": "full",
-      "word_count": 715,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 681,
+      "quality_score": 85,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -1571,21 +1648,6 @@
       "published": "2026-10-23T19:38:23+00:00",
       "content_status": "full",
       "word_count": 632,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "513200fec1ca465c",
-      "source": "Global News Canada",
-      "title": "Toronto election: Chow holding decisive lead over Bradford, new poll indicates",
-      "url": "https://globalnews.ca/news/12118421/olivia-chow-brad-bradford-pollara-poll",
-      "published": "2026-10-23T15:02:52+00:00",
-      "content_status": "full",
-      "word_count": 642,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2239,6 +2301,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "123915c375094ab8",
+      "source": "Toronto Star",
+      "title": "B.C. election at a glance: Hand count for most votes due to snap call's 'logistics'",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-election-at-a-glance-hand-count-for-most-votes-due-to-snap-call-s-logistics/article_cbcd2a62-a987-5acb-a815-a13ebf3f754e.html",
+      "published": "2026-10-23T19:46:50+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "95b5196d4f7ea1b8",
       "source": "Toronto Star",
       "title": "Canada, EU working on digital trade agreement ahead of summit next week",
@@ -2254,30 +2331,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "81b8e0aa4e65ced1",
+      "story_id": "aa7ce476be81b7f3",
       "source": "Toronto Star",
-      "title": "High winds from Subtropical Storm Josephine nix N.S.-P.E.I. ferry crossings",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/high-winds-from-subtropical-storm-josephine-nix-n-s-p-e-i-ferry-crossings/article_35fca3e2-9f7b-50a1-af73-94012668e0ef.html",
-      "published": "2026-10-23T13:24:15+00:00",
+      "title": "Israeli companies misled Canadians about West Bank real estate, complaint alleges",
+      "url": "https://www.thestar.com/news/ontario/israeli-companies-misled-canadians-about-west-bank-real-estate-complaint-alleges/article_3ea90d4f-9061-5998-9d3d-53504de53897.html",
+      "published": "2026-10-23T19:50:08+00:00",
       "content_status": "full",
-      "word_count": 222,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5974d47debf38292",
-      "source": "Toronto Star",
-      "title": "Police investigating double murder in Quebec's Bas-St-Laurent region",
-      "url": "https://www.thestar.com/news/canada/quebec/police-investigating-double-murder-in-quebec-s-bas-st-laurent-region/article_ef35b56f-c94a-5d11-98ce-d1b887ad0c50.html",
-      "published": "2026-10-23T15:15:27+00:00",
-      "content_status": "full",
-      "word_count": 272,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4114,6 +4176,64 @@
       "issues": []
     },
     {
+      "id": "a4a3ceb584a383ee",
+      "source": "Global News Canada",
+      "title": "Elks, Riders turn to backups for season finale",
+      "url": "https://globalnews.ca/news/12119054/elks-riders-turn-to-backups-for-season-finale",
+      "published": "2026-10-23T20:03:16+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 681,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0f51d78c4c817d68",
+      "source": "Global News Canada",
+      "title": "Canada plunges into early flu season as vaccines begin to roll out",
+      "url": "https://globalnews.ca/news/12118832/canada-early-flu-season",
+      "published": "2026-10-23T19:59:16+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 723,
+      "paragraph_count": 22,
+      "inline_image_count": 1,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ae8ab6d93bf863d6",
       "source": "Global News Canada",
       "title": "Rogers plans to charge extra for bill payments with a credit card",
@@ -4330,64 +4450,6 @@
       "content_status": "full",
       "word_count": 144,
       "paragraph_count": 5,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2757d8542efaec32",
-      "source": "Global News Canada",
-      "title": "Canadian banking fees hard for consumers to see or anticipate, report says",
-      "url": "https://globalnews.ca/news/12118394/banking-fees-consumers",
-      "published": "2026-10-23T16:32:38+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 715,
-      "paragraph_count": 22,
-      "inline_image_count": 5,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "513200fec1ca465c",
-      "source": "Global News Canada",
-      "title": "Toronto election: Chow holding decisive lead over Bradford, new poll indicates",
-      "url": "https://globalnews.ca/news/12118421/olivia-chow-brad-bradford-pollara-poll",
-      "published": "2026-10-23T15:02:52+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 642,
-      "paragraph_count": 14,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
@@ -5328,6 +5390,88 @@
       ]
     },
     {
+      "id": "aa7ce476be81b7f3",
+      "source": "Toronto Star",
+      "title": "Israeli companies misled Canadians about West Bank real estate, complaint alleges",
+      "url": "https://www.thestar.com/news/ontario/israeli-companies-misled-canadians-about-west-bank-real-estate-complaint-alleges/article_3ea90d4f-9061-5998-9d3d-53504de53897.html",
+      "published": "2026-10-23T19:50:08+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 229,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "123915c375094ab8",
+      "source": "Toronto Star",
+      "title": "B.C. election at a glance: Hand count for most votes due to snap call's 'logistics'",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-election-at-a-glance-hand-count-for-most-votes-due-to-snap-call-s-logistics/article_cbcd2a62-a987-5acb-a815-a13ebf3f754e.html",
+      "published": "2026-10-23T19:46:50+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 212,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3e4f3086843e21bd",
       "source": "Toronto Star",
       "title": "What we know and don't know about the deadly fire at CFB Wainwright",
@@ -5544,64 +5688,6 @@
       "content_status": "full",
       "word_count": 285,
       "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5974d47debf38292",
-      "source": "Toronto Star",
-      "title": "Police investigating double murder in Quebec's Bas-St-Laurent region",
-      "url": "https://www.thestar.com/news/canada/quebec/police-investigating-double-murder-in-quebec-s-bas-st-laurent-region/article_ef35b56f-c94a-5d11-98ce-d1b887ad0c50.html",
-      "published": "2026-10-23T15:15:27+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 272,
-      "paragraph_count": 21,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "81b8e0aa4e65ced1",
-      "source": "Toronto Star",
-      "title": "High winds from Subtropical Storm Josephine nix N.S.-P.E.I. ferry crossings",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/high-winds-from-subtropical-storm-josephine-nix-n-s-p-e-i-ferry-crossings/article_35fca3e2-9f7b-50a1-af73-94012668e0ef.html",
-      "published": "2026-10-23T13:24:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 222,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
