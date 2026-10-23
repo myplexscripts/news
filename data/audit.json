@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T14:06:37.120231+00:00",
-  "generated_at_london": "2026-10-23T10:06:37.120231-04:00",
-  "news_generated_at": "2026-10-23T13:58:27.822651+00:00",
+  "generated_at": "2026-10-23T14:16:26.960421+00:00",
+  "generated_at_london": "2026-10-23T10:16:26.960421-04:00",
+  "news_generated_at": "2026-10-23T14:14:08.254486+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 784,
+    "archive_story_count": 786,
     "source_count": 28,
     "audited_story_count": 119,
-    "pass_story_count": 114,
-    "review_story_count": 3,
+    "pass_story_count": 113,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 6,
+    "warning_issue_count": 8,
     "info_issue_count": 96,
     "healthy_source_count": 14,
     "review_source_count": 4,
@@ -24,7 +24,7 @@
     {
       "source": "104.7 Heart FM",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "waiting",
       "profile": "heartfm",
       "sample_size": 2,
       "pass": 0,
@@ -43,8 +43,8 @@
       "info_issues": 2,
       "latest_published": "2026-10-23T13:46:04+00:00",
       "found_this_run": 18,
-      "tracked": 1,
-      "last_scrape": "2026-10-23T13:53:35.249040+00:00",
+      "tracked": 0,
+      "last_scrape": "",
       "last_error": ""
     },
     {
@@ -79,24 +79,25 @@
       "collector_status": "healthy",
       "profile": "globe",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 903,
-      "average_quality": 96,
+      "average_words": 807,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 1,
+      "warning_issues": 3,
       "info_issues": 11,
-      "latest_published": "2026-10-23T13:00:00+00:00",
+      "latest_published": "2026-10-23T14:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T13:39:45.221330+00:00",
+      "last_scrape": "2026-10-23T14:10:54.634859+00:00",
       "last_error": ""
     },
     {
@@ -508,19 +509,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 539,
-      "average_quality": 96,
+      "average_words": 519,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-23T13:54:13+00:00",
+      "latest_published": "2026-10-23T14:05:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T13:55:20.239337+00:00",
+      "last_scrape": "2026-10-23T14:10:52.786699+00:00",
       "last_error": ""
     },
     {
@@ -679,7 +681,7 @@
       "latest_published": "2026-10-23T11:00:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T13:55:26.524142+00:00",
+      "last_scrape": "2026-10-23T14:11:00.031551+00:00",
       "last_error": ""
     },
     {
@@ -841,6 +843,36 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "c02ddefe3a992697",
+      "source": "The Globe and Mail",
+      "title": "At the annual Witches Walk in this Ontario village, women are free to be whoever they want",
+      "url": "https://www.theglobeandmail.com/life/article-witches-walk-coldwater-ontario-village-women-free-whoever-they-want",
+      "published": "2026-10-23T14:00:00+00:00",
+      "content_status": "full",
+      "word_count": 339,
+      "quality_score": 78,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "7 consecutive images",
+      "story_id": "c02ddefe3a992697",
+      "source": "The Globe and Mail",
+      "title": "At the annual Witches Walk in this Ontario village, women are free to be whoever they want",
+      "url": "https://www.theglobeandmail.com/life/article-witches-walk-coldwater-ontario-village-women-free-whoever-they-want",
+      "published": "2026-10-23T14:00:00+00:00",
+      "content_status": "full",
+      "word_count": 339,
+      "quality_score": 78,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "warning",
@@ -1432,15 +1464,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a99ed836fc980a6c",
+      "story_id": "0c2aa118ff29d8c3",
       "source": "Global News Canada",
-      "title": "Ottawa tells its diplomats not to meet with U.S. midterm candidates",
-      "url": "https://globalnews.ca/news/12114128/canada-diplomats-not-to-meet-with-midterm-candidates",
-      "published": "2026-10-22T21:18:34+00:00",
+      "title": "More Ontario police forces pause Crime Stoppers use after cyber breach",
+      "url": "https://globalnews.ca/news/12118307/ontario-crime-stoppers-cyber-breach",
+      "published": "2026-10-23T14:05:56+00:00",
       "content_status": "full",
-      "word_count": 778,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 580,
+      "quality_score": 89,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1942,6 +1974,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "c02ddefe3a992697",
+      "source": "The Globe and Mail",
+      "title": "At the annual Witches Walk in this Ontario village, women are free to be whoever they want",
+      "url": "https://www.theglobeandmail.com/life/article-witches-walk-coldwater-ontario-village-women-free-whoever-they-want",
+      "published": "2026-10-23T14:00:00+00:00",
+      "content_status": "full",
+      "word_count": 339,
+      "quality_score": 78,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "b29192a5e766e175",
       "source": "The Globe and Mail",
       "title": "Buyer gets Surrey condo way below seller’s purchase price",
@@ -2055,21 +2102,6 @@
       "content_status": "partial",
       "word_count": 764,
       "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "864c882a5fbf4ca8",
-      "source": "The Globe and Mail",
-      "title": "You called me a bad feminist. I was actually Sherlock Holmes",
-      "url": "https://www.theglobeandmail.com/opinion/article-margaret-atwood-bad-feminist-sherlock-holmes-steven-galloway",
-      "published": "2026-10-23T11:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1299,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -3863,6 +3895,35 @@
       "issues": []
     },
     {
+      "id": "0c2aa118ff29d8c3",
+      "source": "Global News Canada",
+      "title": "More Ontario police forces pause Crime Stoppers use after cyber breach",
+      "url": "https://globalnews.ca/news/12118307/ontario-crime-stoppers-cyber-breach",
+      "published": "2026-10-23T14:05:56+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 580,
+      "paragraph_count": 23,
+      "inline_image_count": 1,
+      "quality_score": 89,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8fcd16d6d11178c1",
       "source": "Global News Canada",
       "title": "Precedent-setting human trafficking sentence handed down in Saskatchewan",
@@ -4109,35 +4170,6 @@
       "word_count": 763,
       "paragraph_count": 22,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a99ed836fc980a6c",
-      "source": "Global News Canada",
-      "title": "Ottawa tells its diplomats not to meet with U.S. midterm candidates",
-      "url": "https://globalnews.ca/news/12114128/canada-diplomats-not-to-meet-with-midterm-candidates",
-      "published": "2026-10-22T21:18:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 778,
-      "paragraph_count": 27,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4455,6 +4487,47 @@
       ]
     },
     {
+      "id": "c02ddefe3a992697",
+      "source": "The Globe and Mail",
+      "title": "At the annual Witches Walk in this Ontario village, women are free to be whoever they want",
+      "url": "https://www.theglobeandmail.com/life/article-witches-walk-coldwater-ontario-village-women-free-whoever-they-want",
+      "published": "2026-10-23T14:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 339,
+      "paragraph_count": 7,
+      "inline_image_count": 10,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "7 consecutive images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b98dc408fbcbf11d",
       "source": "The Globe and Mail",
       "title": "Artist Delcy Morelos’s Ombligo (navel) engages all the senses",
@@ -4714,35 +4787,6 @@
       "paragraph_count": 24,
       "inline_image_count": 4,
       "quality_score": 97,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "864c882a5fbf4ca8",
-      "source": "The Globe and Mail",
-      "title": "You called me a bad feminist. I was actually Sherlock Holmes",
-      "url": "https://www.theglobeandmail.com/opinion/article-margaret-atwood-bad-feminist-sherlock-holmes-steven-galloway",
-      "published": "2026-10-23T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1299,
-      "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
