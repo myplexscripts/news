@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T23:41:14.841053+00:00",
-  "generated_at_london": "2026-10-23T19:41:14.841053-04:00",
-  "news_generated_at": "2026-10-23T23:34:59.569110+00:00",
+  "generated_at": "2026-10-23T23:52:59.819253+00:00",
+  "generated_at_london": "2026-10-23T19:52:59.819253-04:00",
+  "news_generated_at": "2026-10-23T23:50:40.564699+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 781,
+    "archive_story_count": 783,
     "source_count": 28,
     "audited_story_count": 120,
-    "pass_story_count": 115,
-    "review_story_count": 4,
+    "pass_story_count": 113,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 12,
     "info_issue_count": 108,
     "healthy_source_count": 12,
     "review_source_count": 5,
@@ -70,7 +70,7 @@
       "latest_published": "2026-10-23T23:16:13.612000+00:00",
       "found_this_run": 7,
       "tracked": 30,
-      "last_scrape": "2026-10-23T23:31:53.839888+00:00",
+      "last_scrape": "2026-10-23T23:38:23.895708+00:00",
       "last_error": ""
     },
     {
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 448,
-      "average_quality": 96,
+      "average_words": 458,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-10-23T22:50:00+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-23T23:14:34+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T20:24:57.582098+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-23T23:47:44.733055+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -676,7 +677,7 @@
       "latest_published": "2026-10-23T22:16:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T23:32:01.830292+00:00",
+      "last_scrape": "2026-10-23T23:47:40.584158+00:00",
       "last_error": ""
     },
     {
@@ -868,6 +869,66 @@
       "word_count": 379,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c7f60758a4694fae",
+      "source": "Toronto Star",
+      "title": "BC Spca urges election candidates to commit to pet-friendly housing laws",
+      "url": "https://www.thestar.com/news/canada/bc-spca-urges-election-candidates-to-commit-to-pet-friendly-housing-laws/article_92bc2879-e483-5d3b-8e65-ddc98f3ad969.html",
+      "published": "2026-10-23T23:14:34+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c7f60758a4694fae",
+      "source": "Toronto Star",
+      "title": "BC Spca urges election candidates to commit to pet-friendly housing laws",
+      "url": "https://www.thestar.com/news/canada/bc-spca-urges-election-candidates-to-commit-to-pet-friendly-housing-laws/article_92bc2879-e483-5d3b-8e65-ddc98f3ad969.html",
+      "published": "2026-10-23T23:14:34+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "257cae1835dfe814",
+      "source": "Toronto Star",
+      "title": "Trump, seeking to help Maine Sen. Susan Collins, exempts some Canadian imports from his 50% tariffs",
+      "url": "https://www.thestar.com/news/world/trump-seeking-to-help-maine-sen-susan-collins-exempts-some-canadian-imports-from-his-50-tariffs/article_41cc55b0-7b1c-5857-8429-52d544cf1f99.html",
+      "published": "2026-10-23T20:29:00+00:00",
+      "content_status": "full",
+      "word_count": 247,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "257cae1835dfe814",
+      "source": "Toronto Star",
+      "title": "Trump, seeking to help Maine Sen. Susan Collins, exempts some Canadian imports from his 50% tariffs",
+      "url": "https://www.thestar.com/news/world/trump-seeking-to-help-maine-sen-susan-collins-exempts-some-canadian-imports-from-his-50-tariffs/article_41cc55b0-7b1c-5857-8429-52d544cf1f99.html",
+      "published": "2026-10-23T20:29:00+00:00",
+      "content_status": "full",
+      "word_count": 247,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2284,6 +2345,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "c7f60758a4694fae",
+      "source": "Toronto Star",
+      "title": "BC Spca urges election candidates to commit to pet-friendly housing laws",
+      "url": "https://www.thestar.com/news/canada/bc-spca-urges-election-candidates-to-commit-to-pet-friendly-housing-laws/article_92bc2879-e483-5d3b-8e65-ddc98f3ad969.html",
+      "published": "2026-10-23T23:14:34+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "d9eb557283c73d28",
       "source": "Toronto Star",
       "title": "Beth Lew-Williams wins Cundill History Prize for book on anti-Chinese discrimination",
@@ -2291,21 +2367,6 @@
       "published": "2026-10-23T22:50:00+00:00",
       "content_status": "full",
       "word_count": 249,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "95b5196d4f7ea1b8",
-      "source": "Toronto Star",
-      "title": "Canada, EU working on digital trade agreement ahead of summit next week",
-      "url": "https://www.thestar.com/news/canada/canada-eu-working-on-digital-trade-agreement-ahead-of-summit-next-week/article_301bc448-a5ae-58bc-91a6-858076c21b2a.html",
-      "published": "2026-10-23T17:08:31+00:00",
-      "content_status": "full",
-      "word_count": 256,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2329,21 +2390,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "527b39e276f40fcf",
-      "source": "Toronto Star",
-      "title": "Quebec premier announces $28 million for warming centres and emergency shelters",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-announces-28-million-for-warming-centres-and-emergency-shelters/article_87d810e7-b6f4-517b-b361-8a3b27e03555.html",
-      "published": "2026-10-23T17:50:07+00:00",
-      "content_status": "full",
-      "word_count": 133,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "0be90df7cf086be9",
       "source": "Toronto Star",
       "title": "Suburban Montreal mayor pleads guilty, faces $30,000 fine after anti-Palestine posts",
@@ -2353,6 +2399,21 @@
       "word_count": 228,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "257cae1835dfe814",
+      "source": "Toronto Star",
+      "title": "Trump, seeking to help Maine Sen. Susan Collins, exempts some Canadian imports from his 50% tariffs",
+      "url": "https://www.thestar.com/news/world/trump-seeking-to-help-maine-sen-susan-collins-exempts-some-canadian-imports-from-his-50-tariffs/article_41cc55b0-7b1c-5857-8429-52d544cf1f99.html",
+      "published": "2026-10-23T20:29:00+00:00",
+      "content_status": "full",
+      "word_count": 247,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5347,6 +5408,47 @@
       ]
     },
     {
+      "id": "c7f60758a4694fae",
+      "source": "Toronto Star",
+      "title": "BC Spca urges election candidates to commit to pet-friendly housing laws",
+      "url": "https://www.thestar.com/news/canada/bc-spca-urges-election-candidates-to-commit-to-pet-friendly-housing-laws/article_92bc2879-e483-5d3b-8e65-ddc98f3ad969.html",
+      "published": "2026-10-23T23:14:34+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 234,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d9eb557283c73d28",
       "source": "Toronto Star",
       "title": "Beth Lew-Williams wins Cundill History Prize for book on anti-Chinese discrimination",
@@ -5396,6 +5498,47 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "257cae1835dfe814",
+      "source": "Toronto Star",
+      "title": "Trump, seeking to help Maine Sen. Susan Collins, exempts some Canadian imports from his 50% tariffs",
+      "url": "https://www.thestar.com/news/world/trump-seeking-to-help-maine-sen-susan-collins-exempts-some-canadian-imports-from-his-50-tariffs/article_41cc55b0-7b1c-5857-8429-52d544cf1f99.html",
+      "published": "2026-10-23T20:29:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 247,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5563,64 +5706,6 @@
       "content_status": "full",
       "word_count": 138,
       "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "527b39e276f40fcf",
-      "source": "Toronto Star",
-      "title": "Quebec premier announces $28 million for warming centres and emergency shelters",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-announces-28-million-for-warming-centres-and-emergency-shelters/article_87d810e7-b6f4-517b-b361-8a3b27e03555.html",
-      "published": "2026-10-23T17:50:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 133,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "95b5196d4f7ea1b8",
-      "source": "Toronto Star",
-      "title": "Canada, EU working on digital trade agreement ahead of summit next week",
-      "url": "https://www.thestar.com/news/canada/canada-eu-working-on-digital-trade-agreement-ahead-of-summit-next-week/article_301bc448-a5ae-58bc-91a6-858076c21b2a.html",
-      "published": "2026-10-23T17:08:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 256,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
