@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T16:21:15.281706+00:00",
-  "generated_at_london": "2026-10-24T12:21:15.281706-04:00",
-  "news_generated_at": "2026-10-24T16:13:44.076905+00:00",
+  "generated_at": "2026-10-24T16:31:07.536158+00:00",
+  "generated_at_london": "2026-10-24T12:31:07.536158-04:00",
+  "news_generated_at": "2026-10-24T16:28:33.574448+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 778,
@@ -14,7 +14,7 @@
     "fail_story_count": 3,
     "critical_issue_count": 3,
     "warning_issue_count": 10,
-    "info_issue_count": 104,
+    "info_issue_count": 102,
     "healthy_source_count": 11,
     "review_source_count": 6,
     "error_source_count": 0,
@@ -276,7 +276,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -295,7 +295,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV"
     },
     {
       "source": "Government of Canada News",
@@ -478,20 +478,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 70,
-      "average_words": 208,
-      "average_quality": 62,
+      "average_words": 186,
+      "average_quality": 60,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 3,
-        "embedded-json:ctv": 7
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-24T15:45:48.598000+00:00",
+      "info_issues": 7,
+      "latest_published": "2026-10-24T16:17:20.073000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T15:52:40.879652+00:00",
+      "last_scrape": "2026-10-24T16:24:06.005163+00:00",
       "last_error": ""
     },
     {
@@ -677,7 +677,7 @@
       "latest_published": "2026-10-24T15:00:27+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T16:10:50.054407+00:00",
+      "last_scrape": "2026-10-24T16:26:01.828112+00:00",
       "last_error": ""
     },
     {
@@ -1274,36 +1274,6 @@
       "word_count": 16,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "616103f1f22f4fcc",
-      "source": "CTV News London",
-      "title": "“I can’t continue school”: Private college students May have to wait until new year for Osap freeze to end",
-      "url": "https://www.ctvnews.ca/london/article/i-cant-continue-school-private-college-students-may-have-to-wait-until-new-year-for-osap-freeze-to-end",
-      "published": "2026-10-23T18:00:01.630000+00:00",
-      "content_status": "full",
-      "word_count": 411,
-      "quality_score": 78,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "616103f1f22f4fcc",
-      "source": "CTV News London",
-      "title": "“I can’t continue school”: Private college students May have to wait until new year for Osap freeze to end",
-      "url": "https://www.ctvnews.ca/london/article/i-cant-continue-school-private-college-students-may-have-to-wait-until-new-year-for-osap-freeze-to-end",
-      "published": "2026-10-23T18:00:01.630000+00:00",
-      "content_status": "full",
-      "word_count": 411,
-      "quality_score": 78,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2493,6 +2463,28 @@
   ],
   "stories": [
     {
+      "id": "989b05fe5cb5aaa3",
+      "source": "CTV News London",
+      "title": "London Knights bounce back with win over Sarnia",
+      "url": "https://www.ctvnews.ca/london/article/london-knights-bounce-back-with-win-over-sarnia",
+      "published": "2026-10-24T16:17:20.073000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 192,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 50,
+      "issues": []
+    },
+    {
       "id": "5fb7eb06a5e91718",
       "source": "CTV News London",
       "title": "Sunny skies and mild temperatures in store for London Saturday",
@@ -2719,41 +2711,6 @@
       "inline_image_count": 0,
       "quality_score": 57,
       "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "616103f1f22f4fcc",
-      "source": "CTV News London",
-      "title": "“I can’t continue school”: Private college students May have to wait until new year for Osap freeze to end",
-      "url": "https://www.ctvnews.ca/london/article/i-cant-continue-school-private-college-students-may-have-to-wait-until-new-year-for-osap-freeze-to-end",
-      "published": "2026-10-23T18:00:01.630000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 411,
-      "paragraph_count": 8,
-      "inline_image_count": 1,
-      "quality_score": 78,
-      "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
