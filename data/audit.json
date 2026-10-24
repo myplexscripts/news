@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T15:47:51.536569+00:00",
-  "generated_at_london": "2026-10-24T11:47:51.536569-04:00",
-  "news_generated_at": "2026-10-24T15:41:25.959105+00:00",
+  "generated_at": "2026-10-24T15:59:00.384379+00:00",
+  "generated_at_london": "2026-10-24T11:59:00.384379-04:00",
+  "news_generated_at": "2026-10-24T15:57:02.990708+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 777,
@@ -14,7 +14,7 @@
     "fail_story_count": 4,
     "critical_issue_count": 4,
     "warning_issue_count": 10,
-    "info_issue_count": 104,
+    "info_issue_count": 103,
     "healthy_source_count": 11,
     "review_source_count": 6,
     "error_source_count": 0,
@@ -154,7 +154,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -172,10 +172,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-24T10:00:02+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-24T11:13:19.086822+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -478,8 +478,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 235,
-      "average_quality": 66,
+      "average_words": 215,
+      "average_quality": 63,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 8,
@@ -487,11 +487,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-24T14:41:53.578000+00:00",
+      "info_issues": 9,
+      "latest_published": "2026-10-24T15:45:48.598000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T14:57:22.615526+00:00",
+      "last_scrape": "2026-10-24T15:52:40.879652+00:00",
       "last_error": ""
     },
     {
@@ -677,7 +677,7 @@
       "latest_published": "2026-10-24T15:00:27+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T15:38:51.027996+00:00",
+      "last_scrape": "2026-10-24T15:54:40.756735+00:00",
       "last_error": ""
     },
     {
@@ -1289,21 +1289,6 @@
       "word_count": 16,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 5/100",
-      "story_id": "ec1cbbb97cf549f1",
-      "source": "CTV News London",
-      "title": "Warm, sunny weekend ahead for southwestern Ontario",
-      "url": "https://www.ctvnews.ca/london/article/warm-sunny-weekend-ahead-for-southwestern-ontario",
-      "published": "2026-10-23T17:54:14.603000+00:00",
-      "content_status": "full",
-      "word_count": 294,
-      "quality_score": 76,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2508,6 +2493,28 @@
   ],
   "stories": [
     {
+      "id": "5fb7eb06a5e91718",
+      "source": "CTV News London",
+      "title": "Sunny skies and mild temperatures in store for London Saturday",
+      "url": "https://www.ctvnews.ca/london/article/sunny-skies-and-mild-temperatures-in-store-for-london-saturday",
+      "published": "2026-10-24T15:45:48.598000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "partial",
+      "word_count": 89,
+      "paragraph_count": 4,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 35,
+      "issues": []
+    },
+    {
       "id": "650294b83d54a146",
       "source": "CTV News London",
       "title": "Highway 401 closing overnight for interchange work near London",
@@ -2762,35 +2769,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ec1cbbb97cf549f1",
-      "source": "CTV News London",
-      "title": "Warm, sunny weekend ahead for southwestern Ontario",
-      "url": "https://www.ctvnews.ca/london/article/warm-sunny-weekend-ahead-for-southwestern-ontario",
-      "published": "2026-10-23T17:54:14.603000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 294,
-      "paragraph_count": 11,
-      "inline_image_count": 1,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 5,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 5/100"
         }
       ]
     },
