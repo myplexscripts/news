@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T10:04:59.981694+00:00",
-  "generated_at_london": "2026-10-24T06:04:59.981694-04:00",
-  "news_generated_at": "2026-10-24T09:58:10.960455+00:00",
+  "generated_at": "2026-10-24T10:16:08.743810+00:00",
+  "generated_at_london": "2026-10-24T06:16:08.743810-04:00",
+  "news_generated_at": "2026-10-24T10:13:50.848881+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 772,
+    "archive_story_count": 775,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 108,
@@ -14,7 +14,7 @@
     "fail_story_count": 7,
     "critical_issue_count": 7,
     "warning_issue_count": 8,
-    "info_issue_count": 108,
+    "info_issue_count": 107,
     "healthy_source_count": 11,
     "review_source_count": 5,
     "error_source_count": 1,
@@ -24,7 +24,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 5,
@@ -42,10 +42,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-24T08:00:04+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-24T08:21:18.085002+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "104.7 Heart FM",
@@ -84,7 +84,7 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 411,
+      "average_words": 416,
       "average_quality": 78,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -92,11 +92,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 15,
-      "latest_published": "2026-10-24T09:00:00+00:00",
-      "found_this_run": 7,
+      "info_issues": 14,
+      "latest_published": "2026-10-24T10:00:00+00:00",
+      "found_this_run": 8,
       "tracked": 30,
-      "last_scrape": "2026-10-24T09:13:31.737976+00:00",
+      "last_scrape": "2026-10-24T10:10:49.017010+00:00",
       "last_error": ""
     },
     {
@@ -224,7 +224,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -664,19 +664,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1067,
-      "average_quality": 90,
+      "average_words": 1053,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:postmedia:article:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-23T22:16:03+00:00",
+      "latest_published": "2026-10-24T10:00:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T09:55:18.379011+00:00",
+      "last_scrape": "2026-10-24T10:10:57.823636+00:00",
       "last_error": ""
     },
     {
@@ -1069,36 +1070,6 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
-      "story_id": "1007d0a9277d4c0a",
-      "source": "CTV News Canada",
-      "title": "Here’s why fish are returning to this former toxic waste site",
-      "url": "https://www.ctvnews.ca/canada/article/heres-why-fish-are-returning-to-this-former-toxic-waste-site",
-      "published": "2026-10-23T11:06:09.593000+00:00",
-      "content_status": "full",
-      "word_count": 513,
-      "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1007d0a9277d4c0a",
-      "source": "CTV News Canada",
-      "title": "Here’s why fish are returning to this former toxic waste site",
-      "url": "https://www.ctvnews.ca/canada/article/heres-why-fish-are-returning-to-this-former-toxic-waste-site",
-      "published": "2026-10-23T11:06:09.593000+00:00",
-      "content_status": "full",
-      "word_count": 513,
-      "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
       "story_id": "b477580ffa644f43",
       "source": "CTV News Canada",
       "title": "Son says Canadian died in U.S. after declining hospital care due to deportation fear",
@@ -1167,6 +1138,21 @@
       "content_status": "full",
       "word_count": 456,
       "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "eeb5687a35e34fe9",
+      "source": "CTV News Canada",
+      "title": "‘Always try to buy Canadian’: Are Canadians planning to ‘buy Canadian’ ahead of Halloween?",
+      "url": "https://www.ctvnews.ca/canada/article/always-try-to-buy-canadian-are-canadians-planning-to-buy-canadian-ahead-of-halloween",
+      "published": "2026-10-24T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 559,
+      "quality_score": 85,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1939,6 +1925,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "5a5ba5414db51c8e",
+      "source": "National Post",
+      "title": "Canada spent second most out of 32 countries on health care with little to show for it': Fraser report",
+      "url": "https://nationalpost.com/news/canada/canada-spent-second-most-out-of-32-countries-on-health-care-with-little-to-show-for-it-fraser-report",
+      "published": "2026-10-24T10:00:53+00:00",
+      "content_status": "full",
+      "word_count": 776,
+      "quality_score": 96,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "bdff35d23bbc4f35",
       "source": "National Post",
       "title": "Canada will be 'a living hell' if it becomes associate member of EU, claims MEP",
@@ -1969,30 +1970,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d05a2aaa56f7190c",
+      "story_id": "bfbf99104048ceb0",
       "source": "National Post",
-      "title": "Joly, Ford, Housefather among Canadians named in U.S. embassy 'fact sheet' alleging election interference",
-      "url": "https://nationalpost.com/news/politics/u-s-embassy-fact-sheet-accuses-canada-of-election-interference",
-      "published": "2026-10-22T19:57:44+00:00",
+      "title": "Don't look now, but Canada is officially becoming a partisan issue in the U.S.",
+      "url": "https://nationalpost.com/news/dont-look-now-but-canada-is-officially-becoming-a-partisan-issue-in-the-u-s",
+      "published": "2026-10-24T10:00:17+00:00",
       "content_status": "full",
-      "word_count": 1152,
+      "word_count": 1019,
       "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b556b8967cfeefb8",
-      "source": "National Post",
-      "title": "Lcbo picks 'young, innovative' veteran exec as new CEO",
-      "url": "https://nationalpost.com/news/lcbo-aaron-campbell",
-      "published": "2026-10-22T20:47:35+00:00",
-      "content_status": "full",
-      "word_count": 783,
-      "quality_score": 88,
-      "extraction_method": "dom:semantic-rich-v1"
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4485,6 +4471,35 @@
       ]
     },
     {
+      "id": "eeb5687a35e34fe9",
+      "source": "CTV News Canada",
+      "title": "‘Always try to buy Canadian’: Are Canadians planning to ‘buy Canadian’ ahead of Halloween?",
+      "url": "https://www.ctvnews.ca/canada/article/always-try-to-buy-canadian-are-canadians-planning-to-buy-canadian-ahead-of-halloween",
+      "published": "2026-10-24T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 559,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e81fef0fbddf2cfc",
       "source": "CTV News Canada",
       "title": "Why thousands of local politicians are winning without a single vote",
@@ -4757,41 +4772,6 @@
       "inline_image_count": 0,
       "quality_score": 83,
       "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1007d0a9277d4c0a",
-      "source": "CTV News Canada",
-      "title": "Here’s why fish are returning to this former toxic waste site",
-      "url": "https://www.ctvnews.ca/canada/article/heres-why-fish-are-returning-to-this-former-toxic-waste-site",
-      "published": "2026-10-23T11:06:09.593000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 513,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 85,
-      "quality_grade": "excellent",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
@@ -5131,6 +5111,64 @@
       ]
     },
     {
+      "id": "5a5ba5414db51c8e",
+      "source": "National Post",
+      "title": "Canada spent second most out of 32 countries on health care with little to show for it': Fraser report",
+      "url": "https://nationalpost.com/news/canada/canada-spent-second-most-out-of-32-countries-on-health-care-with-little-to-show-for-it-fraser-report",
+      "published": "2026-10-24T10:00:53+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 776,
+      "paragraph_count": 17,
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "bfbf99104048ceb0",
+      "source": "National Post",
+      "title": "Don't look now, but Canada is officially becoming a partisan issue in the U.S.",
+      "url": "https://nationalpost.com/news/dont-look-now-but-canada-is-officially-becoming-a-partisan-issue-in-the-u-s",
+      "published": "2026-10-24T10:00:17+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1019,
+      "paragraph_count": 32,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a729b9b1d3901725",
       "source": "National Post",
       "title": "'Transformed the landscape': What Terry Fox taught cancer doctors",
@@ -5349,64 +5387,6 @@
       "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b556b8967cfeefb8",
-      "source": "National Post",
-      "title": "Lcbo picks 'young, innovative' veteran exec as new CEO",
-      "url": "https://nationalpost.com/news/lcbo-aaron-campbell",
-      "published": "2026-10-22T20:47:35+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 783,
-      "paragraph_count": 15,
-      "inline_image_count": 0,
-      "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d05a2aaa56f7190c",
-      "source": "National Post",
-      "title": "Joly, Ford, Housefather among Canadians named in U.S. embassy 'fact sheet' alleging election interference",
-      "url": "https://nationalpost.com/news/politics/u-s-embassy-fact-sheet-accuses-canada-of-election-interference",
-      "published": "2026-10-22T19:57:44+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1152,
-      "paragraph_count": 31,
-      "inline_image_count": 2,
-      "quality_score": 92,
       "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
