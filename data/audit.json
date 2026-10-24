@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-23T23:56:23.893168+00:00",
-  "generated_at_london": "2026-10-23T19:56:23.893168-04:00",
-  "news_generated_at": "2026-10-23T23:50:40.564699+00:00",
+  "generated_at": "2026-10-24T00:07:03.406379+00:00",
+  "generated_at_london": "2026-10-23T20:07:03.406379-04:00",
+  "news_generated_at": "2026-10-24T00:05:18.536442+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 783,
+    "archive_story_count": 784,
     "source_count": 28,
     "audited_story_count": 120,
     "pass_story_count": 115,
@@ -14,9 +14,9 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 8,
-    "info_issue_count": 108,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "info_issue_count": 109,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -125,6 +125,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-23T23:31:56.387170+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 499,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-23T23:14:34+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-23T23:47:44.733055+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -559,20 +585,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 214,
-      "average_quality": 74,
+      "average_words": 220,
+      "average_quality": 73,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:police:main": 1,
         "dom:semantic-rich-v1": 4,
-        "reader:semantic-rich-v1": 6
+        "reader:semantic-rich-v1": 5
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 5,
-      "latest_published": "2026-10-23T04:00:00+00:00",
+      "info_issues": 6,
+      "latest_published": "2026-10-24T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 13,
-      "last_scrape": "2026-10-23T18:33:54.193119+00:00",
+      "tracked": 14,
+      "last_scrape": "2026-10-24T00:01:09.343135+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +677,7 @@
       "latest_published": "2026-10-23T22:16:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-23T23:47:40.584158+00:00",
+      "last_scrape": "2026-10-24T00:02:58.060566+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 5,
       "last_scrape": "2026-10-21T14:16:50.366873+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 499,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-23T23:14:34+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-23T23:47:44.733055+00:00",
       "last_error": ""
     },
     {
@@ -1708,6 +1709,21 @@
       "word_count": 203,
       "quality_score": 72,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "c232c314fb6e5213",
+      "source": "London Police Service",
+      "title": "LPS suspends participation in crime stoppers program",
+      "url": "https://www.londonpolice.ca/news/posts/lps-suspends-participation-in-crime-stoppers-program",
+      "published": "2026-10-24T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 281,
+      "quality_score": 69,
+      "extraction_method": "dom:police:main"
     },
     {
       "severity": "info",
@@ -3127,6 +3143,35 @@
       "issues": []
     },
     {
+      "id": "c232c314fb6e5213",
+      "source": "London Police Service",
+      "title": "LPS suspends participation in crime stoppers program",
+      "url": "https://www.londonpolice.ca/news/posts/lps-suspends-participation-in-crime-stoppers-program",
+      "published": "2026-10-24T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 281,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:police:main",
+      "extraction_profile": "police",
+      "local_score": 100,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "38ba88b49df7ab33",
       "source": "London Police Service",
       "title": "Human trafficking investigation",
@@ -3355,28 +3400,6 @@
       "quality_score": 75,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "police",
-      "local_score": 100,
-      "issues": []
-    },
-    {
-      "id": "2a9b73dc94879bb5",
-      "source": "London Police Service",
-      "title": "Missing Vulnerable Person - Adela Kochai",
-      "url": "https://www.londonpolice.ca/news/posts/missing-vulnerable-person-adela-kochai-26-104393",
-      "published": "2026-10-17T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 216,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 72,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "police",
       "local_score": 100,
       "issues": []
