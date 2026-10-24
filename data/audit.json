@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T20:55:16.672775+00:00",
-  "generated_at_london": "2026-10-24T16:55:16.672775-04:00",
+  "generated_at": "2026-10-24T20:59:50.693144+00:00",
+  "generated_at_london": "2026-10-24T16:59:50.693144-04:00",
   "news_generated_at": "2026-10-24T20:53:52.192387+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 775,
     "source_count": 28,
     "audited_story_count": 120,
-    "pass_story_count": 111,
-    "review_story_count": 6,
+    "pass_story_count": 110,
+    "review_story_count": 7,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 10,
+    "warning_issue_count": 12,
     "info_issue_count": 103,
-    "healthy_source_count": 11,
-    "review_source_count": 6,
+    "healthy_source_count": 10,
+    "review_source_count": 7,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -71,6 +71,33 @@
       "found_this_run": 8,
       "tracked": 30,
       "last_scrape": "2026-10-24T12:37:57.219215+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 70,
+      "average_words": 246,
+      "average_quality": 63,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 7,
+      "latest_published": "2026-10-24T20:47:44.691000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-24T20:49:57.443461+00:00",
       "last_error": ""
     },
     {
@@ -468,33 +495,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 70,
-      "average_words": 246,
-      "average_quality": 63,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 7,
-        "ctv:summary-fallback": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 7,
-      "latest_published": "2026-10-24T20:47:44.691000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-24T20:49:57.443461+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -853,6 +853,36 @@
       "content_status": "full",
       "word_count": 258,
       "quality_score": 78,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "0b1e6a06d244f373",
+      "source": "CTV News London",
+      "title": "More than 1,000 rally for publicly funded education in Victoria Park",
+      "url": "https://www.ctvnews.ca/london/article/more-than-1000-rally-for-publicly-funded-education-in-victoria-park",
+      "published": "2026-10-24T20:47:44.691000+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 66,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "10 consecutive images",
+      "story_id": "0b1e6a06d244f373",
+      "source": "CTV News London",
+      "title": "More than 1,000 rally for publicly funded education in Victoria Park",
+      "url": "https://www.ctvnews.ca/london/article/more-than-1000-rally-for-publicly-funded-education-in-victoria-park",
+      "published": "2026-10-24T20:47:44.691000+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 66,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2483,21 +2513,34 @@
       "title": "More than 1,000 rally for publicly funded education in Victoria Park",
       "url": "https://www.ctvnews.ca/london/article/more-than-1000-rally-for-publicly-funded-education-in-victoria-park",
       "published": "2026-10-24T20:47:44.691000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
+      "audit_status": "review",
+      "audit_score": 76,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 0,
       "content_status": "full",
       "word_count": 240,
       "paragraph_count": 9,
-      "inline_image_count": 0,
+      "inline_image_count": 10,
       "quality_score": 66,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 43,
-      "issues": []
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "10 consecutive images"
+        }
+      ]
     },
     {
       "id": "9fba03ae1f2349b7",
