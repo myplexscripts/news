@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T09:48:08.018759+00:00",
-  "generated_at_london": "2026-10-24T05:48:08.018759-04:00",
-  "news_generated_at": "2026-10-24T09:42:40.798319+00:00",
+  "generated_at": "2026-10-24T10:00:27.649436+00:00",
+  "generated_at_london": "2026-10-24T06:00:27.649436-04:00",
+  "news_generated_at": "2026-10-24T09:58:10.960455+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 771,
+    "archive_story_count": 773,
     "source_count": 28,
     "audited_story_count": 119,
-    "pass_story_count": 109,
-    "review_story_count": 3,
+    "pass_story_count": 108,
+    "review_story_count": 4,
     "fail_story_count": 7,
     "critical_issue_count": 7,
-    "warning_issue_count": 6,
+    "warning_issue_count": 7,
     "info_issue_count": 108,
-    "healthy_source_count": 12,
-    "review_source_count": 4,
+    "healthy_source_count": 11,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -24,7 +24,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 5,
@@ -42,10 +42,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-24T08:00:04+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-24T08:21:18.085002+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -149,6 +149,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-24T03:09:47.399365+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "The Globe and Mail",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1163,
+      "average_quality": 91,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:globe:article#content-gate": 4,
+        "dom:semantic-rich-v1": 6
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 13,
+      "latest_published": "2026-10-24T09:45:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-24T09:55:13.040189+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +676,7 @@
       "latest_published": "2026-10-23T22:16:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T09:39:45.042891+00:00",
+      "last_scrape": "2026-10-24T09:55:18.379011+00:00",
       "last_error": ""
     },
     {
@@ -677,33 +704,6 @@
       "found_this_run": 10,
       "tracked": 5,
       "last_scrape": "2026-10-21T14:16:50.366873+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "The Globe and Mail",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 909,
-      "average_quality": 93,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "dom:globe:article#content-gate": 2
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-10-24T09:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-24T09:23:34.259835+00:00",
       "last_error": ""
     },
     {
@@ -928,6 +928,21 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "15 inline images",
+      "story_id": "5eef03c477dcbe42",
+      "source": "The Globe and Mail",
+      "title": "Alberta’s vote has softened the rhetoric, but peace and quiet are not guaranteed",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-separation-danielle-smith-referendum",
+      "published": "2026-10-24T09:45:00+00:00",
+      "content_status": "full",
+      "word_count": 2530,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2134,6 +2149,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "5eef03c477dcbe42",
+      "source": "The Globe and Mail",
+      "title": "Alberta’s vote has softened the rhetoric, but peace and quiet are not guaranteed",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-separation-danielle-smith-referendum",
+      "published": "2026-10-24T09:45:00+00:00",
+      "content_status": "full",
+      "word_count": 2530,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "06e644c15138326a",
       "source": "The Globe and Mail",
       "title": "Canadian woman died after declining hospital care in U.S. due to deportation fear, son says",
@@ -2186,36 +2216,6 @@
       "published": "2026-10-24T01:02:23.333000+00:00",
       "content_status": "full",
       "word_count": 1190,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5608d16c88c9e595",
-      "source": "The Globe and Mail",
-      "title": "Halifax man faces new charges in U.S. Consulate bomb threat case",
-      "url": "https://www.theglobeandmail.com/canada/article-halifax-man-faces-new-charges-in-us-consulate-bomb-threat-case",
-      "published": "2026-10-23T20:56:11.794000+00:00",
-      "content_status": "full",
-      "word_count": 143,
-      "quality_score": 94,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d04ffa3fb5cc2a66",
-      "source": "The Globe and Mail",
-      "title": "In this rural Alberta district, a slim majority back separation despite provincial result",
-      "url": "https://www.theglobeandmail.com/canada/article-rimbey-rocky-mountain-house-slim-majority-back-alberta-separation",
-      "published": "2026-10-23T21:23:53.831000+00:00",
-      "content_status": "full",
-      "word_count": 1121,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2278,6 +2278,21 @@
       "word_count": 976,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0408bcbd32c93ecb",
+      "source": "The Globe and Mail",
+      "title": "Toronto-bound Afghan woman deported to Africa after ICE detention",
+      "url": "https://www.theglobeandmail.com/canada/article-toronto-bound-afghan-woman-deported-africa-ice-detention",
+      "published": "2026-10-24T09:45:00+00:00",
+      "content_status": "full",
+      "word_count": 1271,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4781,6 +4796,70 @@
       ]
     },
     {
+      "id": "0408bcbd32c93ecb",
+      "source": "The Globe and Mail",
+      "title": "Toronto-bound Afghan woman deported to Africa after ICE detention",
+      "url": "https://www.theglobeandmail.com/canada/article-toronto-bound-afghan-woman-deported-africa-ice-detention",
+      "published": "2026-10-24T09:45:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1271,
+      "paragraph_count": 33,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "5eef03c477dcbe42",
+      "source": "The Globe and Mail",
+      "title": "Alberta’s vote has softened the rhetoric, but peace and quiet are not guaranteed",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-separation-danielle-smith-referendum",
+      "published": "2026-10-24T09:45:00+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 2530,
+      "paragraph_count": 67,
+      "inline_image_count": 15,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "15 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c34c5dafed3352b0",
       "source": "The Globe and Mail",
       "title": "Tighter immigration rules put nursing homes at risk of losing foreign workers, long-term care providers say",
@@ -5019,64 +5098,6 @@
       "quality_score": 73,
       "quality_grade": "good",
       "extraction_method": "dom:globe:article#content-gate",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d04ffa3fb5cc2a66",
-      "source": "The Globe and Mail",
-      "title": "In this rural Alberta district, a slim majority back separation despite provincial result",
-      "url": "https://www.theglobeandmail.com/canada/article-rimbey-rocky-mountain-house-slim-majority-back-alberta-separation",
-      "published": "2026-10-23T21:23:53.831000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1121,
-      "paragraph_count": 25,
-      "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5608d16c88c9e595",
-      "source": "The Globe and Mail",
-      "title": "Halifax man faces new charges in U.S. Consulate bomb threat case",
-      "url": "https://www.theglobeandmail.com/canada/article-halifax-man-faces-new-charges-in-us-consulate-bomb-threat-case",
-      "published": "2026-10-23T20:56:11.794000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 143,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
