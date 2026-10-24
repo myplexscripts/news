@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T09:16:44.084846+00:00",
-  "generated_at_london": "2026-10-24T05:16:44.084846-04:00",
-  "news_generated_at": "2026-10-24T09:10:40.443334+00:00",
+  "generated_at": "2026-10-24T09:27:17.422071+00:00",
+  "generated_at_london": "2026-10-24T05:27:17.422071-04:00",
+  "news_generated_at": "2026-10-24T09:25:41.913431+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 770,
+    "archive_story_count": 771,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 109,
@@ -14,7 +14,7 @@
     "fail_story_count": 7,
     "critical_issue_count": 7,
     "warning_issue_count": 6,
-    "info_issue_count": 107,
+    "info_issue_count": 108,
     "healthy_source_count": 12,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -24,7 +24,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 5,
@@ -42,10 +42,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-24T08:00:04+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-24T08:21:18.085002+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -96,7 +96,7 @@
       "latest_published": "2026-10-24T09:00:00+00:00",
       "found_this_run": 7,
       "tracked": 30,
-      "last_scrape": "2026-10-24T09:08:13.370199+00:00",
+      "last_scrape": "2026-10-24T09:13:31.737976+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +649,7 @@
       "latest_published": "2026-10-23T22:16:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T09:08:18.700263+00:00",
+      "last_scrape": "2026-10-24T09:23:38.320384+00:00",
       "last_error": ""
     },
     {
@@ -690,20 +690,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 879,
+      "average_words": 913,
       "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "dom:globe:article#content-gate": 2
+        "dom:globe:article#content-gate": 3,
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-24T01:09:20.910000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-24T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T02:38:45.115591+00:00",
+      "last_scrape": "2026-10-24T09:23:34.259835+00:00",
       "last_error": ""
     },
     {
@@ -2239,21 +2239,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d7360499601e4dc1",
-      "source": "The Globe and Mail",
-      "title": "St-Pierre Plamondon pledges $28-million for Quebec homelessness response",
-      "url": "https://www.theglobeandmail.com/canada/article-st-pierre-plamondon-pledges-28-million-for-quebec-homelessness",
-      "published": "2026-10-23T20:46:57.516000+00:00",
-      "content_status": "full",
-      "word_count": 674,
-      "quality_score": 94,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "76769431d6f62e13",
       "source": "The Globe and Mail",
       "title": "The dangers of Brad Bradford’s Toronto",
@@ -2261,6 +2246,36 @@
       "published": "2026-10-23T23:59:06.558000+00:00",
       "content_status": "full",
       "word_count": 678,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "c34c5dafed3352b0",
+      "source": "The Globe and Mail",
+      "title": "Tighter immigration rules put nursing homes at risk of losing foreign workers, long-term care providers say",
+      "url": "https://www.theglobeandmail.com/canada/article-tighter-immigration-rules-put-nursing-homes-at-risk-of-losing-foreign",
+      "published": "2026-10-24T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1013,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c34c5dafed3352b0",
+      "source": "The Globe and Mail",
+      "title": "Tighter immigration rules put nursing homes at risk of losing foreign workers, long-term care providers say",
+      "url": "https://www.theglobeandmail.com/canada/article-tighter-immigration-rules-put-nursing-homes-at-risk-of-losing-foreign",
+      "published": "2026-10-24T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1013,
       "quality_score": 86,
       "extraction_method": "dom:globe:article#content-gate"
     },
@@ -4766,6 +4781,41 @@
       ]
     },
     {
+      "id": "c34c5dafed3352b0",
+      "source": "The Globe and Mail",
+      "title": "Tighter immigration rules put nursing homes at risk of losing foreign workers, long-term care providers say",
+      "url": "https://www.theglobeandmail.com/canada/article-tighter-immigration-rules-put-nursing-homes-at-risk-of-losing-foreign",
+      "published": "2026-10-24T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 1013,
+      "paragraph_count": 31,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6aff55f9b046cf71",
       "source": "The Globe and Mail",
       "title": "Toronto’s municipal election faces voter turnout test after 2022 record-low",
@@ -5023,35 +5073,6 @@
       "content_status": "full",
       "word_count": 143,
       "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d7360499601e4dc1",
-      "source": "The Globe and Mail",
-      "title": "St-Pierre Plamondon pledges $28-million for Quebec homelessness response",
-      "url": "https://www.theglobeandmail.com/canada/article-st-pierre-plamondon-pledges-28-million-for-quebec-homelessness",
-      "published": "2026-10-23T20:46:57.516000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 674,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 94,
       "quality_grade": "good",
