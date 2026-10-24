@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T10:19:24.855835+00:00",
-  "generated_at_london": "2026-10-24T06:19:24.855835-04:00",
-  "news_generated_at": "2026-10-24T10:13:50.848881+00:00",
+  "generated_at": "2026-10-24T10:30:04.790285+00:00",
+  "generated_at_london": "2026-10-24T06:30:04.790285-04:00",
+  "news_generated_at": "2026-10-24T10:28:39.920094+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 775,
+    "archive_story_count": 778,
     "source_count": 28,
     "audited_story_count": 119,
-    "pass_story_count": 108,
-    "review_story_count": 4,
+    "pass_story_count": 107,
+    "review_story_count": 5,
     "fail_story_count": 7,
     "critical_issue_count": 7,
-    "warning_issue_count": 8,
+    "warning_issue_count": 9,
     "info_issue_count": 107,
     "healthy_source_count": 11,
     "review_source_count": 5,
@@ -24,7 +24,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 5,
@@ -42,10 +42,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-24T08:00:04+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-24T08:21:18.085002+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -96,7 +96,7 @@
       "latest_published": "2026-10-24T10:00:00+00:00",
       "found_this_run": 8,
       "tracked": 30,
-      "last_scrape": "2026-10-24T10:10:49.017010+00:00",
+      "last_scrape": "2026-10-24T10:17:24.190169+00:00",
       "last_error": ""
     },
     {
@@ -157,25 +157,25 @@
       "collector_status": "healthy",
       "profile": "globe",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 1154,
+      "average_words": 1254,
       "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "dom:globe:article#content-gate": 2
+        "dom:globe:article#content-gate": 4,
+        "dom:semantic-rich-v1": 6
       },
       "critical_issues": 0,
-      "warning_issues": 2,
+      "warning_issues": 3,
       "info_issues": 13,
-      "latest_published": "2026-10-24T09:45:00+00:00",
+      "latest_published": "2026-10-24T10:15:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T09:55:13.040189+00:00",
+      "last_scrape": "2026-10-24T10:26:16.340228+00:00",
       "last_error": ""
     },
     {
@@ -224,12 +224,12 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -245,10 +245,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 1,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x7ff1c6347ce0>, 'Connection to weather.gc"
     },
     {
       "source": "Global News London",
@@ -317,7 +317,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 7,
+      "found_this_run": 6,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -676,7 +676,7 @@
       "latest_published": "2026-10-24T10:00:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T10:10:57.823636+00:00",
+      "last_scrape": "2026-10-24T10:26:20.053689+00:00",
       "last_error": ""
     },
     {
@@ -958,6 +958,21 @@
       "word_count": 2482,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "9 inline images",
+      "story_id": "174ffb0eeeb1d7c4",
+      "source": "The Globe and Mail",
+      "title": "Amid acrimony at Pickering City Hall, voters mull calming the waters",
+      "url": "https://www.theglobeandmail.com/canada/article-pickering-ontario-municipal-elections-acrimony-at-city-hall",
+      "published": "2026-10-24T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1284,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2164,14 +2179,14 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "06e644c15138326a",
+      "story_id": "174ffb0eeeb1d7c4",
       "source": "The Globe and Mail",
-      "title": "Canadian woman died after declining hospital care in U.S. due to deportation fear, son says",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-woman-died-after-declining-hospital-care-in-us-due-to",
-      "published": "2026-10-23T21:48:26.400000+00:00",
+      "title": "Amid acrimony at Pickering City Hall, voters mull calming the waters",
+      "url": "https://www.theglobeandmail.com/canada/article-pickering-ontario-municipal-elections-acrimony-at-city-hall",
+      "published": "2026-10-24T10:00:00+00:00",
       "content_status": "full",
-      "word_count": 1159,
-      "quality_score": 73,
+      "word_count": 1284,
+      "quality_score": 91,
       "extraction_method": "dom:globe:article#content-gate"
     },
     {
@@ -2224,21 +2239,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7fc911ea23cd86d6",
-      "source": "The Globe and Mail",
-      "title": "Jeffrey Rath, Mitch Sylvestre said to be fired from Alberta Prosperity Project weeks ago",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-separatist-leaders-jeffrey-rath-mitch-sylvestre-fired-referendum",
-      "published": "2026-10-23T22:33:08.697000+00:00",
-      "content_status": "partial",
-      "word_count": 734,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "76769431d6f62e13",
       "source": "The Globe and Mail",
       "title": "The dangers of Brad Bradford’s Toronto",
@@ -2246,6 +2246,21 @@
       "published": "2026-10-23T23:59:06.558000+00:00",
       "content_status": "full",
       "word_count": 678,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "74e2fb88d706172c",
+      "source": "The Globe and Mail",
+      "title": "The housing crisis is no longer shaping big-city politics. Why not?",
+      "url": "https://www.theglobeandmail.com/canada/article-the-housing-crisis-is-no-longer-shaping-big-city-politics-why-not",
+      "published": "2026-10-24T10:15:00+00:00",
+      "content_status": "full",
+      "word_count": 1212,
       "quality_score": 86,
       "extraction_method": "dom:globe:article#content-gate"
     },
@@ -2329,15 +2344,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "411dc376f702771e",
+      "story_id": "b1802daa783cf1fe",
       "source": "The Globe and Mail",
-      "title": "Who will be Toronto’s next mayor? What to know before the Oct. 26 election",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-mayoral-election-2026-what-to-know-brad-bradford-olivia-chow",
-      "published": "2026-10-23T22:51:36.662000+00:00",
+      "title": "Wainwright fire a wake-up call for country unprepared for mass casualties, experts say",
+      "url": "https://www.theglobeandmail.com/canada/article-wainwright-fire-a-wake-up-call-for-country-unprepared-for-mass",
+      "published": "2026-10-24T10:15:00+00:00",
       "content_status": "full",
-      "word_count": 1075,
-      "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 1469,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4790,6 +4805,99 @@
       ]
     },
     {
+      "id": "74e2fb88d706172c",
+      "source": "The Globe and Mail",
+      "title": "The housing crisis is no longer shaping big-city politics. Why not?",
+      "url": "https://www.theglobeandmail.com/canada/article-the-housing-crisis-is-no-longer-shaping-big-city-politics-why-not",
+      "published": "2026-10-24T10:15:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1212,
+      "paragraph_count": 25,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "b1802daa783cf1fe",
+      "source": "The Globe and Mail",
+      "title": "Wainwright fire a wake-up call for country unprepared for mass casualties, experts say",
+      "url": "https://www.theglobeandmail.com/canada/article-wainwright-fire-a-wake-up-call-for-country-unprepared-for-mass",
+      "published": "2026-10-24T10:15:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1469,
+      "paragraph_count": 38,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "174ffb0eeeb1d7c4",
+      "source": "The Globe and Mail",
+      "title": "Amid acrimony at Pickering City Hall, voters mull calming the waters",
+      "url": "https://www.theglobeandmail.com/canada/article-pickering-ontario-municipal-elections-acrimony-at-city-hall",
+      "published": "2026-10-24T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1284,
+      "paragraph_count": 36,
+      "inline_image_count": 9,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "9 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0408bcbd32c93ecb",
       "source": "The Globe and Mail",
       "title": "Toronto-bound Afghan woman deported to Africa after ICE detention",
@@ -5014,93 +5122,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "411dc376f702771e",
-      "source": "The Globe and Mail",
-      "title": "Who will be Toronto’s next mayor? What to know before the Oct. 26 election",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-mayoral-election-2026-what-to-know-brad-bradford-olivia-chow",
-      "published": "2026-10-23T22:51:36.662000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1075,
-      "paragraph_count": 20,
-      "inline_image_count": 3,
-      "quality_score": 97,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7fc911ea23cd86d6",
-      "source": "The Globe and Mail",
-      "title": "Jeffrey Rath, Mitch Sylvestre said to be fired from Alberta Prosperity Project weeks ago",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-separatist-leaders-jeffrey-rath-mitch-sylvestre-fired-referendum",
-      "published": "2026-10-23T22:33:08.697000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 734,
-      "paragraph_count": 24,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "06e644c15138326a",
-      "source": "The Globe and Mail",
-      "title": "Canadian woman died after declining hospital care in U.S. due to deportation fear, son says",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-woman-died-after-declining-hospital-care-in-us-due-to",
-      "published": "2026-10-23T21:48:26.400000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1159,
-      "paragraph_count": 43,
-      "inline_image_count": 0,
-      "quality_score": 73,
-      "quality_grade": "good",
-      "extraction_method": "dom:globe:article#content-gate",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
