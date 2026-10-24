@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-24T02:02:24.911049+00:00",
-  "generated_at_london": "2026-10-23T22:02:24.911049-04:00",
-  "news_generated_at": "2026-10-24T01:55:32.681888+00:00",
+  "generated_at": "2026-10-24T02:13:48.027897+00:00",
+  "generated_at_london": "2026-10-23T22:13:48.027897-04:00",
+  "news_generated_at": "2026-10-24T02:10:59.886895+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 786,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 6,
     "info_issue_count": 107,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -98,6 +98,32 @@
       "tracked": 4,
       "last_scrape": "2026-10-22T18:54:50.153860+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 499,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-23T23:14:34+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-23T23:47:44.733055+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -479,11 +505,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 375,
-      "average_quality": 96,
+      "average_words": 386,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:global:main:strict": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -491,7 +518,7 @@
       "latest_published": "2026-10-24T01:10:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T01:21:09.407032+00:00",
+      "last_scrape": "2026-10-24T02:07:52.015956+00:00",
       "last_error": ""
     },
     {
@@ -623,7 +650,7 @@
       "latest_published": "2026-10-23T22:16:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-24T01:52:34.749498+00:00",
+      "last_scrape": "2026-10-24T02:07:58.551154+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-24T01:21:12.984035+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 499,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-23T23:14:34+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-23T23:47:44.733055+00:00",
       "last_error": ""
     },
     {
@@ -1609,15 +1610,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c339a485caa12d72",
+      "story_id": "1c028d7d9260ec6a",
       "source": "Global News Canada",
-      "title": "Wolf attack in northern Saskatchewan injures contractor",
-      "url": "https://globalnews.ca/news/12118534/wolf-attack-northern-saskatchewan",
-      "published": "2026-10-23T16:43:27+00:00",
+      "title": "‘He ran into the fire’: Military medic critically injured saving fellow soldiers in CFB Wainwright fire",
+      "url": "https://globalnews.ca/news/12119428/he-ran-into-the-fire-military-medic-critically-injured-saving-fellow-soldiers-in-cfb-wainwright-fire",
+      "published": "2026-10-24T00:58:43+00:00",
       "content_status": "full",
-      "word_count": 252,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 357,
+      "quality_score": 78,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -4105,6 +4106,35 @@
       ]
     },
     {
+      "id": "1c028d7d9260ec6a",
+      "source": "Global News Canada",
+      "title": "‘He ran into the fire’: Military medic critically injured saving fellow soldiers in CFB Wainwright fire",
+      "url": "https://globalnews.ca/news/12119428/he-ran-into-the-fire-military-medic-critically-injured-saving-fellow-soldiers-in-cfb-wainwright-fire",
+      "published": "2026-10-24T00:58:43+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 357,
+      "paragraph_count": 14,
+      "inline_image_count": 1,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "635b72728bff661c",
       "source": "Global News Canada",
       "title": "Canadian woman dies in U.S. over fear of crossing through B.C. for medical care",
@@ -4321,35 +4351,6 @@
       "content_status": "full",
       "word_count": 137,
       "paragraph_count": 6,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c339a485caa12d72",
-      "source": "Global News Canada",
-      "title": "Wolf attack in northern Saskatchewan injures contractor",
-      "url": "https://globalnews.ca/news/12118534/wolf-attack-northern-saskatchewan",
-      "published": "2026-10-23T16:43:27+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 252,
-      "paragraph_count": 9,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
