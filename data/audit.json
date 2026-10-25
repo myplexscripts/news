@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-25T18:53:27.194265+00:00",
-  "generated_at_london": "2026-10-25T14:53:27.194265-04:00",
-  "news_generated_at": "2026-10-25T18:47:07.285729+00:00",
+  "generated_at": "2026-10-25T19:05:45.055011+00:00",
+  "generated_at_london": "2026-10-25T15:05:45.055011-04:00",
+  "news_generated_at": "2026-10-25T19:03:17.734901+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 778,
+    "archive_story_count": 779,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 109,
     "review_story_count": 6,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 12,
+    "warning_issue_count": 13,
     "info_issue_count": 99,
     "healthy_source_count": 12,
     "review_source_count": 5,
@@ -106,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "globe",
       "sample_size": 10,
-      "pass": 8,
-      "review": 2,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 80,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 1013,
-      "average_quality": 96,
+      "average_words": 913,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 3,
+      "warning_issues": 2,
       "info_issues": 12,
-      "latest_published": "2026-10-25T16:08:45.947000+00:00",
+      "latest_published": "2026-10-25T18:53:55.775000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T16:25:18.550015+00:00",
+      "last_scrape": "2026-10-25T19:00:26.702164+00:00",
       "last_error": ""
     },
     {
@@ -132,24 +133,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 7,
+      "review": 1,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 460,
-      "average_quality": 96,
+      "average_words": 467,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-25T17:09:16+00:00",
+      "latest_published": "2026-10-25T18:43:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T17:27:44.530109+00:00",
+      "last_scrape": "2026-10-25T19:00:34.356184+00:00",
       "last_error": ""
     },
     {
@@ -678,7 +680,7 @@
       "latest_published": "2026-10-25T16:59:37+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T18:44:54.289162+00:00",
+      "last_scrape": "2026-10-25T19:00:32.002432+00:00",
       "last_error": ""
     },
     {
@@ -918,21 +920,6 @@
     },
     {
       "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "9 inline images",
-      "story_id": "174ffb0eeeb1d7c4",
-      "source": "The Globe and Mail",
-      "title": "Amid acrimony at Pickering City Hall, voters mull calming the waters",
-      "url": "https://www.theglobeandmail.com/canada/article-pickering-ontario-municipal-elections-acrimony-at-city-hall",
-      "published": "2026-10-24T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1242,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
       "code": "duplicate_body",
       "message": "Duplicate article paragraphs were detected.",
       "detail": "1 duplicated paragraph pattern(s)",
@@ -960,6 +947,36 @@
       "word_count": 1598,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "5b5daa530957f9c4",
+      "source": "Toronto Star",
+      "title": "Canada receives its first F-35 jets from U.S., as full order remains under review",
+      "url": "https://www.thestar.com/news/canada/canada-receives-its-first-f-35-jets-from-u-s-as-full-order-remains-under-review/article_4f967b04-d9e0-50bf-84ec-a246baafc874.html",
+      "published": "2026-10-25T18:43:59+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "5b5daa530957f9c4",
+      "source": "Toronto Star",
+      "title": "Canada receives its first F-35 jets from U.S., as full order remains under review",
+      "url": "https://www.thestar.com/news/canada/canada-receives-its-first-f-35-jets-from-u-s-as-full-order-remains-under-review/article_4f967b04-d9e0-50bf-84ec-a246baafc874.html",
+      "published": "2026-10-25T18:43:59+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2046,21 +2063,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "174ffb0eeeb1d7c4",
-      "source": "The Globe and Mail",
-      "title": "Amid acrimony at Pickering City Hall, voters mull calming the waters",
-      "url": "https://www.theglobeandmail.com/canada/article-pickering-ontario-municipal-elections-acrimony-at-city-hall",
-      "published": "2026-10-24T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1242,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "63e3c04411c48f84",
       "source": "The Globe and Mail",
       "title": "Clues to higher incidence of dementia in women May lie in menopause",
@@ -2100,6 +2102,21 @@
       "word_count": 953,
       "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0951b48b69aae280",
+      "source": "The Globe and Mail",
+      "title": "Funeral for soldier killed in CFB Wainwright fire is held in Edmonton",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-cfb-wainwright-fire-funeral-soldier-wong",
+      "published": "2026-10-25T18:53:55.775000+00:00",
+      "content_status": "full",
+      "word_count": 238,
+      "quality_score": 68,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2286,15 +2303,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a5d88b3af09cc1ee",
+      "story_id": "5b5daa530957f9c4",
       "source": "Toronto Star",
-      "title": "CP NewsAlert: OneBC's Dallas Brodie loses Vancouver-Quilchena riding",
-      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-onebc-s-dallas-brodie-loses-vancouver-quilchena-riding/article_60fd8d16-dbf3-5ee0-8c14-643b47d6ec0f.html",
-      "published": "2026-10-25T04:05:05+00:00",
+      "title": "Canada receives its first F-35 jets from U.S., as full order remains under review",
+      "url": "https://www.thestar.com/news/canada/canada-receives-its-first-f-35-jets-from-u-s-as-full-order-remains-under-review/article_4f967b04-d9e0-50bf-84ec-a246baafc874.html",
+      "published": "2026-10-25T18:43:59+00:00",
       "content_status": "full",
-      "word_count": 153,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4618,6 +4635,35 @@
       ]
     },
     {
+      "id": "0951b48b69aae280",
+      "source": "The Globe and Mail",
+      "title": "Funeral for soldier killed in CFB Wainwright fire is held in Edmonton",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-cfb-wainwright-fire-funeral-soldier-wong",
+      "published": "2026-10-25T18:53:55.775000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 238,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9f340899af3c2301",
       "source": "The Globe and Mail",
       "title": "Woman dies a day after release from New Brunswick correctional centre",
@@ -4888,41 +4934,6 @@
           "message": "Duplicate article paragraphs were detected.",
           "detail": "1 duplicated paragraph pattern(s)"
         },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "9 inline images"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "174ffb0eeeb1d7c4",
-      "source": "The Globe and Mail",
-      "title": "Amid acrimony at Pickering City Hall, voters mull calming the waters",
-      "url": "https://www.theglobeandmail.com/canada/article-pickering-ontario-municipal-elections-acrimony-at-city-hall",
-      "published": "2026-10-24T10:00:00+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1242,
-      "paragraph_count": 34,
-      "inline_image_count": 9,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "warning",
           "code": "too_many_images",
@@ -5228,6 +5239,47 @@
       ]
     },
     {
+      "id": "5b5daa530957f9c4",
+      "source": "Toronto Star",
+      "title": "Canada receives its first F-35 jets from U.S., as full order remains under review",
+      "url": "https://www.thestar.com/news/canada/canada-receives-its-first-f-35-jets-from-u-s-as-full-order-remains-under-review/article_4f967b04-d9e0-50bf-84ec-a246baafc874.html",
+      "published": "2026-10-25T18:43:59+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 222,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2cd2db9083c3dff7",
       "source": "Toronto Star",
       "title": "Drone warfare is evolving faster than armies can adapt, experts warn",
@@ -5492,35 +5544,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "64 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a5d88b3af09cc1ee",
-      "source": "Toronto Star",
-      "title": "CP NewsAlert: OneBC's Dallas Brodie loses Vancouver-Quilchena riding",
-      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-onebc-s-dallas-brodie-loses-vancouver-quilchena-riding/article_60fd8d16-dbf3-5ee0-8c14-643b47d6ec0f.html",
-      "published": "2026-10-25T04:05:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 153,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
