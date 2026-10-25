@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-25T23:02:30.892083+00:00",
-  "generated_at_london": "2026-10-25T19:02:30.892083-04:00",
-  "news_generated_at": "2026-10-25T22:55:35.885681+00:00",
+  "generated_at": "2026-10-25T23:13:52.820067+00:00",
+  "generated_at_london": "2026-10-25T19:13:52.820067-04:00",
+  "news_generated_at": "2026-10-25T23:11:30.793849+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 779,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-25T19:22:10+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-25T19:47:03.947236+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -652,7 +652,7 @@
       "latest_published": "2026-10-25T16:59:37+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T22:53:02.449805+00:00",
+      "last_scrape": "2026-10-25T23:08:49.056498+00:00",
       "last_error": ""
     },
     {
@@ -693,19 +693,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 736,
-      "average_quality": 96,
+      "average_words": 729,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-10-25T20:44:18.922000+00:00",
+      "latest_published": "2026-10-25T22:55:29.446000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T21:35:08.260759+00:00",
+      "last_scrape": "2026-10-25T23:08:42.900815+00:00",
       "last_error": ""
     },
     {
@@ -1971,21 +1972,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "056f8dbcc7cdf20d",
-      "source": "The Globe and Mail",
-      "title": "Cuban envoy asks Canada to renew rejection of U.S. blockade",
-      "url": "https://www.theglobeandmail.com/canada/article-cuban-envoy-asks-canada-to-renew-rejection-of-us-blockade",
-      "published": "2026-10-24T13:02:32.361000+00:00",
-      "content_status": "full",
-      "word_count": 1178,
-      "quality_score": 94,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "485458bcf23f1566",
       "source": "The Globe and Mail",
       "title": "Five takeaways from B.C.’s election",
@@ -2010,6 +1996,21 @@
       "word_count": 225,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0709de0a4c301946",
+      "source": "The Globe and Mail",
+      "title": "Olivia Chow, Brad Bradford battle to the wire in Toronto’s mayoral election",
+      "url": "https://www.theglobeandmail.com/canada/article-toronto-mayor-election-olivia-chow-brad-bradford",
+      "published": "2026-10-25T22:55:29.446000+00:00",
+      "content_status": "full",
+      "word_count": 1100,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4508,6 +4509,35 @@
       ]
     },
     {
+      "id": "0709de0a4c301946",
+      "source": "The Globe and Mail",
+      "title": "Olivia Chow, Brad Bradford battle to the wire in Toronto’s mayoral election",
+      "url": "https://www.theglobeandmail.com/canada/article-toronto-mayor-election-olivia-chow-brad-bradford",
+      "published": "2026-10-25T22:55:29.446000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1100,
+      "paragraph_count": 24,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "79dfbadf8b53fea9",
       "source": "The Globe and Mail",
       "title": "Political hubris claims another victim – the Ndp’s David Eby",
@@ -4778,35 +4808,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "056f8dbcc7cdf20d",
-      "source": "The Globe and Mail",
-      "title": "Cuban envoy asks Canada to renew rejection of U.S. blockade",
-      "url": "https://www.theglobeandmail.com/canada/article-cuban-envoy-asks-canada-to-renew-rejection-of-us-blockade",
-      "published": "2026-10-24T13:02:32.361000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1178,
-      "paragraph_count": 38,
-      "inline_image_count": 0,
-      "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
