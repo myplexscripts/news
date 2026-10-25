@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-25T14:16:11.039365+00:00",
-  "generated_at_london": "2026-10-25T10:16:11.039365-04:00",
-  "news_generated_at": "2026-10-25T14:09:30.645792+00:00",
+  "generated_at": "2026-10-25T14:27:27.733195+00:00",
+  "generated_at_london": "2026-10-25T10:27:27.733195-04:00",
+  "news_generated_at": "2026-10-25T14:24:57.861151+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 779,
+    "archive_story_count": 780,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 110,
-    "review_story_count": 5,
+    "pass_story_count": 108,
+    "review_story_count": 7,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 10,
+    "warning_issue_count": 14,
     "info_issue_count": 102,
     "healthy_source_count": 12,
     "review_source_count": 5,
@@ -132,24 +132,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 6,
+      "review": 2,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 685,
-      "average_quality": 96,
+      "average_words": 524,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-10-25T10:00:11+00:00",
+      "latest_published": "2026-10-25T14:00:09+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T11:16:54.057092+00:00",
+      "last_scrape": "2026-10-25T14:22:20.143604+00:00",
       "last_error": ""
     },
     {
@@ -533,19 +534,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 460,
-      "average_quality": 96,
+      "average_words": 461,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-25T13:22:34+00:00",
+      "latest_published": "2026-10-25T14:11:08+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T13:35:46.189522+00:00",
+      "last_scrape": "2026-10-25T14:22:10.514679+00:00",
       "last_error": ""
     },
     {
@@ -678,7 +680,7 @@
       "latest_published": "2026-10-25T13:00:05+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T14:06:45.455303+00:00",
+      "last_scrape": "2026-10-25T14:22:16.633041+00:00",
       "last_error": ""
     },
     {
@@ -930,6 +932,66 @@
       "word_count": 1598,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "1cd660d1ec87061c",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_6d50e3b0-7670-564c-a07f-2ad1d025223d.html",
+      "published": "2026-10-25T14:00:05+00:00",
+      "content_status": "full",
+      "word_count": 167,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "1cd660d1ec87061c",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_6d50e3b0-7670-564c-a07f-2ad1d025223d.html",
+      "published": "2026-10-25T14:00:05+00:00",
+      "content_status": "full",
+      "word_count": 167,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "929d835a908ab126",
+      "source": "Toronto Star",
+      "title": "Lorne Doerkson leads B.C. Conservatives to power with thumping two-thirds majority",
+      "url": "https://www.thestar.com/news/canada/british-columbia/lorne-doerkson-leads-b-c-conservatives-to-power-with-thumping-two-thirds-majority/article_0691a727-adaa-563d-afde-9c328900445b.html",
+      "published": "2026-10-25T14:00:09+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "929d835a908ab126",
+      "source": "Toronto Star",
+      "title": "Lorne Doerkson leads B.C. Conservatives to power with thumping two-thirds majority",
+      "url": "https://www.thestar.com/news/canada/british-columbia/lorne-doerkson-leads-b-c-conservatives-to-power-with-thumping-two-thirds-majority/article_0691a727-adaa-563d-afde-9c328900445b.html",
+      "published": "2026-10-25T14:00:09+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1506,21 +1568,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "635b72728bff661c",
-      "source": "Global News Canada",
-      "title": "Canadian woman dies in U.S. over fear of crossing through B.C. for medical care",
-      "url": "https://globalnews.ca/news/12119310/canadian-woman-dies-us-fears-detained-us-border",
-      "published": "2026-10-23T22:55:31+00:00",
-      "content_status": "full",
-      "word_count": 223,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "16b931c7b239b00a",
       "source": "Global News Canada",
       "title": "Cuban ambassadors ask Canada to renew rejection of U.S. embargo and fuel blockade",
@@ -1560,6 +1607,21 @@
       "word_count": 165,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "86b51c19b1a83428",
+      "source": "Global News Canada",
+      "title": "Funeral service to be held for Sgt. Morgan Wong, CFB Wainwright fire victim",
+      "url": "https://globalnews.ca/news/12120485/morgan-wong-funeral-service-cfb-wainwright",
+      "published": "2026-10-25T14:11:08+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 73,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2241,21 +2303,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "b3bf40e2ebee1bbf",
-      "source": "Toronto Star",
-      "title": "45 years, 100M board games and what the first inside story reveals about the global phenomenon of Trivial Pursuit",
-      "url": "https://www.thestar.com/news/canada/how-a-canadian-board-game-conquered-the-world-and-sold-100-million-copies/article_059764d5-dfde-4c23-97e1-22013f806a0e.html",
-      "published": "2026-10-25T04:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1760,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "9b920a928c132544",
       "source": "Toronto Star",
       "title": "Americans in Canada urge fellow expats to vote in high-stakes midterm elections",
@@ -2346,15 +2393,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "b8a0c852f4a85358",
+      "story_id": "1cd660d1ec87061c",
       "source": "Toronto Star",
-      "title": "Graeme MacKay: In Graeme MacKay’s cartoon Alberta voters reject separating from Canada",
-      "url": "https://www.thestar.com/opinion/editorial-cartoons/graeme-mackay-s-cartoon-depicts-alberta-voters-rejection-of-separating-from-canada/article_cf4ed50d-0f2b-4079-aa34-12697cbd15fa.html",
-      "published": "2026-10-25T04:00:00+00:00",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_6d50e3b0-7670-564c-a07f-2ad1d025223d.html",
+      "published": "2026-10-25T14:00:05+00:00",
       "content_status": "full",
-      "word_count": 196,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 167,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "929d835a908ab126",
+      "source": "Toronto Star",
+      "title": "Lorne Doerkson leads B.C. Conservatives to power with thumping two-thirds majority",
+      "url": "https://www.thestar.com/news/canada/british-columbia/lorne-doerkson-leads-b-c-conservatives-to-power-with-thumping-two-thirds-majority/article_0691a727-adaa-563d-afde-9c328900445b.html",
+      "published": "2026-10-25T14:00:09+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4023,6 +4085,35 @@
       "issues": []
     },
     {
+      "id": "86b51c19b1a83428",
+      "source": "Global News Canada",
+      "title": "Funeral service to be held for Sgt. Morgan Wong, CFB Wainwright fire victim",
+      "url": "https://globalnews.ca/news/12120485/morgan-wong-funeral-service-cfb-wainwright",
+      "published": "2026-10-25T14:11:08+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 224,
+      "paragraph_count": 10,
+      "inline_image_count": 1,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "701af8f241c74d59",
       "source": "Global News Canada",
       "title": "Who is Lorne Doerkson, B.C.’s next premier?",
@@ -4269,35 +4360,6 @@
       "word_count": 357,
       "paragraph_count": 14,
       "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "635b72728bff661c",
-      "source": "Global News Canada",
-      "title": "Canadian woman dies in U.S. over fear of crossing through B.C. for medical care",
-      "url": "https://globalnews.ca/news/12119310/canadian-woman-dies-us-fears-detained-us-border",
-      "published": "2026-10-23T22:55:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 223,
-      "paragraph_count": 9,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -5249,6 +5311,88 @@
       ]
     },
     {
+      "id": "929d835a908ab126",
+      "source": "Toronto Star",
+      "title": "Lorne Doerkson leads B.C. Conservatives to power with thumping two-thirds majority",
+      "url": "https://www.thestar.com/news/canada/british-columbia/lorne-doerkson-leads-b-c-conservatives-to-power-with-thumping-two-thirds-majority/article_0691a727-adaa-563d-afde-9c328900445b.html",
+      "published": "2026-10-25T14:00:09+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 186,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "1cd660d1ec87061c",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_6d50e3b0-7670-564c-a07f-2ad1d025223d.html",
+      "published": "2026-10-25T14:00:05+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 167,
+      "paragraph_count": 1,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f909b016fd064746",
       "source": "Toronto Star",
       "title": "First Nations, Carney and premiers set to gather for day of ceremony",
@@ -5477,64 +5621,6 @@
       "content_status": "full",
       "word_count": 2055,
       "paragraph_count": 83,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b8a0c852f4a85358",
-      "source": "Toronto Star",
-      "title": "Graeme MacKay: In Graeme MacKay’s cartoon Alberta voters reject separating from Canada",
-      "url": "https://www.thestar.com/opinion/editorial-cartoons/graeme-mackay-s-cartoon-depicts-alberta-voters-rejection-of-separating-from-canada/article_cf4ed50d-0f2b-4079-aa34-12697cbd15fa.html",
-      "published": "2026-10-25T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 196,
-      "paragraph_count": 13,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b3bf40e2ebee1bbf",
-      "source": "Toronto Star",
-      "title": "45 years, 100M board games and what the first inside story reveals about the global phenomenon of Trivial Pursuit",
-      "url": "https://www.thestar.com/news/canada/how-a-canadian-board-game-conquered-the-world-and-sold-100-million-copies/article_059764d5-dfde-4c23-97e1-22013f806a0e.html",
-      "published": "2026-10-25T04:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1760,
-      "paragraph_count": 65,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
