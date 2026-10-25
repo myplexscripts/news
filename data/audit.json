@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-25T05:29:52.027919+00:00",
-  "generated_at_london": "2026-10-25T01:29:52.027919-04:00",
-  "news_generated_at": "2026-10-25T05:23:46.179169+00:00",
+  "generated_at": "2026-10-25T05:40:38.680376+00:00",
+  "generated_at_london": "2026-10-25T01:40:38.680376-04:00",
+  "news_generated_at": "2026-10-25T05:38:58.033061+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 774,
+    "archive_story_count": 775,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 109,
+    "pass_story_count": 108,
     "review_story_count": 7,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 12,
     "info_issue_count": 102,
-    "healthy_source_count": 9,
-    "review_source_count": 8,
+    "healthy_source_count": 10,
+    "review_source_count": 7,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -153,32 +153,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 225,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-10-19T04:00:00+00:00",
-      "found_this_run": 0,
-      "tracked": 1,
-      "last_scrape": "2026-10-19T20:37:58.529094+00:00",
-      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7f235d60f380>, 'Connection to www.londontransit.ca time"
-    },
-    {
       "source": "The Globe and Mail",
       "status": "review",
       "collector_status": "healthy",
@@ -207,28 +181,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
+      "pass": 9,
       "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
+      "fail": 1,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 442,
-      "average_quality": 96,
+      "average_words": 401,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 0,
+      "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-25T04:20:05+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-25T05:00:10+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T04:34:57.143741+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-25T05:36:46.416754+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -629,6 +604,32 @@
       "last_error": ""
     },
     {
+      "source": "London Transit Commission",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 225,
+      "average_quality": 78,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-10-19T04:00:00+00:00",
+      "found_this_run": 3,
+      "tracked": 1,
+      "last_scrape": "2026-10-19T20:37:58.529094+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Middlesex County",
       "status": "healthy",
       "collector_status": "healthy",
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-24T15:00:27+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T05:21:27.803376+00:00",
+      "last_scrape": "2026-10-25T05:36:44.470259+00:00",
       "last_error": ""
     },
     {
@@ -765,6 +766,21 @@
       "word_count": 35,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "64 words",
+      "story_id": "5549531c6fe58775",
+      "source": "Toronto Star",
+      "title": "CP NewsAlert: BC NDP Leader David Eby wins Vancouver-Point Grey, loses election",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-bc-ndp-leader-david-eby-wins-vancouver-point-grey-loses-election/article_552a5c5b-2307-5588-a360-a77af85a5e9b.html",
+      "published": "2026-10-25T05:00:10+00:00",
+      "content_status": "full",
+      "word_count": 64,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -2316,6 +2332,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "5549531c6fe58775",
+      "source": "Toronto Star",
+      "title": "CP NewsAlert: BC NDP Leader David Eby wins Vancouver-Point Grey, loses election",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-bc-ndp-leader-david-eby-wins-vancouver-point-grey-loses-election/article_552a5c5b-2307-5588-a360-a77af85a5e9b.html",
+      "published": "2026-10-25T05:00:10+00:00",
+      "content_status": "full",
+      "word_count": 64,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "7ab408fefa3f2057",
       "source": "Toronto Star",
       "title": "CP NewsAlert: Elenore Sturko loses seat for CentreBC in return to Surrey South",
@@ -2338,21 +2369,6 @@
       "published": "2026-10-25T04:05:05+00:00",
       "content_status": "full",
       "word_count": 153,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5ac41836f3753b42",
-      "source": "Toronto Star",
-      "title": "Carney tours Kariye Mosque in Istanbul before departing Turkey",
-      "url": "https://www.thestar.com/news/canada/carney-tours-kariye-mosque-in-istanbul-before-departing-turkey/article_16a7376a-f4e6-5141-b46e-2335eac13f65.html",
-      "published": "2026-10-24T06:56:14+00:00",
-      "content_status": "full",
-      "word_count": 470,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -5282,6 +5298,41 @@
       ]
     },
     {
+      "id": "5549531c6fe58775",
+      "source": "Toronto Star",
+      "title": "CP NewsAlert: BC NDP Leader David Eby wins Vancouver-Point Grey, loses election",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-bc-ndp-leader-david-eby-wins-vancouver-point-grey-loses-election/article_552a5c5b-2307-5588-a360-a77af85a5e9b.html",
+      "published": "2026-10-25T05:00:10+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 64,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "64 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f7bc0bc6451f354a",
       "source": "Toronto Star",
       "title": "CP NewsAlert: BC Green Leader Emily Lowan wins bid for riding on Vancouver Island",
@@ -5527,35 +5578,6 @@
       "content_status": "full",
       "word_count": 973,
       "paragraph_count": 38,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5ac41836f3753b42",
-      "source": "Toronto Star",
-      "title": "Carney tours Kariye Mosque in Istanbul before departing Turkey",
-      "url": "https://www.thestar.com/news/canada/carney-tours-kariye-mosque-in-istanbul-before-departing-turkey/article_16a7376a-f4e6-5141-b46e-2335eac13f65.html",
-      "published": "2026-10-24T06:56:14+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 470,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
