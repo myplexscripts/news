@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-25T12:43:58.607636+00:00",
-  "generated_at_london": "2026-10-25T08:43:58.607636-04:00",
-  "news_generated_at": "2026-10-25T12:37:01.192493+00:00",
+  "generated_at": "2026-10-25T12:53:23.409287+00:00",
+  "generated_at_london": "2026-10-25T08:53:23.409287-04:00",
+  "news_generated_at": "2026-10-25T12:51:30.571271+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 778,
@@ -137,11 +137,12 @@
       "fail": 0,
       "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 1220,
-      "average_quality": 96,
+      "average_words": 1290,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 4,
@@ -149,13 +150,13 @@
       "latest_published": "2026-10-25T03:13:49.080000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T03:33:07.259646+00:00",
+      "last_scrape": "2026-10-25T12:49:12.070484+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -173,10 +174,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-25T10:00:11+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-25T11:16:54.057092+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -489,7 +490,7 @@
       "warning_issues": 0,
       "info_issues": 15,
       "latest_published": "2026-10-25T10:32:50.448000+00:00",
-      "found_this_run": 8,
+      "found_this_run": 7,
       "tracked": 30,
       "last_scrape": "2026-10-25T10:52:09.849152+00:00",
       "last_error": ""
@@ -678,7 +679,7 @@
       "latest_published": "2026-10-25T11:51:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-25T12:34:12.498083+00:00",
+      "last_scrape": "2026-10-25T12:49:16.323473+00:00",
       "last_error": ""
     },
     {
@@ -2163,6 +2164,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "b506771ac4561b5c",
+      "source": "The Globe and Mail",
+      "title": "The Assembly of First Nations prepares for historic meeting with Carney, premiers",
+      "url": "https://www.theglobeandmail.com/canada/article-the-assembly-of-first-nations-prepare-for-historic-meeting-with-carney",
+      "published": "2026-10-24T21:22:02.005000+00:00",
+      "content_status": "full",
+      "word_count": 1668,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b506771ac4561b5c",
+      "source": "The Globe and Mail",
+      "title": "The Assembly of First Nations prepares for historic meeting with Carney, premiers",
+      "url": "https://www.theglobeandmail.com/canada/article-the-assembly-of-first-nations-prepare-for-historic-meeting-with-carney",
+      "published": "2026-10-24T21:22:02.005000+00:00",
+      "content_status": "full",
+      "word_count": 1668,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2173,36 +2204,6 @@
       "published": "2026-10-24T10:15:00+00:00",
       "content_status": "full",
       "word_count": 1196,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "c34c5dafed3352b0",
-      "source": "The Globe and Mail",
-      "title": "Tighter immigration rules put nursing homes at risk of losing foreign workers, long-term care providers say",
-      "url": "https://www.theglobeandmail.com/canada/article-tighter-immigration-rules-put-nursing-homes-at-risk-of-losing-foreign",
-      "published": "2026-10-24T09:00:00+00:00",
-      "content_status": "full",
-      "word_count": 976,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "c34c5dafed3352b0",
-      "source": "The Globe and Mail",
-      "title": "Tighter immigration rules put nursing homes at risk of losing foreign workers, long-term care providers say",
-      "url": "https://www.theglobeandmail.com/canada/article-tighter-immigration-rules-put-nursing-homes-at-risk-of-losing-foreign",
-      "published": "2026-10-24T09:00:00+00:00",
-      "content_status": "full",
-      "word_count": 976,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4698,6 +4699,41 @@
       ]
     },
     {
+      "id": "b506771ac4561b5c",
+      "source": "The Globe and Mail",
+      "title": "The Assembly of First Nations prepares for historic meeting with Carney, premiers",
+      "url": "https://www.theglobeandmail.com/canada/article-the-assembly-of-first-nations-prepare-for-historic-meeting-with-carney",
+      "published": "2026-10-24T21:22:02.005000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 1668,
+      "paragraph_count": 52,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2c89cd6e9fc97fc2",
       "source": "The Globe and Mail",
       "title": "PEI legislature reopens after restoration that took nearly 12 years",
@@ -4956,41 +4992,6 @@
           "code": "too_many_images",
           "message": "Article contains an unusually large number of inline images.",
           "detail": "16 inline images"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c34c5dafed3352b0",
-      "source": "The Globe and Mail",
-      "title": "Tighter immigration rules put nursing homes at risk of losing foreign workers, long-term care providers say",
-      "url": "https://www.theglobeandmail.com/canada/article-tighter-immigration-rules-put-nursing-homes-at-risk-of-losing-foreign",
-      "published": "2026-10-24T09:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 976,
-      "paragraph_count": 28,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
         },
         {
           "severity": "info",
