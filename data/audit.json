@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-26T14:45:06.376569+00:00",
-  "generated_at_london": "2026-10-26T10:45:06.376569-04:00",
+  "generated_at": "2026-10-26T14:49:37.351374+00:00",
+  "generated_at_london": "2026-10-26T10:49:37.351374-04:00",
   "news_generated_at": "2026-10-26T14:43:28.898995+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 764,
+    "archive_story_count": 763,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 110,
+    "pass_story_count": 109,
     "review_story_count": 5,
-    "fail_story_count": 0,
-    "critical_issue_count": 0,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
     "warning_issue_count": 10,
     "info_issue_count": 92,
-    "healthy_source_count": 14,
-    "review_source_count": 2,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -71,6 +71,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-26T12:58:23.040959+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 430,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-26T12:28:31+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-26T14:26:08.100175+00:00",
       "last_error": ""
     },
     {
@@ -680,32 +706,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 479,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-26T12:28:31+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-26T14:26:08.100175+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -733,6 +733,21 @@
     }
   ],
   "issues": [
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "38 words",
+      "story_id": "19eab51ffd3478b5",
+      "source": "Toronto Star",
+      "title": "Federal Conservatives pitch bill that would end B.C.'s tanker ban",
+      "url": "https://www.thestar.com/politics/federal/federal-conservatives-pitch-bill-that-would-end-b-c-s-tanker-ban/article_1d4e7e73-ac9f-52e1-9a4e-a4ae444a9dfd.html",
+      "published": "2026-10-26T08:12:58+00:00",
+      "content_status": "full",
+      "word_count": 38,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
+    },
     {
       "severity": "warning",
       "code": "too_many_images",
@@ -2079,7 +2094,7 @@
       "url": "https://www.thestar.com/politics/federal/federal-conservatives-pitch-bill-that-would-end-b-c-s-tanker-ban/article_1d4e7e73-ac9f-52e1-9a4e-a4ae444a9dfd.html",
       "published": "2026-10-26T08:12:58+00:00",
       "content_status": "full",
-      "word_count": 524,
+      "word_count": 38,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -5035,14 +5050,14 @@
       "title": "Federal Conservatives pitch bill that would end B.C.'s tanker ban",
       "url": "https://www.thestar.com/politics/federal/federal-conservatives-pitch-bill-that-would-end-b-c-s-tanker-ban/article_1d4e7e73-ac9f-52e1-9a4e-a4ae444a9dfd.html",
       "published": "2026-10-26T08:12:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 524,
-      "paragraph_count": 32,
+      "word_count": 38,
+      "paragraph_count": 2,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -5050,6 +5065,12 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "38 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
