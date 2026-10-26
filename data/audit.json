@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-26T16:54:52.559385+00:00",
-  "generated_at_london": "2026-10-26T12:54:52.559385-04:00",
-  "news_generated_at": "2026-10-26T16:48:37.378957+00:00",
+  "generated_at": "2026-10-26T17:05:56.236225+00:00",
+  "generated_at_london": "2026-10-26T13:05:56.236225-04:00",
+  "news_generated_at": "2026-10-26T17:03:50.974101+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 755,
+    "archive_story_count": 756,
     "source_count": 28,
     "audited_story_count": 116,
     "pass_story_count": 110,
@@ -76,7 +76,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -94,10 +94,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-26T16:25:06+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-26T16:46:17.867687+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -649,7 +649,7 @@
       "latest_published": "2026-10-26T10:40:08+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T16:46:16.374063+00:00",
+      "last_scrape": "2026-10-26T17:01:33.148165+00:00",
       "last_error": ""
     },
     {
@@ -690,19 +690,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 741,
-      "average_quality": 96,
+      "average_words": 666,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 3,
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-10-26T12:23:59.724000+00:00",
+      "latest_published": "2026-10-26T17:00:12.640000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T16:46:10.980772+00:00",
+      "last_scrape": "2026-10-26T17:01:27.778394+00:00",
       "last_error": ""
     },
     {
@@ -1878,6 +1879,51 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "b682d77ac6c1a973",
+      "source": "The Globe and Mail",
+      "title": "A look at Ontario’s current negotiations with its education unions",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-education-unions-contract-negotiations-explained-2026",
+      "published": "2026-10-26T16:50:52.132000+00:00",
+      "content_status": "full",
+      "word_count": 359,
+      "quality_score": 82,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b682d77ac6c1a973",
+      "source": "The Globe and Mail",
+      "title": "A look at Ontario’s current negotiations with its education unions",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-education-unions-contract-negotiations-explained-2026",
+      "published": "2026-10-26T16:50:52.132000+00:00",
+      "content_status": "full",
+      "word_count": 359,
+      "quality_score": 82,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e80684f47e63c215",
+      "source": "The Globe and Mail",
+      "title": "A tale of a B.C. election in three speeches",
+      "url": "https://www.theglobeandmail.com/opinion/article-bc-election-speeches-doerkson-eby-lowan",
+      "published": "2026-10-26T17:00:12.640000+00:00",
+      "content_status": "full",
+      "word_count": 801,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "b74fd257590b3162",
       "source": "The Globe and Mail",
       "title": "B.C. election turnout slumps to new low as fewer than half of voters cast ballot",
@@ -1901,21 +1947,6 @@
       "content_status": "full",
       "word_count": 702,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "769e8fd25b2076ce",
-      "source": "The Globe and Mail",
-      "title": "Britain will not join Canada-led defence bank, sources say",
-      "url": "https://www.theglobeandmail.com/world/article-defence-bank-britain-canada-security",
-      "published": "2026-10-25T20:04:34.999000+00:00",
-      "content_status": "full",
-      "word_count": 692,
-      "quality_score": 94,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1998,21 +2029,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0951b48b69aae280",
-      "source": "The Globe and Mail",
-      "title": "Funeral for soldier killed in CFB Wainwright fire is held in Edmonton",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-cfb-wainwright-fire-funeral-soldier-wong",
-      "published": "2026-10-25T18:53:55.775000+00:00",
-      "content_status": "full",
-      "word_count": 735,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "0709de0a4c301946",
       "source": "The Globe and Mail",
       "title": "Olivia Chow, Brad Bradford battle to the wire in Toronto’s mayoral election",
@@ -2025,33 +2041,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "79dfbadf8b53fea9",
-      "source": "The Globe and Mail",
-      "title": "Political hubris claims another victim – the Ndp’s David Eby",
-      "url": "https://www.theglobeandmail.com/canada/article-political-hubris-claims-another-victim-the-ndps-david-eby",
-      "published": "2026-10-25T20:44:18.922000+00:00",
-      "content_status": "full",
-      "word_count": 786,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "79dfbadf8b53fea9",
+      "story_id": "ce527588c5330bf6",
       "source": "The Globe and Mail",
-      "title": "Political hubris claims another victim – the Ndp’s David Eby",
-      "url": "https://www.theglobeandmail.com/canada/article-political-hubris-claims-another-victim-the-ndps-david-eby",
-      "published": "2026-10-25T20:44:18.922000+00:00",
+      "title": "Poilievre pitches bill that would end B.C.’s tanker ban",
+      "url": "https://www.theglobeandmail.com/canada/article-poilievre-pitches-an-end-to-bc-tanker-ban",
+      "published": "2026-10-26T10:40:34.179000+00:00",
       "content_status": "full",
-      "word_count": 786,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 302,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4374,6 +4375,70 @@
       ]
     },
     {
+      "id": "e80684f47e63c215",
+      "source": "The Globe and Mail",
+      "title": "A tale of a B.C. election in three speeches",
+      "url": "https://www.theglobeandmail.com/opinion/article-bc-election-speeches-doerkson-eby-lowan",
+      "published": "2026-10-26T17:00:12.640000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 801,
+      "paragraph_count": 19,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "b682d77ac6c1a973",
+      "source": "The Globe and Mail",
+      "title": "A look at Ontario’s current negotiations with its education unions",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-education-unions-contract-negotiations-explained-2026",
+      "published": "2026-10-26T16:50:52.132000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 359,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 82,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "797028ee167089a9",
       "source": "The Globe and Mail",
       "title": "Eric Bauza, Canadian voice actor behind Bugs Bunny and Daffy Duck, dies at 46",
@@ -4400,6 +4465,35 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "ce527588c5330bf6",
+      "source": "The Globe and Mail",
+      "title": "Poilievre pitches bill that would end B.C.’s tanker ban",
+      "url": "https://www.theglobeandmail.com/canada/article-poilievre-pitches-an-end-to-bc-tanker-ban",
+      "published": "2026-10-26T10:40:34.179000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 302,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4573,99 +4667,6 @@
       "content_status": "full",
       "word_count": 1050,
       "paragraph_count": 20,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "79dfbadf8b53fea9",
-      "source": "The Globe and Mail",
-      "title": "Political hubris claims another victim – the Ndp’s David Eby",
-      "url": "https://www.theglobeandmail.com/canada/article-political-hubris-claims-another-victim-the-ndps-david-eby",
-      "published": "2026-10-25T20:44:18.922000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 786,
-      "paragraph_count": 19,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "769e8fd25b2076ce",
-      "source": "The Globe and Mail",
-      "title": "Britain will not join Canada-led defence bank, sources say",
-      "url": "https://www.theglobeandmail.com/world/article-defence-bank-britain-canada-security",
-      "published": "2026-10-25T20:04:34.999000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 692,
-      "paragraph_count": 19,
-      "inline_image_count": 1,
-      "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0951b48b69aae280",
-      "source": "The Globe and Mail",
-      "title": "Funeral for soldier killed in CFB Wainwright fire is held in Edmonton",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-cfb-wainwright-fire-funeral-soldier-wong",
-      "published": "2026-10-25T18:53:55.775000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 735,
-      "paragraph_count": 25,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
