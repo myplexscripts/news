@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-26T23:21:06.913631+00:00",
-  "generated_at_london": "2026-10-26T19:21:06.913631-04:00",
+  "generated_at": "2026-10-26T23:24:05.760545+00:00",
+  "generated_at_london": "2026-10-26T19:24:05.760545-04:00",
   "news_generated_at": "2026-10-26T23:19:12.756324+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 755,
+    "archive_story_count": 754,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 114,
-    "review_story_count": 4,
+    "pass_story_count": 115,
+    "review_story_count": 3,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 6,
+    "warning_issue_count": 5,
     "info_issue_count": 94,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 2,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -45,33 +45,6 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
-    },
-    {
-      "source": "CTV News London",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 90,
-      "average_words": 190,
-      "average_quality": 63,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "ctv:summary-fallback": 2,
-        "embedded-json:ctv": 8
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 5,
-      "latest_published": "2026-10-26T23:02:56.549000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-26T23:03:24.904886+00:00",
       "last_error": ""
     },
     {
@@ -441,6 +414,33 @@
       "last_error": ""
     },
     {
+      "source": "CTV News London",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 80,
+      "average_words": 190,
+      "average_quality": 62,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "ctv:summary-fallback": 2,
+        "embedded-json:ctv": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 5,
+      "latest_published": "2026-10-26T23:02:56.549000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-26T23:03:24.904886+00:00",
+      "last_error": ""
+    },
+    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -793,21 +793,6 @@
       "word_count": 792,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "5 consecutive images",
-      "story_id": "df99eae7bc88b549",
-      "source": "CTV News London",
-      "title": "Londoners vote in 2026 municipal election. Live election day updates here",
-      "url": "https://www.ctvnews.ca/london/article/londoners-vote-in-2026-municipal-election-live-election-day-updates-here",
-      "published": "2026-10-26T23:02:56.549000+00:00",
-      "content_status": "partial",
-      "word_count": 43,
-      "quality_score": 55,
-      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "warning",
@@ -2242,28 +2227,21 @@
       "title": "Londoners vote in 2026 municipal election. Live election day updates here",
       "url": "https://www.ctvnews.ca/london/article/londoners-vote-in-2026-municipal-election-live-election-day-updates-here",
       "published": "2026-10-26T23:02:56.549000+00:00",
-      "audit_status": "review",
-      "audit_score": 88,
+      "audit_status": "pass",
+      "audit_score": 100,
       "critical_count": 0,
-      "warning_count": 1,
+      "warning_count": 0,
       "info_count": 0,
-      "content_status": "partial",
+      "content_status": "summary",
       "word_count": 43,
       "paragraph_count": 1,
-      "inline_image_count": 5,
-      "quality_score": 55,
-      "quality_grade": "fair",
+      "inline_image_count": 0,
+      "quality_score": 40,
+      "quality_grade": "poor",
       "extraction_method": "ctv:summary-fallback",
       "extraction_profile": "ctv",
       "local_score": 35,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "5 consecutive images"
-        }
-      ]
+      "issues": []
     },
     {
       "id": "43c8dd878cbbb9e1",
