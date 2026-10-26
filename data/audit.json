@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-26T16:39:17.426709+00:00",
-  "generated_at_london": "2026-10-26T12:39:17.426709-04:00",
-  "news_generated_at": "2026-10-26T16:33:19.203349+00:00",
+  "generated_at": "2026-10-26T16:50:35.231722+00:00",
+  "generated_at_london": "2026-10-26T12:50:35.231722-04:00",
+  "news_generated_at": "2026-10-26T16:48:37.378957+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 755,
+    "archive_story_count": 757,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 110,
-    "review_story_count": 5,
+    "pass_story_count": 109,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 10,
-    "info_issue_count": 92,
+    "warning_issue_count": 12,
+    "info_issue_count": 93,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 0,
@@ -79,24 +79,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 315,
-      "average_quality": 96,
+      "average_words": 252,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-26T15:13:10+00:00",
+      "latest_published": "2026-10-26T16:25:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T15:26:55.285938+00:00",
+      "last_scrape": "2026-10-26T16:46:17.867687+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +650,7 @@
       "latest_published": "2026-10-26T10:40:08+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T16:30:58.217211+00:00",
+      "last_scrape": "2026-10-26T16:46:16.374063+00:00",
       "last_error": ""
     },
     {
@@ -690,19 +691,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 697,
-      "average_quality": 95,
+      "average_words": 741,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-26T10:33:08.676000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-26T12:23:59.724000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T16:15:38.480122+00:00",
+      "last_scrape": "2026-10-26T16:46:10.980772+00:00",
       "last_error": ""
     },
     {
@@ -897,6 +899,36 @@
       "word_count": 240,
       "quality_score": 66,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "23ceaee20697f49f",
+      "source": "Toronto Star",
+      "title": "Man and woman who yelled, stripped on Newfoundland flight fined $4,000 each",
+      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/man-and-woman-who-yelled-stripped-on-newfoundland-flight-fined-4-000-each/article_c0767590-4ee9-5a16-a529-9fb147019779.html",
+      "published": "2026-10-26T16:25:06+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "23ceaee20697f49f",
+      "source": "Toronto Star",
+      "title": "Man and woman who yelled, stripped on Newfoundland flight fined $4,000 each",
+      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/man-and-woman-who-yelled-stripped-on-newfoundland-flight-fined-4-000-each/article_c0767590-4ee9-5a16-a529-9fb147019779.html",
+      "published": "2026-10-26T16:25:06+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1965,6 +1997,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "797028ee167089a9",
+      "source": "The Globe and Mail",
+      "title": "Eric Bauza, Canadian voice actor behind Bugs Bunny and Daffy Duck, dies at 46",
+      "url": "https://www.theglobeandmail.com/canada/article-eric-bauza-canadian-voice-actor-dies",
+      "published": "2026-10-26T12:23:59.724000+00:00",
+      "content_status": "full",
+      "word_count": 565,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "797028ee167089a9",
+      "source": "The Globe and Mail",
+      "title": "Eric Bauza, Canadian voice actor behind Bugs Bunny and Daffy Duck, dies at 46",
+      "url": "https://www.theglobeandmail.com/canada/article-eric-bauza-canadian-voice-actor-dies",
+      "published": "2026-10-26T12:23:59.724000+00:00",
+      "content_status": "full",
+      "word_count": 565,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2043,21 +2105,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9f340899af3c2301",
-      "source": "The Globe and Mail",
-      "title": "Woman dies a day after release from New Brunswick correctional centre",
-      "url": "https://www.theglobeandmail.com/canada/article-correctional-centre-new-brunswick-death",
-      "published": "2026-10-25T16:08:45.947000+00:00",
-      "content_status": "partial",
-      "word_count": 117,
-      "quality_score": 94,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "435479d607882af9",
       "source": "Toronto Star",
       "title": "Doerkson won't rule out shortened fall session after provincial election win",
@@ -2082,6 +2129,21 @@
       "word_count": 315,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "23ceaee20697f49f",
+      "source": "Toronto Star",
+      "title": "Man and woman who yelled, stripped on Newfoundland flight fined $4,000 each",
+      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/man-and-woman-who-yelled-stripped-on-newfoundland-flight-fined-4-000-each/article_c0767590-4ee9-5a16-a529-9fb147019779.html",
+      "published": "2026-10-26T16:25:06+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2155,21 +2217,6 @@
       "published": "2026-10-26T11:49:45+00:00",
       "content_status": "full",
       "word_count": 94,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "2c70e4973d3d51f1",
-      "source": "Toronto Star",
-      "title": "Toronto votes in tight mayoral race as Chow looks to hold off Bradford",
-      "url": "https://www.thestar.com/news/ontario/toronto-votes-in-tight-mayoral-race-as-chow-looks-to-hold-off-bradford/article_e6e5644b-f6f1-5531-8a7a-63e2d47d821c.html",
-      "published": "2026-10-26T08:00:05+00:00",
-      "content_status": "full",
-      "word_count": 867,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4359,6 +4406,41 @@
       ]
     },
     {
+      "id": "797028ee167089a9",
+      "source": "The Globe and Mail",
+      "title": "Eric Bauza, Canadian voice actor behind Bugs Bunny and Daffy Duck, dies at 46",
+      "url": "https://www.theglobeandmail.com/canada/article-eric-bauza-canadian-voice-actor-dies",
+      "published": "2026-10-26T12:23:59.724000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 565,
+      "paragraph_count": 24,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e1ad01433c131ad6",
       "source": "The Globe and Mail",
       "title": "Canada receives first F-35 fighter jets from U.S.",
@@ -4618,35 +4700,6 @@
       "paragraph_count": 25,
       "inline_image_count": 2,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9f340899af3c2301",
-      "source": "The Globe and Mail",
-      "title": "Woman dies a day after release from New Brunswick correctional centre",
-      "url": "https://www.theglobeandmail.com/canada/article-correctional-centre-new-brunswick-death",
-      "published": "2026-10-25T16:08:45.947000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 117,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 94,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
@@ -4951,6 +5004,47 @@
       ]
     },
     {
+      "id": "23ceaee20697f49f",
+      "source": "Toronto Star",
+      "title": "Man and woman who yelled, stripped on Newfoundland flight fined $4,000 each",
+      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/man-and-woman-who-yelled-stripped-on-newfoundland-flight-fined-4-000-each/article_c0767590-4ee9-5a16-a529-9fb147019779.html",
+      "published": "2026-10-26T16:25:06+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 235,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "aa8c9dbfad7c3302",
       "source": "Toronto Star",
       "title": "Police ethics commissioner and watchdog investigating Montreal police",
@@ -5203,35 +5297,6 @@
       "word_count": 895,
       "paragraph_count": 28,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2c70e4973d3d51f1",
-      "source": "Toronto Star",
-      "title": "Toronto votes in tight mayoral race as Chow looks to hold off Bradford",
-      "url": "https://www.thestar.com/news/ontario/toronto-votes-in-tight-mayoral-race-as-chow-looks-to-hold-off-bradford/article_e6e5644b-f6f1-5531-8a7a-63e2d47d821c.html",
-      "published": "2026-10-26T08:00:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 867,
-      "paragraph_count": 22,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
