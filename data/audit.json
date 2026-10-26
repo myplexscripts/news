@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-26T20:47:42.994538+00:00",
-  "generated_at_london": "2026-10-26T16:47:42.994538-04:00",
-  "news_generated_at": "2026-10-26T20:42:56.526372+00:00",
+  "generated_at": "2026-10-26T20:59:13.548088+00:00",
+  "generated_at_london": "2026-10-26T16:59:13.548088-04:00",
+  "news_generated_at": "2026-10-26T20:57:59.570013+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 762,
+    "archive_story_count": 764,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 117,
@@ -194,7 +194,7 @@
     {
       "source": "London District Catholic School Board",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -210,10 +210,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 9,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.ldcsb.ca', port=443): Max retries exceeded with url: /apps/news/category/11195?pageIndex=1 (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.ldcsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "London Free Press",
@@ -242,7 +242,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -258,10 +258,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 3,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.londontransit.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -398,7 +398,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 213,
+      "average_words": 231,
       "average_quality": 66,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -408,10 +408,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 5,
-      "latest_published": "2026-10-26T19:21:41.998000+00:00",
+      "latest_published": "2026-10-26T20:52:07.520000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T19:27:41.870891+00:00",
+      "last_scrape": "2026-10-26T20:54:51.940450+00:00",
       "last_error": ""
     },
     {
@@ -505,19 +505,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 418,
-      "average_quality": 96,
+      "average_words": 484,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-26T19:55:08+00:00",
+      "latest_published": "2026-10-26T20:43:28+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T20:10:24.547453+00:00",
+      "last_scrape": "2026-10-26T20:56:26.809601+00:00",
       "last_error": ""
     },
     {
@@ -623,7 +624,7 @@
       "latest_published": "2026-10-26T20:15:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T20:41:18.781355+00:00",
+      "last_scrape": "2026-10-26T20:56:31.380688+00:00",
       "last_error": ""
     },
     {
@@ -1278,15 +1279,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "063b1964a4ae5bb9",
+      "story_id": "377bbc75fe64c941",
       "source": "Global News Canada",
-      "title": "Canada receives first F-35 jets from U.S. as full order still under review",
-      "url": "https://globalnews.ca/news/12120725/canada-us-f35-jets-full-order-review",
-      "published": "2026-10-25T21:03:29+00:00",
+      "title": "Canada-U.S. trade talks ‘moving quickly’ at political level ahead of midterms: sources",
+      "url": "https://globalnews.ca/news/12121641/canada-us-trade-talks-moving-quickly-midterms",
+      "published": "2026-10-26T20:43:28+00:00",
       "content_status": "full",
-      "word_count": 188,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 851,
+      "quality_score": 88,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -2221,6 +2222,28 @@
   ],
   "stories": [
     {
+      "id": "43c8dd878cbbb9e1",
+      "source": "CTV News London",
+      "title": "Londoners head to polls as mayoral candidates make final push on election day",
+      "url": "https://www.ctvnews.ca/london/article/londoners-head-to-polls-as-mayoral-candidates-make-final-push-on-election-day",
+      "published": "2026-10-26T20:52:07.520000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 528,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 35,
+      "issues": []
+    },
+    {
       "id": "ca64a044abf4d85e",
       "source": "CTV News London",
       "title": "34-year-old man sentenced for vicious random stabbing attack on elderly woman",
@@ -2450,28 +2473,6 @@
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 38,
-      "issues": []
-    },
-    {
-      "id": "131596b5ce2ee50a",
-      "source": "CTV News London",
-      "title": "Old South church helps ‘Fill the Van’ for London Food Bank",
-      "url": "https://www.ctvnews.ca/london/article/old-south-church-helps-fill-the-van-for-london-food-bank",
-      "published": "2026-10-25T19:26:44.672000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 349,
-      "paragraph_count": 14,
-      "inline_image_count": 3,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
       "issues": []
     },
     {
@@ -3750,6 +3751,35 @@
       ]
     },
     {
+      "id": "377bbc75fe64c941",
+      "source": "Global News Canada",
+      "title": "Canada-U.S. trade talks ‘moving quickly’ at political level ahead of midterms: sources",
+      "url": "https://globalnews.ca/news/12121641/canada-us-trade-talks-moving-quickly-midterms",
+      "published": "2026-10-26T20:43:28+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 851,
+      "paragraph_count": 25,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7fea117eb39a8cd0",
       "source": "Global News Canada",
       "title": "N.S. government announces funding to grow boatbuilding industry",
@@ -3994,35 +4024,6 @@
       "info_count": 1,
       "content_status": "full",
       "word_count": 143,
-      "paragraph_count": 6,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "063b1964a4ae5bb9",
-      "source": "Global News Canada",
-      "title": "Canada receives first F-35 jets from U.S. as full order still under review",
-      "url": "https://globalnews.ca/news/12120725/canada-us-f35-jets-full-order-review",
-      "published": "2026-10-25T21:03:29+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 188,
       "paragraph_count": 6,
       "inline_image_count": 2,
       "quality_score": 96,
