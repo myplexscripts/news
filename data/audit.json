@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-26T20:40:14.320601+00:00",
-  "generated_at_london": "2026-10-26T16:40:14.320601-04:00",
-  "news_generated_at": "2026-10-26T20:28:33.024579+00:00",
+  "generated_at": "2026-10-26T20:44:16.766347+00:00",
+  "generated_at_london": "2026-10-26T16:44:16.766347-04:00",
+  "news_generated_at": "2026-10-26T20:42:56.526372+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 762,
     "source_count": 28,
-    "audited_story_count": 120,
+    "audited_story_count": 119,
     "pass_story_count": 117,
-    "review_story_count": 3,
+    "review_story_count": 2,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 6,
-    "info_issue_count": 96,
-    "healthy_source_count": 14,
-    "review_source_count": 2,
+    "warning_issue_count": 4,
+    "info_issue_count": 95,
+    "healthy_source_count": 15,
+    "review_source_count": 1,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -26,52 +26,26 @@
       "status": "review",
       "collector_status": "waiting",
       "profile": "heartfm",
-      "sample_size": 3,
+      "sample_size": 2,
       "pass": 0,
-      "review": 3,
+      "review": 2,
       "fail": 0,
       "pass_rate": 0,
       "usable_body_rate": 100,
-      "average_words": 745,
+      "average_words": 783,
       "average_quality": 76,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 3
+        "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
-      "warning_issues": 6,
-      "info_issues": 3,
+      "warning_issues": 4,
+      "info_issues": 2,
       "latest_published": "2026-10-26T12:36:54+00:00",
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 296,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-26T19:28:45+00:00",
-      "found_this_run": 0,
-      "tracked": 30,
-      "last_scrape": "2026-10-26T19:54:47.400570+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -649,7 +623,7 @@
       "latest_published": "2026-10-26T20:15:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T20:26:13.099181+00:00",
+      "last_scrape": "2026-10-26T20:41:18.781355+00:00",
       "last_error": ""
     },
     {
@@ -690,19 +664,46 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 577,
-      "average_quality": 96,
+      "average_words": 563,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-10-26T19:51:08.340000+00:00",
+      "latest_published": "2026-10-26T20:27:30.646000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-26T20:26:04.835845+00:00",
+      "last_scrape": "2026-10-26T20:41:12.682372+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 296,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-26T19:28:45+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-26T19:54:47.400570+00:00",
       "last_error": ""
     },
     {
@@ -794,36 +795,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "17 inline images",
-      "story_id": "3f6c0542b273d0fa",
-      "source": "104.7 Heart FM",
-      "title": "Swph is Offering Vaccination Clinics",
-      "url": "https://www.heartfm.ca/news/local-news/swph-is-offering-vaccination-clinics",
-      "published": "2026-10-19T20:39:41+00:00",
-      "content_status": "full",
-      "word_count": 668,
-      "quality_score": 76,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "17 consecutive images",
-      "story_id": "3f6c0542b273d0fa",
-      "source": "104.7 Heart FM",
-      "title": "Swph is Offering Vaccination Clinics",
-      "url": "https://www.heartfm.ca/news/local-news/swph-is-offering-vaccination-clinics",
-      "published": "2026-10-19T20:39:41+00:00",
-      "content_status": "full",
-      "word_count": 668,
-      "quality_score": 76,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -850,21 +821,6 @@
       "published": "2026-10-26T12:36:54+00:00",
       "content_status": "full",
       "word_count": 792,
-      "quality_score": 76,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 10/100",
-      "story_id": "3f6c0542b273d0fa",
-      "source": "104.7 Heart FM",
-      "title": "Swph is Offering Vaccination Clinics",
-      "url": "https://www.heartfm.ca/news/local-news/swph-is-offering-vaccination-clinics",
-      "published": "2026-10-19T20:39:41+00:00",
-      "content_status": "full",
-      "word_count": 668,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1938,21 +1894,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c98aca7b40545365",
-      "source": "The Globe and Mail",
-      "title": "Canadian Blood Services says longtime plasma donor’s death not connected to donation",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-blood-services-plasma-donor-death-not-connected-donation",
-      "published": "2026-10-26T09:00:00+00:00",
-      "content_status": "full",
-      "word_count": 858,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "00efb2a45c0fc9ad",
       "source": "The Globe and Mail",
       "title": "Crown withdraws criminal charges against Pro-Palestinian protesters arrested at Montreal sit-in",
@@ -1992,6 +1933,21 @@
       "word_count": 565,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d3f677f3022a8cdc",
+      "source": "The Globe and Mail",
+      "title": "Holt’s makes a big bet on caviar",
+      "url": "https://www.theglobeandmail.com/life/style/style-magazine/article-holts-makes-a-big-bet-on-caviar",
+      "published": "2026-10-26T20:27:30.646000+00:00",
+      "content_status": "full",
+      "word_count": 715,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3103,47 +3059,6 @@
           "code": "image_gallery_leak",
           "message": "Several images appear consecutively with no article text between them.",
           "detail": "19 consecutive images"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 10/100"
-        }
-      ]
-    },
-    {
-      "id": "3f6c0542b273d0fa",
-      "source": "104.7 Heart FM",
-      "title": "Swph is Offering Vaccination Clinics",
-      "url": "https://www.heartfm.ca/news/local-news/swph-is-offering-vaccination-clinics",
-      "published": "2026-10-19T20:39:41+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
-      "critical_count": 0,
-      "warning_count": 2,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 668,
-      "paragraph_count": 8,
-      "inline_image_count": 17,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "heartfm",
-      "local_score": 10,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "17 inline images"
-        },
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "17 consecutive images"
         },
         {
           "severity": "info",
@@ -4440,6 +4355,35 @@
       ]
     },
     {
+      "id": "d3f677f3022a8cdc",
+      "source": "The Globe and Mail",
+      "title": "Holt’s makes a big bet on caviar",
+      "url": "https://www.theglobeandmail.com/life/style/style-magazine/article-holts-makes-a-big-bet-on-caviar",
+      "published": "2026-10-26T20:27:30.646000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 715,
+      "paragraph_count": 11,
+      "inline_image_count": 4,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6513ac097216cd9f",
       "source": "The Globe and Mail",
       "title": "Meghan Roach steps down as Roots CEO as go-private transaction closes",
@@ -4699,35 +4643,6 @@
       "paragraph_count": 6,
       "inline_image_count": 1,
       "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c98aca7b40545365",
-      "source": "The Globe and Mail",
-      "title": "Canadian Blood Services says longtime plasma donor’s death not connected to donation",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-blood-services-plasma-donor-death-not-connected-donation",
-      "published": "2026-10-26T09:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 858,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
