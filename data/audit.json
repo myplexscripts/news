@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T18:09:54.004807+00:00",
-  "generated_at_london": "2026-10-27T14:09:54.004807-04:00",
-  "news_generated_at": "2026-10-27T18:03:01.022953+00:00",
+  "generated_at": "2026-10-27T18:22:53.633641+00:00",
+  "generated_at_london": "2026-10-27T14:22:53.633641-04:00",
+  "news_generated_at": "2026-10-27T18:20:54.346958+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 743,
+    "archive_story_count": 745,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 111,
-    "review_story_count": 3,
+    "pass_story_count": 110,
+    "review_story_count": 4,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 5,
-    "info_issue_count": 101,
+    "warning_issue_count": 7,
+    "info_issue_count": 102,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 0,
@@ -76,28 +76,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 499,
-      "average_quality": 96,
+      "average_words": 452,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-27T17:30:33+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-27T17:57:54+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T17:45:14.152581+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-27T18:18:45.069673+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -145,7 +146,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -423,21 +424,21 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 60,
-      "average_words": 202,
-      "average_quality": 60,
+      "usable_body_rate": 70,
+      "average_words": 279,
+      "average_quality": 66,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 4,
-        "embedded-json:ctv": 6
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-27T16:56:03.501000+00:00",
+      "info_issues": 11,
+      "latest_published": "2026-10-27T18:19:36.492000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T17:58:42.009001+00:00",
+      "last_scrape": "2026-10-27T18:16:41.112259+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +650,7 @@
       "latest_published": "2026-10-27T17:37:13+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T18:00:55.559801+00:00",
+      "last_scrape": "2026-10-27T18:18:42.529124+00:00",
       "last_error": ""
     },
     {
@@ -808,6 +809,36 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "75f027ecff5cc992",
+      "source": "Toronto Star",
+      "title": "Regis Korchinski-Paquet's mother questions purpose of coroner's inquest",
+      "url": "https://www.thestar.com/news/ontario/regis-korchinski-paquet-s-mother-questions-purpose-of-coroner-s-inquest/article_16300533-2008-59b7-9c0d-bdfecf740dc3.html",
+      "published": "2026-10-27T17:57:54+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "75f027ecff5cc992",
+      "source": "Toronto Star",
+      "title": "Regis Korchinski-Paquet's mother questions purpose of coroner's inquest",
+      "url": "https://www.thestar.com/news/ontario/regis-korchinski-paquet-s-mother-questions-purpose-of-coroner-s-inquest/article_16300533-2008-59b7-9c0d-bdfecf740dc3.html",
+      "published": "2026-10-27T17:57:54+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1098,15 +1129,15 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 14/100",
-      "story_id": "1d095f1ac3b9884a",
+      "detail": "Local score 12/100",
+      "story_id": "65928581abf4b74a",
       "source": "CTV News London",
-      "title": "Sarnia and Lambton election results",
-      "url": "https://www.ctvnews.ca/london/article/sarnia-and-lambton-election-results",
-      "published": "2026-10-27T00:11:46.462000+00:00",
+      "title": "Ontario modernizes hydro utilities to drive economic growth, cites London Hydro success",
+      "url": "https://www.ctvnews.ca/london/article/ontario-modernizes-hydro-utilities-to-drive-economic-growth-cites-london-hydro-success",
+      "published": "2026-10-27T18:12:34.842000+00:00",
       "content_status": "full",
-      "word_count": 95,
-      "quality_score": 60,
+      "word_count": 426,
+      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1152,6 +1183,21 @@
       "content_status": "full",
       "word_count": 144,
       "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4b08604c8e253167",
+      "source": "CTV News London",
+      "title": "‘$40 million is a lot of money!’: Lotto ticket bought in Grey County unclaimed with 24 hours until deadline",
+      "url": "https://www.ctvnews.ca/london/article/40-million-is-a-lot-of-money-lotto-ticket-bought-in-grey-county-unclaimed-with-24-hours-until-deadline",
+      "published": "2026-10-27T18:19:36.492000+00:00",
+      "content_status": "full",
+      "word_count": 401,
+      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2179,21 +2225,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1fdb1ca04e89dbdf",
-      "source": "Toronto Star",
-      "title": "Five Things: The key topics at play as Canada and the EU discuss deeper ties",
-      "url": "https://www.thestar.com/news/canada/five-things-the-key-topics-at-play-as-canada-and-the-eu-discuss-deeper-ties/article_c80e260b-22b4-5d8b-a43a-53c3b0423c74.html",
-      "published": "2026-10-27T08:00:07+00:00",
-      "content_status": "full",
-      "word_count": 670,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "bc14fb2877b7e4ae",
       "source": "Toronto Star",
       "title": "Former volunteer cheerleading coach in Niagara Region charged in alleged sex assaults",
@@ -2248,6 +2279,21 @@
       "word_count": 218,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "75f027ecff5cc992",
+      "source": "Toronto Star",
+      "title": "Regis Korchinski-Paquet's mother questions purpose of coroner's inquest",
+      "url": "https://www.thestar.com/news/ontario/regis-korchinski-paquet-s-mother-questions-purpose-of-coroner-s-inquest/article_16300533-2008-59b7-9c0d-bdfecf740dc3.html",
+      "published": "2026-10-27T17:57:54+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2326,6 +2372,64 @@
     }
   ],
   "stories": [
+    {
+      "id": "4b08604c8e253167",
+      "source": "CTV News London",
+      "title": "‘$40 million is a lot of money!’: Lotto ticket bought in Grey County unclaimed with 24 hours until deadline",
+      "url": "https://www.ctvnews.ca/london/article/40-million-is-a-lot-of-money-lotto-ticket-bought-in-grey-county-unclaimed-with-24-hours-until-deadline",
+      "published": "2026-10-27T18:19:36.492000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 401,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "65928581abf4b74a",
+      "source": "CTV News London",
+      "title": "Ontario modernizes hydro utilities to drive economic growth, cites London Hydro success",
+      "url": "https://www.ctvnews.ca/london/article/ontario-modernizes-hydro-utilities-to-drive-economic-growth-cites-london-hydro-success",
+      "published": "2026-10-27T18:12:34.842000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 426,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
     {
       "id": "d9f286f56d6c5951",
       "source": "CTV News London",
@@ -2561,57 +2665,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f096232a86c45ab0",
-      "source": "CTV News London",
-      "title": "Watch Live: Josh Morgan re-elected, Londoners vote in 2026 municipal election",
-      "url": "https://www.ctvnews.ca/london/article/watch-live-josh-morgan-re-elected-londoners-vote-in-2026-municipal-election",
-      "published": "2026-10-27T01:47:24.821000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "summary",
-      "word_count": 43,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": []
-    },
-    {
-      "id": "1d095f1ac3b9884a",
-      "source": "CTV News London",
-      "title": "Sarnia and Lambton election results",
-      "url": "https://www.ctvnews.ca/london/article/sarnia-and-lambton-election-results",
-      "published": "2026-10-27T00:11:46.462000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 95,
-      "paragraph_count": 19,
-      "inline_image_count": 1,
-      "quality_score": 60,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 14,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 14/100"
         }
       ]
     },
@@ -4981,6 +5034,47 @@
       ]
     },
     {
+      "id": "75f027ecff5cc992",
+      "source": "Toronto Star",
+      "title": "Regis Korchinski-Paquet's mother questions purpose of coroner's inquest",
+      "url": "https://www.thestar.com/news/ontario/regis-korchinski-paquet-s-mother-questions-purpose-of-coroner-s-inquest/article_16300533-2008-59b7-9c0d-bdfecf740dc3.html",
+      "published": "2026-10-27T17:57:54+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f9d4e8e83f692b19",
       "source": "Toronto Star",
       "title": "Donald Trump congratulates Quebec's new premier, 22 days after election",
@@ -5227,35 +5321,6 @@
       "word_count": 374,
       "paragraph_count": 19,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1fdb1ca04e89dbdf",
-      "source": "Toronto Star",
-      "title": "Five Things: The key topics at play as Canada and the EU discuss deeper ties",
-      "url": "https://www.thestar.com/news/canada/five-things-the-key-topics-at-play-as-canada-and-the-eu-discuss-deeper-ties/article_c80e260b-22b4-5d8b-a43a-53c3b0423c74.html",
-      "published": "2026-10-27T08:00:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 670,
-      "paragraph_count": 25,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
