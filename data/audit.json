@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T18:04:55.795759+00:00",
-  "generated_at_london": "2026-10-27T14:04:55.795759-04:00",
+  "generated_at": "2026-10-27T18:09:54.004807+00:00",
+  "generated_at_london": "2026-10-27T14:09:54.004807-04:00",
   "news_generated_at": "2026-10-27T18:03:01.022953+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 0,
     "critical_issue_count": 0,
     "warning_issue_count": 5,
-    "info_issue_count": 100,
+    "info_issue_count": 101,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 0,
@@ -433,7 +433,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 9,
+      "info_issues": 10,
       "latest_published": "2026-10-27T16:56:03.501000+00:00",
       "found_this_run": 10,
       "tracked": 30,
@@ -1078,6 +1078,21 @@
       "word_count": 305,
       "quality_score": 76,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "cd90cd4d107812fe",
+      "source": "CTV News London",
+      "title": "Middlesex County election results",
+      "url": "https://www.ctvnews.ca/london/article/middlesex-county-election-results",
+      "published": "2026-10-27T10:19:16.626000+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 40,
+      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -2463,10 +2478,10 @@
       "url": "https://www.ctvnews.ca/london/article/middlesex-county-election-results",
       "published": "2026-10-27T10:19:16.626000+00:00",
       "audit_status": "pass",
-      "audit_score": 100,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 0,
+      "info_count": 1,
       "content_status": "summary",
       "word_count": 0,
       "paragraph_count": 0,
@@ -2476,7 +2491,14 @@
       "extraction_method": "ctv:summary-fallback",
       "extraction_profile": "ctv",
       "local_score": 22,
-      "issues": []
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "8ccf384043159212",
