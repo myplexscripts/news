@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T00:12:37.823512+00:00",
-  "generated_at_london": "2026-10-26T20:12:37.823512-04:00",
-  "news_generated_at": "2026-10-27T00:05:57.384074+00:00",
+  "generated_at": "2026-10-27T00:22:24.312002+00:00",
+  "generated_at_london": "2026-10-26T20:22:24.312002-04:00",
+  "news_generated_at": "2026-10-27T00:20:48.458441+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 759,
+    "archive_story_count": 764,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 115,
@@ -14,7 +14,7 @@
     "fail_story_count": 0,
     "critical_issue_count": 0,
     "warning_issue_count": 5,
-    "info_issue_count": 97,
+    "info_issue_count": 98,
     "healthy_source_count": 14,
     "review_source_count": 2,
     "error_source_count": 0,
@@ -124,7 +124,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -140,10 +140,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 1,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x7f82870ebfe0>, 'Connection to weather.gc"
+      "last_error": ""
     },
     {
       "source": "Global News London",
@@ -212,7 +212,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 6,
+      "found_this_run": 7,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -398,7 +398,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 448,
+      "average_words": 446,
       "average_quality": 78,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -407,10 +407,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-10-26T22:46:05.238000+00:00",
-      "found_this_run": 3,
+      "latest_published": "2026-10-27T00:11:32.508000+00:00",
+      "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-10-26T23:06:13.724324+00:00",
+      "last_scrape": "2026-10-27T00:18:41.524797+00:00",
       "last_error": ""
     },
     {
@@ -423,21 +423,21 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 50,
-      "average_words": 155,
-      "average_quality": 56,
-      "primary_method": "ctv:summary-fallback",
+      "usable_body_rate": 40,
+      "average_words": 69,
+      "average_quality": 50,
+      "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 6,
-        "embedded-json:ctv": 4
+        "embedded-json:ctv": 5,
+        "ctv:summary-fallback": 5
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 8,
-      "latest_published": "2026-10-27T00:04:47.409000+00:00",
+      "info_issues": 9,
+      "latest_published": "2026-10-27T00:11:46.462000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T00:01:01.591148+00:00",
+      "last_scrape": "2026-10-27T00:16:40.519908+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +650,7 @@
       "latest_published": "2026-10-26T23:13:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T00:03:18.709681+00:00",
+      "last_scrape": "2026-10-27T00:18:46.561008+00:00",
       "last_error": ""
     },
     {
@@ -886,6 +886,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "edb6caf6606add09",
+      "source": "CTV News Canada",
+      "title": "Elections across Canada see rise in advance voting. Could it lead to a higher overall turnout?",
+      "url": "https://www.ctvnews.ca/canada/article/elections-across-canada-see-rise-in-advance-voting-could-it-lead-to-a-higher-overall-turnout",
+      "published": "2026-10-27T00:11:32.508000+00:00",
+      "content_status": "full",
+      "word_count": 533,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -976,21 +991,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "960429bb93ac6797",
-      "source": "CTV News Canada",
-      "title": "‘Always try to buy Canadian’: Retailers see demand for Canadian Halloween products grow",
-      "url": "https://www.ctvnews.ca/canada/article/always-try-to-buy-canadian-retailers-see-demand-for-canadian-halloween-products-grow",
-      "published": "2026-10-24T12:17:16.575000+00:00",
-      "content_status": "full",
-      "word_count": 559,
-      "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1036,36 +1036,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "ca64a044abf4d85e",
-      "source": "CTV News London",
-      "title": "34-year-old man sentenced for vicious random stabbing attack on elderly woman",
-      "url": "https://www.ctvnews.ca/london/article/34-year-old-man-sentenced-for-vicious-random-stabbing-attack-on-elderly-woman",
-      "published": "2026-10-26T19:21:41.998000+00:00",
-      "content_status": "full",
-      "word_count": 294,
-      "quality_score": 76,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "ca64a044abf4d85e",
-      "source": "CTV News London",
-      "title": "34-year-old man sentenced for vicious random stabbing attack on elderly woman",
-      "url": "https://www.ctvnews.ca/london/article/34-year-old-man-sentenced-for-vicious-random-stabbing-attack-on-elderly-woman",
-      "published": "2026-10-26T19:21:41.998000+00:00",
-      "content_status": "full",
-      "word_count": 294,
-      "quality_score": 76,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1078,6 +1048,21 @@
       "word_count": 3,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "6fe1c5e4ffc631e9",
+      "source": "CTV News London",
+      "title": "Here’s how Londoners voted in the 2026 municipal election",
+      "url": "https://www.ctvnews.ca/london/article/heres-how-londoners-voted-in-the-2026-municipal-election",
+      "published": "2026-10-27T00:07:26.582000+00:00",
+      "content_status": "partial",
+      "word_count": 81,
+      "quality_score": 53,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -1096,32 +1081,32 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "a385d5a6f972b262",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "cd90cd4d107812fe",
       "source": "CTV News London",
-      "title": "Replica guns seized, two charged in south London incident",
-      "url": "https://www.ctvnews.ca/london/article/replica-guns-seized-two-charged-in-south-london-incident",
-      "published": "2026-10-26T18:51:58.109000+00:00",
+      "title": "Middlesex County election results",
+      "url": "https://www.ctvnews.ca/london/article/middlesex-county-election-results",
+      "published": "2026-10-27T00:05:43.651000+00:00",
       "content_status": "summary",
-      "word_count": 13,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
+      "word_count": 26,
+      "quality_score": 48,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "7570f6de9dfff63b",
+      "detail": "Local score 14/100",
+      "story_id": "1d095f1ac3b9884a",
       "source": "CTV News London",
-      "title": "Shotgun fired in Zorra Township home invasion, suspects at large",
-      "url": "https://www.ctvnews.ca/london/article/shotgun-fired-in-zorra-township-home-invasion-suspects-at-large",
-      "published": "2026-10-26T18:44:29.037000+00:00",
+      "title": "Sarnia and Lambton election results",
+      "url": "https://www.ctvnews.ca/london/article/sarnia-and-lambton-election-results",
+      "published": "2026-10-27T00:11:46.462000+00:00",
       "content_status": "full",
-      "word_count": 243,
-      "quality_score": 71,
+      "word_count": 95,
+      "quality_score": 60,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1153,6 +1138,36 @@
       "word_count": 22,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "96ac945c18f69a39",
+      "source": "CTV News London",
+      "title": "Woodstock and Oxford County election results",
+      "url": "https://www.ctvnews.ca/london/article/woodstock-and-oxford-county-election-results",
+      "published": "2026-10-27T00:06:38.139000+00:00",
+      "content_status": "summary",
+      "word_count": 20,
+      "quality_score": 48,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "96ac945c18f69a39",
+      "source": "CTV News London",
+      "title": "Woodstock and Oxford County election results",
+      "url": "https://www.ctvnews.ca/london/article/woodstock-and-oxford-county-election-results",
+      "published": "2026-10-27T00:06:38.139000+00:00",
+      "content_status": "summary",
+      "word_count": 20,
+      "quality_score": 48,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2267,6 +2282,128 @@
   ],
   "stories": [
     {
+      "id": "1d095f1ac3b9884a",
+      "source": "CTV News London",
+      "title": "Sarnia and Lambton election results",
+      "url": "https://www.ctvnews.ca/london/article/sarnia-and-lambton-election-results",
+      "published": "2026-10-27T00:11:46.462000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 95,
+      "paragraph_count": 19,
+      "inline_image_count": 0,
+      "quality_score": 60,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 14,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 14/100"
+        }
+      ]
+    },
+    {
+      "id": "6fe1c5e4ffc631e9",
+      "source": "CTV News London",
+      "title": "Here’s how Londoners voted in the 2026 municipal election",
+      "url": "https://www.ctvnews.ca/london/article/heres-how-londoners-voted-in-the-2026-municipal-election",
+      "published": "2026-10-27T00:07:26.582000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 81,
+      "paragraph_count": 17,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 35,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "96ac945c18f69a39",
+      "source": "CTV News London",
+      "title": "Woodstock and Oxford County election results",
+      "url": "https://www.ctvnews.ca/london/article/woodstock-and-oxford-county-election-results",
+      "published": "2026-10-27T00:06:38.139000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "summary",
+      "word_count": 20,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "cd90cd4d107812fe",
+      "source": "CTV News London",
+      "title": "Middlesex County election results",
+      "url": "https://www.ctvnews.ca/london/article/middlesex-county-election-results",
+      "published": "2026-10-27T00:05:43.651000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 26,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 36,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "3d5061e14b3b2839",
       "source": "CTV News London",
       "title": "St. Thomas and Elgin County election results",
@@ -2424,121 +2561,6 @@
       "extraction_profile": "ctv",
       "local_score": 35,
       "issues": []
-    },
-    {
-      "id": "43c8dd878cbbb9e1",
-      "source": "CTV News London",
-      "title": "Londoners head to polls as mayoral candidates make final push on election day",
-      "url": "https://www.ctvnews.ca/london/article/londoners-head-to-polls-as-mayoral-candidates-make-final-push-on-election-day",
-      "published": "2026-10-26T20:52:07.520000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 528,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": []
-    },
-    {
-      "id": "ca64a044abf4d85e",
-      "source": "CTV News London",
-      "title": "34-year-old man sentenced for vicious random stabbing attack on elderly woman",
-      "url": "https://www.ctvnews.ca/london/article/34-year-old-man-sentenced-for-vicious-random-stabbing-attack-on-elderly-woman",
-      "published": "2026-10-26T19:21:41.998000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 294,
-      "paragraph_count": 12,
-      "inline_image_count": 0,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "a385d5a6f972b262",
-      "source": "CTV News London",
-      "title": "Replica guns seized, two charged in south London incident",
-      "url": "https://www.ctvnews.ca/london/article/replica-guns-seized-two-charged-in-south-london-incident",
-      "published": "2026-10-26T18:51:58.109000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 13,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "7570f6de9dfff63b",
-      "source": "CTV News London",
-      "title": "Shotgun fired in Zorra Township home invasion, suspects at large",
-      "url": "https://www.ctvnews.ca/london/article/shotgun-fired-in-zorra-township-home-invasion-suspects-at-large",
-      "published": "2026-10-26T18:44:29.037000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 243,
-      "paragraph_count": 9,
-      "inline_image_count": 1,
-      "quality_score": 71,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
     },
     {
       "id": "c07fbad3e2c5787f",
@@ -4084,6 +4106,35 @@
       ]
     },
     {
+      "id": "edb6caf6606add09",
+      "source": "CTV News Canada",
+      "title": "Elections across Canada see rise in advance voting. Could it lead to a higher overall turnout?",
+      "url": "https://www.ctvnews.ca/canada/article/elections-across-canada-see-rise-in-advance-voting-could-it-lead-to-a-higher-overall-turnout",
+      "published": "2026-10-27T00:11:32.508000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 533,
+      "paragraph_count": 20,
+      "inline_image_count": 3,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "53bee93b3c3c0d34",
       "source": "CTV News Canada",
       "title": "They called it an administrative error. Now a P.E.I. PC Party official faces 42 charges",
@@ -4349,35 +4400,6 @@
       "paragraph_count": 22,
       "inline_image_count": 3,
       "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "960429bb93ac6797",
-      "source": "CTV News Canada",
-      "title": "‘Always try to buy Canadian’: Retailers see demand for Canadian Halloween products grow",
-      "url": "https://www.ctvnews.ca/canada/article/always-try-to-buy-canadian-retailers-see-demand-for-canadian-halloween-products-grow",
-      "published": "2026-10-24T12:17:16.575000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 559,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 85,
       "quality_grade": "excellent",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
