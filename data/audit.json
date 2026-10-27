@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T12:36:29.687890+00:00",
-  "generated_at_london": "2026-10-27T08:36:29.687890-04:00",
-  "news_generated_at": "2026-10-27T12:30:29.552066+00:00",
+  "generated_at": "2026-10-27T12:47:22.628748+00:00",
+  "generated_at_london": "2026-10-27T08:47:22.628748-04:00",
+  "news_generated_at": "2026-10-27T12:45:58.780506+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 757,
+    "archive_story_count": 759,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 111,
@@ -15,8 +15,8 @@
     "critical_issue_count": 0,
     "warning_issue_count": 6,
     "info_issue_count": 98,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -74,6 +74,33 @@
       "last_error": ""
     },
     {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 30,
+      "average_words": 83,
+      "average_quality": 48,
+      "primary_method": "ctv:summary-fallback",
+      "method_counts": {
+        "ctv:summary-fallback": 7,
+        "embedded-json:ctv": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-27T10:19:16.626000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T12:41:56.303119+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Global News Canada",
       "status": "review",
       "collector_status": "healthy",
@@ -84,19 +111,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 472,
-      "average_quality": 96,
+      "average_words": 451,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-10-27T12:14:26+00:00",
+      "latest_published": "2026-10-27T12:36:41+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T12:28:19.199803+00:00",
+      "last_scrape": "2026-10-27T12:44:02.143978+00:00",
       "last_error": ""
     },
     {
@@ -145,7 +173,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -414,33 +442,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 83,
-      "average_quality": 48,
-      "primary_method": "ctv:summary-fallback",
-      "method_counts": {
-        "ctv:summary-fallback": 7,
-        "embedded-json:ctv": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-27T10:19:16.626000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T12:26:20.485319+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -623,7 +624,7 @@
       "latest_published": "2026-10-27T11:00:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T12:28:25.165567+00:00",
+      "last_scrape": "2026-10-27T12:44:12.918285+00:00",
       "last_error": ""
     },
     {
@@ -664,11 +665,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 854,
-      "average_quality": 96,
+      "average_words": 856,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -676,7 +678,7 @@
       "latest_published": "2026-10-27T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T12:12:29.486661+00:00",
+      "last_scrape": "2026-10-27T12:44:05.336192+00:00",
       "last_error": ""
     },
     {
@@ -1413,6 +1415,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "cf400dd4187e4d79",
+      "source": "Global News Canada",
+      "title": "Nova Scotia committee to discuss $10B AI data centre planned for Cape Breton",
+      "url": "https://globalnews.ca/news/12122615/everwind-fuels-cape-breton-debate",
+      "published": "2026-10-27T12:36:41+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 68,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0a157be98bd14d5d",
       "source": "Global News Canada",
       "title": "Sask. First Nations leaders raise land rights, policing concerns at historic Ottawa meeting",
@@ -1465,21 +1482,6 @@
       "published": "2026-10-27T00:35:31+00:00",
       "content_status": "full",
       "word_count": 137,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1cbe4a3c73431482",
-      "source": "Global News Canada",
-      "title": "‘Go out and do brave things’: Canadian diver becomes first woman to dive from an iceberg",
-      "url": "https://globalnews.ca/news/12121722/canadian-dive-first-woman-iceberg-dive",
-      "published": "2026-10-26T20:29:34+00:00",
-      "content_status": "full",
-      "word_count": 395,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1980,6 +1982,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "7f2ca5fc294ef593",
+      "source": "The Globe and Mail",
+      "title": "Free labour movement not part of new Canada-EU transatlantic pact, ambassador says",
+      "url": "https://www.theglobeandmail.com/canada/article-canada-eu-deal-free-labour-movement",
+      "published": "2026-10-27T11:58:48.521000+00:00",
+      "content_status": "full",
+      "word_count": 797,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7f2ca5fc294ef593",
+      "source": "The Globe and Mail",
+      "title": "Free labour movement not part of new Canada-EU transatlantic pact, ambassador says",
+      "url": "https://www.theglobeandmail.com/canada/article-canada-eu-deal-free-labour-movement",
+      "published": "2026-10-27T11:58:48.521000+00:00",
+      "content_status": "full",
+      "word_count": 797,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1990,36 +2022,6 @@
       "published": "2026-10-27T11:00:00+00:00",
       "content_status": "partial",
       "word_count": 912,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "0dfb9d71f302db07",
-      "source": "The Globe and Mail",
-      "title": "Olivia Chow’s mayoral win was not a vote for Toronto’s status quo",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-olivia-chows-mayoral-win-was-not-a-vote-for-torontos-status-quo",
-      "published": "2026-10-27T03:21:12.725000+00:00",
-      "content_status": "full",
-      "word_count": 769,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0dfb9d71f302db07",
-      "source": "The Globe and Mail",
-      "title": "Olivia Chow’s mayoral win was not a vote for Toronto’s status quo",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-olivia-chows-mayoral-win-was-not-a-vote-for-torontos-status-quo",
-      "published": "2026-10-27T03:21:12.725000+00:00",
-      "content_status": "full",
-      "word_count": 769,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3757,6 +3759,35 @@
       ]
     },
     {
+      "id": "cf400dd4187e4d79",
+      "source": "Global News Canada",
+      "title": "Nova Scotia committee to discuss $10B AI data centre planned for Cape Breton",
+      "url": "https://globalnews.ca/news/12122615/everwind-fuels-cape-breton-debate",
+      "published": "2026-10-27T12:36:41+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 189,
+      "paragraph_count": 8,
+      "inline_image_count": 1,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e75510966e4b24fd",
       "source": "Global News Canada",
       "title": "Federal government to introduce bill restricting Maid for mental illness",
@@ -4009,35 +4040,6 @@
       "word_count": 851,
       "paragraph_count": 25,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1cbe4a3c73431482",
-      "source": "Global News Canada",
-      "title": "‘Go out and do brave things’: Canadian diver becomes first woman to dive from an iceberg",
-      "url": "https://globalnews.ca/news/12121722/canadian-dive-first-woman-iceberg-dive",
-      "published": "2026-10-26T20:29:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 395,
-      "paragraph_count": 13,
-      "inline_image_count": 5,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4390,6 +4392,41 @@
       ]
     },
     {
+      "id": "7f2ca5fc294ef593",
+      "source": "The Globe and Mail",
+      "title": "Free labour movement not part of new Canada-EU transatlantic pact, ambassador says",
+      "url": "https://www.theglobeandmail.com/canada/article-canada-eu-deal-free-labour-movement",
+      "published": "2026-10-27T11:58:48.521000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 797,
+      "paragraph_count": 26,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c60bb7dc8b464b98",
       "source": "The Globe and Mail",
       "title": "How a new medical school in Surrey, B.C. could transform its downtown",
@@ -4612,41 +4649,6 @@
       "content_status": "partial",
       "word_count": 1736,
       "paragraph_count": 16,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0dfb9d71f302db07",
-      "source": "The Globe and Mail",
-      "title": "Olivia Chow’s mayoral win was not a vote for Toronto’s status quo",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-olivia-chows-mayoral-win-was-not-a-vote-for-torontos-status-quo",
-      "published": "2026-10-27T03:21:12.725000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 769,
-      "paragraph_count": 15,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
