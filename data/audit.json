@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T06:53:33.793480+00:00",
-  "generated_at_london": "2026-10-27T02:53:33.793480-04:00",
-  "news_generated_at": "2026-10-27T06:47:47.309952+00:00",
+  "generated_at": "2026-10-27T07:06:23.201148+00:00",
+  "generated_at_london": "2026-10-27T03:06:23.201148-04:00",
+  "news_generated_at": "2026-10-27T07:04:32.093593+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 758,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 5,
-    "info_issue_count": 100,
+    "info_issue_count": 101,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 0,
@@ -449,21 +449,21 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 93,
-      "average_quality": 48,
+      "usable_body_rate": 40,
+      "average_words": 92,
+      "average_quality": 50,
       "primary_method": "ctv:summary-fallback",
       "method_counts": {
-        "ctv:summary-fallback": 7,
-        "embedded-json:ctv": 3
+        "ctv:summary-fallback": 6,
+        "embedded-json:ctv": 4
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 9,
+      "info_issues": 10,
       "latest_published": "2026-10-27T03:36:50.157000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T06:44:16.371840+00:00",
+      "last_scrape": "2026-10-27T06:59:56.583708+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +650,7 @@
       "latest_published": "2026-10-26T23:13:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T06:46:15.248867+00:00",
+      "last_scrape": "2026-10-27T07:02:14.738855+00:00",
       "last_error": ""
     },
     {
@@ -1066,6 +1066,21 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "8ccf384043159212",
+      "source": "CTV News London",
+      "title": "Goderich, Huron and Bruce County election results",
+      "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
+      "published": "2026-10-27T03:18:16.608000+00:00",
+      "content_status": "full",
+      "word_count": 80,
+      "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1074,10 +1089,10 @@
       "title": "Goderich, Huron and Bruce County election results",
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
       "published": "2026-10-27T03:18:16.608000+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
+      "content_status": "full",
+      "word_count": 80,
+      "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2377,20 +2392,26 @@
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
       "published": "2026-10-27T03:18:16.608000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 0,
-      "paragraph_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 80,
+      "paragraph_count": 11,
       "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
+      "quality_score": 60,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
