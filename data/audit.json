@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T21:03:13.582660+00:00",
-  "generated_at_london": "2026-10-27T17:03:13.582660-04:00",
-  "news_generated_at": "2026-10-27T20:58:42.679538+00:00",
+  "generated_at": "2026-10-27T21:17:06.087938+00:00",
+  "generated_at_london": "2026-10-27T17:17:06.087938-04:00",
+  "news_generated_at": "2026-10-27T21:15:16.265609+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 734,
@@ -15,8 +15,8 @@
     "critical_issue_count": 0,
     "warning_issue_count": 5,
     "info_issue_count": 100,
-    "healthy_source_count": 14,
-    "review_source_count": 2,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -72,6 +72,59 @@
       "tracked": 30,
       "last_scrape": "2026-10-27T09:11:52.841087+00:00",
       "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 70,
+      "average_words": 259,
+      "average_quality": 68,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-27T20:58:15.673000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T21:11:20.686744+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 330,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-27T19:56:02+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T20:25:24.708224+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -388,33 +441,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 70,
-      "average_words": 250,
-      "average_quality": 67,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "ctv:summary-fallback": 3,
-        "embedded-json:ctv": 7
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-27T20:42:16.532000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T20:55:20.641292+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -504,19 +530,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 397,
-      "average_quality": 96,
+      "average_words": 385,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-27T20:41:35+00:00",
+      "latest_published": "2026-10-27T21:01:32+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T20:57:21.181152+00:00",
+      "last_scrape": "2026-10-27T21:13:05.910538+00:00",
       "last_error": ""
     },
     {
@@ -623,7 +650,7 @@
       "latest_published": "2026-10-27T19:56:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T20:57:26.157964+00:00",
+      "last_scrape": "2026-10-27T21:13:12.905504+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-27T20:41:18.359184+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 330,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-27T19:56:02+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T20:25:24.708224+00:00",
       "last_error": ""
     },
     {
@@ -1054,21 +1055,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a205e9ad8bb624ef",
-      "source": "CTV News London",
-      "title": "Incumbent mayors unseated in Kincardine, South Huron as election night brings surprises across midwestern Ontario",
-      "url": "https://www.ctvnews.ca/london/article/incumbent-mayors-unseated-in-kincardine-south-huron-as-election-night-brings-surprises-across-midwestern-ontario",
-      "published": "2026-10-27T13:06:29.165000+00:00",
-      "content_status": "full",
-      "word_count": 305,
-      "quality_score": 76,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "a6fe4e9dd27e5164",
       "source": "CTV News London",
       "title": "Lots of sunshine despite slightly cooler temperatures",
@@ -1077,6 +1063,21 @@
       "content_status": "full",
       "word_count": 158,
       "quality_score": 69,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c6f9c3e1c27291bf",
+      "source": "CTV News London",
+      "title": "Lotto ticket bought in Grey County unclaimed with 24 hours until deadline",
+      "url": "https://www.ctvnews.ca/london/article/lotto-ticket-bought-in-grey-county-unclaimed-with-24-hours-until-deadline",
+      "published": "2026-10-27T20:58:15.673000+00:00",
+      "content_status": "full",
+      "word_count": 401,
+      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1369,6 +1370,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "d4219c22278aee92",
+      "source": "Global News Canada",
+      "title": "Danielle Smith faces another leadership review call from UCP constituency board",
+      "url": "https://globalnews.ca/news/12123287/ucp-constituency-board-danielle-smith-leadership-review",
+      "published": "2026-10-27T21:01:32+00:00",
+      "content_status": "full",
+      "word_count": 382,
+      "quality_score": 78,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e6eb0f016fd8aaf0",
       "source": "Global News Canada",
       "title": "Former Ontario cabinet minister who resigned over expenses scandal defends promotion",
@@ -1421,21 +1437,6 @@
       "published": "2026-10-27T16:53:35+00:00",
       "content_status": "full",
       "word_count": 196,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b224395b184875eb",
-      "source": "Global News Canada",
-      "title": "Penticton homeless encampment residents face eviction after court grants injunction",
-      "url": "https://globalnews.ca/news/12121945/penticton-homeless-encampment-eviction",
-      "published": "2026-10-27T16:10:59+00:00",
-      "content_status": "full",
-      "word_count": 506,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2312,6 +2313,35 @@
   ],
   "stories": [
     {
+      "id": "c6f9c3e1c27291bf",
+      "source": "CTV News London",
+      "title": "Lotto ticket bought in Grey County unclaimed with 24 hours until deadline",
+      "url": "https://www.ctvnews.ca/london/article/lotto-ticket-bought-in-grey-county-unclaimed-with-24-hours-until-deadline",
+      "published": "2026-10-27T20:58:15.673000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 401,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "781d65de72bed008",
       "source": "CTV News London",
       "title": "Southwestern Public Health issues drug watch following spike in overdoses",
@@ -2562,35 +2592,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 18/100"
-        }
-      ]
-    },
-    {
-      "id": "a205e9ad8bb624ef",
-      "source": "CTV News London",
-      "title": "Incumbent mayors unseated in Kincardine, South Huron as election night brings surprises across midwestern Ontario",
-      "url": "https://www.ctvnews.ca/london/article/incumbent-mayors-unseated-in-kincardine-south-huron-as-election-night-brings-surprises-across-midwestern-ontario",
-      "published": "2026-10-27T13:06:29.165000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 305,
-      "paragraph_count": 12,
-      "inline_image_count": 0,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
@@ -3775,6 +3776,35 @@
       ]
     },
     {
+      "id": "d4219c22278aee92",
+      "source": "Global News Canada",
+      "title": "Danielle Smith faces another leadership review call from UCP constituency board",
+      "url": "https://globalnews.ca/news/12123287/ucp-constituency-board-danielle-smith-leadership-review",
+      "published": "2026-10-27T21:01:32+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 382,
+      "paragraph_count": 17,
+      "inline_image_count": 1,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "14eb547d7154a764",
       "source": "Global News Canada",
       "title": "Halifax council puts off decision on bike network alternatives",
@@ -4021,35 +4051,6 @@
       "word_count": 196,
       "paragraph_count": 9,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b224395b184875eb",
-      "source": "Global News Canada",
-      "title": "Penticton homeless encampment residents face eviction after court grants injunction",
-      "url": "https://globalnews.ca/news/12121945/penticton-homeless-encampment-eviction",
-      "published": "2026-10-27T16:10:59+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 506,
-      "paragraph_count": 21,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
