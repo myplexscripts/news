@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T09:45:58.658885+00:00",
-  "generated_at_london": "2026-10-27T05:45:58.658885-04:00",
-  "news_generated_at": "2026-10-27T09:39:33.591993+00:00",
+  "generated_at": "2026-10-27T09:57:06.184692+00:00",
+  "generated_at_london": "2026-10-27T05:57:06.184692-04:00",
+  "news_generated_at": "2026-10-27T09:55:07.180480+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 762,
@@ -15,8 +15,8 @@
     "critical_issue_count": 0,
     "warning_issue_count": 6,
     "info_issue_count": 98,
-    "healthy_source_count": 12,
-    "review_source_count": 4,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -71,33 +71,6 @@
       "found_this_run": 5,
       "tracked": 30,
       "last_scrape": "2026-10-27T09:11:52.841087+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "CTV News London",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 93,
-      "average_quality": 48,
-      "primary_method": "ctv:summary-fallback",
-      "method_counts": {
-        "ctv:summary-fallback": 7,
-        "embedded-json:ctv": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-27T03:36:50.157000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T09:35:21.596759+00:00",
       "last_error": ""
     },
     {
@@ -225,7 +198,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -244,7 +217,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -441,6 +414,33 @@
       "last_error": ""
     },
     {
+      "source": "CTV News London",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 40,
+      "average_words": 92,
+      "average_quality": 50,
+      "primary_method": "ctv:summary-fallback",
+      "method_counts": {
+        "ctv:summary-fallback": 6,
+        "embedded-json:ctv": 4
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-27T03:36:50.157000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T09:50:54.874176+00:00",
+      "last_error": ""
+    },
+    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -623,7 +623,7 @@
       "latest_published": "2026-10-27T08:00:51+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T09:37:24.866630+00:00",
+      "last_scrape": "2026-10-27T09:52:58.541093+00:00",
       "last_error": ""
     },
     {
@@ -1043,10 +1043,10 @@
       "title": "Goderich, Huron and Bruce County election results",
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
       "published": "2026-10-27T03:18:16.608000+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
+      "content_status": "full",
+      "word_count": 80,
+      "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2335,13 +2335,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "summary",
-      "word_count": 0,
-      "paragraph_count": 0,
+      "content_status": "full",
+      "word_count": 80,
+      "paragraph_count": 11,
       "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
+      "quality_score": 60,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
