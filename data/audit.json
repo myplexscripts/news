@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T12:04:22.076782+00:00",
-  "generated_at_london": "2026-10-27T08:04:22.076782-04:00",
-  "news_generated_at": "2026-10-27T11:59:21.888088+00:00",
+  "generated_at": "2026-10-27T12:15:08.308797+00:00",
+  "generated_at_london": "2026-10-27T08:15:08.308797-04:00",
+  "news_generated_at": "2026-10-27T12:13:58.980171+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 757,
+    "archive_story_count": 758,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 111,
@@ -15,8 +15,8 @@
     "critical_issue_count": 0,
     "warning_issue_count": 6,
     "info_issue_count": 98,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -71,6 +71,33 @@
       "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-10-27T09:11:52.841087+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 30,
+      "average_words": 83,
+      "average_quality": 48,
+      "primary_method": "ctv:summary-fallback",
+      "method_counts": {
+        "ctv:summary-fallback": 7,
+        "embedded-json:ctv": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-27T10:19:16.626000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T12:10:40.127136+00:00",
       "last_error": ""
     },
     {
@@ -414,33 +441,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 83,
-      "average_quality": 48,
-      "primary_method": "ctv:summary-fallback",
-      "method_counts": {
-        "ctv:summary-fallback": 7,
-        "embedded-json:ctv": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-27T10:19:16.626000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T11:55:13.499205+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -623,7 +623,7 @@
       "latest_published": "2026-10-27T11:00:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T11:57:18.813104+00:00",
+      "last_scrape": "2026-10-27T12:12:33.273215+00:00",
       "last_error": ""
     },
     {
@@ -664,19 +664,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 888,
-      "average_quality": 96,
+      "average_words": 854,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-10-27T11:00:00+00:00",
+      "latest_published": "2026-10-27T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T11:10:40.376912+00:00",
+      "last_scrape": "2026-10-27T12:12:29.486661+00:00",
       "last_error": ""
     },
     {
@@ -1995,21 +1996,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9c2a297b4281ac5c",
-      "source": "The Globe and Mail",
-      "title": "Nearly 89% of Ontarians now have primary care, province says",
-      "url": "https://www.theglobeandmail.com/canada/article-nearly-89-of-ontarians-now-have-primary-care-province-says",
-      "published": "2026-10-27T01:57:22.595000+00:00",
-      "content_status": "full",
-      "word_count": 650,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2082,6 +2068,21 @@
       "word_count": 510,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "8b91c116c07b6e9e",
+      "source": "The Globe and Mail",
+      "title": "Seller of six-bedroom Toronto house takes firm offer with a quick close",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-toronto-six-bedroom-house-firm-offer-quick-close",
+      "published": "2026-10-27T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 309,
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4361,6 +4362,35 @@
       ]
     },
     {
+      "id": "8b91c116c07b6e9e",
+      "source": "The Globe and Mail",
+      "title": "Seller of six-bedroom Toronto house takes firm offer with a quick close",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-toronto-six-bedroom-house-firm-offer-quick-close",
+      "published": "2026-10-27T12:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 309,
+      "paragraph_count": 18,
+      "inline_image_count": 3,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c60bb7dc8b464b98",
       "source": "The Globe and Mail",
       "title": "How a new medical school in Surrey, B.C. could transform its downtown",
@@ -4631,35 +4661,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9c2a297b4281ac5c",
-      "source": "The Globe and Mail",
-      "title": "Nearly 89% of Ontarians now have primary care, province says",
-      "url": "https://www.theglobeandmail.com/canada/article-nearly-89-of-ontarians-now-have-primary-care-province-says",
-      "published": "2026-10-27T01:57:22.595000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 650,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
