@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T22:39:19.564016+00:00",
-  "generated_at_london": "2026-10-27T18:39:19.564016-04:00",
-  "news_generated_at": "2026-10-27T22:33:31.969949+00:00",
+  "generated_at": "2026-10-27T22:50:52.319384+00:00",
+  "generated_at_london": "2026-10-27T18:50:52.319384-04:00",
+  "news_generated_at": "2026-10-27T22:48:54.422615+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 739,
+    "archive_story_count": 741,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 112,
-    "review_story_count": 3,
+    "pass_story_count": 111,
+    "review_story_count": 4,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 99,
     "healthy_source_count": 12,
     "review_source_count": 4,
@@ -97,34 +97,35 @@
       "latest_published": "2026-10-27T21:51:17.127000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T22:21:22.418303+00:00",
+      "last_scrape": "2026-10-27T22:36:38.011800+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 354,
-      "average_quality": 96,
+      "average_words": 350,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-27T21:25:38+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-27T22:11:57+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T22:00:21.506456+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-27T22:46:50.177422+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -321,7 +322,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -337,10 +338,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 3,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "500 Server Error: Internal Server Error for url: https://www.londontransit.ca/"
+      "last_error": ""
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -530,19 +531,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 383,
-      "average_quality": 96,
+      "average_words": 353,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-27T21:37:20+00:00",
+      "latest_published": "2026-10-27T22:31:18+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T21:44:24.420429+00:00",
+      "last_scrape": "2026-10-27T22:46:39.257430+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +651,7 @@
       "latest_published": "2026-10-27T19:56:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T22:31:23.201463+00:00",
+      "last_scrape": "2026-10-27T22:46:45.321675+00:00",
       "last_error": ""
     },
     {
@@ -807,6 +809,36 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b798c8b4d2aa5544",
+      "source": "Toronto Star",
+      "title": "There has been 'limited progress' in Canada-U.S. trade talks: Canadian official",
+      "url": "https://www.thestar.com/news/canada/there-has-been-limited-progress-in-canada-u-s-trade-talks-canadian-official/article_a43f3fcd-e4d1-5c3f-a9f5-4ed1a60beb78.html",
+      "published": "2026-10-27T22:11:57+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "b798c8b4d2aa5544",
+      "source": "Toronto Star",
+      "title": "There has been 'limited progress' in Canada-U.S. trade talks: Canadian official",
+      "url": "https://www.thestar.com/news/canada/there-has-been-limited-progress-in-canada-u-s-trade-talks-canadian-official/article_a43f3fcd-e4d1-5c3f-a9f5-4ed1a60beb78.html",
+      "published": "2026-10-27T22:11:57+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1338,21 +1370,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3b37d62993cb2c6d",
-      "source": "Global News Canada",
-      "title": "Canada-EU summit will kick off formal talks on closer ties: Carney",
-      "url": "https://globalnews.ca/news/12122899/canada-eu-summit-carney-talks",
-      "published": "2026-10-27T17:05:20+00:00",
-      "content_status": "full",
-      "word_count": 1048,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "65fb970cd2ee834d",
       "source": "Global News Canada",
       "title": "Canada’s Eurovision finalists include Rêve, Tyler Shaw",
@@ -1422,6 +1439,21 @@
       "word_count": 587,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f8329bd522e5ab4b",
+      "source": "Global News Canada",
+      "title": "Incumbent mayors, premiers losing jobs a result of Canadians not ‘getting ahead’",
+      "url": "https://globalnews.ca/news/12122863/canada-elections-incumbents-lose",
+      "published": "2026-10-27T22:31:18+00:00",
+      "content_status": "full",
+      "word_count": 743,
+      "quality_score": 88,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2193,21 +2225,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5a44dabf4c6c9f68",
-      "source": "Toronto Star",
-      "title": "Only firm approved to explore for N.S. offshore oil and gas misses deposit deadline",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/only-firm-approved-to-explore-for-n-s-offshore-oil-and-gas-misses-deposit-deadline/article_ca264cfd-80f3-51e8-a215-f43496091c9c.html",
-      "published": "2026-10-27T15:08:29+00:00",
-      "content_status": "full",
-      "word_count": 242,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "3f1b3b10cc23c782",
       "source": "Toronto Star",
       "title": "Quebec premier accuses Ottawa of censoring him at EU Summit",
@@ -2232,6 +2249,21 @@
       "word_count": 567,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b798c8b4d2aa5544",
+      "source": "Toronto Star",
+      "title": "There has been 'limited progress' in Canada-U.S. trade talks: Canadian official",
+      "url": "https://www.thestar.com/news/canada/there-has-been-limited-progress-in-canada-u-s-trade-talks-canadian-official/article_a43f3fcd-e4d1-5c3f-a9f5-4ed1a60beb78.html",
+      "published": "2026-10-27T22:11:57+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3759,6 +3791,35 @@
       ]
     },
     {
+      "id": "f8329bd522e5ab4b",
+      "source": "Global News Canada",
+      "title": "Incumbent mayors, premiers losing jobs a result of Canadians not ‘getting ahead’",
+      "url": "https://globalnews.ca/news/12122863/canada-elections-incumbents-lose",
+      "published": "2026-10-27T22:31:18+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 743,
+      "paragraph_count": 22,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7b967e0490720a55",
       "source": "Global News Canada",
       "title": "Alberta government to end DEI public sector hiring",
@@ -4005,35 +4066,6 @@
       "word_count": 235,
       "paragraph_count": 9,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3b37d62993cb2c6d",
-      "source": "Global News Canada",
-      "title": "Canada-EU summit will kick off formal talks on closer ties: Carney",
-      "url": "https://globalnews.ca/news/12122899/canada-eu-summit-carney-talks",
-      "published": "2026-10-27T17:05:20+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1048,
-      "paragraph_count": 32,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4961,6 +4993,47 @@
       ]
     },
     {
+      "id": "b798c8b4d2aa5544",
+      "source": "Toronto Star",
+      "title": "There has been 'limited progress' in Canada-U.S. trade talks: Canadian official",
+      "url": "https://www.thestar.com/news/canada/there-has-been-limited-progress-in-canada-u-s-trade-talks-canadian-official/article_a43f3fcd-e4d1-5c3f-a9f5-4ed1a60beb78.html",
+      "published": "2026-10-27T22:11:57+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 199,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a95fbe20bc435d0d",
       "source": "Toronto Star",
       "title": "'Hero to animals': Drone kills B.C. dog rescuer Jesse Adams in Ukraine",
@@ -5206,35 +5279,6 @@
       "content_status": "full",
       "word_count": 218,
       "paragraph_count": 13,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5a44dabf4c6c9f68",
-      "source": "Toronto Star",
-      "title": "Only firm approved to explore for N.S. offshore oil and gas misses deposit deadline",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/only-firm-approved-to-explore-for-n-s-offshore-oil-and-gas-misses-deposit-deadline/article_ca264cfd-80f3-51e8-a215-f43496091c9c.html",
-      "published": "2026-10-27T15:08:29+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 242,
-      "paragraph_count": 18,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
