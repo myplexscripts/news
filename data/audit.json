@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T23:11:00.903748+00:00",
-  "generated_at_london": "2026-10-27T19:11:00.903748-04:00",
-  "news_generated_at": "2026-10-27T23:04:23.212336+00:00",
+  "generated_at": "2026-10-27T23:20:45.955511+00:00",
+  "generated_at_london": "2026-10-27T19:20:45.955511-04:00",
+  "news_generated_at": "2026-10-27T23:19:25.136346+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 741,
+    "archive_story_count": 742,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 112,
@@ -15,8 +15,8 @@
     "critical_issue_count": 0,
     "warning_issue_count": 5,
     "info_issue_count": 99,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -58,8 +58,8 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 384,
-      "average_quality": 77,
+      "average_words": 381,
+      "average_quality": 76,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -67,10 +67,10 @@
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 11,
-      "latest_published": "2026-10-27T21:29:55.648000+00:00",
-      "found_this_run": 2,
+      "latest_published": "2026-10-27T23:02:33.936000+00:00",
+      "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-10-27T21:50:10.321177+00:00",
+      "last_scrape": "2026-10-27T23:17:58.255732+00:00",
       "last_error": ""
     },
     {
@@ -97,8 +97,34 @@
       "latest_published": "2026-10-27T21:51:17.127000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T22:51:48.014260+00:00",
+      "last_scrape": "2026-10-27T23:07:24.969897+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 349,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-27T22:11:57+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T22:46:50.177422+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -146,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -623,7 +649,7 @@
       "latest_published": "2026-10-27T19:56:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T23:02:18.966438+00:00",
+      "last_scrape": "2026-10-27T23:18:02.771882+00:00",
       "last_error": ""
     },
     {
@@ -677,32 +703,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-27T22:31:17.859487+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 349,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-27T22:11:57+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T22:46:50.177422+00:00",
       "last_error": ""
     },
     {
@@ -843,21 +843,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a56bf9ce3c00109c",
-      "source": "CTV News Canada",
-      "title": "Canada receives its first F-35 jets from U.S., as full order remains under review",
-      "url": "https://www.ctvnews.ca/canada/article/canada-receives-its-first-f-35-jets-from-us-as-full-order-remains-under-review",
-      "published": "2026-10-25T20:58:27.554000+00:00",
-      "content_status": "full",
-      "word_count": 189,
-      "quality_score": 68,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "edb6caf6606add09",
       "source": "CTV News Canada",
       "title": "Elections across Canada see rise in advance voting. Could it lead to a higher overall turnout?",
@@ -896,6 +881,21 @@
       "content_status": "full",
       "word_count": 396,
       "quality_score": 70,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a675535dca05dfb0",
+      "source": "CTV News Canada",
+      "title": "Ontario Superior Court approves $213.5M settlement against Sun Life",
+      "url": "https://www.ctvnews.ca/canada/article/ontario-superior-court-approves-2135m-settlement-against-sun-life",
+      "published": "2026-10-27T23:02:33.936000+00:00",
+      "content_status": "full",
+      "word_count": 157,
+      "quality_score": 66,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -4049,6 +4049,35 @@
       ]
     },
     {
+      "id": "a675535dca05dfb0",
+      "source": "CTV News Canada",
+      "title": "Ontario Superior Court approves $213.5M settlement against Sun Life",
+      "url": "https://www.ctvnews.ca/canada/article/ontario-superior-court-approves-2135m-settlement-against-sun-life",
+      "published": "2026-10-27T23:02:33.936000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 157,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cb915100ce58f867",
       "source": "CTV News Canada",
       "title": "Voters send a ‘warning shot’ as many incumbents lose in fall elections",
@@ -4308,35 +4337,6 @@
       "paragraph_count": 8,
       "inline_image_count": 1,
       "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a56bf9ce3c00109c",
-      "source": "CTV News Canada",
-      "title": "Canada receives its first F-35 jets from U.S., as full order remains under review",
-      "url": "https://www.ctvnews.ca/canada/article/canada-receives-its-first-f-35-jets-from-us-as-full-order-remains-under-review",
-      "published": "2026-10-25T20:58:27.554000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 189,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
-      "quality_score": 68,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
