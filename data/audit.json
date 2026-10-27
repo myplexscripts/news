@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T03:17:54.268839+00:00",
-  "generated_at_london": "2026-10-26T23:17:54.268839-04:00",
-  "news_generated_at": "2026-10-27T03:11:39.374275+00:00",
+  "generated_at": "2026-10-27T03:27:54.496242+00:00",
+  "generated_at_london": "2026-10-26T23:27:54.496242-04:00",
+  "news_generated_at": "2026-10-27T03:26:26.340994+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 768,
@@ -15,8 +15,8 @@
     "critical_issue_count": 0,
     "warning_issue_count": 6,
     "info_issue_count": 99,
-    "healthy_source_count": 12,
-    "review_source_count": 4,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -45,33 +45,6 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
-    },
-    {
-      "source": "CTV News London",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 93,
-      "average_quality": 48,
-      "primary_method": "ctv:summary-fallback",
-      "method_counts": {
-        "embedded-json:ctv": 3,
-        "ctv:summary-fallback": 7
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-27T02:50:50.316000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T03:07:10.336697+00:00",
       "last_error": ""
     },
     {
@@ -461,9 +434,36 @@
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-10-27T00:48:36.958000+00:00",
-      "found_this_run": 4,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-27T01:10:24.265660+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 40,
+      "average_words": 92,
+      "average_quality": 50,
+      "primary_method": "ctv:summary-fallback",
+      "method_counts": {
+        "embedded-json:ctv": 4,
+        "ctv:summary-fallback": 6
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-27T03:18:16.608000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T03:22:38.461860+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +650,7 @@
       "latest_published": "2026-10-26T23:13:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T03:09:18.083598+00:00",
+      "last_scrape": "2026-10-27T03:24:32.468705+00:00",
       "last_error": ""
     },
     {
@@ -1058,11 +1058,11 @@
       "source": "CTV News London",
       "title": "Goderich, Huron and Bruce County election results",
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
-      "published": "2026-10-27T02:36:46.912000+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
+      "published": "2026-10-27T03:18:16.608000+00:00",
+      "content_status": "full",
+      "word_count": 80,
+      "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2312,6 +2312,35 @@
   ],
   "stories": [
     {
+      "id": "8ccf384043159212",
+      "source": "CTV News London",
+      "title": "Goderich, Huron and Bruce County election results",
+      "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
+      "published": "2026-10-27T03:18:16.608000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 80,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 60,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "96ac945c18f69a39",
       "source": "CTV News London",
       "title": "Woodstock and Oxford County election results",
@@ -2338,35 +2367,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8ccf384043159212",
-      "source": "CTV News London",
-      "title": "Goderich, Huron and Bruce County election results",
-      "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
-      "published": "2026-10-27T02:36:46.912000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 0,
-      "paragraph_count": 0,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
