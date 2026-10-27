@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T08:58:12.560313+00:00",
-  "generated_at_london": "2026-10-27T04:58:12.560313-04:00",
-  "news_generated_at": "2026-10-27T08:52:06.127223+00:00",
+  "generated_at": "2026-10-27T09:10:36.790060+00:00",
+  "generated_at_london": "2026-10-27T05:10:36.790060-04:00",
+  "news_generated_at": "2026-10-27T09:08:35.067065+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 760,
+    "archive_story_count": 759,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 111,
-    "review_story_count": 3,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
-    "warning_issue_count": 5,
+    "pass_story_count": 110,
+    "review_story_count": 5,
+    "fail_story_count": 0,
+    "critical_issue_count": 0,
+    "warning_issue_count": 8,
     "info_issue_count": 100,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -45,6 +45,32 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News Canada",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 440,
+      "average_quality": 77,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 12,
+      "latest_published": "2026-10-27T09:00:00+00:00",
+      "found_this_run": 5,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T09:06:11.396827+00:00",
       "last_error": ""
     },
     {
@@ -80,23 +106,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 630,
-      "average_quality": 96,
+      "average_words": 643,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-10-27T08:00:28+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T08:34:37.655111+00:00",
+      "last_scrape": "2026-10-27T09:06:20.310725+00:00",
       "last_error": ""
     },
     {
@@ -294,7 +321,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -310,10 +337,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 3,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.londontransit.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -414,32 +441,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News Canada",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 459,
-      "average_quality": 78,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-10-27T00:48:36.958000+00:00",
-      "found_this_run": 3,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T01:10:24.265660+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News London",
       "status": "healthy",
       "collector_status": "healthy",
@@ -449,21 +450,21 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 93,
-      "average_quality": 48,
+      "usable_body_rate": 40,
+      "average_words": 92,
+      "average_quality": 50,
       "primary_method": "ctv:summary-fallback",
       "method_counts": {
-        "ctv:summary-fallback": 7,
-        "embedded-json:ctv": 3
+        "ctv:summary-fallback": 6,
+        "embedded-json:ctv": 4
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 9,
+      "info_issues": 10,
       "latest_published": "2026-10-27T03:36:50.157000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T08:48:26.962917+00:00",
+      "last_scrape": "2026-10-27T09:04:03.953246+00:00",
       "last_error": ""
     },
     {
@@ -650,7 +651,7 @@
       "latest_published": "2026-10-27T08:00:51+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T08:50:11.791138+00:00",
+      "last_scrape": "2026-10-27T09:06:18.234192+00:00",
       "last_error": ""
     },
     {
@@ -735,21 +736,6 @@
   ],
   "issues": [
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "64 words",
-      "story_id": "e67e18b58345e979",
-      "source": "Toronto Star",
-      "title": "BC Ferries CEO Nicolas Jimenez out as board launches leadership change",
-      "url": "https://www.thestar.com/news/canada/bc-ferries-ceo-nicolas-jimenez-out-as-board-launches-leadership-change/article_796d23c2-2b1b-5d08-8c4e-fed2002bcfa2.html",
-      "published": "2026-10-26T21:37:15+00:00",
-      "content_status": "full",
-      "word_count": 64,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -811,6 +797,21 @@
     },
     {
       "severity": "warning",
+      "code": "truncated_ending",
+      "message": "Article body appears to end with an ellipsis.",
+      "detail": "",
+      "story_id": "e17c01498580510f",
+      "source": "CTV News Canada",
+      "title": "New bill coming today to amend Canada’s medical assistance in dying regime",
+      "url": "https://www.ctvnews.ca/canada/article/new-bill-coming-today-to-amend-canadas-medical-assistance-in-dying-regime",
+      "published": "2026-10-27T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 396,
+      "quality_score": 70,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
       "code": "image_gallery_leak",
       "message": "Several images appear consecutively with no article text between them.",
       "detail": "4 consecutive images",
@@ -823,6 +824,36 @@
       "word_count": 137,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "552ac277c22faf33",
+      "source": "Toronto Star",
+      "title": "CPP and OAS payments land in bank accounts tomorrow. Here’s what you need to know",
+      "url": "https://www.thestar.com/news/canada/cpp-and-oas-payments-land-in-bank-accounts-tomorrow-here-s-what-you-need-to-know/article_8ec7ce35-82ed-4a3f-b6bf-bf8952f7d36e.html",
+      "published": "2026-10-27T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "552ac277c22faf33",
+      "source": "Toronto Star",
+      "title": "CPP and OAS payments land in bank accounts tomorrow. Here’s what you need to know",
+      "url": "https://www.thestar.com/news/canada/cpp-and-oas-payments-land-in-bank-accounts-tomorrow-here-s-what-you-need-to-know/article_8ec7ce35-82ed-4a3f-b6bf-bf8952f7d36e.html",
+      "published": "2026-10-27T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -916,36 +947,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "9d0b8816ae9c32f7",
-      "source": "CTV News Canada",
-      "title": "How young fish harvesters are helping save a rapidly aging industry",
-      "url": "https://www.ctvnews.ca/canada/article/how-young-fish-harvesters-are-helping-save-an-industry-rapidly-aging",
-      "published": "2026-10-25T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 579,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9d0b8816ae9c32f7",
-      "source": "CTV News Canada",
-      "title": "How young fish harvesters are helping save a rapidly aging industry",
-      "url": "https://www.ctvnews.ca/canada/article/how-young-fish-harvesters-are-helping-save-an-industry-rapidly-aging",
-      "published": "2026-10-25T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 579,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -957,6 +958,21 @@
       "content_status": "full",
       "word_count": 611,
       "quality_score": 85,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e17c01498580510f",
+      "source": "CTV News Canada",
+      "title": "New bill coming today to amend Canada’s medical assistance in dying regime",
+      "url": "https://www.ctvnews.ca/canada/article/new-bill-coming-today-to-amend-canadas-medical-assistance-in-dying-regime",
+      "published": "2026-10-27T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 396,
+      "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1051,6 +1067,21 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "8ccf384043159212",
+      "source": "CTV News London",
+      "title": "Goderich, Huron and Bruce County election results",
+      "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
+      "published": "2026-10-27T03:18:16.608000+00:00",
+      "content_status": "full",
+      "word_count": 80,
+      "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1059,10 +1090,10 @@
       "title": "Goderich, Huron and Bruce County election results",
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
       "published": "2026-10-27T03:18:16.608000+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
+      "content_status": "full",
+      "word_count": 80,
+      "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2119,15 +2150,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "e67e18b58345e979",
+      "story_id": "552ac277c22faf33",
       "source": "Toronto Star",
-      "title": "BC Ferries CEO Nicolas Jimenez out as board launches leadership change",
-      "url": "https://www.thestar.com/news/canada/bc-ferries-ceo-nicolas-jimenez-out-as-board-launches-leadership-change/article_796d23c2-2b1b-5d08-8c4e-fed2002bcfa2.html",
-      "published": "2026-10-26T21:37:15+00:00",
+      "title": "CPP and OAS payments land in bank accounts tomorrow. Here’s what you need to know",
+      "url": "https://www.thestar.com/news/canada/cpp-and-oas-payments-land-in-bank-accounts-tomorrow-here-s-what-you-need-to-know/article_8ec7ce35-82ed-4a3f-b6bf-bf8952f7d36e.html",
+      "published": "2026-10-27T04:00:00+00:00",
       "content_status": "full",
-      "word_count": 64,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2362,20 +2393,26 @@
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
       "published": "2026-10-27T03:18:16.608000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 0,
-      "paragraph_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 80,
+      "paragraph_count": 11,
       "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
+      "quality_score": 60,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4084,6 +4121,41 @@
       ]
     },
     {
+      "id": "e17c01498580510f",
+      "source": "CTV News Canada",
+      "title": "New bill coming today to amend Canada’s medical assistance in dying regime",
+      "url": "https://www.ctvnews.ca/canada/article/new-bill-coming-today-to-amend-canadas-medical-assistance-in-dying-regime",
+      "published": "2026-10-27T09:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 396,
+      "paragraph_count": 15,
+      "inline_image_count": 1,
+      "quality_score": 70,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "truncated_ending",
+          "message": "Article body appears to end with an ellipsis.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "72f8108770334f2e",
       "source": "CTV News Canada",
       "title": "Montreal police officer under investigation after allegedly urinating on homeless person",
@@ -4338,41 +4410,6 @@
       "inline_image_count": 1,
       "quality_score": 86,
       "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9d0b8816ae9c32f7",
-      "source": "CTV News Canada",
-      "title": "How young fish harvesters are helping save a rapidly aging industry",
-      "url": "https://www.ctvnews.ca/canada/article/how-young-fish-harvesters-are-helping-save-an-industry-rapidly-aging",
-      "published": "2026-10-25T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 579,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 81,
-      "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
@@ -5227,6 +5264,47 @@
       ]
     },
     {
+      "id": "552ac277c22faf33",
+      "source": "Toronto Star",
+      "title": "CPP and OAS payments land in bank accounts tomorrow. Here’s what you need to know",
+      "url": "https://www.thestar.com/news/canada/cpp-and-oas-payments-land-in-bank-accounts-tomorrow-here-s-what-you-need-to-know/article_8ec7ce35-82ed-4a3f-b6bf-bf8952f7d36e.html",
+      "published": "2026-10-27T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 189,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "825907e23bb89864",
       "source": "Toronto Star",
       "title": "Paul St-Pierre Plamondon to meet with First Nations leaders this week",
@@ -5247,41 +5325,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e67e18b58345e979",
-      "source": "Toronto Star",
-      "title": "BC Ferries CEO Nicolas Jimenez out as board launches leadership change",
-      "url": "https://www.thestar.com/news/canada/bc-ferries-ceo-nicolas-jimenez-out-as-board-launches-leadership-change/article_796d23c2-2b1b-5d08-8c4e-fed2002bcfa2.html",
-      "published": "2026-10-26T21:37:15+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 64,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "64 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
