@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T17:04:12.367973+00:00",
-  "generated_at_london": "2026-10-27T13:04:12.367973-04:00",
-  "news_generated_at": "2026-10-27T16:57:39.672819+00:00",
+  "generated_at": "2026-10-27T17:15:26.016536+00:00",
+  "generated_at_london": "2026-10-27T13:15:26.016536-04:00",
+  "news_generated_at": "2026-10-27T17:13:44.319643+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 744,
+    "archive_story_count": 745,
     "source_count": 28,
     "audited_story_count": 113,
     "pass_story_count": 109,
@@ -294,7 +294,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -310,10 +310,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 3,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7fc2e4099ac0>, 'Connection to www.londontransit.ca time"
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -425,19 +425,19 @@
       "pass_rate": 100,
       "usable_body_rate": 70,
       "average_words": 184,
-      "average_quality": 62,
+      "average_quality": 61,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 4,
-        "embedded-json:ctv": 6
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-27T16:28:14.519000+00:00",
+      "latest_published": "2026-10-27T16:56:03.501000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T16:53:39.348293+00:00",
+      "last_scrape": "2026-10-27T17:10:02.219944+00:00",
       "last_error": ""
     },
     {
@@ -530,19 +530,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 449,
-      "average_quality": 96,
+      "average_words": 502,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-27T16:53:35+00:00",
+      "latest_published": "2026-10-27T17:05:20+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T16:55:24.658747+00:00",
+      "last_scrape": "2026-10-27T17:11:51.082520+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +650,7 @@
       "latest_published": "2026-10-27T15:35:09+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T16:55:34.631929+00:00",
+      "last_scrape": "2026-10-27T17:11:58.034432+00:00",
       "last_error": ""
     },
     {
@@ -1039,6 +1040,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "d9f286f56d6c5951",
+      "source": "CTV News London",
+      "title": "90s glamour shots wanted!",
+      "url": "https://www.ctvnews.ca/london/article/90s-glamour-shots-wanted",
+      "published": "2026-10-27T16:56:03.501000+00:00",
+      "content_status": "summary",
+      "word_count": 38,
+      "quality_score": 35,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "820585d0bcf75c00",
       "source": "CTV News London",
       "title": "Bazinet winds Goderich mayoral race in a landslide",
@@ -1063,21 +1079,6 @@
       "word_count": 408,
       "quality_score": 83,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "6fe1c5e4ffc631e9",
-      "source": "CTV News London",
-      "title": "Here’s how Londoners voted in the 2026 municipal election",
-      "url": "https://www.ctvnews.ca/london/article/heres-how-londoners-voted-in-the-2026-municipal-election",
-      "published": "2026-10-27T00:07:26.582000+00:00",
-      "content_status": "summary",
-      "word_count": 40,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -1339,6 +1340,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3b37d62993cb2c6d",
+      "source": "Global News Canada",
+      "title": "Canada-EU summit will kick off formal talks on closer ties: Carney",
+      "url": "https://globalnews.ca/news/12122899/canada-eu-summit-carney-talks",
+      "published": "2026-10-27T17:05:20+00:00",
+      "content_status": "full",
+      "word_count": 1048,
+      "quality_score": 88,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e75510966e4b24fd",
       "source": "Global News Canada",
       "title": "Federal government to introduce bill restricting Maid for mental illness",
@@ -1346,21 +1362,6 @@
       "published": "2026-10-27T12:14:26+00:00",
       "content_status": "full",
       "word_count": 497,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "43b975d75959b0d4",
-      "source": "Global News Canada",
-      "title": "Horwath among incumbents ousted across Greater Toronto and Hamilton Area",
-      "url": "https://globalnews.ca/news/12122224/horwath-incumbents-toronto-hamilton",
-      "published": "2026-10-27T03:28:21+00:00",
-      "content_status": "full",
-      "word_count": 517,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2312,6 +2313,35 @@
   ],
   "stories": [
     {
+      "id": "d9f286f56d6c5951",
+      "source": "CTV News London",
+      "title": "90s glamour shots wanted!",
+      "url": "https://www.ctvnews.ca/london/article/90s-glamour-shots-wanted",
+      "published": "2026-10-27T16:56:03.501000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 38,
+      "paragraph_count": 2,
+      "inline_image_count": 0,
+      "quality_score": 35,
+      "quality_grade": "poor",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7c5180e23f96d5a2",
       "source": "CTV News London",
       "title": "Woman charged in Listowel crash involving pedestrian",
@@ -2561,35 +2591,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 14/100"
-        }
-      ]
-    },
-    {
-      "id": "6fe1c5e4ffc631e9",
-      "source": "CTV News London",
-      "title": "Here’s how Londoners voted in the 2026 municipal election",
-      "url": "https://www.ctvnews.ca/london/article/heres-how-londoners-voted-in-the-2026-municipal-election",
-      "published": "2026-10-27T00:07:26.582000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 40,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
         }
       ]
     },
@@ -3723,6 +3724,35 @@
       ]
     },
     {
+      "id": "3b37d62993cb2c6d",
+      "source": "Global News Canada",
+      "title": "Canada-EU summit will kick off formal talks on closer ties: Carney",
+      "url": "https://globalnews.ca/news/12122899/canada-eu-summit-carney-talks",
+      "published": "2026-10-27T17:05:20+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1048,
+      "paragraph_count": 32,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a3c60918990856ed",
       "source": "Global News Canada",
       "title": "New Brunswick signs deal for Canadian firm to explore old antimony mine",
@@ -3969,35 +3999,6 @@
       "word_count": 407,
       "paragraph_count": 29,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "43b975d75959b0d4",
-      "source": "Global News Canada",
-      "title": "Horwath among incumbents ousted across Greater Toronto and Hamilton Area",
-      "url": "https://globalnews.ca/news/12122224/horwath-incumbents-toronto-hamilton",
-      "published": "2026-10-27T03:28:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 517,
-      "paragraph_count": 20,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
