@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T16:45:12.681729+00:00",
-  "generated_at_london": "2026-10-27T12:45:12.681729-04:00",
-  "news_generated_at": "2026-10-27T16:39:40.475457+00:00",
+  "generated_at": "2026-10-27T16:59:36.938474+00:00",
+  "generated_at_london": "2026-10-27T12:59:36.938474-04:00",
+  "news_generated_at": "2026-10-27T16:57:39.672819+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 744,
     "source_count": 28,
     "audited_story_count": 113,
     "pass_story_count": 108,
-    "review_story_count": 3,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 5,
+    "review_story_count": 4,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 7,
     "info_issue_count": 99,
     "healthy_source_count": 13,
     "review_source_count": 3,
@@ -80,23 +80,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 473,
-      "average_quality": 96,
+      "average_words": 487,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-27T15:08:29+00:00",
+      "latest_published": "2026-10-27T16:34:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T15:19:46.337308+00:00",
+      "last_scrape": "2026-10-27T16:55:37.197651+00:00",
       "last_error": ""
     },
     {
@@ -310,7 +311,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 2,
+      "found_this_run": 3,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -437,7 +438,7 @@
       "latest_published": "2026-10-27T16:28:14.519000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T16:36:35.066168+00:00",
+      "last_scrape": "2026-10-27T16:53:39.348293+00:00",
       "last_error": ""
     },
     {
@@ -530,19 +531,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 522,
-      "average_quality": 96,
+      "average_words": 449,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-27T16:10:59+00:00",
+      "latest_published": "2026-10-27T16:53:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T16:22:50.637606+00:00",
+      "last_scrape": "2026-10-27T16:55:24.658747+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +651,7 @@
       "latest_published": "2026-10-27T15:35:09+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T16:38:14.435300+00:00",
+      "last_scrape": "2026-10-27T16:55:34.631929+00:00",
       "last_error": ""
     },
     {
@@ -750,21 +752,6 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "57 words",
-      "story_id": "13bea28da31d98cf",
-      "source": "Toronto Star",
-      "title": "United Arab Emirates, Canada to share details of strategic partnership today",
-      "url": "https://www.thestar.com/news/canada/united-arab-emirates-canada-to-share-details-of-strategic-partnership-today/article_41349c90-e995-5591-b30e-69209d7640e6.html",
-      "published": "2026-10-27T08:00:00+00:00",
-      "content_status": "full",
-      "word_count": 57,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -838,6 +825,36 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3f1b3b10cc23c782",
+      "source": "Toronto Star",
+      "title": "Quebec premier accuses Ottawa of censoring him at EU Summit",
+      "url": "https://www.thestar.com/news/canada/quebec-premier-accuses-ottawa-of-censoring-him-at-eu-summit/article_78581810-3d9f-50a4-82c2-a1f6a23e2f36.html",
+      "published": "2026-10-27T16:34:12+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "3f1b3b10cc23c782",
+      "source": "Toronto Star",
+      "title": "Quebec premier accuses Ottawa of censoring him at EU Summit",
+      "url": "https://www.thestar.com/news/canada/quebec-premier-accuses-ottawa-of-censoring-him-at-eu-summit/article_78581810-3d9f-50a4-82c2-a1f6a23e2f36.html",
+      "published": "2026-10-27T16:34:12+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1384,6 +1401,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "a3c60918990856ed",
+      "source": "Global News Canada",
+      "title": "New Brunswick signs deal for Canadian firm to explore old antimony mine",
+      "url": "https://globalnews.ca/news/12122887/new-brunswick-signs-deal-for-canadian-firm-to-explore-old-antimony-mine",
+      "published": "2026-10-27T16:53:35+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 75,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "d305846a1c5ea21c",
       "source": "Global News Canada",
       "title": "No evidence stolen Crime Stoppers data used for fraud, provider says",
@@ -1466,21 +1498,6 @@
       "published": "2026-10-27T16:10:59+00:00",
       "content_status": "full",
       "word_count": 506,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0a157be98bd14d5d",
-      "source": "Global News Canada",
-      "title": "Sask. First Nations leaders raise land rights, policing concerns at historic Ottawa meeting",
-      "url": "https://globalnews.ca/news/12122007/sask-first-nations-leaders-raise-land-rights-policing-concerns-at-historic-ottawa-meeting",
-      "published": "2026-10-27T00:43:44+00:00",
-      "content_status": "full",
-      "word_count": 918,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2239,6 +2256,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3f1b3b10cc23c782",
+      "source": "Toronto Star",
+      "title": "Quebec premier accuses Ottawa of censoring him at EU Summit",
+      "url": "https://www.thestar.com/news/canada/quebec-premier-accuses-ottawa-of-censoring-him-at-eu-summit/article_78581810-3d9f-50a4-82c2-a1f6a23e2f36.html",
+      "published": "2026-10-27T16:34:12+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "220266a090374fd1",
       "source": "Toronto Star",
       "title": "Timeline of events in Osap career colleges warnings, probes",
@@ -2246,21 +2278,6 @@
       "published": "2026-10-27T08:00:16+00:00",
       "content_status": "full",
       "word_count": 647,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "13bea28da31d98cf",
-      "source": "Toronto Star",
-      "title": "United Arab Emirates, Canada to share details of strategic partnership today",
-      "url": "https://www.thestar.com/news/canada/united-arab-emirates-canada-to-share-details-of-strategic-partnership-today/article_41349c90-e995-5591-b30e-69209d7640e6.html",
-      "published": "2026-10-27T08:00:00+00:00",
-      "content_status": "full",
-      "word_count": 57,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3738,6 +3755,35 @@
       ]
     },
     {
+      "id": "a3c60918990856ed",
+      "source": "Global News Canada",
+      "title": "New Brunswick signs deal for Canadian firm to explore old antimony mine",
+      "url": "https://globalnews.ca/news/12122887/new-brunswick-signs-deal-for-canadian-firm-to-explore-old-antimony-mine",
+      "published": "2026-10-27T16:53:35+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 196,
+      "paragraph_count": 9,
+      "inline_image_count": 2,
+      "quality_score": 75,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b224395b184875eb",
       "source": "Global News Canada",
       "title": "Penticton homeless encampment residents face eviction after court grants injunction",
@@ -3984,35 +4030,6 @@
       "word_count": 517,
       "paragraph_count": 20,
       "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0a157be98bd14d5d",
-      "source": "Global News Canada",
-      "title": "Sask. First Nations leaders raise land rights, policing concerns at historic Ottawa meeting",
-      "url": "https://globalnews.ca/news/12122007/sask-first-nations-leaders-raise-land-rights-policing-concerns-at-historic-ottawa-meeting",
-      "published": "2026-10-27T00:43:44+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 918,
-      "paragraph_count": 28,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4946,6 +4963,47 @@
       ]
     },
     {
+      "id": "3f1b3b10cc23c782",
+      "source": "Toronto Star",
+      "title": "Quebec premier accuses Ottawa of censoring him at EU Summit",
+      "url": "https://www.thestar.com/news/canada/quebec-premier-accuses-ottawa-of-censoring-him-at-eu-summit/article_78581810-3d9f-50a4-82c2-a1f6a23e2f36.html",
+      "published": "2026-10-27T16:34:12+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 192,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5a44dabf4c6c9f68",
       "source": "Toronto Star",
       "title": "Only firm approved to explore for N.S. offshore oil and gas misses deposit deadline",
@@ -5203,41 +5261,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "58 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "13bea28da31d98cf",
-      "source": "Toronto Star",
-      "title": "United Arab Emirates, Canada to share details of strategic partnership today",
-      "url": "https://www.thestar.com/news/canada/united-arab-emirates-canada-to-share-details-of-strategic-partnership-today/article_41349c90-e995-5591-b30e-69209d7640e6.html",
-      "published": "2026-10-27T08:00:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 57,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "57 words"
         },
         {
           "severity": "info",
