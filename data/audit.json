@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T12:51:48.220853+00:00",
-  "generated_at_london": "2026-10-27T08:51:48.220853-04:00",
-  "news_generated_at": "2026-10-27T12:45:58.780506+00:00",
+  "generated_at": "2026-10-27T13:02:34.751859+00:00",
+  "generated_at_london": "2026-10-27T09:02:34.751859-04:00",
+  "news_generated_at": "2026-10-27T13:01:05.903976+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 759,
+    "archive_story_count": 757,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 111,
@@ -15,8 +15,8 @@
     "critical_issue_count": 0,
     "warning_issue_count": 6,
     "info_issue_count": 98,
-    "healthy_source_count": 12,
-    "review_source_count": 4,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -74,33 +74,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 93,
-      "average_quality": 48,
-      "primary_method": "ctv:summary-fallback",
-      "method_counts": {
-        "ctv:summary-fallback": 7,
-        "embedded-json:ctv": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-27T10:19:16.626000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T12:41:56.303119+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Global News Canada",
       "status": "review",
       "collector_status": "healthy",
@@ -111,19 +84,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 451,
-      "average_quality": 96,
+      "average_words": 478,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-10-27T12:36:41+00:00",
+      "latest_published": "2026-10-27T12:50:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T12:44:02.143978+00:00",
+      "last_scrape": "2026-10-27T12:59:13.979031+00:00",
       "last_error": ""
     },
     {
@@ -436,8 +410,35 @@
       "info_issues": 0,
       "latest_published": "2026-10-26T23:16:23+00:00",
       "found_this_run": 10,
-      "tracked": 13,
+      "tracked": 12,
       "last_scrape": "2026-10-27T11:39:34.874869+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 40,
+      "average_words": 92,
+      "average_quality": 50,
+      "primary_method": "ctv:summary-fallback",
+      "method_counts": {
+        "ctv:summary-fallback": 6,
+        "embedded-json:ctv": 4
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-27T10:19:16.626000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T12:57:37.888243+00:00",
       "last_error": ""
     },
     {
@@ -623,7 +624,7 @@
       "latest_published": "2026-10-27T11:00:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T12:44:12.918285+00:00",
+      "last_scrape": "2026-10-27T12:59:21.207797+00:00",
       "last_error": ""
     },
     {
@@ -1043,10 +1044,10 @@
       "title": "Goderich, Huron and Bruce County election results",
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
       "published": "2026-10-27T03:18:16.608000+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
+      "content_status": "full",
+      "word_count": 80,
+      "quality_score": 60,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -1353,21 +1354,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "377bbc75fe64c941",
-      "source": "Global News Canada",
-      "title": "Canada-U.S. trade talks ‘moving quickly’ at political level ahead of midterms: sources",
-      "url": "https://globalnews.ca/news/12121641/canada-us-trade-talks-moving-quickly-midterms",
-      "published": "2026-10-26T20:43:28+00:00",
-      "content_status": "full",
-      "word_count": 851,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e75510966e4b24fd",
       "source": "Global News Canada",
       "title": "Federal government to introduce bill restricting Maid for mental illness",
@@ -1422,6 +1408,21 @@
       "word_count": 189,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f27c81acb61a66df",
+      "source": "Global News Canada",
+      "title": "Ontario delayed inspections of 2 career colleges later given ‘fails’: court docs",
+      "url": "https://globalnews.ca/news/12122618/ontario-delayed-inspections-of-2-career-colleges-later-given-fails-court-docs",
+      "published": "2026-10-27T12:50:33+00:00",
+      "content_status": "full",
+      "word_count": 1112,
+      "quality_score": 88,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2335,13 +2336,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "summary",
-      "word_count": 0,
-      "paragraph_count": 0,
+      "content_status": "full",
+      "word_count": 80,
+      "paragraph_count": 11,
       "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
+      "quality_score": 60,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
@@ -3757,6 +3758,35 @@
       ]
     },
     {
+      "id": "f27c81acb61a66df",
+      "source": "Global News Canada",
+      "title": "Ontario delayed inspections of 2 career colleges later given ‘fails’: court docs",
+      "url": "https://globalnews.ca/news/12122618/ontario-delayed-inspections-of-2-career-colleges-later-given-fails-court-docs",
+      "published": "2026-10-27T12:50:33+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1112,
+      "paragraph_count": 33,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cf400dd4187e4d79",
       "source": "Global News Canada",
       "title": "Nova Scotia committee to discuss $10B AI data centre planned for Cape Breton",
@@ -4009,35 +4039,6 @@
       "word_count": 443,
       "paragraph_count": 18,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "377bbc75fe64c941",
-      "source": "Global News Canada",
-      "title": "Canada-U.S. trade talks ‘moving quickly’ at political level ahead of midterms: sources",
-      "url": "https://globalnews.ca/news/12121641/canada-us-trade-talks-moving-quickly-midterms",
-      "published": "2026-10-26T20:43:28+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 851,
-      "paragraph_count": 25,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
