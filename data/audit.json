@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T00:53:39.388497+00:00",
-  "generated_at_london": "2026-10-26T20:53:39.388497-04:00",
+  "generated_at": "2026-10-27T00:57:48.744511+00:00",
+  "generated_at_london": "2026-10-26T20:57:48.744511-04:00",
   "news_generated_at": "2026-10-27T00:51:38.620771+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 765,
     "source_count": 28,
     "audited_story_count": 118,
-    "pass_story_count": 115,
-    "review_story_count": 3,
+    "pass_story_count": 114,
+    "review_story_count": 4,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 5,
+    "warning_issue_count": 6,
     "info_issue_count": 98,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -57,13 +57,13 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 73,
+      "usable_body_rate": 20,
+      "average_words": 86,
       "average_quality": 46,
       "primary_method": "ctv:summary-fallback",
       "method_counts": {
-        "embedded-json:ctv": 3,
-        "ctv:summary-fallback": 7
+        "ctv:summary-fallback": 8,
+        "embedded-json:ctv": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -72,6 +72,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-27T00:47:34.426907+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Global News Canada",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "global",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 462,
+      "average_quality": 96,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 10,
+      "latest_published": "2026-10-27T00:43:44+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T00:49:13.793515+00:00",
       "last_error": ""
     },
     {
@@ -85,12 +111,11 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 768,
-      "average_quality": 95,
+      "average_words": 765,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -522,33 +547,6 @@
       "last_error": ""
     },
     {
-      "source": "Global News Canada",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "global",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 452,
-      "average_quality": 89,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:global:main:strict": 3,
-        "dom:semantic-rich-v1": 7
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-27T00:43:44+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T00:49:13.793515+00:00",
-      "last_error": ""
-    },
-    {
       "source": "London Health Sciences Centre",
       "status": "healthy",
       "collector_status": "healthy",
@@ -794,6 +792,21 @@
       "content_status": "full",
       "word_count": 792,
       "quality_score": 76,
+      "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "4 consecutive images",
+      "story_id": "cc5de73d7dcf7ddb",
+      "source": "Global News Canada",
+      "title": "Winnipegger raises money for CancerCare Manitoba with giant jack-o’-lanterns",
+      "url": "https://globalnews.ca/news/12121876/winnipegger-raises-money-for-cancercare-manitoba-with-giant-jack-o-lanterns",
+      "published": "2026-10-27T00:35:31+00:00",
+      "content_status": "full",
+      "word_count": 137,
+      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1047,7 +1060,7 @@
       "url": "https://www.ctvnews.ca/london/article/goderich-huron-and-bruce-county-election-results",
       "published": "2026-10-27T00:03:49.348000+00:00",
       "content_status": "summary",
-      "word_count": 3,
+      "word_count": 0,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
     },
@@ -1151,10 +1164,10 @@
       "title": "Woodstock and Oxford County election results",
       "url": "https://www.ctvnews.ca/london/article/woodstock-and-oxford-county-election-results",
       "published": "2026-10-27T00:45:31.319000+00:00",
-      "content_status": "partial",
-      "word_count": 55,
-      "quality_score": 48,
-      "extraction_method": "embedded-json:ctv"
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 40,
+      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -1166,10 +1179,10 @@
       "title": "Woodstock and Oxford County election results",
       "url": "https://www.ctvnews.ca/london/article/woodstock-and-oxford-county-election-results",
       "published": "2026-10-27T00:45:31.319000+00:00",
-      "content_status": "partial",
-      "word_count": 55,
-      "quality_score": 48,
-      "extraction_method": "embedded-json:ctv"
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 40,
+      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -1347,9 +1360,9 @@
       "url": "https://globalnews.ca/news/12122050/mississauga-mayoral-race-2026",
       "published": "2026-10-27T00:40:41+00:00",
       "content_status": "full",
-      "word_count": 238,
-      "quality_score": 68,
-      "extraction_method": "dom:global:main:strict"
+      "word_count": 340,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1438,8 +1451,8 @@
       "published": "2026-10-27T00:43:44+00:00",
       "content_status": "full",
       "word_count": 918,
-      "quality_score": 94,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1483,8 +1496,8 @@
       "published": "2026-10-27T00:35:31+00:00",
       "content_status": "full",
       "word_count": 137,
-      "quality_score": 57,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1961,10 +1974,10 @@
       "title": "Cowichan Tribes to bring forward private property protection solution, lawyer says",
       "url": "https://www.theglobeandmail.com/canada/article-cowichan-private-property-fix-proposal",
       "published": "2026-10-27T00:35:54.764000+00:00",
-      "content_status": "full",
-      "word_count": 955,
-      "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 925,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1976,10 +1989,10 @@
       "title": "Cowichan Tribes to bring forward private property protection solution, lawyer says",
       "url": "https://www.theglobeandmail.com/canada/article-cowichan-private-property-fix-proposal",
       "published": "2026-10-27T00:35:54.764000+00:00",
-      "content_status": "full",
-      "word_count": 955,
-      "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 925,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2294,13 +2307,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "partial",
-      "word_count": 55,
-      "paragraph_count": 8,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
       "inline_image_count": 0,
-      "quality_score": 48,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
+      "quality_score": 40,
+      "quality_grade": "poor",
+      "extraction_method": "ctv:summary-fallback",
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
@@ -2452,9 +2465,9 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "summary",
-      "word_count": 3,
-      "paragraph_count": 1,
-      "inline_image_count": 1,
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
       "quality_score": 40,
       "quality_grade": "poor",
       "extraction_method": "ctv:summary-fallback",
@@ -3831,10 +3844,10 @@
       "content_status": "full",
       "word_count": 918,
       "paragraph_count": 28,
-      "inline_image_count": 1,
-      "quality_score": 94,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:global:main:strict",
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -3858,12 +3871,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 238,
-      "paragraph_count": 8,
+      "word_count": 340,
+      "paragraph_count": 11,
       "inline_image_count": 1,
-      "quality_score": 68,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -3881,21 +3894,27 @@
       "title": "Winnipegger raises money for CancerCare Manitoba with giant jack-o’-lanterns",
       "url": "https://globalnews.ca/news/12121876/winnipegger-raises-money-for-cancercare-manitoba-with-giant-jack-o-lanterns",
       "published": "2026-10-27T00:35:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 85,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 1,
       "info_count": 1,
       "content_status": "full",
       "word_count": 137,
       "paragraph_count": 5,
-      "inline_image_count": 2,
-      "quality_score": 57,
-      "quality_grade": "partial",
-      "extraction_method": "dom:global:main:strict",
+      "inline_image_count": 6,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "4 consecutive images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4426,13 +4445,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "full",
-      "word_count": 955,
-      "paragraph_count": 33,
-      "inline_image_count": 0,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "content_status": "partial",
+      "word_count": 925,
+      "paragraph_count": 31,
+      "inline_image_count": 1,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
