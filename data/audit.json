@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-27T10:02:00.907892+00:00",
-  "generated_at_london": "2026-10-27T06:02:00.907892-04:00",
-  "news_generated_at": "2026-10-27T09:55:07.180480+00:00",
+  "generated_at": "2026-10-27T10:12:04.987960+00:00",
+  "generated_at_london": "2026-10-27T06:12:04.987960-04:00",
+  "news_generated_at": "2026-10-27T10:10:12.721146+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 757,
+    "archive_story_count": 760,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 111,
@@ -14,9 +14,9 @@
     "fail_story_count": 0,
     "critical_issue_count": 0,
     "warning_issue_count": 6,
-    "info_issue_count": 98,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "info_issue_count": 97,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -74,6 +74,33 @@
       "last_error": ""
     },
     {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 30,
+      "average_words": 83,
+      "average_quality": 48,
+      "primary_method": "ctv:summary-fallback",
+      "method_counts": {
+        "ctv:summary-fallback": 7,
+        "embedded-json:ctv": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-10-27T03:36:50.157000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-27T10:06:14.893771+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Global News Canada",
       "status": "review",
       "collector_status": "healthy",
@@ -84,19 +111,20 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 461,
-      "average_quality": 96,
+      "average_words": 438,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-10-27T03:28:21+00:00",
+      "latest_published": "2026-10-27T10:00:52+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T03:40:14.064056+00:00",
+      "last_scrape": "2026-10-27T10:08:00.687283+00:00",
       "last_error": ""
     },
     {
@@ -198,7 +226,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -217,7 +245,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -414,33 +442,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 30,
-      "average_words": 83,
-      "average_quality": 48,
-      "primary_method": "ctv:summary-fallback",
-      "method_counts": {
-        "ctv:summary-fallback": 7,
-        "embedded-json:ctv": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-27T03:36:50.157000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-27T09:50:54.874176+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -610,20 +611,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 817,
+      "average_words": 792,
       "average_quality": 86,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "reader:semantic-rich-v1": 2,
-        "dom:semantic-rich-v1": 8
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-27T08:00:51+00:00",
+      "latest_published": "2026-10-27T10:00:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T09:52:58.541093+00:00",
+      "last_scrape": "2026-10-27T10:08:09.439557+00:00",
       "last_error": ""
     },
     {
@@ -664,19 +666,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 882,
-      "average_quality": 96,
+      "average_words": 903,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-10-27T09:00:00+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-27T10:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-27T09:21:58.949408+00:00",
+      "last_scrape": "2026-10-27T10:08:02.485089+00:00",
       "last_error": ""
     },
     {
@@ -1413,21 +1416,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "14c8e386a6e99f6f",
-      "source": "Global News Canada",
-      "title": "Outgoing Winnipeg councillor reflects on increasing polarization, hostility towards elected officials",
-      "url": "https://globalnews.ca/news/12121236/outgoing-winnipeg-councillor-reflects-on-increasing-polarization-hostility-towards-elected-officials",
-      "published": "2026-10-26T18:08:14+00:00",
-      "content_status": "full",
-      "word_count": 617,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "0a157be98bd14d5d",
       "source": "Global News Canada",
       "title": "Sask. First Nations leaders raise land rights, policing concerns at historic Ottawa meeting",
@@ -1437,6 +1425,21 @@
       "word_count": 918,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "701995968927a01f",
+      "source": "Global News Canada",
+      "title": "Toronto election 2026: Who’s in and who’s out at city hall",
+      "url": "https://globalnews.ca/news/12122340/toronto-election-2026-winners",
+      "published": "2026-10-27T10:00:52+00:00",
+      "content_status": "full",
+      "word_count": 386,
+      "quality_score": 82,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1743,6 +1746,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3a04e1b153811dbf",
+      "source": "National Post",
+      "title": "Edmonton judge rejects 'unhinged' sentence proposed for Indigenous stabber",
+      "url": "https://nationalpost.com/news/canada/edmonton-judge-rejects-unhinged-sentence-proposed-for-indigenous-stabber",
+      "published": "2026-10-27T10:00:06+00:00",
+      "content_status": "full",
+      "word_count": 1149,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "4a6e1218134162ee",
       "source": "National Post",
       "title": "Eric Bauza, the Canadian voice behind Bugs Bunny, has died at age 46",
@@ -1781,21 +1799,6 @@
       "content_status": "full",
       "word_count": 1114,
       "quality_score": 88,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "2fe5f1f517c42791",
-      "source": "National Post",
-      "title": "Three Ontario elections to watch that are not Toronto",
-      "url": "https://nationalpost.com/news/three-ontario-elections-to-watch-that-are-not-toronto",
-      "published": "2026-10-26T18:23:35+00:00",
-      "content_status": "full",
-      "word_count": 1404,
-      "quality_score": 92,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1875,6 +1878,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "527876ddbdc2537e",
+      "source": "The Globe and Mail",
+      "title": "Alto’s high-speed rail project: A Plan B is needed",
+      "url": "https://www.theglobeandmail.com/business/commentary/article-altos-high-speed-rail-project-a-plan-b-is-needed",
+      "published": "2026-10-27T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 818,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1915,36 +1933,6 @@
       "published": "2026-10-27T01:42:04.506000+00:00",
       "content_status": "partial",
       "word_count": 854,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "e5525cd9b7ff5863",
-      "source": "The Globe and Mail",
-      "title": "Canadian man freed after being imprisoned, tortured in Ethiopia",
-      "url": "https://www.theglobeandmail.com/world/article-canadian-man-freed-after-being-tortured-in-ethiopian-prison",
-      "published": "2026-10-27T00:46:52.397000+00:00",
-      "content_status": "full",
-      "word_count": 614,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e5525cd9b7ff5863",
-      "source": "The Globe and Mail",
-      "title": "Canadian man freed after being imprisoned, tortured in Ethiopia",
-      "url": "https://www.theglobeandmail.com/world/article-canadian-man-freed-after-being-tortured-in-ethiopian-prison",
-      "published": "2026-10-27T00:46:52.397000+00:00",
-      "content_status": "full",
-      "word_count": 614,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3757,6 +3745,35 @@
       ]
     },
     {
+      "id": "701995968927a01f",
+      "source": "Global News Canada",
+      "title": "Toronto election 2026: Who’s in and who’s out at city hall",
+      "url": "https://globalnews.ca/news/12122340/toronto-election-2026-winners",
+      "published": "2026-10-27T10:00:52+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 386,
+      "paragraph_count": 29,
+      "inline_image_count": 1,
+      "quality_score": 82,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "43b975d75959b0d4",
       "source": "Global News Canada",
       "title": "Horwath among incumbents ousted across Greater Toronto and Hamilton Area",
@@ -4008,35 +4025,6 @@
       "content_status": "full",
       "word_count": 176,
       "paragraph_count": 7,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "14c8e386a6e99f6f",
-      "source": "Global News Canada",
-      "title": "Outgoing Winnipeg councillor reflects on increasing polarization, hostility towards elected officials",
-      "url": "https://globalnews.ca/news/12121236/outgoing-winnipeg-councillor-reflects-on-increasing-polarization-hostility-towards-elected-officials",
-      "published": "2026-10-26T18:08:14+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 617,
-      "paragraph_count": 22,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4361,6 +4349,35 @@
       ]
     },
     {
+      "id": "527876ddbdc2537e",
+      "source": "The Globe and Mail",
+      "title": "Alto’s high-speed rail project: A Plan B is needed",
+      "url": "https://www.theglobeandmail.com/business/commentary/article-altos-high-speed-rail-project-a-plan-b-is-needed",
+      "published": "2026-10-27T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 818,
+      "paragraph_count": 16,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d98746e3fd0d407b",
       "source": "The Globe and Mail",
       "title": "RCMP probe potential fraud, money laundering in Alberta health care procurement controversy",
@@ -4640,32 +4657,26 @@
       ]
     },
     {
-      "id": "e5525cd9b7ff5863",
-      "source": "The Globe and Mail",
-      "title": "Canadian man freed after being imprisoned, tortured in Ethiopia",
-      "url": "https://www.theglobeandmail.com/world/article-canadian-man-freed-after-being-tortured-in-ethiopian-prison",
-      "published": "2026-10-27T00:46:52.397000+00:00",
+      "id": "3a04e1b153811dbf",
+      "source": "National Post",
+      "title": "Edmonton judge rejects 'unhinged' sentence proposed for Indigenous stabber",
+      "url": "https://nationalpost.com/news/canada/edmonton-judge-rejects-unhinged-sentence-proposed-for-indigenous-stabber",
+      "published": "2026-10-27T10:00:06+00:00",
       "audit_status": "pass",
-      "audit_score": 94,
+      "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 2,
+      "info_count": 1,
       "content_status": "full",
-      "word_count": 614,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
+      "word_count": 1149,
+      "paragraph_count": 35,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4927,35 +4938,6 @@
       "extraction_profile": "postmedia",
       "local_score": 61,
       "issues": []
-    },
-    {
-      "id": "2fe5f1f517c42791",
-      "source": "National Post",
-      "title": "Three Ontario elections to watch that are not Toronto",
-      "url": "https://nationalpost.com/news/three-ontario-elections-to-watch-that-are-not-toronto",
-      "published": "2026-10-26T18:23:35+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1404,
-      "paragraph_count": 39,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
     },
     {
       "id": "f6ec5514573ce616",
