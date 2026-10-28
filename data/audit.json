@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T11:08:56.068163+00:00",
-  "generated_at_london": "2026-10-28T07:08:56.068163-04:00",
-  "news_generated_at": "2026-10-28T11:01:55.936116+00:00",
+  "generated_at": "2026-10-28T11:20:07.551674+00:00",
+  "generated_at_london": "2026-10-28T07:20:07.551674-04:00",
+  "news_generated_at": "2026-10-28T11:17:50.188548+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 731,
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-28T10:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T10:49:09.299581+00:00",
+      "last_scrape": "2026-10-28T11:04:29.967470+00:00",
       "last_error": ""
     },
     {
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -147,10 +147,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-28T08:00:17+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-28T08:10:42.320801+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -203,7 +203,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -219,10 +219,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 1,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x7fc9fa61e600>, 'Connection to weather.gc"
+      "last_error": ""
     },
     {
       "source": "Global News London",
@@ -291,7 +291,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 6,
+      "found_this_run": 7,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -662,20 +662,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1041,
+      "average_words": 1038,
       "average_quality": 89,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "reader:semantic-rich-v1": 2,
-        "dom:semantic-rich-v1": 8
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-28T10:00:32+00:00",
+      "latest_published": "2026-10-28T11:00:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T10:59:34.825170+00:00",
+      "last_scrape": "2026-10-28T11:15:35.186828+00:00",
       "last_error": ""
     },
     {
@@ -1772,6 +1773,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "83b5d625ce44ccc8",
+      "source": "National Post",
+      "title": "Map reveals which provinces and territories are changing their clocks this year",
+      "url": "https://nationalpost.com/news/canada/map-reveals-which-provinces-and-territories-are-changing-their-clocks-this-year",
+      "published": "2026-10-28T11:00:59+00:00",
+      "content_status": "full",
+      "word_count": 1044,
+      "quality_score": 96,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e9816b3ecc67da47",
       "source": "National Post",
       "title": "Quebec is bracing for a big battle with U.S. streamers on ‘discoverability’ of French content",
@@ -1855,21 +1871,6 @@
       "content_status": "full",
       "word_count": 943,
       "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a80300bea133e35f",
-      "source": "National Post",
-      "title": "Your governments are to blame for high gas prices: Benchmark Canada",
-      "url": "https://nationalpost.com/news/your-governments-are-to-blame-for-high-gas-prices-benchmark-canada",
-      "published": "2026-10-27T11:00:04+00:00",
-      "content_status": "full",
-      "word_count": 1067,
-      "quality_score": 90,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4697,6 +4698,35 @@
       ]
     },
     {
+      "id": "83b5d625ce44ccc8",
+      "source": "National Post",
+      "title": "Map reveals which provinces and territories are changing their clocks this year",
+      "url": "https://nationalpost.com/news/canada/map-reveals-which-provinces-and-territories-are-changing-their-clocks-this-year",
+      "published": "2026-10-28T11:00:59+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1044,
+      "paragraph_count": 27,
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5e8e2f22aad28904",
       "source": "National Post",
       "title": "Donations for 24 Sussex renovation reach 11% of the $50 million goal",
@@ -4944,35 +4974,6 @@
       "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a80300bea133e35f",
-      "source": "National Post",
-      "title": "Your governments are to blame for high gas prices: Benchmark Canada",
-      "url": "https://nationalpost.com/news/your-governments-are-to-blame-for-high-gas-prices-benchmark-canada",
-      "published": "2026-10-27T11:00:04+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1067,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 90,
       "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
