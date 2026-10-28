@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T14:45:22.103853+00:00",
-  "generated_at_london": "2026-10-28T10:45:22.103853-04:00",
-  "news_generated_at": "2026-10-28T14:38:13.556132+00:00",
+  "generated_at": "2026-10-28T14:54:15.052072+00:00",
+  "generated_at_london": "2026-10-28T10:54:15.052072-04:00",
+  "news_generated_at": "2026-10-28T14:52:54.492186+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 730,
+    "archive_story_count": 732,
     "source_count": 28,
     "audited_story_count": 113,
     "pass_story_count": 108,
-    "review_story_count": 3,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 5,
+    "review_story_count": 4,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 7,
     "info_issue_count": 97,
     "healthy_source_count": 12,
     "review_source_count": 4,
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-28T12:17:24.010000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T14:25:41.130903+00:00",
+      "last_scrape": "2026-10-28T14:41:25.936630+00:00",
       "last_error": ""
     },
     {
@@ -107,23 +107,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 491,
-      "average_quality": 96,
+      "average_words": 507,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-28T11:57:52+00:00",
+      "latest_published": "2026-10-28T14:25:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T12:16:54.056541+00:00",
+      "last_scrape": "2026-10-28T14:51:23.791096+00:00",
       "last_error": ""
     },
     {
@@ -225,7 +226,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -244,7 +245,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -530,19 +531,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 384,
-      "average_quality": 96,
+      "average_words": 414,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-28T13:35:58+00:00",
+      "latest_published": "2026-10-28T14:44:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T13:49:23.103357+00:00",
+      "last_scrape": "2026-10-28T14:51:15.464526+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +651,7 @@
       "latest_published": "2026-10-28T11:00:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T14:35:56.028463+00:00",
+      "last_scrape": "2026-10-28T14:51:20.931747+00:00",
       "last_error": ""
     },
     {
@@ -732,21 +734,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "56 words",
-      "story_id": "b798c8b4d2aa5544",
-      "source": "Toronto Star",
-      "title": "There has been 'limited progress' in Canada-U.S. trade talks: Canadian official",
-      "url": "https://www.thestar.com/news/canada/there-has-been-limited-progress-in-canada-u-s-trade-talks-canadian-official/article_a43f3fcd-e4d1-5c3f-a9f5-4ed1a60beb78.html",
-      "published": "2026-10-27T22:11:57+00:00",
-      "content_status": "full",
-      "word_count": 56,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -836,6 +823,36 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "d19cab65952f8e11",
+      "source": "Toronto Star",
+      "title": "At least two Canadians hurt in high-speed rail crash in Spain, Carney says",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-at-least-two-canadians-hurt-in-rail-crash-in-spain-carney-says/article_d1b52df7-a540-5bc1-8c11-f0e2f7751bd6.html",
+      "published": "2026-10-28T14:25:00+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "d19cab65952f8e11",
+      "source": "Toronto Star",
+      "title": "At least two Canadians hurt in high-speed rail crash in Spain, Carney says",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-at-least-two-canadians-hurt-in-rail-crash-in-spain-carney-says/article_d1b52df7-a540-5bc1-8c11-f0e2f7751bd6.html",
+      "published": "2026-10-28T14:25:00+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1487,30 +1504,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a04964461750c22b",
+      "story_id": "2dbe1610b4e5c526",
       "source": "Global News Canada",
-      "title": "Mayoral candidates pitch more policing as civic election nears in Winnipeg",
-      "url": "https://globalnews.ca/news/12123376/winnipeg-mayor-candidates-police",
-      "published": "2026-10-27T23:55:32+00:00",
+      "title": "Privacy commissioner investigating provider behind Crime Stoppers data breach",
+      "url": "https://globalnews.ca/news/12124051/crime-stoppers-data-breach-privacy-commissioner-investigation",
+      "published": "2026-10-28T14:44:48+00:00",
       "content_status": "full",
-      "word_count": 287,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 675,
+      "quality_score": 89,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "945f6bbbd05f385d",
+      "story_id": "1d285405add81e5c",
       "source": "Global News Canada",
-      "title": "Regina dismantles Core Community Park encampment over fire safety concerns",
-      "url": "https://globalnews.ca/news/12123658/regina-dismantles-core-community-park-encampment",
-      "published": "2026-10-28T01:24:11+00:00",
+      "title": "Quebec government says it plans to end the time change",
+      "url": "https://globalnews.ca/news/12124122/quebec-government-time-change",
+      "published": "2026-10-28T14:37:40+00:00",
       "content_status": "full",
-      "word_count": 515,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 435,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2087,6 +2104,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "d19cab65952f8e11",
+      "source": "Toronto Star",
+      "title": "At least two Canadians hurt in high-speed rail crash in Spain, Carney says",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-at-least-two-canadians-hurt-in-rail-crash-in-spain-carney-says/article_d1b52df7-a540-5bc1-8c11-f0e2f7751bd6.html",
+      "published": "2026-10-28T14:25:00+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "4d15a2068a8de2fb",
       "source": "Toronto Star",
       "title": "Canada's vow to ban imports from Israeli settlements in the West Bank, explained",
@@ -2184,21 +2216,6 @@
       "published": "2026-10-28T08:00:06+00:00",
       "content_status": "full",
       "word_count": 633,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b798c8b4d2aa5544",
-      "source": "Toronto Star",
-      "title": "There has been 'limited progress' in Canada-U.S. trade talks: Canadian official",
-      "url": "https://www.thestar.com/news/canada/there-has-been-limited-progress-in-canada-u-s-trade-talks-canadian-official/article_a43f3fcd-e4d1-5c3f-a9f5-4ed1a60beb78.html",
-      "published": "2026-10-27T22:11:57+00:00",
-      "content_status": "full",
-      "word_count": 56,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3713,6 +3730,64 @@
       ]
     },
     {
+      "id": "2dbe1610b4e5c526",
+      "source": "Global News Canada",
+      "title": "Privacy commissioner investigating provider behind Crime Stoppers data breach",
+      "url": "https://globalnews.ca/news/12124051/crime-stoppers-data-breach-privacy-commissioner-investigation",
+      "published": "2026-10-28T14:44:48+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 675,
+      "paragraph_count": 27,
+      "inline_image_count": 1,
+      "quality_score": 89,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "1d285405add81e5c",
+      "source": "Global News Canada",
+      "title": "Quebec government says it plans to end the time change",
+      "url": "https://globalnews.ca/news/12124122/quebec-government-time-change",
+      "published": "2026-10-28T14:37:40+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 435,
+      "paragraph_count": 16,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b5af36f28d8c17b9",
       "source": "Global News Canada",
       "title": "24 Sussex restoration campaign secures $5.7M as public appeal launches",
@@ -3923,64 +3998,6 @@
       "word_count": 518,
       "paragraph_count": 20,
       "inline_image_count": 5,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "945f6bbbd05f385d",
-      "source": "Global News Canada",
-      "title": "Regina dismantles Core Community Park encampment over fire safety concerns",
-      "url": "https://globalnews.ca/news/12123658/regina-dismantles-core-community-park-encampment",
-      "published": "2026-10-28T01:24:11+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 515,
-      "paragraph_count": 17,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a04964461750c22b",
-      "source": "Global News Canada",
-      "title": "Mayoral candidates pitch more policing as civic election nears in Winnipeg",
-      "url": "https://globalnews.ca/news/12123376/winnipeg-mayor-candidates-police",
-      "published": "2026-10-27T23:55:32+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 287,
-      "paragraph_count": 10,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4901,6 +4918,47 @@
       ]
     },
     {
+      "id": "d19cab65952f8e11",
+      "source": "Toronto Star",
+      "title": "At least two Canadians hurt in high-speed rail crash in Spain, Carney says",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-at-least-two-canadians-hurt-in-rail-crash-in-spain-carney-says/article_d1b52df7-a540-5bc1-8c11-f0e2f7751bd6.html",
+      "published": "2026-10-28T14:25:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 214,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fc8a7eaec4144380",
       "source": "Toronto Star",
       "title": "Durham police officer charged in child sexual exploitation investigation",
@@ -5158,41 +5216,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "64 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b798c8b4d2aa5544",
-      "source": "Toronto Star",
-      "title": "There has been 'limited progress' in Canada-U.S. trade talks: Canadian official",
-      "url": "https://www.thestar.com/news/canada/there-has-been-limited-progress-in-canada-u-s-trade-talks-canadian-official/article_a43f3fcd-e4d1-5c3f-a9f5-4ed1a60beb78.html",
-      "published": "2026-10-27T22:11:57+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 56,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "56 words"
         },
         {
           "severity": "info",
