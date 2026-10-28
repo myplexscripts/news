@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T15:48:35.948405+00:00",
-  "generated_at_london": "2026-10-28T11:48:35.948405-04:00",
-  "news_generated_at": "2026-10-28T15:40:26.074314+00:00",
+  "generated_at": "2026-10-28T15:58:54.317283+00:00",
+  "generated_at_london": "2026-10-28T11:58:54.317283-04:00",
+  "news_generated_at": "2026-10-28T15:56:44.664097+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 728,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 110,
-    "review_story_count": 4,
+    "pass_story_count": 108,
+    "review_story_count": 6,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 6,
+    "warning_issue_count": 10,
     "info_issue_count": 99,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-28T15:02:51.263000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T15:26:07.465175+00:00",
+      "last_scrape": "2026-10-28T15:43:46.589446+00:00",
       "last_error": ""
     },
     {
@@ -124,6 +124,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-28T15:38:05.639383+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 356,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 10,
+      "latest_published": "2026-10-28T15:48:03+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-28T15:54:29.009448+00:00",
       "last_error": ""
     },
     {
@@ -453,11 +480,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 562,
+      "average_words": 575,
       "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:citynews:article": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -465,7 +493,7 @@
       "latest_published": "2026-10-28T15:09:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T15:38:20.130856+00:00",
+      "last_scrape": "2026-10-28T15:54:31.899300+00:00",
       "last_error": ""
     },
     {
@@ -625,7 +653,7 @@
       "latest_published": "2026-10-28T11:00:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T15:38:11.544687+00:00",
+      "last_scrape": "2026-10-28T15:54:23.705194+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +706,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-28T14:35:50.618512+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 493,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-28T15:25:59+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-28T15:38:15.272787+00:00",
       "last_error": ""
     },
     {
@@ -823,6 +825,66 @@
       "word_count": 187,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3a24cd3197b5ad85",
+      "source": "Toronto Star",
+      "title": "Assault charges against Sault Ste. Marie MPP Chris Scott dropped",
+      "url": "https://www.thestar.com/news/ontario/assault-charges-against-sault-ste-marie-mpp-chris-scott-dropped/article_02947059-55b7-5c22-af1e-9180f088136b.html",
+      "published": "2026-10-28T15:34:10+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "3a24cd3197b5ad85",
+      "source": "Toronto Star",
+      "title": "Assault charges against Sault Ste. Marie MPP Chris Scott dropped",
+      "url": "https://www.thestar.com/news/ontario/assault-charges-against-sault-ste-marie-mpp-chris-scott-dropped/article_02947059-55b7-5c22-af1e-9180f088136b.html",
+      "published": "2026-10-28T15:34:10+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "62b7c7e26b197e80",
+      "source": "Toronto Star",
+      "title": "Canada-EU Summit set to launch additional talks on a deeper partnership",
+      "url": "https://www.thestar.com/news/canada/canada-eu-summit-set-to-launch-additional-talks-on-a-deeper-partnership/article_64530102-7a3b-5a89-9646-2e4aa5a71678.html",
+      "published": "2026-10-28T15:48:03+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "62b7c7e26b197e80",
+      "source": "Toronto Star",
+      "title": "Canada-EU Summit set to launch additional talks on a deeper partnership",
+      "url": "https://www.thestar.com/news/canada/canada-eu-summit-set-to-launch-additional-talks-on-a-deeper-partnership/article_64530102-7a3b-5a89-9646-2e4aa5a71678.html",
+      "published": "2026-10-28T15:48:03+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1249,6 +1311,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "60f013607aaa2041",
+      "source": "CityNews Canada",
+      "title": "At least 64 dead in high-speed train crash in central Spain, 5 Canadians ‘affected”",
+      "url": "https://toronto.citynews.ca/2026/10/28/spain-train-crash-fatalities",
+      "published": "2026-10-28T08:55:01+00:00",
+      "content_status": "full",
+      "word_count": 1080,
+      "quality_score": 90,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "53ffc6bbe9b6e79e",
       "source": "CityNews Canada",
       "title": "Bank of Canada expected to hike key rate for 1st time since 2023",
@@ -1362,21 +1439,6 @@
       "content_status": "full",
       "word_count": 501,
       "quality_score": 81,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d57eaba3a680c3f3",
-      "source": "CityNews Canada",
-      "title": "United Arab Emirates, Canada to share details of strategic partnership today",
-      "url": "https://toronto.citynews.ca/2026/10/27/united-arab-emirates-canada-to-share-details-of-strategic-partnership-today",
-      "published": "2026-10-27T08:00:26+00:00",
-      "content_status": "full",
-      "word_count": 950,
-      "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -2104,6 +2166,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3a24cd3197b5ad85",
+      "source": "Toronto Star",
+      "title": "Assault charges against Sault Ste. Marie MPP Chris Scott dropped",
+      "url": "https://www.thestar.com/news/ontario/assault-charges-against-sault-ste-marie-mpp-chris-scott-dropped/article_02947059-55b7-5c22-af1e-9180f088136b.html",
+      "published": "2026-10-28T15:34:10+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "d19cab65952f8e11",
       "source": "Toronto Star",
       "title": "At least two Canadians hurt in high-speed rail crash in Spain, Carney says",
@@ -2134,15 +2211,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "4d15a2068a8de2fb",
+      "story_id": "62b7c7e26b197e80",
       "source": "Toronto Star",
-      "title": "Canada's vow to ban imports from Israeli settlements in the West Bank, explained",
-      "url": "https://www.thestar.com/news/canada/canada-s-vow-to-ban-imports-from-israeli-settlements-in-the-west-bank-explained/article_0c57fa0f-0a30-54ae-9778-4fb6bb215814.html",
-      "published": "2026-10-28T08:00:10+00:00",
+      "title": "Canada-EU Summit set to launch additional talks on a deeper partnership",
+      "url": "https://www.thestar.com/news/canada/canada-eu-summit-set-to-launch-additional-talks-on-a-deeper-partnership/article_64530102-7a3b-5a89-9646-2e4aa5a71678.html",
+      "published": "2026-10-28T15:48:03+00:00",
       "content_status": "full",
-      "word_count": 1156,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2216,21 +2293,6 @@
       "published": "2026-10-28T14:34:58+00:00",
       "content_status": "full",
       "word_count": 134,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "513e053d1c4ca23c",
-      "source": "Toronto Star",
-      "title": "Ontario pauses some skills training funding for unemployed people: career colleges",
-      "url": "https://www.thestar.com/news/ontario/ontario-pauses-some-skills-training-funding-for-unemployed-people-career-colleges/article_cca7169e-4c4c-5480-9934-f3fcd1f1c115.html",
-      "published": "2026-10-28T08:00:06+00:00",
-      "content_status": "full",
-      "word_count": 633,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4960,6 +5022,88 @@
       ]
     },
     {
+      "id": "62b7c7e26b197e80",
+      "source": "Toronto Star",
+      "title": "Canada-EU Summit set to launch additional talks on a deeper partnership",
+      "url": "https://www.thestar.com/news/canada/canada-eu-summit-set-to-launch-additional-talks-on-a-deeper-partnership/article_64530102-7a3b-5a89-9646-2e4aa5a71678.html",
+      "published": "2026-10-28T15:48:03+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 211,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "3a24cd3197b5ad85",
+      "source": "Toronto Star",
+      "title": "Assault charges against Sault Ste. Marie MPP Chris Scott dropped",
+      "url": "https://www.thestar.com/news/ontario/assault-charges-against-sault-ste-marie-mpp-chris-scott-dropped/article_02947059-55b7-5c22-af1e-9180f088136b.html",
+      "published": "2026-10-28T15:34:10+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 201,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "65cd3b570675afcb",
       "source": "Toronto Star",
       "title": "Canada not yet in position to reach trade deal with U.S.: Carney",
@@ -5192,64 +5336,6 @@
       ]
     },
     {
-      "id": "4d15a2068a8de2fb",
-      "source": "Toronto Star",
-      "title": "Canada's vow to ban imports from Israeli settlements in the West Bank, explained",
-      "url": "https://www.thestar.com/news/canada/canada-s-vow-to-ban-imports-from-israeli-settlements-in-the-west-bank-explained/article_0c57fa0f-0a30-54ae-9778-4fb6bb215814.html",
-      "published": "2026-10-28T08:00:10+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1156,
-      "paragraph_count": 48,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "513e053d1c4ca23c",
-      "source": "Toronto Star",
-      "title": "Ontario pauses some skills training funding for unemployed people: career colleges",
-      "url": "https://www.thestar.com/news/ontario/ontario-pauses-some-skills-training-funding-for-unemployed-people-career-colleges/article_cca7169e-4c4c-5480-9934-f3fcd1f1c115.html",
-      "published": "2026-10-28T08:00:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 633,
-      "paragraph_count": 33,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
       "id": "71349b35f5c7885b",
       "source": "CityNews Canada",
       "title": "BoC warns of ‘subdued’ outlook for housing market as rate hike raises borrowing costs",
@@ -5354,6 +5440,35 @@
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "60f013607aaa2041",
+      "source": "CityNews Canada",
+      "title": "At least 64 dead in high-speed train crash in central Spain, 5 Canadians ‘affected”",
+      "url": "https://toronto.citynews.ca/2026/10/28/spain-train-crash-fatalities",
+      "published": "2026-10-28T08:55:01+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1080,
+      "paragraph_count": 39,
+      "inline_image_count": 0,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:citynews:article",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
@@ -5495,35 +5610,6 @@
       "content_status": "full",
       "word_count": 219,
       "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d57eaba3a680c3f3",
-      "source": "CityNews Canada",
-      "title": "United Arab Emirates, Canada to share details of strategic partnership today",
-      "url": "https://toronto.citynews.ca/2026/10/27/united-arab-emirates-canada-to-share-details-of-strategic-partnership-today",
-      "published": "2026-10-27T08:00:26+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 950,
-      "paragraph_count": 34,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
