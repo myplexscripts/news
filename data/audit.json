@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T00:58:21.708404+00:00",
-  "generated_at_london": "2026-10-27T20:58:21.708404-04:00",
-  "news_generated_at": "2026-10-28T00:53:24.940364+00:00",
+  "generated_at": "2026-10-28T01:12:39.280038+00:00",
+  "generated_at_london": "2026-10-27T21:12:39.280038-04:00",
+  "news_generated_at": "2026-10-28T01:10:36.836103+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 747,
@@ -83,21 +83,21 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 60,
-      "average_words": 229,
-      "average_quality": 64,
+      "usable_body_rate": 70,
+      "average_words": 272,
+      "average_quality": 68,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 6,
-        "ctv:summary-fallback": 4
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-27T21:51:17.127000+00:00",
+      "latest_published": "2026-10-28T00:56:41.440000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T00:41:06.839575+00:00",
+      "last_scrape": "2026-10-28T01:06:02.055412+00:00",
       "last_error": ""
     },
     {
@@ -623,7 +623,7 @@
       "latest_published": "2026-10-27T23:59:22+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T00:51:55.632797+00:00",
+      "last_scrape": "2026-10-28T01:08:22.675402+00:00",
       "last_error": ""
     },
     {
@@ -1050,6 +1050,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
+      "story_id": "a381fad7d8b50c8c",
+      "source": "CTV News London",
+      "title": "Hello! London’s newest city councillors credit doorstep campaigning",
+      "url": "https://www.ctvnews.ca/london/article/hello-londons-newest-city-councillors-credit-doorstep-campaigning",
+      "published": "2026-10-28T00:56:41.440000+00:00",
+      "content_status": "full",
+      "word_count": 454,
+      "quality_score": 83,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1133,21 +1148,6 @@
       "title": "Southwestern Public Health issues drug watch following spike in overdoses",
       "url": "https://www.ctvnews.ca/london/article/southwestern-public-health-issues-drug-watch-following-spike-in-overdoses",
       "published": "2026-10-27T20:42:16.532000+00:00",
-      "content_status": "summary",
-      "word_count": 17,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "7c5180e23f96d5a2",
-      "source": "CTV News London",
-      "title": "Woman charged in Listowel crash involving pedestrian",
-      "url": "https://www.ctvnews.ca/london/article/woman-charged-in-listowel-crash-involving-pedestrian",
-      "published": "2026-10-27T16:28:14.519000+00:00",
       "content_status": "summary",
       "word_count": 17,
       "quality_score": 40,
@@ -2296,6 +2296,35 @@
   ],
   "stories": [
     {
+      "id": "a381fad7d8b50c8c",
+      "source": "CTV News London",
+      "title": "Hello! London’s newest city councillors credit doorstep campaigning",
+      "url": "https://www.ctvnews.ca/london/article/hello-londons-newest-city-councillors-credit-doorstep-campaigning",
+      "published": "2026-10-28T00:56:41.440000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 454,
+      "paragraph_count": 18,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
+    {
       "id": "326c36f668ff0f27",
       "source": "CTV News London",
       "title": "McEachran makes history as first female mayor of Sarnia, taking down long-time incumbent Mike Bradley",
@@ -2533,35 +2562,6 @@
       "info_count": 1,
       "content_status": "summary",
       "word_count": 20,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7c5180e23f96d5a2",
-      "source": "CTV News London",
-      "title": "Woman charged in Listowel crash involving pedestrian",
-      "url": "https://www.ctvnews.ca/london/article/woman-charged-in-listowel-crash-involving-pedestrian",
-      "published": "2026-10-27T16:28:14.519000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 17,
       "paragraph_count": 1,
       "inline_image_count": 0,
       "quality_score": 40,
