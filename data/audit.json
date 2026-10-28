@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T02:33:49.844300+00:00",
-  "generated_at_london": "2026-10-27T22:33:49.844300-04:00",
-  "news_generated_at": "2026-10-28T02:27:15.010308+00:00",
+  "generated_at": "2026-10-28T02:45:23.014260+00:00",
+  "generated_at_london": "2026-10-27T22:45:23.014260-04:00",
+  "news_generated_at": "2026-10-28T02:43:29.758662+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 743,
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-28T00:56:41.440000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T02:15:36.921518+00:00",
+      "last_scrape": "2026-10-28T02:30:12.161302+00:00",
       "last_error": ""
     },
     {
@@ -623,7 +623,7 @@
       "latest_published": "2026-10-27T23:59:22+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T02:25:36.875141+00:00",
+      "last_scrape": "2026-10-28T02:41:23.507201+00:00",
       "last_error": ""
     },
     {
@@ -664,19 +664,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 663,
-      "average_quality": 95,
+      "average_words": 718,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-10-27T23:56:45.958000+00:00",
+      "latest_published": "2026-10-28T02:25:36.766000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T00:05:20.367317+00:00",
+      "last_scrape": "2026-10-28T02:41:18.137753+00:00",
       "last_error": ""
     },
     {
@@ -1905,6 +1906,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "8a7675c845fffdd9",
+      "source": "The Globe and Mail",
+      "title": "Alberta Premier fends off leadership challenge and looks to squelch separatist discord",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-premier-fends-off-leadership-challenge-and-looks-to-squelch",
+      "published": "2026-10-28T02:25:36.766000+00:00",
+      "content_status": "full",
+      "word_count": 981,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2066,21 +2082,6 @@
       "content_status": "partial",
       "word_count": 815,
       "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b2a5160028ba495e",
-      "source": "The Globe and Mail",
-      "title": "Rêve, Tyler Shaw among Canada’s Eurovision finalists",
-      "url": "https://www.theglobeandmail.com/culture/music/article-eurovision-finalists-reve-cloutier-talk-josiane-shaw",
-      "published": "2026-10-27T19:08:04.774000+00:00",
-      "content_status": "partial",
-      "word_count": 432,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4384,6 +4385,35 @@
       ]
     },
     {
+      "id": "8a7675c845fffdd9",
+      "source": "The Globe and Mail",
+      "title": "Alberta Premier fends off leadership challenge and looks to squelch separatist discord",
+      "url": "https://www.theglobeandmail.com/canada/article-alberta-premier-fends-off-leadership-challenge-and-looks-to-squelch",
+      "published": "2026-10-28T02:25:36.766000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 981,
+      "paragraph_count": 32,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5f0fbd2c5cbc4c42",
       "source": "The Globe and Mail",
       "title": "Drawn lot decides mayor of Lytton, B.C., after tied election",
@@ -4647,35 +4677,6 @@
       "content_status": "partial",
       "word_count": 902,
       "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b2a5160028ba495e",
-      "source": "The Globe and Mail",
-      "title": "Rêve, Tyler Shaw among Canada’s Eurovision finalists",
-      "url": "https://www.theglobeandmail.com/culture/music/article-eurovision-finalists-reve-cloutier-talk-josiane-shaw",
-      "published": "2026-10-27T19:08:04.774000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 432,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
