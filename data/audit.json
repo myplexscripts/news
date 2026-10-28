@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T12:41:52.127607+00:00",
-  "generated_at_london": "2026-10-28T08:41:52.127607-04:00",
-  "news_generated_at": "2026-10-28T12:34:26.225647+00:00",
+  "generated_at": "2026-10-28T12:52:12.286312+00:00",
+  "generated_at_london": "2026-10-28T08:52:12.286312-04:00",
+  "news_generated_at": "2026-10-28T12:50:20.764489+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 734,
+    "archive_story_count": 735,
     "source_count": 28,
     "audited_story_count": 113,
     "pass_story_count": 107,
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-28T12:17:24.010000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T12:30:07.791403+00:00",
+      "last_scrape": "2026-10-28T12:38:14.324591+00:00",
       "last_error": ""
     },
     {
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -147,10 +147,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-28T11:57:52+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-28T12:16:54.056541+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -556,19 +556,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 426,
-      "average_quality": 96,
+      "average_words": 422,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-10-28T12:28:35+00:00",
+      "latest_published": "2026-10-28T12:46:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T12:32:06.375792+00:00",
+      "last_scrape": "2026-10-28T12:47:56.432012+00:00",
       "last_error": ""
     },
     {
@@ -675,7 +676,7 @@
       "latest_published": "2026-10-28T11:00:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T12:32:14.306896+00:00",
+      "last_scrape": "2026-10-28T12:48:04.440240+00:00",
       "last_error": ""
     },
     {
@@ -1427,21 +1428,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7b967e0490720a55",
-      "source": "Global News Canada",
-      "title": "Alberta government to end DEI public sector hiring",
-      "url": "https://globalnews.ca/news/12123342/alberta-to-end-dei-hiring",
-      "published": "2026-10-27T21:37:20+00:00",
-      "content_status": "full",
-      "word_count": 156,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "6f3702539da3d8c6",
       "source": "Global News Canada",
       "title": "B.C. man who started dog rescue killed while saving animals in Ukraine",
@@ -1556,6 +1542,21 @@
       "word_count": 515,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a55147c347e3f0d2",
+      "source": "Global News Canada",
+      "title": "Three people dead following multi-vehicle crash near Windsor: OPP",
+      "url": "https://globalnews.ca/news/12124006/lakeshore-county-road-22-crash",
+      "published": "2026-10-28T12:46:00+00:00",
+      "content_status": "full",
+      "word_count": 106,
+      "quality_score": 61,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3758,6 +3759,35 @@
       ]
     },
     {
+      "id": "a55147c347e3f0d2",
+      "source": "Global News Canada",
+      "title": "Three people dead following multi-vehicle crash near Windsor: OPP",
+      "url": "https://globalnews.ca/news/12124006/lakeshore-county-road-22-crash",
+      "published": "2026-10-28T12:46:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 106,
+      "paragraph_count": 7,
+      "inline_image_count": 1,
+      "quality_score": 61,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cf689d06fb9b5a53",
       "source": "Global News Canada",
       "title": "Bank of Canada interest rate announcement nears as economists expect a hike",
@@ -3997,35 +4027,6 @@
       "word_count": 743,
       "paragraph_count": 22,
       "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7b967e0490720a55",
-      "source": "Global News Canada",
-      "title": "Alberta government to end DEI public sector hiring",
-      "url": "https://globalnews.ca/news/12123342/alberta-to-end-dei-hiring",
-      "published": "2026-10-27T21:37:20+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 156,
-      "paragraph_count": 7,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
