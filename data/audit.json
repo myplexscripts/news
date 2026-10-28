@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T14:59:03.824019+00:00",
-  "generated_at_london": "2026-10-28T10:59:03.824019-04:00",
-  "news_generated_at": "2026-10-28T14:52:54.492186+00:00",
+  "generated_at": "2026-10-28T15:11:48.045368+00:00",
+  "generated_at_london": "2026-10-28T11:11:48.045368-04:00",
+  "news_generated_at": "2026-10-28T15:09:28.227138+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 730,
+    "archive_story_count": 732,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 109,
-    "review_story_count": 3,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
-    "warning_issue_count": 5,
-    "info_issue_count": 97,
+    "pass_story_count": 108,
+    "review_story_count": 5,
+    "fail_story_count": 0,
+    "critical_issue_count": 0,
+    "warning_issue_count": 9,
+    "info_issue_count": 98,
     "healthy_source_count": 12,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -84,8 +84,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 260,
-      "average_quality": 70,
+      "average_words": 245,
+      "average_quality": 68,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 8,
@@ -93,11 +93,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-28T12:17:24.010000+00:00",
+      "info_issues": 11,
+      "latest_published": "2026-10-28T15:02:51.263000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T14:41:25.936630+00:00",
+      "last_scrape": "2026-10-28T15:05:15.170916+00:00",
       "last_error": ""
     },
     {
@@ -106,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
       "usable_body_rate": 100,
       "average_words": 500,
-      "average_quality": 96,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-10-28T14:25:00+00:00",
+      "latest_published": "2026-10-28T14:58:05+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T14:51:23.791096+00:00",
+      "last_scrape": "2026-10-28T15:07:20.814085+00:00",
       "last_error": ""
     },
     {
@@ -172,7 +173,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -649,7 +650,7 @@
       "latest_published": "2026-10-28T11:00:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T14:51:20.931747+00:00",
+      "last_scrape": "2026-10-28T15:07:14.842180+00:00",
       "last_error": ""
     },
     {
@@ -733,21 +734,6 @@
   ],
   "issues": [
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "64 words",
-      "story_id": "0c6ac7ad0bba3091",
-      "source": "Toronto Star",
-      "title": "Vancouver Aquarium says goodbye to beloved sloth Hurricane, dead at 29",
-      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-aquarium-says-goodbye-to-beloved-sloth-hurricane-dead-at-29/article_ddc4ebc2-dd97-5b86-b169-8c12215ae6aa.html",
-      "published": "2026-10-27T23:43:25+00:00",
-      "content_status": "full",
-      "word_count": 64,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -821,6 +807,66 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "0321eeadd4cd284a",
+      "source": "Toronto Star",
+      "title": "Ontario environment minister hopes to burn more garbage, build more landfills",
+      "url": "https://www.thestar.com/news/ontario/ontario-environment-minister-hopes-to-burn-more-garbage-build-more-landfills/article_28bed5ba-d8ba-556b-9525-632168643d59.html",
+      "published": "2026-10-28T14:58:05+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "0321eeadd4cd284a",
+      "source": "Toronto Star",
+      "title": "Ontario environment minister hopes to burn more garbage, build more landfills",
+      "url": "https://www.thestar.com/news/ontario/ontario-environment-minister-hopes-to-burn-more-garbage-build-more-landfills/article_28bed5ba-d8ba-556b-9525-632168643d59.html",
+      "published": "2026-10-28T14:58:05+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c586c0157395e71b",
+      "source": "Toronto Star",
+      "title": "Ontario matches feds' tax perk for businesses on capital investments",
+      "url": "https://www.thestar.com/news/ontario/ontario-matches-feds-tax-perk-for-businesses-on-capital-investments/article_62fe1dd9-0e65-5fa3-a4ea-cfc6adab8043.html",
+      "published": "2026-10-28T14:34:58+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c586c0157395e71b",
+      "source": "Toronto Star",
+      "title": "Ontario matches feds' tax perk for businesses on capital investments",
+      "url": "https://www.thestar.com/news/ontario/ontario-matches-feds-tax-perk-for-businesses-on-capital-investments/article_62fe1dd9-0e65-5fa3-a4ea-cfc6adab8043.html",
+      "published": "2026-10-28T14:34:58+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1060,6 +1106,21 @@
       "content_status": "full",
       "word_count": 258,
       "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
+      "story_id": "9e2745ea8c602874",
+      "source": "CTV News London",
+      "title": "CTV London takes part in modernized version of glamour shots",
+      "url": "https://www.ctvnews.ca/london/article/ctv-london-takes-part-in-modernized-version-of-glamour-shots",
+      "published": "2026-10-28T15:02:51.263000+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 66,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2132,21 +2193,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "4ba4ba5e10391cc8",
-      "source": "Toronto Star",
-      "title": "Drawn lot decides mayor of Lytton, B.C., after votes are tied at 45 each",
-      "url": "https://www.thestar.com/news/canada/british-columbia/drawn-lot-decides-mayor-of-lytton-b-c-after-votes-are-tied-at-45-each/article_cbc6592c-2462-5cb0-85a2-760d166cf6cf.html",
-      "published": "2026-10-27T23:46:16+00:00",
-      "content_status": "full",
-      "word_count": 354,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "fc8a7eaec4144380",
       "source": "Toronto Star",
       "title": "Durham police officer charged in child sexual exploitation investigation",
@@ -2177,6 +2223,36 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "0321eeadd4cd284a",
+      "source": "Toronto Star",
+      "title": "Ontario environment minister hopes to burn more garbage, build more landfills",
+      "url": "https://www.thestar.com/news/ontario/ontario-environment-minister-hopes-to-burn-more-garbage-build-more-landfills/article_28bed5ba-d8ba-556b-9525-632168643d59.html",
+      "published": "2026-10-28T14:58:05+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c586c0157395e71b",
+      "source": "Toronto Star",
+      "title": "Ontario matches feds' tax perk for businesses on capital investments",
+      "url": "https://www.thestar.com/news/ontario/ontario-matches-feds-tax-perk-for-businesses-on-capital-investments/article_62fe1dd9-0e65-5fa3-a4ea-cfc6adab8043.html",
+      "published": "2026-10-28T14:34:58+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "513e053d1c4ca23c",
       "source": "Toronto Star",
       "title": "Ontario pauses some skills training funding for unemployed people: career colleges",
@@ -2184,21 +2260,6 @@
       "published": "2026-10-28T08:00:06+00:00",
       "content_status": "full",
       "word_count": 633,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0c6ac7ad0bba3091",
-      "source": "Toronto Star",
-      "title": "Vancouver Aquarium says goodbye to beloved sloth Hurricane, dead at 29",
-      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-aquarium-says-goodbye-to-beloved-sloth-hurricane-dead-at-29/article_ddc4ebc2-dd97-5b86-b169-8c12215ae6aa.html",
-      "published": "2026-10-27T23:43:25+00:00",
-      "content_status": "full",
-      "word_count": 64,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2279,6 +2340,35 @@
     }
   ],
   "stories": [
+    {
+      "id": "9e2745ea8c602874",
+      "source": "CTV News London",
+      "title": "CTV London takes part in modernized version of glamour shots",
+      "url": "https://www.ctvnews.ca/london/article/ctv-london-takes-part-in-modernized-version-of-glamour-shots",
+      "published": "2026-10-28T15:02:51.263000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 211,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
     {
       "id": "30680d208d257299",
       "source": "CTV News London",
@@ -2545,28 +2635,6 @@
           "detail": "Local score 18/100"
         }
       ]
-    },
-    {
-      "id": "7ccfb88a1703a7ff",
-      "source": "CTV News London",
-      "title": "‘Finally, traffic relief!’ Bradley Ave. extension set to open in early November",
-      "url": "https://www.ctvnews.ca/london/article/finally-traffic-relief-bradley-ave-extension-set-to-open-in-early-november",
-      "published": "2026-10-27T20:21:10.908000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 365,
-      "paragraph_count": 18,
-      "inline_image_count": 2,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": []
     },
     {
       "id": "d281e4e2a1ff3c3b",
@@ -4886,6 +4954,88 @@
       ]
     },
     {
+      "id": "0321eeadd4cd284a",
+      "source": "Toronto Star",
+      "title": "Ontario environment minister hopes to burn more garbage, build more landfills",
+      "url": "https://www.thestar.com/news/ontario/ontario-environment-minister-hopes-to-burn-more-garbage-build-more-landfills/article_28bed5ba-d8ba-556b-9525-632168643d59.html",
+      "published": "2026-10-28T14:58:05+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 210,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "c586c0157395e71b",
+      "source": "Toronto Star",
+      "title": "Ontario matches feds' tax perk for businesses on capital investments",
+      "url": "https://www.thestar.com/news/ontario/ontario-matches-feds-tax-perk-for-businesses-on-capital-investments/article_62fe1dd9-0e65-5fa3-a4ea-cfc6adab8043.html",
+      "published": "2026-10-28T14:34:58+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d19cab65952f8e11",
       "source": "Toronto Star",
       "title": "At least two Canadians hurt in high-speed rail crash in Spain, Carney says",
@@ -5109,70 +5259,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4ba4ba5e10391cc8",
-      "source": "Toronto Star",
-      "title": "Drawn lot decides mayor of Lytton, B.C., after votes are tied at 45 each",
-      "url": "https://www.thestar.com/news/canada/british-columbia/drawn-lot-decides-mayor-of-lytton-b-c-after-votes-are-tied-at-45-each/article_cbc6592c-2462-5cb0-85a2-760d166cf6cf.html",
-      "published": "2026-10-27T23:46:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 354,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0c6ac7ad0bba3091",
-      "source": "Toronto Star",
-      "title": "Vancouver Aquarium says goodbye to beloved sloth Hurricane, dead at 29",
-      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-aquarium-says-goodbye-to-beloved-sloth-hurricane-dead-at-29/article_ddc4ebc2-dd97-5b86-b169-8c12215ae6aa.html",
-      "published": "2026-10-27T23:43:25+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 64,
-      "paragraph_count": 4,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "64 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
