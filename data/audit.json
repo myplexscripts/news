@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T11:38:53.974237+00:00",
-  "generated_at_london": "2026-10-28T07:38:53.974237-04:00",
-  "news_generated_at": "2026-10-28T11:32:42.459996+00:00",
+  "generated_at": "2026-10-28T11:50:12.075498+00:00",
+  "generated_at_london": "2026-10-28T07:50:12.075498-04:00",
+  "news_generated_at": "2026-10-28T11:48:23.713904+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 730,
+    "archive_story_count": 731,
     "source_count": 28,
     "audited_story_count": 113,
     "pass_story_count": 107,
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-28T11:30:56.829000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T11:20:51.864207+00:00",
+      "last_scrape": "2026-10-28T11:35:56.999870+00:00",
       "last_error": ""
     },
     {
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -147,10 +147,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-28T08:00:17+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-28T08:10:42.320801+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -556,19 +556,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 456,
+      "average_words": 482,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-28T03:10:53+00:00",
+      "latest_published": "2026-10-28T11:30:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T03:13:17.766503+00:00",
+      "last_scrape": "2026-10-28T11:46:04.633420+00:00",
       "last_error": ""
     },
     {
@@ -675,7 +676,7 @@
       "latest_published": "2026-10-28T11:00:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T11:30:30.377479+00:00",
+      "last_scrape": "2026-10-28T11:46:11.333471+00:00",
       "last_error": ""
     },
     {
@@ -1457,15 +1458,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "65fb970cd2ee834d",
+      "story_id": "3c3cd03b23178fd2",
       "source": "Global News Canada",
-      "title": "Canada’s Eurovision finalists include Rêve, Tyler Shaw",
-      "url": "https://globalnews.ca/news/12123123/canada-eurovision-finalists-reve-tyler-shaw-william-cloutier-josiane-talk",
-      "published": "2026-10-27T19:16:46+00:00",
+      "title": "Calgary city council approves stiff hikes to water rates over the next 4 years",
+      "url": "https://globalnews.ca/news/12123415/calgary-city-council-approves-stiff-hikes-to-water-rates-over-the-next-4-years",
+      "published": "2026-10-28T11:30:04+00:00",
       "content_status": "full",
-      "word_count": 457,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 708,
+      "quality_score": 93,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3788,6 +3789,35 @@
       ]
     },
     {
+      "id": "3c3cd03b23178fd2",
+      "source": "Global News Canada",
+      "title": "Calgary city council approves stiff hikes to water rates over the next 4 years",
+      "url": "https://globalnews.ca/news/12123415/calgary-city-council-approves-stiff-hikes-to-water-rates-over-the-next-4-years",
+      "published": "2026-10-28T11:30:04+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 708,
+      "paragraph_count": 23,
+      "inline_image_count": 3,
+      "quality_score": 93,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0c60253584ad467e",
       "source": "Global News Canada",
       "title": "Lumby to hold mayoral byelection after two back-to-back elections",
@@ -4034,35 +4064,6 @@
       "word_count": 587,
       "paragraph_count": 26,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "65fb970cd2ee834d",
-      "source": "Global News Canada",
-      "title": "Canada’s Eurovision finalists include Rêve, Tyler Shaw",
-      "url": "https://globalnews.ca/news/12123123/canada-eurovision-finalists-reve-tyler-shaw-william-cloutier-josiane-talk",
-      "published": "2026-10-27T19:16:46+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 457,
-      "paragraph_count": 19,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
