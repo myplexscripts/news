@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-28T11:55:20.051727+00:00",
-  "generated_at_london": "2026-10-28T07:55:20.051727-04:00",
-  "news_generated_at": "2026-10-28T11:48:23.713904+00:00",
+  "generated_at": "2026-10-28T12:05:24.011600+00:00",
+  "generated_at_london": "2026-10-28T08:05:24.011600-04:00",
+  "news_generated_at": "2026-10-28T12:03:22.701767+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 731,
+    "archive_story_count": 727,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 107,
-    "review_story_count": 4,
+    "pass_story_count": 106,
+    "review_story_count": 5,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 100,
     "healthy_source_count": 11,
     "review_source_count": 5,
@@ -68,7 +68,7 @@
       "warning_issues": 1,
       "info_issues": 14,
       "latest_published": "2026-10-28T01:39:05.894000+00:00",
-      "found_this_run": 4,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-28T01:44:39.669017+00:00",
       "last_error": ""
@@ -97,7 +97,7 @@
       "latest_published": "2026-10-28T11:30:56.829000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T11:35:56.999870+00:00",
+      "last_scrape": "2026-10-28T11:50:54.758888+00:00",
       "last_error": ""
     },
     {
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 7,
+      "review": 1,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 561,
-      "average_quality": 96,
+      "average_words": 516,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-28T08:00:17+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-28T11:30:04+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T08:10:42.320801+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-28T12:01:15.064769+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -675,7 +676,7 @@
       "latest_published": "2026-10-28T11:00:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-28T11:46:11.333471+00:00",
+      "last_scrape": "2026-10-28T12:01:10.528058+00:00",
       "last_error": ""
     },
     {
@@ -866,6 +867,36 @@
       "word_count": 2945,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "22ba128f43ec5e6c",
+      "source": "Toronto Star",
+      "title": "Miriam Toews, Hannah Moscovitch finalists for Governor General's Literary Awards",
+      "url": "https://www.thestar.com/entertainment/books/miriam-toews-hannah-moscovitch-finalists-for-governor-general-s-literary-awards/article_755daef2-5849-5ee5-be06-f71851cb00ac.html",
+      "published": "2026-10-28T11:30:04+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "22ba128f43ec5e6c",
+      "source": "Toronto Star",
+      "title": "Miriam Toews, Hannah Moscovitch finalists for Governor General's Literary Awards",
+      "url": "https://www.thestar.com/entertainment/books/miriam-toews-hannah-moscovitch-finalists-for-governor-general-s-literary-awards/article_755daef2-5849-5ee5-be06-f71851cb00ac.html",
+      "published": "2026-10-28T11:30:04+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2237,15 +2268,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6bda78127dcecb27",
+      "story_id": "22ba128f43ec5e6c",
       "source": "Toronto Star",
-      "title": "First Nations have 'every right' to be skeptical of major projects office: Farrell",
-      "url": "https://www.thestar.com/news/canada/first-nations-have-every-right-to-be-skeptical-of-major-projects-office-farrell/article_a81eb106-1f8f-5739-9643-5ed7d6cd7f83.html",
-      "published": "2026-10-27T21:11:03+00:00",
+      "title": "Miriam Toews, Hannah Moscovitch finalists for Governor General's Literary Awards",
+      "url": "https://www.thestar.com/entertainment/books/miriam-toews-hannah-moscovitch-finalists-for-governor-general-s-literary-awards/article_755daef2-5849-5ee5-be06-f71851cb00ac.html",
+      "published": "2026-10-28T11:30:04+00:00",
       "content_status": "full",
-      "word_count": 649,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5008,6 +5039,47 @@
       ]
     },
     {
+      "id": "22ba128f43ec5e6c",
+      "source": "Toronto Star",
+      "title": "Miriam Toews, Hannah Moscovitch finalists for Governor General's Literary Awards",
+      "url": "https://www.thestar.com/entertainment/books/miriam-toews-hannah-moscovitch-finalists-for-governor-general-s-literary-awards/article_755daef2-5849-5ee5-be06-f71851cb00ac.html",
+      "published": "2026-10-28T11:30:04+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 201,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5afb6c8fa54fadcf",
       "source": "Toronto Star",
       "title": "Cut tax, reduce deficit, grow economy. Can B.C. Conservatives do it all at once?",
@@ -5265,35 +5337,6 @@
       "content_status": "full",
       "word_count": 633,
       "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6bda78127dcecb27",
-      "source": "Toronto Star",
-      "title": "First Nations have 'every right' to be skeptical of major projects office: Farrell",
-      "url": "https://www.thestar.com/news/canada/first-nations-have-every-right-to-be-skeptical-of-major-projects-office-farrell/article_a81eb106-1f8f-5739-9643-5ed7d6cd7f83.html",
-      "published": "2026-10-27T21:11:03+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 649,
-      "paragraph_count": 21,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
