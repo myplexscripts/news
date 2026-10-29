@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T08:02:14.606256+00:00",
-  "generated_at_london": "2026-10-29T04:02:14.606256-04:00",
-  "news_generated_at": "2026-10-29T07:55:26.035125+00:00",
+  "generated_at": "2026-10-29T08:14:20.357703+00:00",
+  "generated_at_london": "2026-10-29T04:14:20.357703-04:00",
+  "news_generated_at": "2026-10-29T08:12:04.967511+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 707,
+    "archive_story_count": 708,
     "source_count": 28,
     "audited_story_count": 110,
     "pass_story_count": 103,
@@ -174,7 +174,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -193,7 +193,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -388,7 +388,7 @@
       "latest_published": "2026-10-28T22:49:06.281000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T07:41:57.513768+00:00",
+      "last_scrape": "2026-10-29T07:57:39.634671+00:00",
       "last_error": ""
     },
     {
@@ -640,21 +640,22 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 962,
+      "average_words": 987,
       "average_quality": 88,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 7,
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 6,
         "reader:semantic-rich-v1": 2,
         "merge:dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-28T23:49:32+00:00",
+      "latest_published": "2026-10-29T08:00:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T07:53:50.878558+00:00",
+      "last_scrape": "2026-10-29T08:09:36.322192+00:00",
       "last_error": ""
     },
     {
@@ -1732,6 +1733,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "ed78da6e8ee52f70",
+      "source": "National Post",
+      "title": "Carney budget to focus on taxes, shift from Trudeau era",
+      "url": "https://nationalpost.com/news/carney-budget-to-focus-on-taxes-shift-from-trudeau-era",
+      "published": "2026-10-29T08:00:44+00:00",
+      "content_status": "full",
+      "word_count": 1507,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "5e8e2f22aad28904",
       "source": "National Post",
       "title": "Donations for 24 Sussex renovation reach 11% of the $50 million goal",
@@ -1815,21 +1831,6 @@
       "content_status": "full",
       "word_count": 1143,
       "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e9816b3ecc67da47",
-      "source": "National Post",
-      "title": "Quebec is bracing for a big battle with U.S. streamers on ‘discoverability’ of French content",
-      "url": "https://nationalpost.com/news/quebec-is-bracing-for-a-big-battle-with-u-s-streamers-on-discoverability-of-french-content",
-      "published": "2026-10-28T08:00:44+00:00",
-      "content_status": "full",
-      "word_count": 1255,
-      "quality_score": 92,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4516,6 +4517,35 @@
       ]
     },
     {
+      "id": "ed78da6e8ee52f70",
+      "source": "National Post",
+      "title": "Carney budget to focus on taxes, shift from Trudeau era",
+      "url": "https://nationalpost.com/news/carney-budget-to-focus-on-taxes-shift-from-trudeau-era",
+      "published": "2026-10-29T08:00:44+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1507,
+      "paragraph_count": 38,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "35a1289885241819",
       "source": "National Post",
       "title": "Fired metal shredder worker argued that her alcoholism is a disability",
@@ -4761,35 +4791,6 @@
       "content_status": "full",
       "word_count": 1659,
       "paragraph_count": 49,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e9816b3ecc67da47",
-      "source": "National Post",
-      "title": "Quebec is bracing for a big battle with U.S. streamers on ‘discoverability’ of French content",
-      "url": "https://nationalpost.com/news/quebec-is-bracing-for-a-big-battle-with-u-s-streamers-on-discoverability-of-french-content",
-      "published": "2026-10-28T08:00:44+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1255,
-      "paragraph_count": 37,
       "inline_image_count": 2,
       "quality_score": 92,
       "quality_grade": "excellent",
