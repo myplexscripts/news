@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T20:44:02.482118+00:00",
-  "generated_at_london": "2026-10-29T16:44:02.482118-04:00",
-  "news_generated_at": "2026-10-29T20:36:51.196202+00:00",
+  "generated_at": "2026-10-29T20:54:50.797350+00:00",
+  "generated_at_london": "2026-10-29T16:54:50.797350-04:00",
+  "news_generated_at": "2026-10-29T20:52:28.178308+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 717,
+    "archive_story_count": 714,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 111,
-    "review_story_count": 3,
+    "pass_story_count": 110,
+    "review_story_count": 4,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 95,
     "healthy_source_count": 15,
     "review_source_count": 3,
@@ -76,28 +76,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 267,
-      "average_quality": 96,
+      "average_words": 261,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-29T18:55:28+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-10-29T20:37:12+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T19:15:27.187724+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-29T20:50:16.902751+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -653,7 +654,7 @@
       "latest_published": "2026-10-29T19:36:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T20:34:40.522920+00:00",
+      "last_scrape": "2026-10-29T20:50:12.750980+00:00",
       "last_error": ""
     },
     {
@@ -810,6 +811,36 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "7eb390ddc84c1cc0",
+      "source": "Toronto Star",
+      "title": "Tumbler Ridge victim Maya Gebala's father says she's leaving hospital after 262 days",
+      "url": "https://www.thestar.com/news/canada/tumbler-ridge-victim-maya-gebala-s-father-says-she-s-leaving-hospital-after-262-days/article_5b594cfa-8a1f-5344-8156-81881cb411b0.html",
+      "published": "2026-10-29T20:37:12+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "7eb390ddc84c1cc0",
+      "source": "Toronto Star",
+      "title": "Tumbler Ridge victim Maya Gebala's father says she's leaving hospital after 262 days",
+      "url": "https://www.thestar.com/news/canada/tumbler-ridge-victim-maya-gebala-s-father-says-she-s-leaving-hospital-after-262-days/article_5b594cfa-8a1f-5344-8156-81881cb411b0.html",
+      "published": "2026-10-29T20:37:12+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2061,21 +2092,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7747e07ef25ea95d",
-      "source": "Toronto Star",
-      "title": "Financial intelligence watchdog plagued by delays, auditor general finds",
-      "url": "https://www.thestar.com/news/canada/cp-newsalert-auditor-general-tables-nine-reports-in-parliament/article_c8b93a96-d666-5a39-a17a-4abe4cbe4b75.html",
-      "published": "2026-10-29T14:05:06+00:00",
-      "content_status": "full",
-      "word_count": 265,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "b77c6ebfa71b3c8d",
       "source": "Toronto Star",
       "title": "Hydro-Québec maintains plan to boost rates for data centres despite court ruling",
@@ -2175,6 +2191,21 @@
       "word_count": 153,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7eb390ddc84c1cc0",
+      "source": "Toronto Star",
+      "title": "Tumbler Ridge victim Maya Gebala's father says she's leaving hospital after 262 days",
+      "url": "https://www.thestar.com/news/canada/tumbler-ridge-victim-maya-gebala-s-father-says-she-s-leaving-hospital-after-262-days/article_5b594cfa-8a1f-5344-8156-81881cb411b0.html",
+      "published": "2026-10-29T20:37:12+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4852,6 +4883,47 @@
       ]
     },
     {
+      "id": "7eb390ddc84c1cc0",
+      "source": "Toronto Star",
+      "title": "Tumbler Ridge victim Maya Gebala's father says she's leaving hospital after 262 days",
+      "url": "https://www.thestar.com/news/canada/tumbler-ridge-victim-maya-gebala-s-father-says-she-s-leaving-hospital-after-262-days/article_5b594cfa-8a1f-5344-8156-81881cb411b0.html",
+      "published": "2026-10-29T20:37:12+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 206,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b77c6ebfa71b3c8d",
       "source": "Toronto Star",
       "title": "Hydro-Québec maintains plan to boost rates for data centres despite court ruling",
@@ -5097,35 +5169,6 @@
       "content_status": "full",
       "word_count": 418,
       "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7747e07ef25ea95d",
-      "source": "Toronto Star",
-      "title": "Financial intelligence watchdog plagued by delays, auditor general finds",
-      "url": "https://www.thestar.com/news/canada/cp-newsalert-auditor-general-tables-nine-reports-in-parliament/article_c8b93a96-d666-5a39-a17a-4abe4cbe4b75.html",
-      "published": "2026-10-29T14:05:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 265,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
