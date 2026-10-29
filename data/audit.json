@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T20:13:22.394181+00:00",
-  "generated_at_london": "2026-10-29T16:13:22.394181-04:00",
-  "news_generated_at": "2026-10-29T20:05:28.067842+00:00",
+  "generated_at": "2026-10-29T20:22:34.946163+00:00",
+  "generated_at_london": "2026-10-29T16:22:34.946163-04:00",
+  "news_generated_at": "2026-10-29T20:20:39.777303+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 717,
+    "archive_story_count": 718,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 111,
@@ -14,9 +14,9 @@
     "fail_story_count": 0,
     "critical_issue_count": 0,
     "warning_issue_count": 5,
-    "info_issue_count": 96,
-    "healthy_source_count": 16,
-    "review_source_count": 2,
+    "info_issue_count": 95,
+    "healthy_source_count": 15,
+    "review_source_count": 3,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -72,6 +72,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-29T18:02:38.822488+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 267,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-29T18:55:28+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-29T19:15:27.187724+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -627,7 +653,7 @@
       "latest_published": "2026-10-29T19:36:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T20:03:04.757795+00:00",
+      "last_scrape": "2026-10-29T20:18:50.377483+00:00",
       "last_error": ""
     },
     {
@@ -667,45 +693,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 458,
-      "average_quality": 92,
+      "average_words": 492,
+      "average_quality": 90,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-10-29T19:05:28.216000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-10-29T20:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T20:02:58.644802+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 267,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-29T18:55:28+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-29T19:15:27.187724+00:00",
+      "last_scrape": "2026-10-29T20:18:45.974960+00:00",
       "last_error": ""
     },
     {
@@ -1863,6 +1864,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7d5166fff330bd20",
+      "source": "The Globe and Mail",
+      "title": "At Windsor’s film festival, a couple wise guys reveal how they uncovered Scorsese’s secrets",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/film/article-at-windsors-film-festival-a-couple-wise-guys-reveal-how-they-uncovered",
+      "published": "2026-10-29T20:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1210,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1983,33 +1999,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "43113b3dc28606d8",
-      "source": "The Globe and Mail",
-      "title": "Ottawa-based AI video-surveillance company Solink raises $100-million in growth capital",
-      "url": "https://www.theglobeandmail.com/business/article-ottawa-based-ai-video-surveillance-company-solink-raises-100-million",
-      "published": "2026-10-29T12:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 690,
-      "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "43113b3dc28606d8",
+      "story_id": "748cc7babccfca12",
       "source": "The Globe and Mail",
-      "title": "Ottawa-based AI video-surveillance company Solink raises $100-million in growth capital",
-      "url": "https://www.theglobeandmail.com/business/article-ottawa-based-ai-video-surveillance-company-solink-raises-100-million",
-      "published": "2026-10-29T12:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 690,
-      "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "Quebec plans to ban religious symbols in schools, Education Minister says",
+      "url": "https://www.theglobeandmail.com/canada/article-quebec-secular-religious-symbols-schools",
+      "published": "2026-10-29T19:46:48.656000+00:00",
+      "content_status": "full",
+      "word_count": 157,
+      "quality_score": 69,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2023,21 +2024,6 @@
       "published": "2026-10-29T13:50:48.106000+00:00",
       "content_status": "partial",
       "word_count": 96,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0b8589e645c42a9c",
-      "source": "The Globe and Mail",
-      "title": "Toronto penthouse seller makes six-figure price cut to find a buyer",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-toronto-penthouse-st-lawrence-market-seller-makes-six-figure-price-cut",
-      "published": "2026-10-29T12:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 342,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4275,6 +4261,64 @@
       ]
     },
     {
+      "id": "7d5166fff330bd20",
+      "source": "The Globe and Mail",
+      "title": "At Windsor’s film festival, a couple wise guys reveal how they uncovered Scorsese’s secrets",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/film/article-at-windsors-film-festival-a-couple-wise-guys-reveal-how-they-uncovered",
+      "published": "2026-10-29T20:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1210,
+      "paragraph_count": 22,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "748cc7babccfca12",
+      "source": "The Globe and Mail",
+      "title": "Quebec plans to ban religious symbols in schools, Education Minister says",
+      "url": "https://www.theglobeandmail.com/canada/article-quebec-secular-religious-symbols-schools",
+      "published": "2026-10-29T19:46:48.656000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 157,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5cf23f077faa74f8",
       "source": "The Globe and Mail",
       "title": "Loonie hits six-week high as Canada-U.S. yield gap narrows",
@@ -4499,70 +4543,6 @@
       "paragraph_count": 13,
       "inline_image_count": 1,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0b8589e645c42a9c",
-      "source": "The Globe and Mail",
-      "title": "Toronto penthouse seller makes six-figure price cut to find a buyer",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-toronto-penthouse-st-lawrence-market-seller-makes-six-figure-price-cut",
-      "published": "2026-10-29T12:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 342,
-      "paragraph_count": 19,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "43113b3dc28606d8",
-      "source": "The Globe and Mail",
-      "title": "Ottawa-based AI video-surveillance company Solink raises $100-million in growth capital",
-      "url": "https://www.theglobeandmail.com/business/article-ottawa-based-ai-video-surveillance-company-solink-raises-100-million",
-      "published": "2026-10-29T12:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 690,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 89,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
