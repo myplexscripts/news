@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T19:18:41.671530+00:00",
-  "generated_at_london": "2026-10-29T15:18:41.671530-04:00",
+  "generated_at": "2026-10-29T19:24:48.983192+00:00",
+  "generated_at_london": "2026-10-29T15:24:48.983192-04:00",
   "news_generated_at": "2026-10-29T19:17:05.779166+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 721,
+    "archive_story_count": 719,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 110,
-    "review_story_count": 4,
+    "pass_story_count": 111,
+    "review_story_count": 3,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 7,
+    "warning_issue_count": 5,
     "info_issue_count": 97,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 16,
+    "review_source_count": 2,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -71,33 +71,6 @@
       "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-29T18:02:38.822488+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 265,
-      "average_quality": 94,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
-      },
-      "critical_issues": 0,
-      "warning_issues": 2,
-      "info_issues": 10,
-      "latest_published": "2026-10-29T18:55:28+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-29T19:15:27.187724+00:00",
       "last_error": ""
     },
     {
@@ -434,8 +407,7 @@
       "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:citynews:article": 1,
-        "reader:semantic-rich-v1": 8,
+        "reader:semantic-rich-v1": 9,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
@@ -643,12 +615,11 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 859,
-      "average_quality": 87,
+      "average_quality": 86,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:postmedia:article:strict": 1,
-        "dom:semantic-rich-v1": 8,
-        "reader:semantic-rich-v1": 1
+        "reader:semantic-rich-v1": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -697,11 +668,10 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 479,
-      "average_quality": 92,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -710,6 +680,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-29T19:15:19.243786+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 267,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-29T18:55:28+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-29T19:15:27.187724+00:00",
       "last_error": ""
     },
     {
@@ -814,36 +810,6 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "b77c6ebfa71b3c8d",
-      "source": "Toronto Star",
-      "title": "Hydro-Québec maintains plan to boost rates for data centres despite court ruling",
-      "url": "https://www.thestar.com/news/canada/quebec/hydro-qu-bec-maintains-plan-to-boost-rates-for-data-centres-despite-court-ruling/article_1b433180-c395-53f6-a280-6bb742985c01.html",
-      "published": "2026-10-29T18:55:28+00:00",
-      "content_status": "full",
-      "word_count": 198,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "13 inline images",
-      "story_id": "b77c6ebfa71b3c8d",
-      "source": "Toronto Star",
-      "title": "Hydro-Québec maintains plan to boost rates for data centres despite court ruling",
-      "url": "https://www.thestar.com/news/canada/quebec/hydro-qu-bec-maintains-plan-to-boost-rates-for-data-centres-despite-court-ruling/article_1b433180-c395-53f6-a280-6bb742985c01.html",
-      "published": "2026-10-29T18:55:28+00:00",
-      "content_status": "full",
-      "word_count": 198,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1366,9 +1332,9 @@
       "url": "https://toronto.citynews.ca/2026/10/29/weekend-time-change-daylight-saving-time-standard-time",
       "published": "2026-10-29T19:13:27+00:00",
       "content_status": "full",
-      "word_count": 964,
+      "word_count": 968,
       "quality_score": 88,
-      "extraction_method": "dom:citynews:article"
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1771,9 +1737,9 @@
       "url": "https://nationalpost.com/news/labour-unions-set-up-war-room-to-fight-carneys-bill-c-39",
       "published": "2026-10-29T19:10:28+00:00",
       "content_status": "full",
-      "word_count": 576,
-      "quality_score": 85,
-      "extraction_method": "dom:postmedia:article:strict"
+      "word_count": 572,
+      "quality_score": 74,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1935,10 +1901,10 @@
       "title": "Loonie hits six-week high as Canada-U.S. yield gap narrows",
       "url": "https://www.theglobeandmail.com/investing/article-loonie-hits-six-week-high-as-canada-us-yield-gap-narrows",
       "published": "2026-10-29T19:05:28.216000+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 321,
-      "quality_score": 76,
-      "extraction_method": "dom:globe:article#content-gate"
+      "quality_score": 84,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2146,9 +2112,9 @@
       "url": "https://www.thestar.com/news/canada/quebec/hydro-qu-bec-maintains-plan-to-boost-rates-for-data-centres-despite-court-ruling/article_1b433180-c395-53f6-a280-6bb742985c01.html",
       "published": "2026-10-29T18:55:28+00:00",
       "content_status": "full",
-      "word_count": 198,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
+      "word_count": 222,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -4334,13 +4300,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 321,
       "paragraph_count": 10,
       "inline_image_count": 0,
-      "quality_score": 76,
+      "quality_score": 84,
       "quality_grade": "good",
-      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4649,12 +4615,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 576,
-      "paragraph_count": 17,
+      "word_count": 572,
+      "paragraph_count": 18,
       "inline_image_count": 0,
-      "quality_score": 85,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:postmedia:article:strict",
+      "quality_score": 74,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
@@ -4933,33 +4899,21 @@
       "title": "Hydro-Québec maintains plan to boost rates for data centres despite court ruling",
       "url": "https://www.thestar.com/news/canada/quebec/hydro-qu-bec-maintains-plan-to-boost-rates-for-data-centres-despite-court-ruling/article_1b433180-c395-53f6-a280-6bb742985c01.html",
       "published": "2026-10-29T18:55:28+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
+      "audit_status": "pass",
+      "audit_score": 97,
       "critical_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 198,
-      "paragraph_count": 2,
-      "inline_image_count": 13,
-      "quality_score": 80,
+      "word_count": 222,
+      "paragraph_count": 20,
+      "inline_image_count": 0,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:star:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "13 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5241,12 +5195,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 964,
-      "paragraph_count": 24,
+      "word_count": 968,
+      "paragraph_count": 26,
       "inline_image_count": 0,
       "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:citynews:article",
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
