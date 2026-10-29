@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T18:54:13.990076+00:00",
-  "generated_at_london": "2026-10-29T14:54:13.990076-04:00",
-  "news_generated_at": "2026-10-29T18:46:40.635789+00:00",
+  "generated_at": "2026-10-29T19:03:48.632740+00:00",
+  "generated_at_london": "2026-10-29T15:03:48.632740-04:00",
+  "news_generated_at": "2026-10-29T19:02:11.268752+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 718,
+    "archive_story_count": 719,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 110,
-    "review_story_count": 3,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
-    "warning_issue_count": 5,
+    "review_story_count": 4,
+    "fail_story_count": 0,
+    "critical_issue_count": 0,
+    "warning_issue_count": 7,
     "info_issue_count": 97,
     "healthy_source_count": 15,
     "review_source_count": 3,
@@ -80,23 +80,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 253,
-      "average_quality": 96,
+      "average_words": 265,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-29T18:23:30+00:00",
+      "latest_published": "2026-10-29T18:39:10+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T18:44:29.380348+00:00",
+      "last_scrape": "2026-10-29T19:00:10.290624+00:00",
       "last_error": ""
     },
     {
@@ -653,7 +654,7 @@
       "latest_published": "2026-10-29T18:00:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T18:44:24.699305+00:00",
+      "last_scrape": "2026-10-29T19:00:06.249476+00:00",
       "last_error": ""
     },
     {
@@ -677,7 +678,7 @@
       "warning_issues": 0,
       "info_issues": 4,
       "latest_published": "2026-10-26T04:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 9,
       "tracked": 4,
       "last_scrape": "2026-10-28T04:14:25.136621+00:00",
       "last_error": ""
@@ -693,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 445,
+      "average_words": 472,
       "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 14,
-      "latest_published": "2026-10-29T17:06:56.595000+00:00",
+      "latest_published": "2026-10-29T18:25:42.403000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T17:25:19.013135+00:00",
+      "last_scrape": "2026-10-29T19:00:01.575803+00:00",
       "last_error": ""
     },
     {
@@ -736,21 +738,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "52 words",
-      "story_id": "804554a1ea21a04b",
-      "source": "Toronto Star",
-      "title": "Air India launching new non-stop flights between Toronto and Mumbai",
-      "url": "https://www.thestar.com/news/canada/air-india-launching-new-non-stop-flights-between-toronto-and-mumbai/article_324b371c-6759-42ca-9dbd-76c7d6bfe9df.html",
-      "published": "2026-10-29T09:00:00+00:00",
-      "content_status": "full",
-      "word_count": 52,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
     {
       "severity": "warning",
       "code": "too_many_images",
@@ -825,6 +812,36 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3e5e7aa0887ae791",
+      "source": "Toronto Star",
+      "title": "Quebec education minister wants to ban schoolchildren from wearing religious symbols",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-education-minister-wants-to-ban-schoolchildren-from-wearing-religious-symbols/article_04aae8a1-4f37-52a4-9b09-e1f4299335aa.html",
+      "published": "2026-10-29T18:39:10+00:00",
+      "content_status": "full",
+      "word_count": 169,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "3e5e7aa0887ae791",
+      "source": "Toronto Star",
+      "title": "Quebec education minister wants to ban schoolchildren from wearing religious symbols",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-education-minister-wants-to-ban-schoolchildren-from-wearing-religious-symbols/article_04aae8a1-4f37-52a4-9b09-e1f4299335aa.html",
+      "published": "2026-10-29T18:39:10+00:00",
+      "content_status": "full",
+      "word_count": 169,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1911,15 +1928,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "fa40b9c739934b7c",
+      "story_id": "3dbe72c95c0a7849",
       "source": "The Globe and Mail",
-      "title": "If I could turn back time: B.C. is making a mistake by not changing the clocks",
-      "url": "https://www.theglobeandmail.com/opinion/article-bc-daylight-saving-time",
-      "published": "2026-10-29T11:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 807,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "It’s scary out there. Live theatre is trying to make the most of it",
+      "url": "https://www.theglobeandmail.com/culture/stage/article-scary-live-theatre-horror",
+      "published": "2026-10-29T18:25:42.403000+00:00",
+      "content_status": "full",
+      "word_count": 1079,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2091,21 +2108,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "804554a1ea21a04b",
-      "source": "Toronto Star",
-      "title": "Air India launching new non-stop flights between Toronto and Mumbai",
-      "url": "https://www.thestar.com/news/canada/air-india-launching-new-non-stop-flights-between-toronto-and-mumbai/article_324b371c-6759-42ca-9dbd-76c7d6bfe9df.html",
-      "published": "2026-10-29T09:00:00+00:00",
-      "content_status": "full",
-      "word_count": 52,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "df451cd60dae0f86",
       "source": "Toronto Star",
       "title": "Churchill River energy agreement with Quebec not open for renegotiation, says N.L.",
@@ -2220,6 +2222,21 @@
       "word_count": 283,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "3e5e7aa0887ae791",
+      "source": "Toronto Star",
+      "title": "Quebec education minister wants to ban schoolchildren from wearing religious symbols",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-education-minister-wants-to-ban-schoolchildren-from-wearing-religious-symbols/article_04aae8a1-4f37-52a4-9b09-e1f4299335aa.html",
+      "published": "2026-10-29T18:39:10+00:00",
+      "content_status": "full",
+      "word_count": 169,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4305,6 +4322,35 @@
       ]
     },
     {
+      "id": "3dbe72c95c0a7849",
+      "source": "The Globe and Mail",
+      "title": "It’s scary out there. Live theatre is trying to make the most of it",
+      "url": "https://www.theglobeandmail.com/culture/stage/article-scary-live-theatre-horror",
+      "published": "2026-10-29T18:25:42.403000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1079,
+      "paragraph_count": 20,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b4ed83ffb0c1ede4",
       "source": "The Globe and Mail",
       "title": "Ontario projects bigger deficit, cites U.S. tariffs and higher oil prices",
@@ -4574,35 +4620,6 @@
       "content_status": "partial",
       "word_count": 230,
       "paragraph_count": 12,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "fa40b9c739934b7c",
-      "source": "The Globe and Mail",
-      "title": "If I could turn back time: B.C. is making a mistake by not changing the clocks",
-      "url": "https://www.theglobeandmail.com/opinion/article-bc-daylight-saving-time",
-      "published": "2026-10-29T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 807,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4909,6 +4926,47 @@
       ]
     },
     {
+      "id": "3e5e7aa0887ae791",
+      "source": "Toronto Star",
+      "title": "Quebec education minister wants to ban schoolchildren from wearing religious symbols",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-education-minister-wants-to-ban-schoolchildren-from-wearing-religious-symbols/article_04aae8a1-4f37-52a4-9b09-e1f4299335aa.html",
+      "published": "2026-10-29T18:39:10+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 169,
+      "paragraph_count": 1,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "229b1b4cc654bda7",
       "source": "Toronto Star",
       "title": "Kenora, Ont., fined for removing election signs during 2025 federal race",
@@ -5161,41 +5219,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "804554a1ea21a04b",
-      "source": "Toronto Star",
-      "title": "Air India launching new non-stop flights between Toronto and Mumbai",
-      "url": "https://www.thestar.com/news/canada/air-india-launching-new-non-stop-flights-between-toronto-and-mumbai/article_324b371c-6759-42ca-9dbd-76c7d6bfe9df.html",
-      "published": "2026-10-29T09:00:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 52,
-      "paragraph_count": 2,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "52 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
