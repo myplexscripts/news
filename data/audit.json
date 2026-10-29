@@ -1,52 +1,26 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T08:19:18.688235+00:00",
-  "generated_at_london": "2026-10-29T04:19:18.688235-04:00",
-  "news_generated_at": "2026-10-29T08:12:04.967511+00:00",
+  "generated_at": "2026-10-29T08:27:37.151761+00:00",
+  "generated_at_london": "2026-10-29T04:27:37.151761-04:00",
+  "news_generated_at": "2026-10-29T08:26:14.541733+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 708,
+    "archive_story_count": 712,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 102,
-    "review_story_count": 3,
-    "fail_story_count": 5,
-    "critical_issue_count": 5,
-    "warning_issue_count": 5,
+    "pass_story_count": 103,
+    "review_story_count": 4,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 6,
     "info_issue_count": 94,
     "healthy_source_count": 15,
-    "review_source_count": 2,
-    "error_source_count": 1,
+    "review_source_count": 3,
+    "error_source_count": 0,
     "waiting_source_count": 10
   },
   "source_reports": [
-    {
-      "source": "Toronto Star",
-      "status": "error",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 5,
-      "review": 0,
-      "fail": 5,
-      "pass_rate": 50,
-      "usable_body_rate": 100,
-      "average_words": 233,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 5,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-28T23:46:21+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-29T00:07:25.023305+00:00",
-      "last_error": ""
-    },
     {
       "source": "104.7 Heart FM",
       "status": "review",
@@ -97,6 +71,34 @@
       "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-10-28T23:57:18.218410+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 6,
+      "review": 1,
+      "fail": 3,
+      "pass_rate": 60,
+      "usable_body_rate": 80,
+      "average_words": 273,
+      "average_quality": 83,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "trafilatura:fallback": 3,
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 6
+      },
+      "critical_issues": 3,
+      "warning_issues": 1,
+      "info_issues": 10,
+      "latest_published": "2026-10-29T08:00:09+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-29T08:24:37.524082+00:00",
       "last_error": ""
     },
     {
@@ -174,7 +176,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -193,7 +195,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -388,7 +390,7 @@
       "latest_published": "2026-10-28T22:49:06.281000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T07:57:39.634671+00:00",
+      "last_scrape": "2026-10-29T08:15:16.438148+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +656,7 @@
       "latest_published": "2026-10-29T08:00:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T08:09:36.322192+00:00",
+      "last_scrape": "2026-10-29T08:24:31.245699+00:00",
       "last_error": ""
     },
     {
@@ -737,36 +739,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "55 words",
-      "story_id": "cc184062e6f33513",
-      "source": "Toronto Star",
-      "title": "Canada continues to oppose American embargo on Cuba at UN",
-      "url": "https://www.thestar.com/news/canada/canada-continues-to-oppose-american-embargo-on-cuba-at-un/article_dde73d75-a199-51fb-8323-ea0a4ca4eee6.html",
-      "published": "2026-10-28T18:17:46+00:00",
-      "content_status": "full",
-      "word_count": 55,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "67 words",
-      "story_id": "f9ba1ea10c9d91e6",
-      "source": "Toronto Star",
-      "title": "Canadian War Museum acquires type of armoured vehicle used on battlefield in Ukraine",
-      "url": "https://www.thestar.com/news/canada/canadian-war-museum-acquires-type-of-armoured-vehicle-used-on-battlefield-in-ukraine/article_7ca2621f-3073-5883-829b-312aeff65402.html",
-      "published": "2026-10-28T19:07:00+00:00",
-      "content_status": "full",
-      "word_count": 67,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -886,6 +858,21 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "29759282693771b5",
+      "source": "Toronto Star",
+      "title": "The U.S. Congress is in play — here are the midterm races to watch",
+      "url": "https://www.thestar.com/news/canada/the-u-s-congress-is-in-play-here-are-the-midterm-races-to-watch/article_bf77ead8-8e76-5263-92af-da8587df2c8c.html",
+      "published": "2026-10-29T08:00:07+00:00",
+      "content_status": "full",
+      "word_count": 905,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2092,30 +2079,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cc184062e6f33513",
+      "story_id": "1e54afe81c087721",
       "source": "Toronto Star",
-      "title": "Canada continues to oppose American embargo on Cuba at UN",
-      "url": "https://www.thestar.com/news/canada/canada-continues-to-oppose-american-embargo-on-cuba-at-un/article_dde73d75-a199-51fb-8323-ea0a4ca4eee6.html",
-      "published": "2026-10-28T18:17:46+00:00",
-      "content_status": "full",
-      "word_count": 55,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f9ba1ea10c9d91e6",
-      "source": "Toronto Star",
-      "title": "Canadian War Museum acquires type of armoured vehicle used on battlefield in Ukraine",
-      "url": "https://www.thestar.com/news/canada/canadian-war-museum-acquires-type-of-armoured-vehicle-used-on-battlefield-in-ukraine/article_7ca2621f-3073-5883-829b-312aeff65402.html",
-      "published": "2026-10-28T19:07:00+00:00",
-      "content_status": "full",
-      "word_count": 67,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "title": "Canada welcomes EU leaders to Montreal for talks on next steps in relationship",
+      "url": "https://www.thestar.com/news/canada/canada-welcomes-eu-leaders-to-montreal-for-talks-on-next-steps-in-relationship/article_04831e60-ddb3-53fe-a58b-105ac1fbaa14.html",
+      "published": "2026-10-29T08:00:09+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2152,6 +2124,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "8a62be396fb0c2cb",
+      "source": "Toronto Star",
+      "title": "Kutryk to become fifth Canadian astronaut to perform a spacewalk",
+      "url": "https://www.thestar.com/news/canada/kutryk-to-become-fifth-canadian-astronaut-to-perform-a-spacewalk/article_ed35d985-41f7-5d29-9d26-717c54aaf783.html",
+      "published": "2026-10-29T08:00:06+00:00",
+      "content_status": "full",
+      "word_count": 258,
+      "quality_score": 76,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6b8dba96da22579d",
       "source": "Toronto Star",
       "title": "Liberals vote to keep B.C. tanker ban in place",
@@ -2159,21 +2146,6 @@
       "published": "2026-10-28T20:36:45+00:00",
       "content_status": "full",
       "word_count": 393,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9d28fe7d9a7b50a1",
-      "source": "Toronto Star",
-      "title": "Liberals, NDP and Bloc defeat bid to scrap B.C. tanker ban",
-      "url": "https://www.thestar.com/politics/provincial/liberals-ndp-and-bloc-defeat-bid-to-scrap-b-c-tanker-ban/article_7c242f9c-114d-46a0-b3b3-90a050877e59.html",
-      "published": "2026-10-28T19:01:00+00:00",
-      "content_status": "full",
-      "word_count": 694,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2197,21 +2169,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "72d454348b3e5302",
-      "source": "Toronto Star",
-      "title": "New Brunswick makes bid on woodlot that supplies soon-to-close pulp mill",
-      "url": "https://www.thestar.com/news/canada/new-brunswick/new-brunswick-makes-bid-on-woodlot-that-supplies-soon-to-close-pulp-mill/article_9df7eee2-5208-540a-81f2-6ac08312d991.html",
-      "published": "2026-10-28T18:54:19+00:00",
-      "content_status": "full",
-      "word_count": 274,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "a8735a5872e12c41",
       "source": "Toronto Star",
       "title": "One charge against Frank Stronach dropped ahead of second sex assault trial: lawyer",
@@ -2221,6 +2178,36 @@
       "word_count": 58,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "52ffda93e54438c0",
+      "source": "Toronto Star",
+      "title": "Ontario finance minister to table fall economic update",
+      "url": "https://www.thestar.com/news/ontario/ontario-finance-minister-to-table-fall-economic-update/article_8a9f77fd-ad5f-588a-b5a3-af255023f481.html",
+      "published": "2026-10-29T08:00:05+00:00",
+      "content_status": "summary",
+      "word_count": 52,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "29759282693771b5",
+      "source": "Toronto Star",
+      "title": "The U.S. Congress is in play — here are the midterm races to watch",
+      "url": "https://www.thestar.com/news/canada/the-u-s-congress-is-in-play-here-are-the-midterm-races-to-watch/article_bf77ead8-8e76-5263-92af-da8587df2c8c.html",
+      "published": "2026-10-29T08:00:07+00:00",
+      "content_status": "full",
+      "word_count": 905,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -4821,6 +4808,128 @@
       ]
     },
     {
+      "id": "1e54afe81c087721",
+      "source": "Toronto Star",
+      "title": "Canada welcomes EU leaders to Montreal for talks on next steps in relationship",
+      "url": "https://www.thestar.com/news/canada/canada-welcomes-eu-leaders-to-montreal-for-talks-on-next-steps-in-relationship/article_04831e60-ddb3-53fe-a58b-105ac1fbaa14.html",
+      "published": "2026-10-29T08:00:09+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "29759282693771b5",
+      "source": "Toronto Star",
+      "title": "The U.S. Congress is in play — here are the midterm races to watch",
+      "url": "https://www.thestar.com/news/canada/the-u-s-congress-is-in-play-here-are-the-midterm-races-to-watch/article_bf77ead8-8e76-5263-92af-da8587df2c8c.html",
+      "published": "2026-10-29T08:00:07+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 905,
+      "paragraph_count": 30,
+      "inline_image_count": 10,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "8a62be396fb0c2cb",
+      "source": "Toronto Star",
+      "title": "Kutryk to become fifth Canadian astronaut to perform a spacewalk",
+      "url": "https://www.thestar.com/news/canada/kutryk-to-become-fifth-canadian-astronaut-to-perform-a-spacewalk/article_ed35d985-41f7-5d29-9d26-717c54aaf783.html",
+      "published": "2026-10-29T08:00:06+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 258,
+      "paragraph_count": 13,
+      "inline_image_count": 4,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "52ffda93e54438c0",
+      "source": "Toronto Star",
+      "title": "Ontario finance minister to table fall economic update",
+      "url": "https://www.thestar.com/news/ontario/ontario-finance-minister-to-table-fall-economic-update/article_8a9f77fd-ad5f-588a-b5a3-af255023f481.html",
+      "published": "2026-10-29T08:00:05+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 52,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ac85f7420195b248",
       "source": "Toronto Star",
       "title": "Dead whale with tail severed is spotted in Howe Sound near BC Ferries collision site",
@@ -5003,134 +5112,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "58 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f9ba1ea10c9d91e6",
-      "source": "Toronto Star",
-      "title": "Canadian War Museum acquires type of armoured vehicle used on battlefield in Ukraine",
-      "url": "https://www.thestar.com/news/canada/canadian-war-museum-acquires-type-of-armoured-vehicle-used-on-battlefield-in-ukraine/article_7ca2621f-3073-5883-829b-312aeff65402.html",
-      "published": "2026-10-28T19:07:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 67,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "67 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9d28fe7d9a7b50a1",
-      "source": "Toronto Star",
-      "title": "Liberals, NDP and Bloc defeat bid to scrap B.C. tanker ban",
-      "url": "https://www.thestar.com/politics/provincial/liberals-ndp-and-bloc-defeat-bid-to-scrap-b-c-tanker-ban/article_7c242f9c-114d-46a0-b3b3-90a050877e59.html",
-      "published": "2026-10-28T19:01:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 694,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "72d454348b3e5302",
-      "source": "Toronto Star",
-      "title": "New Brunswick makes bid on woodlot that supplies soon-to-close pulp mill",
-      "url": "https://www.thestar.com/news/canada/new-brunswick/new-brunswick-makes-bid-on-woodlot-that-supplies-soon-to-close-pulp-mill/article_9df7eee2-5208-540a-81f2-6ac08312d991.html",
-      "published": "2026-10-28T18:54:19+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 274,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cc184062e6f33513",
-      "source": "Toronto Star",
-      "title": "Canada continues to oppose American embargo on Cuba at UN",
-      "url": "https://www.thestar.com/news/canada/canada-continues-to-oppose-american-embargo-on-cuba-at-un/article_dde73d75-a199-51fb-8323-ea0a4ca4eee6.html",
-      "published": "2026-10-28T18:17:46+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 55,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "55 words"
         },
         {
           "severity": "info",
