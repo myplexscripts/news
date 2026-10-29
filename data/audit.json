@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T11:11:24.377600+00:00",
-  "generated_at_london": "2026-10-29T07:11:24.377600-04:00",
-  "news_generated_at": "2026-10-29T11:04:19.497718+00:00",
+  "generated_at": "2026-10-29T11:22:50.403911+00:00",
+  "generated_at_london": "2026-10-29T07:22:50.403911-04:00",
+  "news_generated_at": "2026-10-29T11:20:29.375198+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 710,
@@ -76,7 +76,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -94,10 +94,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-29T09:00:00+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-29T09:11:40.904945+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -388,7 +388,7 @@
       "latest_published": "2026-10-29T10:00:01+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T10:52:20.496893+00:00",
+      "last_scrape": "2026-10-29T11:07:35.990222+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +654,7 @@
       "latest_published": "2026-10-29T08:00:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T11:02:01.220865+00:00",
+      "last_scrape": "2026-10-29T11:18:06.596423+00:00",
       "last_error": ""
     },
     {
@@ -694,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 842,
-      "average_quality": 96,
+      "average_words": 868,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-29T10:00:00+00:00",
+      "latest_published": "2026-10-29T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T10:15:45.144440+00:00",
+      "last_scrape": "2026-10-29T11:18:00.325111+00:00",
       "last_error": ""
     },
     {
@@ -1942,6 +1943,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "fa40b9c739934b7c",
+      "source": "The Globe and Mail",
+      "title": "If I could turn back time: B.C. is making a mistake by not changing the clocks",
+      "url": "https://www.theglobeandmail.com/opinion/article-bc-daylight-saving-time",
+      "published": "2026-10-29T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 828,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "9ea5a613391c2b94",
       "source": "The Globe and Mail",
       "title": "Ontario calls for new investors in Niagara casinos, slashes tax rate for operators",
@@ -1994,21 +2010,6 @@
       "published": "2026-10-29T09:00:00+00:00",
       "content_status": "partial",
       "word_count": 909,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5436c2d8d9e6e205",
-      "source": "The Globe and Mail",
-      "title": "Trump celebrates Quebec separatist, B.C. Conservative election wins in social media posts",
-      "url": "https://www.theglobeandmail.com/canada/article-trump-celebrates-quebec-separatist-bc-conservative-election-wins-in",
-      "published": "2026-10-28T20:03:49.560000+00:00",
-      "content_status": "full",
-      "word_count": 574,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4196,6 +4197,35 @@
       ]
     },
     {
+      "id": "fa40b9c739934b7c",
+      "source": "The Globe and Mail",
+      "title": "If I could turn back time: B.C. is making a mistake by not changing the clocks",
+      "url": "https://www.theglobeandmail.com/opinion/article-bc-daylight-saving-time",
+      "published": "2026-10-29T11:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 828,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "054813bf575cfc7a",
       "source": "The Globe and Mail",
       "title": "At this moment in Canadian politics, ‘normie’ is in",
@@ -4442,35 +4472,6 @@
       "word_count": 1322,
       "paragraph_count": 30,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5436c2d8d9e6e205",
-      "source": "The Globe and Mail",
-      "title": "Trump celebrates Quebec separatist, B.C. Conservative election wins in social media posts",
-      "url": "https://www.theglobeandmail.com/canada/article-trump-celebrates-quebec-separatist-bc-conservative-election-wins-in",
-      "published": "2026-10-28T20:03:49.560000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 574,
-      "paragraph_count": 19,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
