@@ -1,15 +1,15 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T16:29:07.610480+00:00",
-  "generated_at_london": "2026-10-29T12:29:07.610480-04:00",
-  "news_generated_at": "2026-10-29T16:21:08.412468+00:00",
+  "generated_at": "2026-10-29T16:39:14.902687+00:00",
+  "generated_at_london": "2026-10-29T12:39:14.902687-04:00",
+  "news_generated_at": "2026-10-29T16:36:53.963016+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 716,
+    "archive_story_count": 717,
     "source_count": 28,
-    "audited_story_count": 113,
-    "pass_story_count": 107,
+    "audited_story_count": 114,
+    "pass_story_count": 108,
     "review_story_count": 3,
     "fail_story_count": 3,
     "critical_issue_count": 3,
@@ -76,7 +76,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -94,10 +94,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-29T15:15:32+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-29T15:43:26.732211+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -388,7 +388,7 @@
       "latest_published": "2026-10-29T16:10:42.173000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T16:16:42.110684+00:00",
+      "last_scrape": "2026-10-29T16:24:48.891723+00:00",
       "last_error": ""
     },
     {
@@ -396,17 +396,18 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 3,
-      "pass": 3,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1736,
-      "average_quality": 83,
+      "average_words": 1396,
+      "average_quality": 81,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 2,
+        "dom:municipal:.field--name-body": 1,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
@@ -414,8 +415,8 @@
       "info_issues": 1,
       "latest_published": "2026-10-29T04:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 3,
-      "last_scrape": "2026-10-29T13:52:05.924192+00:00",
+      "tracked": 4,
+      "last_scrape": "2026-10-29T16:32:24.091937+00:00",
       "last_error": ""
     },
     {
@@ -482,19 +483,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 245,
-      "average_quality": 96,
+      "average_words": 265,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-29T16:08:38+00:00",
+      "latest_published": "2026-10-29T16:27:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T16:18:50.643284+00:00",
+      "last_scrape": "2026-10-29T16:34:18.666406+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +656,7 @@
       "latest_published": "2026-10-29T15:28:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T16:18:58.309672+00:00",
+      "last_scrape": "2026-10-29T16:34:25.326675+00:00",
       "last_error": ""
     },
     {
@@ -1402,21 +1404,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c3c3b562950d8083",
-      "source": "Global News Canada",
-      "title": "Canada welcomes EU leaders to Montreal for talks on next steps in relationship",
-      "url": "https://globalnews.ca/news/12125614/canada-eu-summit-montreal",
-      "published": "2026-10-29T11:47:19+00:00",
-      "content_status": "full",
-      "word_count": 155,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "a91721b4e1113e93",
       "source": "Global News Canada",
       "title": "Decimated B.C. NDP caucus meeting to discuss interim leadership after election loss",
@@ -1426,6 +1413,21 @@
       "word_count": 193,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1d7a59847a6c8ccb",
+      "source": "Global News Canada",
+      "title": "Former MN-S CEO sues for wrongful termination and breach of contract",
+      "url": "https://globalnews.ca/news/12125782/former-mn-s-ceo-sues-for-wrongful-termination-and-breach-of-contract",
+      "published": "2026-10-29T16:27:57+00:00",
+      "content_status": "full",
+      "word_count": 352,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2788,6 +2790,28 @@
       "issues": []
     },
     {
+      "id": "87b73ec01b28d5ad",
+      "source": "City of London Newsroom",
+      "title": "Tips for a safer, more accessible Halloween",
+      "url": "https://london.ca/newsroom/feature/tips-safer-more-accessible-halloween",
+      "published": "2026-10-29T04:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 376,
+      "paragraph_count": 13,
+      "inline_image_count": 0,
+      "quality_score": 75,
+      "quality_grade": "good",
+      "extraction_method": "dom:municipal:.field--name-body",
+      "extraction_profile": "municipal",
+      "local_score": 85,
+      "issues": []
+    },
+    {
       "id": "34b42d183273c41a",
       "source": "City of London Newsroom",
       "title": "Preparing Streets for Winter Season",
@@ -3683,6 +3707,35 @@
       ]
     },
     {
+      "id": "1d7a59847a6c8ccb",
+      "source": "Global News Canada",
+      "title": "Former MN-S CEO sues for wrongful termination and breach of contract",
+      "url": "https://globalnews.ca/news/12125782/former-mn-s-ceo-sues-for-wrongful-termination-and-breach-of-contract",
+      "published": "2026-10-29T16:27:57+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 352,
+      "paragraph_count": 10,
+      "inline_image_count": 2,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "59b09aedc349ac01",
       "source": "Global News Canada",
       "title": "Toronto traffic agent dead after being hit by a truck in East York",
@@ -3928,35 +3981,6 @@
       "content_status": "full",
       "word_count": 796,
       "paragraph_count": 28,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c3c3b562950d8083",
-      "source": "Global News Canada",
-      "title": "Canada welcomes EU leaders to Montreal for talks on next steps in relationship",
-      "url": "https://globalnews.ca/news/12125614/canada-eu-summit-montreal",
-      "published": "2026-10-29T11:47:19+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 155,
-      "paragraph_count": 6,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
