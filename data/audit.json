@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T21:32:41.814916+00:00",
-  "generated_at_london": "2026-10-29T17:32:41.814916-04:00",
-  "news_generated_at": "2026-10-29T21:24:45.798040+00:00",
+  "generated_at": "2026-10-29T21:42:37.753249+00:00",
+  "generated_at_london": "2026-10-29T17:42:37.753249-04:00",
+  "news_generated_at": "2026-10-29T21:40:08.296682+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 716,
+    "archive_story_count": 717,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 111,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 4,
-    "info_issue_count": 96,
+    "info_issue_count": 97,
     "healthy_source_count": 16,
     "review_source_count": 2,
     "error_source_count": 0,
@@ -50,7 +50,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -69,10 +69,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-29T20:40:12+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T20:50:16.902751+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-29T21:37:49.906943+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -361,9 +361,9 @@
       "warning_issues": 0,
       "info_issues": 15,
       "latest_published": "2026-10-29T21:17:02.861000+00:00",
-      "found_this_run": 3,
+      "found_this_run": 2,
       "tracked": 30,
-      "last_scrape": "2026-10-29T21:22:13.667609+00:00",
+      "last_scrape": "2026-10-29T21:28:35.843116+00:00",
       "last_error": ""
     },
     {
@@ -389,7 +389,7 @@
       "latest_published": "2026-10-29T21:12:51.010000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T21:19:59.135403+00:00",
+      "last_scrape": "2026-10-29T21:28:34.918279+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +654,7 @@
       "latest_published": "2026-10-29T19:36:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T21:22:20.035789+00:00",
+      "last_scrape": "2026-10-29T21:37:44.793076+00:00",
       "last_error": ""
     },
     {
@@ -694,20 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 492,
-      "average_quality": 91,
+      "average_words": 494,
+      "average_quality": 87,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-29T20:46:05.815000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-10-29T21:12:16.211000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T21:06:35.909335+00:00",
+      "last_scrape": "2026-10-29T21:37:37.461940+00:00",
       "last_error": ""
     },
     {
@@ -1925,6 +1925,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "4ec17f9c6e3e7153",
+      "source": "The Globe and Mail",
+      "title": "Jennifer Whiteside named BC NDP interim leader",
+      "url": "https://www.theglobeandmail.com/canada/article-jennifer-whiteside-named-bc-ndp-interim-leader",
+      "published": "2026-10-29T21:12:16.211000+00:00",
+      "content_status": "full",
+      "word_count": 116,
+      "quality_score": 57,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4ec17f9c6e3e7153",
+      "source": "The Globe and Mail",
+      "title": "Jennifer Whiteside named BC NDP interim leader",
+      "url": "https://www.theglobeandmail.com/canada/article-jennifer-whiteside-named-bc-ndp-interim-leader",
+      "published": "2026-10-29T21:12:16.211000+00:00",
+      "content_status": "full",
+      "word_count": 116,
+      "quality_score": 57,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2010,21 +2040,6 @@
       "published": "2026-10-29T19:46:48.656000+00:00",
       "content_status": "partial",
       "word_count": 144,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "cc45199aa5a4c7b1",
-      "source": "The Globe and Mail",
-      "title": "Shooting near Toronto’s Bridle Path neighbourhood injures four",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-shooting-home-near-bridle-path",
-      "published": "2026-10-29T13:50:48.106000+00:00",
-      "content_status": "partial",
-      "word_count": 96,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4284,6 +4299,41 @@
       ]
     },
     {
+      "id": "4ec17f9c6e3e7153",
+      "source": "The Globe and Mail",
+      "title": "Jennifer Whiteside named BC NDP interim leader",
+      "url": "https://www.theglobeandmail.com/canada/article-jennifer-whiteside-named-bc-ndp-interim-leader",
+      "published": "2026-10-29T21:12:16.211000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 116,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c3191c6e62bd49db",
       "source": "The Globe and Mail",
       "title": "Tumbler Ridge victim Maya Gebala leaving hospital after eight months, father says",
@@ -4537,35 +4587,6 @@
       "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cc45199aa5a4c7b1",
-      "source": "The Globe and Mail",
-      "title": "Shooting near Toronto’s Bridle Path neighbourhood injures four",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-shooting-home-near-bridle-path",
-      "published": "2026-10-29T13:50:48.106000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 96,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
