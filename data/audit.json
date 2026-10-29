@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T14:20:12.509565+00:00",
-  "generated_at_london": "2026-10-29T10:20:12.509565-04:00",
-  "news_generated_at": "2026-10-29T14:12:18.534493+00:00",
+  "generated_at": "2026-10-29T14:30:33.534224+00:00",
+  "generated_at_london": "2026-10-29T10:30:33.534224-04:00",
+  "news_generated_at": "2026-10-29T14:28:16.256417+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 714,
+    "archive_story_count": 715,
     "source_count": 28,
-    "audited_story_count": 111,
+    "audited_story_count": 112,
     "pass_story_count": 106,
-    "review_story_count": 3,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 95,
     "healthy_source_count": 15,
     "review_source_count": 3,
@@ -79,24 +79,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 7,
+      "review": 1,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 418,
-      "average_quality": 96,
+      "average_words": 384,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-29T13:20:30+00:00",
+      "latest_published": "2026-10-29T14:05:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T13:38:31.759230+00:00",
+      "last_scrape": "2026-10-29T14:26:02.145468+00:00",
       "last_error": ""
     },
     {
@@ -388,7 +389,7 @@
       "latest_published": "2026-10-29T12:42:11.288000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T13:58:45.652412+00:00",
+      "last_scrape": "2026-10-29T14:15:42.996180+00:00",
       "last_error": ""
     },
     {
@@ -608,25 +609,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "generic",
-      "sample_size": 2,
-      "pass": 2,
+      "sample_size": 3,
+      "pass": 3,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 858,
-      "average_quality": 96,
+      "average_words": 761,
+      "average_quality": 88,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:generic:article": 1,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 4,
-      "latest_published": "2026-10-26T14:52:05+00:00",
+      "latest_published": "2026-10-29T14:06:05+00:00",
       "found_this_run": 10,
-      "tracked": 2,
-      "last_scrape": "2026-10-26T15:26:13.463639+00:00",
+      "tracked": 3,
+      "last_scrape": "2026-10-29T14:25:21.820573+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +656,7 @@
       "latest_published": "2026-10-29T14:00:37+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T14:10:01.918276+00:00",
+      "last_scrape": "2026-10-29T14:25:56.963797+00:00",
       "last_error": ""
     },
     {
@@ -841,6 +843,36 @@
       "word_count": 396,
       "quality_score": 70,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "7747e07ef25ea95d",
+      "source": "Toronto Star",
+      "title": "Financial intelligence watchdog plagued by delays, auditor general finds",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-auditor-general-tables-nine-reports-in-parliament/article_c8b93a96-d666-5a39-a17a-4abe4cbe4b75.html",
+      "published": "2026-10-29T14:05:06+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "7747e07ef25ea95d",
+      "source": "Toronto Star",
+      "title": "Financial intelligence watchdog plagued by delays, auditor general finds",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-auditor-general-tables-nine-reports-in-parliament/article_c8b93a96-d666-5a39-a17a-4abe4cbe4b75.html",
+      "published": "2026-10-29T14:05:06+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2092,21 +2124,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "30ff6ed1f9509880",
-      "source": "Toronto Star",
-      "title": "Alberta tables bill for more consumer protections on cars, electronics, show tickets",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-tables-bill-for-more-consumer-protections-on-cars-electronics-show-tickets/article_962097df-ed0f-5a49-9145-a7e85d8e2995.html",
-      "published": "2026-10-28T21:08:52+00:00",
-      "content_status": "full",
-      "word_count": 539,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "1e54afe81c087721",
       "source": "Toronto Star",
       "title": "Canada welcomes EU leaders to Montreal for talks on next steps in relationship",
@@ -2131,6 +2148,21 @@
       "word_count": 79,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7747e07ef25ea95d",
+      "source": "Toronto Star",
+      "title": "Financial intelligence watchdog plagued by delays, auditor general finds",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-auditor-general-tables-nine-reports-in-parliament/article_c8b93a96-d666-5a39-a17a-4abe4cbe4b75.html",
+      "published": "2026-10-29T14:05:06+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3539,6 +3571,28 @@
       ]
     },
     {
+      "id": "4e2f806993751ade",
+      "source": "Middlesex County",
+      "title": "Middlesex County Library Board Meeting Highlights – October 27, 2026",
+      "url": "https://www.middlesex.ca/news/middlesex-county-library-board-meeting-highlights-october-27-2026",
+      "published": "2026-10-29T14:06:05+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 566,
+      "paragraph_count": 19,
+      "inline_image_count": 0,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:article",
+      "extraction_profile": "generic",
+      "local_score": 52,
+      "issues": []
+    },
+    {
       "id": "db5673b44deb855f",
       "source": "Middlesex County",
       "title": "Road Closure - Victoria Street",
@@ -4817,6 +4871,47 @@
       ]
     },
     {
+      "id": "7747e07ef25ea95d",
+      "source": "Toronto Star",
+      "title": "Financial intelligence watchdog plagued by delays, auditor general finds",
+      "url": "https://www.thestar.com/news/canada/cp-newsalert-auditor-general-tables-nine-reports-in-parliament/article_c8b93a96-d666-5a39-a17a-4abe4cbe4b75.html",
+      "published": "2026-10-29T14:05:06+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 203,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a100b7caa400b773",
       "source": "Toronto Star",
       "title": "4 injured after shooting inside home near Toronto's Bridle Path neighbourhood",
@@ -5081,35 +5176,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "55 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "30ff6ed1f9509880",
-      "source": "Toronto Star",
-      "title": "Alberta tables bill for more consumer protections on cars, electronics, show tickets",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-tables-bill-for-more-consumer-protections-on-cars-electronics-show-tickets/article_962097df-ed0f-5a49-9145-a7e85d8e2995.html",
-      "published": "2026-10-28T21:08:52+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 539,
-      "paragraph_count": 21,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
