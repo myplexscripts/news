@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-29T11:43:32.003525+00:00",
-  "generated_at_london": "2026-10-29T07:43:32.003525-04:00",
-  "news_generated_at": "2026-10-29T11:35:57.213306+00:00",
+  "generated_at": "2026-10-29T11:54:16.646086+00:00",
+  "generated_at_london": "2026-10-29T07:54:16.646086-04:00",
+  "news_generated_at": "2026-10-29T11:51:53.046784+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 711,
@@ -68,7 +68,7 @@
       "warning_issues": 1,
       "info_issues": 14,
       "latest_published": "2026-10-28T23:40:24.539000+00:00",
-      "found_this_run": 3,
+      "found_this_run": 2,
       "tracked": 30,
       "last_scrape": "2026-10-28T23:57:18.218410+00:00",
       "last_error": ""
@@ -76,7 +76,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -94,10 +94,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-29T09:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-29T09:11:40.904945+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -388,7 +388,7 @@
       "latest_published": "2026-10-29T11:28:26.870000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T11:31:27.269065+00:00",
+      "last_scrape": "2026-10-29T11:39:26.099173+00:00",
       "last_error": ""
     },
     {
@@ -482,19 +482,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 455,
-      "average_quality": 96,
+      "average_words": 458,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-29T01:44:26+00:00",
+      "latest_published": "2026-10-29T11:41:36+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T01:55:49.612771+00:00",
+      "last_scrape": "2026-10-29T11:49:26.339656+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +655,7 @@
       "latest_published": "2026-10-29T08:00:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-29T11:33:35.939681+00:00",
+      "last_scrape": "2026-10-29T11:49:33.400080+00:00",
       "last_error": ""
     },
     {
@@ -1447,6 +1448,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "5c0fe70b293d08f1",
+      "source": "Global News Canada",
+      "title": "Fire at New Brunswick military base not threat to public: defence officials",
+      "url": "https://globalnews.ca/news/12125608/canadian-forces-base-gagetown-fire",
+      "published": "2026-10-29T11:41:36+00:00",
+      "content_status": "full",
+      "word_count": 207,
+      "quality_score": 73,
+      "extraction_method": "dom:global:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0d36b046b6a1f3f3",
       "source": "Global News Canada",
       "title": "How the latest interest rate hike could affect everyday Canadians",
@@ -1454,21 +1470,6 @@
       "published": "2026-10-28T21:52:41+00:00",
       "content_status": "full",
       "word_count": 516,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "88c65bf9df7ad566",
-      "source": "Global News Canada",
-      "title": "Liberals keep B.C. oil tanker ban in place, vote down Conservative bill",
-      "url": "https://globalnews.ca/news/12124867/bc-tanker-ban-conservatives-bill-defeated",
-      "published": "2026-10-28T21:18:55+00:00",
-      "content_status": "full",
-      "word_count": 174,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3564,6 +3565,35 @@
       ]
     },
     {
+      "id": "5c0fe70b293d08f1",
+      "source": "Global News Canada",
+      "title": "Fire at New Brunswick military base not threat to public: defence officials",
+      "url": "https://globalnews.ca/news/12125608/canadian-forces-base-gagetown-fire",
+      "published": "2026-10-29T11:41:36+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 207,
+      "paragraph_count": 10,
+      "inline_image_count": 1,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6dbf36cc919c4c44",
       "source": "Global News Canada",
       "title": "‘Local Governance 101’ Okanagan community’s first-ever council trains ahead of inaugural meeting",
@@ -3810,35 +3840,6 @@
       "word_count": 324,
       "paragraph_count": 11,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "88c65bf9df7ad566",
-      "source": "Global News Canada",
-      "title": "Liberals keep B.C. oil tanker ban in place, vote down Conservative bill",
-      "url": "https://globalnews.ca/news/12124867/bc-tanker-ban-conservatives-bill-defeated",
-      "published": "2026-10-28T21:18:55+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 174,
-      "paragraph_count": 6,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
