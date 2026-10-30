@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T21:52:35.769335+00:00",
-  "generated_at_london": "2026-10-30T17:52:35.769335-04:00",
-  "news_generated_at": "2026-10-30T21:44:42.501636+00:00",
+  "generated_at": "2026-10-30T22:02:36.808237+00:00",
+  "generated_at_london": "2026-10-30T18:02:36.808237-04:00",
+  "news_generated_at": "2026-10-30T22:00:08.756904+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 685,
@@ -14,7 +14,7 @@
     "fail_story_count": 3,
     "critical_issue_count": 3,
     "warning_issue_count": 4,
-    "info_issue_count": 94,
+    "info_issue_count": 95,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 2,
@@ -128,7 +128,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -146,10 +146,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-30T21:30:51+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-30T21:42:13.248465+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -404,19 +404,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 450,
-      "average_quality": 79,
+      "average_words": 485,
+      "average_quality": 80,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-10-30T20:39:35.868000+00:00",
-      "found_this_run": 2,
+      "info_issues": 15,
+      "latest_published": "2026-10-30T21:53:57.441000+00:00",
+      "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-10-30T21:02:23.343093+00:00",
+      "last_scrape": "2026-10-30T21:57:28.029698+00:00",
       "last_error": ""
     },
     {
@@ -430,8 +430,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 190,
-      "average_quality": 62,
+      "average_words": 196,
+      "average_quality": 63,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 8,
@@ -440,10 +440,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 7,
-      "latest_published": "2026-10-30T21:37:26.741000+00:00",
+      "latest_published": "2026-10-30T21:46:05.855000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T21:40:05.296055+00:00",
+      "last_scrape": "2026-10-30T21:55:35.675864+00:00",
       "last_error": ""
     },
     {
@@ -681,7 +681,7 @@
       "latest_published": "2026-10-30T19:52:51+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T21:42:06.408342+00:00",
+      "last_scrape": "2026-10-30T21:57:35.428146+00:00",
       "last_error": ""
     },
     {
@@ -938,6 +938,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "a240a781f3f9686f",
+      "source": "CTV News Canada",
+      "title": "How Canada's new pact with the European Union might affect you",
+      "url": "https://www.ctvnews.ca/canada/article/how-canadas-new-pact-with-the-european-union-might-affect-you",
+      "published": "2026-10-30T21:53:57.441000+00:00",
+      "content_status": "full",
+      "word_count": 607,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a240a781f3f9686f",
+      "source": "CTV News Canada",
+      "title": "How Canada's new pact with the European Union might affect you",
+      "url": "https://www.ctvnews.ca/canada/article/how-canadas-new-pact-with-the-european-union-might-affect-you",
+      "published": "2026-10-30T21:53:57.441000+00:00",
+      "content_status": "full",
+      "word_count": 607,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "8d44b21b38b421e2",
       "source": "CTV News Canada",
       "title": "Military overstocked on training ammo, left 'gaps' in combat munitions, audit says",
@@ -1025,21 +1055,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "c46c3462f672710b",
-      "source": "CTV News Canada",
-      "title": "‘90s rock song hits No. 1 on the charts nearly 30 years after its debut",
-      "url": "https://www.ctvnews.ca/canada/article/90s-rock-song-hits-no-1-on-the-charts-nearly-30-years-after-its-debut",
-      "published": "2026-10-28T21:07:58.104000+00:00",
-      "content_status": "full",
-      "word_count": 263,
-      "quality_score": 78,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1118,6 +1133,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
+      "story_id": "b2330801cf29b7bc",
+      "source": "CTV News London",
+      "title": "Hilarity, horror, and nostalgia combine at Halloween screening",
+      "url": "https://www.ctvnews.ca/london/article/hilarity-horror-and-nostalgia-combine-at-halloween-screening",
+      "published": "2026-10-30T21:46:05.855000+00:00",
+      "content_status": "full",
+      "word_count": 417,
+      "quality_score": 83,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
       "story_id": "5cf810af852124ea",
       "source": "CTV News London",
       "title": "London man sentenced to four years in prison for deadly 2020 crash",
@@ -1157,21 +1187,6 @@
       "word_count": 15,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "e02ec9683e749ccc",
-      "source": "CTV News London",
-      "title": "‘I was skin and bones’: London man shares his story on World Stroke Day",
-      "url": "https://www.ctvnews.ca/london/article/i-was-skin-and-bones-london-man-shares-his-story-on-world-stroke-day",
-      "published": "2026-10-30T04:18:32.188000+00:00",
-      "content_status": "full",
-      "word_count": 365,
-      "quality_score": 76,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -2278,6 +2293,35 @@
       "issues": []
     },
     {
+      "id": "b2330801cf29b7bc",
+      "source": "CTV News London",
+      "title": "Hilarity, horror, and nostalgia combine at Halloween screening",
+      "url": "https://www.ctvnews.ca/london/article/hilarity-horror-and-nostalgia-combine-at-halloween-screening",
+      "published": "2026-10-30T21:46:05.855000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 417,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
+    {
       "id": "5cf810af852124ea",
       "source": "CTV News London",
       "title": "London man sentenced to four years in prison for deadly 2020 crash",
@@ -2504,35 +2548,6 @@
       "inline_image_count": 1,
       "quality_score": 57,
       "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "e02ec9683e749ccc",
-      "source": "CTV News London",
-      "title": "‘I was skin and bones’: London man shares his story on World Stroke Day",
-      "url": "https://www.ctvnews.ca/london/article/i-was-skin-and-bones-london-man-shares-his-story-on-world-stroke-day",
-      "published": "2026-10-30T04:18:32.188000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 365,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
-      "quality_score": 76,
-      "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 12,
@@ -3879,6 +3894,41 @@
       ]
     },
     {
+      "id": "a240a781f3f9686f",
+      "source": "CTV News Canada",
+      "title": "How Canada's new pact with the European Union might affect you",
+      "url": "https://www.ctvnews.ca/canada/article/how-canadas-new-pact-with-the-european-union-might-affect-you",
+      "published": "2026-10-30T21:53:57.441000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 607,
+      "paragraph_count": 13,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e34cf83040139295",
       "source": "CTV News Canada",
       "title": "Ghost tours are exploding across Canada. Here’s why Halifax’s Citadel Hill has one like no other",
@@ -4155,35 +4205,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c46c3462f672710b",
-      "source": "CTV News Canada",
-      "title": "‘90s rock song hits No. 1 on the charts nearly 30 years after its debut",
-      "url": "https://www.ctvnews.ca/canada/article/90s-rock-song-hits-no-1-on-the-charts-nearly-30-years-after-its-debut",
-      "published": "2026-10-28T21:07:58.104000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 263,
-      "paragraph_count": 9,
-      "inline_image_count": 3,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
