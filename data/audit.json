@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T18:01:27.671780+00:00",
-  "generated_at_london": "2026-10-30T14:01:27.671780-04:00",
-  "news_generated_at": "2026-10-30T17:53:11.740953+00:00",
+  "generated_at": "2026-10-30T18:09:37.059114+00:00",
+  "generated_at_london": "2026-10-30T14:09:37.059114-04:00",
+  "news_generated_at": "2026-10-30T18:07:50.286315+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 686,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 107,
-    "review_story_count": 1,
+    "pass_story_count": 106,
+    "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 3,
+    "warning_issue_count": 5,
     "info_issue_count": 92,
-    "healthy_source_count": 16,
-    "review_source_count": 1,
+    "healthy_source_count": 15,
+    "review_source_count": 2,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -97,6 +97,33 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 438,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-10-30T17:45:03+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-30T18:05:51.029303+00:00",
       "last_error": ""
     },
     {
@@ -629,7 +656,7 @@
       "latest_published": "2026-10-30T16:27:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T17:50:37.768343+00:00",
+      "last_scrape": "2026-10-30T18:05:47.035459+00:00",
       "last_error": ""
     },
     {
@@ -682,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-30T17:02:44.187959+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 483,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-30T17:36:15+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-30T17:50:42.860503+00:00",
       "last_error": ""
     },
     {
@@ -812,6 +813,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "78ca6ad0c2d07867",
+      "source": "Toronto Star",
+      "title": "Trick-or-treating still popular among Canadians with children: poll",
+      "url": "https://www.thestar.com/news/ontario/trick-or-treating-still-popular-among-canadians-with-children-poll/article_353f289c-5fb0-5d86-9de9-3aba2c36da80.html",
+      "published": "2026-10-30T17:45:03+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "78ca6ad0c2d07867",
+      "source": "Toronto Star",
+      "title": "Trick-or-treating still popular among Canadians with children: poll",
+      "url": "https://www.thestar.com/news/ontario/trick-or-treating-still-popular-among-canadians-with-children-poll/article_353f289c-5fb0-5d86-9de9-3aba2c36da80.html",
+      "published": "2026-10-30T17:45:03+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2078,21 +2109,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "75b9fc199f13fabe",
-      "source": "Toronto Star",
-      "title": "StatCan to release GDP data for August, early estimate for Q3 today",
-      "url": "https://www.thestar.com/business/statcan-to-release-gdp-data-for-august-early-estimate-for-q3-today/article_5224b749-58f0-5521-9ebb-c5b39357cb54.html",
-      "published": "2026-10-30T08:00:31+00:00",
-      "content_status": "full",
-      "word_count": 679,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "f888076f92d17143",
       "source": "Toronto Star",
       "title": "Textbook terror: University course sinks teeth into the art of the horror film",
@@ -2117,6 +2133,21 @@
       "word_count": 249,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "78ca6ad0c2d07867",
+      "source": "Toronto Star",
+      "title": "Trick-or-treating still popular among Canadians with children: poll",
+      "url": "https://www.thestar.com/news/ontario/trick-or-treating-still-popular-among-canadians-with-children-poll/article_353f289c-5fb0-5d86-9de9-3aba2c36da80.html",
+      "published": "2026-10-30T17:45:03+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4702,6 +4733,47 @@
       ]
     },
     {
+      "id": "78ca6ad0c2d07867",
+      "source": "Toronto Star",
+      "title": "Trick-or-treating still popular among Canadians with children: poll",
+      "url": "https://www.thestar.com/news/ontario/trick-or-treating-still-popular-among-canadians-with-children-poll/article_353f289c-5fb0-5d86-9de9-3aba2c36da80.html",
+      "published": "2026-10-30T17:45:03+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 229,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d90a5992109a607b",
       "source": "Toronto Star",
       "title": "Toronto police say three men wanted in violent Bridle Path home invasion",
@@ -4947,35 +5019,6 @@
       "content_status": "full",
       "word_count": 650,
       "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "75b9fc199f13fabe",
-      "source": "Toronto Star",
-      "title": "StatCan to release GDP data for August, early estimate for Q3 today",
-      "url": "https://www.thestar.com/business/statcan-to-release-gdp-data-for-august-early-estimate-for-q3-today/article_5224b749-58f0-5521-9ebb-c5b39357cb54.html",
-      "published": "2026-10-30T08:00:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 679,
-      "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
