@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T20:04:36.013367+00:00",
-  "generated_at_london": "2026-10-30T16:04:36.013367-04:00",
-  "news_generated_at": "2026-10-30T19:56:48.520620+00:00",
+  "generated_at": "2026-10-30T20:13:20.854460+00:00",
+  "generated_at_london": "2026-10-30T16:13:20.854460-04:00",
+  "news_generated_at": "2026-10-30T20:11:32.853309+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 681,
+    "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 109,
-    "pass_story_count": 105,
-    "review_story_count": 1,
+    "pass_story_count": 104,
+    "review_story_count": 2,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 3,
+    "warning_issue_count": 5,
     "info_issue_count": 93,
     "healthy_source_count": 15,
     "review_source_count": 2,
@@ -105,25 +105,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 273,
-      "average_quality": 94,
+      "average_words": 282,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-10-30T19:30:00+00:00",
-      "found_this_run": 10,
+      "latest_published": "2026-10-30T19:50:11+00:00",
+      "found_this_run": 9,
       "tracked": 30,
-      "last_scrape": "2026-10-30T19:54:22.338249+00:00",
+      "last_scrape": "2026-10-30T20:09:35.090233+00:00",
       "last_error": ""
     },
     {
@@ -172,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -459,19 +459,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 450,
-      "average_quality": 95,
+      "average_words": 378,
+      "average_quality": 90,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:citynews:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-30T11:24:54+00:00",
+      "latest_published": "2026-10-30T19:52:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T11:38:46.603329+00:00",
+      "last_scrape": "2026-10-30T20:09:39.321187+00:00",
       "last_error": ""
     },
     {
@@ -656,7 +657,7 @@
       "latest_published": "2026-10-30T19:52:51+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T19:54:13.707792+00:00",
+      "last_scrape": "2026-10-30T20:09:30.939363+00:00",
       "last_error": ""
     },
     {
@@ -696,19 +697,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 658,
-      "average_quality": 93,
+      "average_words": 534,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:globe:main": 1,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 14,
-      "latest_published": "2026-10-30T18:52:12.044000+00:00",
+      "latest_published": "2026-10-30T20:02:19.472000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T19:07:15.942489+00:00",
+      "last_scrape": "2026-10-30T20:09:26.155433+00:00",
       "last_error": ""
     },
     {
@@ -828,6 +831,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "987073d59fbd8d40",
+      "source": "Toronto Star",
+      "title": "CP NewsAlert: Ottawa lists B.C. port expansion as project of national interest",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-ottawa-lists-b-c-port-expansion-as-project-of-national-interest/article_e7172881-bb2e-5402-884b-deba9bd7d211.html",
+      "published": "2026-10-30T19:50:11+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "987073d59fbd8d40",
+      "source": "Toronto Star",
+      "title": "CP NewsAlert: Ottawa lists B.C. port expansion as project of national interest",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-ottawa-lists-b-c-port-expansion-as-project-of-national-interest/article_e7172881-bb2e-5402-884b-deba9bd7d211.html",
+      "published": "2026-10-30T19:50:11+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1194,21 +1227,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "84773f481d38c4b0",
-      "source": "CityNews Canada",
-      "title": "Kutryk becomes fifth Canadian astronaut to perform a spacewalk",
-      "url": "https://toronto.citynews.ca/2026/10/29/kutryk-to-become-fifth-canadian-astronaut-to-perform-a-spacewalk",
-      "published": "2026-10-29T08:00:06+00:00",
-      "content_status": "full",
-      "word_count": 785,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e72f79bbec8ba290",
       "source": "CityNews Canada",
       "title": "Nearly 60% of Canadians plan to participate in Halloween, according to new poll",
@@ -1233,6 +1251,21 @@
       "word_count": 956,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "24a697dcd3f609d7",
+      "source": "CityNews Canada",
+      "title": "Ottawa lists B.C. port expansion as project of national interest",
+      "url": "https://toronto.citynews.ca/2026/10/30/ottawa-lists-b-c-port-expansion-as-project-of-national-interest",
+      "published": "2026-10-30T19:52:23+00:00",
+      "content_status": "partial",
+      "word_count": 60,
+      "quality_score": 48,
+      "extraction_method": "dom:citynews:article"
     },
     {
       "severity": "info",
@@ -1869,6 +1902,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "a555355da07d7b45",
+      "source": "The Globe and Mail",
+      "title": "Can Luke and Kim, both 48, buy a larger home and still retire in a decade?",
+      "url": "https://www.theglobeandmail.com/investing/personal-finance/financial-facelift/article-luke-kim-buy-larger-home-still-retire-in-decade",
+      "published": "2026-10-30T20:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1509,
+      "quality_score": 97,
+      "extraction_method": "dom:globe:main"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "95e8b5d782ff714d",
       "source": "The Globe and Mail",
       "title": "Downtown Vancouver condo finds buyer after two price cuts",
@@ -1926,21 +1974,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9791900ecbf78334",
-      "source": "The Globe and Mail",
-      "title": "Magna’s third-quarter profit increases as revenue edges lower",
-      "url": "https://www.theglobeandmail.com/business/article-magna-international-third-quarter-results",
-      "published": "2026-10-30T11:46:24.354000+00:00",
-      "content_status": "full",
-      "word_count": 528,
-      "quality_score": 84,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1968,6 +2001,36 @@
       "word_count": 154,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "5f41681a7f6c1aa0",
+      "source": "The Globe and Mail",
+      "title": "Pitching in: Charity founded by Bay Street businessmen holds pitchfest to support kids’ mental health",
+      "url": "https://www.theglobeandmail.com/business/article-pitching-in-kids-mental-health-charity-bay-street-businessmen-founders",
+      "published": "2026-10-30T20:02:19.472000+00:00",
+      "content_status": "full",
+      "word_count": 367,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "5f41681a7f6c1aa0",
+      "source": "The Globe and Mail",
+      "title": "Pitching in: Charity founded by Bay Street businessmen holds pitchfest to support kids’ mental health",
+      "url": "https://www.theglobeandmail.com/business/article-pitching-in-kids-mental-health-charity-bay-street-businessmen-founders",
+      "published": "2026-10-30T20:02:19.472000+00:00",
+      "content_status": "full",
+      "word_count": 367,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2001,33 +2064,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "bb7ffa564eee3c62",
-      "source": "The Globe and Mail",
-      "title": "The unexpected legacy of childhood adversity",
-      "url": "https://www.theglobeandmail.com/canada/article-the-unexpected-legacy-of-childhood-adversity",
-      "published": "2026-10-30T11:00:00+00:00",
-      "content_status": "full",
-      "word_count": 2586,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "bb7ffa564eee3c62",
-      "source": "The Globe and Mail",
-      "title": "The unexpected legacy of childhood adversity",
-      "url": "https://www.theglobeandmail.com/canada/article-the-unexpected-legacy-of-childhood-adversity",
-      "published": "2026-10-30T11:00:00+00:00",
+      "story_id": "987073d59fbd8d40",
+      "source": "Toronto Star",
+      "title": "CP NewsAlert: Ottawa lists B.C. port expansion as project of national interest",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-ottawa-lists-b-c-port-expansion-as-project-of-national-interest/article_e7172881-bb2e-5402-884b-deba9bd7d211.html",
+      "published": "2026-10-30T19:50:11+00:00",
       "content_status": "full",
-      "word_count": 2586,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2161,21 +2209,6 @@
       "published": "2026-10-30T17:45:03+00:00",
       "content_status": "full",
       "word_count": 295,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 5/100",
-      "story_id": "9fabe4b6fe0067c1",
-      "source": "Toronto Star",
-      "title": "Two pedestrians dead after being hit by vehicle in Kingsville, Ont.: police",
-      "url": "https://www.thestar.com/news/ontario/two-pedestrians-dead-after-being-hit-by-vehicle-in-kingsville-ont-police/article_5e491cca-6ba9-51b4-877b-d1eff287a3ab.html",
-      "published": "2026-10-30T14:35:53+00:00",
-      "content_status": "full",
-      "word_count": 140,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4113,6 +4146,70 @@
       ]
     },
     {
+      "id": "5f41681a7f6c1aa0",
+      "source": "The Globe and Mail",
+      "title": "Pitching in: Charity founded by Bay Street businessmen holds pitchfest to support kids’ mental health",
+      "url": "https://www.theglobeandmail.com/business/article-pitching-in-kids-mental-health-charity-bay-street-businessmen-founders",
+      "published": "2026-10-30T20:02:19.472000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 367,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "a555355da07d7b45",
+      "source": "The Globe and Mail",
+      "title": "Can Luke and Kim, both 48, buy a larger home and still retire in a decade?",
+      "url": "https://www.theglobeandmail.com/investing/personal-finance/financial-facelift/article-luke-kim-buy-larger-home-still-retire-in-decade",
+      "published": "2026-10-30T20:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1509,
+      "paragraph_count": 49,
+      "inline_image_count": 0,
+      "quality_score": 97,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d66e34f0a717ac49",
       "source": "The Globe and Mail",
       "title": "Police look for three men in violent Bridle Path home invasion",
@@ -4354,70 +4451,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9791900ecbf78334",
-      "source": "The Globe and Mail",
-      "title": "Magna’s third-quarter profit increases as revenue edges lower",
-      "url": "https://www.theglobeandmail.com/business/article-magna-international-third-quarter-results",
-      "published": "2026-10-30T11:46:24.354000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 528,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 84,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bb7ffa564eee3c62",
-      "source": "The Globe and Mail",
-      "title": "The unexpected legacy of childhood adversity",
-      "url": "https://www.theglobeandmail.com/canada/article-the-unexpected-legacy-of-childhood-adversity",
-      "published": "2026-10-30T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 2586,
-      "paragraph_count": 40,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4717,6 +4750,47 @@
       ]
     },
     {
+      "id": "987073d59fbd8d40",
+      "source": "Toronto Star",
+      "title": "CP NewsAlert: Ottawa lists B.C. port expansion as project of national interest",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cp-newsalert-ottawa-lists-b-c-port-expansion-as-project-of-national-interest/article_e7172881-bb2e-5402-884b-deba9bd7d211.html",
+      "published": "2026-10-30T19:50:11+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 234,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5c25ac59a7d8ef7a",
       "source": "Toronto Star",
       "title": "Popular children's compression swing recalled due to fall hazard",
@@ -4984,31 +5058,31 @@
       ]
     },
     {
-      "id": "9fabe4b6fe0067c1",
-      "source": "Toronto Star",
-      "title": "Two pedestrians dead after being hit by vehicle in Kingsville, Ont.: police",
-      "url": "https://www.thestar.com/news/ontario/two-pedestrians-dead-after-being-hit-by-vehicle-in-kingsville-ont-police/article_5e491cca-6ba9-51b4-877b-d1eff287a3ab.html",
-      "published": "2026-10-30T14:35:53+00:00",
+      "id": "24a697dcd3f609d7",
+      "source": "CityNews Canada",
+      "title": "Ottawa lists B.C. port expansion as project of national interest",
+      "url": "https://toronto.citynews.ca/2026/10/30/ottawa-lists-b-c-port-expansion-as-project-of-national-interest",
+      "published": "2026-10-30T19:52:23+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 140,
-      "paragraph_count": 15,
+      "content_status": "partial",
+      "word_count": 60,
+      "paragraph_count": 6,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 5,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
       "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
-          "detail": "Local score 5/100"
+          "detail": "Local score 0/100"
         }
       ]
     },
@@ -5258,35 +5332,6 @@
       "content_status": "full",
       "word_count": 169,
       "paragraph_count": 8,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "84773f481d38c4b0",
-      "source": "CityNews Canada",
-      "title": "Kutryk becomes fifth Canadian astronaut to perform a spacewalk",
-      "url": "https://toronto.citynews.ca/2026/10/29/kutryk-to-become-fifth-canadian-astronaut-to-perform-a-spacewalk",
-      "published": "2026-10-29T08:00:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 785,
-      "paragraph_count": 33,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
