@@ -1,26 +1,52 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T02:43:31.191027+00:00",
-  "generated_at_london": "2026-10-29T22:43:31.191027-04:00",
-  "news_generated_at": "2026-10-30T02:36:48.236260+00:00",
+  "generated_at": "2026-10-30T02:55:41.514873+00:00",
+  "generated_at_london": "2026-10-29T22:55:41.514873-04:00",
+  "news_generated_at": "2026-10-30T02:53:31.952275+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 717,
+    "archive_story_count": 720,
     "source_count": 28,
-    "audited_story_count": 114,
+    "audited_story_count": 115,
     "pass_story_count": 111,
     "review_story_count": 2,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
+    "fail_story_count": 2,
+    "critical_issue_count": 3,
     "warning_issue_count": 4,
-    "info_issue_count": 97,
+    "info_issue_count": 99,
     "healthy_source_count": 16,
     "review_source_count": 2,
-    "error_source_count": 0,
-    "waiting_source_count": 10
+    "error_source_count": 1,
+    "waiting_source_count": 9
   },
   "source_reports": [
+    {
+      "source": "Environment Canada London Alerts",
+      "status": "error",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 0,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 0,
+      "usable_body_rate": 0,
+      "average_words": 0,
+      "average_quality": 0,
+      "primary_method": "failed:request",
+      "method_counts": {
+        "failed:request": 1
+      },
+      "critical_issues": 2,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-10-29T10:15:32+00:00",
+      "found_this_run": 1,
+      "tracked": 1,
+      "last_scrape": "2026-10-30T02:50:34.879473+00:00",
+      "last_error": ""
+    },
     {
       "source": "104.7 Heart FM",
       "status": "review",
@@ -121,30 +147,6 @@
       "tracked": 0,
       "last_scrape": "",
       "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
-    },
-    {
-      "source": "Environment Canada London Alerts",
-      "status": "waiting",
-      "collector_status": "waiting",
-      "profile": "generic",
-      "sample_size": 0,
-      "pass": 0,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 0,
-      "usable_body_rate": 0,
-      "average_words": 0,
-      "average_quality": 0,
-      "primary_method": "unknown",
-      "method_counts": {},
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "",
-      "found_this_run": 1,
-      "tracked": 0,
-      "last_scrape": "",
-      "last_error": ""
     },
     {
       "source": "Google News London Discovery",
@@ -484,19 +486,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 465,
-      "average_quality": 96,
+      "average_words": 495,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-30T00:38:14+00:00",
+      "latest_published": "2026-10-30T01:43:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T00:45:22.262078+00:00",
+      "last_scrape": "2026-10-30T02:50:58.518633+00:00",
       "last_error": ""
     },
     {
@@ -655,7 +658,7 @@
       "latest_published": "2026-10-29T19:36:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T02:35:07.819724+00:00",
+      "last_scrape": "2026-10-30T02:51:06.341219+00:00",
       "last_error": ""
     },
     {
@@ -699,16 +702,16 @@
       "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "dom:globe:article#content-gate": 1
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-10-30T00:01:01.130000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-10-30T02:39:10.419000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T00:14:22.612019+00:00",
+      "last_scrape": "2026-10-30T02:51:00.856001+00:00",
       "last_error": ""
     },
     {
@@ -739,6 +742,36 @@
     }
   ],
   "issues": [
+    {
+      "severity": "critical",
+      "code": "scrape_error",
+      "message": "Scoop recorded a scraping error.",
+      "detail": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /warnings/report_e.html (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))",
+      "story_id": "e42e283969be3b16",
+      "source": "Environment Canada London Alerts",
+      "title": "No alerts in effect, London - Parkhill - Eastern Middlesex County",
+      "url": "https://weather.gc.ca/warnings/report_e.html",
+      "published": "2026-10-29T10:15:32+00:00",
+      "content_status": "failed",
+      "word_count": 0,
+      "quality_score": 0,
+      "extraction_method": "failed:request"
+    },
+    {
+      "severity": "critical",
+      "code": "failed_body",
+      "message": "Article extraction failed.",
+      "detail": "",
+      "story_id": "e42e283969be3b16",
+      "source": "Environment Canada London Alerts",
+      "title": "No alerts in effect, London - Parkhill - Eastern Middlesex County",
+      "url": "https://weather.gc.ca/warnings/report_e.html",
+      "published": "2026-10-29T10:15:32+00:00",
+      "content_status": "failed",
+      "word_count": 0,
+      "quality_score": 0,
+      "extraction_method": "failed:request"
+    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -1386,6 +1419,21 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "e42e283969be3b16",
+      "source": "Environment Canada London Alerts",
+      "title": "No alerts in effect, London - Parkhill - Eastern Middlesex County",
+      "url": "https://weather.gc.ca/warnings/report_e.html",
+      "published": "2026-10-29T10:15:32+00:00",
+      "content_status": "failed",
+      "word_count": 0,
+      "quality_score": 0,
+      "extraction_method": "failed:request"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1411,21 +1459,6 @@
       "published": "2026-10-29T17:50:41+00:00",
       "content_status": "full",
       "word_count": 457,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ee46c3eb818260fa",
-      "source": "Global News Canada",
-      "title": "Competition Bureau chief urges limits on non-compete clauses for workers",
-      "url": "https://globalnews.ca/news/12125974/non-compete-clauses-limits",
-      "published": "2026-10-29T17:35:50+00:00",
-      "content_status": "full",
-      "word_count": 438,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1518,6 +1551,21 @@
       "word_count": 421,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "75ad90cc686cd3c5",
+      "source": "Global News Canada",
+      "title": "Quebec premier’s boycott of Canada-EU summit turns heads",
+      "url": "https://globalnews.ca/news/12126718/quebec-premier-boycott-canada-eu-summit",
+      "published": "2026-10-30T01:43:00+00:00",
+      "content_status": "full",
+      "word_count": 745,
+      "quality_score": 88,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -1986,18 +2034,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "31fce2912cd089ce",
+      "source": "The Globe and Mail",
+      "title": "Ontario received hundreds of tips, complaints about private career colleges before Osap ban, documents show",
+      "url": "https://www.theglobeandmail.com/canada/article-private-career-colleges-complaints-greater-toronto-area-osap-ban",
+      "published": "2026-10-30T02:39:10.419000+00:00",
+      "content_status": "full",
+      "word_count": 1103,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "2effc72a4e96fb4a",
+      "story_id": "31fce2912cd089ce",
       "source": "The Globe and Mail",
-      "title": "Ottawa buys stake in Cohere as AI firm raises money at $35.7-billion valuation",
-      "url": "https://www.theglobeandmail.com/business/article-ottawa-buys-stake-in-cohere-357-billion-in-new-financing",
-      "published": "2026-10-29T16:03:13.415000+00:00",
+      "title": "Ontario received hundreds of tips, complaints about private career colleges before Osap ban, documents show",
+      "url": "https://www.theglobeandmail.com/canada/article-private-career-colleges-complaints-greater-toronto-area-osap-ban",
+      "published": "2026-10-30T02:39:10.419000+00:00",
       "content_status": "full",
-      "word_count": 1104,
-      "quality_score": 86,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 1103,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3704,6 +3767,76 @@
       ]
     },
     {
+      "id": "e42e283969be3b16",
+      "source": "Environment Canada London Alerts",
+      "title": "No alerts in effect, London - Parkhill - Eastern Middlesex County",
+      "url": "https://weather.gc.ca/warnings/report_e.html",
+      "published": "2026-10-29T10:15:32+00:00",
+      "audit_status": "fail",
+      "audit_score": 27,
+      "critical_count": 2,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "failed",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 0,
+      "quality_grade": "poor",
+      "extraction_method": "failed:request",
+      "extraction_profile": "unknown",
+      "local_score": 48,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "scrape_error",
+          "message": "Scoop recorded a scraping error.",
+          "detail": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /warnings/report_e.html (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))"
+        },
+        {
+          "severity": "critical",
+          "code": "failed_body",
+          "message": "Article extraction failed.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "75ad90cc686cd3c5",
+      "source": "Global News Canada",
+      "title": "Quebec premier’s boycott of Canada-EU summit turns heads",
+      "url": "https://globalnews.ca/news/12126718/quebec-premier-boycott-canada-eu-summit",
+      "published": "2026-10-30T01:43:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 745,
+      "paragraph_count": 31,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8359b07da9d570cc",
       "source": "Global News Canada",
       "title": "Summerland landslides raise concerns after wildfire leaves slopes vulnerable",
@@ -3950,35 +4083,6 @@
       "word_count": 457,
       "paragraph_count": 14,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ee46c3eb818260fa",
-      "source": "Global News Canada",
-      "title": "Competition Bureau chief urges limits on non-compete clauses for workers",
-      "url": "https://globalnews.ca/news/12125974/non-compete-clauses-limits",
-      "published": "2026-10-29T17:35:50+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 438,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4308,6 +4412,41 @@
       ]
     },
     {
+      "id": "31fce2912cd089ce",
+      "source": "The Globe and Mail",
+      "title": "Ontario received hundreds of tips, complaints about private career colleges before Osap ban, documents show",
+      "url": "https://www.theglobeandmail.com/canada/article-private-career-colleges-complaints-greater-toronto-area-osap-ban",
+      "published": "2026-10-30T02:39:10.419000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 1103,
+      "paragraph_count": 30,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ae2390b1b4a0abc2",
       "source": "The Globe and Mail",
       "title": "Quebec Premier skips Canada-EU summit in Montreal over Ottawa’s refusal to let him speak",
@@ -4561,35 +4700,6 @@
       "paragraph_count": 20,
       "inline_image_count": 1,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2effc72a4e96fb4a",
-      "source": "The Globe and Mail",
-      "title": "Ottawa buys stake in Cohere as AI firm raises money at $35.7-billion valuation",
-      "url": "https://www.theglobeandmail.com/business/article-ottawa-buys-stake-in-cohere-357-billion-in-new-financing",
-      "published": "2026-10-29T16:03:13.415000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1104,
-      "paragraph_count": 26,
-      "inline_image_count": 2,
-      "quality_score": 86,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
