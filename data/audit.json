@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T11:15:50.470464+00:00",
-  "generated_at_london": "2026-10-30T07:15:50.470464-04:00",
-  "news_generated_at": "2026-10-30T11:09:47.144339+00:00",
+  "generated_at": "2026-10-30T11:28:15.871755+00:00",
+  "generated_at_london": "2026-10-30T07:28:15.871755-04:00",
+  "news_generated_at": "2026-10-30T11:25:59.879059+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 699,
+    "archive_story_count": 698,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 104,
@@ -14,7 +14,7 @@
     "fail_story_count": 5,
     "critical_issue_count": 5,
     "warning_issue_count": 5,
-    "info_issue_count": 97,
+    "info_issue_count": 98,
     "healthy_source_count": 15,
     "review_source_count": 2,
     "error_source_count": 2,
@@ -102,7 +102,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-30T08:00:32+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-30T08:22:51.223540+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -172,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -657,7 +657,7 @@
       "latest_published": "2026-10-30T11:00:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T11:08:03.873091+00:00",
+      "last_scrape": "2026-10-30T11:23:41.829312+00:00",
       "last_error": ""
     },
     {
@@ -697,20 +697,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 812,
-      "average_quality": 94,
+      "average_words": 1003,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "dom:globe:article#content-gate": 1
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-10-30T09:00:00+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-10-30T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T09:20:22.633924+00:00",
+      "last_scrape": "2026-10-30T11:23:36.177613+00:00",
       "last_error": ""
     },
     {
@@ -2063,18 +2063,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "bb7ffa564eee3c62",
+      "source": "The Globe and Mail",
+      "title": "The unexpected legacy of childhood adversity",
+      "url": "https://www.theglobeandmail.com/canada/article-the-unexpected-legacy-of-childhood-adversity",
+      "published": "2026-10-30T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 2637,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "748cc7babccfca12",
+      "story_id": "bb7ffa564eee3c62",
       "source": "The Globe and Mail",
-      "title": "Quebec plans to ban religious symbols in schools, Education Minister says",
-      "url": "https://www.theglobeandmail.com/canada/article-quebec-secular-religious-symbols-schools",
-      "published": "2026-10-29T19:46:48.656000+00:00",
+      "title": "The unexpected legacy of childhood adversity",
+      "url": "https://www.theglobeandmail.com/canada/article-the-unexpected-legacy-of-childhood-adversity",
+      "published": "2026-10-30T11:00:00+00:00",
       "content_status": "full",
-      "word_count": 723,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 2637,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4332,6 +4347,41 @@
       ]
     },
     {
+      "id": "bb7ffa564eee3c62",
+      "source": "The Globe and Mail",
+      "title": "The unexpected legacy of childhood adversity",
+      "url": "https://www.theglobeandmail.com/canada/article-the-unexpected-legacy-of-childhood-adversity",
+      "published": "2026-10-30T11:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 2637,
+      "paragraph_count": 46,
+      "inline_image_count": 0,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a6459c0e4559adab",
       "source": "The Globe and Mail",
       "title": "What kind of Toronto does Chow want to build?",
@@ -4590,35 +4640,6 @@
       "word_count": 1194,
       "paragraph_count": 21,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "748cc7babccfca12",
-      "source": "The Globe and Mail",
-      "title": "Quebec plans to ban religious symbols in schools, Education Minister says",
-      "url": "https://www.theglobeandmail.com/canada/article-quebec-secular-religious-symbols-schools",
-      "published": "2026-10-29T19:46:48.656000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 723,
-      "paragraph_count": 27,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
