@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T12:48:31.701443+00:00",
-  "generated_at_london": "2026-10-30T08:48:31.701443-04:00",
-  "news_generated_at": "2026-10-30T12:42:36.465464+00:00",
+  "generated_at": "2026-10-30T13:00:33.461077+00:00",
+  "generated_at_london": "2026-10-30T09:00:33.461077-04:00",
+  "news_generated_at": "2026-10-30T12:58:24.662497+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 694,
+    "archive_story_count": 695,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 104,
@@ -15,8 +15,8 @@
     "critical_issue_count": 5,
     "warning_issue_count": 5,
     "info_issue_count": 97,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 15,
+    "review_source_count": 2,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -98,32 +98,6 @@
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
-    },
-    {
-      "source": "CityNews Canada",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "citynews",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 499,
-      "average_quality": 95,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-30T11:24:54+00:00",
-      "found_this_run": 0,
-      "tracked": 30,
-      "last_scrape": "2026-10-30T11:38:46.603329+00:00",
-      "last_error": "HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Max retries exceeded with url: /category/canada/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='toronto.citynews.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Toronto Star",
@@ -415,7 +389,7 @@
       "warning_issues": 0,
       "info_issues": 14,
       "latest_published": "2026-10-30T00:25:44.366000+00:00",
-      "found_this_run": 2,
+      "found_this_run": 1,
       "tracked": 30,
       "last_scrape": "2026-10-30T00:35:55.083448+00:00",
       "last_error": ""
@@ -472,6 +446,32 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-10-29T16:32:24.091937+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CityNews Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "citynews",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 499,
+      "average_quality": 95,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-30T11:24:54+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-30T11:38:46.603329+00:00",
       "last_error": ""
     },
     {
@@ -656,7 +656,7 @@
       "latest_published": "2026-10-30T11:00:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T12:40:33.015014+00:00",
+      "last_scrape": "2026-10-30T12:56:05.651992+00:00",
       "last_error": ""
     },
     {
@@ -696,11 +696,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 871,
-      "average_quality": 94,
+      "average_words": 841,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -708,7 +709,7 @@
       "latest_published": "2026-10-30T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T12:09:48.543166+00:00",
+      "last_scrape": "2026-10-30T12:55:58.074182+00:00",
       "last_error": ""
     },
     {
@@ -1989,6 +1990,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "95e8b5d782ff714d",
+      "source": "The Globe and Mail",
+      "title": "Downtown Vancouver condo finds buyer after two price cuts",
+      "url": "https://www.theglobeandmail.com/real-estate/vancouver/article-downtown-vancouver-condo-finds-buyer-after-two-price-cuts",
+      "published": "2026-10-30T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 319,
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0d07bc744f1b0b55",
       "source": "The Globe and Mail",
       "title": "From homemade animatronics to carved pumpkins, here’s how Canadians are decorating this Halloween",
@@ -2086,21 +2102,6 @@
       "published": "2026-10-30T11:00:00+00:00",
       "content_status": "partial",
       "word_count": 2586,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 10/100",
-      "story_id": "4dd68a6ea16ad6c6",
-      "source": "The Globe and Mail",
-      "title": "Three members of family shot, another injured in Bridle Path home invasion",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-bridle-path-home-invasion",
-      "published": "2026-10-29T23:27:00.866000+00:00",
-      "content_status": "full",
-      "word_count": 614,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4359,6 +4360,35 @@
       ]
     },
     {
+      "id": "95e8b5d782ff714d",
+      "source": "The Globe and Mail",
+      "title": "Downtown Vancouver condo finds buyer after two price cuts",
+      "url": "https://www.theglobeandmail.com/real-estate/vancouver/article-downtown-vancouver-condo-finds-buyer-after-two-price-cuts",
+      "published": "2026-10-30T12:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 319,
+      "paragraph_count": 17,
+      "inline_image_count": 3,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3ec64d3e0631f747",
       "source": "The Globe and Mail",
       "title": "Bill Morneau named as next Cibc board chair",
@@ -4599,35 +4629,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4dd68a6ea16ad6c6",
-      "source": "The Globe and Mail",
-      "title": "Three members of family shot, another injured in Bridle Path home invasion",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-bridle-path-home-invasion",
-      "published": "2026-10-29T23:27:00.866000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 614,
-      "paragraph_count": 21,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 10,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 10/100"
         }
       ]
     },
