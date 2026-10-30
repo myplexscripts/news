@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T10:59:26.347738+00:00",
-  "generated_at_london": "2026-10-30T06:59:26.347738-04:00",
-  "news_generated_at": "2026-10-30T10:54:25.056955+00:00",
+  "generated_at": "2026-10-30T11:11:17.711563+00:00",
+  "generated_at_london": "2026-10-30T07:11:17.711563-04:00",
+  "news_generated_at": "2026-10-30T11:09:47.144339+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 699,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 104,
@@ -102,7 +102,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-30T08:00:32+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-10-30T08:22:51.223540+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -172,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -644,20 +644,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 699,
+      "average_words": 709,
       "average_quality": 84,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "reader:semantic-rich-v1": 3,
-        "dom:semantic-rich-v1": 7
+        "dom:semantic-rich-v1": 6
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-29T19:36:33+00:00",
+      "latest_published": "2026-10-30T11:00:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T10:52:52.705614+00:00",
+      "last_scrape": "2026-10-30T11:08:03.873091+00:00",
       "last_error": ""
     },
     {
@@ -1781,6 +1782,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "81b77b86de452d4b",
+      "source": "National Post",
+      "title": "Delving into the history of Canada's prime ministers",
+      "url": "https://nationalpost.com/news/canada/https-beta-nationalpost-com-news-canada-delving-into-the-history-of-canadas-prime-ministers",
+      "published": "2026-10-30T11:00:40+00:00",
+      "content_status": "full",
+      "word_count": 1144,
+      "quality_score": 94,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "3eaab763fc83a0f3",
       "source": "National Post",
       "title": "European Commission head revives 'associate membership' for Canada on eve of meeting",
@@ -1803,21 +1819,6 @@
       "published": "2026-10-29T15:25:18+00:00",
       "content_status": "full",
       "word_count": 880,
-      "quality_score": 88,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3d76d2f832534cab",
-      "source": "National Post",
-      "title": "Half of Canadians have avoided hospitals because of wait times: poll",
-      "url": "https://nationalpost.com/news/half-of-canadians-avoided-hospitals-because-of-wait-times-poll",
-      "published": "2026-10-29T12:36:26+00:00",
-      "content_status": "full",
-      "word_count": 1042,
       "quality_score": 88,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4634,6 +4635,35 @@
       ]
     },
     {
+      "id": "81b77b86de452d4b",
+      "source": "National Post",
+      "title": "Delving into the history of Canada's prime ministers",
+      "url": "https://nationalpost.com/news/canada/https-beta-nationalpost-com-news-canada-delving-into-the-history-of-canadas-prime-ministers",
+      "published": "2026-10-30T11:00:40+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1144,
+      "paragraph_count": 25,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c425550a8db22fdf",
       "source": "National Post",
       "title": "Maya Gebala is being released from the hospital, father says: 'Never a day I stopped believing'",
@@ -4879,35 +4909,6 @@
       "content_status": "full",
       "word_count": 802,
       "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3d76d2f832534cab",
-      "source": "National Post",
-      "title": "Half of Canadians have avoided hospitals because of wait times: poll",
-      "url": "https://nationalpost.com/news/half-of-canadians-avoided-hospitals-because-of-wait-times-poll",
-      "published": "2026-10-29T12:36:26+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1042,
-      "paragraph_count": 28,
       "inline_image_count": 0,
       "quality_score": 88,
       "quality_grade": "excellent",
