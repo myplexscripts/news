@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T14:05:26.538294+00:00",
-  "generated_at_london": "2026-10-30T10:05:26.538294-04:00",
-  "news_generated_at": "2026-10-30T13:59:55.890332+00:00",
+  "generated_at": "2026-10-30T14:17:41.905797+00:00",
+  "generated_at_london": "2026-10-30T10:17:41.905797-04:00",
+  "news_generated_at": "2026-10-30T14:15:19.159247+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 691,
@@ -128,7 +128,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -147,10 +147,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-10-30T08:00:32+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-10-30T08:22:51.223540+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -511,19 +511,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 502,
+      "average_words": 534,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-30T11:44:47+00:00",
+      "latest_published": "2026-10-30T14:06:32+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T11:54:30.509067+00:00",
+      "last_scrape": "2026-10-30T14:12:52.945809+00:00",
       "last_error": ""
     },
     {
@@ -656,7 +657,7 @@
       "latest_published": "2026-10-30T11:00:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-30T13:57:37.853180+00:00",
+      "last_scrape": "2026-10-30T14:13:00.732530+00:00",
       "last_error": ""
     },
     {
@@ -1449,21 +1450,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "adfcf89c8765981a",
-      "source": "Global News Canada",
-      "title": "Maya Gebala released from hospital 262 days after Tumbler Ridge shooting",
-      "url": "https://globalnews.ca/news/12126144/maya-gebala-released-hospital-262-days-later-tumbler-ridge",
-      "published": "2026-10-29T18:41:40+00:00",
-      "content_status": "full",
-      "word_count": 393,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "073b656bc1532582",
       "source": "Global News Canada",
       "title": "Meet the new faces elected to Winnipeg city council",
@@ -1533,6 +1519,21 @@
       "word_count": 494,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "31d0a58078e1eae7",
+      "source": "Global News Canada",
+      "title": "Why some Canadian police are still promoting Crime Stoppers despite breach",
+      "url": "https://globalnews.ca/news/12127143/why-canadian-police-still-use-crime-stoppers",
+      "published": "2026-10-30T14:06:32+00:00",
+      "content_status": "full",
+      "word_count": 714,
+      "quality_score": 94,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3640,6 +3641,35 @@
       ]
     },
     {
+      "id": "31d0a58078e1eae7",
+      "source": "Global News Canada",
+      "title": "Why some Canadian police are still promoting Crime Stoppers despite breach",
+      "url": "https://globalnews.ca/news/12127143/why-canadian-police-still-use-crime-stoppers",
+      "published": "2026-10-30T14:06:32+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 714,
+      "paragraph_count": 30,
+      "inline_image_count": 1,
+      "quality_score": 94,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8640569360941786",
       "source": "Global News Canada",
       "title": "Canada-European Union summit in Montreal concluding with digital trade on agenda",
@@ -3886,35 +3916,6 @@
       "word_count": 291,
       "paragraph_count": 10,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "adfcf89c8765981a",
-      "source": "Global News Canada",
-      "title": "Maya Gebala released from hospital 262 days after Tumbler Ridge shooting",
-      "url": "https://globalnews.ca/news/12126144/maya-gebala-released-hospital-262-days-later-tumbler-ridge",
-      "published": "2026-10-29T18:41:40+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 393,
-      "paragraph_count": 17,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
