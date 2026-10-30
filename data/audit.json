@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-30T22:02:36.808237+00:00",
-  "generated_at_london": "2026-10-30T18:02:36.808237-04:00",
+  "generated_at": "2026-10-30T22:06:18.545914+00:00",
+  "generated_at_london": "2026-10-30T18:06:18.545914-04:00",
   "news_generated_at": "2026-10-30T22:00:08.756904+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 111,
-    "pass_story_count": 106,
-    "review_story_count": 2,
+    "pass_story_count": 105,
+    "review_story_count": 3,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 4,
+    "warning_issue_count": 5,
     "info_issue_count": 95,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -97,6 +97,32 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News Canada",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 485,
+      "average_quality": 80,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 14,
+      "latest_published": "2026-10-30T21:53:57.441000+00:00",
+      "found_this_run": 3,
+      "tracked": 30,
+      "last_scrape": "2026-10-30T21:57:28.029698+00:00",
       "last_error": ""
     },
     {
@@ -394,32 +420,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News Canada",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 485,
-      "average_quality": 80,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 15,
-      "latest_published": "2026-10-30T21:53:57.441000+00:00",
-      "found_this_run": 3,
-      "tracked": 30,
-      "last_scrape": "2026-10-30T21:57:28.029698+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News London",
       "status": "healthy",
       "collector_status": "healthy",
@@ -439,7 +439,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 7,
+      "info_issues": 8,
       "latest_published": "2026-10-30T21:46:05.855000+00:00",
       "found_this_run": 10,
       "tracked": 30,
@@ -815,6 +815,21 @@
     },
     {
       "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "8 consecutive images",
+      "story_id": "a240a781f3f9686f",
+      "source": "CTV News Canada",
+      "title": "How Canada's new pact with the European Union might affect you",
+      "url": "https://www.ctvnews.ca/canada/article/how-canadas-new-pact-with-the-european-union-might-affect-you",
+      "published": "2026-10-30T21:53:57.441000+00:00",
+      "content_status": "full",
+      "word_count": 607,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
       "detail": "9 inline images",
@@ -931,21 +946,6 @@
       "content_status": "full",
       "word_count": 440,
       "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "a240a781f3f9686f",
-      "source": "CTV News Canada",
-      "title": "How Canada's new pact with the European Union might affect you",
-      "url": "https://www.ctvnews.ca/canada/article/how-canadas-new-pact-with-the-european-union-might-affect-you",
-      "published": "2026-10-30T21:53:57.441000+00:00",
-      "content_status": "full",
-      "word_count": 607,
-      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1126,6 +1126,21 @@
       "content_status": "full",
       "word_count": 142,
       "quality_score": 57,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "b2330801cf29b7bc",
+      "source": "CTV News London",
+      "title": "Hilarity, horror, and nostalgia combine at Halloween screening",
+      "url": "https://www.ctvnews.ca/london/article/hilarity-horror-and-nostalgia-combine-at-halloween-screening",
+      "published": "2026-10-30T21:46:05.855000+00:00",
+      "content_status": "full",
+      "word_count": 417,
+      "quality_score": 83,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2299,10 +2314,10 @@
       "url": "https://www.ctvnews.ca/london/article/hilarity-horror-and-nostalgia-combine-at-halloween-screening",
       "published": "2026-10-30T21:46:05.855000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 417,
       "paragraph_count": 20,
@@ -2313,6 +2328,12 @@
       "extraction_profile": "ctv",
       "local_score": 12,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -3899,15 +3920,15 @@
       "title": "How Canada's new pact with the European Union might affect you",
       "url": "https://www.ctvnews.ca/canada/article/how-canadas-new-pact-with-the-european-union-might-affect-you",
       "published": "2026-10-30T21:53:57.441000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
+      "audit_status": "review",
+      "audit_score": 85,
       "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
+      "warning_count": 1,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 607,
       "paragraph_count": 13,
-      "inline_image_count": 0,
+      "inline_image_count": 8,
       "quality_score": 81,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
@@ -3915,10 +3936,10 @@
       "local_score": 0,
       "issues": [
         {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "8 consecutive images"
         },
         {
           "severity": "info",
