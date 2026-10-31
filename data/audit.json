@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-31T10:33:45.434924+00:00",
-  "generated_at_london": "2026-10-31T06:33:45.434924-04:00",
-  "news_generated_at": "2026-10-31T10:26:45.987283+00:00",
+  "generated_at": "2026-10-31T10:42:08.125296+00:00",
+  "generated_at_london": "2026-10-31T06:42:08.125296-04:00",
+  "news_generated_at": "2026-10-31T10:40:40.697596+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 676,
+    "archive_story_count": 677,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 105,
@@ -324,7 +324,7 @@
     {
       "source": "Middlesex-London Health Unit",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -340,10 +340,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "403 Client Error: Forbidden for url: https://www.healthunit.com/news/"
     },
     {
       "source": "Ontario Newsroom",
@@ -642,20 +642,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 652,
+      "average_words": 681,
       "average_quality": 83,
-      "primary_method": "dom:semantic-rich-v1",
+      "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 5,
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 4,
         "reader:semantic-rich-v1": 5
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-31T01:29:37+00:00",
+      "latest_published": "2026-10-31T10:28:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-31T08:19:41.213274+00:00",
+      "last_scrape": "2026-10-31T10:38:54.308442+00:00",
       "last_error": ""
     },
     {
@@ -1747,6 +1748,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e4c002ed2a2a0978",
+      "source": "National Post",
+      "title": "Military investigating after two troubled helicopter fleets briefly grounded",
+      "url": "https://nationalpost.com/news/canada/military-investigating-after-two-troubled-helicopter-fleets-briefly-grounded",
+      "published": "2026-10-31T10:28:48+00:00",
+      "content_status": "full",
+      "word_count": 1240,
+      "quality_score": 90,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 10/100",
       "story_id": "af3b9d8d99df582b",
       "source": "National Post",
@@ -1757,21 +1773,6 @@
       "word_count": 300,
       "quality_score": 72,
       "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ca338fb122e40d57",
-      "source": "National Post",
-      "title": "Scott Stinson: Ontario deficit to soar to $16.9B as Trump’s tariffs strangle growth",
-      "url": "https://nationalpost.com/news/canada/scott-stinson-ontario-deficit-to-soar-to-16-9b-as-trumps-tariffs-strangle-growth",
-      "published": "2026-10-29T18:26:05+00:00",
-      "content_status": "full",
-      "word_count": 954,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -4496,6 +4497,35 @@
       ]
     },
     {
+      "id": "e4c002ed2a2a0978",
+      "source": "National Post",
+      "title": "Military investigating after two troubled helicopter fleets briefly grounded",
+      "url": "https://nationalpost.com/news/canada/military-investigating-after-two-troubled-helicopter-fleets-briefly-grounded",
+      "published": "2026-10-31T10:28:48+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1240,
+      "paragraph_count": 40,
+      "inline_image_count": 0,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8c84ac9277f4babe",
       "source": "National Post",
       "title": "Canadian grocery billionaire fears food inflation is coming back",
@@ -4745,35 +4775,6 @@
       "quality_score": 72,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ca338fb122e40d57",
-      "source": "National Post",
-      "title": "Scott Stinson: Ontario deficit to soar to $16.9B as Trump’s tariffs strangle growth",
-      "url": "https://nationalpost.com/news/canada/scott-stinson-ontario-deficit-to-soar-to-16-9b-as-trumps-tariffs-strangle-growth",
-      "published": "2026-10-29T18:26:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 954,
-      "paragraph_count": 15,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
