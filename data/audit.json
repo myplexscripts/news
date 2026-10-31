@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-31T16:31:02.915284+00:00",
-  "generated_at_london": "2026-10-31T12:31:02.915284-04:00",
-  "news_generated_at": "2026-10-31T16:25:06.687330+00:00",
+  "generated_at": "2026-10-31T16:41:06.055701+00:00",
+  "generated_at_london": "2026-10-31T12:41:06.055701-04:00",
+  "news_generated_at": "2026-10-31T16:39:48.961063+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 682,
+    "archive_story_count": 683,
     "source_count": 28,
     "audited_story_count": 112,
     "pass_story_count": 106,
@@ -14,9 +14,9 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 9,
-    "info_issue_count": 89,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "info_issue_count": 88,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -176,6 +176,32 @@
       "tracked": 30,
       "last_scrape": "2026-10-31T15:50:55.856937+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 675,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-31T15:58:56+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-31T16:06:48.790170+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -430,19 +456,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 279,
-      "average_quality": 75,
+      "average_words": 258,
+      "average_quality": 73,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 8,
-      "latest_published": "2026-10-31T15:37:07.671000+00:00",
+      "info_issues": 7,
+      "latest_published": "2026-10-31T16:27:56.489000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-31T15:41:08.752663+00:00",
+      "last_scrape": "2026-10-31T16:35:38.729302+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +707,6 @@
       "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-10-28T04:14:25.136621+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 675,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-31T15:58:56+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-31T16:06:48.790170+00:00",
       "last_error": ""
     },
     {
@@ -1155,21 +1155,6 @@
       "content_status": "full",
       "word_count": 417,
       "quality_score": 83,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "5cf810af852124ea",
-      "source": "CTV News London",
-      "title": "London man sentenced to four years in prison for deadly 2020 crash",
-      "url": "https://www.ctvnews.ca/london/article/london-man-sentenced-to-four-years-in-prison-for-deadly-2020-crash",
-      "published": "2026-10-30T21:37:26.741000+00:00",
-      "content_status": "full",
-      "word_count": 402,
-      "quality_score": 85,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2284,6 +2269,28 @@
       "issues": []
     },
     {
+      "id": "f027c9a7a380ab4c",
+      "source": "CTV News London",
+      "title": "Canada’s biggest party cities according to Uber; see where London, Ont. ranks",
+      "url": "https://www.ctvnews.ca/london/article/canadas-biggest-party-cities-according-to-uber-see-where-london-ont-ranks",
+      "published": "2026-10-31T16:27:56.489000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 195,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 35,
+      "issues": []
+    },
+    {
       "id": "fec5e37ad8660050",
       "source": "CTV News London",
       "title": "Sunny skies on Halloween: Here’s your trick-or-treating forecast",
@@ -2520,35 +2527,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "5cf810af852124ea",
-      "source": "CTV News London",
-      "title": "London man sentenced to four years in prison for deadly 2020 crash",
-      "url": "https://www.ctvnews.ca/london/article/london-man-sentenced-to-four-years-in-prison-for-deadly-2020-crash",
-      "published": "2026-10-30T21:37:26.741000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 402,
-      "paragraph_count": 16,
-      "inline_image_count": 2,
-      "quality_score": 85,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
