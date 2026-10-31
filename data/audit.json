@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-31T12:05:32.970933+00:00",
-  "generated_at_london": "2026-10-31T08:05:32.970933-04:00",
-  "news_generated_at": "2026-10-31T11:59:48.257604+00:00",
+  "generated_at": "2026-10-31T12:17:35.360029+00:00",
+  "generated_at_london": "2026-10-31T08:17:35.360029-04:00",
+  "news_generated_at": "2026-10-31T12:15:32.675860+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 675,
+    "archive_story_count": 676,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 105,
@@ -223,7 +223,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -642,20 +642,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 695,
-      "average_quality": 84,
+      "average_words": 715,
+      "average_quality": 85,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "dom:semantic-rich-v1": 5,
-        "reader:semantic-rich-v1": 5
+        "reader:semantic-rich-v1": 4
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-10-31T10:28:48+00:00",
+      "latest_published": "2026-10-31T12:11:27+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-31T10:38:54.308442+00:00",
+      "last_scrape": "2026-10-31T12:13:01.893209+00:00",
       "last_error": ""
     },
     {
@@ -1702,6 +1703,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2173be68c7126082",
+      "source": "National Post",
+      "title": "Daylight saving time ends Sunday, but these parts of Canada won’t change their clocks",
+      "url": "https://nationalpost.com/news/canada/daylight-saving-time-canada",
+      "published": "2026-10-31T12:11:27+00:00",
+      "content_status": "full",
+      "word_count": 707,
+      "quality_score": 90,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
       "story_id": "81b77b86de452d4b",
       "source": "National Post",
@@ -1712,21 +1728,6 @@
       "word_count": 1231,
       "quality_score": 94,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "452a341a4084a5e0",
-      "source": "National Post",
-      "title": "Labour unions set up 'war room' to fight Carney's Bill C-39",
-      "url": "https://nationalpost.com/news/labour-unions-set-up-war-room-to-fight-carneys-bill-c-39",
-      "published": "2026-10-29T19:10:28+00:00",
-      "content_status": "full",
-      "word_count": 508,
-      "quality_score": 72,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -4496,6 +4497,35 @@
       ]
     },
     {
+      "id": "2173be68c7126082",
+      "source": "National Post",
+      "title": "Daylight saving time ends Sunday, but these parts of Canada won’t change their clocks",
+      "url": "https://nationalpost.com/news/canada/daylight-saving-time-canada",
+      "published": "2026-10-31T12:11:27+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 707,
+      "paragraph_count": 25,
+      "inline_image_count": 0,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e4c002ed2a2a0978",
       "source": "National Post",
       "title": "Military investigating after two troubled helicopter fleets briefly grounded",
@@ -4743,35 +4773,6 @@
       "paragraph_count": 12,
       "inline_image_count": 0,
       "quality_score": 74,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "452a341a4084a5e0",
-      "source": "National Post",
-      "title": "Labour unions set up 'war room' to fight Carney's Bill C-39",
-      "url": "https://nationalpost.com/news/labour-unions-set-up-war-room-to-fight-carneys-bill-c-39",
-      "published": "2026-10-29T19:10:28+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 508,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 72,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
