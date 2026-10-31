@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-31T11:20:09.219569+00:00",
-  "generated_at_london": "2026-10-31T07:20:09.219569-04:00",
-  "news_generated_at": "2026-10-31T11:13:06.380440+00:00",
+  "generated_at": "2026-10-31T11:30:17.608026+00:00",
+  "generated_at_london": "2026-10-31T07:30:17.608026-04:00",
+  "news_generated_at": "2026-10-31T11:28:41.794654+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 677,
+    "archive_story_count": 678,
     "source_count": 28,
     "audited_story_count": 111,
-    "pass_story_count": 105,
-    "review_story_count": 4,
+    "pass_story_count": 104,
+    "review_story_count": 5,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 9,
+    "warning_issue_count": 11,
     "info_issue_count": 89,
     "healthy_source_count": 12,
     "review_source_count": 5,
@@ -180,28 +180,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 669,
-      "average_quality": 96,
+      "average_words": 654,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-10-31T10:00:16+00:00",
-      "found_this_run": 0,
+      "found_this_run": 9,
       "tracked": 30,
-      "last_scrape": "2026-10-31T10:24:20.264042+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-10-31T11:26:33.726602+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -902,6 +903,36 @@
       "word_count": 4566,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "9b48257ac3fed2cf",
+      "source": "Toronto Star",
+      "title": "With a labour board ruling expected soon, Ontario teacher talks set for November",
+      "url": "https://www.thestar.com/news/ontario/ontario-teacher-unions-and-government-to-start-bargaining-in-november/article_aa976cc5-01aa-47b2-ab06-ebf772410825.html",
+      "published": "2026-10-31T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 198,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "9b48257ac3fed2cf",
+      "source": "Toronto Star",
+      "title": "With a labour board ruling expected soon, Ontario teacher talks set for November",
+      "url": "https://www.thestar.com/news/ontario/ontario-teacher-unions-and-government-to-start-bargaining-in-november/article_aa976cc5-01aa-47b2-ab06-ebf772410825.html",
+      "published": "2026-10-31T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 198,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2138,21 +2169,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5c25ac59a7d8ef7a",
-      "source": "Toronto Star",
-      "title": "Popular children's compression swing recalled due to fall hazard",
-      "url": "https://www.thestar.com/news/popular-children-s-compression-swing-recalled-due-to-fall-hazard/article_1ae2a179-7483-40ce-ba81-e5046259d227.html",
-      "published": "2026-10-30T19:30:00+00:00",
-      "content_status": "full",
-      "word_count": 348,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e329137d1be3fc16",
       "source": "Toronto Star",
       "title": "University of Guelph scientist leads project to recover butterfly species in Ontario",
@@ -2177,6 +2193,21 @@
       "word_count": 910,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "9b48257ac3fed2cf",
+      "source": "Toronto Star",
+      "title": "With a labour board ruling expected soon, Ontario teacher talks set for November",
+      "url": "https://www.thestar.com/news/ontario/ontario-teacher-unions-and-government-to-start-bargaining-in-november/article_aa976cc5-01aa-47b2-ab06-ebf772410825.html",
+      "published": "2026-10-31T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 198,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4902,6 +4933,47 @@
       ]
     },
     {
+      "id": "9b48257ac3fed2cf",
+      "source": "Toronto Star",
+      "title": "With a labour board ruling expected soon, Ontario teacher talks set for November",
+      "url": "https://www.thestar.com/news/ontario/ontario-teacher-unions-and-government-to-start-bargaining-in-november/article_aa976cc5-01aa-47b2-ab06-ebf772410825.html",
+      "published": "2026-10-31T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 198,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "aed5565a16d6bfa6",
       "source": "Toronto Star",
       "title": "Anand says she called out Russian counterpart invited by U.S. to G20 ministerial",
@@ -5031,35 +5103,6 @@
       "content_status": "full",
       "word_count": 745,
       "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5c25ac59a7d8ef7a",
-      "source": "Toronto Star",
-      "title": "Popular children's compression swing recalled due to fall hazard",
-      "url": "https://www.thestar.com/news/popular-children-s-compression-swing-recalled-due-to-fall-hazard/article_1ae2a179-7483-40ce-ba81-e5046259d227.html",
-      "published": "2026-10-30T19:30:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 348,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
