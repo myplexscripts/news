@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-31T11:04:23.866149+00:00",
-  "generated_at_london": "2026-10-31T07:04:23.866149-04:00",
-  "news_generated_at": "2026-10-31T10:57:31.808732+00:00",
+  "generated_at": "2026-10-31T11:15:08.784610+00:00",
+  "generated_at_london": "2026-10-31T07:15:08.784610-04:00",
+  "news_generated_at": "2026-10-31T11:13:06.380440+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 676,
+    "archive_story_count": 677,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 105,
@@ -15,8 +15,8 @@
     "critical_issue_count": 2,
     "warning_issue_count": 9,
     "info_issue_count": 89,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -162,20 +162,47 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 1193,
+      "average_words": 1230,
       "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 3,
       "info_issues": 11,
-      "latest_published": "2026-10-31T10:10:00+00:00",
+      "latest_published": "2026-10-31T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-31T10:24:12.816986+00:00",
+      "last_scrape": "2026-10-31T11:10:35.002149+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 669,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-31T10:00:16+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-10-31T10:24:20.264042+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -682,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-10-28T04:14:25.136621+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 669,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-31T10:00:16+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-10-31T10:24:20.264042+00:00",
       "last_error": ""
     },
     {
@@ -1898,6 +1899,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "48a5020ab411fbd5",
+      "source": "The Globe and Mail",
+      "title": "Drag artist and influencer Kyne Santos is making math cool",
+      "url": "https://www.theglobeandmail.com/canada/article-drag-artist-and-influencer-kyne-santos-is-making-math-cool",
+      "published": "2026-10-31T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 770,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0fe716bd06ab32ad",
       "source": "The Globe and Mail",
       "title": "Elections Alberta urges MLAs to hold off on approving new electoral map or postpone 2027 vote",
@@ -1981,21 +1997,6 @@
       "content_status": "full",
       "word_count": 921,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "33606bafb6cc92f4",
-      "source": "The Globe and Mail",
-      "title": "Ottawa designates B.C. port expansion as project of national interest",
-      "url": "https://www.theglobeandmail.com/business/article-port-of-vancouver-expansion-project-national-interest-october-30",
-      "published": "2026-10-30T20:48:01.355000+00:00",
-      "content_status": "full",
-      "word_count": 395,
-      "quality_score": 86,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4182,6 +4183,35 @@
       ]
     },
     {
+      "id": "48a5020ab411fbd5",
+      "source": "The Globe and Mail",
+      "title": "Drag artist and influencer Kyne Santos is making math cool",
+      "url": "https://www.theglobeandmail.com/canada/article-drag-artist-and-influencer-kyne-santos-is-making-math-cool",
+      "published": "2026-10-31T11:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 770,
+      "paragraph_count": 23,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "60d5acd7a3c3a41a",
       "source": "The Globe and Mail",
       "title": "The voodoo economics of the right",
@@ -4453,35 +4483,6 @@
       "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "33606bafb6cc92f4",
-      "source": "The Globe and Mail",
-      "title": "Ottawa designates B.C. port expansion as project of national interest",
-      "url": "https://www.theglobeandmail.com/business/article-port-of-vancouver-expansion-project-national-interest-october-30",
-      "published": "2026-10-30T20:48:01.355000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 395,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 86,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
