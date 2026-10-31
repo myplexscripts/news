@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-10-31T08:13:09.641788+00:00",
-  "generated_at_london": "2026-10-31T04:13:09.641788-04:00",
-  "news_generated_at": "2026-10-31T08:06:34.697618+00:00",
+  "generated_at": "2026-10-31T08:22:40.268151+00:00",
+  "generated_at_london": "2026-10-31T04:22:40.268151-04:00",
+  "news_generated_at": "2026-10-31T08:21:23.161184+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 675,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 106,
@@ -15,8 +15,8 @@
     "critical_issue_count": 3,
     "warning_issue_count": 4,
     "info_issue_count": 91,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -124,33 +124,6 @@
       "tracked": 30,
       "last_scrape": "2026-10-30T22:03:32.221609+00:00",
       "last_error": ""
-    },
-    {
-      "source": "National Post",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "postmedia",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 661,
-      "average_quality": 83,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 5,
-        "dom:semantic-rich-v1": 5
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-10-30T19:52:51+00:00",
-      "found_this_run": 0,
-      "tracked": 30,
-      "last_scrape": "2026-10-30T19:54:13.707792+00:00",
-      "last_error": "HTTPSConnectionPool(host='nationalpost.com', port=443): Max retries exceeded with url: /category/news/canada/ (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, ce"
     },
     {
       "source": "Toronto Star",
@@ -656,6 +629,34 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-10-29T14:56:08.027873+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "National Post",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "postmedia",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 637,
+      "average_quality": 83,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:postmedia:article:strict": 3,
+        "reader:semantic-rich-v1": 5,
+        "dom:semantic-rich-v1": 2
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-10-31T01:29:37+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-10-31T08:19:41.213274+00:00",
       "last_error": ""
     },
     {
@@ -1613,6 +1614,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "5733db1e0d9e94ba",
+      "source": "National Post",
+      "title": "Belleville cop who prevented a Jewish massacre released from the hospital and is recovering at home",
+      "url": "https://nationalpost.com/news/canada/belleville-cop-jeff-smith-released-from-hospital",
+      "published": "2026-10-30T17:19:35+00:00",
+      "content_status": "full",
+      "word_count": 401,
+      "quality_score": 90,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "10a56f9583bba0ae",
       "source": "National Post",
       "title": "Belleville cop who prevented a Jewish massacre released from the hospital and is recovering at home",
@@ -1622,6 +1638,21 @@
       "word_count": 364,
       "quality_score": 76,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "8c84ac9277f4babe",
+      "source": "National Post",
+      "title": "Canadian grocery billionaire fears food inflation is coming back",
+      "url": "https://nationalpost.com/news/canada/canadian-grocery-billionaire-fears-food-inflation-is-coming-back",
+      "published": "2026-10-31T01:29:37+00:00",
+      "content_status": "full",
+      "word_count": 720,
+      "quality_score": 90,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -1643,21 +1674,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3eaab763fc83a0f3",
-      "source": "National Post",
-      "title": "European Commission head revives 'associate membership' for Canada on eve of meeting",
-      "url": "https://nationalpost.com/news/european-commission-head-revives-associate-membership-for-canada-on-eve-of-meeting",
-      "published": "2026-10-29T18:00:49+00:00",
-      "content_status": "full",
-      "word_count": 747,
-      "quality_score": 88,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "452a341a4084a5e0",
       "source": "National Post",
       "title": "Labour unions set up 'war room' to fight Carney's Bill C-39",
@@ -1667,21 +1683,6 @@
       "word_count": 478,
       "quality_score": 72,
       "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "065655564cc11a92",
-      "source": "National Post",
-      "title": "Loss of Hockey Night in Canada a major blow to tradition, say majority of fans: poll",
-      "url": "https://nationalpost.com/news/canada/hockey-night-in-canada-angus-reid-poll",
-      "published": "2026-10-29T17:39:58+00:00",
-      "content_status": "full",
-      "word_count": 818,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1718,15 +1719,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "278276ea1bdae0bd",
+      "story_id": "ca338fb122e40d57",
       "source": "National Post",
-      "title": "Nearly three-quarters of Canadians support PM in seeking closer ties with Europe",
-      "url": "https://nationalpost.com/news/canada/majority-canadians-support-closer-ties-europe",
-      "published": "2026-10-29T17:14:59+00:00",
+      "title": "Scott Stinson: Ontario deficit to soar to $16.9B as Trump’s tariffs strangle growth",
+      "url": "https://nationalpost.com/news/canada/scott-stinson-ontario-deficit-to-soar-to-16-9b-as-trumps-tariffs-strangle-growth",
+      "published": "2026-10-29T18:26:05+00:00",
       "content_status": "full",
-      "word_count": 708,
-      "quality_score": 88,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 918,
+      "quality_score": 90,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4448,6 +4449,35 @@
       ]
     },
     {
+      "id": "8c84ac9277f4babe",
+      "source": "National Post",
+      "title": "Canadian grocery billionaire fears food inflation is coming back",
+      "url": "https://nationalpost.com/news/canada/canadian-grocery-billionaire-fears-food-inflation-is-coming-back",
+      "published": "2026-10-31T01:29:37+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 720,
+      "paragraph_count": 17,
+      "inline_image_count": 0,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "af3b9d8d99df582b",
       "source": "National Post",
       "title": "Montreal synagogue likely hit with pellet gun bullets, says rabbi: 'Our third incident in less than two years'",
@@ -4473,6 +4503,35 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 10/100"
+        }
+      ]
+    },
+    {
+      "id": "5733db1e0d9e94ba",
+      "source": "National Post",
+      "title": "Belleville cop who prevented a Jewish massacre released from the hospital and is recovering at home",
+      "url": "https://nationalpost.com/news/canada/belleville-cop-jeff-smith-released-from-hospital",
+      "published": "2026-10-30T17:19:35+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 401,
+      "paragraph_count": 9,
+      "inline_image_count": 3,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
         }
       ]
     },
@@ -4651,81 +4710,23 @@
       ]
     },
     {
-      "id": "3eaab763fc83a0f3",
+      "id": "ca338fb122e40d57",
       "source": "National Post",
-      "title": "European Commission head revives 'associate membership' for Canada on eve of meeting",
-      "url": "https://nationalpost.com/news/european-commission-head-revives-associate-membership-for-canada-on-eve-of-meeting",
-      "published": "2026-10-29T18:00:49+00:00",
+      "title": "Scott Stinson: Ontario deficit to soar to $16.9B as Trump’s tariffs strangle growth",
+      "url": "https://nationalpost.com/news/canada/scott-stinson-ontario-deficit-to-soar-to-16-9b-as-trumps-tariffs-strangle-growth",
+      "published": "2026-10-29T18:26:05+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 747,
-      "paragraph_count": 19,
+      "word_count": 918,
+      "paragraph_count": 12,
       "inline_image_count": 0,
-      "quality_score": 88,
+      "quality_score": 90,
       "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "065655564cc11a92",
-      "source": "National Post",
-      "title": "Loss of Hockey Night in Canada a major blow to tradition, say majority of fans: poll",
-      "url": "https://nationalpost.com/news/canada/hockey-night-in-canada-angus-reid-poll",
-      "published": "2026-10-29T17:39:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 818,
-      "paragraph_count": 18,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "278276ea1bdae0bd",
-      "source": "National Post",
-      "title": "Nearly three-quarters of Canadians support PM in seeking closer ties with Europe",
-      "url": "https://nationalpost.com/news/canada/majority-canadians-support-closer-ties-europe",
-      "published": "2026-10-29T17:14:59+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 708,
-      "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 88,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
+      "extraction_method": "dom:postmedia:article:strict",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
