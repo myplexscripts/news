@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-01T10:09:36.926995+00:00",
-  "generated_at_london": "2026-11-01T05:09:36.926995-05:00",
-  "news_generated_at": "2026-11-01T10:03:08.286124+00:00",
+  "generated_at": "2026-11-01T10:20:06.149509+00:00",
+  "generated_at_london": "2026-11-01T05:20:06.149509-05:00",
+  "news_generated_at": "2026-11-01T10:18:36.245740+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 667,
+    "archive_story_count": 671,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 106,
-    "review_story_count": 4,
+    "pass_story_count": 105,
+    "review_story_count": 5,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 9,
-    "info_issue_count": 87,
+    "warning_issue_count": 11,
+    "info_issue_count": 89,
     "healthy_source_count": 12,
     "review_source_count": 5,
     "error_source_count": 2,
@@ -110,7 +110,7 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 490,
+      "average_words": 486,
       "average_quality": 80,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -118,11 +118,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 13,
-      "latest_published": "2026-10-31T09:00:00+00:00",
-      "found_this_run": 2,
-      "tracked": 26,
-      "last_scrape": "2026-10-31T09:12:48.279783+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-01T10:00:00+00:00",
+      "found_this_run": 3,
+      "tracked": 28,
+      "last_scrape": "2026-11-01T10:16:37.029969+00:00",
       "last_error": ""
     },
     {
@@ -162,47 +162,48 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 980,
-      "average_quality": 94,
+      "average_words": 970,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "dom:globe:article#content-gate": 1
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 3,
       "info_issues": 12,
-      "latest_published": "2026-11-01T00:40:41.112000+00:00",
+      "latest_published": "2026-11-01T10:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-01T00:55:36.806036+00:00",
+      "last_scrape": "2026-11-01T10:16:38.506978+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 611,
-      "average_quality": 96,
+      "average_words": 557,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-10-31T18:28:14+00:00",
-      "found_this_run": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-01T04:00:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-10-31T18:42:41.281409+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-01T10:16:42.451855+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -919,6 +920,36 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "46a6a33106d2e900",
+      "source": "Toronto Star",
+      "title": "$10,000 for rooftop solar? No, thanks. Why homeowners are rejecting an Ontario rebate that ‘doesn’t make any sense’",
+      "url": "https://www.thestar.com/news/ontario/10-000-for-rooftop-solar-no-thanks-why-homeowners-are-rejecting-an-ontario-rebate-that-doesn-t-make-any-sense/article_3ac426e6-0fe6-4cda-ae34-133fba32a0ba.html",
+      "published": "2026-11-01T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "46a6a33106d2e900",
+      "source": "Toronto Star",
+      "title": "$10,000 for rooftop solar? No, thanks. Why homeowners are rejecting an Ontario rebate that ‘doesn’t make any sense’",
+      "url": "https://www.thestar.com/news/ontario/10-000-for-rooftop-solar-no-thanks-why-homeowners-are-rejecting-an-ontario-rebate-that-doesn-t-make-any-sense/article_3ac426e6-0fe6-4cda-ae34-133fba32a0ba.html",
+      "published": "2026-11-01T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -932,21 +963,6 @@
       "word_count": 792,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "54070e5a9de89c9d",
-      "source": "CTV News Canada",
-      "title": "A timeline of key events in the Regis Korchinski-Paquet case",
-      "url": "https://www.ctvnews.ca/canada/article/a-timeline-of-key-events-in-the-regis-korchinski-paquet-case",
-      "published": "2026-10-29T17:53:51.093000+00:00",
-      "content_status": "full",
-      "word_count": 624,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -1070,21 +1086,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e2511295e7958d03",
-      "source": "CTV News Canada",
-      "title": "Shoppers scoop up popular costumes as Halloween nears",
-      "url": "https://www.ctvnews.ca/canada/article/shoppers-scoop-up-popular-costumes-as-halloween-nears",
-      "published": "2026-10-28T23:40:24.539000+00:00",
-      "content_status": "full",
-      "word_count": 435,
-      "quality_score": 86,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1126,6 +1127,51 @@
       "content_status": "full",
       "word_count": 726,
       "quality_score": 91,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "1df309f411f4c85e",
+      "source": "CTV News Canada",
+      "title": "Union says over half of P.E.I.’s Parks Canada workforce in limbo over potential job losses",
+      "url": "https://www.ctvnews.ca/canada/article/union-says-over-half-of-peis-parks-canada-workforce-in-limbo-over-potential-job-losses",
+      "published": "2026-11-01T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 493,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1df309f411f4c85e",
+      "source": "CTV News Canada",
+      "title": "Union says over half of P.E.I.’s Parks Canada workforce in limbo over potential job losses",
+      "url": "https://www.ctvnews.ca/canada/article/union-says-over-half-of-peis-parks-canada-workforce-in-limbo-over-potential-job-losses",
+      "published": "2026-11-01T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 493,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "747d2524cc0da0a8",
+      "source": "CTV News Canada",
+      "title": "‘Definitely not fun’: Manitoba farmer wants better mitigation measures, after losing roughly 500 acres to flooding",
+      "url": "https://www.ctvnews.ca/canada/article/definitely-not-fun-manitoba-farmer-wants-better-mitigation-measures-after-losing-roughly-500-acres-to-flooding",
+      "published": "2026-11-01T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 527,
+      "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1883,6 +1929,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "98b4cc6357af726f",
+      "source": "The Globe and Mail",
+      "title": "Can a car cut in front of me at a red light to make a right turn?",
+      "url": "https://www.theglobeandmail.com/drive/culture/article-can-a-car-cut-in-front-of-me-at-a-red-light-to-make-a-right-turn",
+      "published": "2026-11-01T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 671,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "48a5020ab411fbd5",
       "source": "The Globe and Mail",
       "title": "Drag artist and influencer Kyne Santos is making math cool",
@@ -1890,21 +1951,6 @@
       "published": "2026-10-31T11:00:00+00:00",
       "content_status": "full",
       "word_count": 799,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0fe716bd06ab32ad",
-      "source": "The Globe and Mail",
-      "title": "Elections Alberta urges MLAs to hold off on approving new electoral map or postpone 2027 vote",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-elections-alberta-urges-mlas-to-hold-off-on-approving-new-electoral",
-      "published": "2026-10-31T02:59:44.858000+00:00",
-      "content_status": "full",
-      "word_count": 770,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2027,6 +2073,21 @@
       "word_count": 695,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "46a6a33106d2e900",
+      "source": "Toronto Star",
+      "title": "$10,000 for rooftop solar? No, thanks. Why homeowners are rejecting an Ontario rebate that ‘doesn’t make any sense’",
+      "url": "https://www.thestar.com/news/ontario/10-000-for-rooftop-solar-no-thanks-why-homeowners-are-rejecting-an-ontario-rebate-that-doesn-t-make-any-sense/article_3ac426e6-0fe6-4cda-ae34-133fba32a0ba.html",
+      "published": "2026-11-01T04:00:00+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3884,6 +3945,70 @@
       ]
     },
     {
+      "id": "747d2524cc0da0a8",
+      "source": "CTV News Canada",
+      "title": "‘Definitely not fun’: Manitoba farmer wants better mitigation measures, after losing roughly 500 acres to flooding",
+      "url": "https://www.ctvnews.ca/canada/article/definitely-not-fun-manitoba-farmer-wants-better-mitigation-measures-after-losing-roughly-500-acres-to-flooding",
+      "published": "2026-11-01T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 527,
+      "paragraph_count": 23,
+      "inline_image_count": 1,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "1df309f411f4c85e",
+      "source": "CTV News Canada",
+      "title": "Union says over half of P.E.I.’s Parks Canada workforce in limbo over potential job losses",
+      "url": "https://www.ctvnews.ca/canada/article/union-says-over-half-of-peis-parks-canada-workforce-in-limbo-over-potential-job-losses",
+      "published": "2026-11-01T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 493,
+      "paragraph_count": 17,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "36ea8668c67421cd",
       "source": "CTV News Canada",
       "title": "Nova Scotia photographer’s new book explores how Canada and Europe honour Canadian war dead",
@@ -4140,53 +4265,24 @@
       ]
     },
     {
-      "id": "54070e5a9de89c9d",
-      "source": "CTV News Canada",
-      "title": "A timeline of key events in the Regis Korchinski-Paquet case",
-      "url": "https://www.ctvnews.ca/canada/article/a-timeline-of-key-events-in-the-regis-korchinski-paquet-case",
-      "published": "2026-10-29T17:53:51.093000+00:00",
+      "id": "98b4cc6357af726f",
+      "source": "The Globe and Mail",
+      "title": "Can a car cut in front of me at a red light to make a right turn?",
+      "url": "https://www.theglobeandmail.com/drive/culture/article-can-a-car-cut-in-front-of-me-at-a-red-light-to-make-a-right-turn",
+      "published": "2026-11-01T10:00:00+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 624,
-      "paragraph_count": 22,
+      "word_count": 671,
+      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 81,
       "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e2511295e7958d03",
-      "source": "CTV News Canada",
-      "title": "Shoppers scoop up popular costumes as Halloween nears",
-      "url": "https://www.ctvnews.ca/canada/article/shoppers-scoop-up-popular-costumes-as-halloween-nears",
-      "published": "2026-10-28T23:40:24.539000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 435,
-      "paragraph_count": 17,
-      "inline_image_count": 2,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
         {
@@ -4489,35 +4585,6 @@
       ]
     },
     {
-      "id": "0fe716bd06ab32ad",
-      "source": "The Globe and Mail",
-      "title": "Elections Alberta urges MLAs to hold off on approving new electoral map or postpone 2027 vote",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-elections-alberta-urges-mlas-to-hold-off-on-approving-new-electoral",
-      "published": "2026-10-31T02:59:44.858000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 770,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
       "id": "cdffb682576e0b9f",
       "source": "National Post",
       "title": "Bridle Path home invasion suspect, 23, identified",
@@ -4808,6 +4875,47 @@
       ]
     },
     {
+      "id": "46a6a33106d2e900",
+      "source": "Toronto Star",
+      "title": "$10,000 for rooftop solar? No, thanks. Why homeowners are rejecting an Ontario rebate that ‘doesn’t make any sense’",
+      "url": "https://www.thestar.com/news/ontario/10-000-for-rooftop-solar-no-thanks-why-homeowners-are-rejecting-an-ontario-rebate-that-doesn-t-make-any-sense/article_3ac426e6-0fe6-4cda-ae34-133fba32a0ba.html",
+      "published": "2026-11-01T04:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 215,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b8efe674634ac5c0",
       "source": "Toronto Star",
       "title": "Four dead, two injured after single-vehicle crash in Puslinch, Ont.",
@@ -5073,28 +5181,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "e329137d1be3fc16",
-      "source": "Toronto Star",
-      "title": "University of Guelph scientist leads project to recover butterfly species in Ontario",
-      "url": "https://www.thestar.com/news/ontario/university-of-guelph-scientist-leads-project-to-recover-butterfly-species-in-ontario/article_eb42f34d-cace-5d84-9801-48e594436fd6.html",
-      "published": "2026-10-31T10:00:12+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 759,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 35,
-      "issues": []
     },
     {
       "id": "0be0ddab8c2f2b91",
