@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-01T23:16:10.363726+00:00",
-  "generated_at_london": "2026-11-01T18:16:10.363726-05:00",
-  "news_generated_at": "2026-11-01T23:10:16.267782+00:00",
+  "generated_at": "2026-11-01T23:27:53.267921+00:00",
+  "generated_at_london": "2026-11-01T18:27:53.267921-05:00",
+  "news_generated_at": "2026-11-01T23:26:00.476221+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 680,
+    "archive_story_count": 683,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 109,
-    "review_story_count": 2,
+    "pass_story_count": 107,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 4,
+    "warning_issue_count": 8,
     "info_issue_count": 93,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 570,
-      "average_quality": 96,
+      "average_words": 443,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-01T21:13:52+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-01T23:05:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-01T22:37:42.906613+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-01T23:23:52.603681+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -697,20 +698,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 485,
-      "average_quality": 90,
+      "average_words": 503,
+      "average_quality": 89,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 8,
         "trafilatura:fallback": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-11-01T20:58:40.332000+00:00",
+      "latest_published": "2026-11-01T23:01:47.544000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-01T21:20:34.575550+00:00",
+      "last_scrape": "2026-11-01T23:23:47.134599+00:00",
       "last_error": ""
     },
     {
@@ -830,6 +832,66 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "df7bc4a0ed02c0aa",
+      "source": "Toronto Star",
+      "title": "Paul St-Pierre Plamondon to meet with Mark Carney after Canada-EU summit tension",
+      "url": "https://www.thestar.com/news/canada/quebec/paul-st-pierre-plamondon-to-meet-with-mark-carney-after-canada-eu-summit-tension/article_62fb8ac5-9eae-5897-9c30-5a1dd7c4b9aa.html",
+      "published": "2026-11-01T22:43:00+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "df7bc4a0ed02c0aa",
+      "source": "Toronto Star",
+      "title": "Paul St-Pierre Plamondon to meet with Mark Carney after Canada-EU summit tension",
+      "url": "https://www.thestar.com/news/canada/quebec/paul-st-pierre-plamondon-to-meet-with-mark-carney-after-canada-eu-summit-tension/article_62fb8ac5-9eae-5897-9c30-5a1dd7c4b9aa.html",
+      "published": "2026-11-01T22:43:00+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "7118819cfca7b81a",
+      "source": "Toronto Star",
+      "title": "Walmart antacids recalled due to possible metal shavings",
+      "url": "https://www.thestar.com/news/canada/walmart-antacids-recalled-due-to-possible-metal-shavings/article_fd425f06-97ef-4ea2-87a7-0084d59a0264.html",
+      "published": "2026-11-01T23:05:00+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "7118819cfca7b81a",
+      "source": "Toronto Star",
+      "title": "Walmart antacids recalled due to possible metal shavings",
+      "url": "https://www.thestar.com/news/canada/walmart-antacids-recalled-due-to-possible-metal-shavings/article_fd425f06-97ef-4ea2-87a7-0084d59a0264.html",
+      "published": "2026-11-01T23:05:00+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1838,36 +1900,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "e38967bc5bab5058",
-      "source": "The Globe and Mail",
-      "title": "B.C.’s adoption of permanent daylight time could cause calendar chaos Sunday",
-      "url": "https://www.theglobeandmail.com/canada/article-bc-daylight-saving-pacific-time-confusion",
-      "published": "2026-10-31T12:19:37.407000+00:00",
-      "content_status": "full",
-      "word_count": 643,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e38967bc5bab5058",
-      "source": "The Globe and Mail",
-      "title": "B.C.’s adoption of permanent daylight time could cause calendar chaos Sunday",
-      "url": "https://www.theglobeandmail.com/canada/article-bc-daylight-saving-pacific-time-confusion",
-      "published": "2026-10-31T12:19:37.407000+00:00",
-      "content_status": "full",
-      "word_count": 643,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1955,6 +1987,36 @@
       "word_count": 878,
       "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "b582a368fca82903",
+      "source": "The Globe and Mail",
+      "title": "Next mayor of Niagara Falls calls for community consultations on Ford’s casino plan",
+      "url": "https://www.theglobeandmail.com/canada/article-niagara-falls-next-mayor-consultations-doug-ford-casino-plan",
+      "published": "2026-11-01T23:01:47.544000+00:00",
+      "content_status": "full",
+      "word_count": 830,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b582a368fca82903",
+      "source": "The Globe and Mail",
+      "title": "Next mayor of Niagara Falls calls for community consultations on Ford’s casino plan",
+      "url": "https://www.theglobeandmail.com/canada/article-niagara-falls-next-mayor-consultations-doug-ford-casino-plan",
+      "published": "2026-11-01T23:01:47.544000+00:00",
+      "content_status": "full",
+      "word_count": 830,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2051,21 +2113,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5ad279d6ccbb7a8f",
-      "source": "Toronto Star",
-      "title": "At 14, Clifford Robinson Oulton fibbed about his age to enlist. He was the youngest Canadian serviceman to sacrifice his life",
-      "url": "https://www.thestar.com/news/insight/at-14-clifford-robinson-oulton-fibbed-about-his-age-to-enlist-he-was-the-youngest-canadian-serviceman-to-sacrifice-his-life/article_b8bebfad-209d-4be9-9411-f5c2aa289138.html",
-      "published": "2026-11-01T12:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1198,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "3b7de40f5e3e3e26",
       "source": "Toronto Star",
       "title": "Brian Mulroney doc takes home $25,000 prize at Windsor film fest",
@@ -2096,21 +2143,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c1c86a81b5b3bb44",
-      "source": "Toronto Star",
-      "title": "Five things to watch for in the Canadian business world in the coming week",
-      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_b836971b-cbae-5839-b3a7-34c9943132b9.html",
-      "published": "2026-11-01T15:00:10+00:00",
-      "content_status": "full",
-      "word_count": 520,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "ef4b802c8576abb1",
       "source": "Toronto Star",
       "title": "Giving fabric a new life: Quebec business tailors a new role in the circular economy",
@@ -2120,6 +2152,21 @@
       "word_count": 746,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "df7bc4a0ed02c0aa",
+      "source": "Toronto Star",
+      "title": "Paul St-Pierre Plamondon to meet with Mark Carney after Canada-EU summit tension",
+      "url": "https://www.thestar.com/news/canada/quebec/paul-st-pierre-plamondon-to-meet-with-mark-carney-after-canada-eu-summit-tension/article_62fb8ac5-9eae-5897-9c30-5a1dd7c4b9aa.html",
+      "published": "2026-11-01T22:43:00+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2165,6 +2212,21 @@
       "word_count": 329,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7118819cfca7b81a",
+      "source": "Toronto Star",
+      "title": "Walmart antacids recalled due to possible metal shavings",
+      "url": "https://www.thestar.com/news/canada/walmart-antacids-recalled-due-to-possible-metal-shavings/article_fd425f06-97ef-4ea2-87a7-0084d59a0264.html",
+      "published": "2026-11-01T23:05:00+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4222,6 +4284,41 @@
       ]
     },
     {
+      "id": "b582a368fca82903",
+      "source": "The Globe and Mail",
+      "title": "Next mayor of Niagara Falls calls for community consultations on Ford’s casino plan",
+      "url": "https://www.theglobeandmail.com/canada/article-niagara-falls-next-mayor-consultations-doug-ford-casino-plan",
+      "published": "2026-11-01T23:01:47.544000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 830,
+      "paragraph_count": 27,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b98716e4bf80cc80",
       "source": "The Globe and Mail",
       "title": "Government relations worker waffles between having fun in his 20s and saving for a home",
@@ -4480,41 +4577,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e38967bc5bab5058",
-      "source": "The Globe and Mail",
-      "title": "B.C.’s adoption of permanent daylight time could cause calendar chaos Sunday",
-      "url": "https://www.theglobeandmail.com/canada/article-bc-daylight-saving-pacific-time-confusion",
-      "published": "2026-10-31T12:19:37.407000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 643,
-      "paragraph_count": 23,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4814,6 +4876,88 @@
       ]
     },
     {
+      "id": "7118819cfca7b81a",
+      "source": "Toronto Star",
+      "title": "Walmart antacids recalled due to possible metal shavings",
+      "url": "https://www.thestar.com/news/canada/walmart-antacids-recalled-due-to-possible-metal-shavings/article_fd425f06-97ef-4ea2-87a7-0084d59a0264.html",
+      "published": "2026-11-01T23:05:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 226,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "df7bc4a0ed02c0aa",
+      "source": "Toronto Star",
+      "title": "Paul St-Pierre Plamondon to meet with Mark Carney after Canada-EU summit tension",
+      "url": "https://www.thestar.com/news/canada/quebec/paul-st-pierre-plamondon-to-meet-with-mark-carney-after-canada-eu-summit-tension/article_62fb8ac5-9eae-5897-9c30-5a1dd7c4b9aa.html",
+      "published": "2026-11-01T22:43:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 220,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3b7de40f5e3e3e26",
       "source": "Toronto Star",
       "title": "Brian Mulroney doc takes home $25,000 prize at Windsor film fest",
@@ -5031,64 +5175,6 @@
       "word_count": 315,
       "paragraph_count": 26,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c1c86a81b5b3bb44",
-      "source": "Toronto Star",
-      "title": "Five things to watch for in the Canadian business world in the coming week",
-      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_b836971b-cbae-5839-b3a7-34c9943132b9.html",
-      "published": "2026-11-01T15:00:10+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 520,
-      "paragraph_count": 33,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5ad279d6ccbb7a8f",
-      "source": "Toronto Star",
-      "title": "At 14, Clifford Robinson Oulton fibbed about his age to enlist. He was the youngest Canadian serviceman to sacrifice his life",
-      "url": "https://www.thestar.com/news/insight/at-14-clifford-robinson-oulton-fibbed-about-his-age-to-enlist-he-was-the-youngest-canadian-serviceman-to-sacrifice-his-life/article_b8bebfad-209d-4be9-9411-f5c2aa289138.html",
-      "published": "2026-11-01T12:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1198,
-      "paragraph_count": 30,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
