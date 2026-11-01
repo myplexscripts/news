@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-01T15:29:22.884805+00:00",
-  "generated_at_london": "2026-11-01T10:29:22.884805-05:00",
+  "generated_at": "2026-11-01T15:33:37.525075+00:00",
+  "generated_at_london": "2026-11-01T10:33:37.525075-05:00",
   "news_generated_at": "2026-11-01T15:28:11.258701+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -13,10 +13,10 @@
     "review_story_count": 4,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 8,
+    "warning_issue_count": 7,
     "info_issue_count": 92,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -118,11 +118,38 @@
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 15,
+      "info_issues": 16,
       "latest_published": "2026-11-01T13:37:00.828000+00:00",
       "found_this_run": 6,
       "tracked": 30,
       "last_scrape": "2026-11-01T15:11:23.395037+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 80,
+      "average_words": 198,
+      "average_quality": 63,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 8,
+        "ctv:summary-fallback": 2
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 7,
+      "latest_published": "2026-11-01T15:00:43.848000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-01T15:09:18.759659+00:00",
       "last_error": ""
     },
     {
@@ -137,11 +164,10 @@
       "pass_rate": 90,
       "usable_body_rate": 100,
       "average_words": 671,
-      "average_quality": 94,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 2,
@@ -158,20 +184,19 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 1,
+      "pass": 9,
+      "review": 0,
       "fail": 1,
-      "pass_rate": 80,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 924,
-      "average_quality": 94,
+      "average_words": 956,
+      "average_quality": 96,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
+        "reader:semantic-rich-v1": 10
       },
       "critical_issues": 1,
-      "warning_issues": 2,
+      "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-01T15:00:10+00:00",
       "found_this_run": 10,
@@ -419,33 +444,6 @@
       "found_this_run": 10,
       "tracked": 9,
       "last_scrape": "2026-10-30T22:42:04.122755+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 80,
-      "average_words": 198,
-      "average_quality": 63,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 8,
-        "ctv:summary-fallback": 2
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 8,
-      "latest_published": "2026-11-01T15:00:43.848000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-01T15:09:18.759659+00:00",
       "last_error": ""
     },
     {
@@ -834,6 +832,21 @@
     },
     {
       "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "4 consecutive images",
+      "story_id": "07695283ead27efb",
+      "source": "CTV News London",
+      "title": "‘He’s a leader’: Ben Casselman blossoms as Western Mustangs advance to OUA semifinal vs Windsor",
+      "url": "https://www.ctvnews.ca/london/article/hes-a-leader-ben-casselman-blossoms-as-western-mustangs-advance-to-oua-semifinal-vs-windsor",
+      "published": "2026-11-01T15:00:43.848000+00:00",
+      "content_status": "full",
+      "word_count": 634,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
       "detail": "9 inline images",
@@ -878,36 +891,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "c1c86a81b5b3bb44",
-      "source": "Toronto Star",
-      "title": "Five things to watch for in the Canadian business world in the coming week",
-      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_b836971b-cbae-5839-b3a7-34c9943132b9.html",
-      "published": "2026-11-01T15:00:10+00:00",
-      "content_status": "full",
-      "word_count": 197,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "13 inline images",
-      "story_id": "c1c86a81b5b3bb44",
-      "source": "Toronto Star",
-      "title": "Five things to watch for in the Canadian business world in the coming week",
-      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_b836971b-cbae-5839-b3a7-34c9943132b9.html",
-      "published": "2026-11-01T15:00:10+00:00",
-      "content_status": "full",
-      "word_count": 197,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -921,6 +904,21 @@
       "word_count": 792,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "d8f2de53e625052c",
+      "source": "CTV News Canada",
+      "title": "Canada’s trucking industry racked by non-compliance, training and safety concerns",
+      "url": "https://www.ctvnews.ca/canada/article/canadas-trucking-industry-racked-by-non-compliance-training-and-safety-concerns",
+      "published": "2026-11-01T13:37:00.828000+00:00",
+      "content_status": "full",
+      "word_count": 1468,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -1224,21 +1222,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "07695283ead27efb",
-      "source": "CTV News London",
-      "title": "‘He’s a leader’: Ben Casselman blossoms as Western Mustangs advance to OUA semifinal vs Windsor",
-      "url": "https://www.ctvnews.ca/london/article/hes-a-leader-ben-casselman-blossoms-as-western-mustangs-advance-to-oua-semifinal-vs-windsor",
-      "published": "2026-11-01T15:00:43.848000+00:00",
-      "content_status": "full",
-      "word_count": 634,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1489,8 +1472,8 @@
       "published": "2026-11-01T15:13:10+00:00",
       "content_status": "full",
       "word_count": 335,
-      "quality_score": 78,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2163,9 +2146,9 @@
       "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_b836971b-cbae-5839-b3a7-34c9943132b9.html",
       "published": "2026-11-01T15:00:10+00:00",
       "content_status": "full",
-      "word_count": 197,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
+      "word_count": 520,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2361,15 +2344,15 @@
       "title": "‘He’s a leader’: Ben Casselman blossoms as Western Mustangs advance to OUA semifinal vs Windsor",
       "url": "https://www.ctvnews.ca/london/article/hes-a-leader-ben-casselman-blossoms-as-western-mustangs-advance-to-oua-semifinal-vs-windsor",
       "published": "2026-11-01T15:00:43.848000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 88,
       "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
+      "warning_count": 1,
+      "info_count": 0,
       "content_status": "full",
       "word_count": 634,
       "paragraph_count": 13,
-      "inline_image_count": 0,
+      "inline_image_count": 4,
       "quality_score": 81,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
@@ -2377,10 +2360,10 @@
       "local_score": 61,
       "issues": [
         {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "4 consecutive images"
         }
       ]
     },
@@ -3674,9 +3657,9 @@
       "word_count": 335,
       "paragraph_count": 12,
       "inline_image_count": 1,
-      "quality_score": 78,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -3968,10 +3951,10 @@
       "url": "https://www.ctvnews.ca/canada/article/canadas-trucking-industry-racked-by-non-compliance-training-and-safety-concerns",
       "published": "2026-11-01T13:37:00.828000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 1468,
       "paragraph_count": 68,
@@ -3982,6 +3965,12 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4885,33 +4874,21 @@
       "title": "Five things to watch for in the Canadian business world in the coming week",
       "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_b836971b-cbae-5839-b3a7-34c9943132b9.html",
       "published": "2026-11-01T15:00:10+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
+      "audit_status": "pass",
+      "audit_score": 97,
       "critical_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 197,
-      "paragraph_count": 1,
-      "inline_image_count": 13,
-      "quality_score": 80,
+      "word_count": 520,
+      "paragraph_count": 33,
+      "inline_image_count": 0,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:star:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "13 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
