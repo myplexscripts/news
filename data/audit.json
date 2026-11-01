@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-01T17:36:41.227768+00:00",
-  "generated_at_london": "2026-11-01T12:36:41.227768-05:00",
-  "news_generated_at": "2026-11-01T17:31:44.340921+00:00",
+  "generated_at": "2026-11-01T17:48:47.021817+00:00",
+  "generated_at_london": "2026-11-01T12:48:47.021817-05:00",
+  "news_generated_at": "2026-11-01T17:46:53.877847+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 682,
+    "archive_story_count": 683,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 106,
-    "review_story_count": 4,
+    "pass_story_count": 105,
+    "review_story_count": 5,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 92,
     "healthy_source_count": 12,
     "review_source_count": 5,
@@ -121,7 +121,7 @@
       "warning_issues": 1,
       "info_issues": 16,
       "latest_published": "2026-11-01T16:36:04.625000+00:00",
-      "found_this_run": 7,
+      "found_this_run": 6,
       "tracked": 30,
       "last_scrape": "2026-11-01T16:59:12.555459+00:00",
       "last_error": ""
@@ -185,24 +185,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 904,
-      "average_quality": 96,
+      "average_words": 863,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-01T16:43:22+00:00",
+      "latest_published": "2026-11-01T17:01:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-01T16:59:17.026679+00:00",
+      "last_scrape": "2026-11-01T17:44:43.819175+00:00",
       "last_error": ""
     },
     {
@@ -890,6 +891,36 @@
       "word_count": 2458,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ad6163ce0be8d5cc",
+      "source": "Toronto Star",
+      "title": "4 teenagers killed, two injured in single-vehicle crash in Puslinch",
+      "url": "https://www.thestar.com/news/ontario/serious-collision-closes-watson-road-south-in-puslinch/article_ed6eb382-0b04-53f8-a17e-e291b34bf0db.html",
+      "published": "2026-11-01T17:01:00+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "ad6163ce0be8d5cc",
+      "source": "Toronto Star",
+      "title": "4 teenagers killed, two injured in single-vehicle crash in Puslinch",
+      "url": "https://www.thestar.com/news/ontario/serious-collision-closes-watson-road-south-in-puslinch/article_ed6eb382-0b04-53f8-a17e-e291b34bf0db.html",
+      "published": "2026-11-01T17:01:00+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2081,6 +2112,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "ad6163ce0be8d5cc",
+      "source": "Toronto Star",
+      "title": "4 teenagers killed, two injured in single-vehicle crash in Puslinch",
+      "url": "https://www.thestar.com/news/ontario/serious-collision-closes-watson-road-south-in-puslinch/article_ed6eb382-0b04-53f8-a17e-e291b34bf0db.html",
+      "published": "2026-11-01T17:01:00+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "09f14195e28ecb3b",
       "source": "Toronto Star",
       "title": "4 young people dead, 2 injured after car crashes into ravine near Guelph, Ont.",
@@ -2118,21 +2164,6 @@
       "published": "2026-11-01T04:00:00+00:00",
       "content_status": "full",
       "word_count": 1273,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3a17742d5eb4d273",
-      "source": "Toronto Star",
-      "title": "Family launches renewed search for man who went missing on Quebec ski trip",
-      "url": "https://www.thestar.com/news/canada/quebec/family-launches-renewed-search-for-man-who-went-missing-on-quebec-ski-trip/article_66d1c31e-5c19-555a-b30b-4c959aa0ba92.html",
-      "published": "2026-10-31T15:58:56+00:00",
-      "content_status": "full",
-      "word_count": 649,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4870,6 +4901,47 @@
       ]
     },
     {
+      "id": "ad6163ce0be8d5cc",
+      "source": "Toronto Star",
+      "title": "4 teenagers killed, two injured in single-vehicle crash in Puslinch",
+      "url": "https://www.thestar.com/news/ontario/serious-collision-closes-watson-road-south-in-puslinch/article_ed6eb382-0b04-53f8-a17e-e291b34bf0db.html",
+      "published": "2026-11-01T17:01:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 235,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "09f14195e28ecb3b",
       "source": "Toronto Star",
       "title": "4 young people dead, 2 injured after car crashes into ravine near Guelph, Ont.",
@@ -5128,35 +5200,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "29 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3a17742d5eb4d273",
-      "source": "Toronto Star",
-      "title": "Family launches renewed search for man who went missing on Quebec ski trip",
-      "url": "https://www.thestar.com/news/canada/quebec/family-launches-renewed-search-for-man-who-went-missing-on-quebec-ski-trip/article_66d1c31e-5c19-555a-b30b-4c959aa0ba92.html",
-      "published": "2026-10-31T15:58:56+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 649,
-      "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
