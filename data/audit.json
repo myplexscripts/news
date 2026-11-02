@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T16:36:09.005340+00:00",
-  "generated_at_london": "2026-11-02T11:36:09.005340-05:00",
-  "news_generated_at": "2026-11-02T16:29:25.686278+00:00",
+  "generated_at": "2026-11-02T16:46:35.621365+00:00",
+  "generated_at_london": "2026-11-02T11:46:35.621365-05:00",
+  "news_generated_at": "2026-11-02T16:44:49.308735+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 676,
+    "archive_story_count": 677,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 102,
-    "review_story_count": 1,
+    "pass_story_count": 101,
+    "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 2,
+    "warning_issue_count": 4,
     "info_issue_count": 84,
-    "healthy_source_count": 15,
-    "review_source_count": 1,
+    "healthy_source_count": 14,
+    "review_source_count": 2,
     "error_source_count": 2,
     "waiting_source_count": 10
   },
@@ -98,6 +98,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-02T16:00:55.452114+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1153,
+      "average_quality": 95,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-02T15:16:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-02T16:42:54.136496+00:00",
       "last_error": ""
     },
     {
@@ -684,32 +711,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1166,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-02T14:52:31+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-02T15:25:23.155481+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -796,6 +797,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "05ab29749ff34c62",
+      "source": "Toronto Star",
+      "title": "Investigators recover cockpit recorder from Ontario air ambulance that crashed off Massachusetts coast",
+      "url": "https://www.thestar.com/news/canada/investigators-recover-cockpit-recorder-from-ontario-air-ambulance-that-crashed-off-massachusetts-coast/article_89cd6f3e-4128-4ed2-9314-9c05501a76a5.html",
+      "published": "2026-11-02T15:16:00+00:00",
+      "content_status": "full",
+      "word_count": 255,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "05ab29749ff34c62",
+      "source": "Toronto Star",
+      "title": "Investigators recover cockpit recorder from Ontario air ambulance that crashed off Massachusetts coast",
+      "url": "https://www.thestar.com/news/canada/investigators-recover-cockpit-recorder-from-ontario-air-ambulance-that-crashed-off-massachusetts-coast/article_89cd6f3e-4128-4ed2-9314-9c05501a76a5.html",
+      "published": "2026-11-02T15:16:00+00:00",
+      "content_status": "full",
+      "word_count": 255,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1882,21 +1913,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7c6801751bcfd889",
-      "source": "Toronto Star",
-      "title": "Brault-Guillard helps Supra du Quebec past Cavalry 2-1; Atletico Ottawa, Forge draw",
-      "url": "https://www.thestar.com/sports/soccer/brault-guillard-helps-supra-du-quebec-past-cavalry-2-1-atletico-ottawa-forge-draw/article_583430de-6198-5fe4-978b-f8b38f564022.html",
-      "published": "2026-11-01T23:45:16+00:00",
-      "content_status": "full",
-      "word_count": 384,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "3b5b9d850a3f7163",
       "source": "Toronto Star",
       "title": "Carney’s government tilts policy toward business as critics question who benefits",
@@ -1906,6 +1922,21 @@
       "word_count": 1983,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "05ab29749ff34c62",
+      "source": "Toronto Star",
+      "title": "Investigators recover cockpit recorder from Ontario air ambulance that crashed off Massachusetts coast",
+      "url": "https://www.thestar.com/news/canada/investigators-recover-cockpit-recorder-from-ontario-air-ambulance-that-crashed-off-massachusetts-coast/article_89cd6f3e-4128-4ed2-9314-9c05501a76a5.html",
+      "published": "2026-11-02T15:16:00+00:00",
+      "content_status": "full",
+      "word_count": 255,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4395,6 +4426,47 @@
       ]
     },
     {
+      "id": "05ab29749ff34c62",
+      "source": "Toronto Star",
+      "title": "Investigators recover cockpit recorder from Ontario air ambulance that crashed off Massachusetts coast",
+      "url": "https://www.thestar.com/news/canada/investigators-recover-cockpit-recorder-from-ontario-air-ambulance-that-crashed-off-massachusetts-coast/article_89cd6f3e-4128-4ed2-9314-9c05501a76a5.html",
+      "published": "2026-11-02T15:16:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 255,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "81c347cd9a351b16",
       "source": "Toronto Star",
       "title": "One Canadian among 69 dead in last week's Spanish train crash",
@@ -4640,35 +4712,6 @@
       "content_status": "full",
       "word_count": 1628,
       "paragraph_count": 73,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7c6801751bcfd889",
-      "source": "Toronto Star",
-      "title": "Brault-Guillard helps Supra du Quebec past Cavalry 2-1; Atletico Ottawa, Forge draw",
-      "url": "https://www.thestar.com/sports/soccer/brault-guillard-helps-supra-du-quebec-past-cavalry-2-1-atletico-ottawa-forge-draw/article_583430de-6198-5fe4-978b-f8b38f564022.html",
-      "published": "2026-11-01T23:45:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 384,
-      "paragraph_count": 31,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
