@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T12:43:07.949603+00:00",
-  "generated_at_london": "2026-11-02T07:43:07.949603-05:00",
-  "news_generated_at": "2026-11-02T12:36:09.761574+00:00",
+  "generated_at": "2026-11-02T12:54:04.866554+00:00",
+  "generated_at_london": "2026-11-02T07:54:04.866554-05:00",
+  "news_generated_at": "2026-11-02T12:52:11.770405+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 665,
+    "archive_story_count": 666,
     "source_count": 28,
     "audited_story_count": 104,
-    "pass_story_count": 101,
-    "review_story_count": 1,
+    "pass_story_count": 100,
+    "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 2,
+    "warning_issue_count": 4,
     "info_issue_count": 85,
-    "healthy_source_count": 14,
-    "review_source_count": 1,
+    "healthy_source_count": 13,
+    "review_source_count": 2,
     "error_source_count": 2,
     "waiting_source_count": 11
   },
@@ -98,6 +98,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-01T19:53:04.796463+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 955,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-02T12:15:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-02T12:50:14.226821+00:00",
       "last_error": ""
     },
     {
@@ -271,7 +298,7 @@
     {
       "source": "Middlesex-London Health Unit",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -287,10 +314,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.healthunit.com', port=443): Max retries exceeded with url: /news/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.healthunit.com', port=443) at 0x7f21d63907d0>, 'Connection to www.healthunit.com timed"
     },
     {
       "source": "Ontario Newsroom",
@@ -401,8 +428,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 533,
-      "average_quality": 75,
+      "average_words": 564,
+      "average_quality": 76,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -412,9 +439,9 @@
       "warning_issues": 0,
       "info_issues": 14,
       "latest_published": "2026-11-02T12:08:41.418000+00:00",
-      "found_this_run": 8,
+      "found_this_run": 9,
       "tracked": 30,
-      "last_scrape": "2026-11-02T12:22:07.656233+00:00",
+      "last_scrape": "2026-11-02T12:50:10.381958+00:00",
       "last_error": ""
     },
     {
@@ -682,32 +709,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 963,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-02T10:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-02T10:14:32.361399+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -794,6 +795,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "62294f1bfc7e203c",
+      "source": "Toronto Star",
+      "title": "Trump covets the Keystone XL pipeline because its path runs through key U.S. midterm election races",
+      "url": "https://www.thestar.com/news/canada/donald-trump-covets-the-keystone-xl-pipeline-because-its-path-runs-through-key-u-s-midterm-election-races/article_45ee834d-d00b-4814-9eb9-fa93ab7aca61.html",
+      "published": "2026-11-02T12:15:00+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "62294f1bfc7e203c",
+      "source": "Toronto Star",
+      "title": "Trump covets the Keystone XL pipeline because its path runs through key U.S. midterm election races",
+      "url": "https://www.thestar.com/news/canada/donald-trump-covets-the-keystone-xl-pipeline-because-its-path-runs-through-key-u-s-midterm-election-races/article_45ee834d-d00b-4814-9eb9-fa93ab7aca61.html",
+      "published": "2026-11-02T12:15:00+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -980,14 +1011,14 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ee8589139db18362",
+      "story_id": "89defeab9732b1a1",
       "source": "CTV News Canada",
-      "title": "Poilievre says Carney must keep fiscal promises in upcoming budget",
-      "url": "https://www.ctvnews.ca/canada/article/poilievre-says-carney-must-keep-fiscal-promises-in-upcoming-budget",
-      "published": "2026-11-01T12:38:56.232000+00:00",
+      "title": "Parents cheer, businesses brace as Western Canada ditches the time change",
+      "url": "https://www.ctvnews.ca/canada/article/parents-cheer-businesses-brace-as-western-canada-ditches-the-time-change",
+      "published": "2026-11-02T10:34:03.233000+00:00",
       "content_status": "full",
-      "word_count": 309,
-      "quality_score": 76,
+      "word_count": 622,
+      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1895,21 +1926,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3b7de40f5e3e3e26",
-      "source": "Toronto Star",
-      "title": "Brian Mulroney doc takes home $25,000 prize at Windsor film fest",
-      "url": "https://www.thestar.com/news/canada/brian-mulroney-doc-takes-home-25-000-prize-at-windsor-film-fest/article_f986fb27-8827-5bb0-bf9d-c8d1c51dcde3.html",
-      "published": "2026-11-01T21:13:52+00:00",
-      "content_status": "full",
-      "word_count": 305,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "3b5b9d850a3f7163",
       "source": "Toronto Star",
       "title": "Carney’s government tilts policy toward business as critics question who benefits",
@@ -1994,6 +2010,21 @@
       "word_count": 1326,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "62294f1bfc7e203c",
+      "source": "Toronto Star",
+      "title": "Trump covets the Keystone XL pipeline because its path runs through key U.S. midterm election races",
+      "url": "https://www.thestar.com/news/canada/donald-trump-covets-the-keystone-xl-pipeline-because-its-path-runs-through-key-u-s-midterm-election-races/article_45ee834d-d00b-4814-9eb9-fa93ab7aca61.html",
+      "published": "2026-11-02T12:15:00+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3510,6 +3541,35 @@
       ]
     },
     {
+      "id": "89defeab9732b1a1",
+      "source": "CTV News Canada",
+      "title": "Parents cheer, businesses brace as Western Canada ditches the time change",
+      "url": "https://www.ctvnews.ca/canada/article/parents-cheer-businesses-brace-as-western-canada-ditches-the-time-change",
+      "published": "2026-11-02T10:34:03.233000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 622,
+      "paragraph_count": 30,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d7d87363171a1e59",
       "source": "CTV News Canada",
       "title": "U.S. government has new rules on flight delays. Will it affect Canadian travellers?",
@@ -3757,35 +3817,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ee8589139db18362",
-      "source": "CTV News Canada",
-      "title": "Poilievre says Carney must keep fiscal promises in upcoming budget",
-      "url": "https://www.ctvnews.ca/canada/article/poilievre-says-carney-must-keep-fiscal-promises-in-upcoming-budget",
-      "published": "2026-11-01T12:38:56.232000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 309,
-      "paragraph_count": 12,
-      "inline_image_count": 1,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4392,6 +4423,47 @@
       ]
     },
     {
+      "id": "62294f1bfc7e203c",
+      "source": "Toronto Star",
+      "title": "Trump covets the Keystone XL pipeline because its path runs through key U.S. midterm election races",
+      "url": "https://www.thestar.com/news/canada/donald-trump-covets-the-keystone-xl-pipeline-because-its-path-runs-through-key-u-s-midterm-election-races/article_45ee834d-d00b-4814-9eb9-fa93ab7aca61.html",
+      "published": "2026-11-02T12:15:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 222,
+      "paragraph_count": 3,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "16419b39dd41fc53",
       "source": "Toronto Star",
       "title": "This Ontario hospital locked Jake Gordon up alone for five years. It transferred him just after the Star told his story",
@@ -4637,35 +4709,6 @@
       "content_status": "full",
       "word_count": 426,
       "paragraph_count": 17,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3b7de40f5e3e3e26",
-      "source": "Toronto Star",
-      "title": "Brian Mulroney doc takes home $25,000 prize at Windsor film fest",
-      "url": "https://www.thestar.com/news/canada/brian-mulroney-doc-takes-home-25-000-prize-at-windsor-film-fest/article_f986fb27-8827-5bb0-bf9d-c8d1c51dcde3.html",
-      "published": "2026-11-01T21:13:52+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 305,
-      "paragraph_count": 18,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
