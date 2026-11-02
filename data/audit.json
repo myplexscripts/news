@@ -1,24 +1,24 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T13:58:35.407992+00:00",
-  "generated_at_london": "2026-11-02T08:58:35.407992-05:00",
-  "news_generated_at": "2026-11-02T13:53:20.969071+00:00",
+  "generated_at": "2026-11-02T14:10:01.899715+00:00",
+  "generated_at_london": "2026-11-02T09:10:01.899715-05:00",
+  "news_generated_at": "2026-11-02T14:08:53.629111+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 674,
+    "archive_story_count": 675,
     "source_count": 28,
-    "audited_story_count": 105,
-    "pass_story_count": 102,
+    "audited_story_count": 106,
+    "pass_story_count": 103,
     "review_story_count": 1,
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 2,
-    "info_issue_count": 86,
-    "healthy_source_count": 14,
+    "info_issue_count": 87,
+    "healthy_source_count": 15,
     "review_source_count": 1,
     "error_source_count": 2,
-    "waiting_source_count": 11
+    "waiting_source_count": 10
   },
   "source_reports": [
     {
@@ -264,30 +264,6 @@
       "info_issues": 0,
       "latest_published": "",
       "found_this_run": 0,
-      "tracked": 0,
-      "last_scrape": "",
-      "last_error": ""
-    },
-    {
-      "source": "Middlesex-London Health Unit",
-      "status": "waiting",
-      "collector_status": "waiting",
-      "profile": "generic",
-      "sample_size": 0,
-      "pass": 0,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 0,
-      "usable_body_rate": 0,
-      "average_words": 0,
-      "average_quality": 0,
-      "primary_method": "unknown",
-      "method_counts": {},
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "",
-      "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -626,6 +602,32 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-10-29T14:56:08.027873+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Middlesex-London Health Unit",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 458,
+      "average_quality": 66,
+      "primary_method": "dom:generic:main",
+      "method_counts": {
+        "dom:generic:main": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-11-02T05:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 1,
+      "last_scrape": "2026-11-02T14:06:15.735091+00:00",
       "last_error": ""
     },
     {
@@ -1529,6 +1531,21 @@
       "word_count": 857,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "bd7f57f8d6423e05",
+      "source": "Middlesex-London Health Unit",
+      "title": "Partnerships and a New Funder Allow Expansion of Health Unit Program Supporting Healthy Pregnancies",
+      "url": "https://www.healthunit.com/news/partnerships-and-a-new-funder-allow-expansion-of-health-unit-program-supporting-healthy-pregnancies",
+      "published": "2026-11-02T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 458,
+      "quality_score": 66,
+      "extraction_method": "dom:generic:main"
     },
     {
       "severity": "info",
@@ -2821,6 +2838,35 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "police",
       "local_score": 100,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "bd7f57f8d6423e05",
+      "source": "Middlesex-London Health Unit",
+      "title": "Partnerships and a New Funder Allow Expansion of Health Unit Program Supporting Healthy Pregnancies",
+      "url": "https://www.healthunit.com/news/partnerships-and-a-new-funder-allow-expansion-of-health-unit-program-supporting-healthy-pregnancies",
+      "published": "2026-11-02T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 458,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:main",
+      "extraction_profile": "generic",
+      "local_score": 83,
       "issues": [
         {
           "severity": "info",
