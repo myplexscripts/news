@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T21:47:32.111918+00:00",
-  "generated_at_london": "2026-11-02T16:47:32.111918-05:00",
-  "news_generated_at": "2026-11-02T21:41:13.402381+00:00",
+  "generated_at": "2026-11-02T21:58:28.683024+00:00",
+  "generated_at_london": "2026-11-02T16:58:28.683024-05:00",
+  "news_generated_at": "2026-11-02T21:56:43.557169+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 676,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 102,
-    "review_story_count": 2,
+    "pass_story_count": 103,
+    "review_story_count": 1,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 3,
-    "info_issue_count": 85,
+    "warning_issue_count": 2,
+    "info_issue_count": 86,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 2,
@@ -74,30 +74,31 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
+      "source": "106.9 The X",
       "status": "review",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "collector_status": "degraded",
+      "profile": "wordpress",
+      "sample_size": 8,
+      "pass": 8,
+      "review": 0,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 296,
-      "average_quality": 69,
-      "primary_method": "embedded-json:ctv",
+      "average_words": 354,
+      "average_quality": 84,
+      "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "embedded-json:ctv": 10
+        "reader:semantic-rich-v1": 1,
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 8,
-      "latest_published": "2026-11-02T21:13:41.652000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-02T21:28:20.622857+00:00",
-      "last_error": ""
+      "warning_issues": 0,
+      "info_issues": 0,
+      "latest_published": "2026-11-02T19:14:42+00:00",
+      "found_this_run": 0,
+      "tracked": 8,
+      "last_scrape": "2026-11-02T19:32:14.865089+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.1069thex.com', port=443): Max retries exceeded with url: /category/news-home-page/feed/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate h"
     },
     {
       "source": "Middlesex-London Health Unit",
@@ -148,7 +149,7 @@
       "latest_published": "2026-11-02T21:00:42+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T21:39:14.156367+00:00",
+      "last_scrape": "2026-11-02T21:54:48.006141+00:00",
       "last_error": ""
     },
     {
@@ -221,7 +222,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -392,33 +393,6 @@
       "last_error": ""
     },
     {
-      "source": "106.9 The X",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "wordpress",
-      "sample_size": 8,
-      "pass": 8,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 354,
-      "average_quality": 84,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 1,
-        "dom:semantic-rich-v1": 7
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "2026-11-02T19:14:42+00:00",
-      "found_this_run": 10,
-      "tracked": 8,
-      "last_scrape": "2026-11-02T19:32:14.865089+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -442,6 +416,32 @@
       "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-11-02T19:55:14.907282+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 273,
+      "average_quality": 70,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 9,
+      "latest_published": "2026-11-02T21:53:19.617000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-02T21:28:20.622857+00:00",
       "last_error": ""
     },
     {
@@ -509,19 +509,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 470,
-      "average_quality": 96,
+      "average_words": 534,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-02T21:38:46+00:00",
+      "latest_published": "2026-11-02T21:53:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T21:39:11.601009+00:00",
+      "last_scrape": "2026-11-02T21:54:46.159917+00:00",
       "last_error": ""
     },
     {
@@ -765,21 +766,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "4 consecutive images",
-      "story_id": "07695283ead27efb",
-      "source": "CTV News London",
-      "title": "‘He’s a leader’: Ben Casselman blossoms as Western Mustangs advance to OUA semifinal vs Windsor",
-      "url": "https://www.ctvnews.ca/london/article/hes-a-leader-ben-casselman-blossoms-as-western-mustangs-advance-to-oua-semifinal-vs-windsor",
-      "published": "2026-11-01T15:00:43.848000+00:00",
-      "content_status": "full",
-      "word_count": 634,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "warning",
@@ -1034,6 +1020,21 @@
       "content_status": "full",
       "word_count": 586,
       "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "8bb064d788244e9b",
+      "source": "CTV News London",
+      "title": "Construction begins on $11M Saugeen Hospice",
+      "url": "https://www.ctvnews.ca/london/article/construction-begins-on-11m-saugeen-hospice",
+      "published": "2026-11-02T21:53:19.617000+00:00",
+      "content_status": "full",
+      "word_count": 404,
+      "quality_score": 85,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1356,21 +1357,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "11378d717d2270cd",
-      "source": "Global News Canada",
-      "title": "Canadian national, 4 Americans among 69 dead in Spain train collision",
-      "url": "https://globalnews.ca/news/12129845/spain-train-collision-canadian",
-      "published": "2026-11-02T14:22:01+00:00",
-      "content_status": "full",
-      "word_count": 219,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "29f8764ac8946a8a",
       "source": "Global News Canada",
       "title": "Canadian police urge caution after reports of tampered Halloween candy",
@@ -1408,21 +1394,6 @@
       "published": "2026-11-02T20:12:12+00:00",
       "content_status": "full",
       "word_count": 1227,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b3c27a1e94237813",
-      "source": "Global News Canada",
-      "title": "Kingston, Ont. woman dead after fiery 3-vehicle crash on Highway 401",
-      "url": "https://globalnews.ca/news/12129802/highway-401-thickson-road-crash",
-      "published": "2026-11-02T13:32:14+00:00",
-      "content_status": "full",
-      "word_count": 114,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1470,6 +1441,36 @@
       "word_count": 546,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0e59fc3124f3cbfd",
+      "source": "Global News Canada",
+      "title": "U.S. air travel compensation is changing. What Canadians should know",
+      "url": "https://globalnews.ca/news/12130048/u-s-air-travel-compensation-is-changing-what-canadians-should-know",
+      "published": "2026-11-02T21:53:53+00:00",
+      "content_status": "full",
+      "word_count": 678,
+      "quality_score": 87,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e5855c41afc85ee8",
+      "source": "Global News Canada",
+      "title": "Where is Jennifer? After almost 2 years, rural B.C. mom of three still missing",
+      "url": "https://globalnews.ca/news/12130347/mother-missing-rural-bc-home-almost-2-years-jennifer-provencal",
+      "published": "2026-11-02T21:51:49+00:00",
+      "content_status": "full",
+      "word_count": 296,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2177,6 +2178,35 @@
       "issues": []
     },
     {
+      "id": "8bb064d788244e9b",
+      "source": "CTV News London",
+      "title": "Construction begins on $11M Saugeen Hospice",
+      "url": "https://www.ctvnews.ca/london/article/construction-begins-on-11m-saugeen-hospice",
+      "published": "2026-11-02T21:53:19.617000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 404,
+      "paragraph_count": 13,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5e2258a4e0440e76",
       "source": "CTV News London",
       "title": "St. Thomas police investigate razor blade found in Halloween candy",
@@ -2427,35 +2457,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 18/100"
-        }
-      ]
-    },
-    {
-      "id": "07695283ead27efb",
-      "source": "CTV News London",
-      "title": "‘He’s a leader’: Ben Casselman blossoms as Western Mustangs advance to OUA semifinal vs Windsor",
-      "url": "https://www.ctvnews.ca/london/article/hes-a-leader-ben-casselman-blossoms-as-western-mustangs-advance-to-oua-semifinal-vs-windsor",
-      "published": "2026-11-01T15:00:43.848000+00:00",
-      "audit_status": "review",
-      "audit_score": 88,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 634,
-      "paragraph_count": 13,
-      "inline_image_count": 4,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 61,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "4 consecutive images"
         }
       ]
     },
@@ -3260,6 +3261,64 @@
       ]
     },
     {
+      "id": "0e59fc3124f3cbfd",
+      "source": "Global News Canada",
+      "title": "U.S. air travel compensation is changing. What Canadians should know",
+      "url": "https://globalnews.ca/news/12130048/u-s-air-travel-compensation-is-changing-what-canadians-should-know",
+      "published": "2026-11-02T21:53:53+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 678,
+      "paragraph_count": 18,
+      "inline_image_count": 1,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "e5855c41afc85ee8",
+      "source": "Global News Canada",
+      "title": "Where is Jennifer? After almost 2 years, rural B.C. mom of three still missing",
+      "url": "https://globalnews.ca/news/12130347/mother-missing-rural-bc-home-almost-2-years-jennifer-provencal",
+      "published": "2026-11-02T21:51:49+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 296,
+      "paragraph_count": 17,
+      "inline_image_count": 1,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "80099500aa3e4dd1",
       "source": "Global News Canada",
       "title": "New Brunswick aims to become bigger player in Canada’s defence industry: premier",
@@ -3477,64 +3536,6 @@
       "word_count": 317,
       "paragraph_count": 9,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "11378d717d2270cd",
-      "source": "Global News Canada",
-      "title": "Canadian national, 4 Americans among 69 dead in Spain train collision",
-      "url": "https://globalnews.ca/news/12129845/spain-train-collision-canadian",
-      "published": "2026-11-02T14:22:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 219,
-      "paragraph_count": 8,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b3c27a1e94237813",
-      "source": "Global News Canada",
-      "title": "Kingston, Ont. woman dead after fiery 3-vehicle crash on Highway 401",
-      "url": "https://globalnews.ca/news/12129802/highway-401-thickson-road-crash",
-      "published": "2026-11-02T13:32:14+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 114,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
