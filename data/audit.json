@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T10:51:59.192916+00:00",
-  "generated_at_london": "2026-11-02T05:51:59.192916-05:00",
-  "news_generated_at": "2026-11-02T10:46:27.344030+00:00",
+  "generated_at": "2026-11-02T11:04:33.977723+00:00",
+  "generated_at_london": "2026-11-02T06:04:33.977723-05:00",
+  "news_generated_at": "2026-11-02T11:02:54.365025+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 665,
+    "archive_story_count": 666,
     "source_count": 28,
     "audited_story_count": 106,
     "pass_story_count": 102,
@@ -694,20 +694,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 702,
-      "average_quality": 89,
+      "average_words": 758,
+      "average_quality": 88,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 8,
         "trafilatura:fallback": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 14,
-      "latest_published": "2026-11-02T01:12:46.386000+00:00",
+      "latest_published": "2026-11-02T10:52:37.069000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T01:42:07.178270+00:00",
+      "last_scrape": "2026-11-02T11:00:54.033646+00:00",
       "last_error": ""
     },
     {
@@ -1775,6 +1776,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "9faff3c01f3ca210",
+      "source": "The Globe and Mail",
+      "title": "Carney seeks to boost trade and ties at Commonwealth meeting",
+      "url": "https://www.theglobeandmail.com/canada/article-mark-carney-at-commonwealth-meeting",
+      "published": "2026-11-02T10:52:37.069000+00:00",
+      "content_status": "full",
+      "word_count": 1055,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1877,21 +1893,6 @@
       "word_count": 818,
       "quality_score": 35,
       "extraction_method": "trafilatura:fallback"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "7b44ba7ae94f4c6e",
-      "source": "The Globe and Mail",
-      "title": "Toronto cyclists protest bike lane removals as province wraps up first phase of effort",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-cyclists-protest-more-bike-lane-removals-october-31",
-      "published": "2026-10-31T18:45:17.523000+00:00",
-      "content_status": "full",
-      "word_count": 501,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3921,6 +3922,35 @@
       ]
     },
     {
+      "id": "9faff3c01f3ca210",
+      "source": "The Globe and Mail",
+      "title": "Carney seeks to boost trade and ties at Commonwealth meeting",
+      "url": "https://www.theglobeandmail.com/canada/article-mark-carney-at-commonwealth-meeting",
+      "published": "2026-11-02T10:52:37.069000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1055,
+      "paragraph_count": 39,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2d9e551c0148b26e",
       "source": "The Globe and Mail",
       "title": "Yukon seeks federal funding to shore up aging power grid",
@@ -4197,35 +4227,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7b44ba7ae94f4c6e",
-      "source": "The Globe and Mail",
-      "title": "Toronto cyclists protest bike lane removals as province wraps up first phase of effort",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-cyclists-protest-more-bike-lane-removals-october-31",
-      "published": "2026-10-31T18:45:17.523000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 501,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
