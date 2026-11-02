@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T18:09:32.315057+00:00",
-  "generated_at_london": "2026-11-02T13:09:32.315057-05:00",
-  "news_generated_at": "2026-11-02T18:03:03.398120+00:00",
+  "generated_at": "2026-11-02T18:20:11.359328+00:00",
+  "generated_at_london": "2026-11-02T13:20:11.359328-05:00",
+  "news_generated_at": "2026-11-02T18:18:15.732088+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 671,
+    "archive_story_count": 669,
     "source_count": 28,
-    "audited_story_count": 106,
-    "pass_story_count": 103,
+    "audited_story_count": 105,
+    "pass_story_count": 102,
     "review_story_count": 1,
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 2,
     "info_issue_count": 84,
-    "healthy_source_count": 15,
-    "review_source_count": 1,
+    "healthy_source_count": 14,
+    "review_source_count": 2,
     "error_source_count": 2,
     "waiting_source_count": 10
   },
@@ -101,6 +101,32 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 1060,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-02T17:34:10+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-11-02T17:45:26.887120+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+    },
+    {
       "source": "104.7 Heart FM",
       "status": "waiting",
       "collector_status": "waiting",
@@ -175,7 +201,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -194,7 +220,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -387,7 +413,7 @@
       "warning_issues": 0,
       "info_issues": 14,
       "latest_published": "2026-11-02T12:08:41.418000+00:00",
-      "found_this_run": 4,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-11-02T17:20:44.601721+00:00",
       "last_error": ""
@@ -457,19 +483,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 580,
-      "average_quality": 96,
+      "average_words": 607,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-02T17:19:27+00:00",
+      "latest_published": "2026-11-02T18:10:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T17:29:57.200590+00:00",
+      "last_scrape": "2026-11-02T18:16:20.448029+00:00",
       "last_error": ""
     },
     {
@@ -684,54 +711,28 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1060,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-02T17:34:10+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-02T17:45:26.887120+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "western",
-      "sample_size": 8,
-      "pass": 8,
+      "sample_size": 7,
+      "pass": 7,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 762,
-      "average_quality": 86,
+      "average_words": 813,
+      "average_quality": 85,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 8
+        "reader:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 4,
       "latest_published": "2026-10-30T21:26:15+00:00",
       "found_this_run": 10,
-      "tracked": 8,
+      "tracked": 7,
       "last_scrape": "2026-10-30T21:41:03.287124+00:00",
       "last_error": ""
     }
@@ -1402,21 +1403,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "36762e887209b0d4",
-      "source": "Global News Canada",
-      "title": "Minister backs 2027 fixed election date as Elections Alberta suggests change",
-      "url": "https://globalnews.ca/news/12129488/alberta-election-no-delays-electoral-boundary-report",
-      "published": "2026-11-02T00:03:06+00:00",
-      "content_status": "full",
-      "word_count": 429,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "fc544d21659b095f",
       "source": "Global News Canada",
       "title": "Parents cheer, businesses brace as Western Canada ditches the time change",
@@ -1426,6 +1412,21 @@
       "word_count": 611,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "6d373c7656c82886",
+      "source": "Global News Canada",
+      "title": "Small business tax troubles a target of federal budget: Champagne",
+      "url": "https://globalnews.ca/news/12130114/budget-2026-small-business-tax-help",
+      "published": "2026-11-02T18:10:43+00:00",
+      "content_status": "full",
+      "word_count": 696,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3051,28 +3052,6 @@
       "issues": []
     },
     {
-      "id": "5c2dd7c3ff5804c5",
-      "source": "Western News",
-      "title": "In photos: Western celebrates fall convocation",
-      "url": "https://news.westernu.ca/2026/10/in-photos-fall-convocation-2026",
-      "published": "2026-10-26T18:08:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 408,
-      "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "western",
-      "local_score": 26,
-      "issues": []
-    },
-    {
       "id": "e30af6bebfd3157a",
       "source": "Fanshawe College Newsroom",
       "title": "News Archive",
@@ -3207,6 +3186,35 @@
           "message": "Scoop recorded a scraping error.",
           "detail": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /warnings/report_e.html (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))"
         },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "6d373c7656c82886",
+      "source": "Global News Canada",
+      "title": "Small business tax troubles a target of federal budget: Champagne",
+      "url": "https://globalnews.ca/news/12130114/budget-2026-small-business-tax-help",
+      "published": "2026-11-02T18:10:43+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 696,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -3461,35 +3469,6 @@
       "content_status": "full",
       "word_count": 1202,
       "paragraph_count": 31,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "36762e887209b0d4",
-      "source": "Global News Canada",
-      "title": "Minister backs 2027 fixed election date as Elections Alberta suggests change",
-      "url": "https://globalnews.ca/news/12129488/alberta-election-no-delays-electoral-boundary-report",
-      "published": "2026-11-02T00:03:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 429,
-      "paragraph_count": 15,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
