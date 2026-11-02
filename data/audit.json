@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T22:16:50.532025+00:00",
-  "generated_at_london": "2026-11-02T17:16:50.532025-05:00",
-  "news_generated_at": "2026-11-02T22:11:56.369511+00:00",
+  "generated_at": "2026-11-02T22:30:37.902728+00:00",
+  "generated_at_london": "2026-11-02T17:30:37.902728-05:00",
+  "news_generated_at": "2026-11-02T22:28:51.064542+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 681,
+    "archive_story_count": 683,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 103,
-    "review_story_count": 1,
+    "pass_story_count": 102,
+    "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 2,
+    "warning_issue_count": 4,
     "info_issue_count": 86,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 2,
     "waiting_source_count": 10
   },
@@ -149,7 +149,34 @@
       "latest_published": "2026-11-02T21:00:42+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T22:10:19.530641+00:00",
+      "last_scrape": "2026-11-02T22:26:55.103547+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 335,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-02T22:08:51+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-02T22:26:58.309785+00:00",
       "last_error": ""
     },
     {
@@ -222,7 +249,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -441,7 +468,7 @@
       "latest_published": "2026-11-02T22:05:56.153000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T22:08:20.152756+00:00",
+      "last_scrape": "2026-11-02T22:14:14.589562+00:00",
       "last_error": ""
     },
     {
@@ -509,19 +536,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 534,
-      "average_quality": 96,
+      "average_words": 544,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-02T21:53:53+00:00",
+      "latest_published": "2026-11-02T22:25:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T21:54:46.159917+00:00",
+      "last_scrape": "2026-11-02T22:26:52.642775+00:00",
       "last_error": ""
     },
     {
@@ -683,32 +711,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 376,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-02T21:03:51+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-02T21:39:16.537677+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -795,6 +797,36 @@
       "word_count": 874,
       "quality_score": 82,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "a1e94e8d340b3fa0",
+      "source": "Toronto Star",
+      "title": "Former Alberta junior hockey executive charged with sex offences against players",
+      "url": "https://www.thestar.com/sports/hockey/former-alberta-junior-hockey-executive-charged-with-sex-offences-against-players/article_4cfb6003-1393-53d3-a410-15e9559b45d0.html",
+      "published": "2026-11-02T22:08:51+00:00",
+      "content_status": "full",
+      "word_count": 231,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "a1e94e8d340b3fa0",
+      "source": "Toronto Star",
+      "title": "Former Alberta junior hockey executive charged with sex offences against players",
+      "url": "https://www.thestar.com/sports/hockey/former-alberta-junior-hockey-executive-charged-with-sex-offences-against-players/article_4cfb6003-1393-53d3-a410-15e9559b45d0.html",
+      "published": "2026-11-02T22:08:51+00:00",
+      "content_status": "full",
+      "word_count": 231,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1326,21 +1358,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0716c98910769e7a",
-      "source": "Global News Canada",
-      "title": "Budget 2026 is about ‘us,’ not the U.S. trade war, finance minister says",
-      "url": "https://globalnews.ca/news/12129875/budget-2026-about-us-not-trade-war-champagne",
-      "published": "2026-11-02T15:44:30+00:00",
-      "content_status": "full",
-      "word_count": 317,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "3600bd48f6de639e",
       "source": "Global News Canada",
       "title": "Calgary police investigating death of toddler who was hit by taxi in parking lot",
@@ -1470,6 +1487,21 @@
       "word_count": 296,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "28bed20663a12839",
+      "source": "Global News Canada",
+      "title": "‘Cart before the horse’: Site prep work approved before development plans in HRM",
+      "url": "https://globalnews.ca/news/12130521/sandy-lake-development",
+      "published": "2026-11-02T22:25:29+00:00",
+      "content_status": "full",
+      "word_count": 415,
+      "quality_score": 87,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1926,15 +1958,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "68ef41ef79428670",
+      "story_id": "a1e94e8d340b3fa0",
       "source": "Toronto Star",
-      "title": "Inside man or patsy? Crown, defence pitch narratives at trial of man accused in heist",
-      "url": "https://www.thestar.com/news/ontario/inside-man-or-patsy-crown-defence-pitch-narratives-at-trial-of-man-accused-in-heist/article_2af32857-71ae-512d-a918-c7bf09e654a1.html",
-      "published": "2026-11-02T18:14:02+00:00",
+      "title": "Former Alberta junior hockey executive charged with sex offences against players",
+      "url": "https://www.thestar.com/sports/hockey/former-alberta-junior-hockey-executive-charged-with-sex-offences-against-players/article_4cfb6003-1393-53d3-a410-15e9559b45d0.html",
+      "published": "2026-11-02T22:08:51+00:00",
       "content_status": "full",
-      "word_count": 638,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 231,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3260,6 +3292,35 @@
       ]
     },
     {
+      "id": "28bed20663a12839",
+      "source": "Global News Canada",
+      "title": "‘Cart before the horse’: Site prep work approved before development plans in HRM",
+      "url": "https://globalnews.ca/news/12130521/sandy-lake-development",
+      "published": "2026-11-02T22:25:29+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 415,
+      "paragraph_count": 15,
+      "inline_image_count": 1,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0e59fc3124f3cbfd",
       "source": "Global News Canada",
       "title": "U.S. air travel compensation is changing. What Canadians should know",
@@ -3505,35 +3566,6 @@
       "content_status": "full",
       "word_count": 96,
       "paragraph_count": 6,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0716c98910769e7a",
-      "source": "Global News Canada",
-      "title": "Budget 2026 is about ‘us,’ not the U.S. trade war, finance minister says",
-      "url": "https://globalnews.ca/news/12129875/budget-2026-about-us-not-trade-war-champagne",
-      "published": "2026-11-02T15:44:30+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 317,
-      "paragraph_count": 9,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4461,6 +4493,47 @@
       ]
     },
     {
+      "id": "a1e94e8d340b3fa0",
+      "source": "Toronto Star",
+      "title": "Former Alberta junior hockey executive charged with sex offences against players",
+      "url": "https://www.thestar.com/sports/hockey/former-alberta-junior-hockey-executive-charged-with-sex-offences-against-players/article_4cfb6003-1393-53d3-a410-15e9559b45d0.html",
+      "published": "2026-11-02T22:08:51+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 231,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "26ffca64b764a7c1",
       "source": "Toronto Star",
       "title": "World-renowned seabird scientist Bill Montevecchi remembered in Newfoundland",
@@ -4706,35 +4779,6 @@
       "content_status": "full",
       "word_count": 302,
       "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "68ef41ef79428670",
-      "source": "Toronto Star",
-      "title": "Inside man or patsy? Crown, defence pitch narratives at trial of man accused in heist",
-      "url": "https://www.thestar.com/news/ontario/inside-man-or-patsy-crown-defence-pitch-narratives-at-trial-of-man-accused-in-heist/article_2af32857-71ae-512d-a918-c7bf09e654a1.html",
-      "published": "2026-11-02T18:14:02+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 638,
-      "paragraph_count": 35,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
