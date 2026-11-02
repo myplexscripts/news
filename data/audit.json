@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T09:04:18.799430+00:00",
-  "generated_at_london": "2026-11-02T04:04:18.799430-05:00",
-  "news_generated_at": "2026-11-02T08:59:19.118623+00:00",
+  "generated_at": "2026-11-02T09:15:34.982055+00:00",
+  "generated_at_london": "2026-11-02T04:15:34.982055-05:00",
+  "news_generated_at": "2026-11-02T09:14:23.570378+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 664,
+    "archive_story_count": 667,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 100,
-    "review_story_count": 2,
+    "pass_story_count": 98,
+    "review_story_count": 4,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 4,
-    "info_issue_count": 92,
+    "warning_issue_count": 6,
+    "info_issue_count": 90,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 2,
@@ -132,24 +132,26 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 6,
+      "review": 2,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 377,
-      "average_quality": 96,
+      "average_words": 438,
+      "average_quality": 90,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:fallback": 2,
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 7
       },
       "critical_issues": 2,
-      "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-11-01T23:05:00+00:00",
+      "warning_issues": 2,
+      "info_issues": 12,
+      "latest_published": "2026-11-02T09:00:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T03:30:06.033465+00:00",
+      "last_scrape": "2026-11-02T09:12:47.291880+00:00",
       "last_error": ""
     },
     {
@@ -198,7 +200,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -387,7 +389,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 5,
+      "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -772,16 +774,16 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "70 words",
-      "story_id": "09f14195e28ecb3b",
+      "detail": "65 words",
+      "story_id": "6f9771e565e4c120",
       "source": "Toronto Star",
-      "title": "4 young people dead, 2 injured after car crashes into ravine near Guelph, Ont.",
-      "url": "https://www.thestar.com/news/ontario/4-young-people-dead-2-injured-after-car-crashes-into-ravine-near-guelph-ont/article_2b7fa417-afcc-5d78-9c4e-77e8e022ddd1.html",
-      "published": "2026-11-01T16:43:22+00:00",
+      "title": "Thousands of Osap applications came from a single IP address, ministry alleges",
+      "url": "https://www.thestar.com/news/ontario/thousands-of-osap-applications-came-from-a-single-ip-address-ministry-alleges/article_df7f5d10-b82a-5b13-aeea-4d74766a4ff7.html",
+      "published": "2026-11-02T09:00:17+00:00",
       "content_status": "full",
-      "word_count": 70,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 65,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "critical",
@@ -857,6 +859,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "3590582f456df82c",
+      "source": "Toronto Star",
+      "title": "Parents cheer, businesses brace as Western Canada ditches the time change",
+      "url": "https://www.thestar.com/news/canada/parents-cheer-businesses-brace-as-western-canada-ditches-the-time-change/article_043660ce-21f7-53f5-bbb7-de3891987906.html",
+      "published": "2026-11-02T09:00:29+00:00",
+      "content_status": "full",
+      "word_count": 630,
+      "quality_score": 81,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "9 inline images",
+      "story_id": "ed71d1ac0e52395a",
+      "source": "Toronto Star",
+      "title": "Political betrayal, Canada trade war: Why Michigan is a Senate race to watch",
+      "url": "https://www.thestar.com/news/canada/political-betrayal-canada-trade-war-why-michigan-is-a-senate-race-to-watch/article_0ecc419f-020c-578f-b1be-608dd697687d.html",
+      "published": "2026-11-02T09:00:25+00:00",
+      "content_status": "full",
+      "word_count": 846,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -1970,66 +2002,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "ad6163ce0be8d5cc",
-      "source": "Toronto Star",
-      "title": "4 teenagers killed, two injured in single-vehicle crash in Puslinch",
-      "url": "https://www.thestar.com/news/ontario/serious-collision-closes-watson-road-south-in-puslinch/article_ed6eb382-0b04-53f8-a17e-e291b34bf0db.html",
-      "published": "2026-11-01T17:01:00+00:00",
-      "content_status": "full",
-      "word_count": 337,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 10/100",
-      "story_id": "ad6163ce0be8d5cc",
-      "source": "Toronto Star",
-      "title": "4 teenagers killed, two injured in single-vehicle crash in Puslinch",
-      "url": "https://www.thestar.com/news/ontario/serious-collision-closes-watson-road-south-in-puslinch/article_ed6eb382-0b04-53f8-a17e-e291b34bf0db.html",
-      "published": "2026-11-01T17:01:00+00:00",
-      "content_status": "full",
-      "word_count": 337,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "09f14195e28ecb3b",
-      "source": "Toronto Star",
-      "title": "4 young people dead, 2 injured after car crashes into ravine near Guelph, Ont.",
-      "url": "https://www.thestar.com/news/ontario/4-young-people-dead-2-injured-after-car-crashes-into-ravine-near-guelph-ont/article_2b7fa417-afcc-5d78-9c4e-77e8e022ddd1.html",
-      "published": "2026-11-01T16:43:22+00:00",
-      "content_status": "full",
-      "word_count": 70,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "09f14195e28ecb3b",
-      "source": "Toronto Star",
-      "title": "4 young people dead, 2 injured after car crashes into ravine near Guelph, Ont.",
-      "url": "https://www.thestar.com/news/ontario/4-young-people-dead-2-injured-after-car-crashes-into-ravine-near-guelph-ont/article_2b7fa417-afcc-5d78-9c4e-77e8e022ddd1.html",
-      "published": "2026-11-01T16:43:22+00:00",
-      "content_status": "full",
-      "word_count": 70,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2075,21 +2047,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 10/100",
-      "story_id": "c05af528724fc3d5",
-      "source": "Toronto Star",
-      "title": "Four teens from Mississauga, Brampton, Milton killed in early morning crash near Guelph, police say",
-      "url": "https://www.thestar.com/news/gta/four-teens-from-mississauga-brampton-milton-killed-in-early-morning-crash-near-guelph-police-say/article_12afb19d-00be-4a76-bf72-ab0fcf63c4b3.html",
-      "published": "2026-11-01T15:58:00+00:00",
-      "content_status": "full",
-      "word_count": 528,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2123,6 +2080,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3590582f456df82c",
+      "source": "Toronto Star",
+      "title": "Parents cheer, businesses brace as Western Canada ditches the time change",
+      "url": "https://www.thestar.com/news/canada/parents-cheer-businesses-brace-as-western-canada-ditches-the-time-change/article_043660ce-21f7-53f5-bbb7-de3891987906.html",
+      "published": "2026-11-02T09:00:29+00:00",
+      "content_status": "full",
+      "word_count": 630,
+      "quality_score": 81,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "df7bc4a0ed02c0aa",
       "source": "Toronto Star",
       "title": "Paul St-Pierre Plamondon to meet with Mark Carney after Canada-EU summit tension",
@@ -2132,6 +2104,36 @@
       "word_count": 426,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ed71d1ac0e52395a",
+      "source": "Toronto Star",
+      "title": "Political betrayal, Canada trade war: Why Michigan is a Senate race to watch",
+      "url": "https://www.thestar.com/news/canada/political-betrayal-canada-trade-war-why-michigan-is-a-senate-race-to-watch/article_0ecc419f-020c-578f-b1be-608dd697687d.html",
+      "published": "2026-11-02T09:00:25+00:00",
+      "content_status": "full",
+      "word_count": 846,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "6f9771e565e4c120",
+      "source": "Toronto Star",
+      "title": "Thousands of Osap applications came from a single IP address, ministry alleges",
+      "url": "https://www.thestar.com/news/ontario/thousands-of-osap-applications-came-from-a-single-ip-address-ministry-alleges/article_df7f5d10-b82a-5b13-aeea-4d74766a4ff7.html",
+      "published": "2026-11-02T09:00:17+00:00",
+      "content_status": "full",
+      "word_count": 65,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4636,6 +4638,111 @@
       ]
     },
     {
+      "id": "3590582f456df82c",
+      "source": "Toronto Star",
+      "title": "Parents cheer, businesses brace as Western Canada ditches the time change",
+      "url": "https://www.thestar.com/news/canada/parents-cheer-businesses-brace-as-western-canada-ditches-the-time-change/article_043660ce-21f7-53f5-bbb7-de3891987906.html",
+      "published": "2026-11-02T09:00:29+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 630,
+      "paragraph_count": 30,
+      "inline_image_count": 10,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "ed71d1ac0e52395a",
+      "source": "Toronto Star",
+      "title": "Political betrayal, Canada trade war: Why Michigan is a Senate race to watch",
+      "url": "https://www.thestar.com/news/canada/political-betrayal-canada-trade-war-why-michigan-is-a-senate-race-to-watch/article_0ecc419f-020c-578f-b1be-608dd697687d.html",
+      "published": "2026-11-02T09:00:25+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 846,
+      "paragraph_count": 28,
+      "inline_image_count": 9,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "9 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "6f9771e565e4c120",
+      "source": "Toronto Star",
+      "title": "Thousands of Osap applications came from a single IP address, ministry alleges",
+      "url": "https://www.thestar.com/news/ontario/thousands-of-osap-applications-came-from-a-single-ip-address-ministry-alleges/article_df7f5d10-b82a-5b13-aeea-4d74766a4ff7.html",
+      "published": "2026-11-02T09:00:17+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 65,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "65 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7118819cfca7b81a",
       "source": "Toronto Star",
       "title": "Walmart antacids recalled due to possible metal shavings",
@@ -4853,111 +4960,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ad6163ce0be8d5cc",
-      "source": "Toronto Star",
-      "title": "4 teenagers killed, two injured in single-vehicle crash in Puslinch",
-      "url": "https://www.thestar.com/news/ontario/serious-collision-closes-watson-road-south-in-puslinch/article_ed6eb382-0b04-53f8-a17e-e291b34bf0db.html",
-      "published": "2026-11-01T17:01:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 337,
-      "paragraph_count": 14,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 10,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 10/100"
-        }
-      ]
-    },
-    {
-      "id": "09f14195e28ecb3b",
-      "source": "Toronto Star",
-      "title": "4 young people dead, 2 injured after car crashes into ravine near Guelph, Ont.",
-      "url": "https://www.thestar.com/news/ontario/4-young-people-dead-2-injured-after-car-crashes-into-ravine-near-guelph-ont/article_2b7fa417-afcc-5d78-9c4e-77e8e022ddd1.html",
-      "published": "2026-11-01T16:43:22+00:00",
-      "audit_status": "fail",
-      "audit_score": 59,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 70,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "70 words"
-        },
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c05af528724fc3d5",
-      "source": "Toronto Star",
-      "title": "Four teens from Mississauga, Brampton, Milton killed in early morning crash near Guelph, police say",
-      "url": "https://www.thestar.com/news/gta/four-teens-from-mississauga-brampton-milton-killed-in-early-morning-crash-near-guelph-police-say/article_12afb19d-00be-4a76-bf72-ab0fcf63c4b3.html",
-      "published": "2026-11-01T15:58:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 528,
-      "paragraph_count": 33,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 10,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 10/100"
         }
       ]
     },
