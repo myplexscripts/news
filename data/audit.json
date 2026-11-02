@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-02T15:02:26.107404+00:00",
-  "generated_at_london": "2026-11-02T10:02:26.107404-05:00",
-  "news_generated_at": "2026-11-02T14:55:47.168025+00:00",
+  "generated_at": "2026-11-02T15:14:05.216156+00:00",
+  "generated_at_london": "2026-11-02T10:14:05.216156-05:00",
+  "news_generated_at": "2026-11-02T15:12:04.628646+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 675,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 102,
-    "review_story_count": 1,
+    "pass_story_count": 101,
+    "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 2,
+    "warning_issue_count": 4,
     "info_issue_count": 84,
-    "healthy_source_count": 15,
-    "review_source_count": 1,
+    "healthy_source_count": 14,
+    "review_source_count": 2,
     "error_source_count": 2,
     "waiting_source_count": 10
   },
@@ -101,6 +101,33 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1033,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-02T14:52:31+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-02T15:10:08.843283+00:00",
+      "last_error": ""
+    },
+    {
       "source": "104.7 Heart FM",
       "status": "waiting",
       "collector_status": "waiting",
@@ -170,7 +197,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -684,32 +711,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1054,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-02T12:15:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-02T12:50:14.226821+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -796,6 +797,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "81c347cd9a351b16",
+      "source": "Toronto Star",
+      "title": "One Canadian among 69 dead in last week's Spanish train crash",
+      "url": "https://www.thestar.com/news/canada/one-canadian-among-69-dead-in-last-week-s-spanish-train-crash/article_bec5d0be-d960-5ff1-8abb-90b10ac36c4e.html",
+      "published": "2026-11-02T14:52:31+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "81c347cd9a351b16",
+      "source": "Toronto Star",
+      "title": "One Canadian among 69 dead in last week's Spanish train crash",
+      "url": "https://www.thestar.com/news/canada/one-canadian-among-69-dead-in-last-week-s-spanish-train-crash/article_bec5d0be-d960-5ff1-8abb-90b10ac36c4e.html",
+      "published": "2026-11-02T14:52:31+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1897,6 +1928,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "81c347cd9a351b16",
+      "source": "Toronto Star",
+      "title": "One Canadian among 69 dead in last week's Spanish train crash",
+      "url": "https://www.thestar.com/news/canada/one-canadian-among-69-dead-in-last-week-s-spanish-train-crash/article_bec5d0be-d960-5ff1-8abb-90b10ac36c4e.html",
+      "published": "2026-11-02T14:52:31+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "3590582f456df82c",
       "source": "Toronto Star",
       "title": "Parents cheer, businesses brace as Western Canada ditches the time change",
@@ -1904,21 +1950,6 @@
       "published": "2026-11-02T09:00:29+00:00",
       "content_status": "full",
       "word_count": 736,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "df7bc4a0ed02c0aa",
-      "source": "Toronto Star",
-      "title": "Paul St-Pierre Plamondon to meet with Mark Carney after Canada-EU summit tension",
-      "url": "https://www.thestar.com/news/canada/quebec/paul-st-pierre-plamondon-to-meet-with-mark-carney-after-canada-eu-summit-tension/article_62fb8ac5-9eae-5897-9c30-5a1dd7c4b9aa.html",
-      "published": "2026-11-01T22:43:00+00:00",
-      "content_status": "full",
-      "word_count": 426,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4395,6 +4426,47 @@
       ]
     },
     {
+      "id": "81c347cd9a351b16",
+      "source": "Toronto Star",
+      "title": "One Canadian among 69 dead in last week's Spanish train crash",
+      "url": "https://www.thestar.com/news/canada/one-canadian-among-69-dead-in-last-week-s-spanish-train-crash/article_bec5d0be-d960-5ff1-8abb-90b10ac36c4e.html",
+      "published": "2026-11-02T14:52:31+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 214,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "62294f1bfc7e203c",
       "source": "Toronto Star",
       "title": "Trump covets the Keystone XL pipeline because its path runs through key U.S. midterm election races",
@@ -4640,35 +4712,6 @@
       "content_status": "full",
       "word_count": 255,
       "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "df7bc4a0ed02c0aa",
-      "source": "Toronto Star",
-      "title": "Paul St-Pierre Plamondon to meet with Mark Carney after Canada-EU summit tension",
-      "url": "https://www.thestar.com/news/canada/quebec/paul-st-pierre-plamondon-to-meet-with-mark-carney-after-canada-eu-summit-tension/article_62fb8ac5-9eae-5897-9c30-5a1dd7c4b9aa.html",
-      "published": "2026-11-01T22:43:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 426,
-      "paragraph_count": 17,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
