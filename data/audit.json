@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-03T11:35:35.996106+00:00",
-  "generated_at_london": "2026-11-03T06:35:35.996106-05:00",
-  "news_generated_at": "2026-11-03T11:30:20.332688+00:00",
+  "generated_at": "2026-11-03T11:46:36.621858+00:00",
+  "generated_at_london": "2026-11-03T06:46:36.621858-05:00",
+  "news_generated_at": "2026-11-03T11:45:30.565094+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 668,
+    "archive_story_count": 670,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 101,
-    "review_story_count": 1,
+    "pass_story_count": 100,
+    "review_story_count": 2,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 2,
+    "warning_issue_count": 3,
     "info_issue_count": 82,
     "healthy_source_count": 13,
     "review_source_count": 3,
@@ -105,24 +105,25 @@
       "collector_status": "healthy",
       "profile": "postmedia",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 678,
+      "average_words": 1011,
       "average_quality": 88,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:postmedia:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-03T09:00:00+00:00",
+      "latest_published": "2026-11-03T11:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T11:28:27.000390+00:00",
+      "last_scrape": "2026-11-03T11:44:07.087787+00:00",
       "last_error": ""
     },
     {
@@ -221,7 +222,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10000 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Google News London Discovery",
@@ -429,8 +430,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 548,
-      "average_quality": 81,
+      "average_words": 572,
+      "average_quality": 82,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -438,10 +439,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-11-03T10:58:45.506000+00:00",
-      "found_this_run": 5,
+      "latest_published": "2026-11-03T11:41:13.924000+00:00",
+      "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-11-03T11:17:22.735760+00:00",
+      "last_scrape": "2026-11-03T11:44:03.889336+00:00",
       "last_error": ""
     },
     {
@@ -467,7 +468,7 @@
       "latest_published": "2026-11-03T11:15:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T11:26:32.821786+00:00",
+      "last_scrape": "2026-11-03T11:33:03.972180+00:00",
       "last_error": ""
     },
     {
@@ -797,6 +798,21 @@
     },
     {
       "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "41bb9e509fc1605d",
+      "source": "National Post",
+      "title": "The plot behind $22M Pearson airport gold heist, as pieced together from court testimony and wiretaps",
+      "url": "https://nationalpost.com/news/canada/the-plot-behind-22m-pearson-airport-gold-heist-as-pieced-together-from-court-testimony-and-wiretaps",
+      "published": "2026-11-03T11:30:00+00:00",
+      "content_status": "full",
+      "word_count": 4050,
+      "quality_score": 95,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "warning",
       "code": "truncated_ending",
       "message": "Article body appears to end with an ellipsis.",
       "detail": "",
@@ -809,21 +825,6 @@
       "word_count": 874,
       "quality_score": 82,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b3d52bdb6f7106c7",
-      "source": "CTV News Canada",
-      "title": "A Toronto man’s family secret inspires new musical",
-      "url": "https://www.ctvnews.ca/canada/article/a-toronto-mans-family-secret-inspires-new-musical",
-      "published": "2026-11-01T20:22:24.967000+00:00",
-      "content_status": "full",
-      "word_count": 567,
-      "quality_score": 86,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -883,6 +884,21 @@
       "content_status": "full",
       "word_count": 567,
       "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 10/100",
+      "story_id": "2d3c3663125e4e93",
+      "source": "CTV News Canada",
+      "title": "Exclusive: They said an online spiritual teacher destroyed their lives. A jury awarded them $56M.",
+      "url": "https://www.ctvnews.ca/canada/article/exclusive-they-said-an-online-spiritual-teacher-destroyed-their-lives-a-jury-awarded-them-56m",
+      "published": "2026-11-03T11:41:13.924000+00:00",
+      "content_status": "full",
+      "word_count": 815,
+      "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1610,15 +1626,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3b7e2a52a85940ed",
+      "story_id": "41bb9e509fc1605d",
       "source": "National Post",
-      "title": "The federal budget is coming. Here’s how to find the important stuff among hundreds of pages",
-      "url": "https://nationalpost.com/news/the-federal-budget-is-coming-heres-how-to-find-the-important-stuff-among-hundreds-of-pages",
-      "published": "2026-11-01T13:38:08+00:00",
+      "title": "The plot behind $22M Pearson airport gold heist, as pieced together from court testimony and wiretaps",
+      "url": "https://nationalpost.com/news/canada/the-plot-behind-22m-pearson-airport-gold-heist-as-pieced-together-from-court-testimony-and-wiretaps",
+      "published": "2026-11-03T11:30:00+00:00",
       "content_status": "full",
-      "word_count": 718,
-      "quality_score": 94,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 4050,
+      "quality_score": 95,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -3468,6 +3484,35 @@
       ]
     },
     {
+      "id": "2d3c3663125e4e93",
+      "source": "CTV News Canada",
+      "title": "Exclusive: They said an online spiritual teacher destroyed their lives. A jury awarded them $56M.",
+      "url": "https://www.ctvnews.ca/canada/article/exclusive-they-said-an-online-spiritual-teacher-destroyed-their-lives-a-jury-awarded-them-56m",
+      "published": "2026-11-03T11:41:13.924000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 815,
+      "paragraph_count": 28,
+      "inline_image_count": 4,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 10,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 10/100"
+        }
+      ]
+    },
+    {
       "id": "26d8de136d25aa87",
       "source": "CTV News Canada",
       "title": "Osap pause hits paramedic students bound to work in underserved areas",
@@ -3717,35 +3762,6 @@
       "title": "DNA test leads Toronto performer to 35 half-siblings",
       "url": "https://www.ctvnews.ca/canada/article/dna-test-leads-toronto-performer-to-35-half-siblings",
       "published": "2026-11-01T23:49:58.640000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 567,
-      "paragraph_count": 26,
-      "inline_image_count": 5,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b3d52bdb6f7106c7",
-      "source": "CTV News Canada",
-      "title": "A Toronto man’s family secret inspires new musical",
-      "url": "https://www.ctvnews.ca/canada/article/a-toronto-mans-family-secret-inspires-new-musical",
-      "published": "2026-11-01T20:22:24.967000+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
@@ -4072,6 +4088,41 @@
       ]
     },
     {
+      "id": "41bb9e509fc1605d",
+      "source": "National Post",
+      "title": "The plot behind $22M Pearson airport gold heist, as pieced together from court testimony and wiretaps",
+      "url": "https://nationalpost.com/news/canada/the-plot-behind-22m-pearson-airport-gold-heist-as-pieced-together-from-court-testimony-and-wiretaps",
+      "published": "2026-11-03T11:30:00+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 4050,
+      "paragraph_count": 103,
+      "inline_image_count": 11,
+      "quality_score": 95,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c1b0008debc15273",
       "source": "National Post",
       "title": "Harper memoir says he never offered Carney finance ministry, despite prime minister’s claims",
@@ -4326,35 +4377,6 @@
       "inline_image_count": 0,
       "quality_score": 81,
       "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3b7e2a52a85940ed",
-      "source": "National Post",
-      "title": "The federal budget is coming. Here’s how to find the important stuff among hundreds of pages",
-      "url": "https://nationalpost.com/news/the-federal-budget-is-coming-heres-how-to-find-the-important-stuff-among-hundreds-of-pages",
-      "published": "2026-11-01T13:38:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 718,
-      "paragraph_count": 17,
-      "inline_image_count": 0,
-      "quality_score": 94,
-      "quality_grade": "excellent",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
