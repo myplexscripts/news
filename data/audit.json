@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-03T13:24:57.484199+00:00",
-  "generated_at_london": "2026-11-03T08:24:57.484199-05:00",
-  "news_generated_at": "2026-11-03T13:19:13.047402+00:00",
+  "generated_at": "2026-11-03T13:36:51.497783+00:00",
+  "generated_at_london": "2026-11-03T08:36:51.497783-05:00",
+  "news_generated_at": "2026-11-03T13:34:56.155739+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 671,
+    "archive_story_count": 672,
     "source_count": 28,
-    "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 3,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 4,
-    "info_issue_count": 85,
+    "audited_story_count": 106,
+    "pass_story_count": 100,
+    "review_story_count": 4,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 6,
+    "info_issue_count": 86,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 2,
@@ -122,7 +122,7 @@
       "latest_published": "2026-11-03T11:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T13:17:13.093366+00:00",
+      "last_scrape": "2026-11-03T13:32:57.527948+00:00",
       "last_error": ""
     },
     {
@@ -132,23 +132,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 693,
-      "average_quality": 96,
+      "average_words": 706,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-03T11:00:06+00:00",
-      "found_this_run": 9,
+      "latest_published": "2026-11-03T12:55:34+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T10:26:28.958920+00:00",
+      "last_scrape": "2026-11-03T13:33:00.077727+00:00",
       "last_error": ""
     },
     {
@@ -607,26 +608,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "police",
-      "sample_size": 3,
-      "pass": 3,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 402,
-      "average_quality": 76,
+      "average_words": 354,
+      "average_quality": 73,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:police:main": 1,
         "reader:semantic-rich-v1": 1,
         "dom:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-11-02T05:00:00+00:00",
+      "info_issues": 2,
+      "latest_published": "2026-11-03T05:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 3,
-      "last_scrape": "2026-11-02T13:03:26.124030+00:00",
+      "tracked": 4,
+      "last_scrape": "2026-11-03T13:30:33.256401+00:00",
       "last_error": ""
     },
     {
@@ -766,21 +768,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "66 words",
-      "story_id": "f68781597d9deed7",
-      "source": "Toronto Star",
-      "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
-      "url": "https://www.thestar.com/news/canada/british-columbia/adam-kai-ji-lo-accused-in-vancouver-s-lapu-lapu-day-attack-pleads-not-guilty/article_0b0f3021-2483-5ed3-97f5-cd6b5918aba7.html",
-      "published": "2026-11-02T23:42:20+00:00",
-      "content_status": "full",
-      "word_count": 66,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -839,6 +826,36 @@
       "word_count": 874,
       "quality_score": 82,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "2dc420bdd0e7de27",
+      "source": "Toronto Star",
+      "title": "SIU investigating after 19-year-old dies at UTM campus dorm",
+      "url": "https://www.thestar.com/news/ontario/siu-investigating-after-19-year-old-dies-at-utm-campus-dorm/article_a142b37e-e585-599a-9563-d164f1569b7f.html",
+      "published": "2026-11-03T12:55:34+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "2dc420bdd0e7de27",
+      "source": "Toronto Star",
+      "title": "SIU investigating after 19-year-old dies at UTM campus dorm",
+      "url": "https://www.thestar.com/news/ontario/siu-investigating-after-19-year-old-dies-at-utm-campus-dorm/article_a142b37e-e585-599a-9563-d164f1569b7f.html",
+      "published": "2026-11-03T12:55:34+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1490,6 +1507,21 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "eec69e940d668114",
+      "source": "London Police Service",
+      "title": "Assault investigation",
+      "url": "https://www.londonpolice.ca/news/posts/assault-investigation-26-107083",
+      "published": "2026-11-03T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 207,
+      "quality_score": 62,
+      "extraction_method": "dom:police:main"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "4c519f4ebd89880b",
       "source": "London Police Service",
       "title": "Crime prevention week 2026",
@@ -1910,21 +1942,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f68781597d9deed7",
-      "source": "Toronto Star",
-      "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
-      "url": "https://www.thestar.com/news/canada/british-columbia/adam-kai-ji-lo-accused-in-vancouver-s-lapu-lapu-day-attack-pleads-not-guilty/article_0b0f3021-2483-5ed3-97f5-cd6b5918aba7.html",
-      "published": "2026-11-02T23:42:20+00:00",
-      "content_status": "full",
-      "word_count": 66,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "10a67be4e8d475e4",
       "source": "Toronto Star",
       "title": "Americans head to the polls for midterm election referendum on Trump's tenure",
@@ -1994,6 +2011,21 @@
       "word_count": 888,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2dc420bdd0e7de27",
+      "source": "Toronto Star",
+      "title": "SIU investigating after 19-year-old dies at UTM campus dorm",
+      "url": "https://www.thestar.com/news/ontario/siu-investigating-after-19-year-old-dies-at-utm-campus-dorm/article_a142b37e-e585-599a-9563-d164f1569b7f.html",
+      "published": "2026-11-03T12:55:34+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2765,6 +2797,35 @@
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "municipal",
       "local_score": 85,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "eec69e940d668114",
+      "source": "London Police Service",
+      "title": "Assault investigation",
+      "url": "https://www.londonpolice.ca/news/posts/assault-investigation-26-107083",
+      "published": "2026-11-03T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 207,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:police:main",
+      "extraction_profile": "police",
+      "local_score": 100,
       "issues": [
         {
           "severity": "info",
@@ -4473,6 +4534,47 @@
       ]
     },
     {
+      "id": "2dc420bdd0e7de27",
+      "source": "Toronto Star",
+      "title": "SIU investigating after 19-year-old dies at UTM campus dorm",
+      "url": "https://www.thestar.com/news/ontario/siu-investigating-after-19-year-old-dies-at-utm-campus-dorm/article_a142b37e-e585-599a-9563-d164f1569b7f.html",
+      "published": "2026-11-03T12:55:34+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 192,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7d4b4809f01c696e",
       "source": "Toronto Star",
       "title": "Toronto’s child hunger rates nearly double as city sees 4.1M food bank visits: report",
@@ -4725,41 +4827,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f68781597d9deed7",
-      "source": "Toronto Star",
-      "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
-      "url": "https://www.thestar.com/news/canada/british-columbia/adam-kai-ji-lo-accused-in-vancouver-s-lapu-lapu-day-attack-pleads-not-guilty/article_0b0f3021-2483-5ed3-97f5-cd6b5918aba7.html",
-      "published": "2026-11-02T23:42:20+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 66,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "66 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
