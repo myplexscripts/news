@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-03T00:08:15.255683+00:00",
-  "generated_at_london": "2026-11-02T19:08:15.255683-05:00",
-  "news_generated_at": "2026-11-03T00:02:43.730538+00:00",
+  "generated_at": "2026-11-03T00:19:56.011742+00:00",
+  "generated_at_london": "2026-11-02T19:19:56.011742-05:00",
+  "news_generated_at": "2026-11-03T00:18:04.879410+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 680,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 102,
-    "review_story_count": 1,
+    "pass_story_count": 101,
+    "review_story_count": 2,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 2,
-    "info_issue_count": 87,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "warning_issue_count": 4,
+    "info_issue_count": 88,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 2,
     "waiting_source_count": 10
   },
@@ -74,6 +74,33 @@
       "last_error": ""
     },
     {
+      "source": "106.9 The X",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "wordpress",
+      "sample_size": 7,
+      "pass": 7,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 335,
+      "average_quality": 84,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 1,
+        "dom:semantic-rich-v1": 6
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 0,
+      "latest_published": "2026-11-02T19:14:42+00:00",
+      "found_this_run": 0,
+      "tracked": 7,
+      "last_scrape": "2026-11-02T19:32:14.865089+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.1069thex.com', port=443): Max retries exceeded with url: /category/news-home-page/feed/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate h"
+    },
+    {
       "source": "Middlesex-London Health Unit",
       "status": "review",
       "collector_status": "degraded",
@@ -122,34 +149,35 @@
       "latest_published": "2026-11-02T22:25:36+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T00:00:50.806828+00:00",
+      "last_scrape": "2026-11-03T00:16:12.564565+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 327,
-      "average_quality": 96,
+      "average_words": 322,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-02T22:32:47+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-02T23:42:20+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T22:41:57.277760+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-03T00:16:15.488068+00:00",
+      "last_error": ""
     },
     {
       "source": "104.7 Heart FM",
@@ -392,33 +420,6 @@
       "last_error": ""
     },
     {
-      "source": "106.9 The X",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "wordpress",
-      "sample_size": 7,
-      "pass": 7,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 335,
-      "average_quality": 84,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 1,
-        "dom:semantic-rich-v1": 6
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "2026-11-02T19:14:42+00:00",
-      "found_this_run": 10,
-      "tracked": 7,
-      "last_scrape": "2026-11-02T19:32:14.865089+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CTV News Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -467,7 +468,7 @@
       "latest_published": "2026-11-02T23:59:10.807000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T23:50:25.342573+00:00",
+      "last_scrape": "2026-11-03T00:05:43.345697+00:00",
       "last_error": ""
     },
     {
@@ -693,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 440,
+      "average_words": 413,
       "average_quality": 90,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-02T22:44:02.533000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-11-02T23:59:29.227000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-02T22:57:47.119003+00:00",
+      "last_scrape": "2026-11-03T00:16:11.841568+00:00",
       "last_error": ""
     },
     {
@@ -795,6 +797,36 @@
       "word_count": 874,
       "quality_score": 82,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f68781597d9deed7",
+      "source": "Toronto Star",
+      "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
+      "url": "https://www.thestar.com/news/canada/british-columbia/adam-kai-ji-lo-accused-in-vancouver-s-lapu-lapu-day-attack-pleads-not-guilty/article_0b0f3021-2483-5ed3-97f5-cd6b5918aba7.html",
+      "published": "2026-11-02T23:42:20+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "f68781597d9deed7",
+      "source": "Toronto Star",
+      "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
+      "url": "https://www.thestar.com/news/canada/british-columbia/adam-kai-ji-lo-accused-in-vancouver-s-lapu-lapu-day-attack-pleads-not-guilty/article_0b0f3021-2483-5ed3-97f5-cd6b5918aba7.html",
+      "published": "2026-11-02T23:42:20+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1836,6 +1868,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "6e12de9cd2a22570",
+      "source": "The Globe and Mail",
+      "title": "Ontarians look to social media for medical specialists because of long waits, association says",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-medical-specialists-long-waits-social-media-referral-program",
+      "published": "2026-11-02T23:59:29.227000+00:00",
+      "content_status": "full",
+      "word_count": 747,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "346253d2deb2e893",
       "source": "The Globe and Mail",
       "title": "Rosedale semi buyer cuts a deal at $2.5-million knock-down price",
@@ -1896,15 +1943,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "240f1b91b8f13e77",
+      "story_id": "f68781597d9deed7",
       "source": "Toronto Star",
-      "title": "Canada presenting itself as climate leader at COP31, despite policy rollbacks",
-      "url": "https://www.thestar.com/news/canada/canada-presenting-itself-as-climate-leader-at-cop31-despite-policy-rollbacks/article_23e587e3-1364-522c-ac52-ef97a165018c.html",
-      "published": "2026-11-02T18:41:35+00:00",
+      "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
+      "url": "https://www.thestar.com/news/canada/british-columbia/adam-kai-ji-lo-accused-in-vancouver-s-lapu-lapu-day-attack-pleads-not-guilty/article_0b0f3021-2483-5ed3-97f5-cd6b5918aba7.html",
+      "published": "2026-11-02T23:42:20+00:00",
       "content_status": "full",
-      "word_count": 289,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3864,6 +3911,35 @@
       ]
     },
     {
+      "id": "6e12de9cd2a22570",
+      "source": "The Globe and Mail",
+      "title": "Ontarians look to social media for medical specialists because of long waits, association says",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-medical-specialists-long-waits-social-media-referral-program",
+      "published": "2026-11-02T23:59:29.227000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 747,
+      "paragraph_count": 24,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2ccaa6a58507d004",
       "source": "The Globe and Mail",
       "title": "Industry enthusiasm for Galloway book ‘remarkable,’ publishing expert testifies",
@@ -4141,28 +4217,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "e234570f79404dc6",
-      "source": "The Globe and Mail",
-      "title": "Can gene editing stop ALS? Toronto’s Specific Biologics advances therapy that could help some with fatal disease",
-      "url": "https://www.theglobeandmail.com/business/article-can-gene-editing-stop-als-torontos-specific-biologics-advances-therapy",
-      "published": "2026-11-02T12:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 1018,
-      "paragraph_count": 18,
-      "inline_image_count": 1,
-      "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 26,
-      "issues": []
     },
     {
       "id": "471087d0f5f8de9b",
@@ -4461,6 +4515,47 @@
       ]
     },
     {
+      "id": "f68781597d9deed7",
+      "source": "Toronto Star",
+      "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
+      "url": "https://www.thestar.com/news/canada/british-columbia/adam-kai-ji-lo-accused-in-vancouver-s-lapu-lapu-day-attack-pleads-not-guilty/article_0b0f3021-2483-5ed3-97f5-cd6b5918aba7.html",
+      "published": "2026-11-02T23:42:20+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 235,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0b46aef36649b28f",
       "source": "Toronto Star",
       "title": "Winnipeg police add to reports of sharp metal found in Halloween candy",
@@ -4706,35 +4801,6 @@
       "content_status": "full",
       "word_count": 323,
       "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "240f1b91b8f13e77",
-      "source": "Toronto Star",
-      "title": "Canada presenting itself as climate leader at COP31, despite policy rollbacks",
-      "url": "https://www.thestar.com/news/canada/canada-presenting-itself-as-climate-leader-at-cop31-despite-policy-rollbacks/article_23e587e3-1364-522c-ac52-ef97a165018c.html",
-      "published": "2026-11-02T18:41:35+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 289,
-      "paragraph_count": 24,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
