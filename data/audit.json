@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-03T04:33:22.288660+00:00",
-  "generated_at_london": "2026-11-02T23:33:22.288660-05:00",
-  "news_generated_at": "2026-11-03T04:28:43.040875+00:00",
+  "generated_at": "2026-11-03T04:45:30.634619+00:00",
+  "generated_at_london": "2026-11-02T23:45:30.634619-05:00",
+  "news_generated_at": "2026-11-03T04:43:52.002736+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 667,
     "source_count": 28,
     "audited_story_count": 104,
     "pass_story_count": 99,
-    "review_story_count": 1,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
-    "warning_issue_count": 2,
+    "review_story_count": 2,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 4,
     "info_issue_count": 84,
     "healthy_source_count": 13,
     "review_source_count": 3,
@@ -122,7 +122,7 @@
       "latest_published": "2026-11-02T22:25:36+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T04:26:45.209003+00:00",
+      "last_scrape": "2026-11-03T04:41:58.719036+00:00",
       "last_error": ""
     },
     {
@@ -132,23 +132,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 415,
-      "average_quality": 96,
+      "average_words": 433,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-02T23:42:20+00:00",
-      "found_this_run": 10,
+      "latest_published": "2026-11-03T04:24:49+00:00",
+      "found_this_run": 9,
       "tracked": 30,
-      "last_scrape": "2026-11-03T00:16:15.488068+00:00",
+      "last_scrape": "2026-11-03T04:42:01.602068+00:00",
       "last_error": ""
     },
     {
@@ -782,21 +783,6 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "54 words",
-      "story_id": "0e063bfe71ddd507",
-      "source": "Toronto Star",
-      "title": "Murder charge laid in death of 11-year-old boy reported missing in Burnaby, B.C.",
-      "url": "https://www.thestar.com/news/canada/british-columbia/murder-charge-laid-in-death-of-11-year-old-boy-reported-missing-in-burnaby-b-c/article_e65cac96-e525-50f1-b71d-e25dd576aaf0.html",
-      "published": "2026-11-02T19:03:42+00:00",
-      "content_status": "full",
-      "word_count": 54,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -825,6 +811,36 @@
       "word_count": 874,
       "quality_score": 82,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "13061532dc6d7fba",
+      "source": "Toronto Star",
+      "title": "Shelter-in-place order for students at University of Toronto Mississauga campus",
+      "url": "https://www.thestar.com/news/ontario/shelter-in-place-order-for-students-at-university-of-toronto-mississauga-campus/article_ce8b1f09-0e8d-5c6d-a511-0cb5503e4a28.html",
+      "published": "2026-11-03T04:24:49+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "13061532dc6d7fba",
+      "source": "Toronto Star",
+      "title": "Shelter-in-place order for students at University of Toronto Mississauga campus",
+      "url": "https://www.thestar.com/news/ontario/shelter-in-place-order-for-students-at-university-of-toronto-mississauga-campus/article_ce8b1f09-0e8d-5c6d-a511-0cb5503e4a28.html",
+      "published": "2026-11-03T04:24:49+00:00",
+      "content_status": "full",
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1941,15 +1957,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0e063bfe71ddd507",
+      "story_id": "13061532dc6d7fba",
       "source": "Toronto Star",
-      "title": "Murder charge laid in death of 11-year-old boy reported missing in Burnaby, B.C.",
-      "url": "https://www.thestar.com/news/canada/british-columbia/murder-charge-laid-in-death-of-11-year-old-boy-reported-missing-in-burnaby-b-c/article_e65cac96-e525-50f1-b71d-e25dd576aaf0.html",
-      "published": "2026-11-02T19:03:42+00:00",
+      "title": "Shelter-in-place order for students at University of Toronto Mississauga campus",
+      "url": "https://www.thestar.com/news/ontario/shelter-in-place-order-for-students-at-university-of-toronto-mississauga-campus/article_ce8b1f09-0e8d-5c6d-a511-0cb5503e4a28.html",
+      "published": "2026-11-03T04:24:49+00:00",
       "content_status": "full",
-      "word_count": 54,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 235,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4405,6 +4421,47 @@
       ]
     },
     {
+      "id": "13061532dc6d7fba",
+      "source": "Toronto Star",
+      "title": "Shelter-in-place order for students at University of Toronto Mississauga campus",
+      "url": "https://www.thestar.com/news/ontario/shelter-in-place-order-for-students-at-university-of-toronto-mississauga-campus/article_ce8b1f09-0e8d-5c6d-a511-0cb5503e4a28.html",
+      "published": "2026-11-03T04:24:49+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 235,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f68781597d9deed7",
       "source": "Toronto Star",
       "title": "Adam Kai-Ji Lo, accused in Vancouver's Lapu Lapu Day attack, pleads not guilty",
@@ -4663,41 +4720,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0e063bfe71ddd507",
-      "source": "Toronto Star",
-      "title": "Murder charge laid in death of 11-year-old boy reported missing in Burnaby, B.C.",
-      "url": "https://www.thestar.com/news/canada/british-columbia/murder-charge-laid-in-death-of-11-year-old-boy-reported-missing-in-burnaby-b-c/article_e65cac96-e525-50f1-b71d-e25dd576aaf0.html",
-      "published": "2026-11-02T19:03:42+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 54,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "54 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
