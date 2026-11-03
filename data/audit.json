@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-03T18:22:27.901247+00:00",
-  "generated_at_london": "2026-11-03T13:22:27.901247-05:00",
-  "news_generated_at": "2026-11-03T18:13:14.635949+00:00",
+  "generated_at": "2026-11-03T18:33:07.210137+00:00",
+  "generated_at_london": "2026-11-03T13:33:07.210137-05:00",
+  "news_generated_at": "2026-11-03T18:31:46.269637+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 675,
+    "archive_story_count": 676,
     "source_count": 28,
     "audited_story_count": 108,
-    "pass_story_count": 103,
-    "review_story_count": 3,
+    "pass_story_count": 102,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 4,
-    "info_issue_count": 95,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "warning_issue_count": 6,
+    "info_issue_count": 96,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -122,7 +122,34 @@
       "latest_published": "2026-11-03T13:34:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T18:11:40.975133+00:00",
+      "last_scrape": "2026-11-03T18:30:24.815164+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 440,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-03T18:15:32+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-03T18:30:25.926140+00:00",
       "last_error": ""
     },
     {
@@ -405,17 +432,17 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 70,
-      "average_words": 158,
-      "average_quality": 59,
+      "average_words": 190,
+      "average_quality": 60,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 3,
-        "embedded-json:ctv": 7
+        "embedded-json:ctv": 7,
+        "ctv:summary-fallback": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-03T17:32:11.347000+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-03T18:28:55.454000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-03T17:36:01.563461+00:00",
@@ -669,45 +696,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 650,
-      "average_quality": 96,
+      "average_words": 710,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-11-03T15:52:30.989000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-11-03T18:18:32.495000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-03T16:43:54.527446+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 490,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-03T17:04:07+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-03T17:54:37.451282+00:00",
+      "last_scrape": "2026-11-03T18:30:22.966366+00:00",
       "last_error": ""
     },
     {
@@ -827,6 +829,36 @@
       "word_count": 874,
       "quality_score": 82,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "715aff81d622824d",
+      "source": "Toronto Star",
+      "title": "One injured in Vancouver neighbourhood after 25 e-bike riders disrupt Halloween",
+      "url": "https://www.thestar.com/news/canada/one-injured-in-vancouver-neighbourhood-after-25-e-bike-riders-disrupt-halloween/article_55fb1aa5-d6e2-5a83-878d-1fd3148e20d3.html",
+      "published": "2026-11-03T18:15:32+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "715aff81d622824d",
+      "source": "Toronto Star",
+      "title": "One injured in Vancouver neighbourhood after 25 e-bike riders disrupt Halloween",
+      "url": "https://www.thestar.com/news/canada/one-injured-in-vancouver-neighbourhood-after-25-e-bike-riders-disrupt-halloween/article_55fb1aa5-d6e2-5a83-878d-1fd3148e20d3.html",
+      "published": "2026-11-03T18:15:32+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1200,6 +1232,36 @@
       "published": "2026-11-03T17:11:23.485000+00:00",
       "content_status": "full",
       "word_count": 599,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "11ed63d9ee356f12",
+      "source": "CTV News London",
+      "title": "‘We’re overworked and exhausted’: Huron County paramedics without contract since January",
+      "url": "https://www.ctvnews.ca/london/article/were-overworked-and-exhausted-huron-county-paramedics-without-contract-since-january",
+      "published": "2026-11-03T18:28:55.454000+00:00",
+      "content_status": "full",
+      "word_count": 516,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "11ed63d9ee356f12",
+      "source": "CTV News London",
+      "title": "‘We’re overworked and exhausted’: Huron County paramedics without contract since January",
+      "url": "https://www.ctvnews.ca/london/article/were-overworked-and-exhausted-huron-county-paramedics-without-contract-since-january",
+      "published": "2026-11-03T18:28:55.454000+00:00",
+      "content_status": "full",
+      "word_count": 516,
       "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
@@ -1985,36 +2047,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "cca853d66a4dec9d",
-      "source": "The Globe and Mail",
-      "title": "Shelter-in-place issued for University of Toronto Mississauga campus",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-shelter-in-place-issued-for-university-of-torontos-mississauga-campus",
-      "published": "2026-11-03T04:55:04.778000+00:00",
-      "content_status": "full",
-      "word_count": 207,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "cca853d66a4dec9d",
-      "source": "The Globe and Mail",
-      "title": "Shelter-in-place issued for University of Toronto Mississauga campus",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-shelter-in-place-issued-for-university-of-torontos-mississauga-campus",
-      "published": "2026-11-03T04:55:04.778000+00:00",
-      "content_status": "full",
-      "word_count": 207,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2027,6 +2059,21 @@
       "word_count": 379,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fdeee35f3d3a9131",
+      "source": "The Globe and Mail",
+      "title": "‘Just trust us’ is a bad police communications strategy",
+      "url": "https://www.theglobeandmail.com/opinion/article-just-trust-us-is-a-bad-police-communications-strategy",
+      "published": "2026-11-03T18:18:32.495000+00:00",
+      "content_status": "full",
+      "word_count": 803,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2078,21 +2125,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d0ae7db96f3f9106",
-      "source": "Toronto Star",
-      "title": "In new memoir, Harper says he offered Carney a job — but not finance minister",
-      "url": "https://www.thestar.com/news/canada/in-new-memoir-harper-says-he-offered-carney-a-job-but-not-finance-minister/article_f01bfe3b-d5a3-5fea-b2fe-fb2347b659f2.html",
-      "published": "2026-11-03T09:00:15+00:00",
-      "content_status": "full",
-      "word_count": 742,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "22a10078f52b61a3",
       "source": "Toronto Star",
       "title": "No injuries after military chopper damaged in night landing on Canadian navy ship",
@@ -2102,6 +2134,21 @@
       "word_count": 279,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "715aff81d622824d",
+      "source": "Toronto Star",
+      "title": "One injured in Vancouver neighbourhood after 25 e-bike riders disrupt Halloween",
+      "url": "https://www.thestar.com/news/canada/one-injured-in-vancouver-neighbourhood-after-25-e-bike-riders-disrupt-halloween/article_55fb1aa5-d6e2-5a83-878d-1fd3148e20d3.html",
+      "published": "2026-11-03T18:15:32+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2342,6 +2389,41 @@
       "extraction_profile": "global",
       "local_score": 55,
       "issues": []
+    },
+    {
+      "id": "11ed63d9ee356f12",
+      "source": "CTV News London",
+      "title": "‘We’re overworked and exhausted’: Huron County paramedics without contract since January",
+      "url": "https://www.ctvnews.ca/london/article/were-overworked-and-exhausted-huron-county-paramedics-without-contract-since-january",
+      "published": "2026-11-03T18:28:55.454000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 516,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
     },
     {
       "id": "9cbc01e0c4aafbdb",
@@ -2620,28 +2702,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "60d16b82948dd32e",
-      "source": "CTV News London",
-      "title": "Lawc marks 17th annual ‘Shine the Light on Women Abuse’ campaign",
-      "url": "https://www.ctvnews.ca/london/article/lawc-marks-17th-annual-shine-the-light-on-women-abuse-campaign",
-      "published": "2026-11-03T02:36:17.365000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 196,
-      "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 20,
-      "issues": []
     },
     {
       "id": "725fa0e0ecbfc03c",
@@ -4119,6 +4179,35 @@
       ]
     },
     {
+      "id": "fdeee35f3d3a9131",
+      "source": "The Globe and Mail",
+      "title": "‘Just trust us’ is a bad police communications strategy",
+      "url": "https://www.theglobeandmail.com/opinion/article-just-trust-us-is-a-bad-police-communications-strategy",
+      "published": "2026-11-03T18:18:32.495000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 803,
+      "paragraph_count": 13,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "625e8f65a344bf1a",
       "source": "The Globe and Mail",
       "title": "Carney calls for expanded trade with Caribbean at Commonwealth leaders meeting",
@@ -4389,41 +4478,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cca853d66a4dec9d",
-      "source": "The Globe and Mail",
-      "title": "Shelter-in-place issued for University of Toronto Mississauga campus",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-shelter-in-place-issued-for-university-of-torontos-mississauga-campus",
-      "published": "2026-11-03T04:55:04.778000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 207,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4741,6 +4795,47 @@
       ]
     },
     {
+      "id": "715aff81d622824d",
+      "source": "Toronto Star",
+      "title": "One injured in Vancouver neighbourhood after 25 e-bike riders disrupt Halloween",
+      "url": "https://www.thestar.com/news/canada/one-injured-in-vancouver-neighbourhood-after-25-e-bike-riders-disrupt-halloween/article_55fb1aa5-d6e2-5a83-878d-1fd3148e20d3.html",
+      "published": "2026-11-03T18:15:32+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 240,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "387a730d28073502",
       "source": "Toronto Star",
       "title": "B.C. hockey team says didn't know exec it hired was being investigated for sex crimes",
@@ -4987,35 +5082,6 @@
       "word_count": 785,
       "paragraph_count": 28,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d0ae7db96f3f9106",
-      "source": "Toronto Star",
-      "title": "In new memoir, Harper says he offered Carney a job — but not finance minister",
-      "url": "https://www.thestar.com/news/canada/in-new-memoir-harper-says-he-offered-carney-a-job-but-not-finance-minister/article_f01bfe3b-d5a3-5fea-b2fe-fb2347b659f2.html",
-      "published": "2026-11-03T09:00:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 742,
-      "paragraph_count": 21,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
