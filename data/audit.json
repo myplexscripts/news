@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-04T01:31:57.572432+00:00",
-  "generated_at_london": "2026-11-03T20:31:57.572432-05:00",
-  "news_generated_at": "2026-11-04T01:22:01.563508+00:00",
+  "generated_at": "2026-11-04T01:37:30.460409+00:00",
+  "generated_at_london": "2026-11-03T20:37:30.460409-05:00",
+  "news_generated_at": "2026-11-04T01:36:16.174542+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 685,
+    "archive_story_count": 686,
     "source_count": 28,
     "audited_story_count": 111,
-    "pass_story_count": 103,
-    "review_story_count": 6,
+    "pass_story_count": 102,
+    "review_story_count": 7,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 98,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 2,
     "waiting_source_count": 9
   },
@@ -150,7 +150,7 @@
       "latest_published": "2026-11-03T21:44:39+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-04T01:19:58.357569+00:00",
+      "last_scrape": "2026-11-04T01:34:54.952481+00:00",
       "last_error": ""
     },
     {
@@ -178,6 +178,33 @@
       "found_this_run": 10,
       "tracked": 5,
       "last_scrape": "2026-11-03T21:34:47.815484+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 380,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-04T00:40:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-04T01:34:56.000395+00:00",
       "last_error": ""
     },
     {
@@ -689,32 +716,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 378,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-04T00:35:19+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-11-04T01:04:14.839101+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -891,6 +892,36 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "18ced6be5facd598",
+      "source": "Toronto Star",
+      "title": "National campaign fighting migrant worker exploitation wins $50,000 prize",
+      "url": "https://www.thestar.com/news/gta/national-campaign-fighting-migrant-worker-exploitation-wins-50-000-prize/article_5aa7c053-cdfb-4519-bb69-3b3e4c429ad2.html",
+      "published": "2026-11-04T00:40:00+00:00",
+      "content_status": "full",
+      "word_count": 230,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "18ced6be5facd598",
+      "source": "Toronto Star",
+      "title": "National campaign fighting migrant worker exploitation wins $50,000 prize",
+      "url": "https://www.thestar.com/news/gta/national-campaign-fighting-migrant-worker-exploitation-wins-50-000-prize/article_5aa7c053-cdfb-4519-bb69-3b3e4c429ad2.html",
+      "published": "2026-11-04T00:40:00+00:00",
+      "content_status": "full",
+      "word_count": 230,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2217,6 +2248,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "18ced6be5facd598",
+      "source": "Toronto Star",
+      "title": "National campaign fighting migrant worker exploitation wins $50,000 prize",
+      "url": "https://www.thestar.com/news/gta/national-campaign-fighting-migrant-worker-exploitation-wins-50-000-prize/article_5aa7c053-cdfb-4519-bb69-3b3e4c429ad2.html",
+      "published": "2026-11-04T00:40:00+00:00",
+      "content_status": "full",
+      "word_count": 230,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "fdb4b551944705eb",
       "source": "Toronto Star",
       "title": "One dead, one missing in suspected grizzly bear attack near Bella Coola, B.C.",
@@ -2224,21 +2270,6 @@
       "published": "2026-11-03T19:25:05+00:00",
       "content_status": "full",
       "word_count": 267,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "7a15c9fd17813fa3",
-      "source": "Toronto Star",
-      "title": "Ontario won't make career college Osap audit public, minister says",
-      "url": "https://www.thestar.com/news/ontario/ontario-won-t-make-career-college-osap-audit-public-minister-says/article_f92cb1d8-2843-5c52-826f-0c49baf54bbe.html",
-      "published": "2026-11-03T18:42:39+00:00",
-      "content_status": "full",
-      "word_count": 206,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4962,6 +4993,47 @@
       ]
     },
     {
+      "id": "18ced6be5facd598",
+      "source": "Toronto Star",
+      "title": "National campaign fighting migrant worker exploitation wins $50,000 prize",
+      "url": "https://www.thestar.com/news/gta/national-campaign-fighting-migrant-worker-exploitation-wins-50-000-prize/article_5aa7c053-cdfb-4519-bb69-3b3e4c429ad2.html",
+      "published": "2026-11-04T00:40:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 230,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "25f67759d409e9d5",
       "source": "Toronto Star",
       "title": "B.C. First Nation buys major Sunshine Coast forestry operation in $80M deal",
@@ -5207,35 +5279,6 @@
       "content_status": "full",
       "word_count": 294,
       "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7a15c9fd17813fa3",
-      "source": "Toronto Star",
-      "title": "Ontario won't make career college Osap audit public, minister says",
-      "url": "https://www.thestar.com/news/ontario/ontario-won-t-make-career-college-osap-audit-public-minister-says/article_f92cb1d8-2843-5c52-826f-0c49baf54bbe.html",
-      "published": "2026-11-03T18:42:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 206,
-      "paragraph_count": 15,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
