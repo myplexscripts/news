@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-04T08:57:42.801801+00:00",
-  "generated_at_london": "2026-11-04T03:57:42.801801-05:00",
-  "news_generated_at": "2026-11-04T08:52:19.403831+00:00",
+  "generated_at": "2026-11-04T09:09:42.570997+00:00",
+  "generated_at_london": "2026-11-04T04:09:42.570997-05:00",
+  "news_generated_at": "2026-11-04T09:07:51.419714+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 678,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 109,
     "pass_story_count": 100,
@@ -164,20 +164,21 @@
       "fail": 0,
       "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 1407,
-      "average_quality": 90,
+      "average_words": 1443,
+      "average_quality": 89,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "reader:semantic-rich-v1": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-11-03T21:44:39+00:00",
+      "latest_published": "2026-11-04T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-04T08:50:28.914019+00:00",
+      "last_scrape": "2026-11-04T09:05:53.349620+00:00",
       "last_error": ""
     },
     {
@@ -210,7 +211,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -228,10 +229,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-04T00:40:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-04T01:34:56.000395+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -1630,21 +1631,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c53fcca3a7992bad",
-      "source": "National Post",
-      "title": "After re-election, Olivia Chow needs to ‘show up’ in order to gain Jewish community’s trust",
-      "url": "https://nationalpost.com/news/canada/after-re-election-olivia-chow-needs-to-show-up-in-order-to-gain-jewish-communitys-trust",
-      "published": "2026-11-02T20:58:10+00:00",
-      "content_status": "full",
-      "word_count": 704,
-      "quality_score": 95,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "7c4e42789d95ce22",
       "source": "National Post",
       "title": "B.C. ostrich farms files lawsuit against food inspection agency and RCMP over cull",
@@ -1729,6 +1715,21 @@
       "word_count": 903,
       "quality_score": 95,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0a0a95615e35d989",
+      "source": "National Post",
+      "title": "The midterms are over. Will Trump still want to make a deal with Canada?",
+      "url": "https://nationalpost.com/news/donald-trump-canada-trade",
+      "published": "2026-11-04T09:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1064,
+      "quality_score": 92,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4494,6 +4495,35 @@
       ]
     },
     {
+      "id": "0a0a95615e35d989",
+      "source": "National Post",
+      "title": "The midterms are over. Will Trump still want to make a deal with Canada?",
+      "url": "https://nationalpost.com/news/donald-trump-canada-trade",
+      "published": "2026-11-04T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1064,
+      "paragraph_count": 29,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7c4e42789d95ce22",
       "source": "National Post",
       "title": "B.C. ostrich farms files lawsuit against food inspection agency and RCMP over cull",
@@ -4764,35 +4794,6 @@
           "message": "Article body appears to end with an ellipsis.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c53fcca3a7992bad",
-      "source": "National Post",
-      "title": "After re-election, Olivia Chow needs to ‘show up’ in order to gain Jewish community’s trust",
-      "url": "https://nationalpost.com/news/canada/after-re-election-olivia-chow-needs-to-show-up-in-order-to-gain-jewish-communitys-trust",
-      "published": "2026-11-02T20:58:10+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 704,
-      "paragraph_count": 22,
-      "inline_image_count": 4,
-      "quality_score": 95,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
