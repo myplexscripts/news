@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-04T21:40:57.788750+00:00",
-  "generated_at_london": "2026-11-04T16:40:57.788750-05:00",
-  "news_generated_at": "2026-11-04T21:34:24.855966+00:00",
+  "generated_at": "2026-11-04T21:52:20.920505+00:00",
+  "generated_at_london": "2026-11-04T16:52:20.920505-05:00",
+  "news_generated_at": "2026-11-04T21:50:06.934526+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 675,
@@ -658,7 +658,7 @@
       "latest_published": "2026-11-04T19:56:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-04T21:32:43.049018+00:00",
+      "last_scrape": "2026-11-04T21:47:59.205017+00:00",
       "last_error": ""
     },
     {
@@ -672,19 +672,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 414,
-      "average_quality": 94,
+      "average_words": 469,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 15,
-      "latest_published": "2026-11-04T20:04:55.495000+00:00",
+      "latest_published": "2026-11-04T21:30:36.721000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-04T20:14:03.618497+00:00",
+      "last_scrape": "2026-11-04T21:47:56.197673+00:00",
       "last_error": ""
     },
     {
@@ -1793,6 +1794,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "59b31a6e4d7658a5",
+      "source": "The Globe and Mail",
+      "title": "Edmonton entrepreneur Irving Kipnes had twin passions: business and philanthropy",
+      "url": "https://www.theglobeandmail.com/canada/article-irving-kipnes",
+      "published": "2026-11-04T21:30:36.721000+00:00",
+      "content_status": "full",
+      "word_count": 1501,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1818,21 +1834,6 @@
       "published": "2026-11-04T14:10:16.277000+00:00",
       "content_status": "full",
       "word_count": 575,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5dcb7e86af77cb50",
-      "source": "The Globe and Mail",
-      "title": "Home buyers and home sellers ride a wave of uncertainty in the GTA",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-home-buyers-and-home-sellers-ride-a-wave-of-uncertainty-in-the-gta",
-      "published": "2026-11-04T13:00:00+00:00",
-      "content_status": "full",
-      "word_count": 954,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4177,6 +4178,35 @@
       ]
     },
     {
+      "id": "59b31a6e4d7658a5",
+      "source": "The Globe and Mail",
+      "title": "Edmonton entrepreneur Irving Kipnes had twin passions: business and philanthropy",
+      "url": "https://www.theglobeandmail.com/canada/article-irving-kipnes",
+      "published": "2026-11-04T21:30:36.721000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1501,
+      "paragraph_count": 24,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f83887ea4022a1f6",
       "source": "The Globe and Mail",
       "title": "Ontario ‘all in’ on ending seasonal time changes if Quebec, eastern U.S. agree, Ford says",
@@ -4459,35 +4489,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5dcb7e86af77cb50",
-      "source": "The Globe and Mail",
-      "title": "Home buyers and home sellers ride a wave of uncertainty in the GTA",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-home-buyers-and-home-sellers-ride-a-wave-of-uncertainty-in-the-gta",
-      "published": "2026-11-04T13:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 954,
-      "paragraph_count": 33,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
