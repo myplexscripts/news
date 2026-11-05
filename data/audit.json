@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-05T05:16:16.951691+00:00",
-  "generated_at_london": "2026-11-05T00:16:16.951691-05:00",
-  "news_generated_at": "2026-11-05T05:10:14.412289+00:00",
+  "generated_at": "2026-11-05T05:27:32.357262+00:00",
+  "generated_at_london": "2026-11-05T00:27:32.357262-05:00",
+  "news_generated_at": "2026-11-05T05:26:04.038834+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 681,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 104,
-    "review_story_count": 3,
+    "pass_story_count": 103,
+    "review_story_count": 4,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 4,
-    "info_issue_count": 92,
+    "warning_issue_count": 6,
+    "info_issue_count": 93,
     "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 2,
@@ -159,24 +159,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 328,
-      "average_quality": 96,
+      "average_words": 298,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-05T04:44:55+00:00",
+      "latest_published": "2026-11-05T05:01:05+00:00",
       "found_this_run": 9,
       "tracked": 30,
-      "last_scrape": "2026-11-05T05:08:43.702579+00:00",
+      "last_scrape": "2026-11-05T05:24:17.961011+00:00",
       "last_error": ""
     },
     {
@@ -628,7 +629,7 @@
       "warning_issues": 0,
       "info_issues": 1,
       "latest_published": "2026-11-04T05:00:00+00:00",
-      "found_this_run": 2,
+      "found_this_run": 3,
       "tracked": 1,
       "last_scrape": "2026-11-04T20:13:27.269055+00:00",
       "last_error": ""
@@ -683,7 +684,7 @@
       "latest_published": "2026-11-05T01:02:21+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T05:08:42.502490+00:00",
+      "last_scrape": "2026-11-05T05:24:16.744882+00:00",
       "last_error": ""
     },
     {
@@ -697,19 +698,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 775,
-      "average_quality": 95,
+      "average_words": 636,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-11-05T02:50:58.749000+00:00",
+      "info_issues": 15,
+      "latest_published": "2026-11-05T05:13:01.489000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T03:18:16.859261+00:00",
+      "last_scrape": "2026-11-05T05:24:14.648528+00:00",
       "last_error": ""
     },
     {
@@ -844,6 +846,36 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "043d7aef780c38f0",
+      "source": "Toronto Star",
+      "title": "Talk to teen patients about dating violence, Canadian Paediatric Society says",
+      "url": "https://www.thestar.com/news/canada/talk-to-teen-patients-about-dating-violence-canadian-paediatric-society-says/article_603d3aef-440f-5f0e-9181-2dfd27e80e41.html",
+      "published": "2026-11-05T05:01:05+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "043d7aef780c38f0",
+      "source": "Toronto Star",
+      "title": "Talk to teen patients about dating violence, Canadian Paediatric Society says",
+      "url": "https://www.thestar.com/news/canada/talk-to-teen-patients-about-dating-violence-canadian-paediatric-society-says/article_603d3aef-440f-5f0e-9181-2dfd27e80e41.html",
+      "published": "2026-11-05T05:01:05+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1882,18 +1914,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "cdd37bfdd0bf9b68",
+      "source": "The Globe and Mail",
+      "title": "Ex-Nasa chief economist Alexander MacDonald to lead Canadian Space Agency",
+      "url": "https://www.theglobeandmail.com/canada/article-ex-nasa-chief-economist-alexander-macdonald-to-lead-canadian-space",
+      "published": "2026-11-05T05:13:01.489000+00:00",
+      "content_status": "full",
+      "word_count": 111,
+      "quality_score": 57,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "59b31a6e4d7658a5",
+      "story_id": "cdd37bfdd0bf9b68",
       "source": "The Globe and Mail",
-      "title": "Edmonton entrepreneur Irving Kipnes had twin passions: business and philanthropy",
-      "url": "https://www.theglobeandmail.com/canada/article-irving-kipnes",
-      "published": "2026-11-04T21:30:36.721000+00:00",
-      "content_status": "partial",
-      "word_count": 1501,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "Ex-Nasa chief economist Alexander MacDonald to lead Canadian Space Agency",
+      "url": "https://www.theglobeandmail.com/canada/article-ex-nasa-chief-economist-alexander-macdonald-to-lead-canadian-space",
+      "published": "2026-11-05T05:13:01.489000+00:00",
+      "content_status": "full",
+      "word_count": 111,
+      "quality_score": 57,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2065,21 +2112,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6db43ccb898040ac",
-      "source": "Toronto Star",
-      "title": "Hospital declares Code Orange mass casualty event after northern B.C. bus crash",
-      "url": "https://www.thestar.com/news/canada/british-columbia/multiple-people-hurt-some-seriously-in-northern-b-c-bus-crash/article_ac45cdc4-c22c-5a93-bafd-8185f9f8d2af.html",
-      "published": "2026-11-04T18:58:00+00:00",
-      "content_status": "full",
-      "word_count": 506,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "4ecd9d8cf7b3206f",
       "source": "Toronto Star",
       "title": "Hydro-Québec to sell portion of New York transmission line to Kahnawake",
@@ -2149,6 +2181,21 @@
       "word_count": 304,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "043d7aef780c38f0",
+      "source": "Toronto Star",
+      "title": "Talk to teen patients about dating violence, Canadian Paediatric Society says",
+      "url": "https://www.thestar.com/news/canada/talk-to-teen-patients-about-dating-violence-canadian-paediatric-society-says/article_603d3aef-440f-5f0e-9181-2dfd27e80e41.html",
+      "published": "2026-11-05T05:01:05+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4137,6 +4184,41 @@
       ]
     },
     {
+      "id": "cdd37bfdd0bf9b68",
+      "source": "The Globe and Mail",
+      "title": "Ex-Nasa chief economist Alexander MacDonald to lead Canadian Space Agency",
+      "url": "https://www.theglobeandmail.com/canada/article-ex-nasa-chief-economist-alexander-macdonald-to-lead-canadian-space",
+      "published": "2026-11-05T05:13:01.489000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 111,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3e416b3e85cc750d",
       "source": "The Globe and Mail",
       "title": "B.C. authorities investigate fatal Bella Coola bear attack as community imposes curfew",
@@ -4407,35 +4489,6 @@
       "word_count": 1029,
       "paragraph_count": 31,
       "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "59b31a6e4d7658a5",
-      "source": "The Globe and Mail",
-      "title": "Edmonton entrepreneur Irving Kipnes had twin passions: business and philanthropy",
-      "url": "https://www.theglobeandmail.com/canada/article-irving-kipnes",
-      "published": "2026-11-04T21:30:36.721000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1501,
-      "paragraph_count": 24,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4741,6 +4794,47 @@
       ]
     },
     {
+      "id": "043d7aef780c38f0",
+      "source": "Toronto Star",
+      "title": "Talk to teen patients about dating violence, Canadian Paediatric Society says",
+      "url": "https://www.thestar.com/news/canada/talk-to-teen-patients-about-dating-violence-canadian-paediatric-society-says/article_603d3aef-440f-5f0e-9181-2dfd27e80e41.html",
+      "published": "2026-11-05T05:01:05+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 199,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5864d6d5d4fe3c45",
       "source": "Toronto Star",
       "title": "Ex-Nasa chief economist tapped as president of Canadian Space Agency",
@@ -4999,35 +5093,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "55 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6db43ccb898040ac",
-      "source": "Toronto Star",
-      "title": "Hospital declares Code Orange mass casualty event after northern B.C. bus crash",
-      "url": "https://www.thestar.com/news/canada/british-columbia/multiple-people-hurt-some-seriously-in-northern-b-c-bus-crash/article_ac45cdc4-c22c-5a93-bafd-8185f9f8d2af.html",
-      "published": "2026-11-04T18:58:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 506,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
