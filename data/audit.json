@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-05T20:20:47.186575+00:00",
-  "generated_at_london": "2026-11-05T15:20:47.186575-05:00",
+  "generated_at": "2026-11-05T20:24:25.001464+00:00",
+  "generated_at_london": "2026-11-05T15:24:25.001464-05:00",
   "news_generated_at": "2026-11-05T20:19:20.743998+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 671,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 109,
-    "review_story_count": 3,
+    "pass_story_count": 110,
+    "review_story_count": 2,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 5,
+    "warning_issue_count": 3,
     "info_issue_count": 91,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -124,33 +124,6 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 374,
-      "average_quality": 94,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
-      },
-      "critical_issues": 0,
-      "warning_issues": 2,
-      "info_issues": 10,
-      "latest_published": "2026-11-05T19:43:48+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-05T20:17:25.390740+00:00",
       "last_error": ""
     },
     {
@@ -457,13 +430,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1083,
-      "average_quality": 76,
-      "primary_method": "dom:semantic-rich-v1",
+      "average_words": 1483,
+      "average_quality": 83,
+      "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 2,
-        "dom:semantic-rich-v1": 3,
-        "dom:municipal:.field--name-body": 1
+        "reader:semantic-rich-v1": 3,
+        "dom:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -512,11 +484,10 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 433,
-      "average_quality": 93,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -714,6 +685,32 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 397,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-05T19:43:48+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-05T20:17:25.390740+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -800,36 +797,6 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "7a1e50aa410d7934",
-      "source": "Toronto Star",
-      "title": "A list of fatal bear attacks in B.C., after mother and daughter killed in Bella Coola",
-      "url": "https://www.thestar.com/news/canada/british-columbia/a-list-of-fatal-bear-attacks-in-b-c-after-mother-and-daughter-killed-in-bella-coola/article_2a2c7e49-1e42-5629-a43e-e5dbde2ad81e.html",
-      "published": "2026-11-05T19:43:48+00:00",
-      "content_status": "full",
-      "word_count": 219,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "13 inline images",
-      "story_id": "7a1e50aa410d7934",
-      "source": "Toronto Star",
-      "title": "A list of fatal bear attacks in B.C., after mother and daughter killed in Bella Coola",
-      "url": "https://www.thestar.com/news/canada/british-columbia/a-list-of-fatal-bear-attacks-in-b-c-after-mother-and-daughter-killed-in-bella-coola/article_2a2c7e49-1e42-5629-a43e-e5dbde2ad81e.html",
-      "published": "2026-11-05T19:43:48+00:00",
-      "content_status": "full",
-      "word_count": 219,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1353,8 +1320,8 @@
       "published": "2026-11-05T20:06:52+00:00",
       "content_status": "full",
       "word_count": 172,
-      "quality_score": 70,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1997,9 +1964,9 @@
       "url": "https://www.thestar.com/news/canada/british-columbia/a-list-of-fatal-bear-attacks-in-b-c-after-mother-and-daughter-killed-in-bella-coola/article_2a2c7e49-1e42-5629-a43e-e5dbde2ad81e.html",
       "published": "2026-11-05T19:43:48+00:00",
       "content_status": "full",
-      "word_count": 219,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
+      "word_count": 444,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2871,15 +2838,15 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 0,
-      "content_status": "partial",
-      "word_count": 137,
-      "paragraph_count": 5,
+      "content_status": "full",
+      "word_count": 2536,
+      "paragraph_count": 124,
       "inline_image_count": 0,
-      "quality_score": 48,
-      "quality_grade": "partial",
-      "extraction_method": "dom:municipal:.field--name-body",
+      "quality_score": 88,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "municipal",
-      "local_score": 87,
+      "local_score": 55,
       "issues": []
     },
     {
@@ -3589,9 +3556,9 @@
       "word_count": 172,
       "paragraph_count": 9,
       "inline_image_count": 2,
-      "quality_score": 70,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -4764,33 +4731,21 @@
       "title": "A list of fatal bear attacks in B.C., after mother and daughter killed in Bella Coola",
       "url": "https://www.thestar.com/news/canada/british-columbia/a-list-of-fatal-bear-attacks-in-b-c-after-mother-and-daughter-killed-in-bella-coola/article_2a2c7e49-1e42-5629-a43e-e5dbde2ad81e.html",
       "published": "2026-11-05T19:43:48+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
+      "audit_status": "pass",
+      "audit_score": 97,
       "critical_count": 0,
-      "warning_count": 2,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 219,
-      "paragraph_count": 2,
-      "inline_image_count": 13,
-      "quality_score": 80,
+      "word_count": 444,
+      "paragraph_count": 21,
+      "inline_image_count": 0,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:star:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "13 inline images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
