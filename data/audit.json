@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-05T01:53:23.374250+00:00",
-  "generated_at_london": "2026-11-04T20:53:23.374250-05:00",
-  "news_generated_at": "2026-11-05T01:46:04.029726+00:00",
+  "generated_at": "2026-11-05T02:02:49.765859+00:00",
+  "generated_at_london": "2026-11-04T21:02:49.765859-05:00",
+  "news_generated_at": "2026-11-05T02:01:05.762860+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 677,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 4,
-    "info_issue_count": 95,
+    "info_issue_count": 94,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 2,
@@ -417,7 +417,7 @@
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-11-05T01:16:18.894000+00:00",
-      "found_this_run": 5,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-11-05T01:32:53.202764+00:00",
       "last_error": ""
@@ -658,7 +658,7 @@
       "latest_published": "2026-11-05T01:02:21+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T01:43:59.340836+00:00",
+      "last_scrape": "2026-11-05T01:59:17.027692+00:00",
       "last_error": ""
     },
     {
@@ -672,19 +672,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 531,
-      "average_quality": 94,
+      "average_words": 590,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 15,
+      "info_issues": 14,
       "latest_published": "2026-11-05T01:14:46.309000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T01:28:14.924542+00:00",
+      "last_scrape": "2026-11-05T01:59:15.728698+00:00",
       "last_error": ""
     },
     {
@@ -1868,6 +1869,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0a3a46929a9dfe53",
+      "source": "The Globe and Mail",
+      "title": "Military prosecutors send CAF member’s case to trial, dropping official secrets charges",
+      "url": "https://www.theglobeandmail.com/politics/article-caf-member-case-trial-dropping-official-secrets-charges",
+      "published": "2026-11-05T00:28:34.773000+00:00",
+      "content_status": "full",
+      "word_count": 737,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1923,36 +1939,6 @@
       "published": "2026-11-04T19:23:12.313000+00:00",
       "content_status": "partial",
       "word_count": 116,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "2a76607ce9f184f0",
-      "source": "The Globe and Mail",
-      "title": "Saskatchewan soldier killed in CFB Wainwright fire remembered as close friend, loving son",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-funeral-soldier-cfb-wainwright-fire-farrell",
-      "published": "2026-11-04T19:06:53.118000+00:00",
-      "content_status": "partial",
-      "word_count": 141,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "2a76607ce9f184f0",
-      "source": "The Globe and Mail",
-      "title": "Saskatchewan soldier killed in CFB Wainwright fire remembered as close friend, loving son",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-funeral-soldier-cfb-wainwright-fire-farrell",
-      "published": "2026-11-04T19:06:53.118000+00:00",
-      "content_status": "partial",
-      "word_count": 141,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4276,6 +4262,35 @@
       ]
     },
     {
+      "id": "0a3a46929a9dfe53",
+      "source": "The Globe and Mail",
+      "title": "Military prosecutors send CAF member’s case to trial, dropping official secrets charges",
+      "url": "https://www.theglobeandmail.com/politics/article-caf-member-case-trial-dropping-official-secrets-charges",
+      "published": "2026-11-05T00:28:34.773000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 737,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bc1a37554e1f205c",
       "source": "The Globe and Mail",
       "title": "Two soldiers injured in Wainwright fire are discharged from hospital",
@@ -4517,41 +4532,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2a76607ce9f184f0",
-      "source": "The Globe and Mail",
-      "title": "Saskatchewan soldier killed in CFB Wainwright fire remembered as close friend, loving son",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-funeral-soldier-cfb-wainwright-fire-farrell",
-      "published": "2026-11-04T19:06:53.118000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 141,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
