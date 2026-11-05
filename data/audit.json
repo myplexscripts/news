@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-05T17:35:43.978922+00:00",
-  "generated_at_london": "2026-11-05T12:35:43.978922-05:00",
-  "news_generated_at": "2026-11-05T17:30:30.846562+00:00",
+  "generated_at": "2026-11-05T17:47:20.782297+00:00",
+  "generated_at_london": "2026-11-05T12:47:20.782297-05:00",
+  "news_generated_at": "2026-11-05T17:45:18.872310+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 672,
+    "archive_story_count": 671,
     "source_count": 28,
     "audited_story_count": 111,
-    "pass_story_count": 105,
-    "review_story_count": 2,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
-    "warning_issue_count": 3,
+    "pass_story_count": 104,
+    "review_story_count": 4,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 7,
     "info_issue_count": 89,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -133,24 +133,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 7,
-      "review": 0,
-      "fail": 3,
-      "pass_rate": 70,
+      "pass": 6,
+      "review": 2,
+      "fail": 2,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 456,
-      "average_quality": 96,
+      "average_words": 430,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 3,
-      "warning_issues": 0,
+      "critical_issues": 2,
+      "warning_issues": 4,
       "info_issues": 9,
-      "latest_published": "2026-11-05T16:35:00+00:00",
+      "latest_published": "2026-11-05T17:23:40+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T17:12:08.176390+00:00",
+      "last_scrape": "2026-11-05T17:43:03.472033+00:00",
       "last_error": ""
     },
     {
@@ -441,9 +442,9 @@
       "warning_issues": 0,
       "info_issues": 7,
       "latest_published": "2026-11-05T17:24:36.943000+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T16:30:51.121832+00:00",
+      "last_scrape": "2026-11-05T17:33:29.025430+00:00",
       "last_error": ""
     },
     {
@@ -683,7 +684,7 @@
       "latest_published": "2026-11-05T16:47:16+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T17:28:18.377109+00:00",
+      "last_scrape": "2026-11-05T17:43:00.823900+00:00",
       "last_error": ""
     },
     {
@@ -775,21 +776,6 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "78 words",
-      "story_id": "5864d6d5d4fe3c45",
-      "source": "Toronto Star",
-      "title": "Ex-Nasa chief economist tapped as president of Canadian Space Agency",
-      "url": "https://www.thestar.com/news/canada/ex-nasa-chief-economist-tapped-as-president-of-canadian-space-agency/article_8d0891cb-7370-5ad4-89f9-d63386005941.html",
-      "published": "2026-11-05T04:44:55+00:00",
-      "content_status": "full",
-      "word_count": 78,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
       "detail": "76 words",
       "story_id": "55cf92420a3c924e",
       "source": "Toronto Star",
@@ -845,6 +831,66 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "871f3b5a6ae85a6b",
+      "source": "Toronto Star",
+      "title": "Alberta-ordered review of Calgary water system finds problems and poor decisions",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-ordered-review-of-calgary-water-system-finds-problems-and-poor-decisions/article_d46bcf80-bca7-5cdc-88ea-22a138863600.html",
+      "published": "2026-11-05T17:23:40+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "871f3b5a6ae85a6b",
+      "source": "Toronto Star",
+      "title": "Alberta-ordered review of Calgary water system finds problems and poor decisions",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-ordered-review-of-calgary-water-system-finds-problems-and-poor-decisions/article_d46bcf80-bca7-5cdc-88ea-22a138863600.html",
+      "published": "2026-11-05T17:23:40+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "0ed54c3b0e52c7bb",
+      "source": "Toronto Star",
+      "title": "Mexican judge accused of taking $2M bribe to release Ryan Wedding's right-hand man",
+      "url": "https://www.thestar.com/news/canada/mexican-judge-accused-of-taking-2m-bribe-to-release-ryan-wedding-s-right-hand-man/article_53825eb4-8a46-5c00-9143-0c75034664db.html",
+      "published": "2026-11-05T17:18:46+00:00",
+      "content_status": "full",
+      "word_count": 232,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "0ed54c3b0e52c7bb",
+      "source": "Toronto Star",
+      "title": "Mexican judge accused of taking $2M bribe to release Ryan Wedding's right-hand man",
+      "url": "https://www.thestar.com/news/canada/mexican-judge-accused-of-taking-2m-bribe-to-release-ryan-wedding-s-right-hand-man/article_53825eb4-8a46-5c00-9143-0c75034664db.html",
+      "published": "2026-11-05T17:18:46+00:00",
+      "content_status": "full",
+      "word_count": 232,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1991,6 +2037,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "871f3b5a6ae85a6b",
+      "source": "Toronto Star",
+      "title": "Alberta-ordered review of Calgary water system finds problems and poor decisions",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-ordered-review-of-calgary-water-system-finds-problems-and-poor-decisions/article_d46bcf80-bca7-5cdc-88ea-22a138863600.html",
+      "published": "2026-11-05T17:23:40+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "84566e1e4efbafd3",
       "source": "Toronto Star",
       "title": "Canadian astronaut Joshua Kutryk set to carry out second spacewalk",
@@ -1998,21 +2059,6 @@
       "published": "2026-11-05T09:00:05+00:00",
       "content_status": "full",
       "word_count": 29,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5864d6d5d4fe3c45",
-      "source": "Toronto Star",
-      "title": "Ex-Nasa chief economist tapped as president of Canadian Space Agency",
-      "url": "https://www.thestar.com/news/canada/ex-nasa-chief-economist-tapped-as-president-of-canadian-space-agency/article_8d0891cb-7370-5ad4-89f9-d63386005941.html",
-      "published": "2026-11-05T04:44:55+00:00",
-      "content_status": "full",
-      "word_count": 78,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2045,6 +2091,21 @@
       "word_count": 965,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0ed54c3b0e52c7bb",
+      "source": "Toronto Star",
+      "title": "Mexican judge accused of taking $2M bribe to release Ryan Wedding's right-hand man",
+      "url": "https://www.thestar.com/news/canada/mexican-judge-accused-of-taking-2m-bribe-to-release-ryan-wedding-s-right-hand-man/article_53825eb4-8a46-5c00-9143-0c75034664db.html",
+      "published": "2026-11-05T17:18:46+00:00",
+      "content_status": "full",
+      "word_count": 232,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2088,21 +2149,6 @@
       "published": "2026-11-05T09:00:11+00:00",
       "content_status": "full",
       "word_count": 409,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "043d7aef780c38f0",
-      "source": "Toronto Star",
-      "title": "Talk to teen patients about dating violence, Canadian Paediatric Society says",
-      "url": "https://www.thestar.com/news/canada/talk-to-teen-patients-about-dating-violence-canadian-paediatric-society-says/article_603d3aef-440f-5f0e-9181-2dfd27e80e41.html",
-      "published": "2026-11-05T05:01:05+00:00",
-      "content_status": "full",
-      "word_count": 619,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4693,6 +4739,88 @@
       ]
     },
     {
+      "id": "871f3b5a6ae85a6b",
+      "source": "Toronto Star",
+      "title": "Alberta-ordered review of Calgary water system finds problems and poor decisions",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-ordered-review-of-calgary-water-system-finds-problems-and-poor-decisions/article_d46bcf80-bca7-5cdc-88ea-22a138863600.html",
+      "published": "2026-11-05T17:23:40+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 209,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0ed54c3b0e52c7bb",
+      "source": "Toronto Star",
+      "title": "Mexican judge accused of taking $2M bribe to release Ryan Wedding's right-hand man",
+      "url": "https://www.thestar.com/news/canada/mexican-judge-accused-of-taking-2m-bribe-to-release-ryan-wedding-s-right-hand-man/article_53825eb4-8a46-5c00-9143-0c75034664db.html",
+      "published": "2026-11-05T17:18:46+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 232,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cefd9c5bf67a3494",
       "source": "Toronto Star",
       "title": "Mexican judge arrested in Ryan Wedding case. U.S. says he took $2 million bribe to free Canadian right-hand man",
@@ -4920,70 +5048,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "29 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "043d7aef780c38f0",
-      "source": "Toronto Star",
-      "title": "Talk to teen patients about dating violence, Canadian Paediatric Society says",
-      "url": "https://www.thestar.com/news/canada/talk-to-teen-patients-about-dating-violence-canadian-paediatric-society-says/article_603d3aef-440f-5f0e-9181-2dfd27e80e41.html",
-      "published": "2026-11-05T05:01:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 619,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5864d6d5d4fe3c45",
-      "source": "Toronto Star",
-      "title": "Ex-Nasa chief economist tapped as president of Canadian Space Agency",
-      "url": "https://www.thestar.com/news/canada/ex-nasa-chief-economist-tapped-as-president-of-canadian-space-agency/article_8d0891cb-7370-5ad4-89f9-d63386005941.html",
-      "published": "2026-11-05T04:44:55+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 78,
-      "paragraph_count": 4,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "78 words"
         },
         {
           "severity": "info",
