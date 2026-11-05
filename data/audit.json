@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-05T17:50:29.809057+00:00",
-  "generated_at_london": "2026-11-05T12:50:29.809057-05:00",
-  "news_generated_at": "2026-11-05T17:45:18.872310+00:00",
+  "generated_at": "2026-11-05T18:02:52.289440+00:00",
+  "generated_at_london": "2026-11-05T13:02:52.289440-05:00",
+  "news_generated_at": "2026-11-05T18:01:11.953481+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 671,
+    "archive_story_count": 670,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 106,
-    "review_story_count": 2,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 3,
+    "review_story_count": 3,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 5,
     "info_issue_count": 89,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -134,23 +134,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 432,
-      "average_quality": 96,
+      "average_words": 450,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 9,
-      "latest_published": "2026-11-05T17:23:40+00:00",
+      "latest_published": "2026-11-05T17:41:47+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T17:43:03.472033+00:00",
+      "last_scrape": "2026-11-05T17:59:14.925406+00:00",
       "last_error": ""
     },
     {
@@ -683,7 +684,7 @@
       "latest_published": "2026-11-05T16:47:16+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T17:43:00.823900+00:00",
+      "last_scrape": "2026-11-05T17:59:13.453119+00:00",
       "last_error": ""
     },
     {
@@ -697,20 +698,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 565,
-      "average_quality": 94,
+      "average_words": 513,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 9,
-        "reader:semantic-rich-v1": 1
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-11-05T14:00:00+00:00",
+      "latest_published": "2026-11-05T17:35:54.150000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T14:18:44.612025+00:00",
+      "last_scrape": "2026-11-05T17:59:10.813302+00:00",
       "last_error": ""
     },
     {
@@ -755,21 +756,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "29 words",
-      "story_id": "84566e1e4efbafd3",
-      "source": "Toronto Star",
-      "title": "Canadian astronaut Joshua Kutryk set to carry out second spacewalk",
-      "url": "https://www.thestar.com/news/canada/canadian-astronaut-joshua-kutryk-set-to-carry-out-second-spacewalk/article_2b46db16-c5fe-5373-8286-a697ac27d614.html",
-      "published": "2026-11-05T09:00:05+00:00",
-      "content_status": "full",
-      "word_count": 29,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "critical",
@@ -830,6 +816,36 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "155ee9527516e991",
+      "source": "Toronto Star",
+      "title": "Twelve men charged in child exploitation investigation: Durham Region police",
+      "url": "https://www.thestar.com/news/ontario/twelve-men-charged-in-child-exploitation-investigation-durham-region-police/article_a9fd01ba-08e8-53a2-ae92-ed315481684f.html",
+      "published": "2026-11-05T17:41:47+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "155ee9527516e991",
+      "source": "Toronto Star",
+      "title": "Twelve men charged in child exploitation investigation: Durham Region police",
+      "url": "https://www.thestar.com/news/ontario/twelve-men-charged-in-child-exploitation-investigation-durham-region-police/article_a9fd01ba-08e8-53a2-ae92-ed315481684f.html",
+      "published": "2026-11-05T17:41:47+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1931,21 +1947,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5e943904ccee22ac",
-      "source": "The Globe and Mail",
-      "title": "Meet me at Danceland, the ‘Taj Mahal of the Prairies’",
-      "url": "https://www.theglobeandmail.com/canada/article-danceland-lake-manitou-saskatchewan-underexposed",
-      "published": "2026-11-05T11:00:00+00:00",
-      "content_status": "full",
-      "word_count": 756,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "e4e0f5a2d40cea35",
       "source": "The Globe and Mail",
       "title": "Merlot from the Okanagan deserves some spotlight. Here are three bottles to try",
@@ -1955,6 +1956,21 @@
       "word_count": 791,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fafb2550e23a38e7",
+      "source": "The Globe and Mail",
+      "title": "Mexican judge arrested for allegedly taking a bribe to release Ryan Wedding’s right-hand man",
+      "url": "https://www.theglobeandmail.com/world/article-judge-who-freed-alleged-ryan-wedding-associate-arrested",
+      "published": "2026-11-05T17:35:54.150000+00:00",
+      "content_status": "full",
+      "word_count": 242,
+      "quality_score": 68,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1983,21 +1999,6 @@
       "published": "2026-11-05T17:23:40+00:00",
       "content_status": "full",
       "word_count": 136,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "84566e1e4efbafd3",
-      "source": "Toronto Star",
-      "title": "Canadian astronaut Joshua Kutryk set to carry out second spacewalk",
-      "url": "https://www.thestar.com/news/canada/canadian-astronaut-joshua-kutryk-set-to-carry-out-second-spacewalk/article_2b46db16-c5fe-5373-8286-a697ac27d614.html",
-      "published": "2026-11-05T09:00:05+00:00",
-      "content_status": "full",
-      "word_count": 29,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2090,6 +2091,21 @@
       "word_count": 409,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "155ee9527516e991",
+      "source": "Toronto Star",
+      "title": "Twelve men charged in child exploitation investigation: Durham Region police",
+      "url": "https://www.thestar.com/news/ontario/twelve-men-charged-in-child-exploitation-investigation-durham-region-police/article_a9fd01ba-08e8-53a2-ae92-ed315481684f.html",
+      "published": "2026-11-05T17:41:47+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4086,6 +4102,35 @@
       ]
     },
     {
+      "id": "fafb2550e23a38e7",
+      "source": "The Globe and Mail",
+      "title": "Mexican judge arrested for allegedly taking a bribe to release Ryan Wedding’s right-hand man",
+      "url": "https://www.theglobeandmail.com/world/article-judge-who-freed-alleged-ryan-wedding-associate-arrested",
+      "published": "2026-11-05T17:35:54.150000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 242,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e4e0f5a2d40cea35",
       "source": "The Globe and Mail",
       "title": "Merlot from the Okanagan deserves some spotlight. Here are three bottles to try",
@@ -4350,35 +4395,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5e943904ccee22ac",
-      "source": "The Globe and Mail",
-      "title": "Meet me at Danceland, the ‘Taj Mahal of the Prairies’",
-      "url": "https://www.theglobeandmail.com/canada/article-danceland-lake-manitou-saskatchewan-underexposed",
-      "published": "2026-11-05T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 756,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4678,6 +4694,47 @@
       ]
     },
     {
+      "id": "155ee9527516e991",
+      "source": "Toronto Star",
+      "title": "Twelve men charged in child exploitation investigation: Durham Region police",
+      "url": "https://www.thestar.com/news/ontario/twelve-men-charged-in-child-exploitation-investigation-durham-region-police/article_a9fd01ba-08e8-53a2-ae92-ed315481684f.html",
+      "published": "2026-11-05T17:41:47+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 215,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "871f3b5a6ae85a6b",
       "source": "Toronto Star",
       "title": "Alberta-ordered review of Calgary water system finds problems and poor decisions",
@@ -4929,41 +4986,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "84566e1e4efbafd3",
-      "source": "Toronto Star",
-      "title": "Canadian astronaut Joshua Kutryk set to carry out second spacewalk",
-      "url": "https://www.thestar.com/news/canada/canadian-astronaut-joshua-kutryk-set-to-carry-out-second-spacewalk/article_2b46db16-c5fe-5373-8286-a697ac27d614.html",
-      "published": "2026-11-05T09:00:05+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 29,
-      "paragraph_count": 2,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "29 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
