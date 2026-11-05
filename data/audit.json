@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-05T01:31:57.229788+00:00",
-  "generated_at_london": "2026-11-04T20:31:57.229788-05:00",
+  "generated_at": "2026-11-05T01:35:13.648682+00:00",
+  "generated_at_london": "2026-11-04T20:35:13.648682-05:00",
   "news_generated_at": "2026-11-05T01:30:08.317379+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 4,
-    "info_issue_count": 94,
+    "info_issue_count": 95,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 2,
@@ -415,7 +415,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
+      "info_issues": 13,
       "latest_published": "2026-11-05T01:16:18.894000+00:00",
       "found_this_run": 5,
       "tracked": 30,
@@ -460,12 +460,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 649,
-      "average_quality": 90,
+      "average_words": 699,
+      "average_quality": 92,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:citynews:article": 1,
-        "reader:semantic-rich-v1": 8,
+        "reader:semantic-rich-v1": 9,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
@@ -673,12 +672,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 533,
-      "average_quality": 93,
+      "average_words": 531,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -846,6 +844,21 @@
       "content_status": "full",
       "word_count": 198,
       "quality_score": 61,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "a7973047a0b1debd",
+      "source": "CTV News Canada",
+      "title": "Accessibility gaps remain 40 years after historic tour, says Rick Hansen",
+      "url": "https://www.ctvnews.ca/canada/article/accessibility-gaps-remain-40-years-after-historic-tour-says-rick-hansen",
+      "published": "2026-11-05T01:16:18.894000+00:00",
+      "content_status": "full",
+      "word_count": 497,
+      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1144,9 +1157,9 @@
       "url": "https://toronto.citynews.ca/2026/11/04/filipino-community-anticipates-the-release-of-the-2027-federal-budget",
       "published": "2026-11-05T01:25:55+00:00",
       "content_status": "full",
-      "word_count": 336,
-      "quality_score": 76,
-      "extraction_method": "dom:citynews:article"
+      "word_count": 835,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1788,10 +1801,10 @@
       "title": "25 soldiers still hospitalized weeks after CFB Wainwright disaster",
       "url": "https://www.theglobeandmail.com/canada/article-25-soldiers-still-hospitalized-weeks-after-cfb-wainwright-disaster",
       "published": "2026-11-05T01:14:46.309000+00:00",
-      "content_status": "full",
-      "word_count": 527,
-      "quality_score": 81,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 502,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1803,10 +1816,10 @@
       "title": "25 soldiers still hospitalized weeks after CFB Wainwright disaster",
       "url": "https://www.theglobeandmail.com/canada/article-25-soldiers-still-hospitalized-weeks-after-cfb-wainwright-disaster",
       "published": "2026-11-05T01:14:46.309000+00:00",
-      "content_status": "full",
-      "word_count": 527,
-      "quality_score": 81,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 502,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3926,10 +3939,10 @@
       "url": "https://www.ctvnews.ca/canada/article/accessibility-gaps-remain-40-years-after-historic-tour-says-rick-hansen",
       "published": "2026-11-05T01:16:18.894000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 497,
       "paragraph_count": 17,
@@ -3940,6 +3953,12 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4232,13 +4251,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "full",
-      "word_count": 527,
-      "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 81,
+      "content_status": "partial",
+      "word_count": 502,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -5139,12 +5158,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 336,
-      "paragraph_count": 15,
+      "word_count": 835,
+      "paragraph_count": 25,
       "inline_image_count": 0,
-      "quality_score": 76,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:citynews:article",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
