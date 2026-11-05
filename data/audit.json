@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-05T02:53:23.781403+00:00",
-  "generated_at_london": "2026-11-04T21:53:23.781403-05:00",
-  "news_generated_at": "2026-11-05T02:48:32.939751+00:00",
+  "generated_at": "2026-11-05T03:06:28.598768+00:00",
+  "generated_at_london": "2026-11-04T22:06:28.598768-05:00",
+  "news_generated_at": "2026-11-05T03:04:32.507980+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 682,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 108,
-    "review_story_count": 3,
+    "pass_story_count": 107,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 4,
+    "warning_issue_count": 6,
     "info_issue_count": 94,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -156,28 +156,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 295,
-      "average_quality": 96,
+      "average_words": 260,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 11,
-      "latest_published": "2026-11-04T23:39:06+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-05T02:28:56+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-04T23:53:55.870042+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-05T03:02:23.299008+00:00",
+      "last_error": ""
     },
     {
       "source": "104.7 Heart FM",
@@ -513,19 +514,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 560,
-      "average_quality": 96,
+      "average_words": 585,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-04T22:41:08+00:00",
+      "latest_published": "2026-11-05T02:58:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-04T22:51:01.322904+00:00",
+      "last_scrape": "2026-11-05T03:02:16.950698+00:00",
       "last_error": ""
     },
     {
@@ -684,7 +686,7 @@
       "latest_published": "2026-11-05T01:02:21+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T02:46:37.982839+00:00",
+      "last_scrape": "2026-11-05T03:02:21.929415+00:00",
       "last_error": ""
     },
     {
@@ -698,19 +700,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 588,
-      "average_quality": 95,
+      "average_words": 660,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 14,
-      "latest_published": "2026-11-05T02:04:21.071000+00:00",
+      "latest_published": "2026-11-05T02:45:07.139000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T02:15:47.280223+00:00",
+      "last_scrape": "2026-11-05T03:02:19.462617+00:00",
       "last_error": ""
     },
     {
@@ -830,6 +833,36 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ebff42796412b662",
+      "source": "Toronto Star",
+      "title": "Liberal leadership hopefuls talk taxes, affordability and Doug Ford in final debate",
+      "url": "https://www.thestar.com/news/ontario/liberal-leadership-hopefuls-talk-taxes-affordability-and-doug-ford-in-final-debate/article_585cce2c-9e54-59f0-b25b-2d14834ff910.html",
+      "published": "2026-11-05T02:28:56+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "ebff42796412b662",
+      "source": "Toronto Star",
+      "title": "Liberal leadership hopefuls talk taxes, affordability and Doug Ford in final debate",
+      "url": "https://www.thestar.com/news/ontario/liberal-leadership-hopefuls-talk-taxes-affordability-and-doug-ford-in-final-debate/article_585cce2c-9e54-59f0-b25b-2d14834ff910.html",
+      "published": "2026-11-05T02:28:56+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1286,21 +1319,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cdf2227104fd7d4a",
-      "source": "Global News Canada",
-      "title": "Amazon breaks ground on 200,000-square metre fulfilment warehouse in the Halifax area",
-      "url": "https://globalnews.ca/news/12136839/amazon-dartmouth-ns-warehouse",
-      "published": "2026-11-04T19:19:21+00:00",
-      "content_status": "full",
-      "word_count": 191,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "4b7ea8d100e1bb59",
       "source": "Global News Canada",
       "title": "Bedford residents raise concerns about density, traffic at waterfront project open house",
@@ -1370,6 +1388,21 @@
       "word_count": 248,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "87cf1e00b267057e",
+      "source": "Global News Canada",
+      "title": "Kelowna supportive housing fire leaves tenants with terminated rental agreements",
+      "url": "https://globalnews.ca/news/12137099/kelowna-supportive-housing-fire-leaves-tenants-with-terminated-rental-agreements",
+      "published": "2026-11-05T02:58:23+00:00",
+      "content_status": "full",
+      "word_count": 437,
+      "quality_score": 83,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -1823,6 +1856,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "e4bf5ee4458c565c",
+      "source": "The Globe and Mail",
+      "title": "Alberta’s new electoral map May not tilt the province, but it could help the UCP retain its majority",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-alberta-new-electoral-map-may-help-ucp-retain-majority-danielle-smith",
+      "published": "2026-11-05T02:45:07.139000+00:00",
+      "content_status": "full",
+      "word_count": 840,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e4bf5ee4458c565c",
+      "source": "The Globe and Mail",
+      "title": "Alberta’s new electoral map May not tilt the province, but it could help the UCP retain its majority",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-alberta-new-electoral-map-may-help-ucp-retain-majority-danielle-smith",
+      "published": "2026-11-05T02:45:07.139000+00:00",
+      "content_status": "full",
+      "word_count": 840,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1893,36 +1956,6 @@
       "published": "2026-11-04T20:04:55.495000+00:00",
       "content_status": "partial",
       "word_count": 169,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "85af6ee156648f2e",
-      "source": "The Globe and Mail",
-      "title": "Police arrest 12 in connection to unsanctioned Guelph homecoming party",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-guelph-uni-homecoming-party-arrests",
-      "published": "2026-11-04T19:23:12.313000+00:00",
-      "content_status": "partial",
-      "word_count": 116,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "85af6ee156648f2e",
-      "source": "The Globe and Mail",
-      "title": "Police arrest 12 in connection to unsanctioned Guelph homecoming party",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-guelph-uni-homecoming-party-arrests",
-      "published": "2026-11-04T19:23:12.313000+00:00",
-      "content_status": "partial",
-      "word_count": 116,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2051,21 +2084,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7644cd9ab6e0e81d",
-      "source": "Toronto Star",
-      "title": "Canadian aluminum industry sees hope for tariff relief after U.S. midterm elections",
-      "url": "https://www.thestar.com/news/canada/canadian-aluminum-industry-sees-hope-for-tariff-relief-after-u-s-midterm-elections/article_d7ae3a78-8691-5b84-b158-ae6279a8e00a.html",
-      "published": "2026-11-04T18:55:04+00:00",
-      "content_status": "full",
-      "word_count": 573,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "6db43ccb898040ac",
       "source": "Toronto Star",
       "title": "Hospital declares Code Orange mass casualty event after northern B.C. bus crash",
@@ -2105,6 +2123,21 @@
       "word_count": 313,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ebff42796412b662",
+      "source": "Toronto Star",
+      "title": "Liberal leadership hopefuls talk taxes, affordability and Doug Ford in final debate",
+      "url": "https://www.thestar.com/news/ontario/liberal-leadership-hopefuls-talk-taxes-affordability-and-doug-ford-in-final-debate/article_585cce2c-9e54-59f0-b25b-2d14834ff910.html",
+      "published": "2026-11-05T02:28:56+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3628,6 +3661,35 @@
       ]
     },
     {
+      "id": "87cf1e00b267057e",
+      "source": "Global News Canada",
+      "title": "Kelowna supportive housing fire leaves tenants with terminated rental agreements",
+      "url": "https://globalnews.ca/news/12137099/kelowna-supportive-housing-fire-leaves-tenants-with-terminated-rental-agreements",
+      "published": "2026-11-05T02:58:23+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 437,
+      "paragraph_count": 16,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "53a6d46fdceea2ed",
       "source": "Global News Canada",
       "title": "Too broke to leave: Alberta domestic abuse victims trapped by rising cost of living",
@@ -3872,35 +3934,6 @@
       "info_count": 1,
       "content_status": "full",
       "word_count": 248,
-      "paragraph_count": 7,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cdf2227104fd7d4a",
-      "source": "Global News Canada",
-      "title": "Amazon breaks ground on 200,000-square metre fulfilment warehouse in the Halifax area",
-      "url": "https://globalnews.ca/news/12136839/amazon-dartmouth-ns-warehouse",
-      "published": "2026-11-04T19:19:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 191,
       "paragraph_count": 7,
       "inline_image_count": 2,
       "quality_score": 96,
@@ -4226,6 +4259,41 @@
       ]
     },
     {
+      "id": "e4bf5ee4458c565c",
+      "source": "The Globe and Mail",
+      "title": "Alberta’s new electoral map May not tilt the province, but it could help the UCP retain its majority",
+      "url": "https://www.theglobeandmail.com/canada/alberta/article-alberta-new-electoral-map-may-help-ucp-retain-majority-danielle-smith",
+      "published": "2026-11-05T02:45:07.139000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 840,
+      "paragraph_count": 23,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "61f69b6855babe40",
       "source": "The Globe and Mail",
       "title": "Truck company involved in deadly crash shut down by Manitoba government a second time",
@@ -4496,41 +4564,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "85af6ee156648f2e",
-      "source": "The Globe and Mail",
-      "title": "Police arrest 12 in connection to unsanctioned Guelph homecoming party",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-guelph-uni-homecoming-party-arrests",
-      "published": "2026-11-04T19:23:12.313000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 116,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4830,6 +4863,47 @@
       ]
     },
     {
+      "id": "ebff42796412b662",
+      "source": "Toronto Star",
+      "title": "Liberal leadership hopefuls talk taxes, affordability and Doug Ford in final debate",
+      "url": "https://www.thestar.com/news/ontario/liberal-leadership-hopefuls-talk-taxes-affordability-and-doug-ford-in-final-debate/article_585cce2c-9e54-59f0-b25b-2d14834ff910.html",
+      "published": "2026-11-05T02:28:56+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 215,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cb44f15d78310238",
       "source": "Toronto Star",
       "title": "Professor changed policies after Galloway accuser's incomplete thesis accepted",
@@ -5081,35 +5155,6 @@
       "content_status": "full",
       "word_count": 237,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7644cd9ab6e0e81d",
-      "source": "Toronto Star",
-      "title": "Canadian aluminum industry sees hope for tariff relief after U.S. midterm elections",
-      "url": "https://www.thestar.com/news/canada/canadian-aluminum-industry-sees-hope-for-tariff-relief-after-u-s-midterm-elections/article_d7ae3a78-8691-5b84-b158-ae6279a8e00a.html",
-      "published": "2026-11-04T18:55:04+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 573,
-      "paragraph_count": 31,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
