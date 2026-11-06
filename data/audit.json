@@ -1,26 +1,53 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T13:14:01.280006+00:00",
-  "generated_at_london": "2026-11-06T08:14:01.280006-05:00",
-  "news_generated_at": "2026-11-06T13:07:55.576844+00:00",
+  "generated_at": "2026-11-06T13:25:15.191897+00:00",
+  "generated_at_london": "2026-11-06T08:25:15.191897-05:00",
+  "news_generated_at": "2026-11-06T13:23:35.481828+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 681,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 102,
-    "review_story_count": 5,
+    "pass_story_count": 101,
+    "review_story_count": 6,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 95,
     "healthy_source_count": 11,
-    "review_source_count": 6,
-    "error_source_count": 0,
+    "review_source_count": 5,
+    "error_source_count": 1,
     "waiting_source_count": 11
   },
   "source_reports": [
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 2,
+      "fail": 3,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 484,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 3,
+      "warning_issues": 3,
+      "info_issues": 10,
+      "latest_published": "2026-11-06T13:01:48+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-06T13:21:46.465608+00:00",
+      "last_error": ""
+    },
     {
       "source": "CTV News Canada",
       "status": "review",
@@ -97,7 +124,7 @@
       "latest_published": "2026-11-06T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T13:06:09.436746+00:00",
+      "last_scrape": "2026-11-06T13:21:44.602565+00:00",
       "last_error": ""
     },
     {
@@ -152,32 +179,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-06T13:06:08.793211+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 6,
-      "review": 1,
-      "fail": 3,
-      "pass_rate": 60,
-      "usable_body_rate": 100,
-      "average_words": 494,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 3,
-      "warning_issues": 1,
-      "info_issues": 10,
-      "latest_published": "2026-11-06T10:00:05+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-06T11:00:52.466532+00:00",
       "last_error": ""
     },
     {
@@ -563,19 +564,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 476,
-      "average_quality": 96,
+      "average_words": 392,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-06T11:00:22+00:00",
+      "latest_published": "2026-11-06T13:17:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T11:00:46.688896+00:00",
+      "last_scrape": "2026-11-06T13:21:42.315766+00:00",
       "last_error": ""
     },
     {
@@ -886,6 +888,36 @@
       "word_count": 801,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "e156d568b44a81dc",
+      "source": "Toronto Star",
+      "title": "U of T's dentistry dean to step down following antisemitic images in course material",
+      "url": "https://www.thestar.com/news/ontario/u-of-t-s-dentistry-dean-to-step-down-following-antisemitic-images-in-course-material/article_2f6a29e9-120e-53d6-8ed6-5c438dfc8355.html",
+      "published": "2026-11-06T13:01:48+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "e156d568b44a81dc",
+      "source": "Toronto Star",
+      "title": "U of T's dentistry dean to step down following antisemitic images in course material",
+      "url": "https://www.thestar.com/news/ontario/u-of-t-s-dentistry-dean-to-step-down-following-antisemitic-images-in-course-material/article_2f6a29e9-120e-53d6-8ed6-5c438dfc8355.html",
+      "published": "2026-11-06T13:01:48+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1417,15 +1449,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c7a153ad54d2e837",
+      "story_id": "9fabce7184cf165b",
       "source": "Global News Canada",
-      "title": "Calgary water system had ‘systemic’ issues before pipe failure: Report",
-      "url": "https://globalnews.ca/news/12138376/calgary-water-system-had-systemic-issues-before-pipe-failure-report",
-      "published": "2026-11-05T21:30:58+00:00",
+      "title": "Budget 2026 proposes 1st deposit insurance limit increase in 2 decades",
+      "url": "https://globalnews.ca/news/12138967/budget-2026-deposit-insurance",
+      "published": "2026-11-06T13:17:58+00:00",
       "content_status": "full",
-      "word_count": 1209,
-      "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 364,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2227,21 +2259,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1bf6f440729aec79",
-      "source": "Toronto Star",
-      "title": "Meta pauses change to terms of service after publishers voice concerns",
-      "url": "https://www.thestar.com/news/canada/meta-pauses-change-to-terms-of-service-after-publishers-voice-concerns/article_9c9d4c9b-64f4-5b34-9b23-ec02ac044f5f.html",
-      "published": "2026-11-05T21:27:28+00:00",
-      "content_status": "full",
-      "word_count": 300,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "7e282ed5ad36520d",
       "source": "Toronto Star",
       "title": "New Ontario law a ‘stealth privatization’ of Toronto Hydro, other local power utilities, critics warn",
@@ -2251,6 +2268,21 @@
       "word_count": 1440,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e156d568b44a81dc",
+      "source": "Toronto Star",
+      "title": "U of T's dentistry dean to step down following antisemitic images in course material",
+      "url": "https://www.thestar.com/news/ontario/u-of-t-s-dentistry-dean-to-step-down-following-antisemitic-images-in-course-material/article_2f6a29e9-120e-53d6-8ed6-5c438dfc8355.html",
+      "published": "2026-11-06T13:01:48+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3639,6 +3671,35 @@
       "issues": []
     },
     {
+      "id": "9fabce7184cf165b",
+      "source": "Global News Canada",
+      "title": "Budget 2026 proposes 1st deposit insurance limit increase in 2 decades",
+      "url": "https://globalnews.ca/news/12138967/budget-2026-deposit-insurance",
+      "published": "2026-11-06T13:17:58+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 364,
+      "paragraph_count": 13,
+      "inline_image_count": 1,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e6d171959fbe20b9",
       "source": "Global News Canada",
       "title": "Toronto woman’s ex-boyfriend charged with assaulting her before she was killed",
@@ -3886,35 +3947,6 @@
       "paragraph_count": 15,
       "inline_image_count": 2,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c7a153ad54d2e837",
-      "source": "Global News Canada",
-      "title": "Calgary water system had ‘systemic’ issues before pipe failure: Report",
-      "url": "https://globalnews.ca/news/12138376/calgary-water-system-had-systemic-issues-before-pipe-failure-report",
-      "published": "2026-11-05T21:30:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1209,
-      "paragraph_count": 44,
-      "inline_image_count": 8,
-      "quality_score": 97,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
@@ -4847,6 +4879,47 @@
       ]
     },
     {
+      "id": "e156d568b44a81dc",
+      "source": "Toronto Star",
+      "title": "U of T's dentistry dean to step down following antisemitic images in course material",
+      "url": "https://www.thestar.com/news/ontario/u-of-t-s-dentistry-dean-to-step-down-following-antisemitic-images-in-course-material/article_2f6a29e9-120e-53d6-8ed6-5c438dfc8355.html",
+      "published": "2026-11-06T13:01:48+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 201,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cf4b2fea7d3de0a0",
       "source": "Toronto Star",
       "title": "Carney heads to Winnipeg to tout budget plan to end homelessness in 10 years",
@@ -5123,35 +5196,6 @@
           "message": "Possible publisher module leaked into the article body.",
           "detail": "Comments"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1bf6f440729aec79",
-      "source": "Toronto Star",
-      "title": "Meta pauses change to terms of service after publishers voice concerns",
-      "url": "https://www.thestar.com/news/canada/meta-pauses-change-to-terms-of-service-after-publishers-voice-concerns/article_9c9d4c9b-64f4-5b34-9b23-ec02ac044f5f.html",
-      "published": "2026-11-05T21:27:28+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 300,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
