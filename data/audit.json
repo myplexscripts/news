@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T18:12:50.645072+00:00",
-  "generated_at_london": "2026-11-06T13:12:50.645072-05:00",
-  "news_generated_at": "2026-11-06T18:05:58.361975+00:00",
+  "generated_at": "2026-11-06T18:22:10.923728+00:00",
+  "generated_at_london": "2026-11-06T13:22:10.923728-05:00",
+  "news_generated_at": "2026-11-06T18:20:33.106615+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 694,
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -147,10 +147,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-06T16:49:31+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-06T17:32:23.736657+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -430,20 +430,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 270,
-      "average_quality": 66,
+      "average_words": 190,
+      "average_quality": 64,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 2,
-        "embedded-json:ctv": 8
+        "embedded-json:ctv": 8,
+        "ctv:summary-fallback": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-11-06T17:39:13.336000+00:00",
+      "latest_published": "2026-11-06T18:07:03.771000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T17:45:47.807318+00:00",
+      "last_scrape": "2026-11-06T18:17:06.376258+00:00",
       "last_error": ""
     },
     {
@@ -1085,21 +1085,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0c2f85de129445a3",
-      "source": "CTV News London",
-      "title": "Bruce Power nuclear facing federal charges for massive 2025 fish kill",
-      "url": "https://www.ctvnews.ca/london/article/bruce-power-nuclear-facing-federal-charges-for-massive-2025-fish-kill",
-      "published": "2026-11-05T21:40:33.457000+00:00",
-      "content_status": "full",
-      "word_count": 961,
-      "quality_score": 86,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1231,6 +1216,21 @@
       "content_status": "full",
       "word_count": 215,
       "quality_score": 66,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 5/100",
+      "story_id": "e62a87a81ba3fc52",
+      "source": "CTV News London",
+      "title": "Scattered showers throughout the weekend",
+      "url": "https://www.ctvnews.ca/london/article/scattered-showers-throughout-the-weekend",
+      "published": "2026-11-06T18:07:03.771000+00:00",
+      "content_status": "full",
+      "word_count": 161,
+      "quality_score": 69,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2486,6 +2486,35 @@
       "issues": []
     },
     {
+      "id": "e62a87a81ba3fc52",
+      "source": "CTV News London",
+      "title": "Scattered showers throughout the weekend",
+      "url": "https://www.ctvnews.ca/london/article/scattered-showers-throughout-the-weekend",
+      "published": "2026-11-06T18:07:03.771000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 161,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 5,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 5/100"
+        }
+      ]
+    },
+    {
       "id": "e37e9f780d7299d2",
       "source": "CTV News London",
       "title": "Assault at public school leads to arrest: SPS",
@@ -2755,35 +2784,6 @@
           "code": "missing_hero_image",
           "message": "Story has no hero image.",
           "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "0c2f85de129445a3",
-      "source": "CTV News London",
-      "title": "Bruce Power nuclear facing federal charges for massive 2025 fish kill",
-      "url": "https://www.ctvnews.ca/london/article/bruce-power-nuclear-facing-federal-charges-for-massive-2025-fish-kill",
-      "published": "2026-11-05T21:40:33.457000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 961,
-      "paragraph_count": 19,
-      "inline_image_count": 2,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
