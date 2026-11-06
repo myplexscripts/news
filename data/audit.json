@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T21:05:21.490883+00:00",
-  "generated_at_london": "2026-11-06T16:05:21.490883-05:00",
-  "news_generated_at": "2026-11-06T20:58:55.498498+00:00",
+  "generated_at": "2026-11-06T21:16:22.894963+00:00",
+  "generated_at_london": "2026-11-06T16:16:22.894963-05:00",
+  "news_generated_at": "2026-11-06T21:14:27.663910+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 696,
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -147,10 +147,10 @@
       "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-11-06T20:40:42+00:00",
-      "found_this_run": 9,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-06T20:57:06.776575+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -695,20 +695,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 781,
-      "average_quality": 81,
+      "average_words": 712,
+      "average_quality": 78,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:postmedia:article:strict": 1,
         "merge:reader:semantic-rich-v1": 1,
-        "reader:semantic-rich-v1": 9
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-06T20:56:28+00:00",
+      "latest_published": "2026-11-06T20:56:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T20:57:04.154191+00:00",
+      "last_scrape": "2026-11-06T21:12:39.048149+00:00",
       "last_error": ""
     },
     {
@@ -1793,21 +1794,6 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8db64dbe71141525",
-      "source": "National Post",
-      "title": "Liberals plan to transition 200,000 temporary immigrants to permanent residency",
-      "url": "https://nationalpost.com/news/canadian-politics/federal-budget-immigration",
-      "published": "2026-11-05T21:08:45+00:00",
-      "content_status": "partial",
-      "word_count": 788,
-      "quality_score": 83,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
       "detail": "Local score 10/100",
       "story_id": "9e5e5ef9d8010dbe",
       "source": "National Post",
@@ -1818,6 +1804,21 @@
       "word_count": 1025,
       "quality_score": 79,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "88f3cc1f30c65717",
+      "source": "National Post",
+      "title": "Ottawa wants to expand spy agency’s powers, open to foreign intelligence agency",
+      "url": "https://nationalpost.com/news/canadian-politics/ottawa-wants-to-expand-spy-agencys-powers-open-to-foreign-intelligence-agency",
+      "published": "2026-11-06T20:56:44+00:00",
+      "content_status": "partial",
+      "word_count": 98,
+      "quality_score": 53,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4879,6 +4880,35 @@
       ]
     },
     {
+      "id": "88f3cc1f30c65717",
+      "source": "National Post",
+      "title": "Ottawa wants to expand spy agency’s powers, open to foreign intelligence agency",
+      "url": "https://nationalpost.com/news/canadian-politics/ottawa-wants-to-expand-spy-agencys-powers-open-to-foreign-intelligence-agency",
+      "published": "2026-11-06T20:56:44+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 98,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "79940a05ccaf6d50",
       "source": "National Post",
       "title": "Hamilton cadet leader injured in vicious attack ‘determined to walk’ after emergency spinal surgery",
@@ -5126,35 +5156,6 @@
       "paragraph_count": 22,
       "inline_image_count": 0,
       "quality_score": 79,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8db64dbe71141525",
-      "source": "National Post",
-      "title": "Liberals plan to transition 200,000 temporary immigrants to permanent residency",
-      "url": "https://nationalpost.com/news/canadian-politics/federal-budget-immigration",
-      "published": "2026-11-05T21:08:45+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 788,
-      "paragraph_count": 36,
-      "inline_image_count": 0,
-      "quality_score": 83,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
