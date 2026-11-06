@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T02:23:20.980092+00:00",
-  "generated_at_london": "2026-11-05T21:23:20.980092-05:00",
-  "news_generated_at": "2026-11-06T02:15:56.789984+00:00",
+  "generated_at": "2026-11-06T02:34:08.321582+00:00",
+  "generated_at_london": "2026-11-05T21:34:08.321582-05:00",
+  "news_generated_at": "2026-11-06T02:31:59.526802+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 690,
+    "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 107,
@@ -124,13 +124,13 @@
       "latest_published": "2026-11-05T22:00:42+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T02:14:11.151105+00:00",
+      "last_scrape": "2026-11-06T02:29:40.068710+00:00",
       "last_error": ""
     },
     {
       "source": "Thames Valley District School Board",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "generic",
       "sample_size": 6,
       "pass": 5,
@@ -149,10 +149,10 @@
       "warning_issues": 1,
       "info_issues": 9,
       "latest_published": "2026-11-04T05:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 6,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Toronto Star",
@@ -697,19 +697,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 742,
-      "average_quality": 95,
+      "average_words": 794,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-11-06T01:05:47.187000+00:00",
+      "latest_published": "2026-11-06T02:19:46.573000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T01:12:06.288109+00:00",
+      "last_scrape": "2026-11-06T02:29:37.931981+00:00",
       "last_error": ""
     },
     {
@@ -2020,21 +2021,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "fafb2550e23a38e7",
-      "source": "The Globe and Mail",
-      "title": "Mexican judge arrested for allegedly taking a bribe to release Ryan Wedding’s right-hand man",
-      "url": "https://www.theglobeandmail.com/world/article-judge-who-freed-alleged-ryan-wedding-associate-arrested",
-      "published": "2026-11-05T17:35:54.150000+00:00",
-      "content_status": "full",
-      "word_count": 443,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "91a719e3fb9c817e",
       "source": "The Globe and Mail",
       "title": "Ottawa reviewing circumstances of Indigenous woman’s death after she missed postsurgery appointments",
@@ -2059,6 +2045,21 @@
       "word_count": 405,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "55373e7da5d48587",
+      "source": "The Globe and Mail",
+      "title": "Public relations expert tells court Galloway bungled response to sexual assault scandal",
+      "url": "https://www.theglobeandmail.com/canada/article-public-relations-expert-galloway-bungled-response-sexual-assault",
+      "published": "2026-11-06T02:19:46.573000+00:00",
+      "content_status": "full",
+      "word_count": 959,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4298,6 +4299,35 @@
       ]
     },
     {
+      "id": "55373e7da5d48587",
+      "source": "The Globe and Mail",
+      "title": "Public relations expert tells court Galloway bungled response to sexual assault scandal",
+      "url": "https://www.theglobeandmail.com/canada/article-public-relations-expert-galloway-bungled-response-sexual-assault",
+      "published": "2026-11-06T02:19:46.573000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 959,
+      "paragraph_count": 25,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "91a719e3fb9c817e",
       "source": "The Globe and Mail",
       "title": "Ottawa reviewing circumstances of Indigenous woman’s death after she missed postsurgery appointments",
@@ -4555,35 +4585,6 @@
       "content_status": "partial",
       "word_count": 167,
       "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "fafb2550e23a38e7",
-      "source": "The Globe and Mail",
-      "title": "Mexican judge arrested for allegedly taking a bribe to release Ryan Wedding’s right-hand man",
-      "url": "https://www.theglobeandmail.com/world/article-judge-who-freed-alleged-ryan-wedding-associate-arrested",
-      "published": "2026-11-05T17:35:54.150000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 443,
-      "paragraph_count": 16,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
