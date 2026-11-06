@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T19:29:41.693789+00:00",
-  "generated_at_london": "2026-11-06T14:29:41.693789-05:00",
-  "news_generated_at": "2026-11-06T19:23:19.103277+00:00",
+  "generated_at": "2026-11-06T19:42:57.204600+00:00",
+  "generated_at_london": "2026-11-06T14:42:57.204600-05:00",
+  "news_generated_at": "2026-11-06T19:40:28.759718+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 694,
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -147,10 +147,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-06T18:19:17+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-06T18:35:21.438888+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -511,19 +511,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 350,
+      "average_words": 385,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-06T18:55:28+00:00",
+      "latest_published": "2026-11-06T19:34:30+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T19:06:06.193822+00:00",
+      "last_scrape": "2026-11-06T19:38:08.300663+00:00",
       "last_error": ""
     },
     {
@@ -1478,21 +1479,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9fabce7184cf165b",
-      "source": "Global News Canada",
-      "title": "Budget 2026 proposes 1st deposit insurance limit increase in 2 decades",
-      "url": "https://globalnews.ca/news/12138967/budget-2026-deposit-insurance",
-      "published": "2026-11-06T13:17:58+00:00",
-      "content_status": "full",
-      "word_count": 364,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "8afe38605a171908",
       "source": "Global News Canada",
       "title": "Cineplex posts record revenue as Spider-Man, Odyssey drove moviegoers",
@@ -1562,6 +1548,21 @@
       "word_count": 176,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "881352286ec89d37",
+      "source": "Global News Canada",
+      "title": "Ontario businesses gain ‘fragile’ optimism on trade after U.S. midterms",
+      "url": "https://globalnews.ca/news/12140218/ontario-businesses-gain-fragile-optimism-on-trade-after-u-s-midterms",
+      "published": "2026-11-06T19:34:30+00:00",
+      "content_status": "full",
+      "word_count": 716,
+      "quality_score": 92,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3915,6 +3916,35 @@
       "issues": []
     },
     {
+      "id": "881352286ec89d37",
+      "source": "Global News Canada",
+      "title": "Ontario businesses gain ‘fragile’ optimism on trade after U.S. midterms",
+      "url": "https://globalnews.ca/news/12140218/ontario-businesses-gain-fragile-optimism-on-trade-after-u-s-midterms",
+      "published": "2026-11-06T19:34:30+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 716,
+      "paragraph_count": 20,
+      "inline_image_count": 2,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fcfcbf6bf4e802c2",
       "source": "Global News Canada",
       "title": "Health Canada approves Moderna’s combined COVID, flu shot for some",
@@ -4161,35 +4191,6 @@
       "word_count": 164,
       "paragraph_count": 6,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9fabce7184cf165b",
-      "source": "Global News Canada",
-      "title": "Budget 2026 proposes 1st deposit insurance limit increase in 2 decades",
-      "url": "https://globalnews.ca/news/12138967/budget-2026-deposit-insurance",
-      "published": "2026-11-06T13:17:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 364,
-      "paragraph_count": 13,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
