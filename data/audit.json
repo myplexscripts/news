@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T15:18:55.211871+00:00",
-  "generated_at_london": "2026-11-06T10:18:55.211871-05:00",
-  "news_generated_at": "2026-11-06T15:13:52.232133+00:00",
+  "generated_at": "2026-11-06T15:31:31.896387+00:00",
+  "generated_at_london": "2026-11-06T10:31:31.896387-05:00",
+  "news_generated_at": "2026-11-06T15:29:24.394747+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 683,
+    "archive_story_count": 682,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 103,
@@ -44,7 +44,7 @@
       "latest_published": "2026-11-06T15:07:18.071000+00:00",
       "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-11-06T15:12:04.737173+00:00",
+      "last_scrape": "2026-11-06T15:16:19.021019+00:00",
       "last_error": ""
     },
     {
@@ -71,7 +71,7 @@
       "latest_published": "2026-11-06T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T15:12:07.200925+00:00",
+      "last_scrape": "2026-11-06T15:27:25.207700+00:00",
       "last_error": ""
     },
     {
@@ -131,7 +131,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 6,
@@ -149,10 +149,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-06T13:01:48+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-06T11:00:52.466532+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -537,19 +537,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 353,
-      "average_quality": 96,
+      "average_words": 336,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-06T14:22:11+00:00",
+      "latest_published": "2026-11-06T15:22:41+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T14:24:30.677396+00:00",
+      "last_scrape": "2026-11-06T15:27:23.702714+00:00",
       "last_error": ""
     },
     {
@@ -1463,15 +1464,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "e2ad7171f718755f",
+      "story_id": "1613d63dae5f7f72",
       "source": "Global News Canada",
-      "title": "Halifax councillors question how infrastructure will be funded after extended fee freeze",
-      "url": "https://globalnews.ca/news/12138708/development-fees-halifax-nova-scotia",
-      "published": "2026-11-05T21:47:05+00:00",
+      "title": "Disbarred former Manitoba law dean loses extradition fight in French Appeal Court",
+      "url": "https://globalnews.ca/news/12139750/former-manitoba-law-dean-extradition",
+      "published": "2026-11-06T15:22:41+00:00",
       "content_status": "full",
-      "word_count": 423,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 246,
+      "quality_score": 71,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3706,6 +3707,35 @@
       "issues": []
     },
     {
+      "id": "1613d63dae5f7f72",
+      "source": "Global News Canada",
+      "title": "Disbarred former Manitoba law dean loses extradition fight in French Appeal Court",
+      "url": "https://globalnews.ca/news/12139750/former-manitoba-law-dean-extradition",
+      "published": "2026-11-06T15:22:41+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 246,
+      "paragraph_count": 10,
+      "inline_image_count": 1,
+      "quality_score": 71,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "02f98b9b8c5cb3a7",
       "source": "Global News Canada",
       "title": "U of T’s dentistry dean to step down following antisemitic images in course material",
@@ -3952,35 +3982,6 @@
       "word_count": 335,
       "paragraph_count": 10,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e2ad7171f718755f",
-      "source": "Global News Canada",
-      "title": "Halifax councillors question how infrastructure will be funded after extended fee freeze",
-      "url": "https://globalnews.ca/news/12138708/development-fees-halifax-nova-scotia",
-      "published": "2026-11-05T21:47:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 423,
-      "paragraph_count": 17,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
