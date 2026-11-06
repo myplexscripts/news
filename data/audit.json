@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T22:24:47.439638+00:00",
-  "generated_at_london": "2026-11-06T17:24:47.439638-05:00",
-  "news_generated_at": "2026-11-06T22:17:11.036453+00:00",
+  "generated_at": "2026-11-06T22:33:54.656071+00:00",
+  "generated_at_london": "2026-11-06T17:33:54.656071-05:00",
+  "news_generated_at": "2026-11-06T22:32:23.812017+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 703,
+    "archive_story_count": 704,
     "source_count": 28,
     "audited_story_count": 117,
     "pass_story_count": 110,
     "review_story_count": 7,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 10,
+    "warning_issue_count": 11,
     "info_issue_count": 99,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -45,32 +45,6 @@
       "found_this_run": 18,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
-    },
-    {
-      "source": "CTV News Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 897,
-      "average_quality": 85,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 10,
-      "latest_published": "2026-11-06T20:11:03.212000+00:00",
-      "found_this_run": 4,
-      "tracked": 30,
-      "last_scrape": "2026-11-06T22:05:30.905545+00:00",
       "last_error": ""
     },
     {
@@ -132,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 2,
+      "pass": 7,
+      "review": 3,
       "fail": 0,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 465,
-      "average_quality": 96,
+      "average_words": 464,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 2,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-06T20:55:29+00:00",
+      "latest_published": "2026-11-06T22:18:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T22:15:06.031489+00:00",
+      "last_scrape": "2026-11-06T22:30:57.905934+00:00",
       "last_error": ""
     },
     {
@@ -415,8 +390,34 @@
       "info_issues": 0,
       "latest_published": "2026-11-06T21:17:02+00:00",
       "found_this_run": 10,
-      "tracked": 11,
+      "tracked": 10,
       "last_scrape": "2026-11-06T21:26:09.418433+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 893,
+      "average_quality": 85,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-06T22:19:58.134000+00:00",
+      "found_this_run": 5,
+      "tracked": 30,
+      "last_scrape": "2026-11-06T22:30:53.527836+00:00",
       "last_error": ""
     },
     {
@@ -801,21 +802,6 @@
     },
     {
       "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "6 consecutive images",
-      "story_id": "0a5490690ffe49f9",
-      "source": "CTV News Canada",
-      "title": "U.S. midterm results spark joy among Canadians but trust in America remains shaky",
-      "url": "https://www.ctvnews.ca/canada/article/us-midterm-results-spark-joy-among-canadians-but-trust-in-america-remains-shaky",
-      "published": "2026-11-05T13:23:24.423000+00:00",
-      "content_status": "full",
-      "word_count": 551,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
       "detail": "11 inline images",
@@ -888,6 +874,36 @@
       "word_count": 1007,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "cbca5c06af7aecb8",
+      "source": "Toronto Star",
+      "title": "U.S. Treasury sanctions Canadian firms connected to Ryan Wedding",
+      "url": "https://www.thestar.com/news/canada/u-s-treasury-sanctions-canadian-firms-connected-to-ryan-wedding/article_53e04990-133e-5c3d-9247-1a91413bc8a8.html",
+      "published": "2026-11-06T22:18:35+00:00",
+      "content_status": "full",
+      "word_count": 218,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "cbca5c06af7aecb8",
+      "source": "Toronto Star",
+      "title": "U.S. Treasury sanctions Canadian firms connected to Ryan Wedding",
+      "url": "https://www.thestar.com/news/canada/u-s-treasury-sanctions-canadian-firms-connected-to-ryan-wedding/article_53e04990-133e-5c3d-9247-1a91413bc8a8.html",
+      "published": "2026-11-06T22:18:35+00:00",
+      "content_status": "full",
+      "word_count": 218,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -999,6 +1015,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "d5dc35bd6d251998",
+      "source": "CTV News Canada",
+      "title": "Minister says tax credits will spur investment to expand electricity grid",
+      "url": "https://www.ctvnews.ca/canada/article/minister-says-tax-credits-will-spur-investment-to-expand-electricity-grid",
+      "published": "2026-11-06T22:19:58.134000+00:00",
+      "content_status": "full",
+      "word_count": 510,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "07e29225c0f1a353",
       "source": "CTV News Canada",
       "title": "P.E.I. apologized for failing him after a sexual assault, but are kids in care safer today?",
@@ -1037,21 +1068,6 @@
       "content_status": "full",
       "word_count": 1452,
       "quality_score": 90,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0a5490690ffe49f9",
-      "source": "CTV News Canada",
-      "title": "U.S. midterm results spark joy among Canadians but trust in America remains shaky",
-      "url": "https://www.ctvnews.ca/canada/article/us-midterm-results-spark-joy-among-canadians-but-trust-in-america-remains-shaky",
-      "published": "2026-11-05T13:23:24.423000+00:00",
-      "content_status": "full",
-      "word_count": 551,
-      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2319,15 +2335,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "345db0912744839d",
+      "story_id": "cbca5c06af7aecb8",
       "source": "Toronto Star",
-      "title": "Regulator looks to suspend Toronto bar's liquor licence after customer death",
-      "url": "https://www.thestar.com/news/ontario/regulator-looks-to-suspend-toronto-bar-s-liquor-licence-after-customer-death/article_9f3cc012-776b-5fcc-af77-46d950d81206.html",
-      "published": "2026-11-06T15:36:55+00:00",
+      "title": "U.S. Treasury sanctions Canadian firms connected to Ryan Wedding",
+      "url": "https://www.thestar.com/news/canada/u-s-treasury-sanctions-canadian-firms-connected-to-ryan-wedding/article_53e04990-133e-5c3d-9247-1a91413bc8a8.html",
+      "published": "2026-11-06T22:18:35+00:00",
       "content_status": "full",
-      "word_count": 224,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 218,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4185,6 +4201,35 @@
       ]
     },
     {
+      "id": "d5dc35bd6d251998",
+      "source": "CTV News Canada",
+      "title": "Minister says tax credits will spur investment to expand electricity grid",
+      "url": "https://www.ctvnews.ca/canada/article/minister-says-tax-credits-will-spur-investment-to-expand-electricity-grid",
+      "published": "2026-11-06T22:19:58.134000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 510,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "79bb9d2c6185f40b",
       "source": "CTV News Canada",
       "title": "DNA expert likens B.C. bear attack investigation to human crime scene",
@@ -4437,41 +4482,6 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0a5490690ffe49f9",
-      "source": "CTV News Canada",
-      "title": "U.S. midterm results spark joy among Canadians but trust in America remains shaky",
-      "url": "https://www.ctvnews.ca/canada/article/us-midterm-results-spark-joy-among-canadians-but-trust-in-america-remains-shaky",
-      "published": "2026-11-05T13:23:24.423000+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 551,
-      "paragraph_count": 21,
-      "inline_image_count": 6,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "6 consecutive images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5103,6 +5113,47 @@
       ]
     },
     {
+      "id": "cbca5c06af7aecb8",
+      "source": "Toronto Star",
+      "title": "U.S. Treasury sanctions Canadian firms connected to Ryan Wedding",
+      "url": "https://www.thestar.com/news/canada/u-s-treasury-sanctions-canadian-firms-connected-to-ryan-wedding/article_53e04990-133e-5c3d-9247-1a91413bc8a8.html",
+      "published": "2026-11-06T22:18:35+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 218,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c360bcc074c7e775",
       "source": "Toronto Star",
       "title": "Driver who helped B.C. bus crash victims credits firefighter training",
@@ -5360,35 +5411,6 @@
       "content_status": "full",
       "word_count": 723,
       "paragraph_count": 33,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "345db0912744839d",
-      "source": "Toronto Star",
-      "title": "Regulator looks to suspend Toronto bar's liquor licence after customer death",
-      "url": "https://www.thestar.com/news/ontario/regulator-looks-to-suspend-toronto-bar-s-liquor-licence-after-customer-death/article_9f3cc012-776b-5fcc-af77-46d950d81206.html",
-      "published": "2026-11-06T15:36:55+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 224,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
