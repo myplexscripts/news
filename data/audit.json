@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T00:48:25.979163+00:00",
-  "generated_at_london": "2026-11-05T19:48:25.979163-05:00",
-  "news_generated_at": "2026-11-06T00:42:09.996311+00:00",
+  "generated_at": "2026-11-06T00:59:31.863633+00:00",
+  "generated_at_london": "2026-11-05T19:59:31.863633-05:00",
+  "news_generated_at": "2026-11-06T00:57:56.135103+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 690,
+    "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 107,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-05T22:00:42+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T00:40:42.937220+00:00",
+      "last_scrape": "2026-11-06T00:56:09.948017+00:00",
       "last_error": ""
     },
     {
@@ -157,7 +157,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -175,10 +175,10 @@
       "warning_issues": 3,
       "info_issues": 10,
       "latest_published": "2026-11-06T00:19:02+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-06T00:25:22.791434+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "104.7 Heart FM",
@@ -539,19 +539,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 542,
+      "average_words": 525,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-05T23:13:48+00:00",
+      "latest_published": "2026-11-05T23:53:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-05T23:23:19.639376+00:00",
+      "last_scrape": "2026-11-06T00:56:07.963582+00:00",
       "last_error": ""
     },
     {
@@ -1480,21 +1481,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5e5f90580e98bbc5",
-      "source": "Global News Canada",
-      "title": "Post-secondary students protest Ford government Osap changes, tuition hikes",
-      "url": "https://globalnews.ca/news/12138542/post-secondary-students-protest-ford-government-osap-changes-tuition-hikes",
-      "published": "2026-11-05T20:35:17+00:00",
-      "content_status": "full",
-      "word_count": 660,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "b079604e27b26c96",
       "source": "Global News Canada",
       "title": "Separatism referendum cost $84 million, exceeded Elections Alberta’s budget",
@@ -1519,6 +1505,21 @@
       "word_count": 273,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "cfbc5a1a0d84ddb6",
+      "source": "Global News Canada",
+      "title": "Tenants upset with squalid conditions at central Edmonton apartment building",
+      "url": "https://globalnews.ca/news/12139111/edmonton-mccauley-apartment-building-living-conditions",
+      "published": "2026-11-05T23:53:44+00:00",
+      "content_status": "full",
+      "word_count": 493,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3679,6 +3680,35 @@
       "issues": []
     },
     {
+      "id": "cfbc5a1a0d84ddb6",
+      "source": "Global News Canada",
+      "title": "Tenants upset with squalid conditions at central Edmonton apartment building",
+      "url": "https://globalnews.ca/news/12139111/edmonton-mccauley-apartment-building-living-conditions",
+      "published": "2026-11-05T23:53:44+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 493,
+      "paragraph_count": 23,
+      "inline_image_count": 4,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b079604e27b26c96",
       "source": "Global News Canada",
       "title": "Separatism referendum cost $84 million, exceeded Elections Alberta’s budget",
@@ -3925,35 +3955,6 @@
       "word_count": 1052,
       "paragraph_count": 29,
       "inline_image_count": 5,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5e5f90580e98bbc5",
-      "source": "Global News Canada",
-      "title": "Post-secondary students protest Ford government Osap changes, tuition hikes",
-      "url": "https://globalnews.ca/news/12138542/post-secondary-students-protest-ford-government-osap-changes-tuition-hikes",
-      "published": "2026-11-05T20:35:17+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 660,
-      "paragraph_count": 17,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
