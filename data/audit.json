@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T10:07:40.321162+00:00",
-  "generated_at_london": "2026-11-06T05:07:40.321162-05:00",
-  "news_generated_at": "2026-11-06T10:02:13.731718+00:00",
+  "generated_at": "2026-11-06T10:17:50.053556+00:00",
+  "generated_at_london": "2026-11-06T05:17:50.053556-05:00",
+  "news_generated_at": "2026-11-06T10:16:29.959224+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 677,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 110,
     "pass_story_count": 101,
@@ -24,7 +24,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 4,
@@ -42,10 +42,10 @@
       "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-11-06T09:00:05+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-06T09:17:57.534943+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CTV News Canada",
@@ -58,8 +58,8 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 600,
-      "average_quality": 82,
+      "average_words": 684,
+      "average_quality": 83,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -67,10 +67,10 @@
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 12,
-      "latest_published": "2026-11-05T17:21:03.121000+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-06T10:13:43.819000+00:00",
+      "found_this_run": 1,
       "tracked": 30,
-      "last_scrape": "2026-11-05T18:03:41.089589+00:00",
+      "last_scrape": "2026-11-06T10:14:59.232856+00:00",
       "last_error": ""
     },
     {
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-05T22:00:42+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T09:59:59.424760+00:00",
+      "last_scrape": "2026-11-06T10:15:00.702124+00:00",
       "last_error": ""
     },
     {
@@ -224,7 +224,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -537,19 +537,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 474,
-      "average_quality": 96,
+      "average_words": 481,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-06T03:37:54+00:00",
+      "latest_published": "2026-11-06T10:00:08+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T03:47:15.356496+00:00",
+      "last_scrape": "2026-11-06T10:14:57.305952+00:00",
       "last_error": ""
     },
     {
@@ -938,21 +939,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ba558508cd19ad60",
-      "source": "CTV News Canada",
-      "title": "Could this Canadian hybrid-electric aircraft reduce northern Ontario medevac times?",
-      "url": "https://www.ctvnews.ca/canada/article/could-this-canadian-hybrid-electric-aircraft-reduce-northern-ontario-medevac-times",
-      "published": "2026-11-04T18:04:44.332000+00:00",
-      "content_status": "full",
-      "word_count": 613,
-      "quality_score": 83,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "df98bdd53f3e3885",
       "source": "CTV News Canada",
       "title": "End of seasonal clock changes cause problems for some Microsoft users in Canada",
@@ -961,6 +947,21 @@
       "content_status": "full",
       "word_count": 303,
       "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0fd50a83006c14a5",
+      "source": "CTV News Canada",
+      "title": "Exponential expansion of China’s illegal police stations across the globe: report",
+      "url": "https://www.ctvnews.ca/canada/article/exponential-expansion-of-chinas-illegal-police-stations-across-the-globe-report",
+      "published": "2026-11-06T10:13:43.819000+00:00",
+      "content_status": "full",
+      "word_count": 1452,
+      "quality_score": 90,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1493,15 +1494,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "02afc86fb71d984a",
+      "story_id": "3cb8df78e1665a19",
       "source": "Global News Canada",
-      "title": "No charges for Winnipeg police officers who handcuffed overdosing suspect",
-      "url": "https://globalnews.ca/news/12138564/no-charges-winnipeg-police-handcuff-suspect-died",
-      "published": "2026-11-05T21:11:56+00:00",
+      "title": "Online gambling more than doubles among young Montreal men, study finds",
+      "url": "https://globalnews.ca/news/12139130/online-gambling-betting-doubles-montreal-men",
+      "published": "2026-11-06T10:00:08+00:00",
       "content_status": "full",
-      "word_count": 381,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 454,
+      "quality_score": 83,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3612,6 +3613,35 @@
       "issues": []
     },
     {
+      "id": "3cb8df78e1665a19",
+      "source": "Global News Canada",
+      "title": "Online gambling more than doubles among young Montreal men, study finds",
+      "url": "https://globalnews.ca/news/12139130/online-gambling-betting-doubles-montreal-men",
+      "published": "2026-11-06T10:00:08+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 454,
+      "paragraph_count": 18,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "aec7091facffec99",
       "source": "Global News Canada",
       "title": "Kelowna woman calls for action on public safety in wake of frightening attack",
@@ -3873,24 +3903,24 @@
       ]
     },
     {
-      "id": "02afc86fb71d984a",
-      "source": "Global News Canada",
-      "title": "No charges for Winnipeg police officers who handcuffed overdosing suspect",
-      "url": "https://globalnews.ca/news/12138564/no-charges-winnipeg-police-handcuff-suspect-died",
-      "published": "2026-11-05T21:11:56+00:00",
+      "id": "0fd50a83006c14a5",
+      "source": "CTV News Canada",
+      "title": "Exponential expansion of China’s illegal police stations across the globe: report",
+      "url": "https://www.ctvnews.ca/canada/article/exponential-expansion-of-chinas-illegal-police-stations-across-the-globe-report",
+      "published": "2026-11-06T10:13:43.819000+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 381,
-      "paragraph_count": 12,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
+      "word_count": 1452,
+      "paragraph_count": 61,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
         {
@@ -4172,35 +4202,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ba558508cd19ad60",
-      "source": "CTV News Canada",
-      "title": "Could this Canadian hybrid-electric aircraft reduce northern Ontario medevac times?",
-      "url": "https://www.ctvnews.ca/canada/article/could-this-canadian-hybrid-electric-aircraft-reduce-northern-ontario-medevac-times",
-      "published": "2026-11-04T18:04:44.332000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 613,
-      "paragraph_count": 18,
-      "inline_image_count": 1,
-      "quality_score": 83,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
