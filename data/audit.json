@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T23:10:17.088869+00:00",
-  "generated_at_london": "2026-11-06T18:10:17.088869-05:00",
-  "news_generated_at": "2026-11-06T23:03:48.413768+00:00",
+  "generated_at": "2026-11-06T23:21:37.974179+00:00",
+  "generated_at_london": "2026-11-06T18:21:37.974179-05:00",
+  "news_generated_at": "2026-11-06T23:19:51.721560+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 705,
+    "archive_story_count": 706,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 110,
-    "review_story_count": 7,
+    "pass_story_count": 109,
+    "review_story_count": 8,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 10,
+    "warning_issue_count": 12,
     "info_issue_count": 98,
     "healthy_source_count": 13,
     "review_source_count": 5,
@@ -70,7 +70,7 @@
       "latest_published": "2026-11-06T22:57:06.051000+00:00",
       "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-11-06T23:01:57.475133+00:00",
+      "last_scrape": "2026-11-06T23:06:45.110887+00:00",
       "last_error": ""
     },
     {
@@ -132,24 +132,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 2,
+      "pass": 7,
+      "review": 3,
       "fail": 0,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 414,
-      "average_quality": 96,
+      "average_words": 424,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 2,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-06T22:31:59+00:00",
-      "found_this_run": 9,
+      "latest_published": "2026-11-06T22:52:43+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T22:46:17.818772+00:00",
+      "last_scrape": "2026-11-06T23:17:57.213644+00:00",
       "last_error": ""
     },
     {
@@ -198,7 +199,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -323,7 +324,7 @@
     {
       "source": "London Free Press",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "postmedia",
       "sample_size": 0,
       "pass": 0,
@@ -342,7 +343,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "403 Client Error: Forbidden for url: https://lfpress.com"
     },
     {
       "source": "Ontario Newsroom",
@@ -443,7 +444,7 @@
       "latest_published": "2026-11-06T22:48:03.416000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T23:00:00.893659+00:00",
+      "last_scrape": "2026-11-06T23:06:46.294157+00:00",
       "last_error": ""
     },
     {
@@ -873,6 +874,36 @@
       "word_count": 940,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "630f787210c09ef0",
+      "source": "Toronto Star",
+      "title": "Lawyer says convicted killer was booted from McGill without due process",
+      "url": "https://www.thestar.com/news/canada/quebec/lawyer-says-convicted-killer-was-booted-from-mcgill-without-due-process/article_ff9ad5be-bb1e-503e-bf3e-208f8001042f.html",
+      "published": "2026-11-06T22:52:43+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "630f787210c09ef0",
+      "source": "Toronto Star",
+      "title": "Lawyer says convicted killer was booted from McGill without due process",
+      "url": "https://www.thestar.com/news/canada/quebec/lawyer-says-convicted-killer-was-booted-from-mcgill-without-due-process/article_ff9ad5be-bb1e-503e-bf3e-208f8001042f.html",
+      "published": "2026-11-06T22:52:43+00:00",
+      "content_status": "full",
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -2244,15 +2275,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "25737206c84c7fd0",
+      "story_id": "630f787210c09ef0",
       "source": "Toronto Star",
-      "title": "Hunter missing for several days in B.C. Interior found dead near Merritt",
-      "url": "https://www.thestar.com/news/canada/british-columbia/hunter-missing-for-several-days-in-b-c-interior-found-dead-near-merritt/article_2c8dbbb6-b560-5761-8589-fd8882601967.html",
-      "published": "2026-11-06T16:08:03+00:00",
+      "title": "Lawyer says convicted killer was booted from McGill without due process",
+      "url": "https://www.thestar.com/news/canada/quebec/lawyer-says-convicted-killer-was-booted-from-mcgill-without-due-process/article_ff9ad5be-bb1e-503e-bf3e-208f8001042f.html",
+      "published": "2026-11-06T22:52:43+00:00",
       "content_status": "full",
-      "word_count": 120,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 222,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5081,6 +5112,47 @@
       ]
     },
     {
+      "id": "630f787210c09ef0",
+      "source": "Toronto Star",
+      "title": "Lawyer says convicted killer was booted from McGill without due process",
+      "url": "https://www.thestar.com/news/canada/quebec/lawyer-says-convicted-killer-was-booted-from-mcgill-without-due-process/article_ff9ad5be-bb1e-503e-bf3e-208f8001042f.html",
+      "published": "2026-11-06T22:52:43+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 222,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "50ef9be11fa5665e",
       "source": "Toronto Star",
       "title": "Mayor of Montreal suburb expresses regret over anti-Palestine comments",
@@ -5338,35 +5410,6 @@
       "content_status": "full",
       "word_count": 310,
       "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "25737206c84c7fd0",
-      "source": "Toronto Star",
-      "title": "Hunter missing for several days in B.C. Interior found dead near Merritt",
-      "url": "https://www.thestar.com/news/canada/british-columbia/hunter-missing-for-several-days-in-b-c-interior-found-dead-near-merritt/article_2c8dbbb6-b560-5761-8589-fd8882601967.html",
-      "published": "2026-11-06T16:08:03+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 120,
-      "paragraph_count": 10,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
