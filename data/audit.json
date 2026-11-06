@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-06T17:24:59.682471+00:00",
-  "generated_at_london": "2026-11-06T12:24:59.682471-05:00",
-  "news_generated_at": "2026-11-06T17:18:56.092716+00:00",
+  "generated_at": "2026-11-06T17:36:01.012707+00:00",
+  "generated_at_london": "2026-11-06T12:36:01.012707-05:00",
+  "news_generated_at": "2026-11-06T17:34:11.929656+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 106,
-    "review_story_count": 6,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 10,
+    "review_story_count": 7,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 12,
     "info_issue_count": 98,
     "healthy_source_count": 12,
     "review_source_count": 6,
@@ -157,28 +157,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 476,
-      "average_quality": 96,
+      "average_words": 490,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-06T16:21:35+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-06T16:49:31+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T16:44:39.085660+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-06T17:32:23.736657+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -472,7 +473,7 @@
       "latest_published": "2026-11-06T17:16:55.276000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-06T15:56:06.467942+00:00",
+      "last_scrape": "2026-11-06T17:22:21.991905+00:00",
       "last_error": ""
     },
     {
@@ -745,21 +746,6 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "64 words",
-      "story_id": "60a4bc44e7107fc7",
-      "source": "Toronto Star",
-      "title": "B.C. woman sentenced to 13 years for assault, kidnapping and sex trafficking",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-woman-sentenced-to-13-years-for-assault-kidnapping-and-sex-trafficking/article_a9c32d72-7493-52ad-938f-463db043d8ea.html",
-      "published": "2026-11-06T01:46:35+00:00",
-      "content_status": "full",
-      "word_count": 64,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
       "detail": "36 words",
       "story_id": "09cae77b3466337f",
       "source": "Toronto Star",
@@ -920,6 +906,36 @@
       "word_count": 1350,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "61e9d0005ca66c0f",
+      "source": "Toronto Star",
+      "title": "Manitoba Métis Federation 'appalled' at lack of Métis funding in federal budget",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-m-tis-federation-appalled-at-lack-of-m-tis-funding-in-federal-budget/article_2cb00407-f524-5bb7-9211-9e5c1bf67238.html",
+      "published": "2026-11-06T16:49:31+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "61e9d0005ca66c0f",
+      "source": "Toronto Star",
+      "title": "Manitoba Métis Federation 'appalled' at lack of Métis funding in federal budget",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-m-tis-federation-appalled-at-lack-of-m-tis-funding-in-federal-budget/article_2cb00407-f524-5bb7-9211-9e5c1bf67238.html",
+      "published": "2026-11-06T16:49:31+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2201,21 +2217,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "60a4bc44e7107fc7",
-      "source": "Toronto Star",
-      "title": "B.C. woman sentenced to 13 years for assault, kidnapping and sex trafficking",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-woman-sentenced-to-13-years-for-assault-kidnapping-and-sex-trafficking/article_a9c32d72-7493-52ad-938f-463db043d8ea.html",
-      "published": "2026-11-06T01:46:35+00:00",
-      "content_status": "full",
-      "word_count": 64,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "cf4b2fea7d3de0a0",
       "source": "Toronto Star",
       "title": "Carney heads to Winnipeg to tout budget plan to end homelessness in 10 years",
@@ -2285,6 +2286,21 @@
       "word_count": 120,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "61e9d0005ca66c0f",
+      "source": "Toronto Star",
+      "title": "Manitoba Métis Federation 'appalled' at lack of Métis funding in federal budget",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-m-tis-federation-appalled-at-lack-of-m-tis-funding-in-federal-budget/article_2cb00407-f524-5bb7-9211-9e5c1bf67238.html",
+      "published": "2026-11-06T16:49:31+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5060,6 +5076,47 @@
       ]
     },
     {
+      "id": "61e9d0005ca66c0f",
+      "source": "Toronto Star",
+      "title": "Manitoba Métis Federation 'appalled' at lack of Métis funding in federal budget",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-m-tis-federation-appalled-at-lack-of-m-tis-funding-in-federal-budget/article_2cb00407-f524-5bb7-9211-9e5c1bf67238.html",
+      "published": "2026-11-06T16:49:31+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 209,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f89482cb9196a552",
       "source": "Toronto Star",
       "title": "'He's made it clear': Gretzky backs Carney's call to bar Russia from world juniors",
@@ -5318,41 +5375,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "60a4bc44e7107fc7",
-      "source": "Toronto Star",
-      "title": "B.C. woman sentenced to 13 years for assault, kidnapping and sex trafficking",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-woman-sentenced-to-13-years-for-assault-kidnapping-and-sex-trafficking/article_a9c32d72-7493-52ad-938f-463db043d8ea.html",
-      "published": "2026-11-06T01:46:35+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 64,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "64 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
