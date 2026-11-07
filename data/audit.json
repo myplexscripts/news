@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-07T21:09:20.917467+00:00",
-  "generated_at_london": "2026-11-07T16:09:20.917467-05:00",
-  "news_generated_at": "2026-11-07T21:04:29.125851+00:00",
+  "generated_at": "2026-11-07T21:22:27.222988+00:00",
+  "generated_at_london": "2026-11-07T16:22:27.222988-05:00",
+  "news_generated_at": "2026-11-07T21:20:46.899004+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 700,
+    "archive_story_count": 701,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 109,
-    "review_story_count": 5,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "review_story_count": 6,
+    "fail_story_count": 0,
+    "critical_issue_count": 0,
+    "warning_issue_count": 9,
     "info_issue_count": 101,
     "healthy_source_count": 13,
     "review_source_count": 5,
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T21:02:44.865310+00:00",
+      "last_scrape": "2026-11-07T21:18:56.861506+00:00",
       "last_error": ""
     },
     {
@@ -131,28 +131,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 800,
-      "average_quality": 96,
+      "average_words": 811,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-07T16:47:20+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-07T21:02:57+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T17:24:47.851664+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-07T21:18:58.315210+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -742,21 +743,6 @@
   ],
   "issues": [
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "78 words",
-      "story_id": "50ef9be11fa5665e",
-      "source": "Toronto Star",
-      "title": "Mayor of Montreal suburb expresses regret over anti-Palestine comments",
-      "url": "https://www.thestar.com/news/canada/mayor-of-montreal-suburb-expresses-regret-over-anti-palestine-comments/article_e6f18390-590c-53e6-aa05-3389030831e6.html",
-      "published": "2026-11-06T22:31:59+00:00",
-      "content_status": "full",
-      "word_count": 78,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -860,6 +846,36 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b6283e4390fb98ec",
+      "source": "Toronto Star",
+      "title": "Montrealers visit Leonard Cohen’s grave on the ten-year anniversary of his death",
+      "url": "https://www.thestar.com/news/canada/montrealers-visit-leonard-cohen-s-grave-on-the-ten-year-anniversary-of-his-death/article_3b76b616-818c-561f-8313-034e99e19f54.html",
+      "published": "2026-11-07T21:02:57+00:00",
+      "content_status": "full",
+      "word_count": 193,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "b6283e4390fb98ec",
+      "source": "Toronto Star",
+      "title": "Montrealers visit Leonard Cohen’s grave on the ten-year anniversary of his death",
+      "url": "https://www.thestar.com/news/canada/montrealers-visit-leonard-cohen-s-grave-on-the-ten-year-anniversary-of-his-death/article_3b76b616-818c-561f-8313-034e99e19f54.html",
+      "published": "2026-11-07T21:02:57+00:00",
+      "content_status": "full",
+      "word_count": 193,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2291,15 +2307,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "50ef9be11fa5665e",
+      "story_id": "b6283e4390fb98ec",
       "source": "Toronto Star",
-      "title": "Mayor of Montreal suburb expresses regret over anti-Palestine comments",
-      "url": "https://www.thestar.com/news/canada/mayor-of-montreal-suburb-expresses-regret-over-anti-palestine-comments/article_e6f18390-590c-53e6-aa05-3389030831e6.html",
-      "published": "2026-11-06T22:31:59+00:00",
+      "title": "Montrealers visit Leonard Cohen’s grave on the ten-year anniversary of his death",
+      "url": "https://www.thestar.com/news/canada/montrealers-visit-leonard-cohen-s-grave-on-the-ten-year-anniversary-of-his-death/article_3b76b616-818c-561f-8313-034e99e19f54.html",
+      "published": "2026-11-07T21:02:57+00:00",
       "content_status": "full",
-      "word_count": 78,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 193,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5066,6 +5082,47 @@
       ]
     },
     {
+      "id": "b6283e4390fb98ec",
+      "source": "Toronto Star",
+      "title": "Montrealers visit Leonard Cohen’s grave on the ten-year anniversary of his death",
+      "url": "https://www.thestar.com/news/canada/montrealers-visit-leonard-cohen-s-grave-on-the-ten-year-anniversary-of-his-death/article_3b76b616-818c-561f-8313-034e99e19f54.html",
+      "published": "2026-11-07T21:02:57+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 193,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d1ea09647e03dc96",
       "source": "Toronto Star",
       "title": "Quebec confirms infected cow as outbreak of raccoon rabies continues",
@@ -5318,41 +5375,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "50ef9be11fa5665e",
-      "source": "Toronto Star",
-      "title": "Mayor of Montreal suburb expresses regret over anti-Palestine comments",
-      "url": "https://www.thestar.com/news/canada/mayor-of-montreal-suburb-expresses-regret-over-anti-palestine-comments/article_e6f18390-590c-53e6-aa05-3389030831e6.html",
-      "published": "2026-11-06T22:31:59+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 78,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "78 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
