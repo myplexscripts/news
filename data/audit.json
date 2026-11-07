@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-07T13:07:10.298679+00:00",
-  "generated_at_london": "2026-11-07T08:07:10.298679-05:00",
-  "news_generated_at": "2026-11-07T13:01:09.475246+00:00",
+  "generated_at": "2026-11-07T13:17:07.729566+00:00",
+  "generated_at_london": "2026-11-07T08:17:07.729566-05:00",
+  "news_generated_at": "2026-11-07T13:15:34.693036+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 705,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +121,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-07T12:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-07T12:12:22.003521+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -669,21 +669,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 706,
-      "average_quality": 78,
+      "average_words": 704,
+      "average_quality": 76,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:postmedia:article:strict": 1,
-        "reader:semantic-rich-v1": 8,
+        "dom:postmedia:article:strict": 2,
+        "reader:semantic-rich-v1": 7,
         "merge:reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-07T00:30:24+00:00",
+      "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T02:50:06.028397+00:00",
+      "last_scrape": "2026-11-07T13:14:12.553621+00:00",
       "last_error": ""
     },
     {
@@ -1690,21 +1690,6 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f8b502b79edb1968",
-      "source": "National Post",
-      "title": "Liberals budget $12 million to create Justin Trudeau archives",
-      "url": "https://nationalpost.com/news/canadian-politics/federal-budget-2026-justin-trudeau-archives",
-      "published": "2026-11-05T22:00:42+00:00",
-      "content_status": "full",
-      "word_count": 124,
-      "quality_score": 66,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
       "detail": "Local score 10/100",
       "story_id": "9e5e5ef9d8010dbe",
       "source": "National Post",
@@ -1790,6 +1775,21 @@
       "word_count": 1109,
       "quality_score": 82,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1eeb921fb639fadf",
+      "source": "National Post",
+      "title": "‘No decision has been made’ to replace military’s troubled Cyclone helicopter fleet",
+      "url": "https://nationalpost.com/news/canada/no-decision-has-been-made-to-replace-militarys-troubled-cyclone-helicopter-fleet",
+      "published": "2026-11-07T13:01:06+00:00",
+      "content_status": "partial",
+      "word_count": 102,
+      "quality_score": 53,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4778,6 +4778,35 @@
       ]
     },
     {
+      "id": "1eeb921fb639fadf",
+      "source": "National Post",
+      "title": "‘No decision has been made’ to replace military’s troubled Cyclone helicopter fleet",
+      "url": "https://nationalpost.com/news/canada/no-decision-has-been-made-to-replace-militarys-troubled-cyclone-helicopter-fleet",
+      "published": "2026-11-07T13:01:06+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 102,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a340e1e153ca28fd",
       "source": "National Post",
       "title": "U.S. sanctions eight Canadian financial services firms over alleged Iran ties",
@@ -5035,35 +5064,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 10/100"
-        }
-      ]
-    },
-    {
-      "id": "f8b502b79edb1968",
-      "source": "National Post",
-      "title": "Liberals budget $12 million to create Justin Trudeau archives",
-      "url": "https://nationalpost.com/news/canadian-politics/federal-budget-2026-justin-trudeau-archives",
-      "published": "2026-11-05T22:00:42+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 124,
-      "paragraph_count": 3,
-      "inline_image_count": 0,
-      "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
