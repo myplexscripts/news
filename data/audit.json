@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-07T13:38:51.659335+00:00",
-  "generated_at_london": "2026-11-07T08:38:51.659335-05:00",
-  "news_generated_at": "2026-11-07T13:32:49.520128+00:00",
+  "generated_at": "2026-11-07T13:50:46.945536+00:00",
+  "generated_at_london": "2026-11-07T08:50:46.945536-05:00",
+  "news_generated_at": "2026-11-07T13:48:15.581618+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 704,
+    "archive_story_count": 705,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 112,
-    "review_story_count": 4,
+    "pass_story_count": 111,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
+    "warning_issue_count": 7,
     "info_issue_count": 100,
-    "healthy_source_count": 14,
-    "review_source_count": 4,
+    "healthy_source_count": 13,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -71,6 +71,34 @@
       "found_this_run": 8,
       "tracked": 30,
       "last_scrape": "2026-11-07T11:14:37.717983+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "National Post",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "postmedia",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 560,
+      "average_quality": 72,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 6,
+        "dom:postmedia:article:strict": 3,
+        "merge:reader:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 10,
+      "latest_published": "2026-11-07T13:01:06+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-07T13:46:00.086881+00:00",
       "last_error": ""
     },
     {
@@ -172,7 +200,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -659,34 +687,6 @@
       "last_error": ""
     },
     {
-      "source": "National Post",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "postmedia",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 714,
-      "average_quality": 78,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 8,
-        "dom:postmedia:article:strict": 1,
-        "merge:reader:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-07T13:01:06+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-07T13:14:12.553621+00:00",
-      "last_error": ""
-    },
-    {
       "source": "The Globe and Mail",
       "status": "healthy",
       "collector_status": "healthy",
@@ -830,6 +830,21 @@
       "word_count": 510,
       "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "5 consecutive images",
+      "story_id": "b38afe96cd708964",
+      "source": "National Post",
+      "title": "Leonard Cohen through Gazette cartoonist’s eyes",
+      "url": "https://nationalpost.com/news/canada/leonard-cohen-aislin-cartoons-terry-mosher-death-anniversary",
+      "published": "2026-11-07T11:30:00+00:00",
+      "content_status": "full",
+      "word_count": 145,
+      "quality_score": 58,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "warning",
@@ -1661,21 +1676,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f7dfd054d9885cb2",
-      "source": "National Post",
-      "title": "Cost of a stamp rising to $2 in 2027 and increasing 7% a year after that: Federal Budget",
-      "url": "https://nationalpost.com/news/canada/cost-of-a-stamp-2-in-2027-7-a-year-after-that-federal-budget",
-      "published": "2026-11-06T16:21:36+00:00",
-      "content_status": "partial",
-      "word_count": 742,
-      "quality_score": 83,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "79940a05ccaf6d50",
       "source": "National Post",
       "title": "Hamilton cadet leader injured in vicious attack ‘determined to walk’ after emergency spinal surgery",
@@ -1690,16 +1690,31 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 10/100",
-      "story_id": "9e5e5ef9d8010dbe",
+      "detail": "Local score 0/100",
+      "story_id": "b38afe96cd708964",
       "source": "National Post",
-      "title": "Ontario’s top court won’t reduce sentence so woman convicted in bottle attack can dodge deportation",
-      "url": "https://nationalpost.com/news/canada/ontario-court-assault-sentence-deportation",
-      "published": "2026-11-06T11:00:00+00:00",
+      "title": "Leonard Cohen through Gazette cartoonist’s eyes",
+      "url": "https://nationalpost.com/news/canada/leonard-cohen-aislin-cartoons-terry-mosher-death-anniversary",
+      "published": "2026-11-07T11:30:00+00:00",
       "content_status": "full",
-      "word_count": 1025,
-      "quality_score": 79,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 145,
+      "quality_score": 58,
+      "extraction_method": "dom:postmedia:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "11ca8d5bfa56bde8",
+      "source": "National Post",
+      "title": "Moe says federal budget ‘generally positive’ for Saskatchewan",
+      "url": "https://nationalpost.com/news/canada/moe-says-federal-budget-generally-positive-for-sask",
+      "published": "2026-11-06T23:12:40+00:00",
+      "content_status": "partial",
+      "word_count": 78,
+      "quality_score": 44,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -4807,6 +4822,41 @@
       ]
     },
     {
+      "id": "b38afe96cd708964",
+      "source": "National Post",
+      "title": "Leonard Cohen through Gazette cartoonist’s eyes",
+      "url": "https://nationalpost.com/news/canada/leonard-cohen-aislin-cartoons-terry-mosher-death-anniversary",
+      "published": "2026-11-07T11:30:00+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 145,
+      "paragraph_count": 5,
+      "inline_image_count": 6,
+      "quality_score": 58,
+      "quality_grade": "partial",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "5 consecutive images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a340e1e153ca28fd",
       "source": "National Post",
       "title": "U.S. sanctions eight Canadian financial services firms over alleged Iran ties",
@@ -4823,6 +4873,35 @@
       "inline_image_count": 0,
       "quality_score": 53,
       "quality_grade": "partial",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "11ca8d5bfa56bde8",
+      "source": "National Post",
+      "title": "Moe says federal budget ‘generally positive’ for Saskatchewan",
+      "url": "https://nationalpost.com/news/canada/moe-says-federal-budget-generally-positive-for-sask",
+      "published": "2026-11-06T23:12:40+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 78,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 44,
+      "quality_grade": "poor",
       "extraction_method": "dom:postmedia:article:strict",
       "extraction_profile": "postmedia",
       "local_score": 0,
@@ -5006,64 +5085,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f7dfd054d9885cb2",
-      "source": "National Post",
-      "title": "Cost of a stamp rising to $2 in 2027 and increasing 7% a year after that: Federal Budget",
-      "url": "https://nationalpost.com/news/canada/cost-of-a-stamp-2-in-2027-7-a-year-after-that-federal-budget",
-      "published": "2026-11-06T16:21:36+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 742,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 83,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9e5e5ef9d8010dbe",
-      "source": "National Post",
-      "title": "Ontario’s top court won’t reduce sentence so woman convicted in bottle attack can dodge deportation",
-      "url": "https://nationalpost.com/news/canada/ontario-court-assault-sentence-deportation",
-      "published": "2026-11-06T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1025,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 79,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 10,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 10/100"
         }
       ]
     },
