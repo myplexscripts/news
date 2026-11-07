@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-07T23:18:05.726672+00:00",
-  "generated_at_london": "2026-11-07T18:18:05.726672-05:00",
-  "news_generated_at": "2026-11-07T23:11:01.496801+00:00",
+  "generated_at": "2026-11-07T23:26:45.158491+00:00",
+  "generated_at_london": "2026-11-07T18:26:45.158491-05:00",
+  "news_generated_at": "2026-11-07T23:25:16.182665+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 705,
+    "archive_story_count": 706,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 111,
-    "review_story_count": 5,
+    "pass_story_count": 110,
+    "review_story_count": 6,
     "fail_story_count": 0,
     "critical_issue_count": 0,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 102,
-    "healthy_source_count": 14,
-    "review_source_count": 4,
+    "healthy_source_count": 13,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T23:08:56.890504+00:00",
+      "last_scrape": "2026-11-07T23:23:51.303785+00:00",
       "last_error": ""
     },
     {
@@ -126,6 +126,33 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 763,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-07T23:14:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-07T23:23:52.372811+00:00",
       "last_error": ""
     },
     {
@@ -174,7 +201,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -419,7 +446,7 @@
       "latest_published": "2026-11-07T21:31:21.234000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T23:06:28.791110+00:00",
+      "last_scrape": "2026-11-07T23:21:59.569323+00:00",
       "last_error": ""
     },
     {
@@ -688,32 +715,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 807,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-07T21:02:57+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-07T21:18:58.315210+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -845,6 +846,36 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f3ffa44a338d0270",
+      "source": "Toronto Star",
+      "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/province-wide-protests-call-for-moratorium-on-ai-data-centre-proposals-in-n-s/article_93587ac9-beab-5676-af73-2d46284ff821.html",
+      "published": "2026-11-07T23:14:00+00:00",
+      "content_status": "full",
+      "word_count": 223,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "f3ffa44a338d0270",
+      "source": "Toronto Star",
+      "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/province-wide-protests-call-for-moratorium-on-ai-data-centre-proposals-in-n-s/article_93587ac9-beab-5676-af73-2d46284ff821.html",
+      "published": "2026-11-07T23:14:00+00:00",
+      "content_status": "full",
+      "word_count": 223,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2261,21 +2292,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "630f787210c09ef0",
-      "source": "Toronto Star",
-      "title": "Lawyer says convicted killer was booted from McGill without due process",
-      "url": "https://www.thestar.com/news/canada/quebec/lawyer-says-convicted-killer-was-booted-from-mcgill-without-due-process/article_ff9ad5be-bb1e-503e-bf3e-208f8001042f.html",
-      "published": "2026-11-06T22:52:43+00:00",
-      "content_status": "full",
-      "word_count": 670,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "b98617a119d65e0b",
       "source": "Toronto Star",
       "title": "Mark Carney is trying to do what Justin Trudeau couldn't. Why his homelessness plan is being met with cautious optimism",
@@ -2315,6 +2331,21 @@
       "word_count": 853,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f3ffa44a338d0270",
+      "source": "Toronto Star",
+      "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/province-wide-protests-call-for-moratorium-on-ai-data-centre-proposals-in-n-s/article_93587ac9-beab-5676-af73-2d46284ff821.html",
+      "published": "2026-11-07T23:14:00+00:00",
+      "content_status": "full",
+      "word_count": 223,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5095,6 +5126,47 @@
       ]
     },
     {
+      "id": "f3ffa44a338d0270",
+      "source": "Toronto Star",
+      "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/province-wide-protests-call-for-moratorium-on-ai-data-centre-proposals-in-n-s/article_93587ac9-beab-5676-af73-2d46284ff821.html",
+      "published": "2026-11-07T23:14:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 223,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b6283e4390fb98ec",
       "source": "Toronto Star",
       "title": "Montrealers visit Leonard Cohen’s grave on the ten-year anniversary of his death",
@@ -5341,35 +5413,6 @@
       "word_count": 1226,
       "paragraph_count": 35,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "630f787210c09ef0",
-      "source": "Toronto Star",
-      "title": "Lawyer says convicted killer was booted from McGill without due process",
-      "url": "https://www.thestar.com/news/canada/quebec/lawyer-says-convicted-killer-was-booted-from-mcgill-without-due-process/article_ff9ad5be-bb1e-503e-bf3e-208f8001042f.html",
-      "published": "2026-11-06T22:52:43+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 670,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
