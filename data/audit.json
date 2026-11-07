@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-07T17:15:55.012039+00:00",
-  "generated_at_london": "2026-11-07T12:15:55.012039-05:00",
-  "news_generated_at": "2026-11-07T17:10:20.511616+00:00",
+  "generated_at": "2026-11-07T17:29:25.524840+00:00",
+  "generated_at_london": "2026-11-07T12:29:25.524840-05:00",
+  "news_generated_at": "2026-11-07T17:26:57.215744+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 703,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 109,
-    "review_story_count": 5,
+    "pass_story_count": 108,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 101,
     "healthy_source_count": 13,
     "review_source_count": 5,
@@ -68,7 +68,7 @@
       "warning_issues": 1,
       "info_issues": 14,
       "latest_published": "2026-11-07T16:45:59.037000+00:00",
-      "found_this_run": 9,
+      "found_this_run": 8,
       "tracked": 30,
       "last_scrape": "2026-11-07T16:59:30.576407+00:00",
       "last_error": ""
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T17:08:37.274334+00:00",
+      "last_scrape": "2026-11-07T17:24:46.428304+00:00",
       "last_error": ""
     },
     {
@@ -131,28 +131,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 895,
-      "average_quality": 96,
+      "average_words": 874,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-07T15:44:35+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-07T16:47:20+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T16:06:33.081400+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-07T17:24:47.851664+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -432,17 +433,17 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 185,
-      "average_quality": 60,
+      "average_words": 210,
+      "average_quality": 62,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 2,
-        "embedded-json:ctv": 8
+        "embedded-json:ctv": 8,
+        "ctv:summary-fallback": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 8,
-      "latest_published": "2026-11-07T16:48:39.365000+00:00",
+      "latest_published": "2026-11-07T17:23:27.405000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-07T16:51:17.340998+00:00",
@@ -862,6 +863,36 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "d1ea09647e03dc96",
+      "source": "Toronto Star",
+      "title": "Quebec confirms infected cow as outbreak of raccoon rabies continues",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-confirms-infected-cow-as-outbreak-of-raccoon-rabies-continues/article_61cd1862-9978-5ff4-9f03-be5498da7685.html",
+      "published": "2026-11-07T16:47:20+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "d1ea09647e03dc96",
+      "source": "Toronto Star",
+      "title": "Quebec confirms infected cow as outbreak of raccoon rabies continues",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-confirms-infected-cow-as-outbreak-of-raccoon-rabies-continues/article_61cd1862-9978-5ff4-9f03-be5498da7685.html",
+      "published": "2026-11-07T16:47:20+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -1180,15 +1211,15 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 5/100",
-      "story_id": "e62a87a81ba3fc52",
+      "detail": "Local score 14/100",
+      "story_id": "3b88492b064058f4",
       "source": "CTV News London",
-      "title": "Scattered showers throughout the weekend",
-      "url": "https://www.ctvnews.ca/london/article/scattered-showers-throughout-the-weekend",
-      "published": "2026-11-06T18:07:03.771000+00:00",
+      "title": "Too young to drive yet, but Perth County teen tearing up junior drag racing circuit",
+      "url": "https://www.ctvnews.ca/london/article/too-young-to-drive-yet-but-perth-county-teen-tearing-up-junior-drag-racing-circuit",
+      "published": "2026-11-07T17:23:27.405000+00:00",
       "content_status": "full",
-      "word_count": 161,
-      "quality_score": 69,
+      "word_count": 406,
+      "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2246,21 +2277,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c0767c79375e31a0",
-      "source": "Toronto Star",
-      "title": "Justin Trudeau accepts fellowship at Oxford University",
-      "url": "https://www.thestar.com/news/canada/justin-trudeau-accepts-fellowship-at-oxford-university/article_a0e46887-2013-48e4-93dc-d2ea525c65bd.html",
-      "published": "2026-11-06T22:25:00+00:00",
-      "content_status": "full",
-      "word_count": 408,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "30f53dc9b62f7705",
       "source": "Toronto Star",
       "title": "Justin Trudeau named distinguished fellow at Oxford's Blavatnik School of Government",
@@ -2330,6 +2346,21 @@
       "word_count": 935,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d1ea09647e03dc96",
+      "source": "Toronto Star",
+      "title": "Quebec confirms infected cow as outbreak of raccoon rabies continues",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-confirms-infected-cow-as-outbreak-of-raccoon-rabies-continues/article_61cd1862-9978-5ff4-9f03-be5498da7685.html",
+      "published": "2026-11-07T16:47:20+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2443,6 +2474,35 @@
       "extraction_profile": "global",
       "local_score": 30,
       "issues": []
+    },
+    {
+      "id": "3b88492b064058f4",
+      "source": "CTV News London",
+      "title": "Too young to drive yet, but Perth County teen tearing up junior drag racing circuit",
+      "url": "https://www.ctvnews.ca/london/article/too-young-to-drive-yet-but-perth-county-teen-tearing-up-junior-drag-racing-circuit",
+      "published": "2026-11-07T17:23:27.405000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 406,
+      "paragraph_count": 13,
+      "inline_image_count": 3,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 14,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 14/100"
+        }
+      ]
     },
     {
       "id": "8ca756f12e070b3b",
@@ -2688,35 +2748,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 18/100"
-        }
-      ]
-    },
-    {
-      "id": "e62a87a81ba3fc52",
-      "source": "CTV News London",
-      "title": "Scattered showers throughout the weekend",
-      "url": "https://www.ctvnews.ca/london/article/scattered-showers-throughout-the-weekend",
-      "published": "2026-11-06T18:07:03.771000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 161,
-      "paragraph_count": 10,
-      "inline_image_count": 1,
-      "quality_score": 69,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 5,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 5/100"
         }
       ]
     },
@@ -5066,6 +5097,47 @@
       ]
     },
     {
+      "id": "d1ea09647e03dc96",
+      "source": "Toronto Star",
+      "title": "Quebec confirms infected cow as outbreak of raccoon rabies continues",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-confirms-infected-cow-as-outbreak-of-raccoon-rabies-continues/article_61cd1862-9978-5ff4-9f03-be5498da7685.html",
+      "published": "2026-11-07T16:47:20+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 196,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "30f53dc9b62f7705",
       "source": "Toronto Star",
       "title": "Justin Trudeau named distinguished fellow at Oxford's Blavatnik School of Government",
@@ -5324,35 +5396,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "78 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c0767c79375e31a0",
-      "source": "Toronto Star",
-      "title": "Justin Trudeau accepts fellowship at Oxford University",
-      "url": "https://www.thestar.com/news/canada/justin-trudeau-accepts-fellowship-at-oxford-university/article_a0e46887-2013-48e4-93dc-d2ea525c65bd.html",
-      "published": "2026-11-06T22:25:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 408,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
