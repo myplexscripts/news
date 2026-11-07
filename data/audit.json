@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-07T15:28:43.861780+00:00",
-  "generated_at_london": "2026-11-07T10:28:43.861780-05:00",
-  "news_generated_at": "2026-11-07T15:21:54.551641+00:00",
+  "generated_at": "2026-11-07T15:41:15.031914+00:00",
+  "generated_at_london": "2026-11-07T10:41:15.031914-05:00",
+  "news_generated_at": "2026-11-07T15:38:48.708922+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 704,
+    "archive_story_count": 702,
     "source_count": 28,
     "audited_story_count": 116,
     "pass_story_count": 110,
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T15:19:41.875635+00:00",
+      "last_scrape": "2026-11-07T15:36:42.624374+00:00",
       "last_error": ""
     },
     {
@@ -131,7 +131,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -149,10 +149,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-07T12:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-07T12:12:22.003521+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -513,19 +513,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 693,
-      "average_quality": 96,
+      "average_words": 626,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-07T15:16:48+00:00",
+      "latest_published": "2026-11-07T15:25:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T15:19:38.955764+00:00",
+      "last_scrape": "2026-11-07T15:36:38.268088+00:00",
       "last_error": ""
     },
     {
@@ -681,7 +682,7 @@
       "warning_issues": 0,
       "info_issues": 1,
       "latest_published": "2026-11-02T05:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 4,
       "tracked": 1,
       "last_scrape": "2026-11-02T14:06:15.735091+00:00",
       "last_error": ""
@@ -1481,6 +1482,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "58809ac434eb8a6c",
+      "source": "Global News Canada",
+      "title": "Canadians choosing pricier destinations over Cuba amid crisis: travel agents",
+      "url": "https://globalnews.ca/news/12141153/canadians-skipping-cuba-amid-crisis",
+      "published": "2026-11-07T15:25:03+00:00",
+      "content_status": "full",
+      "word_count": 689,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "a71e766c349d9f46",
       "source": "Global News Canada",
       "title": "Health Canada warns of bacteria found in unauthorized peptides sold online",
@@ -1533,21 +1549,6 @@
       "published": "2026-11-07T11:00:41+00:00",
       "content_status": "full",
       "word_count": 1763,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "953cfd720d1e3b16",
-      "source": "Global News Canada",
-      "title": "These are all the key tax changes and credits impacting you from the budget",
-      "url": "https://globalnews.ca/news/12140100/budget-2026-tax-changes",
-      "published": "2026-11-06T20:50:24+00:00",
-      "content_status": "full",
-      "word_count": 1358,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3847,6 +3848,35 @@
       "issues": []
     },
     {
+      "id": "58809ac434eb8a6c",
+      "source": "Global News Canada",
+      "title": "Canadians choosing pricier destinations over Cuba amid crisis: travel agents",
+      "url": "https://globalnews.ca/news/12141153/canadians-skipping-cuba-amid-crisis",
+      "published": "2026-11-07T15:25:03+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 689,
+      "paragraph_count": 23,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "edc1c2d52cfbf61f",
       "source": "Global News Canada",
       "title": "Aid sector calls out omission of foreign aid in federal budget",
@@ -4093,35 +4123,6 @@
       "word_count": 180,
       "paragraph_count": 8,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "953cfd720d1e3b16",
-      "source": "Global News Canada",
-      "title": "These are all the key tax changes and credits impacting you from the budget",
-      "url": "https://globalnews.ca/news/12140100/budget-2026-tax-changes",
-      "published": "2026-11-06T20:50:24+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1358,
-      "paragraph_count": 40,
-      "inline_image_count": 5,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
