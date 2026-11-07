@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-07T16:15:32.170317+00:00",
-  "generated_at_london": "2026-11-07T11:15:32.170317-05:00",
-  "news_generated_at": "2026-11-07T16:08:19.585448+00:00",
+  "generated_at": "2026-11-07T16:26:37.445077+00:00",
+  "generated_at_london": "2026-11-07T11:26:37.445077-05:00",
+  "news_generated_at": "2026-11-07T16:24:26.812068+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 703,
     "source_count": 28,
     "audited_story_count": 116,
     "pass_story_count": 110,
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T16:06:31.902488+00:00",
+      "last_scrape": "2026-11-07T16:22:10.620281+00:00",
       "last_error": ""
     },
     {
@@ -200,7 +200,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -697,20 +697,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 784,
-      "average_quality": 92,
+      "average_words": 769,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "dom:globe:article#content-gate": 2
+        "dom:globe:article#content-gate": 3,
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 15,
-      "latest_published": "2026-11-07T12:00:00+00:00",
+      "latest_published": "2026-11-07T16:05:43.159000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T12:12:13.467000+00:00",
+      "last_scrape": "2026-11-07T16:22:08.098600+00:00",
       "last_error": ""
     },
     {
@@ -2063,6 +2063,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "9dbaf8016cfabfa6",
+      "source": "The Globe and Mail",
+      "title": "Justin Trudeau steps into new role at Oxford University",
+      "url": "https://www.theglobeandmail.com/canada/article-justin-trudeau-former-prime-minister-oxford-university-new-role",
+      "published": "2026-11-07T16:05:43.159000+00:00",
+      "content_status": "full",
+      "word_count": 267,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2090,21 +2105,6 @@
       "word_count": 965,
       "quality_score": 86,
       "extraction_method": "dom:globe:article#content-gate"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8d403b89693475ea",
-      "source": "The Globe and Mail",
-      "title": "Pitching in: Bringing fitness to young mental-health patients at Sunnybrook Hospital",
-      "url": "https://www.theglobeandmail.com/business/article-pitching-in-bringing-fitness-to-young-mental-health-patients-at",
-      "published": "2026-11-06T21:30:31.744000+00:00",
-      "content_status": "full",
-      "word_count": 411,
-      "quality_score": 86,
-      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -4451,6 +4451,35 @@
       ]
     },
     {
+      "id": "9dbaf8016cfabfa6",
+      "source": "The Globe and Mail",
+      "title": "Justin Trudeau steps into new role at Oxford University",
+      "url": "https://www.theglobeandmail.com/canada/article-justin-trudeau-former-prime-minister-oxford-university-new-role",
+      "published": "2026-11-07T16:05:43.159000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 267,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "006c19fc02bb1296",
       "source": "The Globe and Mail",
       "title": "What the data says about Indigenous voting in Alberta’s referendum",
@@ -4733,35 +4762,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8d403b89693475ea",
-      "source": "The Globe and Mail",
-      "title": "Pitching in: Bringing fitness to young mental-health patients at Sunnybrook Hospital",
-      "url": "https://www.theglobeandmail.com/business/article-pitching-in-bringing-fitness-to-young-mental-health-patients-at",
-      "published": "2026-11-06T21:30:31.744000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 411,
-      "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
