@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-08T12:47:45.725091+00:00",
-  "generated_at_london": "2026-11-08T07:47:45.725091-05:00",
-  "news_generated_at": "2026-11-08T12:43:07.513727+00:00",
+  "generated_at": "2026-11-08T13:00:41.350945+00:00",
+  "generated_at_london": "2026-11-08T08:00:41.350945-05:00",
+  "news_generated_at": "2026-11-08T12:59:02.110653+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 696,
+    "archive_story_count": 697,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 110,
-    "review_story_count": 5,
+    "pass_story_count": 109,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 102,
     "healthy_source_count": 12,
     "review_source_count": 6,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T12:41:50.440127+00:00",
+      "last_scrape": "2026-11-08T12:57:26.351896+00:00",
       "last_error": ""
     },
     {
@@ -157,28 +157,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 663,
-      "average_quality": 96,
+      "average_words": 592,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-11-08T11:00:12+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T11:24:04.662599+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-08T12:57:27.981502+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -471,7 +472,7 @@
       "latest_published": "2026-11-07T21:31:21.234000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T12:39:51.836823+00:00",
+      "last_scrape": "2026-11-08T12:55:31.450097+00:00",
       "last_error": ""
     },
     {
@@ -860,6 +861,36 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "06029483a10334cd",
+      "source": "Toronto Star",
+      "title": "Turning back vulnerable refugees under a Canada-U.S. border pact is discriminatory, Supreme Court will hear this week",
+      "url": "https://www.thestar.com/news/canada/canada-is-turning-back-vulnerable-refugees-under-a-u-s-border-pact-why-rights-groups-are-taking-it-to-the-supreme-court/article_42443c53-d549-46ae-afbf-df0657079271.html",
+      "published": "2026-11-08T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "06029483a10334cd",
+      "source": "Toronto Star",
+      "title": "Turning back vulnerable refugees under a Canada-U.S. border pact is discriminatory, Supreme Court will hear this week",
+      "url": "https://www.thestar.com/news/canada/canada-is-turning-back-vulnerable-refugees-under-a-u-s-border-pact-why-rights-groups-are-taking-it-to-the-supreme-court/article_42443c53-d549-46ae-afbf-df0657079271.html",
+      "published": "2026-11-08T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2306,21 +2337,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "953a5a3ddaad5d2a",
-      "source": "Toronto Star",
-      "title": "Photographer's new book tells the stories behind Canada's war graves and monuments",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/photographer-s-new-book-tells-the-stories-behind-canada-s-war-graves-and-monuments/article_59fe6080-f9fc-51b3-a8d8-f42b54240652.html",
-      "published": "2026-11-07T09:00:08+00:00",
-      "content_status": "full",
-      "word_count": 918,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "f3ffa44a338d0270",
       "source": "Toronto Star",
       "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
@@ -2345,6 +2361,21 @@
       "word_count": 222,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "06029483a10334cd",
+      "source": "Toronto Star",
+      "title": "Turning back vulnerable refugees under a Canada-U.S. border pact is discriminatory, Supreme Court will hear this week",
+      "url": "https://www.thestar.com/news/canada/canada-is-turning-back-vulnerable-refugees-under-a-u-s-border-pact-why-rights-groups-are-taking-it-to-the-supreme-court/article_42443c53-d549-46ae-afbf-df0657079271.html",
+      "published": "2026-11-08T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5173,6 +5204,47 @@
       ]
     },
     {
+      "id": "06029483a10334cd",
+      "source": "Toronto Star",
+      "title": "Turning back vulnerable refugees under a Canada-U.S. border pact is discriminatory, Supreme Court will hear this week",
+      "url": "https://www.thestar.com/news/canada/canada-is-turning-back-vulnerable-refugees-under-a-u-s-border-pact-why-rights-groups-are-taking-it-to-the-supreme-court/article_42443c53-d549-46ae-afbf-df0657079271.html",
+      "published": "2026-11-08T05:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 208,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f3ffa44a338d0270",
       "source": "Toronto Star",
       "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
@@ -5360,35 +5432,6 @@
       "content_status": "full",
       "word_count": 776,
       "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "953a5a3ddaad5d2a",
-      "source": "Toronto Star",
-      "title": "Photographer's new book tells the stories behind Canada's war graves and monuments",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/photographer-s-new-book-tells-the-stories-behind-canada-s-war-graves-and-monuments/article_59fe6080-f9fc-51b3-a8d8-f42b54240652.html",
-      "published": "2026-11-07T09:00:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 918,
-      "paragraph_count": 24,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
