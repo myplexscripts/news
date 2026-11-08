@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-08T05:00:51.440023+00:00",
-  "generated_at_london": "2026-11-08T00:00:51.440023-05:00",
-  "news_generated_at": "2026-11-08T04:54:55.393696+00:00",
+  "generated_at": "2026-11-08T05:11:12.196959+00:00",
+  "generated_at_london": "2026-11-08T00:11:12.196959-05:00",
+  "news_generated_at": "2026-11-08T05:09:47.496245+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 703,
+    "archive_story_count": 704,
     "source_count": 28,
     "audited_story_count": 116,
     "pass_story_count": 111,
@@ -98,13 +98,13 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T04:52:44.813244+00:00",
+      "last_scrape": "2026-11-08T05:08:14.422699+00:00",
       "last_error": ""
     },
     {
       "source": "Thames Valley District School Board",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "generic",
       "sample_size": 6,
       "pass": 5,
@@ -123,10 +123,10 @@
       "warning_issues": 1,
       "info_issues": 9,
       "latest_published": "2026-11-04T05:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 6,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "CBC News Canada",
@@ -419,7 +419,7 @@
       "latest_published": "2026-11-07T21:31:21.234000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T04:50:45.406735+00:00",
+      "last_scrape": "2026-11-08T05:06:18.482693+00:00",
       "last_error": ""
     },
     {
@@ -486,12 +486,13 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 646,
-      "average_quality": 96,
+      "usable_body_rate": 90,
+      "average_words": 578,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:global:main:strict": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -499,7 +500,7 @@
       "latest_published": "2026-11-07T22:57:31+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T23:08:49.994149+00:00",
+      "last_scrape": "2026-11-08T05:08:12.366694+00:00",
       "last_error": ""
     },
     {
@@ -708,7 +709,7 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-07T23:14:00+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-07T23:23:52.372811+00:00",
       "last_error": ""
@@ -1466,21 +1467,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f4842214560cf9f1",
-      "source": "Global News Canada",
-      "title": "Canada’s $6B Csis boost fuels speculation over foreign intelligence plans",
-      "url": "https://globalnews.ca/news/12140578/csis-budget-boost-foreign-intelligence",
-      "published": "2026-11-06T21:45:07+00:00",
-      "content_status": "full",
-      "word_count": 738,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "58809ac434eb8a6c",
       "source": "Global News Canada",
       "title": "Canadians choosing pricier destinations over Cuba amid crisis: travel agents",
@@ -1580,6 +1566,21 @@
       "word_count": 474,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "6dd3a30ecabaad42",
+      "source": "Global News Canada",
+      "title": "Watch: Global Okanagan News at 5:30 p.m. – Nov. 6",
+      "url": "https://globalnews.ca/news/9913127/watch-global-okanagan-news-at-530",
+      "published": "2026-11-06T23:00:38+00:00",
+      "content_status": "summary",
+      "word_count": 54,
+      "quality_score": 42,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -4116,6 +4117,35 @@
       ]
     },
     {
+      "id": "6dd3a30ecabaad42",
+      "source": "Global News Canada",
+      "title": "Watch: Global Okanagan News at 5:30 p.m. – Nov. 6",
+      "url": "https://globalnews.ca/news/9913127/watch-global-okanagan-news-at-530",
+      "published": "2026-11-06T23:00:38+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 54,
+      "paragraph_count": 2,
+      "inline_image_count": 1,
+      "quality_score": 42,
+      "quality_grade": "poor",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bb073c5bca11b469",
       "source": "Global News Canada",
       "title": "Alek Minassian, convicted in deadly 2018 Toronto van attack, drops appeal",
@@ -4130,35 +4160,6 @@
       "word_count": 301,
       "paragraph_count": 11,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f4842214560cf9f1",
-      "source": "Global News Canada",
-      "title": "Canada’s $6B Csis boost fuels speculation over foreign intelligence plans",
-      "url": "https://globalnews.ca/news/12140578/csis-budget-boost-foreign-intelligence",
-      "published": "2026-11-06T21:45:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 738,
-      "paragraph_count": 20,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
