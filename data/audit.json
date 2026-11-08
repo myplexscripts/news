@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-08T11:14:35.152273+00:00",
-  "generated_at_london": "2026-11-08T06:14:35.152273-05:00",
-  "news_generated_at": "2026-11-08T11:09:25.608292+00:00",
+  "generated_at": "2026-11-08T11:28:14.767117+00:00",
+  "generated_at_london": "2026-11-08T06:28:14.767117-05:00",
+  "news_generated_at": "2026-11-08T11:26:09.820471+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 696,
+    "archive_story_count": 698,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 110,
-    "review_story_count": 5,
+    "pass_story_count": 108,
+    "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 11,
     "info_issue_count": 102,
     "healthy_source_count": 12,
     "review_source_count": 6,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-07T13:01:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T11:08:02.997289+00:00",
+      "last_scrape": "2026-11-08T11:24:01.645005+00:00",
       "last_error": ""
     },
     {
@@ -157,28 +157,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 886,
-      "average_quality": 96,
+      "average_words": 585,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-07T23:14:00+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-08T11:00:12+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-07T23:23:52.372811+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-08T11:24:04.662599+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -471,7 +472,7 @@
       "latest_published": "2026-11-07T21:31:21.234000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T11:06:01.688426+00:00",
+      "last_scrape": "2026-11-08T11:21:51.606517+00:00",
       "last_error": ""
     },
     {
@@ -860,6 +861,66 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "32163e936a82f95c",
+      "source": "Toronto Star",
+      "title": "Americans in Canada hope for closer ties between two countries after midterms",
+      "url": "https://www.thestar.com/news/canada/americans-in-canada-hope-for-closer-ties-between-two-countries-after-midterms/article_becc77ad-2102-5101-a61b-12a78e08fe8b.html",
+      "published": "2026-11-08T11:00:07+00:00",
+      "content_status": "full",
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "32163e936a82f95c",
+      "source": "Toronto Star",
+      "title": "Americans in Canada hope for closer ties between two countries after midterms",
+      "url": "https://www.thestar.com/news/canada/americans-in-canada-hope-for-closer-ties-between-two-countries-after-midterms/article_becc77ad-2102-5101-a61b-12a78e08fe8b.html",
+      "published": "2026-11-08T11:00:07+00:00",
+      "content_status": "full",
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "a31562637cbe5b56",
+      "source": "Toronto Star",
+      "title": "Funeral today for B.C. soldier killed in CFB Wainwright fire",
+      "url": "https://www.thestar.com/news/canada/british-columbia/funeral-today-for-b-c-soldier-killed-in-cfb-wainwright-fire/article_aae31603-94ac-5e53-ae2d-93051226e31d.html",
+      "published": "2026-11-08T11:00:12+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "a31562637cbe5b56",
+      "source": "Toronto Star",
+      "title": "Funeral today for B.C. soldier killed in CFB Wainwright fire",
+      "url": "https://www.thestar.com/news/canada/british-columbia/funeral-today-for-b-c-soldier-killed-in-cfb-wainwright-fire/article_aae31603-94ac-5e53-ae2d-93051226e31d.html",
+      "published": "2026-11-08T11:00:12+00:00",
+      "content_status": "full",
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2201,15 +2262,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c4939204ffb2ee1f",
+      "story_id": "32163e936a82f95c",
       "source": "Toronto Star",
-      "title": "An Ontario teen lived in this shed while under the watch of Children’s Aid. ‘Everybody knew, nobody cared’",
-      "url": "https://www.thestar.com/news/investigations/an-ontario-teen-lived-in-this-shed-while-under-the-watch-of-children-s-aid-everybody-knew-nobody-cared/article_c4721729-807b-4552-b79e-64d0d75e1b38.html",
-      "published": "2026-11-07T05:00:00+00:00",
+      "title": "Americans in Canada hope for closer ties between two countries after midterms",
+      "url": "https://www.thestar.com/news/canada/americans-in-canada-hope-for-closer-ties-between-two-countries-after-midterms/article_becc77ad-2102-5101-a61b-12a78e08fe8b.html",
+      "published": "2026-11-08T11:00:07+00:00",
       "content_status": "full",
-      "word_count": 2165,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2246,15 +2307,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "519d1bb7003c107d",
+      "story_id": "a31562637cbe5b56",
       "source": "Toronto Star",
-      "title": "How Carney government's changes will affect different groups of immigrants",
-      "url": "https://www.thestar.com/news/canada/canada-s-new-immigration-targets-who-benefits-and-who-loses-out/article_bd8d9255-5a0a-4b42-84aa-d93ccc590aa4.html",
-      "published": "2026-11-07T05:00:00+00:00",
+      "title": "Funeral today for B.C. soldier killed in CFB Wainwright fire",
+      "url": "https://www.thestar.com/news/canada/british-columbia/funeral-today-for-b-c-soldier-killed-in-cfb-wainwright-fire/article_aae31603-94ac-5e53-ae2d-93051226e31d.html",
+      "published": "2026-11-08T11:00:12+00:00",
       "content_status": "full",
-      "word_count": 1226,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 196,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5115,6 +5176,88 @@
       ]
     },
     {
+      "id": "a31562637cbe5b56",
+      "source": "Toronto Star",
+      "title": "Funeral today for B.C. soldier killed in CFB Wainwright fire",
+      "url": "https://www.thestar.com/news/canada/british-columbia/funeral-today-for-b-c-soldier-killed-in-cfb-wainwright-fire/article_aae31603-94ac-5e53-ae2d-93051226e31d.html",
+      "published": "2026-11-08T11:00:12+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 196,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "32163e936a82f95c",
+      "source": "Toronto Star",
+      "title": "Americans in Canada hope for closer ties between two countries after midterms",
+      "url": "https://www.thestar.com/news/canada/americans-in-canada-hope-for-closer-ties-between-two-countries-after-midterms/article_becc77ad-2102-5101-a61b-12a78e08fe8b.html",
+      "published": "2026-11-08T11:00:07+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 191,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f3ffa44a338d0270",
       "source": "Toronto Star",
       "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
@@ -5332,64 +5475,6 @@
       "word_count": 918,
       "paragraph_count": 24,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c4939204ffb2ee1f",
-      "source": "Toronto Star",
-      "title": "An Ontario teen lived in this shed while under the watch of Children’s Aid. ‘Everybody knew, nobody cared’",
-      "url": "https://www.thestar.com/news/investigations/an-ontario-teen-lived-in-this-shed-while-under-the-watch-of-children-s-aid-everybody-knew-nobody-cared/article_c4721729-807b-4552-b79e-64d0d75e1b38.html",
-      "published": "2026-11-07T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 2165,
-      "paragraph_count": 58,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "519d1bb7003c107d",
-      "source": "Toronto Star",
-      "title": "How Carney government's changes will affect different groups of immigrants",
-      "url": "https://www.thestar.com/news/canada/canada-s-new-immigration-targets-who-benefits-and-who-loses-out/article_bd8d9255-5a0a-4b42-84aa-d93ccc590aa4.html",
-      "published": "2026-11-07T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1226,
-      "paragraph_count": 35,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
