@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-08T18:00:34.694815+00:00",
-  "generated_at_london": "2026-11-08T13:00:34.694815-05:00",
-  "news_generated_at": "2026-11-08T17:54:17.817813+00:00",
+  "generated_at": "2026-11-08T18:11:21.686911+00:00",
+  "generated_at_london": "2026-11-08T13:11:21.686911-05:00",
+  "news_generated_at": "2026-11-08T18:09:20.851346+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 689,
+    "archive_story_count": 690,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 109,
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-08T13:15:09+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T17:52:15.591175+00:00",
+      "last_scrape": "2026-11-08T18:07:32.359172+00:00",
       "last_error": ""
     },
     {
@@ -131,7 +131,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -150,10 +150,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-08T17:15:27+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-08T17:36:47.919274+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -446,7 +446,7 @@
       "latest_published": "2026-11-08T15:55:18.510000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T17:40:38.199510+00:00",
+      "last_scrape": "2026-11-08T18:05:32.056715+00:00",
       "last_error": ""
     },
     {
@@ -514,19 +514,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 586,
-      "average_quality": 96,
+      "average_words": 570,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-08T17:13:12+00:00",
+      "latest_published": "2026-11-08T17:59:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T17:21:26.609010+00:00",
+      "last_scrape": "2026-11-08T18:07:29.909294+00:00",
       "last_error": ""
     },
     {
@@ -1512,21 +1513,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a71e766c349d9f46",
-      "source": "Global News Canada",
-      "title": "Health Canada warns of bacteria found in unauthorized peptides sold online",
-      "url": "https://globalnews.ca/news/12140754/health-canada-bactiera-unauthorized-peptides",
-      "published": "2026-11-06T23:29:36+00:00",
-      "content_status": "full",
-      "word_count": 321,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "00c314024f8ad56b",
       "source": "Global News Canada",
       "title": "One of Okanagan’s most colourful characters dies at 96",
@@ -1551,6 +1537,21 @@
       "word_count": 590,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "da8acd4b61d014fb",
+      "source": "Global News Canada",
+      "title": "Quebec minister ‘deeply shocked’ by more than 100 alleged fraud cases",
+      "url": "https://globalnews.ca/news/12141963/quebec-immigration-fraud-cases-minister-reaction",
+      "published": "2026-11-08T17:59:45+00:00",
+      "content_status": "full",
+      "word_count": 156,
+      "quality_score": 70,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3817,6 +3818,35 @@
       "issues": []
     },
     {
+      "id": "da8acd4b61d014fb",
+      "source": "Global News Canada",
+      "title": "Quebec minister ‘deeply shocked’ by more than 100 alleged fraud cases",
+      "url": "https://globalnews.ca/news/12141963/quebec-immigration-fraud-cases-minister-reaction",
+      "published": "2026-11-08T17:59:45+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 156,
+      "paragraph_count": 6,
+      "inline_image_count": 2,
+      "quality_score": 70,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e01d0c8f43fbbe10",
       "source": "Global News Canada",
       "title": "Unexploded shell recovered by military along St. Lawrence River",
@@ -4062,35 +4092,6 @@
       "content_status": "full",
       "word_count": 432,
       "paragraph_count": 14,
-      "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a71e766c349d9f46",
-      "source": "Global News Canada",
-      "title": "Health Canada warns of bacteria found in unauthorized peptides sold online",
-      "url": "https://globalnews.ca/news/12140754/health-canada-bactiera-unauthorized-peptides",
-      "published": "2026-11-06T23:29:36+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 321,
-      "paragraph_count": 11,
       "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
