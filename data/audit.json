@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-09T10:40:56.535949+00:00",
-  "generated_at_london": "2026-11-09T05:40:56.535949-05:00",
-  "news_generated_at": "2026-11-09T10:34:41.130875+00:00",
+  "generated_at": "2026-11-09T10:51:36.800835+00:00",
+  "generated_at_london": "2026-11-09T05:51:36.800835-05:00",
+  "news_generated_at": "2026-11-09T10:49:35.134084+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 683,
+    "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 112,
     "pass_story_count": 107,
@@ -72,7 +72,7 @@
       "latest_published": "2026-11-08T22:35:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T10:32:47.920212+00:00",
+      "last_scrape": "2026-11-09T10:47:37.754479+00:00",
       "last_error": ""
     },
     {
@@ -105,7 +105,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -124,10 +124,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-09T09:06:05+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-09T09:15:49.858429+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -470,7 +470,7 @@
       "latest_published": "2026-11-08T21:38:55.234000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T10:30:18.524455+00:00",
+      "last_scrape": "2026-11-09T10:37:40.662230+00:00",
       "last_error": ""
     },
     {
@@ -511,20 +511,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 735,
-      "average_quality": 90,
+      "average_words": 681,
+      "average_quality": 88,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:citynews:article": 1
+        "dom:citynews:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-08T11:00:12+00:00",
+      "latest_published": "2026-11-09T09:06:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-08T19:24:17.401659+00:00",
+      "last_scrape": "2026-11-09T10:47:39.049274+00:00",
       "last_error": ""
     },
     {
@@ -1298,6 +1298,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "e82fac2b343ba0d5",
+      "source": "CityNews Canada",
+      "title": "B.C. lab ordered to pay $32K for misgendering transgender, non-binary patients",
+      "url": "https://toronto.citynews.ca/2026/11/09/b-c-lab-ordered-to-pay-32k-for-misgendering-transgender-non-binary-patients",
+      "published": "2026-11-09T09:06:49+00:00",
+      "content_status": "full",
+      "word_count": 267,
+      "quality_score": 76,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "1517e6fef0999411",
       "source": "CityNews Canada",
       "title": "Carney says Canada welcomes ‘any moves’ to restore free trade after U.S. midterms",
@@ -1305,21 +1320,6 @@
       "published": "2026-11-06T21:25:47+00:00",
       "content_status": "full",
       "word_count": 876,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ed9428f4114f6d7c",
-      "source": "CityNews Canada",
-      "title": "Champagne, Carney travelling across country to sell federal budget to Canadians",
-      "url": "https://toronto.citynews.ca/2026/11/06/champagne-carney-travelling-across-country-to-sell-federal-budget-to-canadians",
-      "published": "2026-11-06T09:00:09+00:00",
-      "content_status": "full",
-      "word_count": 806,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -5205,6 +5205,35 @@
       ]
     },
     {
+      "id": "e82fac2b343ba0d5",
+      "source": "CityNews Canada",
+      "title": "B.C. lab ordered to pay $32K for misgendering transgender, non-binary patients",
+      "url": "https://toronto.citynews.ca/2026/11/09/b-c-lab-ordered-to-pay-32k-for-misgendering-transgender-non-binary-patients",
+      "published": "2026-11-09T09:06:49+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 267,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9997c240fea67f53",
       "source": "CityNews Canada",
       "title": "Funeral underway for B.C. soldier killed in CFB Wainwright fire",
@@ -5450,35 +5479,6 @@
       "content_status": "full",
       "word_count": 797,
       "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ed9428f4114f6d7c",
-      "source": "CityNews Canada",
-      "title": "Champagne, Carney travelling across country to sell federal budget to Canadians",
-      "url": "https://toronto.citynews.ca/2026/11/06/champagne-carney-travelling-across-country-to-sell-federal-budget-to-canadians",
-      "published": "2026-11-06T09:00:09+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 806,
-      "paragraph_count": 30,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
