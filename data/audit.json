@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-09T16:06:08.801916+00:00",
-  "generated_at_london": "2026-11-09T11:06:08.801916-05:00",
-  "news_generated_at": "2026-11-09T16:00:28.918164+00:00",
+  "generated_at": "2026-11-09T16:18:06.212706+00:00",
+  "generated_at_london": "2026-11-09T11:18:06.212706-05:00",
+  "news_generated_at": "2026-11-09T16:16:09.363556+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 686,
+    "archive_story_count": 687,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 105,
@@ -71,7 +71,7 @@
       "latest_published": "2026-11-09T11:34:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T15:58:34.881663+00:00",
+      "last_scrape": "2026-11-09T16:14:17.742563+00:00",
       "last_error": ""
     },
     {
@@ -99,7 +99,7 @@
       "found_this_run": 0,
       "tracked": 6,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
-      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out."
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "The Globe and Mail",
@@ -562,19 +562,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 421,
-      "average_quality": 96,
+      "average_words": 351,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-09T15:44:28+00:00",
+      "latest_published": "2026-11-09T16:05:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T15:58:26.902680+00:00",
+      "last_scrape": "2026-11-09T16:14:11.488840+00:00",
       "last_error": ""
     },
     {
@@ -1611,21 +1612,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "45c096582133038a",
-      "source": "Global News Canada",
-      "title": "N.S. protests call for moratorium on data centre proposals in province",
-      "url": "https://globalnews.ca/news/12141962/nova-scotia-data-centre-protest-moratorium",
-      "published": "2026-11-08T18:10:16+00:00",
-      "content_status": "full",
-      "word_count": 845,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "5cb5d0d57d49db0b",
       "source": "Global News Canada",
       "title": "Norway says it has been bumped for Russia to compete at world juniors in Canada",
@@ -1650,6 +1636,21 @@
       "word_count": 901,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c539feb0dc9b9215",
+      "source": "Global News Canada",
+      "title": "Temporary foreign workers could be employed for longer under rule change",
+      "url": "https://globalnews.ca/news/12142705/temporary-foreign-workers-rule-change",
+      "published": "2026-11-09T16:05:14+00:00",
+      "content_status": "full",
+      "word_count": 146,
+      "quality_score": 63,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3904,6 +3905,35 @@
       "issues": []
     },
     {
+      "id": "c539feb0dc9b9215",
+      "source": "Global News Canada",
+      "title": "Temporary foreign workers could be employed for longer under rule change",
+      "url": "https://globalnews.ca/news/12142705/temporary-foreign-workers-rule-change",
+      "published": "2026-11-09T16:05:14+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 146,
+      "paragraph_count": 6,
+      "inline_image_count": 2,
+      "quality_score": 63,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d3e473af6b02ab3c",
       "source": "Global News Canada",
       "title": "Transferring money between accounts is about to get faster in Canada",
@@ -4149,35 +4179,6 @@
       "content_status": "full",
       "word_count": 450,
       "paragraph_count": 18,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "45c096582133038a",
-      "source": "Global News Canada",
-      "title": "N.S. protests call for moratorium on data centre proposals in province",
-      "url": "https://globalnews.ca/news/12141962/nova-scotia-data-centre-protest-moratorium",
-      "published": "2026-11-08T18:10:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 845,
-      "paragraph_count": 29,
       "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
