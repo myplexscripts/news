@@ -1,26 +1,54 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-09T09:07:23.360756+00:00",
-  "generated_at_london": "2026-11-09T04:07:23.360756-05:00",
-  "news_generated_at": "2026-11-09T09:01:55.609138+00:00",
+  "generated_at": "2026-11-09T09:19:34.988959+00:00",
+  "generated_at_london": "2026-11-09T04:19:34.988959-05:00",
+  "news_generated_at": "2026-11-09T09:17:38.940019+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 681,
+    "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 112,
-    "pass_story_count": 107,
-    "review_story_count": 4,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
-    "warning_issue_count": 6,
+    "pass_story_count": 103,
+    "review_story_count": 5,
+    "fail_story_count": 4,
+    "critical_issue_count": 4,
+    "warning_issue_count": 7,
     "info_issue_count": 98,
     "healthy_source_count": 13,
-    "review_source_count": 4,
-    "error_source_count": 0,
+    "review_source_count": 3,
+    "error_source_count": 1,
     "waiting_source_count": 11
   },
   "source_reports": [
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 1,
+      "fail": 4,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 351,
+      "average_quality": 83,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 4,
+        "trafilatura:fallback": 1,
+        "reader:semantic-rich-v1": 5
+      },
+      "critical_issues": 4,
+      "warning_issues": 1,
+      "info_issues": 10,
+      "latest_published": "2026-11-09T09:06:05+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-09T09:15:49.858429+00:00",
+      "last_error": ""
+    },
     {
       "source": "104.7 Heart FM",
       "status": "review",
@@ -72,7 +100,7 @@
       "latest_published": "2026-11-08T22:35:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T08:59:59.315302+00:00",
+      "last_scrape": "2026-11-09T09:15:44.249244+00:00",
       "last_error": ""
     },
     {
@@ -100,33 +128,6 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 538,
-      "average_quality": 94,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:star:article": 1
-      },
-      "critical_issues": 1,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-08T19:09:14+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-08T19:40:02.561577+00:00",
       "last_error": ""
     },
     {
@@ -470,7 +471,7 @@
       "latest_published": "2026-11-08T21:38:55.234000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T08:57:47.912173+00:00",
+      "last_scrape": "2026-11-09T09:04:45.727802+00:00",
       "last_error": ""
     },
     {
@@ -742,6 +743,36 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "60 words",
+      "story_id": "25eac74887ff0e96",
+      "source": "Toronto Star",
+      "title": "Legal battle over federal firearms ban heads to Supreme Court of Canada",
+      "url": "https://www.thestar.com/news/canada/legal-battle-over-federal-firearms-ban-heads-to-supreme-court-of-canada/article_ba998acd-2e0f-5593-8dfd-ab12dcf30a75.html",
+      "published": "2026-11-09T09:00:13+00:00",
+      "content_status": "full",
+      "word_count": 60,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "61 words",
+      "story_id": "878480492c48f4d0",
+      "source": "Toronto Star",
+      "title": "Osap pause May force dental college to close, school says",
+      "url": "https://www.thestar.com/news/ontario/osap-pause-may-force-dental-college-to-close-school-says/article_a4ee907e-e574-5fab-9b8c-97ea9c5203f2.html",
+      "published": "2026-11-09T09:00:11+00:00",
+      "content_status": "full",
+      "word_count": 61,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
       "detail": "57 words",
       "story_id": "0fbc62d651ac0da1",
       "source": "Toronto Star",
@@ -752,6 +783,21 @@
       "word_count": 57,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "58 words",
+      "story_id": "27a6135383d269c0",
+      "source": "Toronto Star",
+      "title": "Third storm heads for already drenched B.C. coast",
+      "url": "https://www.thestar.com/news/canada/british-columbia/third-storm-heads-for-already-drenched-b-c-coast/article_c796682b-be8d-5082-950a-cbaa6c6a7cf0.html",
+      "published": "2026-11-09T09:06:05+00:00",
+      "content_status": "full",
+      "word_count": 58,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -842,6 +888,21 @@
       "word_count": 2180,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "0f2625eff0bd1b56",
+      "source": "Toronto Star",
+      "title": "Why Indigenous stewards are bringing 'good fire' back to Canada's forests",
+      "url": "https://www.thestar.com/news/canada/why-indigenous-stewards-are-bringing-good-fire-back-to-canada-s-forests/article_4f8e27df-ec66-5c90-a6f3-95bdd56015cf.html",
+      "published": "2026-11-09T09:00:09+00:00",
+      "content_status": "full",
+      "word_count": 1713,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2123,21 +2184,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "32163e936a82f95c",
-      "source": "Toronto Star",
-      "title": "Americans in Canada hope for closer ties between two countries after midterms",
-      "url": "https://www.thestar.com/news/canada/americans-in-canada-hope-for-closer-ties-between-two-countries-after-midterms/article_becc77ad-2102-5101-a61b-12a78e08fe8b.html",
-      "published": "2026-11-08T11:00:07+00:00",
-      "content_status": "full",
-      "word_count": 822,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "f932a4cb19d8e30a",
       "source": "Toronto Star",
       "title": "Five things to watch for in the Canadian business world in the coming week",
@@ -2153,15 +2199,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a31562637cbe5b56",
+      "story_id": "25eac74887ff0e96",
       "source": "Toronto Star",
-      "title": "Funeral today for B.C. soldier killed in CFB Wainwright fire",
-      "url": "https://www.thestar.com/news/canada/british-columbia/funeral-today-for-b-c-soldier-killed-in-cfb-wainwright-fire/article_aae31603-94ac-5e53-ae2d-93051226e31d.html",
-      "published": "2026-11-08T11:00:12+00:00",
+      "title": "Legal battle over federal firearms ban heads to Supreme Court of Canada",
+      "url": "https://www.thestar.com/news/canada/legal-battle-over-federal-firearms-ban-heads-to-supreme-court-of-canada/article_ba998acd-2e0f-5593-8dfd-ab12dcf30a75.html",
+      "published": "2026-11-09T09:00:13+00:00",
       "content_status": "full",
-      "word_count": 914,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 60,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2198,15 +2244,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f3ffa44a338d0270",
+      "story_id": "878480492c48f4d0",
       "source": "Toronto Star",
-      "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/province-wide-protests-call-for-moratorium-on-ai-data-centre-proposals-in-n-s/article_93587ac9-beab-5676-af73-2d46284ff821.html",
-      "published": "2026-11-07T23:14:00+00:00",
+      "title": "Osap pause May force dental college to close, school says",
+      "url": "https://www.thestar.com/news/ontario/osap-pause-may-force-dental-college-to-close-school-says/article_a4ee907e-e574-5fab-9b8c-97ea9c5203f2.html",
+      "published": "2026-11-09T09:00:11+00:00",
       "content_status": "full",
-      "word_count": 880,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 61,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2243,15 +2289,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "06029483a10334cd",
+      "story_id": "27a6135383d269c0",
       "source": "Toronto Star",
-      "title": "Turning back vulnerable refugees under a Canada-U.S. border pact is discriminatory, Supreme Court will hear this week",
-      "url": "https://www.thestar.com/news/canada/canada-is-turning-back-vulnerable-refugees-under-a-u-s-border-pact-why-rights-groups-are-taking-it-to-the-supreme-court/article_42443c53-d549-46ae-afbf-df0657079271.html",
-      "published": "2026-11-08T05:00:00+00:00",
+      "title": "Third storm heads for already drenched B.C. coast",
+      "url": "https://www.thestar.com/news/canada/british-columbia/third-storm-heads-for-already-drenched-b-c-coast/article_c796682b-be8d-5082-950a-cbaa6c6a7cf0.html",
+      "published": "2026-11-09T09:06:05+00:00",
       "content_status": "full",
-      "word_count": 1144,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 58,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0f2625eff0bd1b56",
+      "source": "Toronto Star",
+      "title": "Why Indigenous stewards are bringing 'good fire' back to Canada's forests",
+      "url": "https://www.thestar.com/news/canada/why-indigenous-stewards-are-bringing-good-fire-back-to-canada-s-forests/article_4f8e27df-ec66-5c90-a6f3-95bdd56015cf.html",
+      "published": "2026-11-09T09:00:09+00:00",
+      "content_status": "full",
+      "word_count": 1713,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -4909,6 +4970,146 @@
       ]
     },
     {
+      "id": "27a6135383d269c0",
+      "source": "Toronto Star",
+      "title": "Third storm heads for already drenched B.C. coast",
+      "url": "https://www.thestar.com/news/canada/british-columbia/third-storm-heads-for-already-drenched-b-c-coast/article_c796682b-be8d-5082-950a-cbaa6c6a7cf0.html",
+      "published": "2026-11-09T09:06:05+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 58,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "58 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "25eac74887ff0e96",
+      "source": "Toronto Star",
+      "title": "Legal battle over federal firearms ban heads to Supreme Court of Canada",
+      "url": "https://www.thestar.com/news/canada/legal-battle-over-federal-firearms-ban-heads-to-supreme-court-of-canada/article_ba998acd-2e0f-5593-8dfd-ab12dcf30a75.html",
+      "published": "2026-11-09T09:00:13+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 60,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "60 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "878480492c48f4d0",
+      "source": "Toronto Star",
+      "title": "Osap pause May force dental college to close, school says",
+      "url": "https://www.thestar.com/news/ontario/osap-pause-may-force-dental-college-to-close-school-says/article_a4ee907e-e574-5fab-9b8c-97ea9c5203f2.html",
+      "published": "2026-11-09T09:00:11+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 61,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "61 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0f2625eff0bd1b56",
+      "source": "Toronto Star",
+      "title": "Why Indigenous stewards are bringing 'good fire' back to Canada's forests",
+      "url": "https://www.thestar.com/news/canada/why-indigenous-stewards-are-bringing-good-fire-back-to-canada-s-forests/article_4f8e27df-ec66-5c90-a6f3-95bdd56015cf.html",
+      "published": "2026-11-09T09:00:09+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1713,
+      "paragraph_count": 44,
+      "inline_image_count": 10,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f82a5803a6cacc53",
       "source": "Toronto Star",
       "title": "York University investigating cybersecurity incident, data theft",
@@ -5077,122 +5278,6 @@
       "quality_score": 80,
       "quality_grade": "good",
       "extraction_method": "dom:star:article",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a31562637cbe5b56",
-      "source": "Toronto Star",
-      "title": "Funeral today for B.C. soldier killed in CFB Wainwright fire",
-      "url": "https://www.thestar.com/news/canada/british-columbia/funeral-today-for-b-c-soldier-killed-in-cfb-wainwright-fire/article_aae31603-94ac-5e53-ae2d-93051226e31d.html",
-      "published": "2026-11-08T11:00:12+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 914,
-      "paragraph_count": 43,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "32163e936a82f95c",
-      "source": "Toronto Star",
-      "title": "Americans in Canada hope for closer ties between two countries after midterms",
-      "url": "https://www.thestar.com/news/canada/americans-in-canada-hope-for-closer-ties-between-two-countries-after-midterms/article_becc77ad-2102-5101-a61b-12a78e08fe8b.html",
-      "published": "2026-11-08T11:00:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 822,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "06029483a10334cd",
-      "source": "Toronto Star",
-      "title": "Turning back vulnerable refugees under a Canada-U.S. border pact is discriminatory, Supreme Court will hear this week",
-      "url": "https://www.thestar.com/news/canada/canada-is-turning-back-vulnerable-refugees-under-a-u-s-border-pact-why-rights-groups-are-taking-it-to-the-supreme-court/article_42443c53-d549-46ae-afbf-df0657079271.html",
-      "published": "2026-11-08T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1144,
-      "paragraph_count": 30,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f3ffa44a338d0270",
-      "source": "Toronto Star",
-      "title": "Province-wide protests call for moratorium on AI data centre proposals in N.S.",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/province-wide-protests-call-for-moratorium-on-ai-data-centre-proposals-in-n-s/article_93587ac9-beab-5676-af73-2d46284ff821.html",
-      "published": "2026-11-07T23:14:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 880,
-      "paragraph_count": 31,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
