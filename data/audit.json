@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-09T12:29:07.847206+00:00",
-  "generated_at_london": "2026-11-09T07:29:07.847206-05:00",
-  "news_generated_at": "2026-11-09T12:22:21.934098+00:00",
+  "generated_at": "2026-11-09T12:39:55.166986+00:00",
+  "generated_at_london": "2026-11-09T07:39:55.166986-05:00",
+  "news_generated_at": "2026-11-09T12:37:57.178665+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 683,
+    "archive_story_count": 685,
     "source_count": 28,
-    "audited_story_count": 113,
-    "pass_story_count": 107,
+    "audited_story_count": 114,
+    "pass_story_count": 108,
     "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 8,
-    "info_issue_count": 100,
+    "info_issue_count": 99,
     "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -26,25 +26,26 @@
       "status": "review",
       "collector_status": "healthy",
       "profile": "heartfm",
-      "sample_size": 3,
-      "pass": 0,
+      "sample_size": 4,
+      "pass": 1,
       "review": 3,
       "fail": 0,
-      "pass_rate": 0,
+      "pass_rate": 25,
       "usable_body_rate": 100,
-      "average_words": 709,
-      "average_quality": 78,
+      "average_words": 601,
+      "average_quality": 77,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
+        "dom:heartfm:main": 1,
         "dom:semantic-rich-v1": 3
       },
       "critical_issues": 0,
       "warning_issues": 6,
       "info_issues": 2,
-      "latest_published": "2026-11-09T11:57:28+00:00",
+      "latest_published": "2026-11-09T12:23:18+00:00",
       "found_this_run": 18,
-      "tracked": 1,
-      "last_scrape": "2026-11-09T12:03:01.722515+00:00",
+      "tracked": 2,
+      "last_scrape": "2026-11-09T12:34:06.467049+00:00",
       "last_error": ""
     },
     {
@@ -71,7 +72,7 @@
       "latest_published": "2026-11-09T11:34:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T12:20:34.066408+00:00",
+      "last_scrape": "2026-11-09T12:36:17.141386+00:00",
       "last_error": ""
     },
     {
@@ -104,7 +105,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -123,10 +124,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-09T09:06:05+00:00",
-      "found_this_run": 9,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-09T09:15:49.858429+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -440,7 +441,7 @@
       "warning_issues": 0,
       "info_issues": 16,
       "latest_published": "2026-11-09T10:50:40.177000+00:00",
-      "found_this_run": 6,
+      "found_this_run": 5,
       "tracked": 30,
       "last_scrape": "2026-11-09T11:08:09.145169+00:00",
       "last_error": ""
@@ -469,7 +470,7 @@
       "latest_published": "2026-11-09T11:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T12:08:34.125379+00:00",
+      "last_scrape": "2026-11-09T12:33:52.805541+00:00",
       "last_error": ""
     },
     {
@@ -694,19 +695,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 861,
-      "average_quality": 95,
+      "average_words": 799,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 15,
-      "latest_published": "2026-11-09T11:45:00+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-09T12:14:42.599000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T12:04:45.425797+00:00",
+      "last_scrape": "2026-11-09T12:36:13.725327+00:00",
       "last_error": ""
     },
     {
@@ -1969,6 +1971,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "af865c0503d76924",
+      "source": "The Globe and Mail",
+      "title": "B.C braces for more heavy rain and wind as third storm heads to the already drenched coast",
+      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-coast-storm-rain-wind",
+      "published": "2026-11-09T12:14:42.599000+00:00",
+      "content_status": "full",
+      "word_count": 260,
+      "quality_score": 73,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1995,36 +2012,6 @@
       "content_status": "full",
       "word_count": 863,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "a04b46bcd353aa2f",
-      "source": "The Globe and Mail",
-      "title": "Budget 2026: Ottawa plows money into power grids, but connecting them remains unclear",
-      "url": "https://www.theglobeandmail.com/business/article-federal-budget-plows-money-into-expanding-power-grids-but-connecting",
-      "published": "2026-11-08T22:32:37.877000+00:00",
-      "content_status": "full",
-      "word_count": 876,
-      "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a04b46bcd353aa2f",
-      "source": "The Globe and Mail",
-      "title": "Budget 2026: Ottawa plows money into power grids, but connecting them remains unclear",
-      "url": "https://www.theglobeandmail.com/business/article-federal-budget-plows-money-into-expanding-power-grids-but-connecting",
-      "published": "2026-11-08T22:32:37.877000+00:00",
-      "content_status": "full",
-      "word_count": 876,
-      "quality_score": 89,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -3196,6 +3183,28 @@
           "detail": ""
         }
       ]
+    },
+    {
+      "id": "8d361a2a7538adfa",
+      "source": "104.7 Heart FM",
+      "title": "Pjhl Recap - Nov 6th to Nov 8th",
+      "url": "https://www.heartfm.ca/news/local-news/pjhl-recap-nov-6th-to-nov-8th",
+      "published": "2026-11-09T12:23:18+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 275,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:heartfm:main",
+      "extraction_profile": "heartfm",
+      "local_score": 26,
+      "issues": []
     },
     {
       "id": "1465a2a6cf043657",
@@ -4399,6 +4408,35 @@
       ]
     },
     {
+      "id": "af865c0503d76924",
+      "source": "The Globe and Mail",
+      "title": "B.C braces for more heavy rain and wind as third storm heads to the already drenched coast",
+      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-coast-storm-rain-wind",
+      "published": "2026-11-09T12:14:42.599000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 260,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bac66f3df74c4b00",
       "source": "The Globe and Mail",
       "title": "More long-term beds aren’t a blanket solution to seniors’ care",
@@ -4664,41 +4702,6 @@
       "paragraph_count": 11,
       "inline_image_count": 1,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a04b46bcd353aa2f",
-      "source": "The Globe and Mail",
-      "title": "Budget 2026: Ottawa plows money into power grids, but connecting them remains unclear",
-      "url": "https://www.theglobeandmail.com/business/article-federal-budget-plows-money-into-expanding-power-grids-but-connecting",
-      "published": "2026-11-08T22:32:37.877000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 876,
-      "paragraph_count": 21,
-      "inline_image_count": 1,
-      "quality_score": 89,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
