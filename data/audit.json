@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-09T11:11:43.169924+00:00",
-  "generated_at_london": "2026-11-09T06:11:43.169924-05:00",
-  "news_generated_at": "2026-11-09T11:05:06.535812+00:00",
+  "generated_at": "2026-11-09T11:22:46.758596+00:00",
+  "generated_at_london": "2026-11-09T06:22:46.758596-05:00",
+  "news_generated_at": "2026-11-09T11:20:51.661030+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 683,
+    "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 112,
     "pass_story_count": 107,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 6,
-    "info_issue_count": 98,
+    "info_issue_count": 99,
     "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -72,7 +72,7 @@
       "latest_published": "2026-11-08T22:35:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T11:03:22.842464+00:00",
+      "last_scrape": "2026-11-09T11:19:07.303816+00:00",
       "last_error": ""
     },
     {
@@ -105,7 +105,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -124,10 +124,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-09T09:06:05+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-09T09:15:49.858429+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -175,7 +175,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -443,7 +443,7 @@
       "latest_published": "2026-11-09T10:50:40.177000+00:00",
       "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-11-09T11:03:20.079656+00:00",
+      "last_scrape": "2026-11-09T11:08:09.145169+00:00",
       "last_error": ""
     },
     {
@@ -470,7 +470,7 @@
       "latest_published": "2026-11-09T11:00:01+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T11:01:13.295148+00:00",
+      "last_scrape": "2026-11-09T11:08:09.354176+00:00",
       "last_error": ""
     },
     {
@@ -695,19 +695,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 880,
-      "average_quality": 95,
+      "average_words": 900,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-11-09T10:00:00+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-09T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-09T10:16:39.065128+00:00",
+      "last_scrape": "2026-11-09T11:19:05.196727+00:00",
       "last_error": ""
     },
     {
@@ -1925,6 +1926,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4f6a9edd145c1de6",
+      "source": "The Globe and Mail",
+      "title": "Automated insulin delivery systems help expectant mothers manage Type 1 diabetes",
+      "url": "https://www.theglobeandmail.com/canada/article-automated-insulin-delivery-systems-help-expectant-mothers-manage-type",
+      "published": "2026-11-09T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1013,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2018,21 +2034,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1cb3b9363db6be10",
-      "source": "The Globe and Mail",
-      "title": "Hundreds gather to remember B.C. soldier killed in Wainwright fire",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-soldier-goulding-wainwright-fire-funeral",
-      "published": "2026-11-08T20:31:59.504000+00:00",
-      "content_status": "full",
-      "word_count": 915,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "fe5ab884ca9e5d71",
       "source": "The Globe and Mail",
       "title": "In B.C., shoebox units aren’t driving the unsold condos problem",
@@ -2042,6 +2043,36 @@
       "word_count": 1058,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "523ce0b622dbfeec",
+      "source": "The Globe and Mail",
+      "title": "In the burn-treatment world, Canada-U.S. camaraderie persists",
+      "url": "https://www.theglobeandmail.com/canada/article-in-the-burn-treatment-world-canada-us-camaraderie-persists",
+      "published": "2026-11-09T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1038,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "523ce0b622dbfeec",
+      "source": "The Globe and Mail",
+      "title": "In the burn-treatment world, Canada-U.S. camaraderie persists",
+      "url": "https://www.theglobeandmail.com/canada/article-in-the-burn-treatment-world-canada-us-camaraderie-persists",
+      "published": "2026-11-09T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1038,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2101,21 +2132,6 @@
       "content_status": "full",
       "word_count": 564,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "89a66764435094f3",
-      "source": "The Globe and Mail",
-      "title": "Toronto woman bought a $1.25-million duplex with her now ex-partner. Now they’re stuck with it",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-toronto-woman-bought-a-125-million-duplex-with-her-now-ex-partner-now",
-      "published": "2026-11-08T18:00:00+00:00",
-      "content_status": "full",
-      "word_count": 939,
-      "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4305,6 +4321,70 @@
       ]
     },
     {
+      "id": "4f6a9edd145c1de6",
+      "source": "The Globe and Mail",
+      "title": "Automated insulin delivery systems help expectant mothers manage Type 1 diabetes",
+      "url": "https://www.theglobeandmail.com/canada/article-automated-insulin-delivery-systems-help-expectant-mothers-manage-type",
+      "published": "2026-11-09T11:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1013,
+      "paragraph_count": 27,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "523ce0b622dbfeec",
+      "source": "The Globe and Mail",
+      "title": "In the burn-treatment world, Canada-U.S. camaraderie persists",
+      "url": "https://www.theglobeandmail.com/canada/article-in-the-burn-treatment-world-canada-us-camaraderie-persists",
+      "published": "2026-11-09T11:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 1038,
+      "paragraph_count": 25,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "faec850a5c453a32",
       "source": "The Globe and Mail",
       "title": "EV drivers are making money charging their cars – and it’s not a scam",
@@ -4541,64 +4621,6 @@
       "paragraph_count": 24,
       "inline_image_count": 3,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1cb3b9363db6be10",
-      "source": "The Globe and Mail",
-      "title": "Hundreds gather to remember B.C. soldier killed in Wainwright fire",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-soldier-goulding-wainwright-fire-funeral",
-      "published": "2026-11-08T20:31:59.504000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 915,
-      "paragraph_count": 42,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "89a66764435094f3",
-      "source": "The Globe and Mail",
-      "title": "Toronto woman bought a $1.25-million duplex with her now ex-partner. Now they’re stuck with it",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-toronto-woman-bought-a-125-million-duplex-with-her-now-ex-partner-now",
-      "published": "2026-11-08T18:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 939,
-      "paragraph_count": 35,
-      "inline_image_count": 0,
-      "quality_score": 97,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
