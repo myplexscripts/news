@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T09:20:44.035305+00:00",
-  "generated_at_london": "2026-11-10T04:20:44.035305-05:00",
-  "news_generated_at": "2026-11-10T09:15:11.859052+00:00",
+  "generated_at": "2026-11-10T09:33:19.691739+00:00",
+  "generated_at_london": "2026-11-10T04:33:19.691739-05:00",
+  "news_generated_at": "2026-11-10T09:31:31.561731+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 676,
+    "archive_story_count": 681,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 104,
-    "review_story_count": 5,
+    "pass_story_count": 103,
+    "review_story_count": 6,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 10,
+    "warning_issue_count": 11,
     "info_issue_count": 88,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -99,7 +99,7 @@
       "latest_published": "2026-11-09T20:14:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T09:14:04.808680+00:00",
+      "last_scrape": "2026-11-10T09:29:49.361987+00:00",
       "last_error": ""
     },
     {
@@ -108,24 +108,26 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 7,
-      "review": 0,
+      "pass": 6,
+      "review": 1,
       "fail": 3,
-      "pass_rate": 70,
-      "usable_body_rate": 100,
-      "average_words": 304,
-      "average_quality": 96,
+      "pass_rate": 60,
+      "usable_body_rate": 90,
+      "average_words": 318,
+      "average_quality": 85,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:fallback": 3,
+        "reader:semantic-rich-v1": 5,
+        "dom:star:article": 2
       },
       "critical_issues": 3,
-      "warning_issues": 0,
+      "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-10T09:00:29+00:00",
+      "latest_published": "2026-11-10T09:00:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T09:14:05.774696+00:00",
+      "last_scrape": "2026-11-10T09:29:55.304904+00:00",
       "last_error": ""
     },
     {
@@ -445,7 +447,7 @@
       "latest_published": "2026-11-10T04:12:39.024000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T08:47:01.576445+00:00",
+      "last_scrape": "2026-11-10T09:17:15.581156+00:00",
       "last_error": ""
     },
     {
@@ -773,21 +775,6 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "54 words",
-      "story_id": "19ef0468268f7144",
-      "source": "Toronto Star",
-      "title": "Dozens displaced from Barrie women's shelter after arson: police",
-      "url": "https://www.thestar.com/news/ontario/dozens-displaced-from-barrie-women-s-shelter-after-arson-police/article_e7354751-718e-55bc-b5f2-0f322351040e.html",
-      "published": "2026-11-09T20:36:00+00:00",
-      "content_status": "full",
-      "word_count": 54,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
       "detail": "61 words",
       "story_id": "0c0a3d70134f4731",
       "source": "Toronto Star",
@@ -798,6 +785,21 @@
       "word_count": 61,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "62 words",
+      "story_id": "9864218b81d43c44",
+      "source": "Toronto Star",
+      "title": "Some common forensics techniques aren't as reliable as courts presume: professor",
+      "url": "https://www.thestar.com/news/canada/some-common-forensics-techniques-aren-t-as-reliable-as-courts-presume-professor/article_b06caedf-ec83-5bec-9a49-be5aae98938f.html",
+      "published": "2026-11-10T09:00:01+00:00",
+      "content_status": "full",
+      "word_count": 62,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -948,6 +950,21 @@
       "word_count": 490,
       "quality_score": 83,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "9 inline images",
+      "story_id": "076496a3478323bb",
+      "source": "Toronto Star",
+      "title": "'Things will never be the same': Wainwright prepares for Remembrance Day after fire",
+      "url": "https://www.thestar.com/news/canada/alberta/things-will-never-be-the-same-wainwright-prepares-for-remembrance-day-after-fire/article_50ecee6e-b816-5649-8a0b-c6a9201a464d.html",
+      "published": "2026-11-10T09:00:33+00:00",
+      "content_status": "full",
+      "word_count": 714,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2079,15 +2096,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "8d114e66e0fc1e11",
+      "story_id": "076496a3478323bb",
       "source": "Toronto Star",
-      "title": "Alberta First Nation claims B.C. hydroelectric projects violate treaty rights",
-      "url": "https://www.thestar.com/news/canada/british-columbia/alberta-first-nation-claims-b-c-hydroelectric-projects-violate-treaty-rights/article_d10e5379-b271-5a08-9550-a7d7fa9bc622.html",
-      "published": "2026-11-09T21:10:21+00:00",
+      "title": "'Things will never be the same': Wainwright prepares for Remembrance Day after fire",
+      "url": "https://www.thestar.com/news/canada/alberta/things-will-never-be-the-same-wainwright-prepares-for-remembrance-day-after-fire/article_50ecee6e-b816-5649-8a0b-c6a9201a464d.html",
+      "published": "2026-11-10T09:00:33+00:00",
       "content_status": "full",
-      "word_count": 98,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 714,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7317d39863c23d97",
+      "source": "Toronto Star",
+      "title": "B.C. deluge could bring 250 mm of rain as forecasters predict flooding, landslides",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-deluge-could-bring-250-mm-of-rain-as-forecasters-predict-flooding-landslides/article_824c8239-334f-5719-86ee-e654474cfbd0.html",
+      "published": "2026-11-10T09:00:06+00:00",
+      "content_status": "summary",
+      "word_count": 54,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2154,30 +2186,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "19ef0468268f7144",
+      "story_id": "0e88f171f9e232cd",
       "source": "Toronto Star",
-      "title": "Dozens displaced from Barrie women's shelter after arson: police",
-      "url": "https://www.thestar.com/news/ontario/dozens-displaced-from-barrie-women-s-shelter-after-arson-police/article_e7354751-718e-55bc-b5f2-0f322351040e.html",
-      "published": "2026-11-09T20:36:00+00:00",
+      "title": "New biopic shows Stallone's 'Rocky' rise was the real underdog story",
+      "url": "https://www.thestar.com/entertainment/movies/new-biopic-shows-stallone-s-rocky-rise-was-the-real-underdog-story/article_84954b5f-101a-5d84-92e3-4d41c4fd1eec.html",
+      "published": "2026-11-10T09:00:14+00:00",
       "content_status": "full",
-      "word_count": 54,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3724dbfa731cb4d2",
-      "source": "Toronto Star",
-      "title": "Fact File: No permanent positions set up during Canadian-led Nato exercise in Latvia",
-      "url": "https://www.thestar.com/news/canada/fact-file-no-permanent-positions-set-up-during-canadian-led-nato-exercise-in-latvia/article_1a0891e4-9c07-5d39-98b5-4e55f596540c.html",
-      "published": "2026-11-09T21:00:05+00:00",
-      "content_status": "full",
-      "word_count": 576,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 599,
+      "quality_score": 81,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2199,30 +2216,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "04892825fd3ac804",
+      "story_id": "9864218b81d43c44",
       "source": "Toronto Star",
-      "title": "Ukrainian Canadians to protest Ovechkin's visit to Ottawa over Putin ties",
-      "url": "https://www.thestar.com/news/canada/ukrainian-canadians-to-protest-ovechkin-s-visit-to-ottawa-over-putin-ties/article_20049f5e-c2ce-5f28-9499-31a5b71132df.html",
-      "published": "2026-11-09T20:34:56+00:00",
+      "title": "Some common forensics techniques aren't as reliable as courts presume: professor",
+      "url": "https://www.thestar.com/news/canada/some-common-forensics-techniques-aren-t-as-reliable-as-courts-presume-professor/article_b06caedf-ec83-5bec-9a49-be5aae98938f.html",
+      "published": "2026-11-10T09:00:01+00:00",
       "content_status": "full",
-      "word_count": 363,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 62,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7b71024f05722414",
+      "story_id": "73c600c6a6423c1a",
       "source": "Toronto Star",
-      "title": "Victims of CFB Wainwright fire remembered as Grey Cup carried into Calgary",
-      "url": "https://www.thestar.com/sports/football/cfl/victims-of-cfb-wainwright-fire-remembered-as-grey-cup-carried-into-calgary/article_9cbc2746-aa01-582b-a2eb-3820c75ba390.html",
-      "published": "2026-11-09T20:29:00+00:00",
+      "title": "Writers' Trust of Canada set to hand out eight book awards, more than $400K in cash",
+      "url": "https://www.thestar.com/entertainment/books/writers-trust-of-canada-set-to-hand-out-eight-book-awards-more-than-400k-in-cash/article_776fcb19-2621-552f-b248-e32a0a05efc5.html",
+      "published": "2026-11-10T09:00:19+00:00",
       "content_status": "full",
-      "word_count": 515,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 314,
+      "quality_score": 76,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -4853,6 +4870,41 @@
       ]
     },
     {
+      "id": "076496a3478323bb",
+      "source": "Toronto Star",
+      "title": "'Things will never be the same': Wainwright prepares for Remembrance Day after fire",
+      "url": "https://www.thestar.com/news/canada/alberta/things-will-never-be-the-same-wainwright-prepares-for-remembrance-day-after-fire/article_50ecee6e-b816-5649-8a0b-c6a9201a464d.html",
+      "published": "2026-11-10T09:00:33+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 714,
+      "paragraph_count": 32,
+      "inline_image_count": 9,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "9 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0539f95afe6e92a2",
       "source": "Toronto Star",
       "title": "Dabrusin defends Canada's climate record in advance of UN climate conference",
@@ -4873,6 +4925,128 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "73c600c6a6423c1a",
+      "source": "Toronto Star",
+      "title": "Writers' Trust of Canada set to hand out eight book awards, more than $400K in cash",
+      "url": "https://www.thestar.com/entertainment/books/writers-trust-of-canada-set-to-hand-out-eight-book-awards-more-than-400k-in-cash/article_776fcb19-2621-552f-b248-e32a0a05efc5.html",
+      "published": "2026-11-10T09:00:19+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 314,
+      "paragraph_count": 13,
+      "inline_image_count": 4,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0e88f171f9e232cd",
+      "source": "Toronto Star",
+      "title": "New biopic shows Stallone's 'Rocky' rise was the real underdog story",
+      "url": "https://www.thestar.com/entertainment/movies/new-biopic-shows-stallone-s-rocky-rise-was-the-real-underdog-story/article_84954b5f-101a-5d84-92e3-4d41c4fd1eec.html",
+      "published": "2026-11-10T09:00:14+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 599,
+      "paragraph_count": 20,
+      "inline_image_count": 5,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "7317d39863c23d97",
+      "source": "Toronto Star",
+      "title": "B.C. deluge could bring 250 mm of rain as forecasters predict flooding, landslides",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-deluge-could-bring-250-mm-of-rain-as-forecasters-predict-flooding-landslides/article_824c8239-334f-5719-86ee-e654474cfbd0.html",
+      "published": "2026-11-10T09:00:06+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 54,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "9864218b81d43c44",
+      "source": "Toronto Star",
+      "title": "Some common forensics techniques aren't as reliable as courts presume: professor",
+      "url": "https://www.thestar.com/news/canada/some-common-forensics-techniques-aren-t-as-reliable-as-courts-presume-professor/article_b06caedf-ec83-5bec-9a49-be5aae98938f.html",
+      "published": "2026-11-10T09:00:01+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 62,
+      "paragraph_count": 2,
+      "inline_image_count": 5,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "62 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4994,157 +5168,6 @@
       "content_status": "full",
       "word_count": 129,
       "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8d114e66e0fc1e11",
-      "source": "Toronto Star",
-      "title": "Alberta First Nation claims B.C. hydroelectric projects violate treaty rights",
-      "url": "https://www.thestar.com/news/canada/british-columbia/alberta-first-nation-claims-b-c-hydroelectric-projects-violate-treaty-rights/article_d10e5379-b271-5a08-9550-a7d7fa9bc622.html",
-      "published": "2026-11-09T21:10:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 98,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3724dbfa731cb4d2",
-      "source": "Toronto Star",
-      "title": "Fact File: No permanent positions set up during Canadian-led Nato exercise in Latvia",
-      "url": "https://www.thestar.com/news/canada/fact-file-no-permanent-positions-set-up-during-canadian-led-nato-exercise-in-latvia/article_1a0891e4-9c07-5d39-98b5-4e55f596540c.html",
-      "published": "2026-11-09T21:00:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 576,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "19ef0468268f7144",
-      "source": "Toronto Star",
-      "title": "Dozens displaced from Barrie women's shelter after arson: police",
-      "url": "https://www.thestar.com/news/ontario/dozens-displaced-from-barrie-women-s-shelter-after-arson-police/article_e7354751-718e-55bc-b5f2-0f322351040e.html",
-      "published": "2026-11-09T20:36:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 54,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "54 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "04892825fd3ac804",
-      "source": "Toronto Star",
-      "title": "Ukrainian Canadians to protest Ovechkin's visit to Ottawa over Putin ties",
-      "url": "https://www.thestar.com/news/canada/ukrainian-canadians-to-protest-ovechkin-s-visit-to-ottawa-over-putin-ties/article_20049f5e-c2ce-5f28-9499-31a5b71132df.html",
-      "published": "2026-11-09T20:34:56+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 363,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7b71024f05722414",
-      "source": "Toronto Star",
-      "title": "Victims of CFB Wainwright fire remembered as Grey Cup carried into Calgary",
-      "url": "https://www.thestar.com/sports/football/cfl/victims-of-cfb-wainwright-fire-remembered-as-grey-cup-carried-into-calgary/article_9cbc2746-aa01-582b-a2eb-3820c75ba390.html",
-      "published": "2026-11-09T20:29:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 515,
-      "paragraph_count": 17,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
