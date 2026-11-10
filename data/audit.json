@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T17:44:31.977779+00:00",
-  "generated_at_london": "2026-11-10T12:44:31.977779-05:00",
-  "news_generated_at": "2026-11-10T17:37:45.552680+00:00",
+  "generated_at": "2026-11-10T17:55:49.990774+00:00",
+  "generated_at_london": "2026-11-10T12:55:49.990774-05:00",
+  "news_generated_at": "2026-11-10T17:53:57.131318+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 680,
+    "archive_story_count": 683,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 108,
-    "review_story_count": 7,
+    "pass_story_count": 107,
+    "review_story_count": 8,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 12,
-    "info_issue_count": 96,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "warning_issue_count": 14,
+    "info_issue_count": 98,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -151,6 +151,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-10T17:20:37.541183+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 731,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-10T17:35:27+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-10T17:52:12.097198+00:00",
       "last_error": ""
     },
     {
@@ -457,8 +484,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 301,
-      "average_quality": 70,
+      "average_words": 320,
+      "average_quality": 69,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 8,
@@ -466,11 +493,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-10T17:25:15.776000+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-11-10T17:50:58.599000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T17:34:06.732572+00:00",
+      "last_scrape": "2026-11-10T17:49:59.395274+00:00",
       "last_error": ""
     },
     {
@@ -656,7 +683,7 @@
       "latest_published": "2026-11-10T11:28:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T17:35:59.323764+00:00",
+      "last_scrape": "2026-11-10T17:52:10.366510+00:00",
       "last_error": ""
     },
     {
@@ -683,32 +710,6 @@
       "found_this_run": 10,
       "tracked": 1,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 770,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-11-10T16:16:07+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-11-10T16:49:23.370286+00:00",
       "last_error": ""
     },
     {
@@ -933,6 +934,36 @@
       "word_count": 1152,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "25d7925dace37bc5",
+      "source": "Toronto Star",
+      "title": "Ottawa restores sanctions on Iran it lifted a decade ago",
+      "url": "https://www.thestar.com/news/canada/ottawa-restores-sanctions-on-iran-it-lifted-a-decade-ago/article_f462b7c9-f136-5215-838c-eb5760db52af.html",
+      "published": "2026-11-10T17:35:27+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "25d7925dace37bc5",
+      "source": "Toronto Star",
+      "title": "Ottawa restores sanctions on Iran it lifted a decade ago",
+      "url": "https://www.thestar.com/news/canada/ottawa-restores-sanctions-on-iran-it-lifted-a-decade-ago/article_f462b7c9-f136-5215-838c-eb5760db52af.html",
+      "published": "2026-11-10T17:35:27+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1296,6 +1327,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "849cd93f2b3d3385",
+      "source": "CTV News London",
+      "title": "Morgan proposes dividing London’s deputy mayor role, nominates new budget chair, in council re-organization",
+      "url": "https://www.ctvnews.ca/london/article/morgan-proposes-dividing-londons-deputy-mayor-role-nominates-new-budget-chair-in-council-re-organization",
+      "published": "2026-11-10T17:46:22.810000+00:00",
+      "content_status": "full",
+      "word_count": 784,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "849cd93f2b3d3385",
+      "source": "CTV News London",
+      "title": "Morgan proposes dividing London’s deputy mayor role, nominates new budget chair, in council re-organization",
+      "url": "https://www.ctvnews.ca/london/article/morgan-proposes-dividing-londons-deputy-mayor-role-nominates-new-budget-chair-in-council-re-organization",
+      "published": "2026-11-10T17:46:22.810000+00:00",
+      "content_status": "full",
+      "word_count": 784,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
@@ -1311,6 +1372,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 18/100",
+      "story_id": "a17e9aae1db9de39",
+      "source": "CTV News London",
+      "title": "Stegh president and CEO announces retirement",
+      "url": "https://www.ctvnews.ca/london/article/stegh-president-and-ceo-announces-retirement",
+      "published": "2026-11-10T17:50:58.599000+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 66,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1367,36 +1443,6 @@
       "content_status": "full",
       "word_count": 227,
       "quality_score": 66,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4c60d42cd5ea4449",
-      "source": "CTV News London",
-      "title": "World class equine event centre breaking ground near Milverton",
-      "url": "https://www.ctvnews.ca/london/article/world-class-equine-event-centre-breaking-ground-near-milverton",
-      "published": "2026-11-09T20:59:03.414000+00:00",
-      "content_status": "full",
-      "word_count": 386,
-      "quality_score": 78,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "e541adc11843d285",
-      "source": "CTV News London",
-      "title": "‘There are 300 people in this neighbourhood really upset’: Quiet dead-end street planned for townhome access road",
-      "url": "https://www.ctvnews.ca/london/article/there-are-300-people-in-this-neighbourhood-really-upset-quiet-dead-end-street-planned-for-townhome-access-road",
-      "published": "2026-11-09T22:37:10.081000+00:00",
-      "content_status": "full",
-      "word_count": 441,
-      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2274,6 +2320,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "25d7925dace37bc5",
+      "source": "Toronto Star",
+      "title": "Ottawa restores sanctions on Iran it lifted a decade ago",
+      "url": "https://www.thestar.com/news/canada/ottawa-restores-sanctions-on-iran-it-lifted-a-decade-ago/article_f462b7c9-f136-5215-838c-eb5760db52af.html",
+      "published": "2026-11-10T17:35:27+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "48e3ccee001f3cf4",
       "source": "Toronto Star",
       "title": "Real estate association forecasts B.C. home sales to slide 4.5 per cent this year",
@@ -2419,6 +2480,70 @@
       "extraction_profile": "global",
       "local_score": 55,
       "issues": []
+    },
+    {
+      "id": "a17e9aae1db9de39",
+      "source": "CTV News London",
+      "title": "Stegh president and CEO announces retirement",
+      "url": "https://www.ctvnews.ca/london/article/stegh-president-and-ceo-announces-retirement",
+      "published": "2026-11-10T17:50:58.599000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 234,
+      "paragraph_count": 9,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 18,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 18/100"
+        }
+      ]
+    },
+    {
+      "id": "849cd93f2b3d3385",
+      "source": "CTV News London",
+      "title": "Morgan proposes dividing London’s deputy mayor role, nominates new budget chair, in council re-organization",
+      "url": "https://www.ctvnews.ca/london/article/morgan-proposes-dividing-londons-deputy-mayor-role-nominates-new-budget-chair-in-council-re-organization",
+      "published": "2026-11-10T17:46:22.810000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 784,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
     },
     {
       "id": "ee625db8da2fc0ea",
@@ -2650,64 +2775,6 @@
       "paragraph_count": 10,
       "inline_image_count": 2,
       "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e541adc11843d285",
-      "source": "CTV News London",
-      "title": "‘There are 300 people in this neighbourhood really upset’: Quiet dead-end street planned for townhome access road",
-      "url": "https://www.ctvnews.ca/london/article/there-are-300-people-in-this-neighbourhood-really-upset-quiet-dead-end-street-planned-for-townhome-access-road",
-      "published": "2026-11-09T22:37:10.081000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 441,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 22,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "4c60d42cd5ea4449",
-      "source": "CTV News London",
-      "title": "World class equine event centre breaking ground near Milverton",
-      "url": "https://www.ctvnews.ca/london/article/world-class-equine-event-centre-breaking-ground-near-milverton",
-      "published": "2026-11-09T20:59:03.414000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 386,
-      "paragraph_count": 9,
-      "inline_image_count": 5,
-      "quality_score": 78,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
@@ -5097,6 +5164,47 @@
       ]
     },
     {
+      "id": "25d7925dace37bc5",
+      "source": "Toronto Star",
+      "title": "Ottawa restores sanctions on Iran it lifted a decade ago",
+      "url": "https://www.thestar.com/news/canada/ottawa-restores-sanctions-on-iran-it-lifted-a-decade-ago/article_f462b7c9-f136-5215-838c-eb5760db52af.html",
+      "published": "2026-11-10T17:35:27+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 199,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "48e3ccee001f3cf4",
       "source": "Toronto Star",
       "title": "Real estate association forecasts B.C. home sales to slide 4.5 per cent this year",
@@ -5356,28 +5464,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "752b20f443229f93",
-      "source": "Toronto Star",
-      "title": "Ontario school’s idea for plantable Remembrance Day poppies is catching on",
-      "url": "https://www.thestar.com/news/ontario/ontario-school-s-idea-for-plantable-remembrance-day-poppies-is-catching-on/article_c2dfbe6a-72da-46f6-9988-e4be9d132006.html",
-      "published": "2026-11-10T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 593,
-      "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 26,
-      "issues": []
     },
     {
       "id": "cfae087f54ec01f4",
