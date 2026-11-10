@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T16:07:57.654611+00:00",
-  "generated_at_london": "2026-11-10T11:07:57.654611-05:00",
-  "news_generated_at": "2026-11-10T16:02:42.080643+00:00",
+  "generated_at": "2026-11-10T16:22:33.537849+00:00",
+  "generated_at_london": "2026-11-10T11:22:33.537849-05:00",
+  "news_generated_at": "2026-11-10T16:20:36.741129+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 678,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 107,
-    "review_story_count": 7,
+    "pass_story_count": 108,
+    "review_story_count": 6,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 12,
+    "warning_issue_count": 11,
     "info_issue_count": 94,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -102,35 +102,62 @@
       "last_error": ""
     },
     {
+      "source": "London Transit Commission",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 199,
+      "average_quality": 78,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-11-04T05:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 1,
+      "last_scrape": "2026-11-04T20:13:27.269055+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7b259d6d3dd0>, 'Connection to www.londontransit.ca time"
+    },
+    {
       "source": "The Globe and Mail",
       "status": "review",
       "collector_status": "healthy",
       "profile": "globe",
       "sample_size": 10,
-      "pass": 8,
-      "review": 2,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 80,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 679,
-      "average_quality": 93,
+      "average_words": 613,
+      "average_quality": 88,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
-      "warning_issues": 2,
+      "warning_issues": 1,
       "info_issues": 12,
-      "latest_published": "2026-11-10T14:00:00+00:00",
+      "latest_published": "2026-11-10T16:05:29.348000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T14:11:39.896379+00:00",
+      "last_scrape": "2026-11-10T16:18:32.645527+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -148,10 +175,10 @@
       "warning_issues": 0,
       "info_issues": 9,
       "latest_published": "2026-11-10T10:00:00+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-10T10:16:43.326789+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -199,7 +226,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -441,7 +468,7 @@
       "warning_issues": 0,
       "info_issues": 16,
       "latest_published": "2026-11-10T11:03:46.606000+00:00",
-      "found_this_run": 5,
+      "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-11-10T11:22:24.605357+00:00",
       "last_error": ""
@@ -470,7 +497,7 @@
       "latest_published": "2026-11-10T12:18:54.182000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T15:33:24.018791+00:00",
+      "last_scrape": "2026-11-10T16:05:07.134357+00:00",
       "last_error": ""
     },
     {
@@ -607,32 +634,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 199,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-11-04T05:00:00+00:00",
-      "found_this_run": 3,
-      "tracked": 1,
-      "last_scrape": "2026-11-04T20:13:27.269055+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Middlesex County",
       "status": "healthy",
       "collector_status": "healthy",
@@ -682,7 +683,7 @@
       "latest_published": "2026-11-10T11:28:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T16:01:16.208529+00:00",
+      "last_scrape": "2026-11-10T16:18:43.022922+00:00",
       "last_error": ""
     },
     {
@@ -932,21 +933,6 @@
       "content_status": "partial",
       "word_count": 1128,
       "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "4 consecutive images",
-      "story_id": "7baa6fc47eca4579",
-      "source": "The Globe and Mail",
-      "title": "This retired advisor became an Honorary Colonel after being rescued from a helicopter crash",
-      "url": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-practice/article-this-retired-advisor-became-an-honorary-colonel-after-being-rescued",
-      "published": "2026-11-10T09:40:00+00:00",
-      "content_status": "partial",
-      "word_count": 802,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -2109,6 +2095,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "b2e3fa874e17a134",
+      "source": "The Globe and Mail",
+      "title": "Ontario securities watchdog flags need to prepare for quantum computing threats",
+      "url": "https://www.theglobeandmail.com/business/article-ontario-securities-commission-cybersecurity-risks-quantum-computing",
+      "published": "2026-11-10T16:00:00+00:00",
+      "content_status": "full",
+      "word_count": 757,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "4ea7d1b5254540c9",
       "source": "The Globe and Mail",
       "title": "Renovated Bloor West home on a ravine lands three bids on offer date",
@@ -2124,15 +2125,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7baa6fc47eca4579",
+      "story_id": "3bcaf99ba8aa1436",
       "source": "The Globe and Mail",
-      "title": "This retired advisor became an Honorary Colonel after being rescued from a helicopter crash",
-      "url": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-practice/article-this-retired-advisor-became-an-honorary-colonel-after-being-rescued",
-      "published": "2026-11-10T09:40:00+00:00",
+      "title": "Stellantis to repay Ottawa after sale of auto plant to defence contractor",
+      "url": "https://www.theglobeandmail.com/business/article-stellantis-brampton-roshel-auto-plant-ottawa-federal-funding-november",
+      "published": "2026-11-10T16:05:29.348000+00:00",
       "content_status": "partial",
-      "word_count": 802,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 123,
+      "quality_score": 53,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2162,21 +2163,6 @@
       "content_status": "partial",
       "word_count": 791,
       "quality_score": 86,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "15e062858bb395b4",
-      "source": "The Globe and Mail",
-      "title": "UBC paid accuser to join Steven Galloway inquiry, court hears",
-      "url": "https://www.theglobeandmail.com/canada/article-ubc-paid-accuser-to-join-steven-galloway-inquiry-court-hears",
-      "published": "2026-11-10T03:28:48.783000+00:00",
-      "content_status": "full",
-      "word_count": 735,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4465,6 +4451,64 @@
       ]
     },
     {
+      "id": "3bcaf99ba8aa1436",
+      "source": "The Globe and Mail",
+      "title": "Stellantis to repay Ottawa after sale of auto plant to defence contractor",
+      "url": "https://www.theglobeandmail.com/business/article-stellantis-brampton-roshel-auto-plant-ottawa-federal-funding-november",
+      "published": "2026-11-10T16:05:29.348000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 123,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "b2e3fa874e17a134",
+      "source": "The Globe and Mail",
+      "title": "Ontario securities watchdog flags need to prepare for quantum computing threats",
+      "url": "https://www.theglobeandmail.com/business/article-ontario-securities-commission-cybersecurity-risks-quantum-computing",
+      "published": "2026-11-10T16:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 757,
+      "paragraph_count": 23,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d664220de8f4eb81",
       "source": "The Globe and Mail",
       "title": "Can my company charge a fee if someone doesn’t show up for their shift?",
@@ -4706,70 +4750,6 @@
           "message": "Article contains an unusually large number of inline images.",
           "detail": "11 inline images"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7baa6fc47eca4579",
-      "source": "The Globe and Mail",
-      "title": "This retired advisor became an Honorary Colonel after being rescued from a helicopter crash",
-      "url": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-practice/article-this-retired-advisor-became-an-honorary-colonel-after-being-rescued",
-      "published": "2026-11-10T09:40:00+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 802,
-      "paragraph_count": 28,
-      "inline_image_count": 6,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "4 consecutive images"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "15e062858bb395b4",
-      "source": "The Globe and Mail",
-      "title": "UBC paid accuser to join Steven Galloway inquiry, court hears",
-      "url": "https://www.theglobeandmail.com/canada/article-ubc-paid-accuser-to-join-steven-galloway-inquiry-court-hears",
-      "published": "2026-11-10T03:28:48.783000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 735,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
