@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T03:22:37.928935+00:00",
-  "generated_at_london": "2026-11-09T22:22:37.928935-05:00",
-  "news_generated_at": "2026-11-10T03:17:15.631444+00:00",
+  "generated_at": "2026-11-10T03:35:14.686624+00:00",
+  "generated_at_london": "2026-11-09T22:35:14.686624-05:00",
+  "news_generated_at": "2026-11-10T03:33:22.955347+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 692,
+    "archive_story_count": 693,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 112,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 11,
-    "info_issue_count": 96,
+    "info_issue_count": 98,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -99,7 +99,7 @@
       "latest_published": "2026-11-09T20:14:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T03:16:01.774988+00:00",
+      "last_scrape": "2026-11-10T03:31:41.571276+00:00",
       "last_error": ""
     },
     {
@@ -175,7 +175,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -432,21 +432,22 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 80,
-      "average_words": 249,
-      "average_quality": 66,
+      "usable_body_rate": 70,
+      "average_words": 266,
+      "average_quality": 63,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 8,
+        "ctv:no-trusted-body": 1,
+        "embedded-json:ctv": 7,
         "ctv:summary-fallback": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 6,
-      "latest_published": "2026-11-09T23:46:19.203000+00:00",
+      "info_issues": 8,
+      "latest_published": "2026-11-10T03:21:25.698000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T03:05:07.511780+00:00",
+      "last_scrape": "2026-11-10T03:29:39.680680+00:00",
       "last_error": ""
     },
     {
@@ -1174,6 +1175,36 @@
       "word_count": 503,
       "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "3c523e1dab8f475e",
+      "source": "CTV News London",
+      "title": "Highway 403 reopens after trailer fire",
+      "url": "https://www.ctvnews.ca/london/article/highway-403-reopens-after-trailer-fire",
+      "published": "2026-11-10T03:21:25.698000+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 26,
+      "extraction_method": "ctv:no-trusted-body"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "3c523e1dab8f475e",
+      "source": "CTV News London",
+      "title": "Highway 403 reopens after trailer fire",
+      "url": "https://www.ctvnews.ca/london/article/highway-403-reopens-after-trailer-fire",
+      "published": "2026-11-10T03:21:25.698000+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 26,
+      "extraction_method": "ctv:no-trusted-body"
     },
     {
       "severity": "info",
@@ -2407,6 +2438,41 @@
       "issues": []
     },
     {
+      "id": "3c523e1dab8f475e",
+      "source": "CTV News London",
+      "title": "Highway 403 reopens after trailer fire",
+      "url": "https://www.ctvnews.ca/london/article/highway-403-reopens-after-trailer-fire",
+      "published": "2026-11-10T03:21:25.698000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 26,
+      "quality_grade": "poor",
+      "extraction_method": "ctv:no-trusted-body",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f9d04a2a6e03313b",
       "source": "CTV News London",
       "title": "Murder trial underway for man accused of setting best friend on fire",
@@ -2643,28 +2709,6 @@
       "extraction_method": "ctv:summary-fallback",
       "extraction_profile": "ctv",
       "local_score": 38,
-      "issues": []
-    },
-    {
-      "id": "a5af8f57b7fd4dcf",
-      "source": "CTV News London",
-      "title": "Late goal lifts Sting past Knights",
-      "url": "https://www.ctvnews.ca/london/article/late-goal-lifts-sting-past-knights",
-      "published": "2026-11-09T13:12:58.015000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 92,
-      "paragraph_count": 5,
-      "inline_image_count": 0,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 36,
       "issues": []
     },
     {
