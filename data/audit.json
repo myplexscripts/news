@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T15:54:00.838969+00:00",
-  "generated_at_london": "2026-11-10T10:54:00.838969-05:00",
-  "news_generated_at": "2026-11-10T15:48:01.979981+00:00",
+  "generated_at": "2026-11-10T16:04:07.772654+00:00",
+  "generated_at_london": "2026-11-10T11:04:07.772654-05:00",
+  "news_generated_at": "2026-11-10T16:02:42.080643+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 678,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 116,
     "pass_story_count": 107,
@@ -130,7 +130,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -148,10 +148,10 @@
       "warning_issues": 0,
       "info_issues": 9,
       "latest_published": "2026-11-10T10:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-10T10:16:43.326789+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -199,7 +199,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -538,19 +538,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 364,
-      "average_quality": 96,
+      "average_words": 378,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-10T14:58:59+00:00",
+      "latest_published": "2026-11-10T15:59:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T15:14:03.399565+00:00",
+      "last_scrape": "2026-11-10T16:01:11.025223+00:00",
       "last_error": ""
     },
     {
@@ -682,7 +683,7 @@
       "latest_published": "2026-11-10T11:28:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T15:46:11.795289+00:00",
+      "last_scrape": "2026-11-10T16:01:16.208529+00:00",
       "last_error": ""
     },
     {
@@ -1629,6 +1630,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "241e0479fae07fd3",
+      "source": "Global News Canada",
+      "title": "Carney must ‘fire’ industry minister, Poilievre says over Stellantis sale",
+      "url": "https://globalnews.ca/news/12144343/stellantis-sale-to-roshel-canada",
+      "published": "2026-11-10T15:59:49+00:00",
+      "content_status": "full",
+      "word_count": 359,
+      "quality_score": 78,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "ee63e3d7b1157e98",
       "source": "Global News Canada",
       "title": "Cat dies after fire breaks out in basement of Calgary home",
@@ -1726,21 +1742,6 @@
       "published": "2026-11-10T01:08:18+00:00",
       "content_status": "full",
       "word_count": 465,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e3386c464637161e",
-      "source": "Global News Canada",
-      "title": "What Winnipeg can learn from Toronto’s housing model",
-      "url": "https://globalnews.ca/news/12143498/what-winnipeg-can-learn-from-torontos-housing-model",
-      "published": "2026-11-10T00:04:43+00:00",
-      "content_status": "full",
-      "word_count": 219,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3849,6 +3850,35 @@
       "issues": []
     },
     {
+      "id": "241e0479fae07fd3",
+      "source": "Global News Canada",
+      "title": "Carney must ‘fire’ industry minister, Poilievre says over Stellantis sale",
+      "url": "https://globalnews.ca/news/12144343/stellantis-sale-to-roshel-canada",
+      "published": "2026-11-10T15:59:49+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 359,
+      "paragraph_count": 11,
+      "inline_image_count": 1,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ee63e3d7b1157e98",
       "source": "Global News Canada",
       "title": "Cat dies after fire breaks out in basement of Calgary home",
@@ -4095,35 +4125,6 @@
       "word_count": 465,
       "paragraph_count": 15,
       "inline_image_count": 5,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e3386c464637161e",
-      "source": "Global News Canada",
-      "title": "What Winnipeg can learn from Toronto’s housing model",
-      "url": "https://globalnews.ca/news/12143498/what-winnipeg-can-learn-from-torontos-housing-model",
-      "published": "2026-11-10T00:04:43+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 219,
-      "paragraph_count": 7,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
