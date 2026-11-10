@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T23:37:27.910549+00:00",
-  "generated_at_london": "2026-11-10T18:37:27.910549-05:00",
-  "news_generated_at": "2026-11-10T23:21:31.882629+00:00",
+  "generated_at": "2026-11-10T23:38:53.877096+00:00",
+  "generated_at_london": "2026-11-10T18:38:53.877096-05:00",
+  "news_generated_at": "2026-11-10T23:37:27.691072+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 681,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 106,
-    "review_story_count": 7,
+    "pass_story_count": 107,
+    "review_story_count": 6,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 12,
-    "info_issue_count": 93,
-    "healthy_source_count": 12,
-    "review_source_count": 5,
+    "warning_issue_count": 11,
+    "info_issue_count": 94,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -75,32 +75,6 @@
       "last_error": ""
     },
     {
-      "source": "Global News Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "global",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 587,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 10,
-      "latest_published": "2026-11-10T21:34:16+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-10T21:48:02.516703+00:00",
-      "last_error": ""
-    },
-    {
       "source": "London Health Sciences Centre",
       "status": "review",
       "collector_status": "healthy",
@@ -156,7 +130,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -175,10 +149,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-10T22:48:51+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-10T23:05:17.032656+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -484,19 +458,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 318,
-      "average_quality": 73,
+      "average_words": 342,
+      "average_quality": 75,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-10T22:39:02.077000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-11-10T23:23:59.699000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-10T23:09:24.875325+00:00",
+      "last_scrape": "2026-11-10T23:33:50.443342+00:00",
       "last_error": ""
     },
     {
@@ -551,6 +525,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-10T20:13:23.325609+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Global News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "global",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 594,
+      "average_quality": 95,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-10T23:29:41+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-10T23:35:59.474526+00:00",
       "last_error": ""
     },
     {
@@ -906,21 +907,6 @@
     },
     {
       "severity": "warning",
-      "code": "truncated_ending",
-      "message": "Article body appears to end with an ellipsis.",
-      "detail": "",
-      "story_id": "9eaef09771f5fdb4",
-      "source": "Global News Canada",
-      "title": "Calgary budget proposes 15% property tax increase in 2027",
-      "url": "https://globalnews.ca/news/12144269/calgary-budget-proposes-15-property-tax-increase",
-      "published": "2026-11-10T17:15:54+00:00",
-      "content_status": "full",
-      "word_count": 551,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
       "detail": "19 inline images",
@@ -1236,17 +1222,32 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "38af2668b7ff5825",
+      "source": "CTV News London",
+      "title": "Lucan Poppy Project pays tribute to veterans",
+      "url": "https://www.ctvnews.ca/london/article/lucan-poppy-project-pays-tribute-to-veterans",
+      "published": "2026-11-10T23:23:59.699000+00:00",
+      "content_status": "full",
+      "word_count": 401,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "b77e8cb97850590d",
+      "detail": "Local score 14/100",
+      "story_id": "38af2668b7ff5825",
       "source": "CTV News London",
-      "title": "Milder temperatures before cooler weather returns",
-      "url": "https://www.ctvnews.ca/london/article/milder-temperatures-before-cooler-weather-returns",
-      "published": "2026-11-10T11:00:01+00:00",
+      "title": "Lucan Poppy Project pays tribute to veterans",
+      "url": "https://www.ctvnews.ca/london/article/lucan-poppy-project-pays-tribute-to-veterans",
+      "published": "2026-11-10T23:23:59.699000+00:00",
       "content_status": "full",
-      "word_count": 158,
-      "quality_score": 66,
+      "word_count": 401,
+      "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1629,21 +1630,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9eaef09771f5fdb4",
-      "source": "Global News Canada",
-      "title": "Calgary budget proposes 15% property tax increase in 2027",
-      "url": "https://globalnews.ca/news/12144269/calgary-budget-proposes-15-property-tax-increase",
-      "published": "2026-11-10T17:15:54+00:00",
-      "content_status": "full",
-      "word_count": 551,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "de184a439af6c699",
       "source": "Global News Canada",
       "title": "Canada joins AI safety declaration but without ‘teeth,’ what can it do?",
@@ -1758,6 +1744,21 @@
       "word_count": 732,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "06f5973c75fe056f",
+      "source": "Global News Canada",
+      "title": "Wartime mystery solved as divers find wreck of ship torpedoed by German U-boat",
+      "url": "https://globalnews.ca/news/12144434/ss-cornwallis-wreckage-found",
+      "published": "2026-11-10T23:29:41+00:00",
+      "content_status": "full",
+      "word_count": 619,
+      "quality_score": 86,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2391,6 +2392,41 @@
       "issues": []
     },
     {
+      "id": "38af2668b7ff5825",
+      "source": "CTV News London",
+      "title": "Lucan Poppy Project pays tribute to veterans",
+      "url": "https://www.ctvnews.ca/london/article/lucan-poppy-project-pays-tribute-to-veterans",
+      "published": "2026-11-10T23:23:59.699000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 401,
+      "paragraph_count": 13,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 14,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 14/100"
+        }
+      ]
+    },
+    {
       "id": "5e6ab31a2f4a6633",
       "source": "CTV News London",
       "title": "NDP Leader Marit Stiles engages London businesses on economy, social issues",
@@ -2652,35 +2688,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 18/100"
-        }
-      ]
-    },
-    {
-      "id": "b77e8cb97850590d",
-      "source": "CTV News London",
-      "title": "Milder temperatures before cooler weather returns",
-      "url": "https://www.ctvnews.ca/london/article/milder-temperatures-before-cooler-weather-returns",
-      "published": "2026-11-10T11:00:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 158,
-      "paragraph_count": 7,
-      "inline_image_count": 1,
-      "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
         }
       ]
     },
@@ -3811,6 +3818,35 @@
       "issues": []
     },
     {
+      "id": "06f5973c75fe056f",
+      "source": "Global News Canada",
+      "title": "Wartime mystery solved as divers find wreck of ship torpedoed by German U-boat",
+      "url": "https://globalnews.ca/news/12144434/ss-cornwallis-wreckage-found",
+      "published": "2026-11-10T23:29:41+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 619,
+      "paragraph_count": 24,
+      "inline_image_count": 5,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "91d91034a82ebde2",
       "source": "Global News Canada",
       "title": "N.S. group apologizes for inviting convicted killer to speak at panel",
@@ -4063,41 +4099,6 @@
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9eaef09771f5fdb4",
-      "source": "Global News Canada",
-      "title": "Calgary budget proposes 15% property tax increase in 2027",
-      "url": "https://globalnews.ca/news/12144269/calgary-budget-proposes-15-property-tax-increase",
-      "published": "2026-11-10T17:15:54+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 551,
-      "paragraph_count": 15,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "truncated_ending",
-          "message": "Article body appears to end with an ellipsis.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
