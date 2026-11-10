@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T21:36:32.246894+00:00",
-  "generated_at_london": "2026-11-10T16:36:32.246894-05:00",
+  "generated_at": "2026-11-10T21:41:12.472330+00:00",
+  "generated_at_london": "2026-11-10T16:41:12.472330-05:00",
   "news_generated_at": "2026-11-10T21:34:28.489019+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 12,
-    "info_issue_count": 90,
+    "info_issue_count": 91,
     "healthy_source_count": 12,
     "review_source_count": 5,
     "error_source_count": 1,
@@ -86,11 +86,10 @@
       "pass_rate": 90,
       "usable_body_rate": 100,
       "average_words": 556,
-      "average_quality": 95,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -139,12 +138,11 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 537,
+      "average_words": 534,
       "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -487,14 +485,14 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 340,
-      "average_quality": 73,
+      "average_quality": 74,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 9,
+      "info_issues": 10,
       "latest_published": "2026-11-10T21:22:42.723000+00:00",
       "found_this_run": 10,
       "tracked": 30,
@@ -1298,6 +1296,21 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "b4661388c69c3c03",
+      "source": "CTV News London",
+      "title": "Two weeks before opening, London’s Home for Homeless Veterans receives $1M pledge",
+      "url": "https://www.ctvnews.ca/london/article/two-weeks-before-opening-londons-home-for-homeless-veterans-receives-1m-pledge",
+      "published": "2026-11-10T21:22:42.723000+00:00",
+      "content_status": "full",
+      "word_count": 281,
+      "quality_score": 80,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1308,7 +1321,7 @@
       "published": "2026-11-10T21:22:42.723000+00:00",
       "content_status": "full",
       "word_count": 281,
-      "quality_score": 78,
+      "quality_score": 80,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1638,8 +1651,8 @@
       "published": "2026-11-10T21:21:57+00:00",
       "content_status": "full",
       "word_count": 662,
-      "quality_score": 83,
-      "extraction_method": "dom:global:main:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2101,10 +2114,10 @@
       "title": "This Remembrance Day, learn the history of Canada’s rarest military medals",
       "url": "https://www.theglobeandmail.com/canada/article-remembrance-day-veteran-medals",
       "published": "2026-11-10T21:07:32.275000+00:00",
-      "content_status": "full",
-      "word_count": 963,
+      "content_status": "partial",
+      "word_count": 934,
       "quality_score": 97,
-      "extraction_method": "dom:globe:article#content-gate"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2354,20 +2367,26 @@
       "url": "https://www.ctvnews.ca/london/article/two-weeks-before-opening-londons-home-for-homeless-veterans-receives-1m-pledge",
       "published": "2026-11-10T21:22:42.723000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 281,
       "paragraph_count": 14,
       "inline_image_count": 0,
-      "quality_score": 78,
+      "quality_score": 80,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -3768,10 +3787,10 @@
       "content_status": "full",
       "word_count": 662,
       "paragraph_count": 19,
-      "inline_image_count": 1,
-      "quality_score": 83,
+      "inline_image_count": 2,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:main:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -4381,13 +4400,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 963,
-      "paragraph_count": 31,
+      "content_status": "partial",
+      "word_count": 934,
+      "paragraph_count": 29,
       "inline_image_count": 6,
       "quality_score": 97,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
