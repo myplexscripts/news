@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T23:54:10.949846+00:00",
-  "generated_at_london": "2026-11-10T18:54:10.949846-05:00",
+  "generated_at": "2026-11-10T23:58:19.965906+00:00",
+  "generated_at_london": "2026-11-10T18:58:19.965906-05:00",
   "news_generated_at": "2026-11-10T23:52:41.989198+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 11,
-    "info_issue_count": 93,
+    "info_issue_count": 94,
     "healthy_source_count": 13,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -112,12 +112,11 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 581,
+      "average_words": 577,
       "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -441,7 +440,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
+      "info_issues": 15,
       "latest_published": "2026-11-10T23:39:03.561000+00:00",
       "found_this_run": 5,
       "tracked": 30,
@@ -670,11 +669,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 727,
-      "average_quality": 77,
+      "average_words": 872,
+      "average_quality": 80,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:postmedia:article:strict": 1,
+        "jina:postmedia-repair": 1,
         "reader:semantic-rich-v1": 8,
         "merge:reader:semantic-rich-v1": 1
       },
@@ -1159,6 +1158,21 @@
       "content_status": "full",
       "word_count": 1393,
       "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "fc8cd743aef5d35e",
+      "source": "CTV News Canada",
+      "title": "‘Packed to the rafters’: Free registration breathes new life into Saskatoon Legion",
+      "url": "https://www.ctvnews.ca/canada/article/packed-to-the-rafters-free-registration-breathes-new-life-into-saskatoon-legion",
+      "published": "2026-11-10T23:39:03.561000+00:00",
+      "content_status": "full",
+      "word_count": 745,
+      "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1891,10 +1905,10 @@
       "title": "Ontario mother who faked illnesses in twin boys ‘for years and years’ sentenced to prison",
       "url": "https://nationalpost.com/news/mother-who-faked-twin-boys-illnesses-sentenced",
       "published": "2026-11-10T23:38:18+00:00",
-      "content_status": "partial",
-      "word_count": 121,
-      "quality_score": 53,
-      "extraction_method": "dom:postmedia:article:strict"
+      "content_status": "full",
+      "word_count": 1568,
+      "quality_score": 82,
+      "extraction_method": "jina:postmedia-repair"
     },
     {
       "severity": "info",
@@ -2026,10 +2040,10 @@
       "title": "Emerge Canada, senior executives improperly borrowed millions from ETFs, securities watchdog rules",
       "url": "https://www.theglobeandmail.com/business/article-emerge-canada-senior-executives-improperly-borrowed-millions-from-etfs",
       "published": "2026-11-10T23:36:20.621000+00:00",
-      "content_status": "full",
-      "word_count": 940,
+      "content_status": "partial",
+      "word_count": 900,
       "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -4100,10 +4114,10 @@
       "url": "https://www.ctvnews.ca/canada/article/packed-to-the-rafters-free-registration-breathes-new-life-into-saskatoon-legion",
       "published": "2026-11-10T23:39:03.561000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 745,
       "paragraph_count": 36,
@@ -4114,6 +4128,12 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4418,13 +4438,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 940,
-      "paragraph_count": 28,
+      "content_status": "partial",
+      "word_count": 900,
+      "paragraph_count": 25,
       "inline_image_count": 0,
       "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4720,13 +4740,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "partial",
-      "word_count": 121,
-      "paragraph_count": 3,
-      "inline_image_count": 0,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "dom:postmedia:article:strict",
+      "content_status": "full",
+      "word_count": 1568,
+      "paragraph_count": 48,
+      "inline_image_count": 3,
+      "quality_score": 82,
+      "quality_grade": "good",
+      "extraction_method": "jina:postmedia-repair",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
