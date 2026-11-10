@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-10T11:06:07.979592+00:00",
-  "generated_at_london": "2026-11-10T06:06:07.979592-05:00",
+  "generated_at": "2026-11-10T11:11:21.079943+00:00",
+  "generated_at_london": "2026-11-10T06:11:21.079943-05:00",
   "news_generated_at": "2026-11-10T11:04:51.203675+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 107,
-    "review_story_count": 5,
+    "pass_story_count": 106,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 10,
-    "info_issue_count": 93,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "warning_issue_count": 11,
+    "info_issue_count": 94,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -85,13 +85,13 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 603,
-      "average_quality": 71,
+      "average_words": 665,
+      "average_quality": 74,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:postmedia:article:strict": 2,
+        "reader:semantic-rich-v1": 7,
         "jina:postmedia-repair": 2,
-        "reader:semantic-rich-v1": 6
+        "dom:postmedia:article:strict": 1
       },
       "critical_issues": 0,
       "warning_issues": 1,
@@ -100,6 +100,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-10T11:03:34.869391+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "The Globe and Mail",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 835,
+      "average_quality": 93,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 14,
+      "latest_published": "2026-11-10T11:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-10T11:03:32.011687+00:00",
       "last_error": ""
     },
     {
@@ -388,7 +415,7 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 15,
+      "info_issues": 16,
       "latest_published": "2026-11-10T11:00:45.135000+00:00",
       "found_this_run": 7,
       "tracked": 30,
@@ -487,12 +514,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 569,
-      "average_quality": 95,
+      "average_words": 571,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -658,34 +684,6 @@
       "found_this_run": 10,
       "tracked": 1,
       "last_scrape": "2026-11-04T18:23:26.382201+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "The Globe and Mail",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 837,
-      "average_quality": 92,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:globe:article#content-gate": 3,
-        "dom:globe:main": 1,
-        "dom:semantic-rich-v1": 6
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-11-10T11:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-10T11:03:32.011687+00:00",
       "last_error": ""
     },
     {
@@ -908,6 +906,21 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "b905b02344e3d4d7",
+      "source": "The Globe and Mail",
+      "title": "Claire Cruickshank and Betty McTaggart: In their 90s and still BFFs",
+      "url": "https://www.theglobeandmail.com/life/article-claire-cruickshank-and-betty-mctaggart-in-their-90s-and-still-bffs",
+      "published": "2026-11-10T11:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 1128,
+      "quality_score": 97,
+      "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -965,6 +978,21 @@
       "content_status": "full",
       "word_count": 1355,
       "quality_score": 88,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "a77d731fe9cf5d20",
+      "source": "CTV News Canada",
+      "title": "Collaboration helps cybercrime fighters 'paint full picture,' event participants say",
+      "url": "https://www.ctvnews.ca/canada/article/collaboration-helps-cybercrime-fighters-paint-full-picture-event-participants-say",
+      "published": "2026-11-10T10:48:21.640000+00:00",
+      "content_status": "full",
+      "word_count": 586,
+      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1593,9 +1621,9 @@
       "url": "https://globalnews.ca/news/12143847/ford-governments-bill-140-gutting-ontarios-environmental-rights-experts-warn",
       "published": "2026-11-10T11:00:59+00:00",
       "content_status": "full",
-      "word_count": 762,
-      "quality_score": 90,
-      "extraction_method": "dom:global:main:strict"
+      "word_count": 780,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1743,9 +1771,9 @@
       "url": "https://nationalpost.com/news/canadian-politics/pipelines-canadians-poll",
       "published": "2026-11-10T11:00:00+00:00",
       "content_status": "partial",
-      "word_count": 121,
-      "quality_score": 53,
-      "extraction_method": "dom:postmedia:article:strict"
+      "word_count": 737,
+      "quality_score": 83,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1967,10 +1995,10 @@
       "title": "Claire Cruickshank and Betty McTaggart: In their 90s and still BFFs",
       "url": "https://www.theglobeandmail.com/life/article-claire-cruickshank-and-betty-mctaggart-in-their-90s-and-still-bffs",
       "published": "2026-11-10T11:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1093,
+      "content_status": "partial",
+      "word_count": 1128,
       "quality_score": 97,
-      "extraction_method": "dom:globe:main"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1982,10 +2010,10 @@
       "title": "Is your doctor working too much? Ontario seems to think so",
       "url": "https://www.theglobeandmail.com/opinion/article-is-your-doctor-working-too-much-ontario-seems-to-think-so",
       "published": "2026-11-10T11:00:00+00:00",
-      "content_status": "full",
-      "word_count": 799,
-      "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 738,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1997,10 +2025,10 @@
       "title": "Is your doctor working too much? Ontario seems to think so",
       "url": "https://www.theglobeandmail.com/opinion/article-is-your-doctor-working-too-much-ontario-seems-to-think-so",
       "published": "2026-11-10T11:00:00+00:00",
-      "content_status": "full",
-      "word_count": 799,
-      "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "content_status": "partial",
+      "word_count": 738,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2072,10 +2100,10 @@
       "title": "Toronto’s Blue J Legal raises $176-million to expand AI offerings to tax professionals",
       "url": "https://www.theglobeandmail.com/business/article-torontos-blue-j-legal-raises-176-million-to-expand-ai-offerings-to-tax",
       "published": "2026-11-10T11:00:00+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 791,
       "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2087,10 +2115,10 @@
       "title": "Toronto’s Blue J Legal raises $176-million to expand AI offerings to tax professionals",
       "url": "https://www.theglobeandmail.com/business/article-torontos-blue-j-legal-raises-176-million-to-expand-ai-offerings-to-tax",
       "published": "2026-11-10T11:00:00+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 791,
       "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2362,7 +2390,7 @@
       "content_status": "full",
       "word_count": 158,
       "paragraph_count": 7,
-      "inline_image_count": 0,
+      "inline_image_count": 1,
       "quality_score": 66,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
@@ -3716,12 +3744,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 762,
+      "word_count": 780,
       "paragraph_count": 24,
       "inline_image_count": 2,
-      "quality_score": 90,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:global:main:strict",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -4071,10 +4099,10 @@
       "url": "https://www.ctvnews.ca/canada/article/collaboration-helps-cybercrime-fighters-paint-full-picture-event-participants-say",
       "published": "2026-11-10T10:48:21.640000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
       "word_count": 586,
       "paragraph_count": 20,
@@ -4085,6 +4113,12 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4325,13 +4359,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 791,
       "paragraph_count": 16,
       "inline_image_count": 0,
       "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4360,13 +4394,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 2,
-      "content_status": "full",
-      "word_count": 799,
-      "paragraph_count": 29,
-      "inline_image_count": 0,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "content_status": "partial",
+      "word_count": 738,
+      "paragraph_count": 25,
+      "inline_image_count": 1,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4390,21 +4424,27 @@
       "title": "Claire Cruickshank and Betty McTaggart: In their 90s and still BFFs",
       "url": "https://www.theglobeandmail.com/life/article-claire-cruickshank-and-betty-mctaggart-in-their-90s-and-still-bffs",
       "published": "2026-11-10T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
+      "audit_status": "review",
+      "audit_score": 85,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 1,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 1093,
-      "paragraph_count": 35,
-      "inline_image_count": 7,
+      "content_status": "partial",
+      "word_count": 1128,
+      "paragraph_count": 39,
+      "inline_image_count": 11,
       "quality_score": 97,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:main",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4640,12 +4680,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "partial",
-      "word_count": 121,
-      "paragraph_count": 3,
+      "word_count": 737,
+      "paragraph_count": 30,
       "inline_image_count": 0,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "dom:postmedia:article:strict",
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
