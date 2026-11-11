@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-11T14:07:02.547488+00:00",
-  "generated_at_london": "2026-11-11T09:07:02.547488-05:00",
-  "news_generated_at": "2026-11-11T14:01:17.415267+00:00",
+  "generated_at": "2026-11-11T14:18:01.786756+00:00",
+  "generated_at_london": "2026-11-11T09:18:01.786756-05:00",
+  "news_generated_at": "2026-11-11T14:16:37.431333+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 698,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 100,
-    "review_story_count": 9,
+    "pass_story_count": 101,
+    "review_story_count": 8,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 14,
+    "warning_issue_count": 13,
     "info_issue_count": 88,
     "healthy_source_count": 9,
     "review_source_count": 7,
@@ -161,30 +161,31 @@
       "collector_status": "healthy",
       "profile": "globe",
       "sample_size": 10,
-      "pass": 8,
-      "review": 2,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 80,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 729,
+      "average_words": 787,
       "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 2,
+      "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-11T13:15:25.278000+00:00",
+      "latest_published": "2026-11-11T14:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-11T13:29:30.894102+00:00",
+      "last_scrape": "2026-11-11T14:15:12.866676+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -202,10 +203,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-11T10:00:00+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-11T10:23:38.575922+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -973,21 +974,6 @@
       "content_status": "full",
       "word_count": 837,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "3 consecutive images",
-      "story_id": "e53922841b016cab",
-      "source": "The Globe and Mail",
-      "title": "On the Move: Advisor team focused on longevity moves to Wellington-Altus",
-      "url": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-news/article-on-the-move-advisor-team-focused-on-longevity-moves-to-wellington",
-      "published": "2026-11-11T09:40:00+00:00",
-      "content_status": "partial",
-      "word_count": 522,
-      "quality_score": 91,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1985,6 +1971,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "df9eabac8f5aadac",
+      "source": "The Globe and Mail",
+      "title": "Artists Sharon Lockhart and Zadie Xa show two sides of reality at Toronto’s Power Plant",
+      "url": "https://www.theglobeandmail.com/culture/article-sharon-lockhart-fogo-zadie-xa-moonlit-confessions-power-plant-gallery",
+      "published": "2026-11-11T14:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1105,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "8b308ebebae1e0a9",
       "source": "The Globe and Mail",
       "title": "B.C. could get a brief reprieve from heavy rain before the next storm arrives",
@@ -2038,21 +2039,6 @@
       "content_status": "partial",
       "word_count": 329,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e53922841b016cab",
-      "source": "The Globe and Mail",
-      "title": "On the Move: Advisor team focused on longevity moves to Wellington-Altus",
-      "url": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-news/article-on-the-move-advisor-team-focused-on-longevity-moves-to-wellington",
-      "published": "2026-11-11T09:40:00+00:00",
-      "content_status": "partial",
-      "word_count": 522,
-      "quality_score": 91,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4350,6 +4336,35 @@
       ]
     },
     {
+      "id": "df9eabac8f5aadac",
+      "source": "The Globe and Mail",
+      "title": "Artists Sharon Lockhart and Zadie Xa show two sides of reality at Toronto’s Power Plant",
+      "url": "https://www.theglobeandmail.com/culture/article-sharon-lockhart-fogo-zadie-xa-moonlit-confessions-power-plant-gallery",
+      "published": "2026-11-11T14:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1105,
+      "paragraph_count": 16,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bd6f747b89eb71ca",
       "source": "The Globe and Mail",
       "title": "Remembrance Day live updates: Where to watch ceremonies, and what’s open and closed",
@@ -4597,41 +4612,6 @@
       "paragraph_count": 32,
       "inline_image_count": 4,
       "quality_score": 87,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "3 consecutive images"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e53922841b016cab",
-      "source": "The Globe and Mail",
-      "title": "On the Move: Advisor team focused on longevity moves to Wellington-Altus",
-      "url": "https://www.theglobeandmail.com/investing/globe-advisor/advisor-news/article-on-the-move-advisor-team-focused-on-longevity-moves-to-wellington",
-      "published": "2026-11-11T09:40:00+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 522,
-      "paragraph_count": 16,
-      "inline_image_count": 4,
-      "quality_score": 91,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
