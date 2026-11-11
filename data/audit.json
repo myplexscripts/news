@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-11T14:52:58.565669+00:00",
-  "generated_at_london": "2026-11-11T09:52:58.565669-05:00",
-  "news_generated_at": "2026-11-11T14:48:10.089262+00:00",
+  "generated_at": "2026-11-11T15:05:23.468939+00:00",
+  "generated_at_london": "2026-11-11T10:05:23.468939-05:00",
+  "news_generated_at": "2026-11-11T15:04:03.426436+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 698,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 102,
+    "pass_story_count": 103,
     "review_story_count": 8,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
     "warning_issue_count": 13,
     "info_issue_count": 89,
     "healthy_source_count": 9,
@@ -108,24 +108,25 @@
       "collector_status": "healthy",
       "profile": "global",
       "sample_size": 10,
-      "pass": 8,
+      "pass": 9,
       "review": 1,
-      "fail": 1,
-      "pass_rate": 80,
+      "fail": 0,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 511,
-      "average_quality": 96,
+      "average_words": 574,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
+      "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-11T13:46:57+00:00",
+      "latest_published": "2026-11-11T14:58:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-11T13:59:53.236198+00:00",
+      "last_scrape": "2026-11-11T15:02:34.816942+00:00",
       "last_error": ""
     },
     {
@@ -184,7 +185,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -202,10 +203,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-11T14:11:21+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-11T14:46:47.740161+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -747,21 +748,6 @@
       "published": "2026-11-09T05:00:00+00:00",
       "content_status": "full",
       "word_count": 0,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "65 words",
-      "story_id": "af82146fc37e6276",
-      "source": "Global News Canada",
-      "title": "B.C. remembers: Watch the 2026 Vancouver Remembrance Day ceremony",
-      "url": "https://globalnews.ca/news/12145457/bc-2026-vancouver-remembrance-day-ceremony",
-      "published": "2026-11-11T00:09:27+00:00",
-      "content_status": "full",
-      "word_count": 65,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1670,21 +1656,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "af82146fc37e6276",
-      "source": "Global News Canada",
-      "title": "B.C. remembers: Watch the 2026 Vancouver Remembrance Day ceremony",
-      "url": "https://globalnews.ca/news/12145457/bc-2026-vancouver-remembrance-day-ceremony",
-      "published": "2026-11-11T00:09:27+00:00",
-      "content_status": "full",
-      "word_count": 65,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "0d3bba99896e89e7",
       "source": "Global News Canada",
       "title": "Carney heading for summits in Ireland, Asia after Remembrance Day ceremony",
@@ -1754,6 +1725,21 @@
       "word_count": 463,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d50195ab4b755642",
+      "source": "Global News Canada",
+      "title": "Saskatoon judge delivers 20-year sentence for ‘absolutely abhorrent’ killing",
+      "url": "https://globalnews.ca/news/12145891/saskatoon-absolutely-abhorrent-killing",
+      "published": "2026-11-11T14:58:56+00:00",
+      "content_status": "full",
+      "word_count": 704,
+      "quality_score": 88,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3726,6 +3712,35 @@
       "issues": []
     },
     {
+      "id": "d50195ab4b755642",
+      "source": "Global News Canada",
+      "title": "Saskatoon judge delivers 20-year sentence for ‘absolutely abhorrent’ killing",
+      "url": "https://globalnews.ca/news/12145891/saskatoon-absolutely-abhorrent-killing",
+      "published": "2026-11-11T14:58:56+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 704,
+      "paragraph_count": 28,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fd93307a279e7628",
       "source": "Global News Canada",
       "title": "3 more charged in Guelph homecoming investigation, bringing arrests to 15",
@@ -3984,41 +3999,6 @@
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "af82146fc37e6276",
-      "source": "Global News Canada",
-      "title": "B.C. remembers: Watch the 2026 Vancouver Remembrance Day ceremony",
-      "url": "https://globalnews.ca/news/12145457/bc-2026-vancouver-remembrance-day-ceremony",
-      "published": "2026-11-11T00:09:27+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 65,
-      "paragraph_count": 5,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "65 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
