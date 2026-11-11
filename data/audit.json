@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-11T12:02:04.699533+00:00",
-  "generated_at_london": "2026-11-11T07:02:04.699533-05:00",
-  "news_generated_at": "2026-11-11T11:57:30.814683+00:00",
+  "generated_at": "2026-11-11T12:14:06.651114+00:00",
+  "generated_at_london": "2026-11-11T07:14:06.651114-05:00",
+  "news_generated_at": "2026-11-11T12:12:45.602295+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 690,
+    "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 112,
     "pass_story_count": 99,
@@ -166,25 +166,26 @@
       "fail": 0,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 803,
-      "average_quality": 94,
+      "average_words": 808,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-11T11:00:00+00:00",
+      "latest_published": "2026-11-11T11:55:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-11T11:25:29.738625+00:00",
+      "last_scrape": "2026-11-11T12:11:19.537289+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -202,10 +203,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-11T10:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-11T10:23:38.575922+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -544,7 +545,7 @@
       "latest_published": "2026-11-11T11:43:02.136000+00:00",
       "found_this_run": 5,
       "tracked": 30,
-      "last_scrape": "2026-11-11T11:55:59.012809+00:00",
+      "last_scrape": "2026-11-11T11:59:44.519751+00:00",
       "last_error": ""
     },
     {
@@ -691,20 +692,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 937,
-      "average_quality": 80,
+      "average_words": 891,
+      "average_quality": 78,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
+        "dom:postmedia:article:strict": 1,
+        "reader:semantic-rich-v1": 8,
         "merge:reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-11T11:53:53+00:00",
+      "latest_published": "2026-11-11T11:54:38+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-11T11:56:01.788277+00:00",
+      "last_scrape": "2026-11-11T12:11:20.200536+00:00",
       "last_error": ""
     },
     {
@@ -1910,21 +1912,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a9a021da75d2ddd6",
-      "source": "National Post",
-      "title": "Trump comment could earn Canadian man a ban from the U.S.: ‘I’m not a threat’",
-      "url": "https://nationalpost.com/news/trump-comment-could-earn-canadian-man-a-ban-from-the-u-s-im-not-a-threat",
-      "published": "2026-11-10T19:45:41+00:00",
-      "content_status": "partial",
-      "word_count": 562,
-      "quality_score": 78,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "53be30b7b4304ae3",
       "source": "National Post",
       "title": "Why winning all three federal byelections in Quebec could be an ‘uphill battle’ for the Liberals",
@@ -1934,6 +1921,21 @@
       "word_count": 1015,
       "quality_score": 82,
       "extraction_method": "merge:reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d0d042d353b50649",
+      "source": "National Post",
+      "title": "Younger Canadians, Quebec residents less likely to find military service important: poll",
+      "url": "https://nationalpost.com/news/canada/remembrance-day-military-service-poll",
+      "published": "2026-11-11T11:54:38+00:00",
+      "content_status": "partial",
+      "word_count": 106,
+      "quality_score": 53,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -1970,6 +1972,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "8b308ebebae1e0a9",
+      "source": "The Globe and Mail",
+      "title": "B.C. could get a brief reprieve from heavy rain before the next storm arrives",
+      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-weather-rain-storms",
+      "published": "2026-11-11T11:49:06.393000+00:00",
+      "content_status": "full",
+      "word_count": 252,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "25dcff3d365eb963",
       "source": "The Globe and Mail",
       "title": "B.C. storm delays search for missing canoeist",
@@ -1978,21 +1995,6 @@
       "content_status": "full",
       "word_count": 857,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4134cd87978d1198",
-      "source": "The Globe and Mail",
-      "title": "Darlington small modular reactor faces delay and cost overruns, prompting OPG assessment",
-      "url": "https://www.theglobeandmail.com/business/article-darlington-small-modular-reactor-ontario-power-generation",
-      "published": "2026-11-10T23:52:35.053000+00:00",
-      "content_status": "full",
-      "word_count": 703,
-      "quality_score": 86,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -2060,6 +2062,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "e350282f0e4c95da",
+      "source": "The Globe and Mail",
+      "title": "Toronto’s Reel Asian film festival marks 30 years with a renewed call for change",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/film/article-toronto-reel-asian-international-film-festival-30-years",
+      "published": "2026-11-11T11:55:00+00:00",
+      "content_status": "full",
+      "word_count": 1210,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "43c84ee97e2464d2",
       "source": "The Globe and Mail",
       "title": "UBC was facing growing pressure on sexual assault complaints process as Galloway allegations surfaced",
@@ -2098,21 +2115,6 @@
       "content_status": "partial",
       "word_count": 862,
       "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a4c4023d53e0654f",
-      "source": "The Globe and Mail",
-      "title": "Zak Jones, Robert Moor among Writers’ Trust prize winners",
-      "url": "https://www.theglobeandmail.com/culture/books/article-zak-jones-robert-moor-among-writers-trust-prize-winners",
-      "published": "2026-11-11T01:30:00+00:00",
-      "content_status": "full",
-      "word_count": 713,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4285,6 +4287,64 @@
       ]
     },
     {
+      "id": "e350282f0e4c95da",
+      "source": "The Globe and Mail",
+      "title": "Toronto’s Reel Asian film festival marks 30 years with a renewed call for change",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/film/article-toronto-reel-asian-international-film-festival-30-years",
+      "published": "2026-11-11T11:55:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1210,
+      "paragraph_count": 22,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "8b308ebebae1e0a9",
+      "source": "The Globe and Mail",
+      "title": "B.C. could get a brief reprieve from heavy rain before the next storm arrives",
+      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-weather-rain-storms",
+      "published": "2026-11-11T11:49:06.393000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 252,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "44cab3ddc1f5d131",
       "source": "The Globe and Mail",
       "title": "Spare a thought for Canada’s Cadets this Remembrance Day",
@@ -4528,53 +4588,24 @@
       ]
     },
     {
-      "id": "a4c4023d53e0654f",
-      "source": "The Globe and Mail",
-      "title": "Zak Jones, Robert Moor among Writers’ Trust prize winners",
-      "url": "https://www.theglobeandmail.com/culture/books/article-zak-jones-robert-moor-among-writers-trust-prize-winners",
-      "published": "2026-11-11T01:30:00+00:00",
+      "id": "d0d042d353b50649",
+      "source": "National Post",
+      "title": "Younger Canadians, Quebec residents less likely to find military service important: poll",
+      "url": "https://nationalpost.com/news/canada/remembrance-day-military-service-poll",
+      "published": "2026-11-11T11:54:38+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 713,
-      "paragraph_count": 12,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4134cd87978d1198",
-      "source": "The Globe and Mail",
-      "title": "Darlington small modular reactor faces delay and cost overruns, prompting OPG assessment",
-      "url": "https://www.theglobeandmail.com/business/article-darlington-small-modular-reactor-ontario-power-generation",
-      "published": "2026-11-10T23:52:35.053000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 703,
-      "paragraph_count": 21,
+      "content_status": "partial",
+      "word_count": 106,
+      "paragraph_count": 3,
       "inline_image_count": 0,
-      "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
         {
@@ -4835,35 +4866,6 @@
       "quality_score": 82,
       "quality_grade": "good",
       "extraction_method": "merge:reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a9a021da75d2ddd6",
-      "source": "National Post",
-      "title": "Trump comment could earn Canadian man a ban from the U.S.: ‘I’m not a threat’",
-      "url": "https://nationalpost.com/news/trump-comment-could-earn-canadian-man-a-ban-from-the-u-s-im-not-a-threat",
-      "published": "2026-11-10T19:45:41+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 562,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
