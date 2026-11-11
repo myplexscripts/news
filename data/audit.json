@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-11T20:07:27.444278+00:00",
-  "generated_at_london": "2026-11-11T15:07:27.444278-05:00",
-  "news_generated_at": "2026-11-11T20:01:22.771387+00:00",
+  "generated_at": "2026-11-11T20:19:49.417216+00:00",
+  "generated_at_london": "2026-11-11T15:19:49.417216-05:00",
+  "news_generated_at": "2026-11-11T20:17:36.389464+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 683,
+    "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 103,
-    "review_story_count": 8,
+    "pass_story_count": 102,
+    "review_story_count": 9,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 13,
+    "warning_issue_count": 15,
     "info_issue_count": 86,
-    "healthy_source_count": 10,
-    "review_source_count": 6,
+    "healthy_source_count": 9,
+    "review_source_count": 7,
     "error_source_count": 0,
     "waiting_source_count": 12
   },
@@ -139,19 +139,20 @@
       "fail": 1,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 494,
+      "average_words": 534,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-11-11T19:16:58+00:00",
+      "latest_published": "2026-11-11T19:59:44+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-11T19:28:45.266416+00:00",
+      "last_scrape": "2026-11-11T20:15:31.802305+00:00",
       "last_error": ""
     },
     {
@@ -179,6 +180,33 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-11-10T14:41:44.668322+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 473,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-11T19:57:46+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-11T20:15:35.601999+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +709,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 460,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-11T16:59:36+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-11T18:26:34.145968+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -958,6 +960,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "17df98f607b9c88b",
+      "source": "Toronto Star",
+      "title": "Hamilton police looking for three suspects in home invasion",
+      "url": "https://www.thestar.com/news/ontario/hamilton-police-looking-for-three-suspects-in-home-invasion/article_66df5a3d-0431-5c26-a011-b24ba59b871d.html",
+      "published": "2026-11-11T19:57:46+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "17df98f607b9c88b",
+      "source": "Toronto Star",
+      "title": "Hamilton police looking for three suspects in home invasion",
+      "url": "https://www.thestar.com/news/ontario/hamilton-police-looking-for-three-suspects-in-home-invasion/article_66df5a3d-0431-5c26-a011-b24ba59b871d.html",
+      "published": "2026-11-11T19:57:46+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1579,21 +1611,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "fd93307a279e7628",
-      "source": "Global News Canada",
-      "title": "3 more charged in Guelph homecoming investigation, bringing arrests to 15",
-      "url": "https://globalnews.ca/news/12146061/guelph-homecoming-investigation-arrests",
-      "published": "2026-11-11T13:46:57+00:00",
-      "content_status": "full",
-      "word_count": 370,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "b3e1bf58188dfe29",
       "source": "Global News Canada",
       "title": "Aircraft being used for Remembrance Day ceremony crashes in Quebec: premier",
@@ -1693,6 +1710,21 @@
       "word_count": 728,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ce7126a15acfb26d",
+      "source": "Global News Canada",
+      "title": "Stopping GLP-1 drugs could increase heart attack risk for some, study says",
+      "url": "https://globalnews.ca/news/12146191/glp-1-weight-loss-diabetes-heart-attack-risk",
+      "published": "2026-11-11T19:59:44+00:00",
+      "content_status": "full",
+      "word_count": 766,
+      "quality_score": 92,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2104,6 +2136,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "17df98f607b9c88b",
+      "source": "Toronto Star",
+      "title": "Hamilton police looking for three suspects in home invasion",
+      "url": "https://www.thestar.com/news/ontario/hamilton-police-looking-for-three-suspects-in-home-invasion/article_66df5a3d-0431-5c26-a011-b24ba59b871d.html",
+      "published": "2026-11-11T19:57:46+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "ea548cf1e1fa2a19",
       "source": "Toronto Star",
       "title": "Molson Canadian, Coors Light, Blue Moon among beers recalled across Canada over pieces of metal",
@@ -2156,21 +2203,6 @@
       "published": "2026-11-11T15:27:48+00:00",
       "content_status": "full",
       "word_count": 314,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f82cff109db679b1",
-      "source": "Toronto Star",
-      "title": "Rain hammering B.C. south coast May taper, but more on the way: meteorologist",
-      "url": "https://www.thestar.com/news/canada/british-columbia/rain-hammering-b-c-south-coast-may-taper-but-more-on-the-way-meteorologist/article_ed66d491-ee3f-5145-b45c-13df6aaa2c67.html",
-      "published": "2026-11-11T09:10:37+00:00",
-      "content_status": "partial",
-      "word_count": 77,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3665,6 +3697,35 @@
       "issues": []
     },
     {
+      "id": "ce7126a15acfb26d",
+      "source": "Global News Canada",
+      "title": "Stopping GLP-1 drugs could increase heart attack risk for some, study says",
+      "url": "https://globalnews.ca/news/12146191/glp-1-weight-loss-diabetes-heart-attack-risk",
+      "published": "2026-11-11T19:59:44+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 766,
+      "paragraph_count": 22,
+      "inline_image_count": 2,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "37124768d1d0b992",
       "source": "Global News Canada",
       "title": "Intimate partner violence up 15% over 8 years in Canada, StatCan says",
@@ -3910,35 +3971,6 @@
       "word_count": 728,
       "paragraph_count": 28,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "fd93307a279e7628",
-      "source": "Global News Canada",
-      "title": "3 more charged in Guelph homecoming investigation, bringing arrests to 15",
-      "url": "https://globalnews.ca/news/12146061/guelph-homecoming-investigation-arrests",
-      "published": "2026-11-11T13:46:57+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 370,
-      "paragraph_count": 16,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4848,6 +4880,47 @@
       ]
     },
     {
+      "id": "17df98f607b9c88b",
+      "source": "Toronto Star",
+      "title": "Hamilton police looking for three suspects in home invasion",
+      "url": "https://www.thestar.com/news/ontario/hamilton-police-looking-for-three-suspects-in-home-invasion/article_66df5a3d-0431-5c26-a011-b24ba59b871d.html",
+      "published": "2026-11-11T19:57:46+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2a00e25d08a15597",
       "source": "Toronto Star",
       "title": "Montreal's LaSalle College gets more time to repay debts amid language fines dispute",
@@ -5094,35 +5167,6 @@
       "word_count": 1151,
       "paragraph_count": 42,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f82cff109db679b1",
-      "source": "Toronto Star",
-      "title": "Rain hammering B.C. south coast May taper, but more on the way: meteorologist",
-      "url": "https://www.thestar.com/news/canada/british-columbia/rain-hammering-b-c-south-coast-may-taper-but-more-on-the-way-meteorologist/article_ed66d491-ee3f-5145-b45c-13df6aaa2c67.html",
-      "published": "2026-11-11T09:10:37+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 77,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
