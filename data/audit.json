@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-11T00:09:39.135631+00:00",
-  "generated_at_london": "2026-11-10T19:09:39.135631-05:00",
+  "generated_at": "2026-11-11T00:13:08.565005+00:00",
+  "generated_at_london": "2026-11-10T19:13:08.565005-05:00",
   "news_generated_at": "2026-11-11T00:08:08.165025+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 108,
-    "review_story_count": 5,
+    "pass_story_count": 107,
+    "review_story_count": 6,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 10,
-    "info_issue_count": 95,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "warning_issue_count": 11,
+    "info_issue_count": 94,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -72,6 +72,32 @@
       "found_this_run": 18,
       "tracked": 1,
       "last_scrape": "2026-11-09T12:03:01.722515+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News London",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 347,
+      "average_quality": 74,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 12,
+      "latest_published": "2026-11-10T23:56:23.869000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-11T00:04:42.681056+00:00",
       "last_error": ""
     },
     {
@@ -422,32 +448,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News London",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 347,
-      "average_quality": 74,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-11-10T23:56:23.869000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-11T00:04:42.681056+00:00",
-      "last_error": ""
-    },
-    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -647,8 +647,7 @@
       "average_quality": 80,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "jina:postmedia-repair": 1,
-        "reader:semantic-rich-v1": 8,
+        "reader:semantic-rich-v1": 9,
         "merge:reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
@@ -697,12 +696,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 534,
+      "average_words": 530,
       "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -890,6 +888,21 @@
       "word_count": 729,
       "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "3 consecutive images",
+      "story_id": "6f90214ca2dba2f5",
+      "source": "CTV News London",
+      "title": "Midwestern Ontario town joining forces with Belgian region in new Sister City agreement",
+      "url": "https://www.ctvnews.ca/london/article/midwestern-ontario-town-joining-forces-with-belgian-region-in-new-sister-city-agreement",
+      "published": "2026-11-10T23:56:23.869000+00:00",
+      "content_status": "full",
+      "word_count": 580,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "warning",
@@ -1219,21 +1232,6 @@
       "content_status": "full",
       "word_count": 401,
       "quality_score": 86,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "6f90214ca2dba2f5",
-      "source": "CTV News London",
-      "title": "Midwestern Ontario town joining forces with Belgian region in new Sister City agreement",
-      "url": "https://www.ctvnews.ca/london/article/midwestern-ontario-town-joining-forces-with-belgian-region-in-new-sister-city-agreement",
-      "published": "2026-11-10T23:56:23.869000+00:00",
-      "content_status": "full",
-      "word_count": 580,
-      "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1907,9 +1905,9 @@
       "url": "https://nationalpost.com/news/mother-who-faked-twin-boys-illnesses-sentenced",
       "published": "2026-11-10T23:38:18+00:00",
       "content_status": "full",
-      "word_count": 1568,
-      "quality_score": 82,
-      "extraction_method": "jina:postmedia-repair"
+      "word_count": 1571,
+      "quality_score": 83,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2041,10 +2039,10 @@
       "title": "Darlington small modular reactor faces delay and cost overruns, prompting OPG assessment",
       "url": "https://www.theglobeandmail.com/business/article-darlington-small-modular-reactor-ontario-power-generation",
       "published": "2026-11-10T23:52:35.053000+00:00",
-      "content_status": "full",
-      "word_count": 720,
+      "content_status": "partial",
+      "word_count": 689,
       "quality_score": 86,
-      "extraction_method": "dom:globe:article#content-gate"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2398,15 +2396,15 @@
       "title": "Midwestern Ontario town joining forces with Belgian region in new Sister City agreement",
       "url": "https://www.ctvnews.ca/london/article/midwestern-ontario-town-joining-forces-with-belgian-region-in-new-sister-city-agreement",
       "published": "2026-11-10T23:56:23.869000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
+      "audit_status": "review",
+      "audit_score": 85,
       "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
+      "warning_count": 1,
+      "info_count": 1,
       "content_status": "full",
       "word_count": 580,
       "paragraph_count": 12,
-      "inline_image_count": 0,
+      "inline_image_count": 3,
       "quality_score": 81,
       "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
@@ -2414,10 +2412,10 @@
       "local_score": 0,
       "issues": [
         {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "3 consecutive images"
         },
         {
           "severity": "info",
@@ -4445,13 +4443,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 720,
-      "paragraph_count": 22,
+      "content_status": "partial",
+      "word_count": 689,
+      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4742,12 +4740,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 1568,
-      "paragraph_count": 48,
-      "inline_image_count": 3,
-      "quality_score": 82,
+      "word_count": 1571,
+      "paragraph_count": 47,
+      "inline_image_count": 0,
+      "quality_score": 83,
       "quality_grade": "good",
-      "extraction_method": "jina:postmedia-repair",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
