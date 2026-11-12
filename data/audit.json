@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T13:12:01.976869+00:00",
-  "generated_at_london": "2026-11-12T08:12:01.976869-05:00",
+  "generated_at": "2026-11-12T13:16:36.192410+00:00",
+  "generated_at_london": "2026-11-12T08:16:36.192410-05:00",
   "news_generated_at": "2026-11-12T13:10:26.349362+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -10,10 +10,10 @@
     "source_count": 28,
     "audited_story_count": 108,
     "pass_story_count": 98,
-    "review_story_count": 8,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 14,
+    "review_story_count": 7,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 12,
     "info_issue_count": 84,
     "healthy_source_count": 10,
     "review_source_count": 5,
@@ -134,19 +134,19 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
-      "review": 2,
-      "fail": 1,
+      "review": 1,
+      "fail": 2,
       "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 470,
+      "average_words": 451,
       "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "dom:star:article": 1,
         "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 3,
+      "critical_issues": 2,
+      "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-12T12:30:04+00:00",
       "found_this_run": 10,
@@ -585,13 +585,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 510,
-      "average_quality": 92,
+      "average_words": 512,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:global:main:strict": 1,
-        "dom:global:article:strict": 1,
-        "dom:semantic-rich-v1": 8
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -693,11 +691,10 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 952,
-      "average_quality": 93,
+      "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 3,
-        "dom:semantic-rich-v1": 7
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -750,6 +747,21 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "33 words",
+      "story_id": "9ab6deb6e16a442c",
+      "source": "Toronto Star",
+      "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
+      "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
+      "published": "2026-11-12T12:30:04+00:00",
+      "content_status": "full",
+      "word_count": 33,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "critical",
@@ -930,36 +942,6 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "9ab6deb6e16a442c",
-      "source": "Toronto Star",
-      "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
-      "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
-      "published": "2026-11-12T12:30:04+00:00",
-      "content_status": "full",
-      "word_count": 217,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "12 inline images",
-      "story_id": "9ab6deb6e16a442c",
-      "source": "Toronto Star",
-      "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
-      "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
-      "published": "2026-11-12T12:30:04+00:00",
-      "content_status": "full",
-      "word_count": 217,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1557,9 +1539,9 @@
       "url": "https://globalnews.ca/news/12146941/canada-ai-gdp-growth",
       "published": "2026-11-12T13:07:38+00:00",
       "content_status": "full",
-      "word_count": 633,
-      "quality_score": 85,
-      "extraction_method": "dom:global:main:strict"
+      "word_count": 658,
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1633,8 +1615,8 @@
       "published": "2026-11-12T12:53:05+00:00",
       "content_status": "full",
       "word_count": 204,
-      "quality_score": 70,
-      "extraction_method": "dom:global:article:strict"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1886,10 +1868,10 @@
       "title": "A home that zigs and zags to catch the light",
       "url": "https://www.theglobeandmail.com/real-estate/article-ottawa-home-that-zigs-and-zags-to-catch-the-light",
       "published": "2026-11-12T13:00:00+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 863,
-      "quality_score": 91,
-      "extraction_method": "dom:globe:article#content-gate"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1946,10 +1928,10 @@
       "title": "North York home next to a church receives duelling offers",
       "url": "https://www.theglobeandmail.com/real-estate/toronto/article-north-york-home-next-to-a-church-receives-duelling-offers",
       "published": "2026-11-12T13:00:00+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 348,
-      "quality_score": 87,
-      "extraction_method": "dom:globe:article#content-gate"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1976,10 +1958,10 @@
       "title": "Owner rents out Regent Park condo, but jumps at chance to sell",
       "url": "https://www.theglobeandmail.com/real-estate/toronto/article-regent-park-condo-one-park-place",
       "published": "2026-11-12T13:00:00+00:00",
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 340,
-      "quality_score": 87,
-      "extraction_method": "dom:globe:article#content-gate"
+      "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2067,7 +2049,7 @@
       "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
       "published": "2026-11-12T12:30:04+00:00",
       "content_status": "full",
-      "word_count": 217,
+      "word_count": 33,
       "quality_score": 80,
       "extraction_method": "dom:star:article"
     },
@@ -3521,12 +3503,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 633,
+      "word_count": 658,
       "paragraph_count": 22,
-      "inline_image_count": 1,
-      "quality_score": 85,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:global:main:strict",
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -3553,9 +3535,9 @@
       "word_count": 204,
       "paragraph_count": 7,
       "inline_image_count": 1,
-      "quality_score": 70,
+      "quality_score": 96,
       "quality_grade": "good",
-      "extraction_method": "dom:global:article:strict",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
@@ -4118,13 +4100,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 340,
       "paragraph_count": 18,
       "inline_image_count": 3,
-      "quality_score": 87,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4147,13 +4129,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 348,
       "paragraph_count": 19,
       "inline_image_count": 3,
-      "quality_score": 87,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4176,13 +4158,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
+      "content_status": "partial",
       "word_count": 863,
       "paragraph_count": 14,
       "inline_image_count": 5,
-      "quality_score": 91,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4699,15 +4681,15 @@
       "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
       "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
       "published": "2026-11-12T12:30:04+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
-      "critical_count": 0,
-      "warning_count": 2,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 217,
+      "word_count": 33,
       "paragraph_count": 2,
-      "inline_image_count": 12,
+      "inline_image_count": 0,
       "quality_score": 80,
       "quality_grade": "good",
       "extraction_method": "dom:star:article",
@@ -4715,16 +4697,10 @@
       "local_score": 0,
       "issues": [
         {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "12 inline images"
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "33 words"
         },
         {
           "severity": "info",
