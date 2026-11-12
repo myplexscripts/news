@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T15:24:08.255724+00:00",
-  "generated_at_london": "2026-11-12T10:24:08.255724-05:00",
-  "news_generated_at": "2026-11-12T15:17:38.751763+00:00",
+  "generated_at": "2026-11-12T15:35:31.215950+00:00",
+  "generated_at_london": "2026-11-12T10:35:31.215950-05:00",
+  "news_generated_at": "2026-11-12T15:33:43.492556+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 672,
+    "archive_story_count": 671,
     "source_count": 28,
     "audited_story_count": 109,
     "pass_story_count": 98,
@@ -14,11 +14,11 @@
     "fail_story_count": 4,
     "critical_issue_count": 4,
     "warning_issue_count": 12,
-    "info_issue_count": 83,
-    "healthy_source_count": 9,
+    "info_issue_count": 84,
+    "healthy_source_count": 10,
     "review_source_count": 6,
     "error_source_count": 0,
-    "waiting_source_count": 13
+    "waiting_source_count": 12
   },
   "source_reports": [
     {
@@ -373,30 +373,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "waiting",
-      "collector_status": "waiting",
-      "profile": "generic",
-      "sample_size": 0,
-      "pass": 0,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 0,
-      "usable_body_rate": 0,
-      "average_words": 0,
-      "average_quality": 0,
-      "primary_method": "unknown",
-      "method_counts": {},
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "",
-      "found_this_run": 3,
-      "tracked": 0,
-      "last_scrape": "",
-      "last_error": ""
-    },
-    {
       "source": "Middlesex-London Health Unit",
       "status": "waiting",
       "collector_status": "waiting",
@@ -471,7 +447,7 @@
     {
       "source": "Thames Valley District School Board",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -487,10 +463,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out."
     },
     {
       "source": "106.9 The X",
@@ -542,7 +518,7 @@
       "latest_published": "2026-11-12T15:15:36.451000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T14:49:28.091755+00:00",
+      "last_scrape": "2026-11-12T15:20:05.454666+00:00",
       "last_error": ""
     },
     {
@@ -628,28 +604,54 @@
       "last_error": ""
     },
     {
-      "source": "Middlesex County",
+      "source": "London Transit Commission",
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "generic",
-      "sample_size": 2,
-      "pass": 2,
+      "sample_size": 1,
+      "pass": 1,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1060,
+      "average_words": 154,
+      "average_quality": 61,
+      "primary_method": "dom:generic:main",
+      "method_counts": {
+        "dom:generic:main": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-11-12T05:00:00+00:00",
+      "found_this_run": 3,
+      "tracked": 1,
+      "last_scrape": "2026-11-12T15:31:22.001263+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Middlesex County",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 889,
       "average_quality": 96,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 2
+        "reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "2026-11-10T13:22:51+00:00",
       "found_this_run": 10,
-      "tracked": 2,
+      "tracked": 1,
       "last_scrape": "2026-11-10T13:39:42.319454+00:00",
       "last_error": ""
     },
@@ -1692,6 +1694,21 @@
       "word_count": 239,
       "quality_score": 72,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "395ebeb353cc149b",
+      "source": "London Transit Commission",
+      "title": "Plan Your Trip",
+      "url": "https://www.londontransit.ca/2026/11/12/apply-to-join-london-transits-aptsac-committee",
+      "published": "2026-11-12T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 154,
+      "quality_score": 61,
+      "extraction_method": "dom:generic:main"
     },
     {
       "severity": "info",
@@ -3464,6 +3481,35 @@
       "issues": []
     },
     {
+      "id": "395ebeb353cc149b",
+      "source": "London Transit Commission",
+      "title": "Plan Your Trip",
+      "url": "https://www.londontransit.ca/2026/11/12/apply-to-join-london-transits-aptsac-committee",
+      "published": "2026-11-12T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 154,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 61,
+      "quality_grade": "partial",
+      "extraction_method": "dom:generic:main",
+      "extraction_profile": "generic",
+      "local_score": 59,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "bac9321ca8e4d2fe",
       "source": "Middlesex County",
       "title": "Middlesex County Administration Offices Closed for Remembrance Day",
@@ -3477,28 +3523,6 @@
       "content_status": "full",
       "word_count": 889,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "generic",
-      "local_score": 22,
-      "issues": []
-    },
-    {
-      "id": "94fb77c3c8f619b3",
-      "source": "Middlesex County",
-      "title": "Middlesex County Seeks Public Input on Pre-Approved Additional Residential Unit Designs",
-      "url": "https://www.middlesex.ca/news/middlesex-county-seeks-public-input-pre-approved-additional-residential-unit-designs",
-      "published": "2026-11-05T15:23:28+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 1231,
-      "paragraph_count": 35,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
