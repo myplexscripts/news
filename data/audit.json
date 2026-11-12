@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T19:52:39.426973+00:00",
-  "generated_at_london": "2026-11-12T14:52:39.426973-05:00",
-  "news_generated_at": "2026-11-12T19:46:22.445913+00:00",
+  "generated_at": "2026-11-12T20:04:53.964187+00:00",
+  "generated_at_london": "2026-11-12T15:04:53.964187-05:00",
+  "news_generated_at": "2026-11-12T20:02:42.197136+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 669,
+    "archive_story_count": 671,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 102,
-    "review_story_count": 6,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 11,
-    "info_issue_count": 85,
+    "pass_story_count": 101,
+    "review_story_count": 8,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 15,
+    "info_issue_count": 84,
     "healthy_source_count": 12,
     "review_source_count": 5,
     "error_source_count": 0,
@@ -130,29 +130,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 261,
-      "average_quality": 94,
+      "average_words": 257,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:star:article": 1
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-12T19:11:30+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-12T19:41:08+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T19:29:13.435071+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-12T20:00:33.941271+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -454,21 +454,21 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 80,
-      "average_words": 244,
-      "average_quality": 65,
+      "usable_body_rate": 90,
+      "average_words": 255,
+      "average_quality": 66,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 8,
-        "ctv:summary-fallback": 2
+        "embedded-json:ctv": 9,
+        "ctv:summary-fallback": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 7,
-      "latest_published": "2026-11-12T17:14:15.112000+00:00",
+      "info_issues": 6,
+      "latest_published": "2026-11-12T19:53:27.416000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T17:27:40.833969+00:00",
+      "last_scrape": "2026-11-12T19:58:12.590037+00:00",
       "last_error": ""
     },
     {
@@ -680,7 +680,7 @@
       "latest_published": "2026-11-12T19:33:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T19:44:38.438651+00:00",
+      "last_scrape": "2026-11-12T20:00:26.921389+00:00",
       "last_error": ""
     },
     {
@@ -751,21 +751,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "33 words",
-      "story_id": "9ab6deb6e16a442c",
-      "source": "Toronto Star",
-      "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
-      "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
-      "published": "2026-11-12T12:30:04+00:00",
-      "content_status": "full",
-      "word_count": 33,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -931,6 +916,66 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "eb9cf925ad42ae9b",
+      "source": "Toronto Star",
+      "title": "Nova Scotia and Massachusetts team up to explore offshore wind energy",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/nova-scotia-and-massachusetts-team-up-to-explore-offshore-wind-energy/article_26c461b4-c46a-505e-b68a-3ff5f4652236.html",
+      "published": "2026-11-12T19:41:08+00:00",
+      "content_status": "full",
+      "word_count": 221,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "eb9cf925ad42ae9b",
+      "source": "Toronto Star",
+      "title": "Nova Scotia and Massachusetts team up to explore offshore wind energy",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/nova-scotia-and-massachusetts-team-up-to-explore-offshore-wind-energy/article_26c461b4-c46a-505e-b68a-3ff5f4652236.html",
+      "published": "2026-11-12T19:41:08+00:00",
+      "content_status": "full",
+      "word_count": 221,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "408549fa06202a97",
+      "source": "Toronto Star",
+      "title": "Outlook and Teams down as widespread Microsoft outage hits multiple services",
+      "url": "https://www.thestar.com/news/canada/outlook-and-teams-down-as-widespread-microsoft-outage-hits-multiple-services/article_5fdbaaca-41d0-4da9-bc0d-7fb8448b2019.html",
+      "published": "2026-11-12T19:40:00+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "408549fa06202a97",
+      "source": "Toronto Star",
+      "title": "Outlook and Teams down as widespread Microsoft outage hits multiple services",
+      "url": "https://www.thestar.com/news/canada/outlook-and-teams-down-as-widespread-microsoft-outage-hits-multiple-services/article_5fdbaaca-41d0-4da9-bc0d-7fb8448b2019.html",
+      "published": "2026-11-12T19:40:00+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1186,21 +1231,6 @@
       "word_count": 592,
       "quality_score": 81,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 5/100",
-      "story_id": "23cbbee8e14dbec5",
-      "source": "CTV News London",
-      "title": "Sale of local utility approved by Ontario Energy Board",
-      "url": "https://www.ctvnews.ca/london/article/sale-of-local-utility-approved-by-ontario-energy-board",
-      "published": "2026-11-12T02:32:21.600000+00:00",
-      "content_status": "summary",
-      "word_count": 22,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -2017,21 +2047,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9ab6deb6e16a442c",
-      "source": "Toronto Star",
-      "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
-      "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
-      "published": "2026-11-12T12:30:04+00:00",
-      "content_status": "full",
-      "word_count": 33,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "5ffcb3dea1020aaa",
       "source": "Toronto Star",
       "title": "B.C. home sales slide 11 per cent in October as Lower Mainland struggles",
@@ -2054,21 +2069,6 @@
       "published": "2026-11-12T16:34:12+00:00",
       "content_status": "full",
       "word_count": 257,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b0875130edd63a8f",
-      "source": "Toronto Star",
-      "title": "Canada Disability Benefit payments go out next week. Here's what you need to know",
-      "url": "https://www.thestar.com/news/canada/canada-disability-benefit-payments-go-out-next-week-here-s-what-you-need-to-know/article_1b7f78b6-a674-4de1-ab51-5a1c48649716.html",
-      "published": "2026-11-12T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 461,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2137,6 +2137,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "eb9cf925ad42ae9b",
+      "source": "Toronto Star",
+      "title": "Nova Scotia and Massachusetts team up to explore offshore wind energy",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/nova-scotia-and-massachusetts-team-up-to-explore-offshore-wind-energy/article_26c461b4-c46a-505e-b68a-3ff5f4652236.html",
+      "published": "2026-11-12T19:41:08+00:00",
+      "content_status": "full",
+      "word_count": 221,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "21ab16748647b360",
       "source": "Toronto Star",
       "title": "Ontario to cap Osap growth at career colleges following massive increases",
@@ -2146,6 +2161,21 @@
       "word_count": 475,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "408549fa06202a97",
+      "source": "Toronto Star",
+      "title": "Outlook and Teams down as widespread Microsoft outage hits multiple services",
+      "url": "https://www.thestar.com/news/canada/outlook-and-teams-down-as-widespread-microsoft-outage-hits-multiple-services/article_5fdbaaca-41d0-4da9-bc0d-7fb8448b2019.html",
+      "published": "2026-11-12T19:40:00+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2209,6 +2239,28 @@
     }
   ],
   "stories": [
+    {
+      "id": "7d7ce45baa69ddf1",
+      "source": "CTV News London",
+      "title": "Sexual assault suspect still at large: LPS",
+      "url": "https://www.ctvnews.ca/london/article/sexual-assault-suspect-still-at-large-lps",
+      "published": "2026-11-12T19:53:27.416000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 127,
+      "paragraph_count": 4,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 28,
+      "issues": []
+    },
     {
       "id": "1d9f0030015e2dab",
       "source": "CTV News London",
@@ -2446,35 +2498,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "23cbbee8e14dbec5",
-      "source": "CTV News London",
-      "title": "Sale of local utility approved by Ontario Energy Board",
-      "url": "https://www.ctvnews.ca/london/article/sale-of-local-utility-approved-by-ontario-energy-board",
-      "published": "2026-11-12T02:32:21.600000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 22,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 5,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 5/100"
         }
       ]
     },
@@ -4715,6 +4738,88 @@
       ]
     },
     {
+      "id": "eb9cf925ad42ae9b",
+      "source": "Toronto Star",
+      "title": "Nova Scotia and Massachusetts team up to explore offshore wind energy",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/nova-scotia-and-massachusetts-team-up-to-explore-offshore-wind-energy/article_26c461b4-c46a-505e-b68a-3ff5f4652236.html",
+      "published": "2026-11-12T19:41:08+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 221,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "408549fa06202a97",
+      "source": "Toronto Star",
+      "title": "Outlook and Teams down as widespread Microsoft outage hits multiple services",
+      "url": "https://www.thestar.com/news/canada/outlook-and-teams-down-as-widespread-microsoft-outage-hits-multiple-services/article_5fdbaaca-41d0-4da9-bc0d-7fb8448b2019.html",
+      "published": "2026-11-12T19:40:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 233,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "63f44d0eeeb2edcf",
       "source": "Toronto Star",
       "title": "Network of deepfake videos spreading falsehoods about trade war with U.S.: report",
@@ -4932,70 +5037,6 @@
       "word_count": 475,
       "paragraph_count": 24,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9ab6deb6e16a442c",
-      "source": "Toronto Star",
-      "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
-      "url": "https://www.thestar.com/entertainment/books/author-kate-cayley-playwright-jordan-tannahill-win-governor-general-s-literary-awards/article_7f0f3347-2893-5b45-828d-4ad550e957d9.html",
-      "published": "2026-11-12T12:30:04+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 33,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "dom:star:article",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "33 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b0875130edd63a8f",
-      "source": "Toronto Star",
-      "title": "Canada Disability Benefit payments go out next week. Here's what you need to know",
-      "url": "https://www.thestar.com/news/canada/canada-disability-benefit-payments-go-out-next-week-here-s-what-you-need-to-know/article_1b7f78b6-a674-4de1-ab51-5a1c48649716.html",
-      "published": "2026-11-12T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 461,
-      "paragraph_count": 21,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
