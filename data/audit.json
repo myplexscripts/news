@@ -1,26 +1,53 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T18:03:15.862053+00:00",
-  "generated_at_london": "2026-11-12T13:03:15.862053-05:00",
-  "news_generated_at": "2026-11-12T17:56:51.194047+00:00",
+  "generated_at": "2026-11-12T18:14:48.488903+00:00",
+  "generated_at_london": "2026-11-12T13:14:48.488903-05:00",
+  "news_generated_at": "2026-11-12T18:12:27.510770+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 669,
+    "archive_story_count": 670,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 98,
-    "review_story_count": 6,
+    "pass_story_count": 97,
+    "review_story_count": 7,
     "fail_story_count": 6,
     "critical_issue_count": 6,
-    "warning_issue_count": 11,
+    "warning_issue_count": 13,
     "info_issue_count": 85,
     "healthy_source_count": 11,
-    "review_source_count": 6,
-    "error_source_count": 0,
+    "review_source_count": 5,
+    "error_source_count": 1,
     "waiting_source_count": 11
   },
   "source_reports": [
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 1,
+      "fail": 4,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 230,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 4,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-12T17:47:12+00:00",
+      "found_this_run": 9,
+      "tracked": 30,
+      "last_scrape": "2026-11-12T18:10:20.778844+00:00",
+      "last_error": ""
+    },
     {
       "source": "104.7 Heart FM",
       "status": "review",
@@ -154,33 +181,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 6,
-      "review": 0,
-      "fail": 4,
-      "pass_rate": 60,
-      "usable_body_rate": 100,
-      "average_words": 292,
-      "average_quality": 94,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:star:article": 1
-      },
-      "critical_issues": 4,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-12T16:47:32+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-12T17:07:42.637802+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -226,7 +226,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -694,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 629,
-      "average_quality": 94,
+      "average_words": 530,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-12T16:18:17.660000+00:00",
+      "latest_published": "2026-11-12T17:57:14.425000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T17:54:36.993098+00:00",
+      "last_scrape": "2026-11-12T18:10:16.659004+00:00",
       "last_error": ""
     },
     {
@@ -991,6 +992,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "a2097e5aa55641bd",
+      "source": "Toronto Star",
+      "title": "Canada's agriculture sector divided on Mercosur free trade deal",
+      "url": "https://www.thestar.com/news/canada/canada-s-agriculture-sector-divided-on-mercosur-free-trade-deal/article_8d698cc9-365d-5210-8577-f530fa0f5aaf.html",
+      "published": "2026-11-12T17:47:12+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "a2097e5aa55641bd",
+      "source": "Toronto Star",
+      "title": "Canada's agriculture sector divided on Mercosur free trade deal",
+      "url": "https://www.thestar.com/news/canada/canada-s-agriculture-sector-divided-on-mercosur-free-trade-deal/article_8d698cc9-365d-5210-8577-f530fa0f5aaf.html",
+      "published": "2026-11-12T17:47:12+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1894,18 +1925,48 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "6c0a194fbe4f76f0",
+      "source": "The Globe and Mail",
+      "title": "Apotex reports quarterly profit of $100.8-million, raises guidance for full year",
+      "url": "https://www.theglobeandmail.com/business/article-apotex-second-quarter-profit-guidance",
+      "published": "2026-11-12T17:57:14.425000+00:00",
+      "content_status": "full",
+      "word_count": 173,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "75bbe9cae6cb67f2",
+      "story_id": "6c0a194fbe4f76f0",
       "source": "The Globe and Mail",
-      "title": "Alberta’s new family law system draws complaints from lawyers",
-      "url": "https://www.theglobeandmail.com/canada/article-albertas-new-family-law-system-draws-complaints-from-lawyers",
-      "published": "2026-11-12T11:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 1170,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "Apotex reports quarterly profit of $100.8-million, raises guidance for full year",
+      "url": "https://www.theglobeandmail.com/business/article-apotex-second-quarter-profit-guidance",
+      "published": "2026-11-12T17:57:14.425000+00:00",
+      "content_status": "full",
+      "word_count": 173,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2f183d69d409bd20",
+      "source": "The Globe and Mail",
+      "title": "Association of Quebec farmers challenges costs of high-speed rail in new study",
+      "url": "https://www.theglobeandmail.com/business/article-train-quebec-city-toronto-via-rail-alto-farmers",
+      "published": "2026-11-12T17:45:29.671000+00:00",
+      "content_status": "full",
+      "word_count": 965,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1935,36 +1996,6 @@
       "content_status": "partial",
       "word_count": 687,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "3d27c8e0c38086af",
-      "source": "The Globe and Mail",
-      "title": "How a 67-year-old B.C. retiree’s large-cap Tfsa trounced the market",
-      "url": "https://www.theglobeandmail.com/investing/investment-ideas/article-how-a-67-year-old-bc-retirees-large-cap-tfsa-trounced-the-market",
-      "published": "2026-11-12T11:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 961,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3d27c8e0c38086af",
-      "source": "The Globe and Mail",
-      "title": "How a 67-year-old B.C. retiree’s large-cap Tfsa trounced the market",
-      "url": "https://www.theglobeandmail.com/investing/investment-ideas/article-how-a-67-year-old-bc-retirees-large-cap-tfsa-trounced-the-market",
-      "published": "2026-11-12T11:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 961,
-      "quality_score": 92,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -2152,15 +2183,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "b0eaeddc484a0cb0",
+      "story_id": "a2097e5aa55641bd",
       "source": "Toronto Star",
-      "title": "Canadian court gives fresh hope to Afghan family, split by smugglers and bureaucracy, trying to reunite in Canada",
-      "url": "https://www.thestar.com/news/canada/smugglers-split-this-toronto-man-from-his-family-in-2007-now-a-court-has-given-them-hope-to-reunite/article_783b7ad6-cd5a-48af-abec-8af48616aa54.html",
-      "published": "2026-11-12T05:00:00+00:00",
+      "title": "Canada's agriculture sector divided on Mercosur free trade deal",
+      "url": "https://www.thestar.com/news/canada/canada-s-agriculture-sector-divided-on-mercosur-free-trade-deal/article_8d698cc9-365d-5210-8577-f530fa0f5aaf.html",
+      "published": "2026-11-12T17:47:12+00:00",
       "content_status": "full",
-      "word_count": 847,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4183,6 +4214,70 @@
       ]
     },
     {
+      "id": "6c0a194fbe4f76f0",
+      "source": "The Globe and Mail",
+      "title": "Apotex reports quarterly profit of $100.8-million, raises guidance for full year",
+      "url": "https://www.theglobeandmail.com/business/article-apotex-second-quarter-profit-guidance",
+      "published": "2026-11-12T17:57:14.425000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 173,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "2f183d69d409bd20",
+      "source": "The Globe and Mail",
+      "title": "Association of Quebec farmers challenges costs of high-speed rail in new study",
+      "url": "https://www.theglobeandmail.com/business/article-train-quebec-city-toronto-via-rail-alto-farmers",
+      "published": "2026-11-12T17:45:29.671000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 965,
+      "paragraph_count": 26,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a5d48c33af01ce56",
       "source": "The Globe and Mail",
       "title": "Ontario seeks to strengthen oversight of career colleges through limits on Osap, enrolment",
@@ -4423,70 +4518,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "75bbe9cae6cb67f2",
-      "source": "The Globe and Mail",
-      "title": "Alberta’s new family law system draws complaints from lawyers",
-      "url": "https://www.theglobeandmail.com/canada/article-albertas-new-family-law-system-draws-complaints-from-lawyers",
-      "published": "2026-11-12T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1170,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3d27c8e0c38086af",
-      "source": "The Globe and Mail",
-      "title": "How a 67-year-old B.C. retiree’s large-cap Tfsa trounced the market",
-      "url": "https://www.theglobeandmail.com/investing/investment-ideas/article-how-a-67-year-old-bc-retirees-large-cap-tfsa-trounced-the-market",
-      "published": "2026-11-12T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 961,
-      "paragraph_count": 24,
-      "inline_image_count": 1,
-      "quality_score": 92,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
@@ -4781,6 +4812,47 @@
       ]
     },
     {
+      "id": "a2097e5aa55641bd",
+      "source": "Toronto Star",
+      "title": "Canada's agriculture sector divided on Mercosur free trade deal",
+      "url": "https://www.thestar.com/news/canada/canada-s-agriculture-sector-divided-on-mercosur-free-trade-deal/article_8d698cc9-365d-5210-8577-f530fa0f5aaf.html",
+      "published": "2026-11-12T17:47:12+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 234,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "800d1299344d1048",
       "source": "Toronto Star",
       "title": "Champagne says energy investments set the stage for Canada's future economic growth",
@@ -5057,35 +5129,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "75 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b0eaeddc484a0cb0",
-      "source": "Toronto Star",
-      "title": "Canadian court gives fresh hope to Afghan family, split by smugglers and bureaucracy, trying to reunite in Canada",
-      "url": "https://www.thestar.com/news/canada/smugglers-split-this-toronto-man-from-his-family-in-2007-now-a-court-has-given-them-hope-to-reunite/article_783b7ad6-cd5a-48af-abec-8af48616aa54.html",
-      "published": "2026-11-12T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 847,
-      "paragraph_count": 34,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
