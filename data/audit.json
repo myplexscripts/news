@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T17:31:29.048335+00:00",
-  "generated_at_london": "2026-11-12T12:31:29.048335-05:00",
-  "news_generated_at": "2026-11-12T17:24:36.248666+00:00",
+  "generated_at": "2026-11-12T17:42:46.009320+00:00",
+  "generated_at_london": "2026-11-12T12:42:46.009320-05:00",
+  "news_generated_at": "2026-11-12T17:40:25.920376+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 670,
@@ -112,19 +112,20 @@
       "fail": 1,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 364,
-      "average_quality": 96,
+      "average_words": 416,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-12T16:30:00+00:00",
+      "latest_published": "2026-11-12T17:37:50+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T16:35:49.677217+00:00",
+      "last_scrape": "2026-11-12T17:38:24.887677+00:00",
       "last_error": ""
     },
     {
@@ -156,7 +157,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 6,
@@ -175,10 +176,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-12T16:47:32+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-12T17:07:42.637802+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -494,7 +495,7 @@
       "latest_published": "2026-11-12T17:14:15.112000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T17:20:50.400543+00:00",
+      "last_scrape": "2026-11-12T17:27:40.833969+00:00",
       "last_error": ""
     },
     {
@@ -1537,6 +1538,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "f7f58c8bb1ffb06d",
+      "source": "Global News Canada",
+      "title": "Association of Quebec farmers releases study challenging costs of high-speed rail",
+      "url": "https://globalnews.ca/news/12148017/association-of-quebec-farmers-alto-study",
+      "published": "2026-11-12T17:37:50+00:00",
+      "content_status": "full",
+      "word_count": 957,
+      "quality_score": 90,
+      "extraction_method": "dom:global:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "017f6bddc6d6c57f",
       "source": "Global News Canada",
       "title": "Canada faces ‘gradual and bumpy recovery,’ Kpmg economic outlook says",
@@ -1589,21 +1605,6 @@
       "published": "2026-11-12T11:00:38+00:00",
       "content_status": "full",
       "word_count": 464,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ff3038cd0abda2e4",
-      "source": "Global News Canada",
-      "title": "From VHS to iPods, retro tech is driving this year’s holiday shopping season",
-      "url": "https://globalnews.ca/news/12146554/retro-nostalgia-tech-best-buy",
-      "published": "2026-11-12T10:00:55+00:00",
-      "content_status": "full",
-      "word_count": 440,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3564,6 +3565,35 @@
       "issues": []
     },
     {
+      "id": "f7f58c8bb1ffb06d",
+      "source": "Global News Canada",
+      "title": "Association of Quebec farmers releases study challenging costs of high-speed rail",
+      "url": "https://globalnews.ca/news/12148017/association-of-quebec-farmers-alto-study",
+      "published": "2026-11-12T17:37:50+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 957,
+      "paragraph_count": 24,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "86e151dde49fbb4f",
       "source": "Global News Canada",
       "title": "Pilot killed in Quebec Remembrance Day plane crash identified",
@@ -3816,35 +3846,6 @@
       "word_count": 464,
       "paragraph_count": 13,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ff3038cd0abda2e4",
-      "source": "Global News Canada",
-      "title": "From VHS to iPods, retro tech is driving this year’s holiday shopping season",
-      "url": "https://globalnews.ca/news/12146554/retro-nostalgia-tech-best-buy",
-      "published": "2026-11-12T10:00:55+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 440,
-      "paragraph_count": 14,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
