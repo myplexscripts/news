@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T13:32:32.987163+00:00",
-  "generated_at_london": "2026-11-12T08:32:32.987163-05:00",
-  "news_generated_at": "2026-11-12T13:26:27.020572+00:00",
+  "generated_at": "2026-11-12T13:44:22.471759+00:00",
+  "generated_at_london": "2026-11-12T08:44:22.471759-05:00",
+  "news_generated_at": "2026-11-12T13:42:21.647996+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 670,
+    "archive_story_count": 672,
     "source_count": 28,
     "audited_story_count": 109,
     "pass_story_count": 99,
@@ -130,7 +130,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -149,10 +149,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-12T12:30:04+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-12T12:52:57.544928+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -585,19 +585,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 512,
-      "average_quality": 96,
+      "average_words": 516,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-12T13:07:38+00:00",
+      "latest_published": "2026-11-12T13:26:27+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T13:08:43.832024+00:00",
+      "last_scrape": "2026-11-12T13:40:12.485604+00:00",
       "last_error": ""
     },
     {
@@ -690,19 +691,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 854,
-      "average_quality": 96,
+      "average_words": 776,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 11,
-      "latest_published": "2026-11-12T13:06:06.799000+00:00",
+      "latest_published": "2026-11-12T13:15:36.807000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T13:24:50.325589+00:00",
+      "last_scrape": "2026-11-12T13:40:14.252936+00:00",
       "last_error": ""
     },
     {
@@ -1563,6 +1565,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "2eadcbfc0d41e38e",
+      "source": "Global News Canada",
+      "title": "Carney to meet European leaders in Ireland before heading to Asia",
+      "url": "https://globalnews.ca/news/12147657/carney-ireland-visit",
+      "published": "2026-11-12T13:26:27+00:00",
+      "content_status": "full",
+      "word_count": 153,
+      "quality_score": 68,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "cea21d7c87766e6b",
       "source": "Global News Canada",
       "title": "Ford, feds, Unifor set for high-stakes meeting with Stellantis",
@@ -1585,21 +1602,6 @@
       "published": "2026-11-12T10:00:55+00:00",
       "content_status": "full",
       "word_count": 440,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "42ec2750b0cffef2",
-      "source": "Global News Canada",
-      "title": "Hamilton police looking for three suspects in home invasion",
-      "url": "https://globalnews.ca/news/12146974/hamilton-police-looking-for-three-suspects-in-home-invasion",
-      "published": "2026-11-11T21:47:10+00:00",
-      "content_status": "full",
-      "word_count": 118,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1893,6 +1895,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "d2121de42fb083df",
+      "source": "The Globe and Mail",
+      "title": "Brookfield reports third-quarter profit up from year ago",
+      "url": "https://www.theglobeandmail.com/business/article-brookfield-results-third-quarter-2026",
+      "published": "2026-11-12T13:15:36.807000+00:00",
+      "content_status": "full",
+      "word_count": 145,
+      "quality_score": 57,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "632141bc349968f3",
       "source": "The Globe and Mail",
       "title": "Carney sees Ottawa’s growing ties with EU leading to more partnerships with Canada’s auto sector",
@@ -1961,21 +1978,6 @@
       "content_status": "partial",
       "word_count": 340,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "366e87f2709721f1",
-      "source": "The Globe and Mail",
-      "title": "Sale of Brampton auto plant from Stellantis to Roshel leaves laid-off workers in the lurch",
-      "url": "https://www.theglobeandmail.com/business/article-stellantis-brampton-auto-plant-workers-unifor-nov-11",
-      "published": "2026-11-12T00:36:54.903000+00:00",
-      "content_status": "full",
-      "word_count": 928,
-      "quality_score": 92,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -3536,6 +3538,35 @@
       "issues": []
     },
     {
+      "id": "2eadcbfc0d41e38e",
+      "source": "Global News Canada",
+      "title": "Carney to meet European leaders in Ireland before heading to Asia",
+      "url": "https://globalnews.ca/news/12147657/carney-ireland-visit",
+      "published": "2026-11-12T13:26:27+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 153,
+      "paragraph_count": 6,
+      "inline_image_count": 1,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8a7501260474375f",
       "source": "Global News Canada",
       "title": "AI is not adding to Canada’s GDP like it is in the U.S., new analysis says",
@@ -3781,35 +3812,6 @@
       "content_status": "full",
       "word_count": 433,
       "paragraph_count": 14,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "42ec2750b0cffef2",
-      "source": "Global News Canada",
-      "title": "Hamilton police looking for three suspects in home invasion",
-      "url": "https://globalnews.ca/news/12146974/hamilton-police-looking-for-three-suspects-in-home-invasion",
-      "published": "2026-11-11T21:47:10+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 118,
-      "paragraph_count": 10,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4134,6 +4136,35 @@
       ]
     },
     {
+      "id": "d2121de42fb083df",
+      "source": "The Globe and Mail",
+      "title": "Brookfield reports third-quarter profit up from year ago",
+      "url": "https://www.theglobeandmail.com/business/article-brookfield-results-third-quarter-2026",
+      "published": "2026-11-12T13:15:36.807000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 145,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "632141bc349968f3",
       "source": "The Globe and Mail",
       "title": "Carney sees Ottawa’s growing ties with EU leading to more partnerships with Canada’s auto sector",
@@ -4387,35 +4418,6 @@
       "paragraph_count": 30,
       "inline_image_count": 2,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "366e87f2709721f1",
-      "source": "The Globe and Mail",
-      "title": "Sale of Brampton auto plant from Stellantis to Roshel leaves laid-off workers in the lurch",
-      "url": "https://www.theglobeandmail.com/business/article-stellantis-brampton-auto-plant-workers-unifor-nov-11",
-      "published": "2026-11-12T00:36:54.903000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 928,
-      "paragraph_count": 28,
-      "inline_image_count": 2,
-      "quality_score": 92,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
