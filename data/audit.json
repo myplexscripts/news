@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T16:12:38.144873+00:00",
-  "generated_at_london": "2026-11-12T11:12:38.144873-05:00",
-  "news_generated_at": "2026-11-12T16:06:09.390279+00:00",
+  "generated_at": "2026-11-12T16:22:50.914123+00:00",
+  "generated_at_london": "2026-11-12T11:22:50.914123-05:00",
+  "news_generated_at": "2026-11-12T16:21:20.495196+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 674,
+    "archive_story_count": 673,
     "source_count": 28,
     "audited_story_count": 111,
     "pass_story_count": 97,
-    "review_story_count": 7,
-    "fail_story_count": 7,
-    "critical_issue_count": 7,
-    "warning_issue_count": 12,
-    "info_issue_count": 85,
+    "review_story_count": 8,
+    "fail_story_count": 6,
+    "critical_issue_count": 6,
+    "warning_issue_count": 14,
+    "info_issue_count": 86,
     "healthy_source_count": 11,
     "review_source_count": 5,
     "error_source_count": 1,
@@ -28,24 +28,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 4,
-      "review": 1,
-      "fail": 5,
+      "review": 2,
+      "fail": 4,
       "pass_rate": 40,
       "usable_body_rate": 100,
-      "average_words": 350,
-      "average_quality": 94,
+      "average_words": 369,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 5,
-      "warning_issues": 1,
+      "critical_issues": 4,
+      "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-11-12T12:30:04+00:00",
+      "latest_published": "2026-11-12T16:06:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T12:52:57.544928+00:00",
+      "last_scrape": "2026-11-12T16:19:54.976069+00:00",
       "last_error": ""
     },
     {
@@ -466,7 +466,7 @@
       "info_issues": 0,
       "latest_published": "2026-11-11T20:56:06+00:00",
       "found_this_run": 10,
-      "tracked": 12,
+      "tracked": 11,
       "last_scrape": "2026-11-12T00:53:05.677433+00:00",
       "last_error": ""
     },
@@ -694,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 776,
-      "average_quality": 95,
+      "average_words": 702,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-12T13:15:36.807000+00:00",
+      "info_issues": 12,
+      "latest_published": "2026-11-12T15:58:07.140000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T13:40:14.252936+00:00",
+      "last_scrape": "2026-11-12T16:19:52.934921+00:00",
       "last_error": ""
     },
     {
@@ -809,21 +810,6 @@
       "published": "2026-11-12T09:00:03+00:00",
       "content_status": "full",
       "word_count": 47,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "56 words",
-      "story_id": "17df98f607b9c88b",
-      "source": "Toronto Star",
-      "title": "Hamilton police looking for three suspects in home invasion",
-      "url": "https://www.thestar.com/news/ontario/hamilton-police-looking-for-three-suspects-in-home-invasion/article_66df5a3d-0431-5c26-a011-b24ba59b871d.html",
-      "published": "2026-11-11T19:57:46+00:00",
-      "content_status": "full",
-      "word_count": 56,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -1006,6 +992,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "21ab16748647b360",
+      "source": "Toronto Star",
+      "title": "Ontario to cap Osap growth at career colleges following massive increases",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-cap-osap-growth-at-career-colleges-following-massive-increases/article_0fe43ecc-7abd-554c-9ab1-b935da7edd6f.html",
+      "published": "2026-11-12T16:06:57+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "21ab16748647b360",
+      "source": "Toronto Star",
+      "title": "Ontario to cap Osap growth at career colleges following massive increases",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-cap-osap-growth-at-career-colleges-following-massive-increases/article_0fe43ecc-7abd-554c-9ab1-b935da7edd6f.html",
+      "published": "2026-11-12T16:06:57+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1987,21 +2003,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0eb1f432e4a7220a",
-      "source": "The Globe and Mail",
-      "title": "In Wainwright, Remembrance Day takes a new meaning in the wake of tragedy",
-      "url": "https://www.theglobeandmail.com/canada/article-wainwright-alberta-remembrance-day-wake-of-deadly-cfb-fire",
-      "published": "2026-11-12T00:42:47.754000+00:00",
-      "content_status": "full",
-      "word_count": 1138,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "feb6358cc53537f8",
       "source": "The Globe and Mail",
       "title": "North York home next to a church receives duelling offers",
@@ -2041,6 +2042,36 @@
       "word_count": 340,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "dfeb970139f42912",
+      "source": "The Globe and Mail",
+      "title": "Shelter-in-place advisory issued near Squamish, B.C., due to flooding from heavy rain",
+      "url": "https://www.theglobeandmail.com/canada/article-bc-weather-storms-rain-flooding",
+      "published": "2026-11-12T15:58:07.140000+00:00",
+      "content_status": "full",
+      "word_count": 403,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "dfeb970139f42912",
+      "source": "The Globe and Mail",
+      "title": "Shelter-in-place advisory issued near Squamish, B.C., due to flooding from heavy rain",
+      "url": "https://www.theglobeandmail.com/canada/article-bc-weather-storms-rain-flooding",
+      "published": "2026-11-12T15:58:07.140000+00:00",
+      "content_status": "full",
+      "word_count": 403,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2167,21 +2198,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "17df98f607b9c88b",
-      "source": "Toronto Star",
-      "title": "Hamilton police looking for three suspects in home invasion",
-      "url": "https://www.thestar.com/news/ontario/hamilton-police-looking-for-three-suspects-in-home-invasion/article_66df5a3d-0431-5c26-a011-b24ba59b871d.html",
-      "published": "2026-11-11T19:57:46+00:00",
-      "content_status": "full",
-      "word_count": 56,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "1f0ee69f90f49059",
       "source": "Toronto Star",
       "title": "Impacts from B.C. drenching mount as water levels rise",
@@ -2206,6 +2222,21 @@
       "word_count": 582,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "21ab16748647b360",
+      "source": "Toronto Star",
+      "title": "Ontario to cap Osap growth at career colleges following massive increases",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-cap-osap-growth-at-career-colleges-following-massive-increases/article_0fe43ecc-7abd-554c-9ab1-b935da7edd6f.html",
+      "published": "2026-11-12T16:06:57+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4249,6 +4280,41 @@
       ]
     },
     {
+      "id": "dfeb970139f42912",
+      "source": "The Globe and Mail",
+      "title": "Shelter-in-place advisory issued near Squamish, B.C., due to flooding from heavy rain",
+      "url": "https://www.theglobeandmail.com/canada/article-bc-weather-storms-rain-flooding",
+      "published": "2026-11-12T15:58:07.140000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 403,
+      "paragraph_count": 15,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d2121de42fb083df",
       "source": "The Globe and Mail",
       "title": "Brookfield reports third-quarter profit up from year ago",
@@ -4507,35 +4573,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0eb1f432e4a7220a",
-      "source": "The Globe and Mail",
-      "title": "In Wainwright, Remembrance Day takes a new meaning in the wake of tragedy",
-      "url": "https://www.theglobeandmail.com/canada/article-wainwright-alberta-remembrance-day-wake-of-deadly-cfb-fire",
-      "published": "2026-11-12T00:42:47.754000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1138,
-      "paragraph_count": 30,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4835,6 +4872,47 @@
       ]
     },
     {
+      "id": "21ab16748647b360",
+      "source": "Toronto Star",
+      "title": "Ontario to cap Osap growth at career colleges following massive increases",
+      "url": "https://www.thestar.com/news/ontario/ontario-to-cap-osap-growth-at-career-colleges-following-massive-increases/article_0fe43ecc-7abd-554c-9ab1-b935da7edd6f.html",
+      "published": "2026-11-12T16:06:57+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 240,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9ab6deb6e16a442c",
       "source": "Toronto Star",
       "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
@@ -5117,41 +5195,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "17df98f607b9c88b",
-      "source": "Toronto Star",
-      "title": "Hamilton police looking for three suspects in home invasion",
-      "url": "https://www.thestar.com/news/ontario/hamilton-police-looking-for-three-suspects-in-home-invasion/article_66df5a3d-0431-5c26-a011-b24ba59b871d.html",
-      "published": "2026-11-11T19:57:46+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 56,
-      "paragraph_count": 4,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "56 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
