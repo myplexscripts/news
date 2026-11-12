@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T10:09:22.510939+00:00",
-  "generated_at_london": "2026-11-12T05:09:22.510939-05:00",
-  "news_generated_at": "2026-11-12T10:03:17.307368+00:00",
+  "generated_at": "2026-11-12T10:19:13.902824+00:00",
+  "generated_at_london": "2026-11-12T05:19:13.902824-05:00",
+  "news_generated_at": "2026-11-12T10:17:58.215938+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 663,
+    "archive_story_count": 665,
     "source_count": 28,
     "audited_story_count": 108,
     "pass_story_count": 99,
@@ -58,7 +58,7 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 666,
+      "average_words": 658,
       "average_quality": 85,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -67,10 +67,10 @@
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 12,
-      "latest_published": "2026-11-12T00:21:33.327000+00:00",
-      "found_this_run": 3,
+      "latest_published": "2026-11-12T10:11:47.070000+00:00",
+      "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-11-12T00:59:28.539963+00:00",
+      "last_scrape": "2026-11-12T10:16:37.172163+00:00",
       "last_error": ""
     },
     {
@@ -157,7 +157,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -175,10 +175,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-12T09:00:09+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-12T09:30:15.104850+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -559,19 +559,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 486,
-      "average_quality": 96,
+      "average_words": 489,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-12T02:23:32+00:00",
+      "latest_published": "2026-11-12T10:00:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T02:28:19.025145+00:00",
+      "last_scrape": "2026-11-12T10:16:34.712730+00:00",
       "last_error": ""
     },
     {
@@ -1005,6 +1006,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b56443ff50cd8521",
+      "source": "CTV News Canada",
+      "title": "Accused of smuggling, now they’re suing over Pearson tag switches",
+      "url": "https://www.ctvnews.ca/canada/article/accused-of-smuggling-now-theyre-suing-over-pearson-tag-switches",
+      "published": "2026-11-12T10:11:47.070000+00:00",
+      "content_status": "full",
+      "word_count": 1121,
+      "quality_score": 91,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1031,21 +1047,6 @@
       "content_status": "full",
       "word_count": 437,
       "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ab862ff00a5922b3",
-      "source": "CTV News Canada",
-      "title": "From Pearson to Prison: Toronto man faces 15 years in Albania after luggage tag switch",
-      "url": "https://www.ctvnews.ca/canada/article/from-pearson-to-prison-toronto-man-faces-15-years-in-albania-after-luggage-tag-switch",
-      "published": "2026-11-11T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1206,
-      "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1548,6 +1549,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "ff3038cd0abda2e4",
+      "source": "Global News Canada",
+      "title": "From VHS to iPods, retro tech is driving this year’s holiday shopping season",
+      "url": "https://globalnews.ca/news/12146554/retro-nostalgia-tech-best-buy",
+      "published": "2026-11-12T10:00:55+00:00",
+      "content_status": "full",
+      "word_count": 410,
+      "quality_score": 87,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "42ec2750b0cffef2",
       "source": "Global News Canada",
       "title": "Hamilton police looking for three suspects in home invasion",
@@ -1570,21 +1586,6 @@
       "published": "2026-11-12T02:23:32+00:00",
       "content_status": "full",
       "word_count": 583,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b0f9bb9f1bd38a40",
-      "source": "Global News Canada",
-      "title": "Muskoka regional chair ‘deeply disappointed’ after being ousted by Ford government",
-      "url": "https://globalnews.ca/news/12146710/muskoka-regional-chair-deeply-disappointed-after-being-ousted-by-ford-government",
-      "published": "2026-11-11T20:20:02+00:00",
-      "content_status": "full",
-      "word_count": 388,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3519,6 +3520,35 @@
       "issues": []
     },
     {
+      "id": "ff3038cd0abda2e4",
+      "source": "Global News Canada",
+      "title": "From VHS to iPods, retro tech is driving this year’s holiday shopping season",
+      "url": "https://globalnews.ca/news/12146554/retro-nostalgia-tech-best-buy",
+      "published": "2026-11-12T10:00:55+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 410,
+      "paragraph_count": 13,
+      "inline_image_count": 1,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5fce4b12d654a200",
       "source": "Global News Canada",
       "title": "Montrealers pay tribute to war veterans at annual Remembrance Day ceremony",
@@ -3780,24 +3810,24 @@
       ]
     },
     {
-      "id": "b0f9bb9f1bd38a40",
-      "source": "Global News Canada",
-      "title": "Muskoka regional chair ‘deeply disappointed’ after being ousted by Ford government",
-      "url": "https://globalnews.ca/news/12146710/muskoka-regional-chair-deeply-disappointed-after-being-ousted-by-ford-government",
-      "published": "2026-11-11T20:20:02+00:00",
+      "id": "b56443ff50cd8521",
+      "source": "CTV News Canada",
+      "title": "Accused of smuggling, now they’re suing over Pearson tag switches",
+      "url": "https://www.ctvnews.ca/canada/article/accused-of-smuggling-now-theyre-suing-over-pearson-tag-switches",
+      "published": "2026-11-12T10:11:47.070000+00:00",
       "audit_status": "pass",
       "audit_score": 97,
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 388,
-      "paragraph_count": 13,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
+      "word_count": 1121,
+      "paragraph_count": 50,
+      "inline_image_count": 7,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
         {
@@ -4074,35 +4104,6 @@
       "paragraph_count": 24,
       "inline_image_count": 3,
       "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ab862ff00a5922b3",
-      "source": "CTV News Canada",
-      "title": "From Pearson to Prison: Toronto man faces 15 years in Albania after luggage tag switch",
-      "url": "https://www.ctvnews.ca/canada/article/from-pearson-to-prison-toronto-man-faces-15-years-in-albania-after-luggage-tag-switch",
-      "published": "2026-11-11T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1206,
-      "paragraph_count": 50,
-      "inline_image_count": 7,
-      "quality_score": 91,
       "quality_grade": "excellent",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
