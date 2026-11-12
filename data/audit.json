@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T16:27:06.634888+00:00",
-  "generated_at_london": "2026-11-12T11:27:06.634888-05:00",
-  "news_generated_at": "2026-11-12T16:21:20.495196+00:00",
+  "generated_at": "2026-11-12T16:39:20.585919+00:00",
+  "generated_at_london": "2026-11-12T11:39:20.585919-05:00",
+  "news_generated_at": "2026-11-12T16:37:33.948874+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 673,
+    "archive_story_count": 671,
     "source_count": 28,
-    "audited_story_count": 111,
-    "pass_story_count": 98,
+    "audited_story_count": 110,
+    "pass_story_count": 97,
     "review_story_count": 7,
     "fail_story_count": 6,
     "critical_issue_count": 6,
     "warning_issue_count": 12,
-    "info_issue_count": 86,
-    "healthy_source_count": 11,
-    "review_source_count": 5,
+    "info_issue_count": 85,
+    "healthy_source_count": 10,
+    "review_source_count": 6,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -24,7 +24,7 @@
     {
       "source": "Toronto Star",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 5,
@@ -43,10 +43,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-12T16:06:57+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-12T16:19:54.976069+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -95,7 +95,7 @@
       "warning_issues": 1,
       "info_issues": 12,
       "latest_published": "2026-11-12T11:39:20.377000+00:00",
-      "found_this_run": 3,
+      "found_this_run": 2,
       "tracked": 30,
       "last_scrape": "2026-11-12T11:56:51.260003+00:00",
       "last_error": ""
@@ -139,19 +139,20 @@
       "fail": 1,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 389,
-      "average_quality": 96,
+      "average_words": 364,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-12T15:56:16+00:00",
+      "latest_published": "2026-11-12T16:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T16:04:25.217663+00:00",
+      "last_scrape": "2026-11-12T16:35:49.677217+00:00",
       "last_error": ""
     },
     {
@@ -179,6 +180,32 @@
       "tracked": 3,
       "last_scrape": "2026-11-12T12:20:22.408649+00:00",
       "last_error": ""
+    },
+    {
+      "source": "London Transit Commission",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 162,
+      "average_quality": 78,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-11-12T05:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 1,
+      "last_scrape": "2026-11-12T15:31:22.001263+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.londontransit.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "CBC News Canada",
@@ -606,32 +633,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 162,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-11-12T05:00:00+00:00",
-      "found_this_run": 3,
-      "tracked": 1,
-      "last_scrape": "2026-11-12T15:31:22.001263+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Middlesex County",
       "status": "healthy",
       "collector_status": "healthy",
@@ -694,19 +695,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 701,
-      "average_quality": 95,
+      "average_words": 639,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-11-12T15:58:07.140000+00:00",
+      "latest_published": "2026-11-12T16:18:17.660000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T16:19:52.934921+00:00",
+      "last_scrape": "2026-11-12T16:35:51.544545+00:00",
       "last_error": ""
     },
     {
@@ -714,21 +716,21 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "western",
-      "sample_size": 8,
-      "pass": 8,
+      "sample_size": 7,
+      "pass": 7,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 799,
+      "average_words": 725,
       "average_quality": 82,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 8
+        "reader:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 4,
+      "info_issues": 3,
       "latest_published": "2026-11-12T13:00:31+00:00",
       "found_this_run": 10,
       "tracked": 8,
@@ -1657,15 +1659,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5fce4b12d654a200",
+      "story_id": "86e151dde49fbb4f",
       "source": "Global News Canada",
-      "title": "Montrealers pay tribute to war veterans at annual Remembrance Day ceremony",
-      "url": "https://globalnews.ca/news/12147365/montreal-tribute-war-veterans-remembrance-day",
-      "published": "2026-11-12T02:23:32+00:00",
+      "title": "Pilot killed in Quebec Remembrance Day plane crash identified",
+      "url": "https://globalnews.ca/news/12147848/daniel-parent-quebec-remembrance-day-plane-crash",
+      "published": "2026-11-12T16:30:00+00:00",
       "content_status": "full",
-      "word_count": 583,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 339,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1984,6 +1986,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "a5d48c33af01ce56",
+      "source": "The Globe and Mail",
+      "title": "Ontario seeks to strengthen oversight of career colleges through limits on Osap, enrolment",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-bill-career-colleges-oversight-osap-enrolment",
+      "published": "2026-11-12T16:18:17.660000+00:00",
+      "content_status": "full",
+      "word_count": 446,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a5d48c33af01ce56",
+      "source": "The Globe and Mail",
+      "title": "Ontario seeks to strengthen oversight of career colleges through limits on Osap, enrolment",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-bill-career-colleges-oversight-osap-enrolment",
+      "published": "2026-11-12T16:18:17.660000+00:00",
+      "content_status": "full",
+      "word_count": 446,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2039,36 +2071,6 @@
       "published": "2026-11-12T15:58:07.140000+00:00",
       "content_status": "partial",
       "word_count": 388,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "da2abd70cb4db3fb",
-      "source": "The Globe and Mail",
-      "title": "Three Ontario private career colleges lay off staff as Osap pause continues",
-      "url": "https://www.theglobeandmail.com/canada/article-three-ontario-private-colleges-lay-off-staff-osap-pause",
-      "published": "2026-11-12T02:53:13.304000+00:00",
-      "content_status": "full",
-      "word_count": 1063,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "da2abd70cb4db3fb",
-      "source": "The Globe and Mail",
-      "title": "Three Ontario private career colleges lay off staff as Osap pause continues",
-      "url": "https://www.theglobeandmail.com/canada/article-three-ontario-private-colleges-lay-off-staff-osap-pause",
-      "published": "2026-11-12T02:53:13.304000+00:00",
-      "content_status": "full",
-      "word_count": 1063,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2280,21 +2282,6 @@
       "content_status": "full",
       "word_count": 875,
       "quality_score": 83,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "bb876b434ea0fefd",
-      "source": "Western News",
-      "title": "Western Autonomous and Intelligent Systems Hub builds on cutting-edge research",
-      "url": "https://news.westernu.ca/2026/11/autonomous-intelligent-systems-hub",
-      "published": "2026-11-05T16:37:47+00:00",
-      "content_status": "full",
-      "word_count": 1316,
-      "quality_score": 86,
       "extraction_method": "reader:semantic-rich-v1"
     }
   ],
@@ -3428,35 +3415,6 @@
       "issues": []
     },
     {
-      "id": "bb876b434ea0fefd",
-      "source": "Western News",
-      "title": "Western Autonomous and Intelligent Systems Hub builds on cutting-edge research",
-      "url": "https://news.westernu.ca/2026/11/autonomous-intelligent-systems-hub",
-      "published": "2026-11-05T16:37:47+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1316,
-      "paragraph_count": 30,
-      "inline_image_count": 0,
-      "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "western",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
       "id": "e30af6bebfd3157a",
       "source": "Fanshawe College Newsroom",
       "title": "News Archive",
@@ -3643,6 +3601,35 @@
       "extraction_profile": "generic",
       "local_score": 22,
       "issues": []
+    },
+    {
+      "id": "86e151dde49fbb4f",
+      "source": "Global News Canada",
+      "title": "Pilot killed in Quebec Remembrance Day plane crash identified",
+      "url": "https://globalnews.ca/news/12147848/daniel-parent-quebec-remembrance-day-plane-crash",
+      "published": "2026-11-12T16:30:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 339,
+      "paragraph_count": 17,
+      "inline_image_count": 2,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
     },
     {
       "id": "21f84b55b1701fea",
@@ -3897,35 +3884,6 @@
       "word_count": 440,
       "paragraph_count": 14,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5fce4b12d654a200",
-      "source": "Global News Canada",
-      "title": "Montrealers pay tribute to war veterans at annual Remembrance Day ceremony",
-      "url": "https://globalnews.ca/news/12147365/montreal-tribute-war-veterans-remembrance-day",
-      "published": "2026-11-12T02:23:32+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 583,
-      "paragraph_count": 23,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4249,6 +4207,41 @@
       ]
     },
     {
+      "id": "a5d48c33af01ce56",
+      "source": "The Globe and Mail",
+      "title": "Ontario seeks to strengthen oversight of career colleges through limits on Osap, enrolment",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-bill-career-colleges-oversight-osap-enrolment",
+      "published": "2026-11-12T16:18:17.660000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 446,
+      "paragraph_count": 13,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "dfeb970139f42912",
       "source": "The Globe and Mail",
       "title": "Shelter-in-place advisory issued near Squamish, B.C., due to flooding from heavy rain",
@@ -4507,41 +4500,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "da2abd70cb4db3fb",
-      "source": "The Globe and Mail",
-      "title": "Three Ontario private career colleges lay off staff as Osap pause continues",
-      "url": "https://www.theglobeandmail.com/canada/article-three-ontario-private-colleges-lay-off-staff-osap-pause",
-      "published": "2026-11-12T02:53:13.304000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 1063,
-      "paragraph_count": 27,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
