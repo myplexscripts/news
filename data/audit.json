@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-12T19:04:56.702952+00:00",
-  "generated_at_london": "2026-11-12T14:04:56.702952-05:00",
-  "news_generated_at": "2026-11-12T18:59:12.928084+00:00",
+  "generated_at": "2026-11-12T19:17:39.506453+00:00",
+  "generated_at_london": "2026-11-12T14:17:39.506453-05:00",
+  "news_generated_at": "2026-11-12T19:15:25.947969+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 671,
+    "archive_story_count": 669,
     "source_count": 28,
     "audited_story_count": 110,
-    "pass_story_count": 99,
-    "review_story_count": 6,
-    "fail_story_count": 5,
-    "critical_issue_count": 5,
-    "warning_issue_count": 11,
+    "pass_story_count": 100,
+    "review_story_count": 7,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 13,
     "info_issue_count": 85,
-    "healthy_source_count": 11,
-    "review_source_count": 6,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -102,32 +102,6 @@
       "last_error": ""
     },
     {
-      "source": "Global News Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "global",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 536,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 1,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-12T18:40:32+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-12T18:41:40.228114+00:00",
-      "last_error": ""
-    },
-    {
       "source": "London Health Sciences Centre",
       "status": "review",
       "collector_status": "healthy",
@@ -160,24 +134,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
-      "review": 0,
-      "fail": 3,
+      "review": 1,
+      "fail": 2,
       "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 225,
-      "average_quality": 94,
+      "average_words": 245,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:star:article": 1
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 3,
-      "warning_issues": 0,
+      "critical_issues": 2,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-12T18:18:39+00:00",
+      "latest_published": "2026-11-12T18:59:21+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T18:41:47.994099+00:00",
+      "last_scrape": "2026-11-12T19:13:25.896348+00:00",
       "last_error": ""
     },
     {
@@ -553,6 +527,33 @@
       "last_error": ""
     },
     {
+      "source": "Global News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "global",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 601,
+      "average_quality": 92,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:global:article:strict": 2,
+        "dom:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-12T19:08:38+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-12T19:13:20.969357+00:00",
+      "last_error": ""
+    },
+    {
       "source": "London District Catholic School Board",
       "status": "healthy",
       "collector_status": "healthy",
@@ -680,7 +681,7 @@
       "latest_published": "2026-11-12T18:36:10+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T18:57:27.018986+00:00",
+      "last_scrape": "2026-11-12T19:13:23.626265+00:00",
       "last_error": ""
     },
     {
@@ -751,36 +752,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "71 words",
-      "story_id": "6ccae5c7b519d734",
-      "source": "Global News Canada",
-      "title": "Winning Mississauga Lotto 6/49 Gold Ball ticket worth $38M: OLG",
-      "url": "https://globalnews.ca/news/12147737/lotto-649-gold-ball-winning-ticket",
-      "published": "2026-11-12T14:49:08+00:00",
-      "content_status": "full",
-      "word_count": 71,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "30 words",
-      "story_id": "0bce70108d7313da",
-      "source": "Toronto Star",
-      "title": "A timeline of key events in the Jamal Francique case ahead of coroner's inquest",
-      "url": "https://www.thestar.com/news/ontario/a-timeline-of-key-events-in-the-jamal-francique-case-ahead-of-coroner-s-inquest/article_cccd2f94-07d9-53f9-96d0-7fa68f5dad8d.html",
-      "published": "2026-11-12T09:00:03+00:00",
-      "content_status": "full",
-      "word_count": 30,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "critical",
@@ -976,6 +947,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "a01eb9159d0833a9",
+      "source": "Toronto Star",
+      "title": "Former B.C. minister Bailey says David Eby was inauthentic during failed campaign",
+      "url": "https://www.thestar.com/news/canada/british-columbia/former-b-c-minister-bailey-says-david-eby-was-inauthentic-during-failed-campaign/article_7c8282f5-4869-5411-918d-d477da6ef812.html",
+      "published": "2026-11-12T18:59:21+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "a01eb9159d0833a9",
+      "source": "Toronto Star",
+      "title": "Former B.C. minister Bailey says David Eby was inauthentic during failed campaign",
+      "url": "https://www.thestar.com/news/canada/british-columbia/former-b-c-minister-bailey-says-david-eby-was-inauthentic-during-failed-campaign/article_7c8282f5-4869-5411-918d-d477da6ef812.html",
+      "published": "2026-11-12T18:59:21+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1507,6 +1508,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "b453d9fcdf8c3a03",
+      "source": "Global News Canada",
+      "title": "A Microsoft 365 outage is hitting users in regions around the world",
+      "url": "https://globalnews.ca/news/12148204/microsoft-outage-2026",
+      "published": "2026-11-12T19:08:38+00:00",
+      "content_status": "full",
+      "word_count": 193,
+      "quality_score": 70,
+      "extraction_method": "dom:global:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "f7f58c8bb1ffb06d",
       "source": "Global News Canada",
       "title": "Association of Quebec farmers releases study challenging costs of high-speed rail",
@@ -1582,6 +1598,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "18d93b9fc71afbed",
+      "source": "Global News Canada",
+      "title": "Most Western Canadians say ditching time change was the ‘right move’: poll",
+      "url": "https://globalnews.ca/news/12148001/western-canadians-approve-time-change-ditched",
+      "published": "2026-11-12T19:01:04+00:00",
+      "content_status": "full",
+      "word_count": 624,
+      "quality_score": 87,
+      "extraction_method": "dom:global:article:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "beb32660e88f5a50",
       "source": "Global News Canada",
       "title": "Ontario to cap Osap growth at career colleges following massive increases",
@@ -1612,21 +1643,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9ced7159f041e666",
-      "source": "Global News Canada",
-      "title": "Tesla driver found asleep on Highway 417 during Ottawa rush hour: OPP",
-      "url": "https://globalnews.ca/news/12147686/ottawa-tesla-driver-sleeping-highway-417",
-      "published": "2026-11-12T13:54:23+00:00",
-      "content_status": "full",
-      "word_count": 98,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "f53341c8289ef1c0",
       "source": "Global News Canada",
       "title": "U of T rejects report, recommendations on anti-Muslim, anti-Arab discrimination",
@@ -1634,21 +1650,6 @@
       "published": "2026-11-12T17:49:31+00:00",
       "content_status": "full",
       "word_count": 862,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "6ccae5c7b519d734",
-      "source": "Global News Canada",
-      "title": "Winning Mississauga Lotto 6/49 Gold Ball ticket worth $38M: OLG",
-      "url": "https://globalnews.ca/news/12147737/lotto-649-gold-ball-winning-ticket",
-      "published": "2026-11-12T14:49:08+00:00",
-      "content_status": "full",
-      "word_count": 71,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2062,21 +2063,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0bce70108d7313da",
-      "source": "Toronto Star",
-      "title": "A timeline of key events in the Jamal Francique case ahead of coroner's inquest",
-      "url": "https://www.thestar.com/news/ontario/a-timeline-of-key-events-in-the-jamal-francique-case-ahead-of-coroner-s-inquest/article_cccd2f94-07d9-53f9-96d0-7fa68f5dad8d.html",
-      "published": "2026-11-12T09:00:03+00:00",
-      "content_status": "full",
-      "word_count": 30,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "9ab6deb6e16a442c",
       "source": "Toronto Star",
       "title": "Author Kate Cayley, playwright Jordan Tannahill win Governor General's Literary Awards",
@@ -2161,6 +2147,21 @@
       "word_count": 290,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a01eb9159d0833a9",
+      "source": "Toronto Star",
+      "title": "Former B.C. minister Bailey says David Eby was inauthentic during failed campaign",
+      "url": "https://www.thestar.com/news/canada/british-columbia/former-b-c-minister-bailey-says-david-eby-was-inauthentic-during-failed-campaign/article_7c8282f5-4869-5411-918d-d477da6ef812.html",
+      "published": "2026-11-12T18:59:21+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3564,6 +3565,64 @@
       "issues": []
     },
     {
+      "id": "b453d9fcdf8c3a03",
+      "source": "Global News Canada",
+      "title": "A Microsoft 365 outage is hitting users in regions around the world",
+      "url": "https://globalnews.ca/news/12148204/microsoft-outage-2026",
+      "published": "2026-11-12T19:08:38+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 193,
+      "paragraph_count": 6,
+      "inline_image_count": 1,
+      "quality_score": 70,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "18d93b9fc71afbed",
+      "source": "Global News Canada",
+      "title": "Most Western Canadians say ditching time change was the ‘right move’: poll",
+      "url": "https://globalnews.ca/news/12148001/western-canadians-approve-time-change-ditched",
+      "published": "2026-11-12T19:01:04+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 624,
+      "paragraph_count": 16,
+      "inline_image_count": 1,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f7a51730b0315186",
       "source": "Global News Canada",
       "title": "Faster money transfers with RTR will take a while to adopt, says Scotiabank",
@@ -3781,70 +3840,6 @@
       "word_count": 471,
       "paragraph_count": 19,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6ccae5c7b519d734",
-      "source": "Global News Canada",
-      "title": "Winning Mississauga Lotto 6/49 Gold Ball ticket worth $38M: OLG",
-      "url": "https://globalnews.ca/news/12147737/lotto-649-gold-ball-winning-ticket",
-      "published": "2026-11-12T14:49:08+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 71,
-      "paragraph_count": 4,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "71 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9ced7159f041e666",
-      "source": "Global News Canada",
-      "title": "Tesla driver found asleep on Highway 417 during Ottawa rush hour: OPP",
-      "url": "https://globalnews.ca/news/12147686/ottawa-tesla-driver-sleeping-highway-417",
-      "published": "2026-11-12T13:54:23+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 98,
-      "paragraph_count": 4,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4766,6 +4761,47 @@
       ]
     },
     {
+      "id": "a01eb9159d0833a9",
+      "source": "Toronto Star",
+      "title": "Former B.C. minister Bailey says David Eby was inauthentic during failed campaign",
+      "url": "https://www.thestar.com/news/canada/british-columbia/former-b-c-minister-bailey-says-david-eby-was-inauthentic-during-failed-campaign/article_7c8282f5-4869-5411-918d-d477da6ef812.html",
+      "published": "2026-11-12T18:59:21+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 233,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c1eabc19a0c59595",
       "source": "Toronto Star",
       "title": "Three arrested after personal data stolen and sold from Quebec's auto insurance board",
@@ -5029,41 +5065,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "60 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0bce70108d7313da",
-      "source": "Toronto Star",
-      "title": "A timeline of key events in the Jamal Francique case ahead of coroner's inquest",
-      "url": "https://www.thestar.com/news/ontario/a-timeline-of-key-events-in-the-jamal-francique-case-ahead-of-coroner-s-inquest/article_cccd2f94-07d9-53f9-96d0-7fa68f5dad8d.html",
-      "published": "2026-11-12T09:00:03+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 30,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "30 words"
         },
         {
           "severity": "info",
