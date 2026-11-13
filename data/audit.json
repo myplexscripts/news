@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T16:43:39.815866+00:00",
-  "generated_at_london": "2026-11-13T11:43:39.815866-05:00",
-  "news_generated_at": "2026-11-13T16:38:43.641049+00:00",
+  "generated_at": "2026-11-13T16:56:15.010256+00:00",
+  "generated_at_london": "2026-11-13T11:56:15.010256-05:00",
+  "news_generated_at": "2026-11-13T16:54:05.471766+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 656,
+    "archive_story_count": 657,
     "source_count": 28,
     "audited_story_count": 103,
-    "pass_story_count": 96,
-    "review_story_count": 5,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 8,
+    "pass_story_count": 95,
+    "review_story_count": 7,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 12,
     "info_issue_count": 88,
     "healthy_source_count": 11,
     "review_source_count": 6,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-13T11:21:10+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T16:36:43.387724+00:00",
+      "last_scrape": "2026-11-13T16:51:55.122808+00:00",
       "last_error": ""
     },
     {
@@ -159,25 +159,26 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 700,
-      "average_quality": 94,
+      "average_words": 723,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 7,
         "trafilatura:fallback": 1
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-13T14:18:11+00:00",
+      "latest_published": "2026-11-13T16:28:22+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T14:32:56.950638+00:00",
+      "last_scrape": "2026-11-13T16:51:57.838429+00:00",
       "last_error": ""
     },
     {
@@ -226,7 +227,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -491,7 +492,7 @@
       "warning_issues": 0,
       "info_issues": 16,
       "latest_published": "2026-11-13T14:27:55.697000+00:00",
-      "found_this_run": 3,
+      "found_this_run": 2,
       "tracked": 30,
       "last_scrape": "2026-11-13T14:37:52.254528+00:00",
       "last_error": ""
@@ -753,21 +754,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "69 words",
-      "story_id": "90283e5beb08f0c3",
-      "source": "Toronto Star",
-      "title": "PAL Airlines pulls plane out of service after it lost a wheel in two separate flights",
-      "url": "https://www.thestar.com/news/canada/pal-airlines-pulls-plane-out-of-service-after-it-lost-a-wheel-in-two-separate-flights/article_ccb614da-74b8-586e-92c0-6923408775d8.html",
-      "published": "2026-11-13T00:01:17+00:00",
-      "content_status": "full",
-      "word_count": 69,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -886,6 +872,66 @@
       "word_count": 239,
       "quality_score": 91,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "e323eac3045374ca",
+      "source": "Toronto Star",
+      "title": "Police in Cape Breton disrupt major, national stolen vehicle trafficking ring",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/police-in-cape-breton-disrupt-major-national-stolen-vehicle-trafficking-ring/article_0212cf32-ae50-59dd-bc7f-8aae5b585d2c.html",
+      "published": "2026-11-13T16:28:22+00:00",
+      "content_status": "full",
+      "word_count": 217,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "e323eac3045374ca",
+      "source": "Toronto Star",
+      "title": "Police in Cape Breton disrupt major, national stolen vehicle trafficking ring",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/police-in-cape-breton-disrupt-major-national-stolen-vehicle-trafficking-ring/article_0212cf32-ae50-59dd-bc7f-8aae5b585d2c.html",
+      "published": "2026-11-13T16:28:22+00:00",
+      "content_status": "full",
+      "word_count": 217,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3d9fb31747018429",
+      "source": "Toronto Star",
+      "title": "TikTok says it has taken down deepfake videos spreading trade falsehoods",
+      "url": "https://www.thestar.com/news/canada/tiktok-says-it-has-taken-down-deepfake-videos-spreading-trade-falsehoods/article_43f6b643-ad34-50c3-9fdc-edd9d09acae0.html",
+      "published": "2026-11-13T16:24:13+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "3d9fb31747018429",
+      "source": "Toronto Star",
+      "title": "TikTok says it has taken down deepfake videos spreading trade falsehoods",
+      "url": "https://www.thestar.com/news/canada/tiktok-says-it-has-taken-down-deepfake-videos-spreading-trade-falsehoods/article_43f6b643-ad34-50c3-9fdc-edd9d09acae0.html",
+      "published": "2026-11-13T16:24:13+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2107,15 +2153,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "90283e5beb08f0c3",
+      "story_id": "e323eac3045374ca",
       "source": "Toronto Star",
-      "title": "PAL Airlines pulls plane out of service after it lost a wheel in two separate flights",
-      "url": "https://www.thestar.com/news/canada/pal-airlines-pulls-plane-out-of-service-after-it-lost-a-wheel-in-two-separate-flights/article_ccb614da-74b8-586e-92c0-6923408775d8.html",
-      "published": "2026-11-13T00:01:17+00:00",
+      "title": "Police in Cape Breton disrupt major, national stolen vehicle trafficking ring",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/police-in-cape-breton-disrupt-major-national-stolen-vehicle-trafficking-ring/article_0212cf32-ae50-59dd-bc7f-8aae5b585d2c.html",
+      "published": "2026-11-13T16:28:22+00:00",
       "content_status": "full",
-      "word_count": 69,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 217,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2137,15 +2183,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "debaff1cf5842b13",
+      "story_id": "3d9fb31747018429",
       "source": "Toronto Star",
-      "title": "Thousands in Canada affected by global Microsoft outage",
-      "url": "https://www.thestar.com/news/canada/thousands-in-canada-affected-by-global-microsoft-outage/article_7021c568-a214-5a51-b76c-70a476112763.html",
-      "published": "2026-11-12T23:51:58+00:00",
+      "title": "TikTok says it has taken down deepfake videos spreading trade falsehoods",
+      "url": "https://www.thestar.com/news/canada/tiktok-says-it-has-taken-down-deepfake-videos-spreading-trade-falsehoods/article_43f6b643-ad34-50c3-9fdc-edd9d09acae0.html",
+      "published": "2026-11-13T16:24:13+00:00",
       "content_status": "full",
-      "word_count": 134,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4558,6 +4604,88 @@
       ]
     },
     {
+      "id": "e323eac3045374ca",
+      "source": "Toronto Star",
+      "title": "Police in Cape Breton disrupt major, national stolen vehicle trafficking ring",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/police-in-cape-breton-disrupt-major-national-stolen-vehicle-trafficking-ring/article_0212cf32-ae50-59dd-bc7f-8aae5b585d2c.html",
+      "published": "2026-11-13T16:28:22+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 217,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "3d9fb31747018429",
+      "source": "Toronto Star",
+      "title": "TikTok says it has taken down deepfake videos spreading trade falsehoods",
+      "url": "https://www.thestar.com/news/canada/tiktok-says-it-has-taken-down-deepfake-videos-spreading-trade-falsehoods/article_43f6b643-ad34-50c3-9fdc-edd9d09acae0.html",
+      "published": "2026-11-13T16:24:13+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 211,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d16ba07fe054d454",
       "source": "Toronto Star",
       "title": "Man dies in hospital after east-end Toronto fire, police say",
@@ -4774,70 +4902,6 @@
       "content_status": "full",
       "word_count": 1270,
       "paragraph_count": 46,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "90283e5beb08f0c3",
-      "source": "Toronto Star",
-      "title": "PAL Airlines pulls plane out of service after it lost a wheel in two separate flights",
-      "url": "https://www.thestar.com/news/canada/pal-airlines-pulls-plane-out-of-service-after-it-lost-a-wheel-in-two-separate-flights/article_ccb614da-74b8-586e-92c0-6923408775d8.html",
-      "published": "2026-11-13T00:01:17+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 69,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "69 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "debaff1cf5842b13",
-      "source": "Toronto Star",
-      "title": "Thousands in Canada affected by global Microsoft outage",
-      "url": "https://www.thestar.com/news/canada/thousands-in-canada-affected-by-global-microsoft-outage/article_7021c568-a214-5a51-b76c-70a476112763.html",
-      "published": "2026-11-12T23:51:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 134,
-      "paragraph_count": 9,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
