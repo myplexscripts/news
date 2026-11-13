@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T02:25:14.650440+00:00",
-  "generated_at_london": "2026-11-12T21:25:14.650440-05:00",
-  "news_generated_at": "2026-11-13T02:18:28.823519+00:00",
+  "generated_at": "2026-11-13T02:34:50.063121+00:00",
+  "generated_at_london": "2026-11-12T21:34:50.063121-05:00",
+  "news_generated_at": "2026-11-13T02:33:33.746409+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 660,
+    "archive_story_count": 661,
     "source_count": 28,
     "audited_story_count": 110,
     "pass_story_count": 103,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 11,
     "info_issue_count": 89,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -126,6 +126,32 @@
       "tracked": 3,
       "last_scrape": "2026-11-12T12:20:22.408649+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 273,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-13T00:01:17+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-11-13T00:11:09.841147+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -370,7 +396,7 @@
     {
       "source": "Thames Valley District School Board",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -386,10 +412,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "106.9 The X",
@@ -441,7 +467,7 @@
       "latest_published": "2026-11-13T02:08:45.804000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T02:14:37.537431+00:00",
+      "last_scrape": "2026-11-13T02:21:02.864135+00:00",
       "last_error": ""
     },
     {
@@ -641,19 +667,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 732,
-      "average_quality": 79,
+      "average_words": 673,
+      "average_quality": 76,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:postmedia-last-resort": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-12T21:12:26+00:00",
+      "latest_published": "2026-11-13T02:17:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T02:16:57.492933+00:00",
+      "last_scrape": "2026-11-13T02:32:09.559601+00:00",
       "last_error": ""
     },
     {
@@ -680,32 +707,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-13T00:11:06.414470+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 273,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-13T00:01:17+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-13T00:11:09.841147+00:00",
       "last_error": ""
     },
     {
@@ -1746,6 +1747,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "c5d8a270a84b06ad",
+      "source": "National Post",
+      "title": "Italian couple who hid Jewish family during Second World War awarded rare title in Canadian ceremony",
+      "url": "https://nationalpost.com/news/canada/italian-couple-who-hid-jewish-family-named-righteous-among-the-nations",
+      "published": "2026-11-13T02:17:03+00:00",
+      "content_status": "partial",
+      "word_count": 48,
+      "quality_score": 48,
+      "extraction_method": "trafilatura:postmedia-last-resort"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "11def691cbef3d48",
       "source": "National Post",
       "title": "More than 60% of First Nations support Carney’s plans to ramp up fossil fuel output, exclusive poll finds",
@@ -1814,21 +1830,6 @@
       "content_status": "full",
       "word_count": 815,
       "quality_score": 79,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "537d8291d226dae8",
-      "source": "National Post",
-      "title": "U.S. hockey star Connor Hellebuyck says death threats motivated trade request out of Canada",
-      "url": "https://nationalpost.com/news/u-s-hockey-star-connor-hellebuyck-says-death-threats-motivated-trade-request-out-of-canada",
-      "published": "2026-11-11T17:46:30+00:00",
-      "content_status": "partial",
-      "word_count": 644,
-      "quality_score": 78,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -4493,6 +4494,35 @@
       ]
     },
     {
+      "id": "c5d8a270a84b06ad",
+      "source": "National Post",
+      "title": "Italian couple who hid Jewish family during Second World War awarded rare title in Canadian ceremony",
+      "url": "https://nationalpost.com/news/canada/italian-couple-who-hid-jewish-family-named-righteous-among-the-nations",
+      "published": "2026-11-13T02:17:03+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 48,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "trafilatura:postmedia-last-resort",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d9715bd4a1a7937b",
       "source": "National Post",
       "title": "Saskatchewan will allow Maid by advance request",
@@ -4740,35 +4770,6 @@
       "paragraph_count": 20,
       "inline_image_count": 1,
       "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "537d8291d226dae8",
-      "source": "National Post",
-      "title": "U.S. hockey star Connor Hellebuyck says death threats motivated trade request out of Canada",
-      "url": "https://nationalpost.com/news/u-s-hockey-star-connor-hellebuyck-says-death-threats-motivated-trade-request-out-of-canada",
-      "published": "2026-11-11T17:46:30+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 644,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 78,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
