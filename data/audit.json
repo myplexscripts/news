@@ -1,26 +1,53 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T08:11:30.297281+00:00",
-  "generated_at_london": "2026-11-13T03:11:30.297281-05:00",
-  "news_generated_at": "2026-11-13T08:05:24.041837+00:00",
+  "generated_at": "2026-11-13T08:22:20.337166+00:00",
+  "generated_at_london": "2026-11-13T03:22:20.337166-05:00",
+  "news_generated_at": "2026-11-13T08:20:48.528368+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 656,
+    "archive_story_count": 657,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 95,
+    "pass_story_count": 94,
     "review_story_count": 6,
-    "fail_story_count": 5,
-    "critical_issue_count": 5,
+    "fail_story_count": 6,
+    "critical_issue_count": 6,
     "warning_issue_count": 11,
     "info_issue_count": 86,
     "healthy_source_count": 12,
-    "review_source_count": 5,
-    "error_source_count": 0,
+    "review_source_count": 4,
+    "error_source_count": 1,
     "waiting_source_count": 11
   },
   "source_reports": [
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 0,
+      "fail": 5,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 138,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 5,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-13T08:00:01+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-13T08:19:09.556344+00:00",
+      "last_error": ""
+    },
     {
       "source": "104.7 Heart FM",
       "status": "review",
@@ -125,32 +152,6 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-11-12T12:20:22.408649+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 6,
-      "review": 0,
-      "fail": 4,
-      "pass_rate": 60,
-      "usable_body_rate": 100,
-      "average_words": 166,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 4,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-13T00:01:17+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-13T00:11:09.841147+00:00",
       "last_error": ""
     },
     {
@@ -679,7 +680,7 @@
       "latest_published": "2026-11-13T02:17:03+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T08:03:21.264263+00:00",
+      "last_scrape": "2026-11-13T08:19:08.245880+00:00",
       "last_error": ""
     },
     {
@@ -750,6 +751,21 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "58 words",
+      "story_id": "867a3134d1de9073",
+      "source": "Toronto Star",
+      "title": "Calgary water rules not expected to hamper Grey Cup, pubs promise plenty of beer",
+      "url": "https://www.thestar.com/news/canada/alberta/calgary-water-rules-not-expected-to-hamper-grey-cup-pubs-promise-plenty-of-beer/article_6904b38f-4cd0-5860-baad-d4800ca6bc01.html",
+      "published": "2026-11-13T08:00:01+00:00",
+      "content_status": "full",
+      "word_count": 58,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "critical",
@@ -2076,6 +2092,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "867a3134d1de9073",
+      "source": "Toronto Star",
+      "title": "Calgary water rules not expected to hamper Grey Cup, pubs promise plenty of beer",
+      "url": "https://www.thestar.com/news/canada/alberta/calgary-water-rules-not-expected-to-hamper-grey-cup-pubs-promise-plenty-of-beer/article_6904b38f-4cd0-5860-baad-d4800ca6bc01.html",
+      "published": "2026-11-13T08:00:01+00:00",
+      "content_status": "full",
+      "word_count": 58,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e3a90c61c37ce601",
       "source": "Toronto Star",
       "title": "Confining kids in lockers as punishment 'unacceptable': Quebec education minister",
@@ -2113,21 +2144,6 @@
       "published": "2026-11-12T19:41:08+00:00",
       "content_status": "full",
       "word_count": 168,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "408549fa06202a97",
-      "source": "Toronto Star",
-      "title": "Outlook and Teams down as widespread Microsoft outage hits multiple services",
-      "url": "https://www.thestar.com/news/canada/outlook-and-teams-down-as-widespread-microsoft-outage-hits-multiple-services/article_5fdbaaca-41d0-4da9-bc0d-7fb8448b2019.html",
-      "published": "2026-11-12T19:40:00+00:00",
-      "content_status": "full",
-      "word_count": 333,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4689,6 +4705,41 @@
       ]
     },
     {
+      "id": "867a3134d1de9073",
+      "source": "Toronto Star",
+      "title": "Calgary water rules not expected to hamper Grey Cup, pubs promise plenty of beer",
+      "url": "https://www.thestar.com/news/canada/alberta/calgary-water-rules-not-expected-to-hamper-grey-cup-pubs-promise-plenty-of-beer/article_6904b38f-4cd0-5860-baad-d4800ca6bc01.html",
+      "published": "2026-11-13T08:00:01+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 58,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "58 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "90283e5beb08f0c3",
       "source": "Toronto Star",
       "title": "PAL Airlines pulls plane out of service after it lost a wheel in two separate flights",
@@ -4958,35 +5009,6 @@
       "content_status": "full",
       "word_count": 168,
       "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "408549fa06202a97",
-      "source": "Toronto Star",
-      "title": "Outlook and Teams down as widespread Microsoft outage hits multiple services",
-      "url": "https://www.thestar.com/news/canada/outlook-and-teams-down-as-widespread-microsoft-outage-hits-multiple-services/article_5fdbaaca-41d0-4da9-bc0d-7fb8448b2019.html",
-      "published": "2026-11-12T19:40:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 333,
-      "paragraph_count": 21,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
