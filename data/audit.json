@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T20:37:01.230911+00:00",
-  "generated_at_london": "2026-11-13T15:37:01.230911-05:00",
-  "news_generated_at": "2026-11-13T20:31:10.008636+00:00",
+  "generated_at": "2026-11-13T20:47:49.564793+00:00",
+  "generated_at_london": "2026-11-13T15:47:49.564793-05:00",
+  "news_generated_at": "2026-11-13T20:45:48.375412+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 662,
+    "archive_story_count": 661,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 101,
-    "review_story_count": 3,
+    "pass_story_count": 99,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
+    "warning_issue_count": 10,
     "info_issue_count": 89,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -102,6 +102,33 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 345,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 10,
+      "latest_published": "2026-11-13T20:23:57+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-13T20:43:51.736914+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -147,7 +174,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -352,19 +379,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 327,
-      "average_quality": 82,
+      "average_words": 321,
+      "average_quality": 81,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:wordpress:article": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 0,
-      "latest_published": "2026-11-12T21:39:58+00:00",
+      "latest_published": "2026-11-13T20:19:00+00:00",
       "found_this_run": 10,
-      "tracked": 10,
-      "last_scrape": "2026-11-12T22:03:46.752127+00:00",
+      "tracked": 11,
+      "last_scrape": "2026-11-13T20:41:34.896461+00:00",
       "last_error": ""
     },
     {
@@ -627,7 +655,7 @@
       "latest_published": "2026-11-13T18:35:38+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T20:29:02.118532+00:00",
+      "last_scrape": "2026-11-13T20:43:49.098400+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-13T19:10:49.078486+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 353,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-13T20:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-13T20:29:03.849101+00:00",
       "last_error": ""
     },
     {
@@ -841,6 +843,66 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "0265671b9dfa7e74",
+      "source": "Toronto Star",
+      "title": "Alberta implementing new oil royalty payment system to encourage production",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-implementing-new-oil-royalty-payment-system-to-encourage-production/article_2448f610-4c42-540e-95ca-89a14f69cb80.html",
+      "published": "2026-11-13T20:19:50+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "0265671b9dfa7e74",
+      "source": "Toronto Star",
+      "title": "Alberta implementing new oil royalty payment system to encourage production",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-implementing-new-oil-royalty-payment-system-to-encourage-production/article_2448f610-4c42-540e-95ca-89a14f69cb80.html",
+      "published": "2026-11-13T20:19:50+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b6dde87ea1bf0ac5",
+      "source": "Toronto Star",
+      "title": "Vancouver police investigating after local mosque vandalized with graffiti",
+      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-police-investigating-after-local-mosque-vandalized-with-graffiti/article_8e46f7e7-723c-580f-be7f-bc9f585bc653.html",
+      "published": "2026-11-13T20:23:57+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "b6dde87ea1bf0ac5",
+      "source": "Toronto Star",
+      "title": "Vancouver police investigating after local mosque vandalized with graffiti",
+      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-police-investigating-after-local-mosque-vandalized-with-graffiti/article_8e46f7e7-723c-580f-be7f-bc9f585bc653.html",
+      "published": "2026-11-13T20:23:57+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1987,15 +2049,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "50b0469c40c5a95a",
+      "story_id": "0265671b9dfa7e74",
       "source": "Toronto Star",
-      "title": "Coroner's inquest begins in case of Jamal Francique, shot by police in Mississauga",
-      "url": "https://www.thestar.com/news/ontario/coroner-s-inquest-begins-in-case-of-jamal-francique-shot-by-police-in-mississauga/article_5251f39b-3a93-5687-a2ec-f3b7dd90b349.html",
-      "published": "2026-11-13T16:46:06+00:00",
+      "title": "Alberta implementing new oil royalty payment system to encourage production",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-implementing-new-oil-royalty-payment-system-to-encourage-production/article_2448f610-4c42-540e-95ca-89a14f69cb80.html",
+      "published": "2026-11-13T20:19:50+00:00",
       "content_status": "full",
-      "word_count": 198,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2107,21 +2169,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "e323eac3045374ca",
-      "source": "Toronto Star",
-      "title": "Police in Cape Breton disrupt major, national stolen vehicle trafficking ring",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/police-in-cape-breton-disrupt-major-national-stolen-vehicle-trafficking-ring/article_0212cf32-ae50-59dd-bc7f-8aae5b585d2c.html",
-      "published": "2026-11-13T16:28:22+00:00",
-      "content_status": "full",
-      "word_count": 269,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "4dd60471ad16d8b0",
       "source": "Toronto Star",
       "title": "Quebec won't talk independence at Francophonie summit, minister says",
@@ -2131,6 +2178,21 @@
       "word_count": 583,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b6dde87ea1bf0ac5",
+      "source": "Toronto Star",
+      "title": "Vancouver police investigating after local mosque vandalized with graffiti",
+      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-police-investigating-after-local-mosque-vandalized-with-graffiti/article_8e46f7e7-723c-580f-be7f-bc9f585bc653.html",
+      "published": "2026-11-13T20:23:57+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2475,6 +2537,28 @@
       "issues": []
     },
     {
+      "id": "3a3a266228fab70a",
+      "source": "106.9 The X",
+      "title": "Students showcase their artistry at 25th Annual Juried Exhibition",
+      "url": "https://www.1069thex.com/2026/11/13/students-showcase-their-artistry-at-25th-annual-western-visual-arts-exhibition",
+      "published": "2026-11-13T20:19:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 237,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:wordpress:article",
+      "extraction_profile": "wordpress",
+      "local_score": 61,
+      "issues": []
+    },
+    {
       "id": "090fe1187c8a1e72",
       "source": "106.9 The X",
       "title": "Fanshawe graduate shares advice on writing and publishing a book",
@@ -2670,28 +2754,6 @@
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "wordpress",
       "local_score": 73,
-      "issues": []
-    },
-    {
-      "id": "bba9b7e77d457dce",
-      "source": "106.9 The X",
-      "title": "Fanshawe students, staff wear poppies to honour veterans",
-      "url": "https://www.1069thex.com/2026/11/06/annual-poppy-campaign-up-and-running",
-      "published": "2026-11-06T21:17:02+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 292,
-      "paragraph_count": 10,
-      "inline_image_count": 1,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "wordpress",
-      "local_score": 61,
       "issues": []
     },
     {
@@ -4568,6 +4630,88 @@
       ]
     },
     {
+      "id": "b6dde87ea1bf0ac5",
+      "source": "Toronto Star",
+      "title": "Vancouver police investigating after local mosque vandalized with graffiti",
+      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-police-investigating-after-local-mosque-vandalized-with-graffiti/article_8e46f7e7-723c-580f-be7f-bc9f585bc653.html",
+      "published": "2026-11-13T20:23:57+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 194,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "0265671b9dfa7e74",
+      "source": "Toronto Star",
+      "title": "Alberta implementing new oil royalty payment system to encourage production",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-implementing-new-oil-royalty-payment-system-to-encourage-production/article_2448f610-4c42-540e-95ca-89a14f69cb80.html",
+      "published": "2026-11-13T20:19:50+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 197,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "298e371d4509e90c",
       "source": "Toronto Star",
       "title": "OpenAI loses appeal to dismiss major copyright lawsuit by Toronto Star, other media",
@@ -4784,64 +4928,6 @@
       "content_status": "full",
       "word_count": 312,
       "paragraph_count": 21,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "50b0469c40c5a95a",
-      "source": "Toronto Star",
-      "title": "Coroner's inquest begins in case of Jamal Francique, shot by police in Mississauga",
-      "url": "https://www.thestar.com/news/ontario/coroner-s-inquest-begins-in-case-of-jamal-francique-shot-by-police-in-mississauga/article_5251f39b-3a93-5687-a2ec-f3b7dd90b349.html",
-      "published": "2026-11-13T16:46:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 198,
-      "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e323eac3045374ca",
-      "source": "Toronto Star",
-      "title": "Police in Cape Breton disrupt major, national stolen vehicle trafficking ring",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/police-in-cape-breton-disrupt-major-national-stolen-vehicle-trafficking-ring/article_0212cf32-ae50-59dd-bc7f-8aae5b585d2c.html",
-      "published": "2026-11-13T16:28:22+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 269,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
