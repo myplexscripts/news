@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T21:51:44.615794+00:00",
-  "generated_at_london": "2026-11-13T16:51:44.615794-05:00",
-  "news_generated_at": "2026-11-13T21:46:57.100188+00:00",
+  "generated_at": "2026-11-13T22:04:48.638532+00:00",
+  "generated_at_london": "2026-11-13T17:04:48.638532-05:00",
+  "news_generated_at": "2026-11-13T22:03:14.651949+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 655,
+    "archive_story_count": 657,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 101,
-    "review_story_count": 3,
+    "pass_story_count": 100,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
+    "warning_issue_count": 8,
     "info_issue_count": 90,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -99,6 +99,33 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-11-12T12:20:22.408649+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 301,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-13T21:41:07+00:00",
+      "found_this_run": 9,
+      "tracked": 30,
+      "last_scrape": "2026-11-13T22:01:34.298931+00:00",
       "last_error": ""
     },
     {
@@ -484,19 +511,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 418,
-      "average_quality": 96,
+      "average_words": 425,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-11-13T21:10:41+00:00",
+      "latest_published": "2026-11-13T21:55:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T21:14:48.536921+00:00",
+      "last_scrape": "2026-11-13T22:01:29.974890+00:00",
       "last_error": ""
     },
     {
@@ -627,7 +655,7 @@
       "latest_published": "2026-11-13T18:35:38+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T21:45:25.729809+00:00",
+      "last_scrape": "2026-11-13T22:01:32.657964+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-13T21:45:24.656466+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 339,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-13T21:14:49+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-13T21:30:56.094300+00:00",
       "last_error": ""
     },
     {
@@ -841,6 +843,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "4d5e58497be3a8da",
+      "source": "Toronto Star",
+      "title": "Manitoba May need to spend far less on new power generation: Kinew",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-may-need-to-spend-far-less-on-new-power-generation-kinew/article_25db0793-3e6f-57e4-9ae0-4fb61639d0b1.html",
+      "published": "2026-11-13T21:41:07+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "4d5e58497be3a8da",
+      "source": "Toronto Star",
+      "title": "Manitoba May need to spend far less on new power generation: Kinew",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-may-need-to-spend-far-less-on-new-power-generation-kinew/article_25db0793-3e6f-57e4-9ae0-4fb61639d0b1.html",
+      "published": "2026-11-13T21:41:07+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1492,36 +1524,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "9e8cbeb10a25ff30",
-      "source": "Global News Canada",
-      "title": "Man dead after fire breaks out in east-end Toronto home",
-      "url": "https://globalnews.ca/news/12149382/marlena-drive-scarborough-fatal-fire",
-      "published": "2026-11-13T14:17:22+00:00",
-      "content_status": "full",
-      "word_count": 136,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "c1be143ca23b9cee",
-      "source": "Global News Canada",
-      "title": "Marital hiss: Cat rescue raises more than $30K with donation to annoy ex-husband",
-      "url": "https://globalnews.ca/news/12149418/sos-prairie-rescue-donation",
-      "published": "2026-11-13T14:35:19+00:00",
-      "content_status": "full",
-      "word_count": 407,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "501ebb9557e9f53e",
       "source": "Global News Canada",
       "title": "More electric vehicles exempt from luxury tax, Ottawa says",
@@ -1552,6 +1554,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "ca928c2442c32c58",
+      "source": "Global News Canada",
+      "title": "Shaping Saskatchewan: Naomi Lendvay",
+      "url": "https://globalnews.ca/news/12150026/shaping-saskatchewan-naomi-lendvay",
+      "published": "2026-11-13T21:55:23+00:00",
+      "content_status": "full",
+      "word_count": 265,
+      "quality_score": 75,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "2d0f6a04aa82e25c",
       "source": "Global News Canada",
       "title": "Stelco to recall 175 laid-off workers in Hamilton, Ont. on Dec. 1",
@@ -1561,6 +1578,21 @@
       "word_count": 158,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "727121685e833da3",
+      "source": "Global News Canada",
+      "title": "‘How does space smell?’ Halifax students connect with Canadian astronaut aboard ISS",
+      "url": "https://globalnews.ca/news/12150248/high-school-joshua-kutryk-astronaut",
+      "published": "2026-11-13T21:52:01+00:00",
+      "content_status": "full",
+      "word_count": 350,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2077,6 +2109,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "4d5e58497be3a8da",
+      "source": "Toronto Star",
+      "title": "Manitoba May need to spend far less on new power generation: Kinew",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-may-need-to-spend-far-less-on-new-power-generation-kinew/article_25db0793-3e6f-57e4-9ae0-4fb61639d0b1.html",
+      "published": "2026-11-13T21:41:07+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "790ed8ccf9ae91d0",
       "source": "Toronto Star",
       "title": "National Capital Commission considering artificial freezing for Rideau Canal",
@@ -2114,21 +2161,6 @@
       "published": "2026-11-13T17:14:30+00:00",
       "content_status": "full",
       "word_count": 273,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4dd60471ad16d8b0",
-      "source": "Toronto Star",
-      "title": "Quebec won't talk independence at Francophonie summit, minister says",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-won-t-talk-independence-at-francophonie-summit-minister-says/article_9da3f53c-49f1-5209-a495-86c346d3acf1.html",
-      "published": "2026-11-13T16:56:09+00:00",
-      "content_status": "full",
-      "word_count": 583,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3389,6 +3421,64 @@
       "issues": []
     },
     {
+      "id": "ca928c2442c32c58",
+      "source": "Global News Canada",
+      "title": "Shaping Saskatchewan: Naomi Lendvay",
+      "url": "https://globalnews.ca/news/12150026/shaping-saskatchewan-naomi-lendvay",
+      "published": "2026-11-13T21:55:23+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 265,
+      "paragraph_count": 9,
+      "inline_image_count": 1,
+      "quality_score": 75,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "727121685e833da3",
+      "source": "Global News Canada",
+      "title": "‘How does space smell?’ Halifax students connect with Canadian astronaut aboard ISS",
+      "url": "https://globalnews.ca/news/12150248/high-school-joshua-kutryk-astronaut",
+      "published": "2026-11-13T21:52:01+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 350,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ee0bcaf3db63603b",
       "source": "Global News Canada",
       "title": "‘Intent is to try to appeal’ encampment cleanup order, Saskatoon organization says",
@@ -3599,64 +3689,6 @@
       "word_count": 622,
       "paragraph_count": 12,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c1be143ca23b9cee",
-      "source": "Global News Canada",
-      "title": "Marital hiss: Cat rescue raises more than $30K with donation to annoy ex-husband",
-      "url": "https://globalnews.ca/news/12149418/sos-prairie-rescue-donation",
-      "published": "2026-11-13T14:35:19+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 407,
-      "paragraph_count": 17,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9e8cbeb10a25ff30",
-      "source": "Global News Canada",
-      "title": "Man dead after fire breaks out in east-end Toronto home",
-      "url": "https://globalnews.ca/news/12149382/marlena-drive-scarborough-fatal-fire",
-      "published": "2026-11-13T14:17:22+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 136,
-      "paragraph_count": 7,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4590,6 +4622,47 @@
       ]
     },
     {
+      "id": "4d5e58497be3a8da",
+      "source": "Toronto Star",
+      "title": "Manitoba May need to spend far less on new power generation: Kinew",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-may-need-to-spend-far-less-on-new-power-generation-kinew/article_25db0793-3e6f-57e4-9ae0-4fb61639d0b1.html",
+      "published": "2026-11-13T21:41:07+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 205,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "98ea488a37971d01",
       "source": "Toronto Star",
       "title": "Alberta seeks to dismiss First Nation challenge of Premier Smith's sovereignty act",
@@ -4835,35 +4908,6 @@
       "content_status": "full",
       "word_count": 273,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4dd60471ad16d8b0",
-      "source": "Toronto Star",
-      "title": "Quebec won't talk independence at Francophonie summit, minister says",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-won-t-talk-independence-at-francophonie-summit-minister-says/article_9da3f53c-49f1-5209-a495-86c346d3acf1.html",
-      "published": "2026-11-13T16:56:09+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 583,
-      "paragraph_count": 28,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
