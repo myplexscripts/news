@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T23:09:52.854116+00:00",
-  "generated_at_london": "2026-11-13T18:09:52.854116-05:00",
-  "news_generated_at": "2026-11-13T23:04:34.825896+00:00",
+  "generated_at": "2026-11-13T23:21:53.501820+00:00",
+  "generated_at_london": "2026-11-13T18:21:53.501820-05:00",
+  "news_generated_at": "2026-11-13T23:20:17.975309+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 657,
+    "archive_story_count": 659,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 102,
-    "review_story_count": 3,
+    "pass_story_count": 100,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
-    "info_issue_count": 96,
+    "warning_issue_count": 10,
+    "info_issue_count": 95,
     "healthy_source_count": 14,
     "review_source_count": 4,
     "error_source_count": 0,
@@ -104,28 +104,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 279,
-      "average_quality": 96,
+      "average_words": 247,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 15,
-      "latest_published": "2026-11-13T21:50:19+00:00",
-      "found_this_run": 0,
+      "warning_issues": 4,
+      "info_issues": 14,
+      "latest_published": "2026-11-13T22:35:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T22:16:42.478498+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-13T23:18:41.132038+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -314,7 +315,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -510,19 +511,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 431,
-      "average_quality": 96,
+      "average_words": 432,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-11-13T22:38:27+00:00",
+      "latest_published": "2026-11-13T23:15:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T22:47:54.879840+00:00",
+      "last_scrape": "2026-11-13T23:18:36.982530+00:00",
       "last_error": ""
     },
     {
@@ -653,7 +655,7 @@
       "latest_published": "2026-11-13T22:22:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T23:03:01.995068+00:00",
+      "last_scrape": "2026-11-13T23:18:39.099184+00:00",
       "last_error": ""
     },
     {
@@ -841,6 +843,66 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "a8c2827154c2a28e",
+      "source": "Toronto Star",
+      "title": "Judge warns against 'rumours and innuendo' before Galloway trial witness testifies",
+      "url": "https://www.thestar.com/news/canada/british-columbia/judge-warns-against-rumours-and-innuendo-before-galloway-trial-witness-testifies/article_ffa3a320-2e19-5625-9119-c2d1d32ceb15.html",
+      "published": "2026-11-13T22:24:54+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "a8c2827154c2a28e",
+      "source": "Toronto Star",
+      "title": "Judge warns against 'rumours and innuendo' before Galloway trial witness testifies",
+      "url": "https://www.thestar.com/news/canada/british-columbia/judge-warns-against-rumours-and-innuendo-before-galloway-trial-witness-testifies/article_ffa3a320-2e19-5625-9119-c2d1d32ceb15.html",
+      "published": "2026-11-13T22:24:54+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "4ba0a1fb188f4631",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson airport halts U.S. flights after Faa's nationwide order grounding all planes",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-airport-halts-u-s-flights-after-faa-s-nationwide-order-grounding-all-planes/article_afaa6d19-f46f-4dea-a3c6-2d83b7dd6d59.html",
+      "published": "2026-11-13T22:35:00+00:00",
+      "content_status": "full",
+      "word_count": 228,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "4ba0a1fb188f4631",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson airport halts U.S. flights after Faa's nationwide order grounding all planes",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-airport-halts-u-s-flights-after-faa-s-nationwide-order-grounding-all-planes/article_afaa6d19-f46f-4dea-a3c6-2d83b7dd6d59.html",
+      "published": "2026-11-13T22:35:00+00:00",
+      "content_status": "full",
+      "word_count": 228,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1462,15 +1524,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6cf215199e0f2d0d",
+      "story_id": "666621e1bbb92c7f",
       "source": "Global News Canada",
-      "title": "Farm truck caught going 92 km/h in 40 km/h zone: OPP",
-      "url": "https://globalnews.ca/news/12149663/mapleton-township-farm-truck-speeding",
-      "published": "2026-11-13T17:35:40+00:00",
+      "title": "Danielle Smith says she’ll call up UCP officials not signing anti-separatism pledge",
+      "url": "https://globalnews.ca/news/12150519/ucp-officials-alberta-separatism-pledge",
+      "published": "2026-11-13T23:15:56+00:00",
       "content_status": "full",
-      "word_count": 152,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 157,
+      "quality_score": 68,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2047,36 +2109,6 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
-      "story_id": "e7334ee1837bf858",
-      "source": "Toronto Star",
-      "title": "Feds investing $200M in B.C.'s Woodfibre LNG over three years",
-      "url": "https://www.thestar.com/news/canada/british-columbia/feds-investing-200m-in-b-c-s-woodfibre-lng-over-three-years/article_7121e453-a1f1-54d7-91c4-80695b3e3d45.html",
-      "published": "2026-11-13T18:15:46+00:00",
-      "content_status": "full",
-      "word_count": 144,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e7334ee1837bf858",
-      "source": "Toronto Star",
-      "title": "Feds investing $200M in B.C.'s Woodfibre LNG over three years",
-      "url": "https://www.thestar.com/news/canada/british-columbia/feds-investing-200m-in-b-c-s-woodfibre-lng-over-three-years/article_7121e453-a1f1-54d7-91c4-80695b3e3d45.html",
-      "published": "2026-11-13T18:15:46+00:00",
-      "content_status": "full",
-      "word_count": 144,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
       "story_id": "00207fa98783b233",
       "source": "Toronto Star",
       "title": "Flu activity 'high' in several provinces including B.C., Alberta and P.E.I.",
@@ -2107,15 +2139,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cdfaaeb24cceb157",
+      "story_id": "a8c2827154c2a28e",
       "source": "Toronto Star",
-      "title": "Fundraiser for officer injured in Belleville synagogue shooting surpasses $1-million goal",
-      "url": "https://www.thestar.com/news/ontario/fundraiser-for-officer-injured-in-belleville-synagogue-shooting-surpasses-1-million-goal/article_fc630325-23dc-45b4-b726-ca0ff69dd4ad.html",
-      "published": "2026-11-13T17:30:00+00:00",
+      "title": "Judge warns against 'rumours and innuendo' before Galloway trial witness testifies",
+      "url": "https://www.thestar.com/news/canada/british-columbia/judge-warns-against-rumours-and-innuendo-before-galloway-trial-witness-testifies/article_ffa3a320-2e19-5625-9119-c2d1d32ceb15.html",
+      "published": "2026-11-13T22:24:54+00:00",
       "content_status": "full",
-      "word_count": 633,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2191,6 +2223,21 @@
       "word_count": 719,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4ba0a1fb188f4631",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson airport halts U.S. flights after Faa's nationwide order grounding all planes",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-airport-halts-u-s-flights-after-faa-s-nationwide-order-grounding-all-planes/article_afaa6d19-f46f-4dea-a3c6-2d83b7dd6d59.html",
+      "published": "2026-11-13T22:35:00+00:00",
+      "content_status": "full",
+      "word_count": 228,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3508,6 +3555,35 @@
       "issues": []
     },
     {
+      "id": "666621e1bbb92c7f",
+      "source": "Global News Canada",
+      "title": "Danielle Smith says she’ll call up UCP officials not signing anti-separatism pledge",
+      "url": "https://globalnews.ca/news/12150519/ucp-officials-alberta-separatism-pledge",
+      "published": "2026-11-13T23:15:56+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 157,
+      "paragraph_count": 6,
+      "inline_image_count": 1,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f2d292d5e32cd8f6",
       "source": "Global News Canada",
       "title": "CFL players invited to Canadian flag football camp",
@@ -3747,35 +3823,6 @@
       "word_count": 381,
       "paragraph_count": 13,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6cf215199e0f2d0d",
-      "source": "Global News Canada",
-      "title": "Farm truck caught going 92 km/h in 40 km/h zone: OPP",
-      "url": "https://globalnews.ca/news/12149663/mapleton-township-farm-truck-speeding",
-      "published": "2026-11-13T17:35:40+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 152,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4709,6 +4756,88 @@
       ]
     },
     {
+      "id": "4ba0a1fb188f4631",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson airport halts U.S. flights after Faa's nationwide order grounding all planes",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-airport-halts-u-s-flights-after-faa-s-nationwide-order-grounding-all-planes/article_afaa6d19-f46f-4dea-a3c6-2d83b7dd6d59.html",
+      "published": "2026-11-13T22:35:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 228,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "a8c2827154c2a28e",
+      "source": "Toronto Star",
+      "title": "Judge warns against 'rumours and innuendo' before Galloway trial witness testifies",
+      "url": "https://www.thestar.com/news/canada/british-columbia/judge-warns-against-rumours-and-innuendo-before-galloway-trial-witness-testifies/article_ffa3a320-2e19-5625-9119-c2d1d32ceb15.html",
+      "published": "2026-11-13T22:24:54+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 227,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5a890c0c175af1d2",
       "source": "Toronto Star",
       "title": "Montreal Trudeau International Airport says all flights to and from U.S. suspended",
@@ -4949,70 +5078,6 @@
       "content_status": "full",
       "word_count": 233,
       "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e7334ee1837bf858",
-      "source": "Toronto Star",
-      "title": "Feds investing $200M in B.C.'s Woodfibre LNG over three years",
-      "url": "https://www.thestar.com/news/canada/british-columbia/feds-investing-200m-in-b-c-s-woodfibre-lng-over-three-years/article_7121e453-a1f1-54d7-91c4-80695b3e3d45.html",
-      "published": "2026-11-13T18:15:46+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 144,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cdfaaeb24cceb157",
-      "source": "Toronto Star",
-      "title": "Fundraiser for officer injured in Belleville synagogue shooting surpasses $1-million goal",
-      "url": "https://www.thestar.com/news/ontario/fundraiser-for-officer-injured-in-belleville-synagogue-shooting-surpasses-1-million-goal/article_fc630325-23dc-45b4-b726-ca0ff69dd4ad.html",
-      "published": "2026-11-13T17:30:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 633,
-      "paragraph_count": 30,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
