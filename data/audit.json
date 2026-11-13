@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T13:38:48.299135+00:00",
-  "generated_at_london": "2026-11-13T08:38:48.299135-05:00",
-  "news_generated_at": "2026-11-13T13:33:31.908502+00:00",
+  "generated_at": "2026-11-13T13:49:16.082396+00:00",
+  "generated_at_london": "2026-11-13T08:49:16.082396-05:00",
+  "news_generated_at": "2026-11-13T13:47:42.120203+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 668,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-13T11:21:10+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T13:31:48.352000+00:00",
+      "last_scrape": "2026-11-13T13:46:14.341896+00:00",
       "last_error": ""
     },
     {
@@ -156,7 +156,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -175,10 +175,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-13T10:00:00+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-13T10:24:58.494251+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -226,7 +226,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -507,8 +507,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 268,
-      "average_quality": 68,
+      "average_words": 261,
+      "average_quality": 67,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -517,7 +517,7 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-13T12:41:42.975000+00:00",
+      "latest_published": "2026-11-13T13:44:20.173000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-13T13:06:24.896961+00:00",
@@ -589,19 +589,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 567,
-      "average_quality": 96,
+      "average_words": 547,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-13T13:01:53+00:00",
+      "latest_published": "2026-11-13T13:36:25+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T13:15:58.419040+00:00",
+      "last_scrape": "2026-11-13T13:46:12.724609+00:00",
       "last_error": ""
     },
     {
@@ -1386,6 +1387,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0acb20832f82d399",
+      "source": "CTV News London",
+      "title": "WM opens $200-million renewable natural gas facility in Watford",
+      "url": "https://www.ctvnews.ca/london/article/wm-opens-200-million-renewable-natural-gas-facility-in-watford",
+      "published": "2026-11-13T13:44:20.173000+00:00",
+      "content_status": "full",
+      "word_count": 311,
+      "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
       "story_id": "dd5c6bcb00908153",
       "source": "CTV News London",
@@ -1455,21 +1471,6 @@
       "content_status": "full",
       "word_count": 466,
       "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "2d463dc744a45228",
-      "source": "CTV News London",
-      "title": "‘What if a kid was crossing?’: New study finds about five near misses a day at crosswalks near schools",
-      "url": "https://www.ctvnews.ca/london/article/what-if-a-kid-was-crossing-new-study-finds-about-five-near-misses-a-day-at-crosswalks-near-schools",
-      "published": "2026-11-12T21:30:38.445000+00:00",
-      "content_status": "full",
-      "word_count": 382,
-      "quality_score": 78,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1687,6 +1688,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "1efea095e0232ae9",
+      "source": "Global News Canada",
+      "title": "Four arrested, 220 charges laid in Cape Breton organized crime probe",
+      "url": "https://globalnews.ca/news/12149362/cape-breton-organized-crime-arrests",
+      "published": "2026-11-13T13:36:25+00:00",
+      "content_status": "full",
+      "word_count": 180,
+      "quality_score": 70,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "b1aca6d76ae6ad44",
       "source": "Global News Canada",
       "title": "Generations Foundation holiday food and toy drive kicks off: Here’s where to donate",
@@ -1754,21 +1770,6 @@
       "published": "2026-11-13T13:01:53+00:00",
       "content_status": "full",
       "word_count": 205,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0ae0058a2feda714",
-      "source": "Global News Canada",
-      "title": "Saskatoon police officer who was hit by vehicle stable, still in hospital",
-      "url": "https://globalnews.ca/news/12148605/saskatoon-police-hit-stable-hospital",
-      "published": "2026-11-12T22:23:08+00:00",
-      "content_status": "full",
-      "word_count": 380,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2360,6 +2361,35 @@
   ],
   "stories": [
     {
+      "id": "0acb20832f82d399",
+      "source": "CTV News London",
+      "title": "WM opens $200-million renewable natural gas facility in Watford",
+      "url": "https://www.ctvnews.ca/london/article/wm-opens-200-million-renewable-natural-gas-facility-in-watford",
+      "published": "2026-11-13T13:44:20.173000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 311,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "15735c81425e2f01",
       "source": "CTV News London",
       "title": "Fatality reported after October collision in Morris-Turnberry",
@@ -2634,35 +2664,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2d463dc744a45228",
-      "source": "CTV News London",
-      "title": "‘What if a kid was crossing?’: New study finds about five near misses a day at crosswalks near schools",
-      "url": "https://www.ctvnews.ca/london/article/what-if-a-kid-was-crossing-new-study-finds-about-five-near-misses-a-day-at-crosswalks-near-schools",
-      "published": "2026-11-12T21:30:38.445000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 382,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 78,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
         }
       ]
     },
@@ -3598,6 +3599,35 @@
       "issues": []
     },
     {
+      "id": "1efea095e0232ae9",
+      "source": "Global News Canada",
+      "title": "Four arrested, 220 charges laid in Cape Breton organized crime probe",
+      "url": "https://globalnews.ca/news/12149362/cape-breton-organized-crime-arrests",
+      "published": "2026-11-13T13:36:25+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 180,
+      "paragraph_count": 6,
+      "inline_image_count": 2,
+      "quality_score": 70,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6d569719b0f49d99",
       "source": "Global News Canada",
       "title": "Rains ease but storm surge heads for southwest B.C., posing new flood risk",
@@ -3844,35 +3874,6 @@
       "word_count": 382,
       "paragraph_count": 15,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0ae0058a2feda714",
-      "source": "Global News Canada",
-      "title": "Saskatoon police officer who was hit by vehicle stable, still in hospital",
-      "url": "https://globalnews.ca/news/12148605/saskatoon-police-hit-stable-hospital",
-      "published": "2026-11-12T22:23:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 380,
-      "paragraph_count": 14,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
