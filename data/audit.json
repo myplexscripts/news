@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-13T13:24:38.408221+00:00",
-  "generated_at_london": "2026-11-13T08:24:38.408221-05:00",
-  "news_generated_at": "2026-11-13T13:18:04.924074+00:00",
+  "generated_at": "2026-11-13T13:35:12.332296+00:00",
+  "generated_at_london": "2026-11-13T08:35:12.332296-05:00",
+  "news_generated_at": "2026-11-13T13:33:31.908502+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 669,
+    "archive_story_count": 668,
     "source_count": 28,
     "audited_story_count": 106,
     "pass_story_count": 94,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-13T11:21:10+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-13T13:16:02.196021+00:00",
+      "last_scrape": "2026-11-13T13:31:48.352000+00:00",
       "last_error": ""
     },
     {
@@ -156,7 +156,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -175,10 +175,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-13T10:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-13T10:24:58.494251+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -561,21 +561,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 655,
-      "average_quality": 87,
+      "average_words": 628,
+      "average_quality": 86,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 8,
-        "dom:semantic-rich-v1": 1,
-        "dom:citynews:article": 1
+        "dom:citynews:article": 2,
+        "reader:semantic-rich-v1": 7,
+        "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-12T21:02:08+00:00",
+      "latest_published": "2026-11-13T13:25:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-12T21:34:48.540605+00:00",
+      "last_scrape": "2026-11-13T13:31:50.551695+00:00",
       "last_error": ""
     },
     {
@@ -1477,6 +1477,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "50d4b6c1171acc64",
+      "source": "CityNews Canada",
+      "title": "Blue Jays apologize to Muslim community and fans in wake of Santander’s posts",
+      "url": "https://toronto.citynews.ca/2026/11/13/toronto-blue-jays-anthony-santander-apology",
+      "published": "2026-11-13T13:25:07+00:00",
+      "content_status": "full",
+      "word_count": 668,
+      "quality_score": 81,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6815944917acc57d",
       "source": "CityNews Canada",
       "title": "Blue Jays eye versatile Jazz Chisholm Jr. in search for offence",
@@ -1486,21 +1501,6 @@
       "word_count": 875,
       "quality_score": 92,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "32f18a0df500a2e1",
-      "source": "CityNews Canada",
-      "title": "Carney in Ireland for meetings with European leaders, ahead of Asia summits",
-      "url": "https://toronto.citynews.ca/2026/11/12/carney-in-ireland-for-meetings-with-european-leaders-ahead-of-asia-summits",
-      "published": "2026-11-12T09:00:04+00:00",
-      "content_status": "full",
-      "word_count": 939,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -5132,6 +5132,35 @@
       ]
     },
     {
+      "id": "50d4b6c1171acc64",
+      "source": "CityNews Canada",
+      "title": "Blue Jays apologize to Muslim community and fans in wake of Santander’s posts",
+      "url": "https://toronto.citynews.ca/2026/11/13/toronto-blue-jays-anthony-santander-apology",
+      "published": "2026-11-13T13:25:07+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 668,
+      "paragraph_count": 23,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c23260103f990777",
       "source": "CityNews Canada",
       "title": "Quebec pilot who died in Remembrance Day plane crash identified",
@@ -5379,35 +5408,6 @@
       "paragraph_count": 55,
       "inline_image_count": 0,
       "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "32f18a0df500a2e1",
-      "source": "CityNews Canada",
-      "title": "Carney in Ireland for meetings with European leaders, ahead of Asia summits",
-      "url": "https://toronto.citynews.ca/2026/11/12/carney-in-ireland-for-meetings-with-european-leaders-ahead-of-asia-summits",
-      "published": "2026-11-12T09:00:04+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 939,
-      "paragraph_count": 36,
-      "inline_image_count": 0,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
