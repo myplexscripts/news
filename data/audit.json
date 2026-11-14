@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T20:53:13.830405+00:00",
-  "generated_at_london": "2026-11-14T15:53:13.830405-05:00",
-  "news_generated_at": "2026-11-14T20:47:35.609126+00:00",
+  "generated_at": "2026-11-14T21:06:14.388469+00:00",
+  "generated_at_london": "2026-11-14T16:06:14.388469-05:00",
+  "news_generated_at": "2026-11-14T21:04:00.970795+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 680,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 101,
@@ -272,7 +272,7 @@
     {
       "source": "Middlesex-London Health Unit",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -288,10 +288,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.healthunit.com', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.healthunit.com', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Ontario Newsroom",
@@ -404,8 +404,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 298,
-      "average_quality": 73,
+      "average_words": 344,
+      "average_quality": 76,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -413,10 +413,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 7,
-      "latest_published": "2026-11-14T15:05:08.209000+00:00",
+      "latest_published": "2026-11-14T20:47:44.484000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T17:44:49.858666+00:00",
+      "last_scrape": "2026-11-14T20:59:34.928088+00:00",
       "last_error": ""
     },
     {
@@ -626,7 +626,7 @@
       "latest_published": "2026-11-14T16:31:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T20:46:14.345849+00:00",
+      "last_scrape": "2026-11-14T21:01:59.663997+00:00",
       "last_error": ""
     },
     {
@@ -667,19 +667,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 885,
-      "average_quality": 95,
+      "average_words": 861,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 11,
-      "latest_published": "2026-11-14T14:00:00+00:00",
+      "latest_published": "2026-11-14T20:40:28.254000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T14:17:06.010443+00:00",
+      "last_scrape": "2026-11-14T21:01:57.545041+00:00",
       "last_error": ""
     },
     {
@@ -1158,6 +1159,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 18/100",
+      "story_id": "05e5342db435474a",
+      "source": "CTV News London",
+      "title": "Festive season underway with Christmas events, parades and markets",
+      "url": "https://www.ctvnews.ca/london/article/festive-season-underway-with-christmas-events-parades-and-markets",
+      "published": "2026-11-14T20:47:44.484000+00:00",
+      "content_status": "full",
+      "word_count": 567,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1199,21 +1215,6 @@
       "content_status": "full",
       "word_count": 98,
       "quality_score": 57,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "723b7f0ffec72323",
-      "source": "CTV News London",
-      "title": "Three plead guilty in connection with 2025 Best Defence Conference protests",
-      "url": "https://www.ctvnews.ca/london/article/three-plead-guilty-in-connection-with-2025-best-defence-conference-protests",
-      "published": "2026-11-13T20:05:17.365000+00:00",
-      "content_status": "full",
-      "word_count": 101,
-      "quality_score": 55,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1836,15 +1837,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ac756084d6887c44",
+      "story_id": "70ecc3c1cde9fbf5",
       "source": "The Globe and Mail",
-      "title": "Carney, Quebec’s St-Pierre Plamondon to meet in Cambodia after weeks of frosty relations",
-      "url": "https://www.theglobeandmail.com/canada/article-mark-carney-quebec-st-pierre-plamondon-meeting-cambodia-frosty",
-      "published": "2026-11-14T02:03:09.722000+00:00",
+      "title": "Fifth soldier dies from injuries after October fire at CFB Wainwright",
+      "url": "https://www.theglobeandmail.com/canada/article-fifth-soldier-dead-cfb-wainwright-fire-october",
+      "published": "2026-11-14T20:40:28.254000+00:00",
       "content_status": "full",
-      "word_count": 818,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 577,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2149,6 +2150,35 @@
   ],
   "stories": [
     {
+      "id": "05e5342db435474a",
+      "source": "CTV News London",
+      "title": "Festive season underway with Christmas events, parades and markets",
+      "url": "https://www.ctvnews.ca/london/article/festive-season-underway-with-christmas-events-parades-and-markets",
+      "published": "2026-11-14T20:47:44.484000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 567,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 18,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 18/100"
+        }
+      ]
+    },
+    {
       "id": "b97743a5ba3177fb",
       "source": "CTV News London",
       "title": "Flurries, rain showers expected in London Saturday",
@@ -2384,35 +2414,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "723b7f0ffec72323",
-      "source": "CTV News London",
-      "title": "Three plead guilty in connection with 2025 Best Defence Conference protests",
-      "url": "https://www.ctvnews.ca/london/article/three-plead-guilty-in-connection-with-2025-best-defence-conference-protests",
-      "published": "2026-11-13T20:05:17.365000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 101,
-      "paragraph_count": 4,
-      "inline_image_count": 1,
-      "quality_score": 55,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
         }
       ]
     },
@@ -3938,6 +3939,35 @@
       ]
     },
     {
+      "id": "70ecc3c1cde9fbf5",
+      "source": "The Globe and Mail",
+      "title": "Fifth soldier dies from injuries after October fire at CFB Wainwright",
+      "url": "https://www.theglobeandmail.com/canada/article-fifth-soldier-dead-cfb-wainwright-fire-october",
+      "published": "2026-11-14T20:40:28.254000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 577,
+      "paragraph_count": 15,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ce27bc9b77c13a89",
       "source": "The Globe and Mail",
       "title": "Jensen Huang’s downfall, Ottawa’s fight with Stellantis and Stelco recalls laid-off Hamilton workers: Must-read business and investing stories for the week of Nov. 14",
@@ -4191,35 +4221,6 @@
       "paragraph_count": 28,
       "inline_image_count": 1,
       "quality_score": 89,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ac756084d6887c44",
-      "source": "The Globe and Mail",
-      "title": "Carney, Quebec’s St-Pierre Plamondon to meet in Cambodia after weeks of frosty relations",
-      "url": "https://www.theglobeandmail.com/canada/article-mark-carney-quebec-st-pierre-plamondon-meeting-cambodia-frosty",
-      "published": "2026-11-14T02:03:09.722000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 818,
-      "paragraph_count": 21,
-      "inline_image_count": 1,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
