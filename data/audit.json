@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T12:05:28.975081+00:00",
-  "generated_at_london": "2026-11-14T07:05:28.975081-05:00",
-  "news_generated_at": "2026-11-14T11:59:37.981743+00:00",
+  "generated_at": "2026-11-14T12:17:52.587058+00:00",
+  "generated_at_london": "2026-11-14T07:17:52.587058-05:00",
+  "news_generated_at": "2026-11-14T12:16:28.625657+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 663,
+    "archive_story_count": 664,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 101,
-    "review_story_count": 3,
+    "pass_story_count": 100,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
+    "warning_issue_count": 8,
     "info_issue_count": 90,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -102,6 +102,33 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 766,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-14T11:00:09+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-14T12:14:16.471674+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -152,7 +179,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -168,10 +195,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 1,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x74f5eb148230>, 'Connection to weather.gc"
     },
     {
       "source": "Global News London",
@@ -240,7 +267,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 7,
+      "found_this_run": 6,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -627,7 +654,7 @@
       "latest_published": "2026-11-14T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T11:57:42.126942+00:00",
+      "last_scrape": "2026-11-14T12:14:14.790087+00:00",
       "last_error": ""
     },
     {
@@ -652,7 +679,7 @@
       "warning_issues": 0,
       "info_issues": 3,
       "latest_published": "2026-11-13T05:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 9,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
       "last_error": ""
@@ -681,32 +708,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-14T11:57:40.283334+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 847,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-14T11:00:09+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-14T11:26:56.181658+00:00",
       "last_error": ""
     },
     {
@@ -841,6 +842,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "13a3bb52296b0539",
+      "source": "Toronto Star",
+      "title": "Secret lobbyist texts raise questions about the origin of the Ford government’s controversial Oakville highrise plan",
+      "url": "https://www.thestar.com/news/investigations/secret-lobbyist-texts-raise-questions-about-the-origin-of-the-ford-government-s-controversial-oakville-highrise-plan/article_56412173-7df2-470c-8221-f9e127ac8a54.html",
+      "published": "2026-11-14T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 216,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "13a3bb52296b0539",
+      "source": "Toronto Star",
+      "title": "Secret lobbyist texts raise questions about the origin of the Ford government’s controversial Oakville highrise plan",
+      "url": "https://www.thestar.com/news/investigations/secret-lobbyist-texts-raise-questions-about-the-origin-of-the-ford-government-s-controversial-oakville-highrise-plan/article_56412173-7df2-470c-8221-f9e127ac8a54.html",
+      "published": "2026-11-14T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 216,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2122,15 +2153,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "4ba0a1fb188f4631",
+      "story_id": "13a3bb52296b0539",
       "source": "Toronto Star",
-      "title": "Toronto Pearson airport halts U.S. flights after Faa's nationwide order grounding all planes",
-      "url": "https://www.thestar.com/news/gta/toronto-pearson-airport-halts-u-s-flights-after-faa-s-nationwide-order-grounding-all-planes/article_afaa6d19-f46f-4dea-a3c6-2d83b7dd6d59.html",
-      "published": "2026-11-13T22:35:00+00:00",
+      "title": "Secret lobbyist texts raise questions about the origin of the Ford government’s controversial Oakville highrise plan",
+      "url": "https://www.thestar.com/news/investigations/secret-lobbyist-texts-raise-questions-about-the-origin-of-the-ford-government-s-controversial-oakville-highrise-plan/article_56412173-7df2-470c-8221-f9e127ac8a54.html",
+      "published": "2026-11-14T05:00:00+00:00",
       "content_status": "full",
-      "word_count": 1033,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 216,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4793,6 +4824,47 @@
       ]
     },
     {
+      "id": "13a3bb52296b0539",
+      "source": "Toronto Star",
+      "title": "Secret lobbyist texts raise questions about the origin of the Ford government’s controversial Oakville highrise plan",
+      "url": "https://www.thestar.com/news/investigations/secret-lobbyist-texts-raise-questions-about-the-origin-of-the-ford-government-s-controversial-oakville-highrise-plan/article_56412173-7df2-470c-8221-f9e127ac8a54.html",
+      "published": "2026-11-14T05:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 216,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cfdfd03734e37ed2",
       "source": "Toronto Star",
       "title": "Flights resume in U.S. after hours-long nationwide ground stop halts travel",
@@ -4836,35 +4908,6 @@
       "word_count": 418,
       "paragraph_count": 25,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4ba0a1fb188f4631",
-      "source": "Toronto Star",
-      "title": "Toronto Pearson airport halts U.S. flights after Faa's nationwide order grounding all planes",
-      "url": "https://www.thestar.com/news/gta/toronto-pearson-airport-halts-u-s-flights-after-faa-s-nationwide-order-grounding-all-planes/article_afaa6d19-f46f-4dea-a3c6-2d83b7dd6d59.html",
-      "published": "2026-11-13T22:35:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1033,
-      "paragraph_count": 35,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
