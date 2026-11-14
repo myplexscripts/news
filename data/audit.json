@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T14:56:05.959254+00:00",
-  "generated_at_london": "2026-11-14T09:56:05.959254-05:00",
-  "news_generated_at": "2026-11-14T14:50:31.170646+00:00",
+  "generated_at": "2026-11-14T15:07:14.261897+00:00",
+  "generated_at_london": "2026-11-14T10:07:14.261897-05:00",
+  "news_generated_at": "2026-11-14T15:05:37.603062+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 674,
+    "archive_story_count": 676,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 99,
@@ -14,9 +14,9 @@
     "fail_story_count": 3,
     "critical_issue_count": 3,
     "warning_issue_count": 6,
-    "info_issue_count": 92,
-    "healthy_source_count": 14,
-    "review_source_count": 4,
+    "info_issue_count": 91,
+    "healthy_source_count": 13,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -102,9 +102,35 @@
       "last_error": ""
     },
     {
+      "source": "London Transit Commission",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 162,
+      "average_quality": 78,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-11-12T05:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 1,
+      "last_scrape": "2026-11-12T15:31:22.001263+00:00",
+      "last_error": "500 Server Error: Internal Server Error for url: https://www.londontransit.ca/"
+    },
+    {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -122,10 +148,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-14T13:00:08+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-14T13:15:26.394025+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -430,20 +456,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 80,
-      "average_words": 282,
-      "average_quality": 67,
+      "average_words": 220,
+      "average_quality": 64,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "ctv:summary-fallback": 2,
-        "embedded-json:ctv": 8
+        "embedded-json:ctv": 8,
+        "ctv:summary-fallback": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-14T14:32:05.635000+00:00",
+      "info_issues": 11,
+      "latest_published": "2026-11-14T15:05:08.209000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T14:34:52.576230+00:00",
+      "last_scrape": "2026-11-14T15:01:41.433584+00:00",
       "last_error": ""
     },
     {
@@ -579,32 +605,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 162,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-11-12T05:00:00+00:00",
-      "found_this_run": 3,
-      "tracked": 1,
-      "last_scrape": "2026-11-12T15:31:22.001263+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Middlesex County",
       "status": "healthy",
       "collector_status": "healthy",
@@ -653,7 +653,7 @@
       "latest_published": "2026-11-14T13:32:38+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T14:48:47.001600+00:00",
+      "last_scrape": "2026-11-14T15:03:52.906780+00:00",
       "last_error": ""
     },
     {
@@ -1192,14 +1192,14 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
-      "story_id": "1976194e341666a4",
+      "story_id": "b97743a5ba3177fb",
       "source": "CTV News London",
-      "title": "London parents worried after accused child-exploitation suspect released on conditions",
-      "url": "https://www.ctvnews.ca/london/article/london-parents-worried-after-accused-child-exploitation-suspect-released-on-conditions",
-      "published": "2026-11-13T19:02:48.209000+00:00",
+      "title": "Flurries, rain showers expected in London Saturday",
+      "url": "https://www.ctvnews.ca/london/article/flurries-rain-showers-expected-in-london-saturday",
+      "published": "2026-11-14T15:05:08.209000+00:00",
       "content_status": "full",
-      "word_count": 679,
-      "quality_score": 86,
+      "word_count": 96,
+      "quality_score": 53,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1305,21 +1305,6 @@
       "content_status": "full",
       "word_count": 101,
       "quality_score": 55,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "03f29a489ca13cd5",
-      "source": "CTV News London",
-      "title": "‘It’s heartbreaking’: Defibrillator donation honours fallen OPP officer",
-      "url": "https://www.ctvnews.ca/london/article/its-heartbreaking-defibrillator-donation-honours-fallen-opp-officer",
-      "published": "2026-11-13T17:41:25.981000+00:00",
-      "content_status": "full",
-      "word_count": 383,
-      "quality_score": 77,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2255,6 +2240,57 @@
   ],
   "stories": [
     {
+      "id": "b97743a5ba3177fb",
+      "source": "CTV News London",
+      "title": "Flurries, rain showers expected in London Saturday",
+      "url": "https://www.ctvnews.ca/london/article/flurries-rain-showers-expected-in-london-saturday",
+      "published": "2026-11-14T15:05:08.209000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 96,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 35,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "5ea52e8d4cf08114",
+      "source": "CTV News London",
+      "title": "Saturday Sports: Knights lose in shootout, High School Sports Roundup",
+      "url": "https://www.ctvnews.ca/london/article/saturday-sports-knights-lose-in-shootout-high-school-sports-roundup",
+      "published": "2026-11-14T14:49:28.633000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 342,
+      "paragraph_count": 14,
+      "inline_image_count": 2,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 54,
+      "issues": []
+    },
+    {
       "id": "8cd4195a8c12e4b1",
       "source": "CTV News London",
       "title": "One person in custody, shelter-in-place lifted in Mount Brydges",
@@ -2494,64 +2530,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "1976194e341666a4",
-      "source": "CTV News London",
-      "title": "London parents worried after accused child-exploitation suspect released on conditions",
-      "url": "https://www.ctvnews.ca/london/article/london-parents-worried-after-accused-child-exploitation-suspect-released-on-conditions",
-      "published": "2026-11-13T19:02:48.209000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 679,
-      "paragraph_count": 21,
-      "inline_image_count": 2,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 28,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        }
-      ]
-    },
-    {
-      "id": "03f29a489ca13cd5",
-      "source": "CTV News London",
-      "title": "‘It’s heartbreaking’: Defibrillator donation honours fallen OPP officer",
-      "url": "https://www.ctvnews.ca/london/article/its-heartbreaking-defibrillator-donation-honours-fallen-opp-officer",
-      "published": "2026-11-13T17:41:25.981000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 383,
-      "paragraph_count": 9,
-      "inline_image_count": 3,
-      "quality_score": 77,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
