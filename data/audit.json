@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T20:23:28.814560+00:00",
-  "generated_at_london": "2026-11-14T15:23:28.814560-05:00",
-  "news_generated_at": "2026-11-14T20:17:28.890315+00:00",
+  "generated_at": "2026-11-14T20:34:12.270167+00:00",
+  "generated_at_london": "2026-11-14T15:34:12.270167-05:00",
+  "news_generated_at": "2026-11-14T20:32:39.624678+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 678,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 100,
-    "review_story_count": 3,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 6,
+    "review_story_count": 4,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 8,
     "info_issue_count": 87,
     "healthy_source_count": 14,
     "review_source_count": 4,
@@ -108,23 +108,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 546,
-      "average_quality": 96,
+      "average_words": 562,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-14T17:38:24+00:00",
+      "latest_published": "2026-11-14T20:20:16+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T17:55:20.894426+00:00",
+      "last_scrape": "2026-11-14T20:30:58.580051+00:00",
       "last_error": ""
     },
     {
@@ -416,7 +417,7 @@
       "latest_published": "2026-11-14T20:06:12.805000+00:00",
       "found_this_run": 4,
       "tracked": 30,
-      "last_scrape": "2026-11-14T20:15:30.881764+00:00",
+      "last_scrape": "2026-11-14T20:20:27.359347+00:00",
       "last_error": ""
     },
     {
@@ -652,7 +653,7 @@
       "latest_published": "2026-11-14T16:31:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T20:15:33.387332+00:00",
+      "last_scrape": "2026-11-14T20:30:57.251106+00:00",
       "last_error": ""
     },
     {
@@ -752,21 +753,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "69 words",
-      "story_id": "d1b25308aa24c446",
-      "source": "Toronto Star",
-      "title": "Carney says Canada will only sign a U.S. trade deal that includes viable auto sector",
-      "url": "https://www.thestar.com/news/canada/carney-says-canada-will-only-sign-a-u-s-trade-deal-that-includes-viable-auto-sector/article_8c12e3e1-74e9-5d8b-8b89-8d360c2c60fa.html",
-      "published": "2026-11-14T08:11:20+00:00",
-      "content_status": "full",
-      "word_count": 69,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -855,6 +841,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "fe56b5bc74721f04",
+      "source": "Toronto Star",
+      "title": "Quebec ready to vote independently from Canada for Francophonie leadership: premier",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-ready-to-vote-independently-from-canada-for-francophonie-leadership-premier/article_5a8fd965-3c58-551e-8fa6-50fe7eee4dc0.html",
+      "published": "2026-11-14T20:20:16+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "fe56b5bc74721f04",
+      "source": "Toronto Star",
+      "title": "Quebec ready to vote independently from Canada for Francophonie leadership: premier",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-ready-to-vote-independently-from-canada-for-francophonie-leadership-premier/article_5a8fd965-3c58-551e-8fa6-50fe7eee4dc0.html",
+      "published": "2026-11-14T20:20:16+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2031,21 +2047,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d1b25308aa24c446",
-      "source": "Toronto Star",
-      "title": "Carney says Canada will only sign a U.S. trade deal that includes viable auto sector",
-      "url": "https://www.thestar.com/news/canada/carney-says-canada-will-only-sign-a-u-s-trade-deal-that-includes-viable-auto-sector/article_8c12e3e1-74e9-5d8b-8b89-8d360c2c60fa.html",
-      "published": "2026-11-14T08:11:20+00:00",
-      "content_status": "full",
-      "word_count": 69,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "34d0c0b17339e7fc",
       "source": "Toronto Star",
       "title": "Democrats want to kill some of Trump's tariffs — but that might not end the trade war",
@@ -2100,6 +2101,21 @@
       "word_count": 134,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fe56b5bc74721f04",
+      "source": "Toronto Star",
+      "title": "Quebec ready to vote independently from Canada for Francophonie leadership: premier",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-ready-to-vote-independently-from-canada-for-francophonie-leadership-premier/article_5a8fd965-3c58-551e-8fa6-50fe7eee4dc0.html",
+      "published": "2026-11-14T20:20:16+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4539,6 +4555,47 @@
       ]
     },
     {
+      "id": "fe56b5bc74721f04",
+      "source": "Toronto Star",
+      "title": "Quebec ready to vote independently from Canada for Francophonie leadership: premier",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-ready-to-vote-independently-from-canada-for-francophonie-leadership-premier/article_5a8fd965-3c58-551e-8fa6-50fe7eee4dc0.html",
+      "published": "2026-11-14T20:20:16+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 226,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "eece99c62fc7774a",
       "source": "Toronto Star",
       "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
@@ -4791,41 +4848,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d1b25308aa24c446",
-      "source": "Toronto Star",
-      "title": "Carney says Canada will only sign a U.S. trade deal that includes viable auto sector",
-      "url": "https://www.thestar.com/news/canada/carney-says-canada-will-only-sign-a-u-s-trade-deal-that-includes-viable-auto-sector/article_8c12e3e1-74e9-5d8b-8b89-8d360c2c60fa.html",
-      "published": "2026-11-14T08:11:20+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 69,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "69 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
