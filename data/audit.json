@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T00:27:37.990788+00:00",
-  "generated_at_london": "2026-11-13T19:27:37.990788-05:00",
-  "news_generated_at": "2026-11-14T00:22:28.288692+00:00",
+  "generated_at": "2026-11-14T00:39:48.435245+00:00",
+  "generated_at_london": "2026-11-13T19:39:48.435245-05:00",
+  "news_generated_at": "2026-11-14T00:38:10.894400+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 659,
@@ -626,7 +626,7 @@
       "latest_published": "2026-11-13T22:22:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T00:20:42.683932+00:00",
+      "last_scrape": "2026-11-14T00:36:26.066683+00:00",
       "last_error": ""
     },
     {
@@ -667,11 +667,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 679,
-      "average_quality": 93,
+      "average_words": 653,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -679,7 +680,7 @@
       "latest_published": "2026-11-14T00:12:39.397000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T00:20:40.456514+00:00",
+      "last_scrape": "2026-11-14T00:36:23.762012+00:00",
       "last_error": ""
     },
     {
@@ -1881,6 +1882,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "2361f1d94a54f944",
+      "source": "The Globe and Mail",
+      "title": "Landmark Amazon union contract imposed in B.C.",
+      "url": "https://www.theglobeandmail.com/canada/article-landmark-amazon-union-contract-imposed-in-bc",
+      "published": "2026-11-14T00:06:23.320000+00:00",
+      "content_status": "full",
+      "word_count": 331,
+      "quality_score": 76,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "1f6d4d8948bb64d0",
       "source": "The Globe and Mail",
       "title": "Nova Scotia gives family doctors a dedicated billing code for menopause care",
@@ -1964,21 +1980,6 @@
       "content_status": "partial",
       "word_count": 74,
       "quality_score": 86,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0fcb9ea8ae441378",
-      "source": "The Globe and Mail",
-      "title": "Two dead, one missing after flood-related boating incident in Squamish, B.C.",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-weather-floods-squamish-deaths",
-      "published": "2026-11-13T17:39:21.400000+00:00",
-      "content_status": "partial",
-      "word_count": 587,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4136,6 +4137,35 @@
       ]
     },
     {
+      "id": "2361f1d94a54f944",
+      "source": "The Globe and Mail",
+      "title": "Landmark Amazon union contract imposed in B.C.",
+      "url": "https://www.theglobeandmail.com/canada/article-landmark-amazon-union-contract-imposed-in-bc",
+      "published": "2026-11-14T00:06:23.320000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 331,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f9c8c03941219f49",
       "source": "The Globe and Mail",
       "title": "Ottawa, Ontario working on package to persuade Stellantis to cancel sale of Brampton plant",
@@ -4365,35 +4395,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0fcb9ea8ae441378",
-      "source": "The Globe and Mail",
-      "title": "Two dead, one missing after flood-related boating incident in Squamish, B.C.",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-bc-weather-floods-squamish-deaths",
-      "published": "2026-11-13T17:39:21.400000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 587,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
