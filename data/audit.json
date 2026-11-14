@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T10:18:21.199463+00:00",
-  "generated_at_london": "2026-11-14T05:18:21.199463-05:00",
-  "news_generated_at": "2026-11-14T10:11:16.478674+00:00",
+  "generated_at": "2026-11-14T10:28:11.221284+00:00",
+  "generated_at_london": "2026-11-14T05:28:11.221284-05:00",
+  "news_generated_at": "2026-11-14T10:26:39.149353+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 664,
+    "archive_story_count": 665,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 101,
-    "review_story_count": 3,
+    "pass_story_count": 100,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
-    "info_issue_count": 91,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "warning_issue_count": 8,
+    "info_issue_count": 90,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -99,6 +99,33 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-11-12T12:20:22.408649+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 831,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-14T10:00:08+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-14T10:24:56.374272+00:00",
       "last_error": ""
     },
     {
@@ -627,7 +654,7 @@
       "latest_published": "2026-11-13T22:22:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T10:09:31.703308+00:00",
+      "last_scrape": "2026-11-14T10:24:55.150149+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +708,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-14T05:30:48.654298+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 823,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-14T09:00:06+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-14T10:09:33.109236+00:00",
       "last_error": ""
     },
     {
@@ -841,6 +842,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "cd93fd318c075407",
+      "source": "Toronto Star",
+      "title": "\"A positive step\" — National Council of Canadian Muslims hopeful after Jays meeting",
+      "url": "https://www.thestar.com/news/ontario/a-positive-step-national-council-of-canadian-muslims-hopeful-after-jays-meeting/article_8e3c2e05-eb2c-593b-8beb-c17eee4169af.html",
+      "published": "2026-11-14T10:00:08+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "cd93fd318c075407",
+      "source": "Toronto Star",
+      "title": "\"A positive step\" — National Council of Canadian Muslims hopeful after Jays meeting",
+      "url": "https://www.thestar.com/news/ontario/a-positive-step-national-council-of-canadian-muslims-hopeful-after-jays-meeting/article_8e3c2e05-eb2c-593b-8beb-c17eee4169af.html",
+      "published": "2026-11-14T10:00:08+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1987,6 +2018,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "cd93fd318c075407",
+      "source": "Toronto Star",
+      "title": "\"A positive step\" — National Council of Canadian Muslims hopeful after Jays meeting",
+      "url": "https://www.thestar.com/news/ontario/a-positive-step-national-council-of-canadian-muslims-hopeful-after-jays-meeting/article_8e3c2e05-eb2c-593b-8beb-c17eee4169af.html",
+      "published": "2026-11-14T10:00:08+00:00",
+      "content_status": "full",
+      "word_count": 206,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6c60cf17830a4ad5",
       "source": "Toronto Star",
       "title": "'A terrible mistake': B.C. Isis bride Kimberley Polman, in her own words",
@@ -2069,36 +2115,6 @@
       "published": "2026-11-13T22:24:54+00:00",
       "content_status": "full",
       "word_count": 627,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "4d5e58497be3a8da",
-      "source": "Toronto Star",
-      "title": "Manitoba May need to spend far less on new power generation: Kinew",
-      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-may-need-to-spend-far-less-on-new-power-generation-kinew/article_25db0793-3e6f-57e4-9ae0-4fb61639d0b1.html",
-      "published": "2026-11-13T21:41:07+00:00",
-      "content_status": "full",
-      "word_count": 130,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4d5e58497be3a8da",
-      "source": "Toronto Star",
-      "title": "Manitoba May need to spend far less on new power generation: Kinew",
-      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-may-need-to-spend-far-less-on-new-power-generation-kinew/article_25db0793-3e6f-57e4-9ae0-4fb61639d0b1.html",
-      "published": "2026-11-13T21:41:07+00:00",
-      "content_status": "full",
-      "word_count": 130,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4605,6 +4621,47 @@
       ]
     },
     {
+      "id": "cd93fd318c075407",
+      "source": "Toronto Star",
+      "title": "\"A positive step\" — National Council of Canadian Muslims hopeful after Jays meeting",
+      "url": "https://www.thestar.com/news/ontario/a-positive-step-national-council-of-canadian-muslims-hopeful-after-jays-meeting/article_8e3c2e05-eb2c-593b-8beb-c17eee4169af.html",
+      "published": "2026-11-14T10:00:08+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 206,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6c60cf17830a4ad5",
       "source": "Toronto Star",
       "title": "'A terrible mistake': B.C. Isis bride Kimberley Polman, in her own words",
@@ -4857,41 +4914,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4d5e58497be3a8da",
-      "source": "Toronto Star",
-      "title": "Manitoba May need to spend far less on new power generation: Kinew",
-      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-may-need-to-spend-far-less-on-new-power-generation-kinew/article_25db0793-3e6f-57e4-9ae0-4fb61639d0b1.html",
-      "published": "2026-11-13T21:41:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 130,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
