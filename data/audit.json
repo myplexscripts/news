@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T12:21:31.069595+00:00",
-  "generated_at_london": "2026-11-14T07:21:31.069595-05:00",
-  "news_generated_at": "2026-11-14T12:16:28.625657+00:00",
+  "generated_at": "2026-11-14T12:32:56.048264+00:00",
+  "generated_at_london": "2026-11-14T07:32:56.048264-05:00",
+  "news_generated_at": "2026-11-14T12:30:59.900052+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 664,
+    "archive_story_count": 665,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 101,
@@ -152,7 +152,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -168,10 +168,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 1,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x74f5eb148230>, 'Connection to weather.gc"
+      "last_error": ""
     },
     {
       "source": "Global News London",
@@ -240,7 +240,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 6,
+      "found_this_run": 7,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -458,11 +458,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 571,
-      "average_quality": 92,
+      "average_words": 646,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:citynews:article": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -470,7 +471,7 @@
       "latest_published": "2026-11-14T11:00:10+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T11:57:43.946671+00:00",
+      "last_scrape": "2026-11-14T12:29:00.613987+00:00",
       "last_error": ""
     },
     {
@@ -627,7 +628,7 @@
       "latest_published": "2026-11-14T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T12:14:14.790087+00:00",
+      "last_scrape": "2026-11-14T12:28:56.944200+00:00",
       "last_error": ""
     },
     {
@@ -652,7 +653,7 @@
       "warning_issues": 0,
       "info_issues": 3,
       "latest_published": "2026-11-13T05:00:00+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
       "last_error": ""
@@ -1342,6 +1343,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "e966c9d465feda5c",
+      "source": "CityNews Canada",
+      "title": "Lawyers unsure if extra funding can reduce massive caseload at Federal Court",
+      "url": "https://toronto.citynews.ca/2026/11/14/lawyers-unsure-if-extra-funding-can-reduce-massive-caseload-at-federal-court",
+      "published": "2026-11-14T11:00:06+00:00",
+      "content_status": "full",
+      "word_count": 992,
+      "quality_score": 86,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "8f40b2be695ec072",
       "source": "CityNews Canada",
       "title": "National Capital Commission considering artificial freezing for Rideau Canal Skateway",
@@ -1395,21 +1411,6 @@
       "content_status": "full",
       "word_count": 597,
       "quality_score": 81,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "02929b4dc7fa8e62",
-      "source": "CityNews Canada",
-      "title": "Widespread outage hits Outlook, other Microsoft apps",
-      "url": "https://toronto.citynews.ca/2026/11/12/microsoft-outlook-widespread-outage",
-      "published": "2026-11-12T19:21:01+00:00",
-      "content_status": "full",
-      "word_count": 236,
-      "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -4909,6 +4910,35 @@
       ]
     },
     {
+      "id": "e966c9d465feda5c",
+      "source": "CityNews Canada",
+      "title": "Lawyers unsure if extra funding can reduce massive caseload at Federal Court",
+      "url": "https://toronto.citynews.ca/2026/11/14/lawyers-unsure-if-extra-funding-can-reduce-massive-caseload-at-federal-court",
+      "published": "2026-11-14T11:00:06+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 992,
+      "paragraph_count": 35,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "afa669ee574d38ac",
       "source": "CityNews Canada",
       "title": "Ottawa won’t clarify stance on possibility of future streamer payments for CanCon",
@@ -5127,35 +5157,6 @@
       "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "02929b4dc7fa8e62",
-      "source": "CityNews Canada",
-      "title": "Widespread outage hits Outlook, other Microsoft apps",
-      "url": "https://toronto.citynews.ca/2026/11/12/microsoft-outlook-widespread-outage",
-      "published": "2026-11-12T19:21:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 236,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "citynews",
