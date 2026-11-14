@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-14T09:14:39.714545+00:00",
-  "generated_at_london": "2026-11-14T04:14:39.714545-05:00",
-  "news_generated_at": "2026-11-14T09:09:01.477162+00:00",
+  "generated_at": "2026-11-14T09:26:02.182150+00:00",
+  "generated_at_london": "2026-11-14T04:26:02.182150-05:00",
+  "news_generated_at": "2026-11-14T09:24:38.789212+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 663,
+    "archive_story_count": 664,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 101,
+    "pass_story_count": 100,
     "review_story_count": 3,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
     "warning_issue_count": 6,
-    "info_issue_count": 92,
-    "healthy_source_count": 15,
-    "review_source_count": 3,
+    "info_issue_count": 91,
+    "healthy_source_count": 14,
+    "review_source_count": 4,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -99,6 +99,33 @@
       "found_this_run": 10,
       "tracked": 3,
       "last_scrape": "2026-11-12T12:20:22.408649+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 0,
+      "fail": 1,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 649,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 1,
+      "warning_issues": 0,
+      "info_issues": 11,
+      "latest_published": "2026-11-14T09:00:06+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-14T09:22:56.026789+00:00",
       "last_error": ""
     },
     {
@@ -627,7 +654,7 @@
       "latest_published": "2026-11-13T22:22:59+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T09:07:21.337145+00:00",
+      "last_scrape": "2026-11-14T09:22:54.470479+00:00",
       "last_error": ""
     },
     {
@@ -684,32 +711,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 656,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-14T08:11:20+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-14T08:37:06.937617+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -751,6 +752,21 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "64 words",
+      "story_id": "6c60cf17830a4ad5",
+      "source": "Toronto Star",
+      "title": "'A terrible mistake': B.C. Isis bride Kimberley Polman, in her own words",
+      "url": "https://www.thestar.com/news/canada/british-columbia/a-terrible-mistake-b-c-isis-bride-kimberley-polman-in-her-own-words/article_9ad28462-ce44-55a2-950b-0420e6dfd2e0.html",
+      "published": "2026-11-14T09:00:06+00:00",
+      "content_status": "full",
+      "word_count": 64,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1987,6 +2003,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "6c60cf17830a4ad5",
+      "source": "Toronto Star",
+      "title": "'A terrible mistake': B.C. Isis bride Kimberley Polman, in her own words",
+      "url": "https://www.thestar.com/news/canada/british-columbia/a-terrible-mistake-b-c-isis-bride-kimberley-polman-in-her-own-words/article_9ad28462-ce44-55a2-950b-0420e6dfd2e0.html",
+      "published": "2026-11-14T09:00:06+00:00",
+      "content_status": "full",
+      "word_count": 64,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "98ea488a37971d01",
       "source": "Toronto Star",
       "title": "Alberta seeks to dismiss First Nation challenge of Premier Smith's sovereignty act",
@@ -2129,36 +2160,6 @@
       "published": "2026-11-13T22:35:00+00:00",
       "content_status": "full",
       "word_count": 1033,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "b6dde87ea1bf0ac5",
-      "source": "Toronto Star",
-      "title": "Vancouver police investigating after local mosque vandalized with graffiti",
-      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-police-investigating-after-local-mosque-vandalized-with-graffiti/article_8e46f7e7-723c-580f-be7f-bc9f585bc653.html",
-      "published": "2026-11-13T20:23:57+00:00",
-      "content_status": "full",
-      "word_count": 143,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b6dde87ea1bf0ac5",
-      "source": "Toronto Star",
-      "title": "Vancouver police investigating after local mosque vandalized with graffiti",
-      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-police-investigating-after-local-mosque-vandalized-with-graffiti/article_8e46f7e7-723c-580f-be7f-bc9f585bc653.html",
-      "published": "2026-11-13T20:23:57+00:00",
-      "content_status": "full",
-      "word_count": 143,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4620,6 +4621,41 @@
       ]
     },
     {
+      "id": "6c60cf17830a4ad5",
+      "source": "Toronto Star",
+      "title": "'A terrible mistake': B.C. Isis bride Kimberley Polman, in her own words",
+      "url": "https://www.thestar.com/news/canada/british-columbia/a-terrible-mistake-b-c-isis-bride-kimberley-polman-in-her-own-words/article_9ad28462-ce44-55a2-950b-0420e6dfd2e0.html",
+      "published": "2026-11-14T09:00:06+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 64,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "64 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d1b25308aa24c446",
       "source": "Toronto Star",
       "title": "Carney says Canada will only sign a U.S. trade deal that includes viable auto sector",
@@ -4878,41 +4914,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b6dde87ea1bf0ac5",
-      "source": "Toronto Star",
-      "title": "Vancouver police investigating after local mosque vandalized with graffiti",
-      "url": "https://www.thestar.com/news/canada/british-columbia/vancouver-police-investigating-after-local-mosque-vandalized-with-graffiti/article_8e46f7e7-723c-580f-be7f-bc9f585bc653.html",
-      "published": "2026-11-13T20:23:57+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 143,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
