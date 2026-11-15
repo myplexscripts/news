@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-15T20:46:03.755835+00:00",
-  "generated_at_london": "2026-11-15T15:46:03.755835-05:00",
-  "news_generated_at": "2026-11-15T20:41:05.328378+00:00",
+  "generated_at": "2026-11-15T20:57:54.448896+00:00",
+  "generated_at_london": "2026-11-15T15:57:54.448896-05:00",
+  "news_generated_at": "2026-11-15T20:56:26.043865+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 691,
+    "archive_story_count": 692,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 5,
+    "pass_story_count": 98,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 9,
+    "warning_issue_count": 11,
     "info_issue_count": 90,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "healthy_source_count": 12,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -70,7 +70,7 @@
       "latest_published": "2026-11-15T20:32:45.376000+00:00",
       "found_this_run": 7,
       "tracked": 30,
-      "last_scrape": "2026-11-15T20:39:20.187345+00:00",
+      "last_scrape": "2026-11-15T20:43:37.870095+00:00",
       "last_error": ""
     },
     {
@@ -151,6 +151,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-15T19:21:08.994811+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 933,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-15T20:38:15+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-15T20:54:52.762386+00:00",
       "last_error": ""
     },
     {
@@ -653,7 +680,7 @@
       "latest_published": "2026-11-15T15:47:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T20:39:21.800045+00:00",
+      "last_scrape": "2026-11-15T20:54:51.742697+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +708,6 @@
       "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1049,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-15T18:27:58+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-15T18:49:35.508167+00:00",
       "last_error": ""
     },
     {
@@ -886,6 +887,36 @@
       "word_count": 2154,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "a37bd71e30a339fa",
+      "source": "Toronto Star",
+      "title": "Canoe trio arrives in Vancouver, marking end of 8,000-kilometre cross-Canada journey",
+      "url": "https://www.thestar.com/news/canada/british-columbia/canoe-trio-arrives-in-vancouver-marking-end-of-8-000-kilometre-cross-canada-journey/article_03b7a698-4678-5b7d-aea4-24852030ab37.html",
+      "published": "2026-11-15T20:38:15+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "a37bd71e30a339fa",
+      "source": "Toronto Star",
+      "title": "Canoe trio arrives in Vancouver, marking end of 8,000-kilometre cross-Canada journey",
+      "url": "https://www.thestar.com/news/canada/british-columbia/canoe-trio-arrives-in-vancouver-marking-end-of-8-000-kilometre-cross-canada-journey/article_03b7a698-4678-5b7d-aea4-24852030ab37.html",
+      "published": "2026-11-15T20:38:15+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2047,21 +2078,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ceef7b5e6bdbde48",
-      "source": "Toronto Star",
-      "title": "Amid climate pessimism, a surprise: Global emissions are down for 2026",
-      "url": "https://www.thestar.com/news/world/amid-climate-pessimism-a-surprise-global-emissions-are-down-for-2026/article_580f3e42-256c-43ec-9bab-8acd49ea1d95.html",
-      "published": "2026-11-15T05:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1373,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "bacb5b4539942d52",
       "source": "Toronto Star",
       "title": "Breast milk can be lifesaving for premature babies, Quebec charity says",
@@ -2071,6 +2087,21 @@
       "word_count": 891,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a37bd71e30a339fa",
+      "source": "Toronto Star",
+      "title": "Canoe trio arrives in Vancouver, marking end of 8,000-kilometre cross-Canada journey",
+      "url": "https://www.thestar.com/news/canada/british-columbia/canoe-trio-arrives-in-vancouver-marking-end-of-8-000-kilometre-cross-canada-journey/article_03b7a698-4678-5b7d-aea4-24852030ab37.html",
+      "published": "2026-11-15T20:38:15+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4651,6 +4682,47 @@
       ]
     },
     {
+      "id": "a37bd71e30a339fa",
+      "source": "Toronto Star",
+      "title": "Canoe trio arrives in Vancouver, marking end of 8,000-kilometre cross-Canada journey",
+      "url": "https://www.thestar.com/news/canada/british-columbia/canoe-trio-arrives-in-vancouver-marking-end-of-8-000-kilometre-cross-canada-journey/article_03b7a698-4678-5b7d-aea4-24852030ab37.html",
+      "published": "2026-11-15T20:38:15+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 212,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bacb5b4539942d52",
       "source": "Toronto Star",
       "title": "Breast milk can be lifesaving for premature babies, Quebec charity says",
@@ -4897,35 +4969,6 @@
       "word_count": 1670,
       "paragraph_count": 58,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ceef7b5e6bdbde48",
-      "source": "Toronto Star",
-      "title": "Amid climate pessimism, a surprise: Global emissions are down for 2026",
-      "url": "https://www.thestar.com/news/world/amid-climate-pessimism-a-surprise-global-emissions-are-down-for-2026/article_580f3e42-256c-43ec-9bab-8acd49ea1d95.html",
-      "published": "2026-11-15T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1373,
-      "paragraph_count": 29,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
