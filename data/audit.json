@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-15T00:16:26.203176+00:00",
-  "generated_at_london": "2026-11-14T19:16:26.203176-05:00",
-  "news_generated_at": "2026-11-15T00:10:45.004967+00:00",
+  "generated_at": "2026-11-15T00:27:32.364664+00:00",
+  "generated_at_london": "2026-11-14T19:27:32.364664-05:00",
+  "news_generated_at": "2026-11-15T00:26:01.852468+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 684,
+    "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 4,
+    "pass_story_count": 98,
+    "review_story_count": 5,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 86,
     "healthy_source_count": 13,
     "review_source_count": 5,
@@ -133,24 +133,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 426,
-      "average_quality": 96,
+      "average_words": 361,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-11-14T22:15:45+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T22:35:10.144572+00:00",
+      "last_scrape": "2026-11-15T00:24:22.369395+00:00",
       "last_error": ""
     },
     {
@@ -199,7 +200,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -652,7 +653,7 @@
       "latest_published": "2026-11-14T16:31:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T00:09:05.521380+00:00",
+      "last_scrape": "2026-11-15T00:24:20.978890+00:00",
       "last_error": ""
     },
     {
@@ -870,6 +871,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "dfda3987844d9221",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson U.S.-bound flights resume as Air Canada says 27,000 customers affected by shutdown",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-u-s-bound-flights-resume-as-air-canada-says-27-000-customers-affected-by-outage/article_a51f1a66-6a63-4209-bdaa-67b09bc8e5ea.html",
+      "published": "2026-11-14T16:30:00+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "dfda3987844d9221",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson U.S.-bound flights resume as Air Canada says 27,000 customers affected by shutdown",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-u-s-bound-flights-resume-as-air-canada-says-27-000-customers-affected-by-outage/article_a51f1a66-6a63-4209-bdaa-67b09bc8e5ea.html",
+      "published": "2026-11-14T16:30:00+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2016,21 +2047,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "34d0c0b17339e7fc",
-      "source": "Toronto Star",
-      "title": "Democrats want to kill some of Trump's tariffs — but that might not end the trade war",
-      "url": "https://www.thestar.com/news/canada/democrats-want-to-kill-some-of-trump-s-tariffs-but-that-might-not-end-the-trade-war/article_091adca3-8bfa-5f2d-9a69-2a495a749bb0.html",
-      "published": "2026-11-14T11:00:08+00:00",
-      "content_status": "full",
-      "word_count": 872,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "957e0dc216d6dbb7",
       "source": "Toronto Star",
       "title": "Former environment ministers accuse Dabrusin of lying about meeting climate targets",
@@ -2085,6 +2101,21 @@
       "word_count": 575,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "dfda3987844d9221",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson U.S.-bound flights resume as Air Canada says 27,000 customers affected by shutdown",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-u-s-bound-flights-resume-as-air-canada-says-27-000-customers-affected-by-outage/article_a51f1a66-6a63-4209-bdaa-67b09bc8e5ea.html",
+      "published": "2026-11-14T16:30:00+00:00",
+      "content_status": "full",
+      "word_count": 226,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4690,6 +4721,47 @@
       ]
     },
     {
+      "id": "dfda3987844d9221",
+      "source": "Toronto Star",
+      "title": "Toronto Pearson U.S.-bound flights resume as Air Canada says 27,000 customers affected by shutdown",
+      "url": "https://www.thestar.com/news/gta/toronto-pearson-u-s-bound-flights-resume-as-air-canada-says-27-000-customers-affected-by-outage/article_a51f1a66-6a63-4209-bdaa-67b09bc8e5ea.html",
+      "published": "2026-11-14T16:30:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 226,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bf80434519446db3",
       "source": "Toronto Star",
       "title": "Busy day at Canadian airports as airlines scramble to recover from U.S. flight stop",
@@ -4790,35 +4862,6 @@
       "content_status": "full",
       "word_count": 753,
       "paragraph_count": 25,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "34d0c0b17339e7fc",
-      "source": "Toronto Star",
-      "title": "Democrats want to kill some of Trump's tariffs — but that might not end the trade war",
-      "url": "https://www.thestar.com/news/canada/democrats-want-to-kill-some-of-trump-s-tariffs-but-that-might-not-end-the-trade-war/article_091adca3-8bfa-5f2d-9a69-2a495a749bb0.html",
-      "published": "2026-11-14T11:00:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 872,
-      "paragraph_count": 28,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
