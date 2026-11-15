@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-15T15:18:16.037690+00:00",
-  "generated_at_london": "2026-11-15T10:18:16.037690-05:00",
-  "news_generated_at": "2026-11-15T15:12:40.569242+00:00",
+  "generated_at": "2026-11-15T15:30:22.297348+00:00",
+  "generated_at_london": "2026-11-15T10:30:22.297348-05:00",
+  "news_generated_at": "2026-11-15T15:28:35.954969+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 690,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 5,
+    "pass_story_count": 98,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 9,
+    "warning_issue_count": 11,
     "info_issue_count": 87,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "healthy_source_count": 12,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -68,7 +68,7 @@
       "warning_issues": 1,
       "info_issues": 16,
       "latest_published": "2026-11-15T11:00:00+00:00",
-      "found_this_run": 6,
+      "found_this_run": 5,
       "tracked": 30,
       "last_scrape": "2026-11-15T11:23:05.716845+00:00",
       "last_error": ""
@@ -151,6 +151,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-15T14:24:11.539086+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1077,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-15T15:00:07+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-15T15:27:07.729766+00:00",
       "last_error": ""
     },
     {
@@ -252,7 +279,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -271,7 +298,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -442,7 +469,7 @@
       "latest_published": "2026-11-15T15:12:18.760000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T21:07:14.868043+00:00",
+      "last_scrape": "2026-11-15T15:15:17.110690+00:00",
       "last_error": ""
     },
     {
@@ -653,7 +680,7 @@
       "latest_published": "2026-11-15T13:41:46+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T15:11:01.188371+00:00",
+      "last_scrape": "2026-11-15T15:27:06.403636+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +708,6 @@
       "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1116,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-15T12:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-15T12:04:45.351880+00:00",
       "last_error": ""
     },
     {
@@ -886,6 +887,36 @@
       "word_count": 2154,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "14aa1b362189dc83",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_0f02ebb1-adf7-5174-81ce-90b1a3e31785.html",
+      "published": "2026-11-15T15:00:07+00:00",
+      "content_status": "full",
+      "word_count": 166,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "14aa1b362189dc83",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_0f02ebb1-adf7-5174-81ce-90b1a3e31785.html",
+      "published": "2026-11-15T15:00:07+00:00",
+      "content_status": "full",
+      "word_count": 166,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2017,21 +2048,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f78dd75403380395",
-      "source": "Toronto Star",
-      "title": "CP NewsAlert: CAF says fifth Canadian soldier has died after fire in Wainwright",
-      "url": "https://www.thestar.com/news/canada/alberta/cp-newsalert-caf-says-fifth-canadian-soldier-has-died-after-fire-in-wainwright/article_d2f28f50-9e0c-55bd-9ebe-21f853f51660.html",
-      "published": "2026-11-14T21:05:05+00:00",
-      "content_status": "full",
-      "word_count": 549,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "c9adf7023b03beb4",
       "source": "Toronto Star",
       "title": "Carney to cap off Asean summit with focus on trade deals, ahead of Francophonie",
@@ -2041,6 +2057,21 @@
       "word_count": 737,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "14aa1b362189dc83",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_0f02ebb1-adf7-5174-81ce-90b1a3e31785.html",
+      "published": "2026-11-15T15:00:07+00:00",
+      "content_status": "full",
+      "word_count": 166,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4587,6 +4618,47 @@
       ]
     },
     {
+      "id": "14aa1b362189dc83",
+      "source": "Toronto Star",
+      "title": "Five things to watch for in the Canadian business world in the coming week",
+      "url": "https://www.thestar.com/news/canada/five-things-to-watch-for-in-the-canadian-business-world-in-the-coming-week/article_0f02ebb1-adf7-5174-81ce-90b1a3e31785.html",
+      "published": "2026-11-15T15:00:07+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 166,
+      "paragraph_count": 1,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ae7159e7628aa654",
       "source": "Toronto Star",
       "title": "UN mission goes after Haitian gangs with backing from Canada",
@@ -4832,35 +4904,6 @@
       "content_status": "full",
       "word_count": 415,
       "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f78dd75403380395",
-      "source": "Toronto Star",
-      "title": "CP NewsAlert: CAF says fifth Canadian soldier has died after fire in Wainwright",
-      "url": "https://www.thestar.com/news/canada/alberta/cp-newsalert-caf-says-fifth-canadian-soldier-has-died-after-fire-in-wainwright/article_d2f28f50-9e0c-55bd-9ebe-21f853f51660.html",
-      "published": "2026-11-14T21:05:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 549,
-      "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
