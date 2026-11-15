@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-15T11:55:31.127986+00:00",
-  "generated_at_london": "2026-11-15T06:55:31.127986-05:00",
-  "news_generated_at": "2026-11-15T11:50:04.617319+00:00",
+  "generated_at": "2026-11-15T12:08:52.457852+00:00",
+  "generated_at_london": "2026-11-15T07:08:52.457852-05:00",
+  "news_generated_at": "2026-11-15T12:06:50.577426+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 686,
+    "archive_story_count": 688,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 4,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 7,
+    "pass_story_count": 98,
+    "review_story_count": 6,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 11,
     "info_issue_count": 87,
     "healthy_source_count": 13,
     "review_source_count": 5,
@@ -133,25 +133,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 856,
-      "average_quality": 91,
-      "primary_method": "reader:semantic-rich-v1",
+      "average_words": 837,
+      "average_quality": 88,
+      "primary_method": "dom:star:article",
       "method_counts": {
-        "dom:star:article": 3,
-        "reader:semantic-rich-v1": 7
+        "dom:star:article": 5,
+        "reader:semantic-rich-v1": 5
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-15T11:00:15+00:00",
+      "latest_published": "2026-11-15T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T11:18:12.654483+00:00",
+      "last_scrape": "2026-11-15T12:04:45.351880+00:00",
       "last_error": ""
     },
     {
@@ -341,7 +341,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 8,
+      "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -653,7 +653,7 @@
       "latest_published": "2026-11-14T16:31:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T11:48:46.891062+00:00",
+      "last_scrape": "2026-11-15T12:04:41.755317+00:00",
       "last_error": ""
     },
     {
@@ -751,21 +751,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "68 words",
-      "story_id": "eece99c62fc7774a",
-      "source": "Toronto Star",
-      "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
-      "url": "https://www.thestar.com/news/canada/airport-in-gander-n-l-was-ready-to-receive-diverted-passengers-in-u-s-flight-stop/article_687a84bb-fc0f-5692-8ef0-e04cf4a589e2.html",
-      "published": "2026-11-14T17:38:24+00:00",
-      "content_status": "full",
-      "word_count": 68,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -871,6 +856,66 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ceef7b5e6bdbde48",
+      "source": "Toronto Star",
+      "title": "Amid climate pessimism, a surprise: Global emissions are down for 2026",
+      "url": "https://www.thestar.com/news/world/amid-climate-pessimism-a-surprise-global-emissions-are-down-for-2026/article_580f3e42-256c-43ec-9bab-8acd49ea1d95.html",
+      "published": "2026-11-15T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 185,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "ceef7b5e6bdbde48",
+      "source": "Toronto Star",
+      "title": "Amid climate pessimism, a surprise: Global emissions are down for 2026",
+      "url": "https://www.thestar.com/news/world/amid-climate-pessimism-a-surprise-global-emissions-are-down-for-2026/article_580f3e42-256c-43ec-9bab-8acd49ea1d95.html",
+      "published": "2026-11-15T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 185,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ae7159e7628aa654",
+      "source": "Toronto Star",
+      "title": "UN mission goes after Haitian gangs with backing from Canada",
+      "url": "https://www.thestar.com/politics/federal/un-mission-goes-after-haitian-gangs-with-backing-from-canada/article_5b58017e-7e6b-422a-84a2-5f82daee604d.html",
+      "published": "2026-11-15T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "ae7159e7628aa654",
+      "source": "Toronto Star",
+      "title": "UN mission goes after Haitian gangs with backing from Canada",
+      "url": "https://www.thestar.com/politics/federal/un-mission-goes-after-haitian-gangs-with-backing-from-canada/article_5b58017e-7e6b-422a-84a2-5f82daee604d.html",
+      "published": "2026-11-15T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1987,15 +2032,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "eece99c62fc7774a",
+      "story_id": "ceef7b5e6bdbde48",
       "source": "Toronto Star",
-      "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
-      "url": "https://www.thestar.com/news/canada/airport-in-gander-n-l-was-ready-to-receive-diverted-passengers-in-u-s-flight-stop/article_687a84bb-fc0f-5692-8ef0-e04cf4a589e2.html",
-      "published": "2026-11-14T17:38:24+00:00",
+      "title": "Amid climate pessimism, a surprise: Global emissions are down for 2026",
+      "url": "https://www.thestar.com/news/world/amid-climate-pessimism-a-surprise-global-emissions-are-down-for-2026/article_580f3e42-256c-43ec-9bab-8acd49ea1d95.html",
+      "published": "2026-11-15T05:00:00+00:00",
       "content_status": "full",
-      "word_count": 68,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 185,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2077,21 +2122,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "fe56b5bc74721f04",
-      "source": "Toronto Star",
-      "title": "Quebec ready to vote independently from Canada for Francophonie leadership: premier",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-ready-to-vote-independently-from-canada-for-francophonie-leadership-premier/article_5a8fd965-3c58-551e-8fa6-50fe7eee4dc0.html",
-      "published": "2026-11-14T20:20:16+00:00",
-      "content_status": "full",
-      "word_count": 499,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "2d0952036901ff90",
       "source": "Toronto Star",
       "title": "There's a catch: Investigation shows it’s hard to keep clean hands in the global fish trade",
@@ -2101,6 +2131,21 @@
       "word_count": 2879,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ae7159e7628aa654",
+      "source": "Toronto Star",
+      "title": "UN mission goes after Haitian gangs with backing from Canada",
+      "url": "https://www.thestar.com/politics/federal/un-mission-goes-after-haitian-gangs-with-backing-from-canada/article_5b58017e-7e6b-422a-84a2-5f82daee604d.html",
+      "published": "2026-11-15T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 194,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4561,6 +4606,47 @@
       ]
     },
     {
+      "id": "ae7159e7628aa654",
+      "source": "Toronto Star",
+      "title": "UN mission goes after Haitian gangs with backing from Canada",
+      "url": "https://www.thestar.com/politics/federal/un-mission-goes-after-haitian-gangs-with-backing-from-canada/article_5b58017e-7e6b-422a-84a2-5f82daee604d.html",
+      "published": "2026-11-15T12:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 194,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3b3a2c5fa2731383",
       "source": "Toronto Star",
       "title": "PM Carney in Cambodia for Francophonie summit, will meet Quebec premier Plamondon",
@@ -4706,6 +4792,47 @@
       ]
     },
     {
+      "id": "ceef7b5e6bdbde48",
+      "source": "Toronto Star",
+      "title": "Amid climate pessimism, a surprise: Global emissions are down for 2026",
+      "url": "https://www.thestar.com/news/world/amid-climate-pessimism-a-surprise-global-emissions-are-down-for-2026/article_580f3e42-256c-43ec-9bab-8acd49ea1d95.html",
+      "published": "2026-11-15T05:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 185,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c9adf7023b03beb4",
       "source": "Toronto Star",
       "title": "Carney to cap off Asean summit with focus on trade deals, ahead of Francophonie",
@@ -4784,70 +4911,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "fe56b5bc74721f04",
-      "source": "Toronto Star",
-      "title": "Quebec ready to vote independently from Canada for Francophonie leadership: premier",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-ready-to-vote-independently-from-canada-for-francophonie-leadership-premier/article_5a8fd965-3c58-551e-8fa6-50fe7eee4dc0.html",
-      "published": "2026-11-14T20:20:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 499,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "eece99c62fc7774a",
-      "source": "Toronto Star",
-      "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
-      "url": "https://www.thestar.com/news/canada/airport-in-gander-n-l-was-ready-to-receive-diverted-passengers-in-u-s-flight-stop/article_687a84bb-fc0f-5692-8ef0-e04cf4a589e2.html",
-      "published": "2026-11-14T17:38:24+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 68,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "68 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
