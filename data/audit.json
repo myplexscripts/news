@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-15T11:18:41.836958+00:00",
-  "generated_at_london": "2026-11-15T06:18:41.836958-05:00",
-  "news_generated_at": "2026-11-15T11:02:50.399928+00:00",
+  "generated_at": "2026-11-15T11:22:11.729464+00:00",
+  "generated_at_london": "2026-11-15T06:22:11.729464-05:00",
+  "news_generated_at": "2026-11-15T11:20:13.267632+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 682,
+    "archive_story_count": 686,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 4,
+    "pass_story_count": 96,
+    "review_story_count": 7,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 7,
+    "warning_issue_count": 13,
     "info_issue_count": 86,
     "healthy_source_count": 13,
     "review_source_count": 5,
@@ -58,8 +58,8 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 717,
-      "average_quality": 84,
+      "average_words": 686,
+      "average_quality": 83,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -67,10 +67,10 @@
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 16,
-      "latest_published": "2026-11-14T21:24:44.848000+00:00",
-      "found_this_run": 5,
+      "latest_published": "2026-11-15T11:00:00+00:00",
+      "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-11-14T23:42:59.253354+00:00",
+      "last_scrape": "2026-11-15T11:18:02.004142+00:00",
       "last_error": ""
     },
     {
@@ -130,28 +130,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 6,
+      "review": 3,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 916,
-      "average_quality": 96,
+      "average_words": 734,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 3,
+        "reader:semantic-rich-v1": 7
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 6,
       "info_issues": 10,
-      "latest_published": "2026-11-15T10:00:00+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-15T11:00:15+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T10:15:01.360691+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-15T11:18:12.654483+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -652,7 +653,7 @@
       "latest_published": "2026-11-14T16:31:53+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T11:01:31.143458+00:00",
+      "last_scrape": "2026-11-15T11:18:08.193163+00:00",
       "last_error": ""
     },
     {
@@ -872,6 +873,96 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "81cc3b4ea350106b",
+      "source": "Toronto Star",
+      "title": "Inside a Canada Post mail carrier's last day of home delivery in Toronto",
+      "url": "https://www.thestar.com/news/ontario/inside-a-canada-post-mail-carrier-s-last-day-of-home-delivery-in-toronto/article_4ad8127f-5066-5ef6-a236-ef43627d2d36.html",
+      "published": "2026-11-15T11:00:13+00:00",
+      "content_status": "full",
+      "word_count": 173,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "81cc3b4ea350106b",
+      "source": "Toronto Star",
+      "title": "Inside a Canada Post mail carrier's last day of home delivery in Toronto",
+      "url": "https://www.thestar.com/news/ontario/inside-a-canada-post-mail-carrier-s-last-day-of-home-delivery-in-toronto/article_4ad8127f-5066-5ef6-a236-ef43627d2d36.html",
+      "published": "2026-11-15T11:00:13+00:00",
+      "content_status": "full",
+      "word_count": 173,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "5674a8a5142417d6",
+      "source": "Toronto Star",
+      "title": "Less than half of Crown-owned heritage buildings in fair or better condition",
+      "url": "https://www.thestar.com/news/canada/less-than-half-of-crown-owned-heritage-buildings-in-fair-or-better-condition/article_31e75d75-abba-5d83-a006-4de57490167a.html",
+      "published": "2026-11-15T11:00:11+00:00",
+      "content_status": "full",
+      "word_count": 171,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "5674a8a5142417d6",
+      "source": "Toronto Star",
+      "title": "Less than half of Crown-owned heritage buildings in fair or better condition",
+      "url": "https://www.thestar.com/news/canada/less-than-half-of-crown-owned-heritage-buildings-in-fair-or-better-condition/article_31e75d75-abba-5d83-a006-4de57490167a.html",
+      "published": "2026-11-15T11:00:11+00:00",
+      "content_status": "full",
+      "word_count": 171,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3b3a2c5fa2731383",
+      "source": "Toronto Star",
+      "title": "PM Carney in Cambodia for Francophonie summit, will meet Quebec premier Plamondon",
+      "url": "https://www.thestar.com/news/canada/quebec/pm-carney-in-cambodia-for-francophonie-summit-will-meet-quebec-premier-plamondon/article_9cc49735-2d9a-51e7-99e8-dbdad6c3f96f.html",
+      "published": "2026-11-15T11:00:15+00:00",
+      "content_status": "full",
+      "word_count": 180,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "3b3a2c5fa2731383",
+      "source": "Toronto Star",
+      "title": "PM Carney in Cambodia for Francophonie summit, will meet Quebec premier Plamondon",
+      "url": "https://www.thestar.com/news/canada/quebec/pm-carney-in-cambodia-for-francophonie-summit-will-meet-quebec-premier-plamondon/article_9cc49735-2d9a-51e7-99e8-dbdad6c3f96f.html",
+      "published": "2026-11-15T11:00:15+00:00",
+      "content_status": "full",
+      "word_count": 180,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -981,21 +1072,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "719570df2f1c23d9",
-      "source": "CTV News Canada",
-      "title": "Federal government moves to overhaul airport security after CTV News investigation",
-      "url": "https://www.ctvnews.ca/canada/article/federal-government-moves-to-overhaul-airport-security-after-ctv-news-investigation",
-      "published": "2026-11-13T11:03:35.936000+00:00",
-      "content_status": "full",
-      "word_count": 948,
-      "quality_score": 91,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "2672d6aa5a62ea46",
       "source": "CTV News Canada",
       "title": "How a CTV News investigation connected bag tag cases around the world",
@@ -1063,6 +1139,21 @@
       "published": "2026-11-13T11:53:58.017000+00:00",
       "content_status": "full",
       "word_count": 1112,
+      "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fb9b89843c8bd3a0",
+      "source": "CTV News Canada",
+      "title": "What can Canadians do to protect themselves from bag tag switching?",
+      "url": "https://www.ctvnews.ca/canada/article/what-can-canadians-do-to-protect-themselves-from-bag-tag-switching",
+      "published": "2026-11-15T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 638,
       "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
     },
@@ -1956,21 +2047,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "4bf64e26c4894e3f",
-      "source": "Toronto Star",
-      "title": "2 adults, 3 kids critically injured in Burlington, Ont., house fire: police",
-      "url": "https://www.thestar.com/news/ontario/2-adults-3-kids-critically-injured-in-burlington-ont-house-fire-police/article_3bd68e6b-0cf2-52ec-aeb1-f19f3d9fcd82.html",
-      "published": "2026-11-14T17:24:02+00:00",
-      "content_status": "full",
-      "word_count": 168,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "a5338851c0d12088",
       "source": "Toronto Star",
       "title": "A dementia diagnosis is devastating. What happens when you're only 48?",
@@ -1993,21 +2069,6 @@
       "published": "2026-11-14T17:38:24+00:00",
       "content_status": "full",
       "word_count": 68,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "bf80434519446db3",
-      "source": "Toronto Star",
-      "title": "Busy day at Canadian airports as airlines scramble to recover from U.S. flight stop",
-      "url": "https://www.thestar.com/news/canada/busy-day-at-canadian-airports-as-airlines-scramble-to-recover-from-u-s-flight-stop/article_824610d9-2d8a-5a91-9001-b20e61119aed.html",
-      "published": "2026-11-14T16:05:36+00:00",
-      "content_status": "full",
-      "word_count": 754,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2046,6 +2107,51 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "81cc3b4ea350106b",
+      "source": "Toronto Star",
+      "title": "Inside a Canada Post mail carrier's last day of home delivery in Toronto",
+      "url": "https://www.thestar.com/news/ontario/inside-a-canada-post-mail-carrier-s-last-day-of-home-delivery-in-toronto/article_4ad8127f-5066-5ef6-a236-ef43627d2d36.html",
+      "published": "2026-11-15T11:00:13+00:00",
+      "content_status": "full",
+      "word_count": 173,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "5674a8a5142417d6",
+      "source": "Toronto Star",
+      "title": "Less than half of Crown-owned heritage buildings in fair or better condition",
+      "url": "https://www.thestar.com/news/canada/less-than-half-of-crown-owned-heritage-buildings-in-fair-or-better-condition/article_31e75d75-abba-5d83-a006-4de57490167a.html",
+      "published": "2026-11-15T11:00:11+00:00",
+      "content_status": "full",
+      "word_count": 171,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "3b3a2c5fa2731383",
+      "source": "Toronto Star",
+      "title": "PM Carney in Cambodia for Francophonie summit, will meet Quebec premier Plamondon",
+      "url": "https://www.thestar.com/news/canada/quebec/pm-carney-in-cambodia-for-francophonie-summit-will-meet-quebec-premier-plamondon/article_9cc49735-2d9a-51e7-99e8-dbdad6c3f96f.html",
+      "published": "2026-11-15T11:00:15+00:00",
+      "content_status": "full",
+      "word_count": 180,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "fe56b5bc74721f04",
       "source": "Toronto Star",
       "title": "Quebec ready to vote independently from Canada for Francophonie leadership: premier",
@@ -2068,21 +2174,6 @@
       "published": "2026-11-15T10:00:00+00:00",
       "content_status": "full",
       "word_count": 2879,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "dfda3987844d9221",
-      "source": "Toronto Star",
-      "title": "Toronto Pearson U.S.-bound flights resume as Air Canada says 27,000 customers affected by shutdown",
-      "url": "https://www.thestar.com/news/gta/toronto-pearson-u-s-bound-flights-resume-as-air-canada-says-27-000-customers-affected-by-outage/article_a51f1a66-6a63-4209-bdaa-67b09bc8e5ea.html",
-      "published": "2026-11-14T16:30:00+00:00",
-      "content_status": "full",
-      "word_count": 1421,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3621,6 +3712,35 @@
       ]
     },
     {
+      "id": "fb9b89843c8bd3a0",
+      "source": "CTV News Canada",
+      "title": "What can Canadians do to protect themselves from bag tag switching?",
+      "url": "https://www.ctvnews.ca/canada/article/what-can-canadians-do-to-protect-themselves-from-bag-tag-switching",
+      "published": "2026-11-15T11:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 638,
+      "paragraph_count": 27,
+      "inline_image_count": 3,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6957215221259df0",
       "source": "CTV News Canada",
       "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
@@ -3915,35 +4035,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "719570df2f1c23d9",
-      "source": "CTV News Canada",
-      "title": "Federal government moves to overhaul airport security after CTV News investigation",
-      "url": "https://www.ctvnews.ca/canada/article/federal-government-moves-to-overhaul-airport-security-after-ctv-news-investigation",
-      "published": "2026-11-13T11:03:35.936000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 948,
-      "paragraph_count": 38,
-      "inline_image_count": 6,
-      "quality_score": 91,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4539,6 +4630,129 @@
       ]
     },
     {
+      "id": "3b3a2c5fa2731383",
+      "source": "Toronto Star",
+      "title": "PM Carney in Cambodia for Francophonie summit, will meet Quebec premier Plamondon",
+      "url": "https://www.thestar.com/news/canada/quebec/pm-carney-in-cambodia-for-francophonie-summit-will-meet-quebec-premier-plamondon/article_9cc49735-2d9a-51e7-99e8-dbdad6c3f96f.html",
+      "published": "2026-11-15T11:00:15+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 180,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "81cc3b4ea350106b",
+      "source": "Toronto Star",
+      "title": "Inside a Canada Post mail carrier's last day of home delivery in Toronto",
+      "url": "https://www.thestar.com/news/ontario/inside-a-canada-post-mail-carrier-s-last-day-of-home-delivery-in-toronto/article_4ad8127f-5066-5ef6-a236-ef43627d2d36.html",
+      "published": "2026-11-15T11:00:13+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 173,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "5674a8a5142417d6",
+      "source": "Toronto Star",
+      "title": "Less than half of Crown-owned heritage buildings in fair or better condition",
+      "url": "https://www.thestar.com/news/canada/less-than-half-of-crown-owned-heritage-buildings-in-fair-or-better-condition/article_31e75d75-abba-5d83-a006-4de57490167a.html",
+      "published": "2026-11-15T11:00:11+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 171,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2d0952036901ff90",
       "source": "Toronto Star",
       "title": "There's a catch: Investigation shows it’s hard to keep clean hands in the global fish trade",
@@ -4739,93 +4953,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "68 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4bf64e26c4894e3f",
-      "source": "Toronto Star",
-      "title": "2 adults, 3 kids critically injured in Burlington, Ont., house fire: police",
-      "url": "https://www.thestar.com/news/ontario/2-adults-3-kids-critically-injured-in-burlington-ont-house-fire-police/article_3bd68e6b-0cf2-52ec-aeb1-f19f3d9fcd82.html",
-      "published": "2026-11-14T17:24:02+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 168,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "dfda3987844d9221",
-      "source": "Toronto Star",
-      "title": "Toronto Pearson U.S.-bound flights resume as Air Canada says 27,000 customers affected by shutdown",
-      "url": "https://www.thestar.com/news/gta/toronto-pearson-u-s-bound-flights-resume-as-air-canada-says-27-000-customers-affected-by-outage/article_a51f1a66-6a63-4209-bdaa-67b09bc8e5ea.html",
-      "published": "2026-11-14T16:30:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1421,
-      "paragraph_count": 50,
-      "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bf80434519446db3",
-      "source": "Toronto Star",
-      "title": "Busy day at Canadian airports as airlines scramble to recover from U.S. flight stop",
-      "url": "https://www.thestar.com/news/canada/busy-day-at-canadian-airports-as-airlines-scramble-to-recover-from-u-s-flight-stop/article_824610d9-2d8a-5a91-9001-b20e61119aed.html",
-      "published": "2026-11-14T16:05:36+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 754,
-      "paragraph_count": 32,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
