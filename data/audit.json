@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-15T14:16:11.617016+00:00",
-  "generated_at_london": "2026-11-15T09:16:11.617016-05:00",
-  "news_generated_at": "2026-11-15T14:10:09.010991+00:00",
+  "generated_at": "2026-11-15T14:27:39.212142+00:00",
+  "generated_at_london": "2026-11-15T09:27:39.212142-05:00",
+  "news_generated_at": "2026-11-15T14:25:57.760219+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 691,
+    "archive_story_count": 692,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 5,
+    "pass_story_count": 98,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 88,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "healthy_source_count": 12,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -151,7 +151,34 @@
       "latest_published": "2026-11-15T13:41:46+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T14:08:36.579403+00:00",
+      "last_scrape": "2026-11-15T14:24:13.516374+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "The Globe and Mail",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "globe",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 985,
+      "average_quality": 96,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 13,
+      "latest_published": "2026-11-15T14:06:40.489000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-15T14:24:11.539086+00:00",
       "last_error": ""
     },
     {
@@ -200,7 +227,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -510,19 +537,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 547,
-      "average_quality": 96,
+      "average_words": 550,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-14T21:11:09+00:00",
+      "latest_published": "2026-11-15T14:17:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-14T21:17:12.180800+00:00",
+      "last_scrape": "2026-11-15T14:24:08.813439+00:00",
       "last_error": ""
     },
     {
@@ -655,32 +683,6 @@
       "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "The Globe and Mail",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "globe",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 848,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-11-15T13:12:20.750000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-15T13:22:18.815214+00:00",
       "last_error": ""
     },
     {
@@ -871,6 +873,36 @@
       "word_count": 90,
       "quality_score": 65,
       "extraction_method": "jina:postmedia-repair"
+    },
+    {
+      "severity": "warning",
+      "code": "duplicate_body",
+      "message": "Duplicate article paragraphs were detected.",
+      "detail": "1 duplicated paragraph pattern(s)",
+      "story_id": "9344d4f95c73acff",
+      "source": "The Globe and Mail",
+      "title": "How Danielle Smith’s risky bet on data centres could backfire",
+      "url": "https://www.theglobeandmail.com/business/article-alberta-how-danielle-smiths-bet-on-data-centres-could-backfire",
+      "published": "2026-11-15T14:06:40.489000+00:00",
+      "content_status": "full",
+      "word_count": 2164,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "9344d4f95c73acff",
+      "source": "The Globe and Mail",
+      "title": "How Danielle Smith’s risky bet on data centres could backfire",
+      "url": "https://www.theglobeandmail.com/business/article-alberta-how-danielle-smiths-bet-on-data-centres-could-backfire",
+      "published": "2026-11-15T14:06:40.489000+00:00",
+      "content_status": "full",
+      "word_count": 2164,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1432,15 +1464,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f2d292d5e32cd8f6",
+      "story_id": "09f14832da91f4cc",
       "source": "Global News Canada",
-      "title": "CFL players invited to Canadian flag football camp",
-      "url": "https://globalnews.ca/news/12150442/cfl-players-invited-to-canadian-flag-football-camp",
-      "published": "2026-11-13T22:38:27+00:00",
+      "title": "Canada, Brazil announce $540M for rainforest protection project",
+      "url": "https://globalnews.ca/news/12151744/canada-brazil-rainforest-protection-asean-summit",
+      "published": "2026-11-15T14:17:56+00:00",
       "content_status": "full",
-      "word_count": 697,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 724,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1837,21 +1869,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c22911d4bbcbad3b",
-      "source": "The Globe and Mail",
-      "title": "Canadians split on withholding public programs from non-permanent residents, poll finds",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-canadians-split-on-withholding-public-programs-from-non-permanent",
-      "published": "2026-11-14T11:00:00+00:00",
-      "content_status": "full",
-      "word_count": 790,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "70ecc3c1cde9fbf5",
       "source": "The Globe and Mail",
       "title": "Fifth soldier dies from injuries after October fire at CFB Wainwright",
@@ -1891,6 +1908,21 @@
       "word_count": 855,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "9344d4f95c73acff",
+      "source": "The Globe and Mail",
+      "title": "How Danielle Smith’s risky bet on data centres could backfire",
+      "url": "https://www.theglobeandmail.com/business/article-alberta-how-danielle-smiths-bet-on-data-centres-could-backfire",
+      "published": "2026-11-15T14:06:40.489000+00:00",
+      "content_status": "full",
+      "word_count": 2164,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3362,6 +3394,35 @@
       "issues": []
     },
     {
+      "id": "09f14832da91f4cc",
+      "source": "Global News Canada",
+      "title": "Canada, Brazil announce $540M for rainforest protection project",
+      "url": "https://globalnews.ca/news/12151744/canada-brazil-rainforest-protection-asean-summit",
+      "published": "2026-11-15T14:17:56+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 724,
+      "paragraph_count": 25,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1232e041a40645f9",
       "source": "Global News Canada",
       "title": "Fifth Canadian soldier has died after fire in Wainwright, CAF says",
@@ -3608,35 +3669,6 @@
       "word_count": 157,
       "paragraph_count": 6,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f2d292d5e32cd8f6",
-      "source": "Global News Canada",
-      "title": "CFL players invited to Canadian flag football camp",
-      "url": "https://globalnews.ca/news/12150442/cfl-players-invited-to-canadian-flag-football-camp",
-      "published": "2026-11-13T22:38:27+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 697,
-      "paragraph_count": 23,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -3984,6 +4016,47 @@
       ]
     },
     {
+      "id": "9344d4f95c73acff",
+      "source": "The Globe and Mail",
+      "title": "How Danielle Smith’s risky bet on data centres could backfire",
+      "url": "https://www.theglobeandmail.com/business/article-alberta-how-danielle-smiths-bet-on-data-centres-could-backfire",
+      "published": "2026-11-15T14:06:40.489000+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 2164,
+      "paragraph_count": 70,
+      "inline_image_count": 10,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "duplicate_body",
+          "message": "Duplicate article paragraphs were detected.",
+          "detail": "1 duplicated paragraph pattern(s)"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4f3cdf3a2b7f5165",
       "source": "The Globe and Mail",
       "title": "Growing freshwater challenges threaten Canada’s long-term security, federal memo warns",
@@ -4247,35 +4320,6 @@
       "content_status": "full",
       "word_count": 771,
       "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c22911d4bbcbad3b",
-      "source": "The Globe and Mail",
-      "title": "Canadians split on withholding public programs from non-permanent residents, poll finds",
-      "url": "https://www.theglobeandmail.com/canada/alberta/article-canadians-split-on-withholding-public-programs-from-non-permanent",
-      "published": "2026-11-14T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 790,
-      "paragraph_count": 23,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
