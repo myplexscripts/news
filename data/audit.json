@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-15T18:42:16.195383+00:00",
-  "generated_at_london": "2026-11-15T13:42:16.195383-05:00",
-  "news_generated_at": "2026-11-15T18:36:27.252693+00:00",
+  "generated_at": "2026-11-15T18:53:35.047780+00:00",
+  "generated_at_london": "2026-11-15T13:53:35.047780-05:00",
+  "news_generated_at": "2026-11-15T18:51:39.909695+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 687,
+    "archive_story_count": 688,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 99,
-    "review_story_count": 5,
+    "pass_story_count": 98,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 9,
+    "warning_issue_count": 11,
     "info_issue_count": 89,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "healthy_source_count": 12,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -154,6 +154,33 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 1004,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-15T18:27:58+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-15T18:49:35.508167+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -199,7 +226,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -653,7 +680,7 @@
       "latest_published": "2026-11-15T15:47:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-15T18:34:20.669479+00:00",
+      "last_scrape": "2026-11-15T18:49:33.966042+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +708,6 @@
       "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1055,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-15T17:11:10+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-15T17:32:07.593736+00:00",
       "last_error": ""
     },
     {
@@ -886,6 +887,36 @@
       "word_count": 2154,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "bacb5b4539942d52",
+      "source": "Toronto Star",
+      "title": "Breast milk can be lifesaving for premature babies, Quebec charity says",
+      "url": "https://www.thestar.com/news/canada/quebec/breast-milk-can-be-lifesaving-for-premature-babies-quebec-charity-says/article_452d1d2a-bfe3-5c97-8e17-7003ec4ad72f.html",
+      "published": "2026-11-15T18:27:58+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "bacb5b4539942d52",
+      "source": "Toronto Star",
+      "title": "Breast milk can be lifesaving for premature babies, Quebec charity says",
+      "url": "https://www.thestar.com/news/canada/quebec/breast-milk-can-be-lifesaving-for-premature-babies-quebec-charity-says/article_452d1d2a-bfe3-5c97-8e17-7003ec4ad72f.html",
+      "published": "2026-11-15T18:27:58+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2047,15 +2078,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c9adf7023b03beb4",
+      "story_id": "bacb5b4539942d52",
       "source": "Toronto Star",
-      "title": "Carney to cap off Asean summit with focus on trade deals, ahead of Francophonie",
-      "url": "https://www.thestar.com/business/carney-to-cap-off-asean-summit-with-focus-on-trade-deals-ahead-of-francophonie/article_e4e58541-6d4c-55b6-b2a0-b8cdfae12770.html",
-      "published": "2026-11-15T00:23:00+00:00",
+      "title": "Breast milk can be lifesaving for premature babies, Quebec charity says",
+      "url": "https://www.thestar.com/news/canada/quebec/breast-milk-can-be-lifesaving-for-premature-babies-quebec-charity-says/article_452d1d2a-bfe3-5c97-8e17-7003ec4ad72f.html",
+      "published": "2026-11-15T18:27:58+00:00",
       "content_status": "full",
-      "word_count": 737,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4630,6 +4661,47 @@
       ]
     },
     {
+      "id": "bacb5b4539942d52",
+      "source": "Toronto Star",
+      "title": "Breast milk can be lifesaving for premature babies, Quebec charity says",
+      "url": "https://www.thestar.com/news/canada/quebec/breast-milk-can-be-lifesaving-for-premature-babies-quebec-charity-says/article_452d1d2a-bfe3-5c97-8e17-7003ec4ad72f.html",
+      "published": "2026-11-15T18:27:58+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 229,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2b5f58dd47046c2d",
       "source": "Toronto Star",
       "title": "Two people dead after crash involving out-of-control Tesla: Durham police",
@@ -4875,35 +4947,6 @@
       "content_status": "full",
       "word_count": 1500,
       "paragraph_count": 42,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c9adf7023b03beb4",
-      "source": "Toronto Star",
-      "title": "Carney to cap off Asean summit with focus on trade deals, ahead of Francophonie",
-      "url": "https://www.thestar.com/business/carney-to-cap-off-asean-summit-with-focus-on-trade-deals-ahead-of-francophonie/article_e4e58541-6d4c-55b6-b2a0-b8cdfae12770.html",
-      "published": "2026-11-15T00:23:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 737,
-      "paragraph_count": 26,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
