@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-16T16:38:23.078436+00:00",
-  "generated_at_london": "2026-11-16T11:38:23.078436-05:00",
-  "news_generated_at": "2026-11-16T16:32:08.651651+00:00",
+  "generated_at": "2026-11-16T16:48:28.807058+00:00",
+  "generated_at_london": "2026-11-16T11:48:28.807058-05:00",
+  "news_generated_at": "2026-11-16T16:46:56.864936+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 686,
     "source_count": 28,
     "audited_story_count": 101,
-    "pass_story_count": 96,
-    "review_story_count": 2,
+    "pass_story_count": 95,
+    "review_story_count": 3,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 3,
+    "warning_issue_count": 5,
     "info_issue_count": 84,
     "healthy_source_count": 13,
     "review_source_count": 3,
@@ -69,7 +69,7 @@
       "warning_issues": 1,
       "info_issues": 11,
       "latest_published": "2026-11-16T11:41:32.244000+00:00",
-      "found_this_run": 5,
+      "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-11-16T11:49:54.821557+00:00",
       "last_error": ""
@@ -106,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 7,
+      "review": 1,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 574,
-      "average_quality": 96,
+      "average_words": 535,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-16T15:47:56+00:00",
+      "latest_published": "2026-11-16T16:29:19+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T16:30:15.667269+00:00",
+      "last_scrape": "2026-11-16T16:45:23.304114+00:00",
       "last_error": ""
     },
     {
@@ -196,7 +197,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -440,7 +441,7 @@
       "latest_published": "2026-11-16T16:29:39.929000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T16:17:47.096517+00:00",
+      "last_scrape": "2026-11-16T16:35:02.918427+00:00",
       "last_error": ""
     },
     {
@@ -508,19 +509,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 327,
-      "average_quality": 96,
+      "average_words": 318,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-16T16:16:07+00:00",
+      "latest_published": "2026-11-16T16:34:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T16:30:07.264279+00:00",
+      "last_scrape": "2026-11-16T16:45:17.666363+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +653,7 @@
       "latest_published": "2026-11-16T15:16:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T16:30:14.399136+00:00",
+      "last_scrape": "2026-11-16T16:45:21.979837+00:00",
       "last_error": ""
     },
     {
@@ -676,7 +678,7 @@
       "warning_issues": 0,
       "info_issues": 3,
       "latest_published": "2026-11-13T05:00:00+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
       "last_error": ""
@@ -825,6 +827,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ffc6227a47deb106",
+      "source": "Toronto Star",
+      "title": "Inquest into death of Jamal Francique hears from Peel region constable",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-death-of-jamal-francique-hears-from-peel-region-constable/article_9d212403-173e-5f0b-ae4a-bc90b0c6418f.html",
+      "published": "2026-11-16T16:29:19+00:00",
+      "content_status": "full",
+      "word_count": 236,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "ffc6227a47deb106",
+      "source": "Toronto Star",
+      "title": "Inquest into death of Jamal Francique hears from Peel region constable",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-death-of-jamal-francique-hears-from-peel-region-constable/article_9d212403-173e-5f0b-ae4a-bc90b0c6418f.html",
+      "published": "2026-11-16T16:29:19+00:00",
+      "content_status": "full",
+      "word_count": 236,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1326,6 +1358,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "aefb8761ec70e8d8",
+      "source": "Global News Canada",
+      "title": "AI making it harder to spot fake retailers ahead of holidays, RBC poll says",
+      "url": "https://globalnews.ca/news/12152805/ai-making-it-harder-to-spot-fake-retailers-ahead-of-holidays-rbc-poll-says",
+      "published": "2026-11-16T16:34:58+00:00",
+      "content_status": "full",
+      "word_count": 414,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "d4c3220cd99b1ace",
       "source": "Global News Canada",
       "title": "Bank of Canada’s Tiff Macklem won’t seek a 2nd term as governor",
@@ -1423,21 +1470,6 @@
       "published": "2026-11-16T13:38:04+00:00",
       "content_status": "full",
       "word_count": 385,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "cf46bafdd5a8a852",
-      "source": "Global News Canada",
-      "title": "Snowbirds take final Tutor jet flight over Grey Cup: ‘It’s been an honour’",
-      "url": "https://globalnews.ca/news/12152141/snowbirds-grey-cup-tutor-final-flight",
-      "published": "2026-11-16T01:03:42+00:00",
-      "content_status": "full",
-      "word_count": 503,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1896,21 +1928,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a37bd71e30a339fa",
-      "source": "Toronto Star",
-      "title": "Canoe trio arrives in Vancouver, marking end of 8,000-kilometre cross-Canada journey",
-      "url": "https://www.thestar.com/news/canada/british-columbia/canoe-trio-arrives-in-vancouver-marking-end-of-8-000-kilometre-cross-canada-journey/article_03b7a698-4678-5b7d-aea4-24852030ab37.html",
-      "published": "2026-11-15T20:38:15+00:00",
-      "content_status": "full",
-      "word_count": 627,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "bd44e24fea90ff17",
       "source": "Toronto Star",
       "title": "Carney says Canada could turn to Chinese automakers if Trump trade talks fail",
@@ -1920,6 +1937,21 @@
       "word_count": 527,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ffc6227a47deb106",
+      "source": "Toronto Star",
+      "title": "Inquest into death of Jamal Francique hears from Peel region constable",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-death-of-jamal-francique-hears-from-peel-region-constable/article_9d212403-173e-5f0b-ae4a-bc90b0c6418f.html",
+      "published": "2026-11-16T16:29:19+00:00",
+      "content_status": "full",
+      "word_count": 236,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3153,6 +3185,35 @@
       "issues": []
     },
     {
+      "id": "aefb8761ec70e8d8",
+      "source": "Global News Canada",
+      "title": "AI making it harder to spot fake retailers ahead of holidays, RBC poll says",
+      "url": "https://globalnews.ca/news/12152805/ai-making-it-harder-to-spot-fake-retailers-ahead-of-holidays-rbc-poll-says",
+      "published": "2026-11-16T16:34:58+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 414,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cd902d766055ea1a",
       "source": "Global News Canada",
       "title": "3 arrests made, 2 suspects outstanding in Bridle Path home invasion",
@@ -3399,35 +3460,6 @@
       "word_count": 206,
       "paragraph_count": 9,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cf46bafdd5a8a852",
-      "source": "Global News Canada",
-      "title": "Snowbirds take final Tutor jet flight over Grey Cup: ‘It’s been an honour’",
-      "url": "https://globalnews.ca/news/12152141/snowbirds-grey-cup-tutor-final-flight",
-      "published": "2026-11-16T01:03:42+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 503,
-      "paragraph_count": 19,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4337,6 +4369,47 @@
       ]
     },
     {
+      "id": "ffc6227a47deb106",
+      "source": "Toronto Star",
+      "title": "Inquest into death of Jamal Francique hears from Peel region constable",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-death-of-jamal-francique-hears-from-peel-region-constable/article_9d212403-173e-5f0b-ae4a-bc90b0c6418f.html",
+      "published": "2026-11-16T16:29:19+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 236,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c502ef59caf90b87",
       "source": "Toronto Star",
       "title": "Toronto police arrest suspect in Bridle Path home invasion investigation",
@@ -4595,35 +4668,6 @@
       "word_count": 527,
       "paragraph_count": 15,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a37bd71e30a339fa",
-      "source": "Toronto Star",
-      "title": "Canoe trio arrives in Vancouver, marking end of 8,000-kilometre cross-Canada journey",
-      "url": "https://www.thestar.com/news/canada/british-columbia/canoe-trio-arrives-in-vancouver-marking-end-of-8-000-kilometre-cross-canada-journey/article_03b7a698-4678-5b7d-aea4-24852030ab37.html",
-      "published": "2026-11-15T20:38:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 627,
-      "paragraph_count": 25,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
