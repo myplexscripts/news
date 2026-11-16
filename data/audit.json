@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-16T17:53:16.993809+00:00",
-  "generated_at_london": "2026-11-16T12:53:16.993809-05:00",
-  "news_generated_at": "2026-11-16T17:48:09.732848+00:00",
+  "generated_at": "2026-11-16T18:06:40.070628+00:00",
+  "generated_at_london": "2026-11-16T13:06:40.070628-05:00",
+  "news_generated_at": "2026-11-16T18:04:39.695547+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 688,
+    "archive_story_count": 687,
     "source_count": 28,
     "audited_story_count": 101,
-    "pass_story_count": 97,
-    "review_story_count": 3,
+    "pass_story_count": 98,
+    "review_story_count": 2,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 4,
+    "warning_issue_count": 3,
     "info_issue_count": 84,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 2,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -49,32 +49,6 @@
       "last_error": ""
     },
     {
-      "source": "CTV News Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 671,
-      "average_quality": 82,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 11,
-      "latest_published": "2026-11-16T11:41:32.244000+00:00",
-      "found_this_run": 3,
-      "tracked": 30,
-      "last_scrape": "2026-11-16T11:49:54.821557+00:00",
-      "last_error": ""
-    },
-    {
       "source": "London Health Sciences Centre",
       "status": "review",
       "collector_status": "healthy",
@@ -103,7 +77,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +95,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-16T17:31:57+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-16T17:46:35.667411+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -337,7 +311,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 9,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -415,6 +389,32 @@
       "found_this_run": 10,
       "tracked": 11,
       "last_scrape": "2026-11-16T03:21:33.617065+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "CTV News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 736,
+      "average_quality": 83,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 11,
+      "latest_published": "2026-11-16T17:51:25.934000+00:00",
+      "found_this_run": 4,
+      "tracked": 30,
+      "last_scrape": "2026-11-16T18:02:39.545632+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +651,7 @@
       "latest_published": "2026-11-16T16:59:11+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T17:46:33.183771+00:00",
+      "last_scrape": "2026-11-16T18:02:43.076347+00:00",
       "last_error": ""
     },
     {
@@ -753,21 +753,6 @@
     },
     {
       "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "6 consecutive images",
-      "story_id": "6957215221259df0",
-      "source": "CTV News Canada",
-      "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
-      "url": "https://www.ctvnews.ca/canada/article/newfoundland-local-airport-was-ready-to-receive-diverted-passengers-in-us-flight-stop",
-      "published": "2026-11-14T21:24:44.848000+00:00",
-      "content_status": "full",
-      "word_count": 584,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
       "detail": "9 inline images",
@@ -810,21 +795,6 @@
       "word_count": 946,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "6957215221259df0",
-      "source": "CTV News Canada",
-      "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
-      "url": "https://www.ctvnews.ca/canada/article/newfoundland-local-airport-was-ready-to-receive-diverted-passengers-in-us-flight-stop",
-      "published": "2026-11-14T21:24:44.848000+00:00",
-      "content_status": "full",
-      "word_count": 584,
-      "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -929,6 +899,21 @@
       "content_status": "full",
       "word_count": 638,
       "quality_score": 86,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "aba93b1cbd9040e7",
+      "source": "CTV News Canada",
+      "title": "‘I can shoot you dead’: Video captures confrontation outside Chinese Consulate in Toronto",
+      "url": "https://www.ctvnews.ca/canada/article/i-can-shoot-you-dead-video-captures-confrontation-outside-chinese-consulate-in-toronto",
+      "published": "2026-11-16T17:51:25.934000+00:00",
+      "content_status": "full",
+      "word_count": 1227,
+      "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -3428,6 +3413,35 @@
       ]
     },
     {
+      "id": "aba93b1cbd9040e7",
+      "source": "CTV News Canada",
+      "title": "‘I can shoot you dead’: Video captures confrontation outside Chinese Consulate in Toronto",
+      "url": "https://www.ctvnews.ca/canada/article/i-can-shoot-you-dead-video-captures-confrontation-outside-chinese-consulate-in-toronto",
+      "published": "2026-11-16T17:51:25.934000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1227,
+      "paragraph_count": 41,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8e5027833143b283",
       "source": "CTV News Canada",
       "title": "Video captures confrontation outside Chinese Consulate in Toronto",
@@ -3686,41 +3700,6 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6957215221259df0",
-      "source": "CTV News Canada",
-      "title": "Airport in Gander, N.L., was ready to receive diverted passengers in U.S. flight stop",
-      "url": "https://www.ctvnews.ca/canada/article/newfoundland-local-airport-was-ready-to-receive-diverted-passengers-in-us-flight-stop",
-      "published": "2026-11-14T21:24:44.848000+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 584,
-      "paragraph_count": 18,
-      "inline_image_count": 6,
-      "quality_score": 81,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "6 consecutive images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
