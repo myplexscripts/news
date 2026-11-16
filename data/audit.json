@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-16T19:42:02.877637+00:00",
-  "generated_at_london": "2026-11-16T14:42:02.877637-05:00",
-  "news_generated_at": "2026-11-16T19:36:43.349629+00:00",
+  "generated_at": "2026-11-16T19:54:33.589363+00:00",
+  "generated_at_london": "2026-11-16T14:54:33.589363-05:00",
+  "news_generated_at": "2026-11-16T19:52:53.725180+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 692,
+    "archive_story_count": 691,
     "source_count": 28,
-    "audited_story_count": 102,
+    "audited_story_count": 103,
     "pass_story_count": 98,
-    "review_story_count": 3,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 4,
-    "info_issue_count": 87,
+    "warning_issue_count": 6,
+    "info_issue_count": 88,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -103,28 +103,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 349,
-      "average_quality": 96,
+      "average_words": 350,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 1,
+      "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-11-16T18:58:38+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-16T19:26:16+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T19:19:38.515491+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-16T19:51:18.158890+00:00",
+      "last_error": ""
     },
     {
       "source": "104.7 Heart FM",
@@ -249,7 +250,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -268,7 +269,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "429 Client Error: Too Many Requests for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRERW9"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -474,26 +475,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 2,
-      "pass": 2,
+      "sample_size": 3,
+      "pass": 3,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1382,
-      "average_quality": 82,
+      "average_words": 950,
+      "average_quality": 69,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
         "dom:semantic-rich-v1": 1,
+        "dom:municipal:.field--name-body": 1,
         "reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 0,
+      "info_issues": 1,
       "latest_published": "2026-11-16T05:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 2,
-      "last_scrape": "2026-11-16T15:40:48.303769+00:00",
+      "tracked": 3,
+      "last_scrape": "2026-11-16T19:48:17.452306+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +653,7 @@
       "latest_published": "2026-11-16T16:59:11+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T19:35:15.983898+00:00",
+      "last_scrape": "2026-11-16T19:51:15.647744+00:00",
       "last_error": ""
     },
     {
@@ -795,6 +797,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "6551255a9af8d9a5",
+      "source": "Toronto Star",
+      "title": "Community 'distraught' after copper Jesus statue stolen from B.C. school",
+      "url": "https://www.thestar.com/news/canada/british-columbia/community-distraught-after-copper-jesus-statue-stolen-from-b-c-school/article_44572153-bd14-5c62-9453-81d7eeae833b.html",
+      "published": "2026-11-16T19:26:16+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "6551255a9af8d9a5",
+      "source": "Toronto Star",
+      "title": "Community 'distraught' after copper Jesus statue stolen from B.C. school",
+      "url": "https://www.thestar.com/news/canada/british-columbia/community-distraught-after-copper-jesus-statue-stolen-from-b-c-school/article_44572153-bd14-5c62-9453-81d7eeae833b.html",
+      "published": "2026-11-16T19:26:16+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1140,6 +1172,21 @@
       "word_count": 171,
       "quality_score": 66,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "dd30746ed5d82847",
+      "source": "City of London Newsroom",
+      "title": "Overnight closure of Colonel Talbot Road to complete private work",
+      "url": "https://london.ca/newsroom/public-service-announcement/overnight-closure-colonel-talbot-road-complete-private-work",
+      "published": "2026-11-16T05:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 84,
+      "quality_score": 42,
+      "extraction_method": "dom:municipal:.field--name-body"
     },
     {
       "severity": "info",
@@ -1926,6 +1973,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "6551255a9af8d9a5",
+      "source": "Toronto Star",
+      "title": "Community 'distraught' after copper Jesus statue stolen from B.C. school",
+      "url": "https://www.thestar.com/news/canada/british-columbia/community-distraught-after-copper-jesus-statue-stolen-from-b-c-school/article_44572153-bd14-5c62-9453-81d7eeae833b.html",
+      "published": "2026-11-16T19:26:16+00:00",
+      "content_status": "full",
+      "word_count": 233,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "355cd75c649df5e1",
       "source": "Toronto Star",
       "title": "Countries willing to pay more for stable energy supply from Canada, Hogan says",
@@ -2038,21 +2100,6 @@
       "published": "2026-11-16T16:40:23+00:00",
       "content_status": "full",
       "word_count": 202,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "c502ef59caf90b87",
-      "source": "Toronto Star",
-      "title": "Toronto police arrest suspect in Bridle Path home invasion investigation",
-      "url": "https://www.thestar.com/news/ontario/toronto-police-arrest-suspect-in-bridle-path-home-invasion-investigation/article_9918235a-7a68-5776-b3e7-b36dcca412c8.html",
-      "published": "2026-11-16T15:47:56+00:00",
-      "content_status": "full",
-      "word_count": 221,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2652,6 +2699,35 @@
       "extraction_profile": "municipal",
       "local_score": 100,
       "issues": []
+    },
+    {
+      "id": "dd30746ed5d82847",
+      "source": "City of London Newsroom",
+      "title": "Overnight closure of Colonel Talbot Road to complete private work",
+      "url": "https://london.ca/newsroom/public-service-announcement/overnight-closure-colonel-talbot-road-complete-private-work",
+      "published": "2026-11-16T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 84,
+      "paragraph_count": 4,
+      "inline_image_count": 0,
+      "quality_score": 42,
+      "quality_grade": "poor",
+      "extraction_method": "dom:municipal:.field--name-body",
+      "extraction_profile": "municipal",
+      "local_score": 67,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "44028972812701d8",
@@ -4409,6 +4485,47 @@
       ]
     },
     {
+      "id": "6551255a9af8d9a5",
+      "source": "Toronto Star",
+      "title": "Community 'distraught' after copper Jesus statue stolen from B.C. school",
+      "url": "https://www.thestar.com/news/canada/british-columbia/community-distraught-after-copper-jesus-statue-stolen-from-b-c-school/article_44572153-bd14-5c62-9453-81d7eeae833b.html",
+      "published": "2026-11-16T19:26:16+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 233,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0cdc7c43f89ed472",
       "source": "Toronto Star",
       "title": "Former ambassadors caution tariffs May stay but say Canada-U.S. trade deal possible",
@@ -4660,35 +4777,6 @@
       "content_status": "full",
       "word_count": 362,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c502ef59caf90b87",
-      "source": "Toronto Star",
-      "title": "Toronto police arrest suspect in Bridle Path home invasion investigation",
-      "url": "https://www.thestar.com/news/ontario/toronto-police-arrest-suspect-in-bridle-path-home-invasion-investigation/article_9918235a-7a68-5776-b3e7-b36dcca412c8.html",
-      "published": "2026-11-16T15:47:56+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 221,
-      "paragraph_count": 16,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
