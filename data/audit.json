@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-16T03:00:15.100074+00:00",
-  "generated_at_london": "2026-11-15T22:00:15.100074-05:00",
-  "news_generated_at": "2026-11-16T02:55:05.195391+00:00",
+  "generated_at": "2026-11-16T03:11:32.853779+00:00",
+  "generated_at_london": "2026-11-15T22:11:32.853779-05:00",
+  "news_generated_at": "2026-11-16T03:10:02.935395+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 689,
+    "archive_story_count": 690,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 99,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 9,
     "info_issue_count": 89,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "healthy_source_count": 12,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -138,11 +138,12 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 961,
-      "average_quality": 96,
+      "average_words": 965,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 2,
@@ -150,8 +151,34 @@
       "latest_published": "2026-11-16T02:06:03.987000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T02:22:22.193419+00:00",
+      "last_scrape": "2026-11-16T03:08:31.819686+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 824,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-16T02:30:00+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-11-16T02:53:05.322778+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -199,7 +226,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -654,7 +681,7 @@
       "latest_published": "2026-11-15T15:47:56+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T02:53:03.879011+00:00",
+      "last_scrape": "2026-11-16T03:08:33.652480+00:00",
       "last_error": ""
     },
     {
@@ -682,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 4,
       "last_scrape": "2026-11-13T18:55:03.869061+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 824,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-16T02:30:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-16T02:53:05.322778+00:00",
       "last_error": ""
     },
     {
@@ -1988,21 +1989,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ce27bc9b77c13a89",
-      "source": "The Globe and Mail",
-      "title": "Jensen Huang’s downfall, Ottawa’s fight with Stellantis and Stelco recalls laid-off Hamilton workers: Must-read business and investing stories for the week of Nov. 14",
-      "url": "https://www.theglobeandmail.com/business/article-jensen-huang-nvidia-stellantis-stelco-november-14",
-      "published": "2026-11-14T14:00:00+00:00",
-      "content_status": "full",
-      "word_count": 956,
-      "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "343dda07549b45c9",
       "source": "The Globe and Mail",
       "title": "Latest travel disruption could cost Canadian airlines millions, expert says",
@@ -2012,6 +1998,21 @@
       "word_count": 556,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4b870bee1ca27905",
+      "source": "The Globe and Mail",
+      "title": "Telus pulls out of two planned Vancouver AI data centres",
+      "url": "https://www.theglobeandmail.com/business/technology/article-telus-pulls-out-of-two-planned-vancouver-ai-data-centres",
+      "published": "2026-11-16T00:05:49.123000+00:00",
+      "content_status": "full",
+      "word_count": 997,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4050,6 +4051,35 @@
       ]
     },
     {
+      "id": "4b870bee1ca27905",
+      "source": "The Globe and Mail",
+      "title": "Telus pulls out of two planned Vancouver AI data centres",
+      "url": "https://www.theglobeandmail.com/business/technology/article-telus-pulls-out-of-two-planned-vancouver-ai-data-centres",
+      "published": "2026-11-16T00:05:49.123000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 997,
+      "paragraph_count": 28,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f7752c834433c1b5",
       "source": "The Globe and Mail",
       "title": "It’s getting harder to live with my full grown autistic son",
@@ -4298,35 +4328,6 @@
       "paragraph_count": 21,
       "inline_image_count": 2,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ce27bc9b77c13a89",
-      "source": "The Globe and Mail",
-      "title": "Jensen Huang’s downfall, Ottawa’s fight with Stellantis and Stelco recalls laid-off Hamilton workers: Must-read business and investing stories for the week of Nov. 14",
-      "url": "https://www.theglobeandmail.com/business/article-jensen-huang-nvidia-stellantis-stelco-november-14",
-      "published": "2026-11-14T14:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 956,
-      "paragraph_count": 24,
-      "inline_image_count": 4,
-      "quality_score": 97,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
