@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-16T16:06:27.037909+00:00",
-  "generated_at_london": "2026-11-16T11:06:27.037909-05:00",
-  "news_generated_at": "2026-11-16T16:00:54.893945+00:00",
+  "generated_at": "2026-11-16T16:17:04.523236+00:00",
+  "generated_at_london": "2026-11-16T11:17:04.523236-05:00",
+  "news_generated_at": "2026-11-16T16:15:36.943936+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 682,
+    "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 101,
     "pass_story_count": 96,
@@ -249,7 +249,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -268,7 +268,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -428,8 +428,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 312,
-      "average_quality": 69,
+      "average_words": 319,
+      "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -437,10 +437,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 12,
-      "latest_published": "2026-11-16T13:18:15.927000+00:00",
+      "latest_published": "2026-11-16T16:03:33.573000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T13:24:37.257764+00:00",
+      "last_scrape": "2026-11-16T16:11:45.807625+00:00",
       "last_error": ""
     },
     {
@@ -509,18 +509,19 @@
       "pass_rate": 100,
       "usable_body_rate": 100,
       "average_words": 337,
-      "average_quality": 96,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-16T15:39:08+00:00",
+      "latest_published": "2026-11-16T16:00:51+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T15:43:44.032649+00:00",
+      "last_scrape": "2026-11-16T16:14:04.504336+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +652,7 @@
       "latest_published": "2026-11-16T15:16:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T15:59:06.390468+00:00",
+      "last_scrape": "2026-11-16T16:14:10.287555+00:00",
       "last_error": ""
     },
     {
@@ -995,6 +996,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2d3a6629784c2637",
+      "source": "CTV News London",
+      "title": "Do you remember these drinks? Share your stories",
+      "url": "https://www.ctvnews.ca/london/article/do-you-remember-these-drinks-share-your-stories",
+      "published": "2026-11-16T16:03:33.573000+00:00",
+      "content_status": "full",
+      "word_count": 166,
+      "quality_score": 66,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 18/100",
       "story_id": "05e5342db435474a",
       "source": "CTV News London",
@@ -1004,21 +1020,6 @@
       "content_status": "full",
       "word_count": 567,
       "quality_score": 86,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "b97743a5ba3177fb",
-      "source": "CTV News London",
-      "title": "Flurries, rain showers expected in London Saturday",
-      "url": "https://www.ctvnews.ca/london/article/flurries-rain-showers-expected-in-london-saturday",
-      "published": "2026-11-14T15:05:08.209000+00:00",
-      "content_status": "full",
-      "word_count": 96,
-      "quality_score": 53,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1356,6 +1357,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "7d9ede73b7d84ca1",
+      "source": "Global News Canada",
+      "title": "Canada recorded 36K consumer insolvencies for 3rd straight quarter",
+      "url": "https://globalnews.ca/news/12152676/canada-consumer-insolvencies-q3-2026",
+      "published": "2026-11-16T16:00:51+00:00",
+      "content_status": "full",
+      "word_count": 391,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "a08ab421adb30db0",
       "source": "Global News Canada",
       "title": "Canada’s Alert Ready emergency system will test notifications on Wednesday",
@@ -1423,21 +1439,6 @@
       "published": "2026-11-16T13:38:04+00:00",
       "content_status": "full",
       "word_count": 385,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "075b05d142ad17e6",
-      "source": "Global News Canada",
-      "title": "Russia won’t be able to compete in World Juniors, Iihf says",
-      "url": "https://globalnews.ca/news/12152003/russia-cant-compete-world-juniors-iihf",
-      "published": "2026-11-15T22:08:15+00:00",
-      "content_status": "full",
-      "word_count": 390,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2119,6 +2120,35 @@
   ],
   "stories": [
     {
+      "id": "2d3a6629784c2637",
+      "source": "CTV News London",
+      "title": "Do you remember these drinks? Share your stories",
+      "url": "https://www.ctvnews.ca/london/article/do-you-remember-these-drinks-share-your-stories",
+      "published": "2026-11-16T16:03:33.573000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 166,
+      "paragraph_count": 7,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "93bab65903ffd63e",
       "source": "CTV News London",
       "title": "London police release images of suspect sought in stabbing investigation",
@@ -2385,35 +2415,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 18/100"
-        }
-      ]
-    },
-    {
-      "id": "b97743a5ba3177fb",
-      "source": "CTV News London",
-      "title": "Flurries, rain showers expected in London Saturday",
-      "url": "https://www.ctvnews.ca/london/article/flurries-rain-showers-expected-in-london-saturday",
-      "published": "2026-11-14T15:05:08.209000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 96,
-      "paragraph_count": 5,
-      "inline_image_count": 1,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
         }
       ]
     },
@@ -3190,6 +3191,35 @@
       "issues": []
     },
     {
+      "id": "7d9ede73b7d84ca1",
+      "source": "Global News Canada",
+      "title": "Canada recorded 36K consumer insolvencies for 3rd straight quarter",
+      "url": "https://globalnews.ca/news/12152676/canada-consumer-insolvencies-q3-2026",
+      "published": "2026-11-16T16:00:51+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 391,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d4c3220cd99b1ace",
       "source": "Global News Canada",
       "title": "Bank of Canada’s Tiff Macklem won’t seek a 2nd term as governor",
@@ -3436,35 +3466,6 @@
       "word_count": 463,
       "paragraph_count": 15,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "075b05d142ad17e6",
-      "source": "Global News Canada",
-      "title": "Russia won’t be able to compete in World Juniors, Iihf says",
-      "url": "https://globalnews.ca/news/12152003/russia-cant-compete-world-juniors-iihf",
-      "published": "2026-11-15T22:08:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 390,
-      "paragraph_count": 15,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
