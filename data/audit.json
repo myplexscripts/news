@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-16T16:53:07.994618+00:00",
-  "generated_at_london": "2026-11-16T11:53:07.994618-05:00",
-  "news_generated_at": "2026-11-16T16:46:56.864936+00:00",
+  "generated_at": "2026-11-16T17:04:29.962761+00:00",
+  "generated_at_london": "2026-11-16T12:04:29.962761-05:00",
+  "news_generated_at": "2026-11-16T17:02:32.318132+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 686,
+    "archive_story_count": 685,
     "source_count": 28,
     "audited_story_count": 101,
-    "pass_story_count": 96,
-    "review_story_count": 2,
+    "pass_story_count": 95,
+    "review_story_count": 3,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 3,
+    "warning_issue_count": 5,
     "info_issue_count": 84,
     "healthy_source_count": 13,
     "review_source_count": 3,
@@ -106,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 7,
+      "review": 1,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 548,
-      "average_quality": 96,
+      "average_words": 518,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-16T16:29:19+00:00",
+      "latest_published": "2026-11-16T16:40:23+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T16:45:23.304114+00:00",
+      "last_scrape": "2026-11-16T17:00:38.931462+00:00",
       "last_error": ""
     },
     {
@@ -196,7 +197,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -508,19 +509,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 320,
-      "average_quality": 96,
+      "average_words": 360,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-16T16:34:58+00:00",
+      "latest_published": "2026-11-16T16:47:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T16:45:17.666363+00:00",
+      "last_scrape": "2026-11-16T17:00:30.219089+00:00",
       "last_error": ""
     },
     {
@@ -651,7 +653,7 @@
       "latest_published": "2026-11-16T15:16:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-16T16:45:21.979837+00:00",
+      "last_scrape": "2026-11-16T17:00:37.523832+00:00",
       "last_error": ""
     },
     {
@@ -825,6 +827,36 @@
       "word_count": 837,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "51a75d8b76520823",
+      "source": "Toronto Star",
+      "title": "Quebec police investigate Granby shooting that left one dead, one injured",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigate-granby-shooting-that-left-one-dead-one-injured/article_f2578a2e-0296-5542-92bc-daf53ae6b8f5.html",
+      "published": "2026-11-16T16:40:23+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "51a75d8b76520823",
+      "source": "Toronto Star",
+      "title": "Quebec police investigate Granby shooting that left one dead, one injured",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigate-granby-shooting-that-left-one-dead-one-injured/article_f2578a2e-0296-5542-92bc-daf53ae6b8f5.html",
+      "published": "2026-11-16T16:40:23+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1356,21 +1388,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7b4906c7b4825fe4",
-      "source": "Global News Canada",
-      "title": "Canada exploring ‘other options’ with Europe, Asia to grow auto sector: Carney",
-      "url": "https://globalnews.ca/news/12152341/canada-auto-sector-europe-asia",
-      "published": "2026-11-16T04:53:37+00:00",
-      "content_status": "full",
-      "word_count": 206,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "7d9ede73b7d84ca1",
       "source": "Global News Canada",
       "title": "Canada recorded 36K consumer insolvencies for 3rd straight quarter",
@@ -1401,6 +1418,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "f8e8890315acefed",
+      "source": "Global News Canada",
+      "title": "Infant among 3 dead in Burlington townhouse fire",
+      "url": "https://globalnews.ca/news/12152786/infant-among-3-dead-in-burlington-townhouse-fire",
+      "published": "2026-11-16T16:45:30+00:00",
+      "content_status": "full",
+      "word_count": 406,
+      "quality_score": 83,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "b94600cba08e22ff",
       "source": "Global News Canada",
       "title": "Milton, Ont. to swear in first new mayor in 46 years as Gord Krantz leaves office",
@@ -1408,21 +1440,6 @@
       "published": "2026-11-16T12:39:58+00:00",
       "content_status": "full",
       "word_count": 372,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "085751abcfb0530c",
-      "source": "Global News Canada",
-      "title": "N.S. football player dies suddenly while attending U.S. boarding school",
-      "url": "https://globalnews.ca/news/12152523/marcellus-young-casario-death",
-      "published": "2026-11-16T12:34:44+00:00",
-      "content_status": "full",
-      "word_count": 162,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1440,6 +1457,21 @@
       "word_count": 385,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "0e4f750d6d31308e",
+      "source": "Global News Canada",
+      "title": "Teen wanted in 2 deaths, including Barrie man killed in Toronto shooting",
+      "url": "https://globalnews.ca/news/12152815/brandon-blake-malik-abass-deaths",
+      "published": "2026-11-16T16:47:29+00:00",
+      "content_status": "full",
+      "word_count": 361,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1896,21 +1928,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "bd44e24fea90ff17",
-      "source": "Toronto Star",
-      "title": "Carney says Canada could turn to Chinese automakers if Trump trade talks fail",
-      "url": "https://www.thestar.com/news/world/asia/carney-says-canada-could-turn-to-chinese-automakers-if-trump-trade-talks-fail/article_7d0c30dc-7d8d-5cc6-a69f-fe6534ec4119.html",
-      "published": "2026-11-16T02:30:00+00:00",
-      "content_status": "full",
-      "word_count": 527,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "ffc6227a47deb106",
       "source": "Toronto Star",
       "title": "Inquest into death of Jamal Francique hears from Peel region constable",
@@ -1980,6 +1997,21 @@
       "word_count": 699,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "51a75d8b76520823",
+      "source": "Toronto Star",
+      "title": "Quebec police investigate Granby shooting that left one dead, one injured",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigate-granby-shooting-that-left-one-dead-one-injured/article_f2578a2e-0296-5542-92bc-daf53ae6b8f5.html",
+      "published": "2026-11-16T16:40:23+00:00",
+      "content_status": "full",
+      "word_count": 234,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3153,6 +3185,64 @@
       "issues": []
     },
     {
+      "id": "0e4f750d6d31308e",
+      "source": "Global News Canada",
+      "title": "Teen wanted in 2 deaths, including Barrie man killed in Toronto shooting",
+      "url": "https://globalnews.ca/news/12152815/brandon-blake-malik-abass-deaths",
+      "published": "2026-11-16T16:47:29+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 361,
+      "paragraph_count": 16,
+      "inline_image_count": 2,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "f8e8890315acefed",
+      "source": "Global News Canada",
+      "title": "Infant among 3 dead in Burlington townhouse fire",
+      "url": "https://globalnews.ca/news/12152786/infant-among-3-dead-in-burlington-townhouse-fire",
+      "published": "2026-11-16T16:45:30+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 406,
+      "paragraph_count": 14,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "aefb8761ec70e8d8",
       "source": "Global News Canada",
       "title": "AI making it harder to spot fake retailers ahead of holidays, RBC poll says",
@@ -3370,64 +3460,6 @@
       "word_count": 372,
       "paragraph_count": 14,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "085751abcfb0530c",
-      "source": "Global News Canada",
-      "title": "N.S. football player dies suddenly while attending U.S. boarding school",
-      "url": "https://globalnews.ca/news/12152523/marcellus-young-casario-death",
-      "published": "2026-11-16T12:34:44+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 162,
-      "paragraph_count": 7,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7b4906c7b4825fe4",
-      "source": "Global News Canada",
-      "title": "Canada exploring ‘other options’ with Europe, Asia to grow auto sector: Carney",
-      "url": "https://globalnews.ca/news/12152341/canada-auto-sector-europe-asia",
-      "published": "2026-11-16T04:53:37+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 206,
-      "paragraph_count": 9,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4337,6 +4369,47 @@
       ]
     },
     {
+      "id": "51a75d8b76520823",
+      "source": "Toronto Star",
+      "title": "Quebec police investigate Granby shooting that left one dead, one injured",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-police-investigate-granby-shooting-that-left-one-dead-one-injured/article_f2578a2e-0296-5542-92bc-daf53ae6b8f5.html",
+      "published": "2026-11-16T16:40:23+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 234,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ffc6227a47deb106",
       "source": "Toronto Star",
       "title": "Inquest into death of Jamal Francique hears from Peel region constable",
@@ -4595,35 +4668,6 @@
       "word_count": 794,
       "paragraph_count": 39,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bd44e24fea90ff17",
-      "source": "Toronto Star",
-      "title": "Carney says Canada could turn to Chinese automakers if Trump trade talks fail",
-      "url": "https://www.thestar.com/news/world/asia/carney-says-canada-could-turn-to-chinese-automakers-if-trump-trade-talks-fail/article_7d0c30dc-7d8d-5cc6-a69f-fe6534ec4119.html",
-      "published": "2026-11-16T02:30:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 527,
-      "paragraph_count": 15,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
