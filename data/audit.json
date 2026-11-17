@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-17T11:16:35.307074+00:00",
-  "generated_at_london": "2026-11-17T06:16:35.307074-05:00",
-  "news_generated_at": "2026-11-17T11:11:01.366212+00:00",
+  "generated_at": "2026-11-17T11:27:37.816499+00:00",
+  "generated_at_london": "2026-11-17T06:27:37.816499-05:00",
+  "news_generated_at": "2026-11-17T11:26:16.819583+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 678,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 94,
-    "review_story_count": 2,
+    "pass_story_count": 93,
+    "review_story_count": 3,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 3,
+    "warning_issue_count": 5,
     "info_issue_count": 81,
     "healthy_source_count": 12,
     "review_source_count": 4,
@@ -71,7 +71,7 @@
       "latest_published": "2026-11-17T10:52:00.929000+00:00",
       "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-11-17T11:09:07.133496+00:00",
+      "last_scrape": "2026-11-17T11:14:00.798564+00:00",
       "last_error": ""
     },
     {
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-17T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T11:09:11.906373+00:00",
+      "last_scrape": "2026-11-17T11:24:46.910257+00:00",
       "last_error": ""
     },
     {
@@ -134,25 +134,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 7,
-      "review": 0,
+      "pass": 6,
+      "review": 1,
       "fail": 3,
-      "pass_rate": 70,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 574,
-      "average_quality": 94,
+      "average_words": 528,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 3,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-17T10:00:07+00:00",
+      "latest_published": "2026-11-17T11:00:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T10:22:02.034333+00:00",
+      "last_scrape": "2026-11-17T11:24:49.537311+00:00",
       "last_error": ""
     },
     {
@@ -470,7 +470,7 @@
       "latest_published": "2026-11-17T11:00:01+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T11:06:31.638151+00:00",
+      "last_scrape": "2026-11-17T11:14:01.111821+00:00",
       "last_error": ""
     },
     {
@@ -694,11 +694,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 778,
+      "average_words": 811,
       "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -706,7 +707,7 @@
       "latest_published": "2026-11-17T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T11:09:10.092188+00:00",
+      "last_scrape": "2026-11-17T11:24:45.515819+00:00",
       "last_error": ""
     },
     {
@@ -842,6 +843,36 @@
       "word_count": 139,
       "quality_score": 49,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "6dc6fbfaa6213f07",
+      "source": "Toronto Star",
+      "title": "Manitoba throne speech to include ban on AI images in real estate",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-throne-speech-to-include-ban-on-ai-images-in-real-estate/article_debe558a-bcaa-5387-b1c9-e3d6bae7d9d8.html",
+      "published": "2026-11-17T11:00:07+00:00",
+      "content_status": "full",
+      "word_count": 184,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "6dc6fbfaa6213f07",
+      "source": "Toronto Star",
+      "title": "Manitoba throne speech to include ban on AI images in real estate",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-throne-speech-to-include-ban-on-ai-images-in-real-estate/article_debe558a-bcaa-5387-b1c9-e3d6bae7d9d8.html",
+      "published": "2026-11-17T11:00:07+00:00",
+      "content_status": "full",
+      "word_count": 184,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1658,6 +1689,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "500615d1e0a6735e",
+      "source": "The Globe and Mail",
+      "title": "After 15 years of south-of-the-border success, designer Tanya Taylor is coming home",
+      "url": "https://www.theglobeandmail.com/life/style/style-magazine/article-after-15-years-of-south-of-the-border-success-designer-tanya-taylor-is",
+      "published": "2026-11-17T11:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1183,
+      "quality_score": 97,
+      "extraction_method": "dom:globe:main"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "eab1e7f6ec42352e",
       "source": "The Globe and Mail",
       "title": "Alberta tables legislation to force vote on changes to electoral map",
@@ -1838,21 +1884,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c0af18bb8af668f8",
-      "source": "The Globe and Mail",
-      "title": "Your business’s next owner May already be on the payroll",
-      "url": "https://www.theglobeandmail.com/life/article-your-businesss-next-owner-may-already-be-on-the-payroll",
-      "published": "2026-11-16T14:00:00+00:00",
-      "content_status": "full",
-      "word_count": 854,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "bf0c1c3093181f81",
       "source": "Toronto Star",
       "title": "Alert Ready will test national emergency alarm on Wednesday",
@@ -1892,6 +1923,21 @@
       "word_count": 924,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "6dc6fbfaa6213f07",
+      "source": "Toronto Star",
+      "title": "Manitoba throne speech to include ban on AI images in real estate",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-throne-speech-to-include-ban-on-ai-images-in-real-estate/article_debe558a-bcaa-5387-b1c9-e3d6bae7d9d8.html",
+      "published": "2026-11-17T11:00:07+00:00",
+      "content_status": "full",
+      "word_count": 184,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1950,21 +1996,6 @@
       "published": "2026-11-17T05:00:00+00:00",
       "content_status": "full",
       "word_count": 939,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "6e0971f518a15e3f",
-      "source": "Toronto Star",
-      "title": "Quebec union executive resigns after posting altered image of Conservative politician",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-union-executive-resigns-after-posting-altered-image-of-conservative-politician/article_23557bd7-b4f8-56ad-ad45-1e00a6cca785.html",
-      "published": "2026-11-16T21:49:38+00:00",
-      "content_status": "full",
-      "word_count": 643,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3699,6 +3730,35 @@
       ]
     },
     {
+      "id": "500615d1e0a6735e",
+      "source": "The Globe and Mail",
+      "title": "After 15 years of south-of-the-border success, designer Tanya Taylor is coming home",
+      "url": "https://www.theglobeandmail.com/life/style/style-magazine/article-after-15-years-of-south-of-the-border-success-designer-tanya-taylor-is",
+      "published": "2026-11-17T11:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1183,
+      "paragraph_count": 16,
+      "inline_image_count": 4,
+      "quality_score": 97,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ee27f7ce46c496c2",
       "source": "The Globe and Mail",
       "title": "Amazon workers near Vancouver secure historic first union contract",
@@ -3928,35 +3988,6 @@
       "word_count": 1030,
       "paragraph_count": 36,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c0af18bb8af668f8",
-      "source": "The Globe and Mail",
-      "title": "Your business’s next owner May already be on the payroll",
-      "url": "https://www.theglobeandmail.com/life/article-your-businesss-next-owner-may-already-be-on-the-payroll",
-      "published": "2026-11-16T14:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 854,
-      "paragraph_count": 21,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4268,6 +4299,47 @@
       ]
     },
     {
+      "id": "6dc6fbfaa6213f07",
+      "source": "Toronto Star",
+      "title": "Manitoba throne speech to include ban on AI images in real estate",
+      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-throne-speech-to-include-ban-on-ai-images-in-real-estate/article_debe558a-bcaa-5387-b1c9-e3d6bae7d9d8.html",
+      "published": "2026-11-17T11:00:07+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 184,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c39ac9afd07e7304",
       "source": "Toronto Star",
       "title": "October home sales down 10.6% from a year ago, but edge up from September: Crea",
@@ -4531,35 +4603,6 @@
       "content_status": "full",
       "word_count": 924,
       "paragraph_count": 36,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6e0971f518a15e3f",
-      "source": "Toronto Star",
-      "title": "Quebec union executive resigns after posting altered image of Conservative politician",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-union-executive-resigns-after-posting-altered-image-of-conservative-politician/article_23557bd7-b4f8-56ad-ad45-1e00a6cca785.html",
-      "published": "2026-11-16T21:49:38+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 643,
-      "paragraph_count": 22,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
