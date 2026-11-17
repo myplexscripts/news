@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-17T12:49:43.755028+00:00",
-  "generated_at_london": "2026-11-17T07:49:43.755028-05:00",
-  "news_generated_at": "2026-11-17T12:44:29.507313+00:00",
+  "generated_at": "2026-11-17T13:01:14.514562+00:00",
+  "generated_at_london": "2026-11-17T08:01:14.514562-05:00",
+  "news_generated_at": "2026-11-17T12:59:51.031300+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 677,
+    "archive_story_count": 679,
     "source_count": 28,
     "audited_story_count": 100,
-    "pass_story_count": 94,
-    "review_story_count": 3,
+    "pass_story_count": 93,
+    "review_story_count": 4,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 4,
-    "info_issue_count": 84,
+    "warning_issue_count": 6,
+    "info_issue_count": 83,
     "healthy_source_count": 12,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -97,7 +97,7 @@
       "latest_published": "2026-11-17T11:57:18+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T12:42:42.896175+00:00",
+      "last_scrape": "2026-11-17T12:58:26.196627+00:00",
       "last_error": ""
     },
     {
@@ -133,24 +133,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 7,
+      "review": 1,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 544,
-      "average_quality": 96,
+      "average_words": 470,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-11-17T11:00:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T11:24:49.537311+00:00",
+      "last_scrape": "2026-11-17T12:58:28.895957+00:00",
       "last_error": ""
     },
     {
@@ -536,19 +537,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 497,
-      "average_quality": 96,
+      "average_words": 533,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-17T10:00:20+00:00",
+      "latest_published": "2026-11-17T12:54:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T10:06:24.280915+00:00",
+      "last_scrape": "2026-11-17T12:58:20.439556+00:00",
       "last_error": ""
     },
     {
@@ -692,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 814,
+      "average_words": 827,
       "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-11-17T12:00:00+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-11-17T12:33:56.723000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T12:11:11.949706+00:00",
+      "last_scrape": "2026-11-17T12:58:22.866545+00:00",
       "last_error": ""
     },
     {
@@ -840,6 +843,36 @@
       "word_count": 139,
       "quality_score": 49,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "9b1d44bd2ddd022a",
+      "source": "Toronto Star",
+      "title": "China and Canada expand tariff relief while Ottawa-Washington relations are strained",
+      "url": "https://www.thestar.com/news/world/xi-and-carney-call-for-deeper-ties-as-canada-looks-beyond-us-for-trade/article_76900edb-0ef7-5d4b-b101-d02193d4ce91.html",
+      "published": "2026-11-17T04:34:00+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "9b1d44bd2ddd022a",
+      "source": "Toronto Star",
+      "title": "China and Canada expand tariff relief while Ottawa-Washington relations are strained",
+      "url": "https://www.thestar.com/news/world/xi-and-carney-call-for-deeper-ties-as-canada-looks-beyond-us-for-trade/article_76900edb-0ef7-5d4b-b101-d02193d4ce91.html",
+      "published": "2026-11-17T04:34:00+00:00",
+      "content_status": "full",
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1371,21 +1404,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cb5fab36f3648381",
-      "source": "Global News Canada",
-      "title": "Historic hearing begins as B.C. company wants to sell electricity exclusively to U.S.",
-      "url": "https://globalnews.ca/news/12153247/historic-hearing-bc-company-sell-electricity-exclusively-us",
-      "published": "2026-11-16T21:09:22+00:00",
-      "content_status": "full",
-      "word_count": 482,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "7fa62c649c8d9d46",
       "source": "Global News Canada",
       "title": "Longtime Maritime broadcaster Todd Veinotte dies at 57",
@@ -1401,15 +1419,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "52eb719e97db3064",
+      "story_id": "faef8b1e42ad198d",
       "source": "Global News Canada",
-      "title": "Proposed Saint John data centre could generate tax windfall, critics unconvinced",
-      "url": "https://globalnews.ca/news/12153575/data-centre-saint-john-tax-report",
-      "published": "2026-11-16T22:32:04+00:00",
+      "title": "Mohawk teacher, 73, earns McGill’s first PhD in Indigenous Language Revitalization",
+      "url": "https://globalnews.ca/news/12154174/mcgill-indigenous-language-revitalization",
+      "published": "2026-11-17T12:50:06+00:00",
       "content_status": "full",
-      "word_count": 462,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 651,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1440,6 +1458,21 @@
       "word_count": 466,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ef3463d4e54be6cc",
+      "source": "Global News Canada",
+      "title": "Trillium College students disappointed at selective return to classes",
+      "url": "https://globalnews.ca/news/12154178/trillium-college-students-disappointed-at-selective-return-to-classes",
+      "published": "2026-11-17T12:54:58+00:00",
+      "content_status": "full",
+      "word_count": 648,
+      "quality_score": 83,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1731,6 +1764,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "872780420755c01b",
+      "source": "The Globe and Mail",
+      "title": "Canadian film powerhouse Rhombus Media acquired by nascent player Skywild Pictures",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/film/article-rhombus-media-acquired-by-skywild-pictures",
+      "published": "2026-11-17T12:33:56.723000+00:00",
+      "content_status": "full",
+      "word_count": 1022,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "8a61f853bdb59107",
       "source": "The Globe and Mail",
       "title": "ERs report overcrowding as flu cases continue to rapidly rise",
@@ -1863,36 +1911,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "f0cf790d94ecfd30",
-      "source": "The Globe and Mail",
-      "title": "What is Roshel, the company buying a Stellantis auto plant in Ontario?",
-      "url": "https://www.theglobeandmail.com/business/article-what-is-roshel-the-company-buying-a-stellantis-auto-plant-in-ontario",
-      "published": "2026-11-16T18:37:48.751000+00:00",
-      "content_status": "full",
-      "word_count": 898,
-      "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f0cf790d94ecfd30",
-      "source": "The Globe and Mail",
-      "title": "What is Roshel, the company buying a Stellantis auto plant in Ontario?",
-      "url": "https://www.theglobeandmail.com/business/article-what-is-roshel-the-company-buying-a-stellantis-auto-plant-in-ontario",
-      "published": "2026-11-16T18:37:48.751000+00:00",
-      "content_status": "full",
-      "word_count": 898,
-      "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1926,15 +1944,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "64c88d762c0bd68a",
+      "story_id": "9b1d44bd2ddd022a",
       "source": "Toronto Star",
-      "title": "Four more staff leave Pierre Poilievre's office, with two joining B.C. Conservatives",
-      "url": "https://www.thestar.com/politics/four-more-staff-leave-poilievre-s-office-with-two-joining-b-c-conservatives/article_111ef269-3088-4325-8ecc-e85415cc2c06.html",
-      "published": "2026-11-16T23:00:00+00:00",
+      "title": "China and Canada expand tariff relief while Ottawa-Washington relations are strained",
+      "url": "https://www.thestar.com/news/world/xi-and-carney-call-for-deeper-ties-as-canada-looks-beyond-us-for-trade/article_76900edb-0ef7-5d4b-b101-d02193d4ce91.html",
+      "published": "2026-11-17T04:34:00+00:00",
       "content_status": "full",
-      "word_count": 924,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 189,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3122,6 +3140,64 @@
       "issues": []
     },
     {
+      "id": "ef3463d4e54be6cc",
+      "source": "Global News Canada",
+      "title": "Trillium College students disappointed at selective return to classes",
+      "url": "https://globalnews.ca/news/12154178/trillium-college-students-disappointed-at-selective-return-to-classes",
+      "published": "2026-11-17T12:54:58+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 648,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "faef8b1e42ad198d",
+      "source": "Global News Canada",
+      "title": "Mohawk teacher, 73, earns McGill’s first PhD in Indigenous Language Revitalization",
+      "url": "https://globalnews.ca/news/12154174/mcgill-indigenous-language-revitalization",
+      "published": "2026-11-17T12:50:06+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 651,
+      "paragraph_count": 22,
+      "inline_image_count": 2,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1396eab4595b819c",
       "source": "Global News Canada",
       "title": "Religious symbols ban for Quebec schoolchildren? Conservatives leave door open",
@@ -3339,64 +3415,6 @@
       "word_count": 445,
       "paragraph_count": 15,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "52eb719e97db3064",
-      "source": "Global News Canada",
-      "title": "Proposed Saint John data centre could generate tax windfall, critics unconvinced",
-      "url": "https://globalnews.ca/news/12153575/data-centre-saint-john-tax-report",
-      "published": "2026-11-16T22:32:04+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 462,
-      "paragraph_count": 21,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cb5fab36f3648381",
-      "source": "Global News Canada",
-      "title": "Historic hearing begins as B.C. company wants to sell electricity exclusively to U.S.",
-      "url": "https://globalnews.ca/news/12153247/historic-hearing-bc-company-sell-electricity-exclusively-us",
-      "published": "2026-11-16T21:09:22+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 482,
-      "paragraph_count": 18,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -3726,6 +3744,35 @@
       ]
     },
     {
+      "id": "872780420755c01b",
+      "source": "The Globe and Mail",
+      "title": "Canadian film powerhouse Rhombus Media acquired by nascent player Skywild Pictures",
+      "url": "https://www.theglobeandmail.com/culture/film-and-tv/film/article-rhombus-media-acquired-by-skywild-pictures",
+      "published": "2026-11-17T12:33:56.723000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1022,
+      "paragraph_count": 16,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a074a86d5ad83569",
       "source": "The Globe and Mail",
       "title": "This Canadian company gives used EV batteries new life, but the pull of the U.S. is strong",
@@ -3985,41 +4032,6 @@
       "paragraph_count": 19,
       "inline_image_count": 1,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f0cf790d94ecfd30",
-      "source": "The Globe and Mail",
-      "title": "What is Roshel, the company buying a Stellantis auto plant in Ontario?",
-      "url": "https://www.theglobeandmail.com/business/article-what-is-roshel-the-company-buying-a-stellantis-auto-plant-in-ontario",
-      "published": "2026-11-16T18:37:48.751000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 898,
-      "paragraph_count": 26,
-      "inline_image_count": 1,
-      "quality_score": 89,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
@@ -4510,6 +4522,47 @@
       ]
     },
     {
+      "id": "9b1d44bd2ddd022a",
+      "source": "Toronto Star",
+      "title": "China and Canada expand tariff relief while Ottawa-Washington relations are strained",
+      "url": "https://www.thestar.com/news/world/xi-and-carney-call-for-deeper-ties-as-canada-looks-beyond-us-for-trade/article_76900edb-0ef7-5d4b-b101-d02193d4ce91.html",
+      "published": "2026-11-17T04:34:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 189,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bf0c1c3093181f81",
       "source": "Toronto Star",
       "title": "Alert Ready will test national emergency alarm on Wednesday",
@@ -4600,35 +4653,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "63 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "64c88d762c0bd68a",
-      "source": "Toronto Star",
-      "title": "Four more staff leave Pierre Poilievre's office, with two joining B.C. Conservatives",
-      "url": "https://www.thestar.com/politics/four-more-staff-leave-poilievre-s-office-with-two-joining-b-c-conservatives/article_111ef269-3088-4325-8ecc-e85415cc2c06.html",
-      "published": "2026-11-16T23:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 924,
-      "paragraph_count": 36,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
