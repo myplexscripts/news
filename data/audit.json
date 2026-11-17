@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-17T19:53:47.278892+00:00",
-  "generated_at_london": "2026-11-17T14:53:47.278892-05:00",
-  "news_generated_at": "2026-11-17T19:47:28.527701+00:00",
+  "generated_at": "2026-11-17T20:03:51.613601+00:00",
+  "generated_at_london": "2026-11-17T15:03:51.613601-05:00",
+  "news_generated_at": "2026-11-17T20:02:19.889603+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 679,
+    "archive_story_count": 676,
     "source_count": 28,
-    "audited_story_count": 102,
-    "pass_story_count": 96,
+    "audited_story_count": 103,
+    "pass_story_count": 97,
     "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 5,
-    "info_issue_count": 83,
+    "info_issue_count": 84,
     "healthy_source_count": 12,
     "review_source_count": 5,
     "error_source_count": 0,
@@ -70,7 +70,7 @@
       "latest_published": "2026-11-17T19:42:22.118000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T19:03:16.193328+00:00",
+      "last_scrape": "2026-11-17T19:50:48.513870+00:00",
       "last_error": ""
     },
     {
@@ -123,13 +123,13 @@
       "latest_published": "2026-11-17T19:33:14+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T19:45:30.620240+00:00",
+      "last_scrape": "2026-11-17T20:00:45.942059+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -147,10 +147,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-17T19:23:27+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-17T19:45:33.664523+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -363,7 +363,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -448,26 +448,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 3,
-      "pass": 3,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1744,
-      "average_quality": 83,
+      "average_words": 1329,
+      "average_quality": 73,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
+        "dom:municipal:.field--name-body": 1,
         "dom:semantic-rich-v1": 1,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-11-16T05:00:00+00:00",
+      "info_issues": 2,
+      "latest_published": "2026-11-17T05:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 3,
-      "last_scrape": "2026-11-16T19:48:17.452306+00:00",
+      "tracked": 4,
+      "last_scrape": "2026-11-17T19:58:09.834685+00:00",
       "last_error": ""
     },
     {
@@ -1155,6 +1156,21 @@
       "word_count": 2468,
       "quality_score": 86,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "b8c892fe42fce486",
+      "source": "City of London Newsroom",
+      "title": "Temporary lane restrictions at Huron Street and Highbury Avenue intersection",
+      "url": "https://london.ca/newsroom/public-service-announcement/temporary-lane-restrictions-huron-street-highbury-avenue",
+      "published": "2026-11-17T05:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 82,
+      "quality_score": 42,
+      "extraction_method": "dom:municipal:.field--name-body"
     },
     {
       "severity": "info",
@@ -2565,6 +2581,35 @@
       "extraction_profile": "wordpress",
       "local_score": 61,
       "issues": []
+    },
+    {
+      "id": "b8c892fe42fce486",
+      "source": "City of London Newsroom",
+      "title": "Temporary lane restrictions at Huron Street and Highbury Avenue intersection",
+      "url": "https://london.ca/newsroom/public-service-announcement/temporary-lane-restrictions-huron-street-highbury-avenue",
+      "published": "2026-11-17T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 82,
+      "paragraph_count": 4,
+      "inline_image_count": 0,
+      "quality_score": 42,
+      "quality_grade": "poor",
+      "extraction_method": "dom:municipal:.field--name-body",
+      "extraction_profile": "municipal",
+      "local_score": 77,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "828b86c9c5daaf68",
