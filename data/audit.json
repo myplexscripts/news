@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-17T16:59:51.000311+00:00",
-  "generated_at_london": "2026-11-17T11:59:51.000311-05:00",
-  "news_generated_at": "2026-11-17T16:54:23.427516+00:00",
+  "generated_at": "2026-11-17T17:11:34.729898+00:00",
+  "generated_at_london": "2026-11-17T12:11:34.729898-05:00",
+  "news_generated_at": "2026-11-17T17:09:36.002806+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 682,
     "source_count": 28,
     "audited_story_count": 102,
-    "pass_story_count": 97,
-    "review_story_count": 4,
+    "pass_story_count": 96,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 83,
-    "healthy_source_count": 13,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 5,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -123,7 +123,34 @@
       "latest_published": "2026-11-17T13:35:15+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T16:52:19.888182+00:00",
+      "last_scrape": "2026-11-17T17:07:45.096710+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 466,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-17T16:55:49+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-17T17:07:47.295536+00:00",
       "last_error": ""
     },
     {
@@ -665,45 +692,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 849,
+      "average_words": 796,
       "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-17T14:33:25.102000+00:00",
+      "latest_published": "2026-11-17T16:51:41.580000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T14:48:01.049836+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 513,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-17T16:30:07+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-17T16:52:24.247693+00:00",
+      "last_scrape": "2026-11-17T17:07:44.066215+00:00",
       "last_error": ""
     },
     {
@@ -824,6 +826,36 @@
       "word_count": 139,
       "quality_score": 49,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "590fde1ca9e9a00f",
+      "source": "Toronto Star",
+      "title": "Jamal Francique inquest on pause as it deals with potential new material",
+      "url": "https://www.thestar.com/news/ontario/jamal-francique-inquest-on-pause-as-it-deals-with-potential-new-material/article_29bfe828-b6b2-5dc6-8171-2925bd850208.html",
+      "published": "2026-11-17T16:55:49+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "590fde1ca9e9a00f",
+      "source": "Toronto Star",
+      "title": "Jamal Francique inquest on pause as it deals with potential new material",
+      "url": "https://www.thestar.com/news/ontario/jamal-francique-inquest-on-pause-as-it-deals-with-potential-new-material/article_29bfe828-b6b2-5dc6-8171-2925bd850208.html",
+      "published": "2026-11-17T16:55:49+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1685,21 +1717,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "ee27f7ce46c496c2",
-      "source": "The Globe and Mail",
-      "title": "Amazon workers near Vancouver secure historic first union contract",
-      "url": "https://www.theglobeandmail.com/business/technology/article-amazon-workers-delta-bc-historic-first-union-contract",
-      "published": "2026-11-17T10:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 899,
-      "quality_score": 86,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "60f0ec6bc9eb3e43",
       "source": "The Globe and Mail",
       "title": "Annual pace of Canadian housing starts falls 2% from a month earlier",
@@ -1799,6 +1816,21 @@
       "word_count": 823,
       "quality_score": 86,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "af53ffb2af1d4b8b",
+      "source": "The Globe and Mail",
+      "title": "Price cuts on King West condo finally draw in buyer",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-price-cuts-king-west-condo-draw-in-buyer",
+      "published": "2026-11-17T16:51:41.580000+00:00",
+      "content_status": "full",
+      "word_count": 370,
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1910,6 +1942,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "590fde1ca9e9a00f",
+      "source": "Toronto Star",
+      "title": "Jamal Francique inquest on pause as it deals with potential new material",
+      "url": "https://www.thestar.com/news/ontario/jamal-francique-inquest-on-pause-as-it-deals-with-potential-new-material/article_29bfe828-b6b2-5dc6-8171-2925bd850208.html",
+      "published": "2026-11-17T16:55:49+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6dc6fbfaa6213f07",
       "source": "Toronto Star",
       "title": "Manitoba throne speech to include ban on AI images in real estate",
@@ -1947,21 +1994,6 @@
       "published": "2026-11-17T10:00:07+00:00",
       "content_status": "full",
       "word_count": 223,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "2d833973816ffeb4",
-      "source": "Toronto Star",
-      "title": "Ontario public high school teachers vote 96 per cent in favour of strike mandate",
-      "url": "https://www.thestar.com/politics/provincial/ontario-public-high-school-teachers-vote-96-per-cent-in-favour-of-strike-mandate/article_1a52edde-367b-431d-8843-b269470f0e44.html",
-      "published": "2026-11-17T05:00:00+00:00",
-      "content_status": "full",
-      "word_count": 689,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3746,6 +3778,35 @@
       ]
     },
     {
+      "id": "af53ffb2af1d4b8b",
+      "source": "The Globe and Mail",
+      "title": "Price cuts on King West condo finally draw in buyer",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-price-cuts-king-west-condo-draw-in-buyer",
+      "published": "2026-11-17T16:51:41.580000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 370,
+      "paragraph_count": 21,
+      "inline_image_count": 3,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "942a35ccd4dfc80e",
       "source": "The Globe and Mail",
       "title": "Carney, Sheinbaum discuss future of Canada-Mexico trade on sidelines of Apec summit",
@@ -4011,35 +4072,6 @@
       "paragraph_count": 20,
       "inline_image_count": 8,
       "quality_score": 97,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ee27f7ce46c496c2",
-      "source": "The Globe and Mail",
-      "title": "Amazon workers near Vancouver secure historic first union contract",
-      "url": "https://www.theglobeandmail.com/business/technology/article-amazon-workers-delta-bc-historic-first-union-contract",
-      "published": "2026-11-17T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 899,
-      "paragraph_count": 16,
-      "inline_image_count": 0,
-      "quality_score": 86,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
@@ -4350,6 +4382,47 @@
       ]
     },
     {
+      "id": "590fde1ca9e9a00f",
+      "source": "Toronto Star",
+      "title": "Jamal Francique inquest on pause as it deals with potential new material",
+      "url": "https://www.thestar.com/news/ontario/jamal-francique-inquest-on-pause-as-it-deals-with-potential-new-material/article_29bfe828-b6b2-5dc6-8171-2925bd850208.html",
+      "published": "2026-11-17T16:55:49+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 211,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c1d5f2fa71a7ab8b",
       "source": "Toronto Star",
       "title": "Ontario secondary teachers vote 96 per cent in favour of strike mandate",
@@ -4595,35 +4668,6 @@
       "content_status": "full",
       "word_count": 939,
       "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2d833973816ffeb4",
-      "source": "Toronto Star",
-      "title": "Ontario public high school teachers vote 96 per cent in favour of strike mandate",
-      "url": "https://www.thestar.com/politics/provincial/ontario-public-high-school-teachers-vote-96-per-cent-in-favour-of-strike-mandate/article_1a52edde-367b-431d-8843-b269470f0e44.html",
-      "published": "2026-11-17T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 689,
-      "paragraph_count": 36,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
