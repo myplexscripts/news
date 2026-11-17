@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-17T10:12:09.872646+00:00",
-  "generated_at_london": "2026-11-17T05:12:09.872646-05:00",
-  "news_generated_at": "2026-11-17T10:07:40.972274+00:00",
+  "generated_at": "2026-11-17T10:25:44.706985+00:00",
+  "generated_at_london": "2026-11-17T05:25:44.706985-05:00",
+  "news_generated_at": "2026-11-17T10:23:53.707548+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 683,
+    "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 100,
     "pass_story_count": 96,
-    "review_story_count": 1,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 2,
+    "review_story_count": 2,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 4,
     "info_issue_count": 81,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 14,
+    "review_source_count": 2,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -72,35 +72,8 @@
       "latest_published": "2026-11-17T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T10:06:25.690258+00:00",
+      "last_scrape": "2026-11-17T10:21:59.397044+00:00",
       "last_error": ""
-    },
-    {
-      "source": "Thames Valley District School Board",
-      "status": "review",
-      "collector_status": "degraded",
-      "profile": "generic",
-      "sample_size": 5,
-      "pass": 5,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 535,
-      "average_quality": 70,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 2,
-        "reader:semantic-rich-v1": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 4,
-      "latest_published": "2026-11-16T05:00:00+00:00",
-      "found_this_run": 0,
-      "tracked": 5,
-      "last_scrape": "2026-11-16T18:47:45.798604+00:00",
-      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Toronto Star",
@@ -109,23 +82,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 603,
-      "average_quality": 96,
+      "average_words": 614,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-17T10:00:00+00:00",
+      "latest_published": "2026-11-17T10:00:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T10:06:28.274814+00:00",
+      "last_scrape": "2026-11-17T10:22:02.034333+00:00",
       "last_error": ""
     },
     {
@@ -683,6 +657,33 @@
       "last_error": ""
     },
     {
+      "source": "Thames Valley District School Board",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "generic",
+      "sample_size": 5,
+      "pass": 5,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 535,
+      "average_quality": 70,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 2,
+        "reader:semantic-rich-v1": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 4,
+      "latest_published": "2026-11-16T05:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 5,
+      "last_scrape": "2026-11-16T18:47:45.798604+00:00",
+      "last_error": ""
+    },
+    {
       "source": "The Globe and Mail",
       "status": "healthy",
       "collector_status": "healthy",
@@ -757,21 +758,6 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "77 words",
-      "story_id": "afcc675331ecddec",
-      "source": "Toronto Star",
-      "title": "Fact File: Pro-Palestinian rally on Parliament Hill not from Remembrance Day",
-      "url": "https://www.thestar.com/news/fact-file-pro-palestinian-rally-on-parliament-hill-not-from-remembrance-day/article_01f8b829-66fe-51fd-aa0d-dc1177406ba6.html",
-      "published": "2026-11-16T21:15:27+00:00",
-      "content_status": "full",
-      "word_count": 77,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
       "detail": "63 words",
       "story_id": "0094698fe8888428",
       "source": "Toronto Star",
@@ -812,6 +798,36 @@
       "word_count": 139,
       "quality_score": 49,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c39ac9afd07e7304",
+      "source": "Toronto Star",
+      "title": "October home sales down 10.6% from a year ago, but edge up from September: Crea",
+      "url": "https://www.thestar.com/news/canada/october-home-sales-down-10-6-from-a-year-ago-but-edge-up-from-september-crea/article_573205cc-84ba-59e1-a2bf-89d02c050c33.html",
+      "published": "2026-11-17T10:00:07+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c39ac9afd07e7304",
+      "source": "Toronto Star",
+      "title": "October home sales down 10.6% from a year ago, but edge up from September: Crea",
+      "url": "https://www.thestar.com/news/canada/october-home-sales-down-10-6-from-a-year-ago-but-edge-up-from-september-crea/article_573205cc-84ba-59e1-a2bf-89d02c050c33.html",
+      "published": "2026-11-17T10:00:07+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1853,21 +1869,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "afcc675331ecddec",
-      "source": "Toronto Star",
-      "title": "Fact File: Pro-Palestinian rally on Parliament Hill not from Remembrance Day",
-      "url": "https://www.thestar.com/news/fact-file-pro-palestinian-rally-on-parliament-hill-not-from-remembrance-day/article_01f8b829-66fe-51fd-aa0d-dc1177406ba6.html",
-      "published": "2026-11-16T21:15:27+00:00",
-      "content_status": "full",
-      "word_count": 77,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "64c88d762c0bd68a",
       "source": "Toronto Star",
       "title": "Four more staff leave Pierre Poilievre's office, with two joining B.C. Conservatives",
@@ -1892,6 +1893,21 @@
       "word_count": 817,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c39ac9afd07e7304",
+      "source": "Toronto Star",
+      "title": "October home sales down 10.6% from a year ago, but edge up from September: Crea",
+      "url": "https://www.thestar.com/news/canada/october-home-sales-down-10-6-from-a-year-ago-but-edge-up-from-september-crea/article_573205cc-84ba-59e1-a2bf-89d02c050c33.html",
+      "published": "2026-11-17T10:00:07+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4232,6 +4248,47 @@
       ]
     },
     {
+      "id": "c39ac9afd07e7304",
+      "source": "Toronto Star",
+      "title": "October home sales down 10.6% from a year ago, but edge up from September: Crea",
+      "url": "https://www.thestar.com/news/canada/october-home-sales-down-10-6-from-a-year-ago-but-edge-up-from-september-crea/article_573205cc-84ba-59e1-a2bf-89d02c050c33.html",
+      "published": "2026-11-17T10:00:07+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 183,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fc31876f8e68bad0",
       "source": "Toronto Star",
       "title": "No jail for Ontario drug trafficker because his son would end up in foster care, judge rules",
@@ -4490,41 +4547,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "afcc675331ecddec",
-      "source": "Toronto Star",
-      "title": "Fact File: Pro-Palestinian rally on Parliament Hill not from Remembrance Day",
-      "url": "https://www.thestar.com/news/fact-file-pro-palestinian-rally-on-parliament-hill-not-from-remembrance-day/article_01f8b829-66fe-51fd-aa0d-dc1177406ba6.html",
-      "published": "2026-11-16T21:15:27+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 77,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "77 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
