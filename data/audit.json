@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-17T01:39:41.033069+00:00",
-  "generated_at_london": "2026-11-16T20:39:41.033069-05:00",
-  "news_generated_at": "2026-11-17T01:35:16.706636+00:00",
+  "generated_at": "2026-11-17T01:52:40.003101+00:00",
+  "generated_at_london": "2026-11-16T20:52:40.003101-05:00",
+  "news_generated_at": "2026-11-17T01:51:11.770298+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 688,
+    "archive_story_count": 689,
     "source_count": 28,
     "audited_story_count": 102,
     "pass_story_count": 99,
@@ -14,9 +14,9 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 3,
-    "info_issue_count": 84,
-    "healthy_source_count": 14,
-    "review_source_count": 2,
+    "info_issue_count": 83,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -98,8 +98,35 @@
       "latest_published": "2026-11-16T21:11:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T01:33:47.933617+00:00",
+      "last_scrape": "2026-11-17T01:49:43.126356+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Thames Valley District School Board",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 5,
+      "pass": 5,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 535,
+      "average_quality": 70,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 2,
+        "reader:semantic-rich-v1": 3
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 4,
+      "latest_published": "2026-11-16T05:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 5,
+      "last_scrape": "2026-11-16T18:47:45.798604+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "104.7 Heart FM",
@@ -224,7 +251,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -243,7 +270,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRERW9"
     },
     {
       "source": "Government of Canada News",
@@ -429,16 +456,16 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 275,
-      "average_quality": 74,
+      "average_words": 300,
+      "average_quality": 76,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 5,
-      "latest_published": "2026-11-17T00:16:04.467000+00:00",
+      "info_issues": 4,
+      "latest_published": "2026-11-17T01:46:41.286000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-17T00:20:50.160458+00:00",
@@ -626,33 +653,6 @@
       "found_this_run": 10,
       "tracked": 2,
       "last_scrape": "2026-11-12T16:03:55.281602+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Thames Valley District School Board",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 5,
-      "pass": 5,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 535,
-      "average_quality": 70,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 2,
-        "reader:semantic-rich-v1": 3
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 4,
-      "latest_published": "2026-11-16T05:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 5,
-      "last_scrape": "2026-11-16T18:47:45.798604+00:00",
       "last_error": ""
     },
     {
@@ -1026,6 +1026,21 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b9d93517cf568d3e",
+      "source": "CTV News London",
+      "title": "Peloza pitches changing how London’s committee chairs and vice-chairs chosen",
+      "url": "https://www.ctvnews.ca/london/article/peloza-pitches-changing-how-londons-committee-chairs-and-vice-chairs-chosen",
+      "published": "2026-11-17T01:46:41.286000+00:00",
+      "content_status": "full",
+      "word_count": 426,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
       "story_id": "b70ead26173b185a",
       "source": "CTV News London",
@@ -1035,36 +1050,6 @@
       "content_status": "full",
       "word_count": 273,
       "quality_score": 76,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "04a057d5ea3173a4",
-      "source": "CTV News London",
-      "title": "Woodstock woman dies after being struck by SUV; police seek video footage",
-      "url": "https://www.ctvnews.ca/london/article/woodstock-woman-dies-after-being-struck-by-suv-police-seek-video-footage",
-      "published": "2026-11-16T12:38:59.971000+00:00",
-      "content_status": "full",
-      "word_count": 171,
-      "quality_score": 66,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 10/100",
-      "story_id": "04a057d5ea3173a4",
-      "source": "CTV News London",
-      "title": "Woodstock woman dies after being struck by SUV; police seek video footage",
-      "url": "https://www.ctvnews.ca/london/article/woodstock-woman-dies-after-being-struck-by-suv-police-seek-video-footage",
-      "published": "2026-11-16T12:38:59.971000+00:00",
-      "content_status": "full",
-      "word_count": 171,
-      "quality_score": 66,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2060,6 +2045,35 @@
   ],
   "stories": [
     {
+      "id": "b9d93517cf568d3e",
+      "source": "CTV News London",
+      "title": "Peloza pitches changing how London’s committee chairs and vice-chairs chosen",
+      "url": "https://www.ctvnews.ca/london/article/peloza-pitches-changing-how-londons-committee-chairs-and-vice-chairs-chosen",
+      "published": "2026-11-17T01:46:41.286000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 426,
+      "paragraph_count": 17,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4dfc46088b8b5bde",
       "source": "CTV News London",
       "title": "Witness testifies that accused was angry with the victim moments before being set ablaze",
@@ -2277,41 +2291,6 @@
       "extraction_profile": "ctv",
       "local_score": 28,
       "issues": []
-    },
-    {
-      "id": "04a057d5ea3173a4",
-      "source": "CTV News London",
-      "title": "Woodstock woman dies after being struck by SUV; police seek video footage",
-      "url": "https://www.ctvnews.ca/london/article/woodstock-woman-dies-after-being-struck-by-suv-police-seek-video-footage",
-      "published": "2026-11-16T12:38:59.971000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 171,
-      "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 10,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 10/100"
-        }
-      ]
     },
     {
       "id": "a0b37cc0456d7b3f",
