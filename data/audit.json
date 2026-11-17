@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-17T02:59:55.459370+00:00",
-  "generated_at_london": "2026-11-16T21:59:55.459370-05:00",
-  "news_generated_at": "2026-11-17T02:54:04.851343+00:00",
+  "generated_at": "2026-11-17T03:10:18.653625+00:00",
+  "generated_at_london": "2026-11-16T22:10:18.653625-05:00",
+  "news_generated_at": "2026-11-17T03:08:35.361518+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 688,
+    "archive_story_count": 689,
     "source_count": 28,
     "audited_story_count": 102,
     "pass_story_count": 99,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 3,
     "info_issue_count": 83,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -98,7 +98,7 @@
       "latest_published": "2026-11-16T21:11:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T02:52:07.709504+00:00",
+      "last_scrape": "2026-11-17T03:06:51.033240+00:00",
       "last_error": ""
     },
     {
@@ -127,6 +127,32 @@
       "tracked": 5,
       "last_scrape": "2026-11-16T18:47:45.798604+00:00",
       "last_error": "HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.tvdsb.ca', port=443): Read timed out. (read timeout=8)\"))"
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 444,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 11,
+      "latest_published": "2026-11-17T02:27:00+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-11-17T02:52:09.492413+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -251,7 +277,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -270,7 +296,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRERW9"
     },
     {
       "source": "Government of Canada News",
@@ -536,19 +562,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 494,
-      "average_quality": 96,
+      "average_words": 529,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-17T00:06:37+00:00",
+      "latest_published": "2026-11-17T02:59:21+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-17T00:16:16.923440+00:00",
+      "last_scrape": "2026-11-17T03:06:48.679384+00:00",
       "last_error": ""
     },
     {
@@ -680,32 +707,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-17T00:31:54.013261+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 444,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-17T02:27:00+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-17T02:52:09.492413+00:00",
       "last_error": ""
     },
     {
@@ -1222,6 +1223,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "52f0198c0c35a2fd",
+      "source": "Global News Canada",
+      "title": "Carney meets with President Xi in Shenzhen, China ahead of Apec summit",
+      "url": "https://globalnews.ca/news/12153994/carney-xi-meeting-apec-summit",
+      "published": "2026-11-17T02:59:21+00:00",
+      "content_status": "full",
+      "word_count": 560,
+      "quality_score": 83,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "cbd52d113466756f",
       "source": "Global News Canada",
       "title": "Edmonton Elks want ‘City of Champions’ signs to return",
@@ -1229,21 +1245,6 @@
       "published": "2026-11-16T23:08:36+00:00",
       "content_status": "full",
       "word_count": 608,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "52ef2bde09c9a3e2",
-      "source": "Global News Canada",
-      "title": "Ex-CRA employee sentenced after pleading guilty to fraud, breach of trust",
-      "url": "https://globalnews.ca/news/12153482/cra-employee-fraud-breach-of-trust",
-      "published": "2026-11-16T20:52:38+00:00",
-      "content_status": "full",
-      "word_count": 210,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3101,6 +3102,35 @@
       "issues": []
     },
     {
+      "id": "52f0198c0c35a2fd",
+      "source": "Global News Canada",
+      "title": "Carney meets with President Xi in Shenzhen, China ahead of Apec summit",
+      "url": "https://globalnews.ca/news/12153994/carney-xi-meeting-apec-summit",
+      "published": "2026-11-17T02:59:21+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 560,
+      "paragraph_count": 19,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f92b705250b586cd",
       "source": "Global News Canada",
       "title": "Recreation funding, ice rental fee increases criticized in Calgary’s proposed budget",
@@ -3347,35 +3377,6 @@
       "word_count": 199,
       "paragraph_count": 9,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "52ef2bde09c9a3e2",
-      "source": "Global News Canada",
-      "title": "Ex-CRA employee sentenced after pleading guilty to fraud, breach of trust",
-      "url": "https://globalnews.ca/news/12153482/cra-employee-fraud-breach-of-trust",
-      "published": "2026-11-16T20:52:38+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 210,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
