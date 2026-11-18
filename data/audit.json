@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T09:10:45.152182+00:00",
-  "generated_at_london": "2026-11-18T04:10:45.152182-05:00",
-  "news_generated_at": "2026-11-18T09:05:20.123370+00:00",
+  "generated_at": "2026-11-18T09:22:32.019073+00:00",
+  "generated_at_london": "2026-11-18T04:22:32.019073-05:00",
+  "news_generated_at": "2026-11-18T09:20:54.054562+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 684,
+    "archive_story_count": 687,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 100,
-    "review_story_count": 2,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 3,
+    "review_story_count": 3,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 4,
     "info_issue_count": 92,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -81,24 +81,25 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
-      "usable_body_rate": 100,
-      "average_words": 378,
-      "average_quality": 94,
+      "usable_body_rate": 70,
+      "average_words": 388,
+      "average_quality": 77,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:star:article": 1
+        "trafilatura:fallback": 3,
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 5
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-18T08:47:58+00:00",
-      "found_this_run": 9,
+      "latest_published": "2026-11-18T09:00:18+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T09:03:42.564150+00:00",
+      "last_scrape": "2026-11-18T09:19:18.722809+00:00",
       "last_error": ""
     },
     {
@@ -171,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -653,7 +654,7 @@
       "latest_published": "2026-11-17T23:18:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T09:03:41.391229+00:00",
+      "last_scrape": "2026-11-18T09:19:14.422919+00:00",
       "last_error": ""
     },
     {
@@ -769,21 +770,6 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "60 words",
-      "story_id": "f81fcd59ed485193",
-      "source": "Toronto Star",
-      "title": "Quebec government says it's looking at options after rabid bat enters care home",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-government-says-it-s-looking-at-options-after-rabid-bat-enters-care-home/article_024c67bb-f24f-5f6c-b2a3-2f1b033643ae.html",
-      "published": "2026-11-17T21:44:53+00:00",
-      "content_status": "full",
-      "word_count": 60,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "image_gallery_leak",
       "message": "Several images appear consecutively with no article text between them.",
@@ -827,6 +813,21 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "10 inline images",
+      "story_id": "66edc13cd7aaa651",
+      "source": "Toronto Star",
+      "title": "Researchers on B.C. coast use drones to collect whale snot for genome sequencing",
+      "url": "https://www.thestar.com/news/canada/british-columbia/researchers-on-b-c-coast-use-drones-to-collect-whale-snot-for-genome-sequencing/article_5faed8e3-0dc8-5463-a1fc-86facdf0d274.html",
+      "published": "2026-11-18T09:00:18+00:00",
+      "content_status": "full",
+      "word_count": 815,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -2018,6 +2019,36 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "33067fb664145e31",
+      "source": "Toronto Star",
+      "title": "Can advocates elected to Toronto council help fix housing and homelessness crisis?",
+      "url": "https://www.thestar.com/real-estate/can-advocates-elected-to-toronto-council-help-fix-housing-and-homelessness-crisis/article_25a1689b-ded0-566f-bd88-26e4a6677265.html",
+      "published": "2026-11-18T09:00:10+00:00",
+      "content_status": "summary",
+      "word_count": 54,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "5da9a547004fe832",
+      "source": "Toronto Star",
+      "title": "Canada's Alert Ready system to be tested across the country Wednesday",
+      "url": "https://www.thestar.com/news/canada/canada-s-alert-ready-system-to-be-tested-across-the-country-wednesday/article_b075383b-4313-5f64-b0be-af180954586c.html",
+      "published": "2026-11-18T09:00:08+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "0ff1c90758ed56ee",
       "source": "Toronto Star",
       "title": "Canada, India on the cusp of finalizing free trade deal, says high envoy",
@@ -2063,6 +2094,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "786cf60daf6c04c5",
+      "source": "Toronto Star",
+      "title": "Chow to lay out vision for new term as Toronto council holds first meeting",
+      "url": "https://www.thestar.com/news/ontario/chow-to-lay-out-vision-for-new-term-as-toronto-council-holds-first-meeting/article_987c3ab7-06a4-552a-93ac-74d2f8093dce.html",
+      "published": "2026-11-18T09:00:09+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "4c69eae3531117c0",
       "source": "Toronto Star",
       "title": "Homan, Einarson open with wins at Grand Slam of Curling National stop",
@@ -2070,36 +2116,6 @@
       "published": "2026-11-18T01:26:51+00:00",
       "content_status": "full",
       "word_count": 489,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "97a9f67a8897df06",
-      "source": "Toronto Star",
-      "title": "LeBlanc fields questions about trade negotiations with Trump administration",
-      "url": "https://www.thestar.com/news/canada/leblanc-fields-questions-about-trade-negotiations-with-trump-administration/article_cbbaa442-142d-5f4f-89c4-6cffcafe949e.html",
-      "published": "2026-11-17T22:10:39+00:00",
-      "content_status": "full",
-      "word_count": 814,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "58bd9d6a8cb698dc",
-      "source": "Toronto Star",
-      "title": "Left-wing Québec solidaire accuses rivals of trying to 'cancel' party",
-      "url": "https://www.thestar.com/news/canada/left-wing-qu-bec-solidaire-accuses-rivals-of-trying-to-cancel-party/article_48132fae-5e0c-573e-aada-7069e0ad3628.html",
-      "published": "2026-11-17T21:41:16+00:00",
-      "content_status": "full",
-      "word_count": 176,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2123,30 +2139,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c4949ccfd0ffe4c4",
+      "story_id": "66edc13cd7aaa651",
       "source": "Toronto Star",
-      "title": "Mississauga data centre moratorium challenged by U.S. real estate giant, Toronto firm",
-      "url": "https://www.thestar.com/news/ontario/mississauga-data-centre-moratorium-challenged-by-u-s-real-estate-giant-toronto-firm/article_efe1e52d-96ad-59ca-b149-96d38d174022.html",
-      "published": "2026-11-17T21:54:53+00:00",
+      "title": "Researchers on B.C. coast use drones to collect whale snot for genome sequencing",
+      "url": "https://www.thestar.com/news/canada/british-columbia/researchers-on-b-c-coast-use-drones-to-collect-whale-snot-for-genome-sequencing/article_5faed8e3-0dc8-5463-a1fc-86facdf0d274.html",
+      "published": "2026-11-18T09:00:18+00:00",
       "content_status": "full",
-      "word_count": 498,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f81fcd59ed485193",
-      "source": "Toronto Star",
-      "title": "Quebec government says it's looking at options after rabid bat enters care home",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-government-says-it-s-looking-at-options-after-rabid-bat-enters-care-home/article_024c67bb-f24f-5f6c-b2a3-2f1b033643ae.html",
-      "published": "2026-11-17T21:44:53+00:00",
-      "content_status": "full",
-      "word_count": 60,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 815,
+      "quality_score": 86,
+      "extraction_method": "trafilatura:fallback"
     },
     {
       "severity": "info",
@@ -4600,6 +4601,128 @@
       ]
     },
     {
+      "id": "66edc13cd7aaa651",
+      "source": "Toronto Star",
+      "title": "Researchers on B.C. coast use drones to collect whale snot for genome sequencing",
+      "url": "https://www.thestar.com/news/canada/british-columbia/researchers-on-b-c-coast-use-drones-to-collect-whale-snot-for-genome-sequencing/article_5faed8e3-0dc8-5463-a1fc-86facdf0d274.html",
+      "published": "2026-11-18T09:00:18+00:00",
+      "audit_status": "review",
+      "audit_score": 85,
+      "critical_count": 0,
+      "warning_count": 1,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 815,
+      "paragraph_count": 33,
+      "inline_image_count": 10,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "10 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "33067fb664145e31",
+      "source": "Toronto Star",
+      "title": "Can advocates elected to Toronto council help fix housing and homelessness crisis?",
+      "url": "https://www.thestar.com/real-estate/can-advocates-elected-to-toronto-council-help-fix-housing-and-homelessness-crisis/article_25a1689b-ded0-566f-bd88-26e4a6677265.html",
+      "published": "2026-11-18T09:00:10+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 54,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "786cf60daf6c04c5",
+      "source": "Toronto Star",
+      "title": "Chow to lay out vision for new term as Toronto council holds first meeting",
+      "url": "https://www.thestar.com/news/ontario/chow-to-lay-out-vision-for-new-term-as-toronto-council-holds-first-meeting/article_987c3ab7-06a4-552a-93ac-74d2f8093dce.html",
+      "published": "2026-11-18T09:00:09+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "5da9a547004fe832",
+      "source": "Toronto Star",
+      "title": "Canada's Alert Ready system to be tested across the country Wednesday",
+      "url": "https://www.thestar.com/news/canada/canada-s-alert-ready-system-to-be-tested-across-the-country-wednesday/article_b075383b-4313-5f64-b0be-af180954586c.html",
+      "published": "2026-11-18T09:00:08+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "be5a1662e1122439",
       "source": "Toronto Star",
       "title": "Carney says Canada's trade relations with U.S. 'much more complex' than with China",
@@ -4771,128 +4894,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "58 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "97a9f67a8897df06",
-      "source": "Toronto Star",
-      "title": "LeBlanc fields questions about trade negotiations with Trump administration",
-      "url": "https://www.thestar.com/news/canada/leblanc-fields-questions-about-trade-negotiations-with-trump-administration/article_cbbaa442-142d-5f4f-89c4-6cffcafe949e.html",
-      "published": "2026-11-17T22:10:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 814,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c4949ccfd0ffe4c4",
-      "source": "Toronto Star",
-      "title": "Mississauga data centre moratorium challenged by U.S. real estate giant, Toronto firm",
-      "url": "https://www.thestar.com/news/ontario/mississauga-data-centre-moratorium-challenged-by-u-s-real-estate-giant-toronto-firm/article_efe1e52d-96ad-59ca-b149-96d38d174022.html",
-      "published": "2026-11-17T21:54:53+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 498,
-      "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f81fcd59ed485193",
-      "source": "Toronto Star",
-      "title": "Quebec government says it's looking at options after rabid bat enters care home",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-government-says-it-s-looking-at-options-after-rabid-bat-enters-care-home/article_024c67bb-f24f-5f6c-b2a3-2f1b033643ae.html",
-      "published": "2026-11-17T21:44:53+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 60,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "60 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "58bd9d6a8cb698dc",
-      "source": "Toronto Star",
-      "title": "Left-wing Québec solidaire accuses rivals of trying to 'cancel' party",
-      "url": "https://www.thestar.com/news/canada/left-wing-qu-bec-solidaire-accuses-rivals-of-trying-to-cancel-party/article_48132fae-5e0c-573e-aada-7069e0ad3628.html",
-      "published": "2026-11-17T21:41:16+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 176,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
