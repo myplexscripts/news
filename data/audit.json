@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T19:37:49.596171+00:00",
-  "generated_at_london": "2026-11-18T14:37:49.596171-05:00",
-  "news_generated_at": "2026-11-18T19:32:10.465668+00:00",
+  "generated_at": "2026-11-18T19:49:36.386254+00:00",
+  "generated_at_london": "2026-11-18T14:49:36.386254-05:00",
+  "news_generated_at": "2026-11-18T19:47:37.605967+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 697,
+    "archive_story_count": 698,
     "source_count": 28,
     "audited_story_count": 112,
-    "pass_story_count": 103,
-    "review_story_count": 8,
+    "pass_story_count": 104,
+    "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 11,
+    "warning_issue_count": 10,
     "info_issue_count": 90,
-    "healthy_source_count": 12,
-    "review_source_count": 6,
+    "healthy_source_count": 11,
+    "review_source_count": 7,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
@@ -53,24 +53,24 @@
       "collector_status": "healthy",
       "profile": "ctv",
       "sample_size": 10,
-      "pass": 7,
-      "review": 3,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 70,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 712,
-      "average_quality": 77,
+      "average_words": 597,
+      "average_quality": 76,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
-      "warning_issues": 3,
+      "warning_issues": 2,
       "info_issues": 13,
-      "latest_published": "2026-11-18T19:28:10.059000+00:00",
-      "found_this_run": 1,
+      "latest_published": "2026-11-18T19:39:14.052000+00:00",
+      "found_this_run": 2,
       "tracked": 30,
-      "last_scrape": "2026-11-18T19:30:04.372772+00:00",
+      "last_scrape": "2026-11-18T19:45:29.054313+00:00",
       "last_error": ""
     },
     {
@@ -96,7 +96,7 @@
       "latest_published": "2026-11-18T19:31:13.011000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T18:02:36.991522+00:00",
+      "last_scrape": "2026-11-18T19:35:18.487015+00:00",
       "last_error": ""
     },
     {
@@ -149,7 +149,7 @@
       "latest_published": "2026-11-18T19:12:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T19:30:09.294489+00:00",
+      "last_scrape": "2026-11-18T19:45:30.754555+00:00",
       "last_error": ""
     },
     {
@@ -177,6 +177,32 @@
       "tracked": 30,
       "last_scrape": "2026-11-18T19:30:06.046412+00:00",
       "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 271,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-18T18:27:23+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-11-18T18:44:00.969653+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -686,32 +712,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 271,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-18T18:27:23+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-18T18:44:00.969653+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -798,21 +798,6 @@
       "content_status": "full",
       "word_count": 102,
       "quality_score": 45,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "warning",
-      "code": "image_gallery_leak",
-      "message": "Several images appear consecutively with no article text between them.",
-      "detail": "5 consecutive images",
-      "story_id": "ec741e7db5c7fef4",
-      "source": "CTV News Canada",
-      "title": "‘The threat is very real’: Unidentified drones reported over Canadian military bases as recently as 2025",
-      "url": "https://www.ctvnews.ca/canada/article/the-threat-is-very-real-unidentified-drones-reported-over-canadian-military-bases-as-recently-as-2025",
-      "published": "2026-11-17T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1705,
-      "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -985,6 +970,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "10c8c93ce7ee5756",
+      "source": "CTV News Canada",
+      "title": "Military suspends most cadet activities amid cost cuts; weekly training to continue",
+      "url": "https://www.ctvnews.ca/canada/article/military-suspends-most-cadet-activities-amid-cost-cuts-weekly-training-to-continue",
+      "published": "2026-11-18T19:39:14.052000+00:00",
+      "content_status": "full",
+      "word_count": 556,
+      "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "7a074d571a3a2677",
       "source": "CTV News Canada",
       "title": "National Congress of American Indians calls on Trump to reverse Lake Ontario change",
@@ -1083,21 +1083,6 @@
       "content_status": "full",
       "word_count": 665,
       "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ec741e7db5c7fef4",
-      "source": "CTV News Canada",
-      "title": "‘The threat is very real’: Unidentified drones reported over Canadian military bases as recently as 2025",
-      "url": "https://www.ctvnews.ca/canada/article/the-threat-is-very-real-unidentified-drones-reported-over-canadian-military-bases-as-recently-as-2025",
-      "published": "2026-11-17T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1705,
-      "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -3892,6 +3877,35 @@
       ]
     },
     {
+      "id": "10c8c93ce7ee5756",
+      "source": "CTV News Canada",
+      "title": "Military suspends most cadet activities amid cost cuts; weekly training to continue",
+      "url": "https://www.ctvnews.ca/canada/article/military-suspends-most-cadet-activities-amid-cost-cuts-weekly-training-to-continue",
+      "published": "2026-11-18T19:39:14.052000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 556,
+      "paragraph_count": 22,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2fd182566f3a352b",
       "source": "CTV News Canada",
       "title": "Investigation into Old Navy and Gap marketing practices advances: Competition Bureau",
@@ -4174,41 +4188,6 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ec741e7db5c7fef4",
-      "source": "CTV News Canada",
-      "title": "‘The threat is very real’: Unidentified drones reported over Canadian military bases as recently as 2025",
-      "url": "https://www.ctvnews.ca/canada/article/the-threat-is-very-real-unidentified-drones-reported-over-canadian-military-bases-as-recently-as-2025",
-      "published": "2026-11-17T10:00:00+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1705,
-      "paragraph_count": 42,
-      "inline_image_count": 5,
-      "quality_score": 86,
-      "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "image_gallery_leak",
-          "message": "Several images appear consecutively with no article text between them.",
-          "detail": "5 consecutive images"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
