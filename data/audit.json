@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T20:09:02.956322+00:00",
-  "generated_at_london": "2026-11-18T15:09:02.956322-05:00",
-  "news_generated_at": "2026-11-18T20:03:18.386694+00:00",
+  "generated_at": "2026-11-18T20:20:21.688792+00:00",
+  "generated_at_london": "2026-11-18T15:20:21.688792-05:00",
+  "news_generated_at": "2026-11-18T20:18:23.867184+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 696,
+    "archive_story_count": 698,
     "source_count": 28,
-    "audited_story_count": 112,
-    "pass_story_count": 104,
+    "audited_story_count": 113,
+    "pass_story_count": 105,
     "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 10,
-    "info_issue_count": 90,
+    "info_issue_count": 91,
     "healthy_source_count": 12,
     "review_source_count": 6,
     "error_source_count": 0,
@@ -137,19 +137,20 @@
       "fail": 0,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 681,
-      "average_quality": 72,
+      "average_words": 610,
+      "average_quality": 68,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:postmedia-last-resort": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-18T19:12:55+00:00",
+      "latest_published": "2026-11-18T19:44:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T20:01:07.444494+00:00",
+      "last_scrape": "2026-11-18T20:16:21.347845+00:00",
       "last_error": ""
     },
     {
@@ -229,7 +230,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -245,10 +246,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 1,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='weather.gc.ca', port=443): Read timed out. (read timeout=8)\"))"
+      "last_error": ""
     },
     {
       "source": "Global News London",
@@ -611,25 +612,26 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
+      "sample_size": 2,
+      "pass": 2,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 162,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
+      "average_words": 264,
+      "average_quality": 73,
+      "primary_method": "dom:generic:main",
       "method_counts": {
+        "dom:generic:main": 1,
         "dom:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-11-12T05:00:00+00:00",
+      "info_issues": 2,
+      "latest_published": "2026-11-18T05:00:00+00:00",
       "found_this_run": 3,
-      "tracked": 1,
-      "last_scrape": "2026-11-12T15:31:22.001263+00:00",
+      "tracked": 2,
+      "last_scrape": "2026-11-18T20:15:43.828991+00:00",
       "last_error": ""
     },
     {
@@ -1615,6 +1617,21 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "4fbe0e01c0cff408",
+      "source": "London Transit Commission",
+      "title": "Plan Your Trip",
+      "url": "https://www.londontransit.ca/2026/11/18/holiday-hours-schedules-december-2026",
+      "published": "2026-11-18T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 367,
+      "quality_score": 68,
+      "extraction_method": "dom:generic:main"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "395ebeb353cc149b",
       "source": "London Transit Commission",
       "title": "Plan Your Trip",
@@ -1653,21 +1670,6 @@
       "content_status": "partial",
       "word_count": 151,
       "quality_score": 58,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "afbaeb1113f97adb",
-      "source": "National Post",
-      "title": "Gas fell under a dollar at a Winnipeg gas station: ‘Insane’",
-      "url": "https://nationalpost.com/news/canada/saskatchewan-manitoba/winnipeg-gas-station-prices-fall-under-dollar",
-      "published": "2026-11-17T20:06:51+00:00",
-      "content_status": "partial",
-      "word_count": 745,
-      "quality_score": 83,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -1729,6 +1731,21 @@
       "word_count": 52,
       "quality_score": 25,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "66f6de8856b37578",
+      "source": "National Post",
+      "title": "Polling shows Quebec premier, not Carney, mostly to blame for recent Ottawa-Quebec tensions",
+      "url": "https://nationalpost.com/news/polling-shows-quebec-premier-not-carney-mostly-to-blame-for-recent-ottawa-quebec-tensions",
+      "published": "2026-11-18T19:44:04+00:00",
+      "content_status": "partial",
+      "word_count": 44,
+      "quality_score": 48,
+      "extraction_method": "trafilatura:postmedia-last-resort"
     },
     {
       "severity": "info",
@@ -3514,6 +3531,35 @@
       ]
     },
     {
+      "id": "4fbe0e01c0cff408",
+      "source": "London Transit Commission",
+      "title": "Plan Your Trip",
+      "url": "https://www.londontransit.ca/2026/11/18/holiday-hours-schedules-december-2026",
+      "published": "2026-11-18T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 367,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 68,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:main",
+      "extraction_profile": "generic",
+      "local_score": 36,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
+    },
+    {
       "id": "395ebeb353cc149b",
       "source": "London Transit Commission",
       "title": "Plan Your Trip",
@@ -4529,6 +4575,35 @@
       ]
     },
     {
+      "id": "66f6de8856b37578",
+      "source": "National Post",
+      "title": "Polling shows Quebec premier, not Carney, mostly to blame for recent Ottawa-Quebec tensions",
+      "url": "https://nationalpost.com/news/polling-shows-quebec-premier-not-carney-mostly-to-blame-for-recent-ottawa-quebec-tensions",
+      "published": "2026-11-18T19:44:04+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 44,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "trafilatura:postmedia-last-resort",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7a545e2cb05b5ded",
       "source": "National Post",
       "title": "Krampus will be on the sidelines at Ontario town’s Santa Claus parade this year",
@@ -4788,35 +4863,6 @@
       "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 79,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "afbaeb1113f97adb",
-      "source": "National Post",
-      "title": "Gas fell under a dollar at a Winnipeg gas station: ‘Insane’",
-      "url": "https://nationalpost.com/news/canada/saskatchewan-manitoba/winnipeg-gas-station-prices-fall-under-dollar",
-      "published": "2026-11-17T20:06:51+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 745,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 83,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
