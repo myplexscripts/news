@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T01:36:20.147745+00:00",
-  "generated_at_london": "2026-11-17T20:36:20.147745-05:00",
-  "news_generated_at": "2026-11-18T01:30:51.676211+00:00",
+  "generated_at": "2026-11-18T01:49:11.784408+00:00",
+  "generated_at_london": "2026-11-17T20:49:11.784408-05:00",
+  "news_generated_at": "2026-11-18T01:47:05.038451+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 692,
+    "archive_story_count": 693,
     "source_count": 28,
     "audited_story_count": 106,
-    "pass_story_count": 101,
-    "review_story_count": 3,
+    "pass_story_count": 99,
+    "review_story_count": 5,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 4,
+    "warning_issue_count": 8,
     "info_issue_count": 92,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -106,25 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 7,
+      "review": 2,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 228,
-      "average_quality": 94,
+      "average_words": 203,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:star:article": 1
+        "dom:star:article": 3,
+        "reader:semantic-rich-v1": 7
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 4,
       "info_issues": 12,
-      "latest_published": "2026-11-17T23:48:27+00:00",
+      "latest_published": "2026-11-18T01:37:09+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T00:11:08.559920+00:00",
+      "last_scrape": "2026-11-18T01:44:58.704490+00:00",
       "last_error": ""
     },
     {
@@ -197,7 +197,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -653,7 +653,7 @@
       "latest_published": "2026-11-17T23:18:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T01:29:19.900713+00:00",
+      "last_scrape": "2026-11-18T01:44:56.276424+00:00",
       "last_error": ""
     },
     {
@@ -694,19 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 674,
-      "average_quality": 95,
+      "average_words": 626,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-18T01:01:47.672000+00:00",
+      "latest_published": "2026-11-18T01:22:06.853000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T01:13:47.103310+00:00",
+      "last_scrape": "2026-11-18T01:44:53.488178+00:00",
       "last_error": ""
     },
     {
@@ -827,6 +828,66 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "3f5efb90a710117b",
+      "source": "Toronto Star",
+      "title": "CN Rail train derails in northern B.C., sends five cars off tracks",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cn-rail-train-derails-in-northern-b-c-sends-five-cars-off-tracks/article_f17eb8d7-48c4-5b18-b45f-da97483e1370.html",
+      "published": "2026-11-18T01:37:09+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "3f5efb90a710117b",
+      "source": "Toronto Star",
+      "title": "CN Rail train derails in northern B.C., sends five cars off tracks",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cn-rail-train-derails-in-northern-b-c-sends-five-cars-off-tracks/article_f17eb8d7-48c4-5b18-b45f-da97483e1370.html",
+      "published": "2026-11-18T01:37:09+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "4c69eae3531117c0",
+      "source": "Toronto Star",
+      "title": "Homan, Einarson open with wins at Grand Slam of Curling National stop",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/homan-einarson-open-with-wins-at-grand-slam-of-curling-national-stop/article_26034f94-4be4-5b37-a49a-e901d88f6195.html",
+      "published": "2026-11-18T01:26:51+00:00",
+      "content_status": "full",
+      "word_count": 221,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "4c69eae3531117c0",
+      "source": "Toronto Star",
+      "title": "Homan, Einarson open with wins at Grand Slam of Curling National stop",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/homan-einarson-open-with-wins-at-grand-slam-of-curling-national-stop/article_26034f94-4be4-5b37-a49a-e901d88f6195.html",
+      "published": "2026-11-18T01:26:51+00:00",
+      "content_status": "full",
+      "word_count": 221,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1958,15 +2019,30 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f35468e300196f82",
+      "story_id": "2f5a0293d9e9af76",
       "source": "The Globe and Mail",
-      "title": "Twenty years, 12 Zodiac records: Toronto punk band finishes one of music’s most-ambitious projects",
-      "url": "https://www.theglobeandmail.com/culture/music/article-twenty-years-12-zodiac-records-toronto-punk-band-finishes-one-of",
-      "published": "2026-11-17T18:48:50.435000+00:00",
-      "content_status": "partial",
-      "word_count": 1478,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "Windsor’s new mayor is part of a wave of electoral change in Ontario border cities",
+      "url": "https://www.theglobeandmail.com/canada/article-windsors-new-mayor-is-part-of-a-wave-of-electoral-change-in-ontario",
+      "published": "2026-11-18T01:22:06.853000+00:00",
+      "content_status": "full",
+      "word_count": 1005,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "3f5efb90a710117b",
+      "source": "Toronto Star",
+      "title": "CN Rail train derails in northern B.C., sends five cars off tracks",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cn-rail-train-derails-in-northern-b-c-sends-five-cars-off-tracks/article_f17eb8d7-48c4-5b18-b45f-da97483e1370.html",
+      "published": "2026-11-18T01:37:09+00:00",
+      "content_status": "full",
+      "word_count": 214,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2048,6 +2124,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "4c69eae3531117c0",
+      "source": "Toronto Star",
+      "title": "Homan, Einarson open with wins at Grand Slam of Curling National stop",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/homan-einarson-open-with-wins-at-grand-slam-of-curling-national-stop/article_26034f94-4be4-5b37-a49a-e901d88f6195.html",
+      "published": "2026-11-18T01:26:51+00:00",
+      "content_status": "full",
+      "word_count": 221,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "97a9f67a8897df06",
       "source": "Toronto Star",
       "title": "LeBlanc fields questions about trade negotiations with Trump administration",
@@ -2093,21 +2184,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "eeb4808f1f41c80c",
-      "source": "Toronto Star",
-      "title": "Meat, cheese and luxury clothes among top targets for retail thieves: police",
-      "url": "https://www.thestar.com/news/canada/meat-cheese-and-luxury-clothes-among-top-targets-for-retail-thieves-police/article_dbe32e8a-8fe9-5cf7-8981-15f976d30f34.html",
-      "published": "2026-11-17T19:39:00+00:00",
-      "content_status": "full",
-      "word_count": 295,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "c4949ccfd0ffe4c4",
       "source": "Toronto Star",
       "title": "Mississauga data centre moratorium challenged by U.S. real estate giant, Toronto firm",
@@ -2115,21 +2191,6 @@
       "published": "2026-11-17T21:54:53+00:00",
       "content_status": "full",
       "word_count": 158,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9c9549cbc0f6614b",
-      "source": "Toronto Star",
-      "title": "Ottawa spent some $3.45 million on legal fees in connection with Bill 21",
-      "url": "https://www.thestar.com/news/canada/quebec/ottawa-spent-some-3-45-million-on-legal-fees-in-connection-with-bill-21/article_77e97367-e15f-53f1-9baf-3b7906acf987.html",
-      "published": "2026-11-17T19:42:12+00:00",
-      "content_status": "full",
-      "word_count": 390,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4018,6 +4079,35 @@
       ]
     },
     {
+      "id": "2f5a0293d9e9af76",
+      "source": "The Globe and Mail",
+      "title": "Windsor’s new mayor is part of a wave of electoral change in Ontario border cities",
+      "url": "https://www.theglobeandmail.com/canada/article-windsors-new-mayor-is-part-of-a-wave-of-electoral-change-in-ontario",
+      "published": "2026-11-18T01:22:06.853000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1005,
+      "paragraph_count": 26,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c6b56c0baefcb0c3",
       "source": "The Globe and Mail",
       "title": "Canada, India close to finalizing free trade deal, envoy says",
@@ -4281,35 +4371,6 @@
       "content_status": "partial",
       "word_count": 373,
       "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f35468e300196f82",
-      "source": "The Globe and Mail",
-      "title": "Twenty years, 12 Zodiac records: Toronto punk band finishes one of music’s most-ambitious projects",
-      "url": "https://www.theglobeandmail.com/culture/music/article-twenty-years-12-zodiac-records-toronto-punk-band-finishes-one-of",
-      "published": "2026-11-17T18:48:50.435000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1478,
-      "paragraph_count": 21,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4616,6 +4677,88 @@
       ]
     },
     {
+      "id": "3f5efb90a710117b",
+      "source": "Toronto Star",
+      "title": "CN Rail train derails in northern B.C., sends five cars off tracks",
+      "url": "https://www.thestar.com/news/canada/british-columbia/cn-rail-train-derails-in-northern-b-c-sends-five-cars-off-tracks/article_f17eb8d7-48c4-5b18-b45f-da97483e1370.html",
+      "published": "2026-11-18T01:37:09+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 214,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "4c69eae3531117c0",
+      "source": "Toronto Star",
+      "title": "Homan, Einarson open with wins at Grand Slam of Curling National stop",
+      "url": "https://www.thestar.com/news/canada/nova-scotia/homan-einarson-open-with-wins-at-grand-slam-of-curling-national-stop/article_26034f94-4be4-5b37-a49a-e901d88f6195.html",
+      "published": "2026-11-18T01:26:51+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 221,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0ff1c90758ed56ee",
       "source": "Toronto Star",
       "title": "Canada, India on the cusp of finalizing free trade deal, says high envoy",
@@ -4857,64 +5000,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9c9549cbc0f6614b",
-      "source": "Toronto Star",
-      "title": "Ottawa spent some $3.45 million on legal fees in connection with Bill 21",
-      "url": "https://www.thestar.com/news/canada/quebec/ottawa-spent-some-3-45-million-on-legal-fees-in-connection-with-bill-21/article_77e97367-e15f-53f1-9baf-3b7906acf987.html",
-      "published": "2026-11-17T19:42:12+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 390,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "eeb4808f1f41c80c",
-      "source": "Toronto Star",
-      "title": "Meat, cheese and luxury clothes among top targets for retail thieves: police",
-      "url": "https://www.thestar.com/news/canada/meat-cheese-and-luxury-clothes-among-top-targets-for-retail-thieves-police/article_dbe32e8a-8fe9-5cf7-8981-15f976d30f34.html",
-      "published": "2026-11-17T19:39:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 295,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
