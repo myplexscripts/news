@@ -1,26 +1,52 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T19:17:22.170603+00:00",
-  "generated_at_london": "2026-11-18T14:17:22.170603-05:00",
+  "generated_at": "2026-11-18T19:21:29.948500+00:00",
+  "generated_at_london": "2026-11-18T14:21:29.948500-05:00",
   "news_generated_at": "2026-11-18T19:15:51.201442+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 695,
+    "archive_story_count": 694,
     "source_count": 28,
     "audited_story_count": 112,
-    "pass_story_count": 105,
-    "review_story_count": 6,
+    "pass_story_count": 104,
+    "review_story_count": 7,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 89,
-    "healthy_source_count": 13,
-    "review_source_count": 5,
+    "healthy_source_count": 12,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 10
   },
   "source_reports": [
+    {
+      "source": "104.7 Heart FM",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "heartfm",
+      "sample_size": 1,
+      "pass": 0,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 0,
+      "usable_body_rate": 100,
+      "average_words": 637,
+      "average_quality": 76,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 0,
+      "latest_published": "2026-11-18T19:05:40+00:00",
+      "found_this_run": 18,
+      "tracked": 1,
+      "last_scrape": "2026-11-18T19:12:14.331092+00:00",
+      "last_error": ""
+    },
     {
       "source": "CTV News Canada",
       "status": "review",
@@ -110,14 +136,12 @@
       "review": 2,
       "fail": 0,
       "pass_rate": 80,
-      "usable_body_rate": 90,
-      "average_words": 548,
-      "average_quality": 64,
+      "usable_body_rate": 100,
+      "average_words": 681,
+      "average_quality": 72,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:postmedia:article:strict": 1,
-        "trafilatura:postmedia-last-resort": 1,
-        "reader:semantic-rich-v1": 8
+        "reader:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 2,
@@ -392,32 +416,6 @@
       "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
-    },
-    {
-      "source": "104.7 Heart FM",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "heartfm",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 200,
-      "average_quality": 66,
-      "primary_method": "dom:heartfm:main",
-      "method_counts": {
-        "dom:heartfm:main": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "2026-11-18T19:05:40+00:00",
-      "found_this_run": 18,
-      "tracked": 1,
-      "last_scrape": "2026-11-18T19:12:14.331092+00:00",
       "last_error": ""
     },
     {
@@ -755,6 +753,36 @@
       "content_status": "full",
       "word_count": 0,
       "quality_score": 96,
+      "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "18 inline images",
+      "story_id": "7387d2f6310c0e84",
+      "source": "104.7 Heart FM",
+      "title": "Human Trafficking Case Tied to Oxford County",
+      "url": "https://www.heartfm.ca/news/local-news/human-trafficking-case-tied-to-oxford-county",
+      "published": "2026-11-18T19:05:40+00:00",
+      "content_status": "full",
+      "word_count": 637,
+      "quality_score": 76,
+      "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "18 consecutive images",
+      "story_id": "7387d2f6310c0e84",
+      "source": "104.7 Heart FM",
+      "title": "Human Trafficking Case Tied to Oxford County",
+      "url": "https://www.heartfm.ca/news/local-news/human-trafficking-case-tied-to-oxford-county",
+      "published": "2026-11-18T19:05:40+00:00",
+      "content_status": "full",
+      "word_count": 637,
+      "quality_score": 76,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1676,16 +1704,16 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 18/100",
+      "detail": "Local score 0/100",
       "story_id": "7a545e2cb05b5ded",
       "source": "National Post",
       "title": "Krampus will be on the sidelines at Ontario town’s Santa Claus parade this year",
       "url": "https://nationalpost.com/news/krampus-will-be-on-the-sidelines-at-ontario-towns-santa-claus-parade-this-year",
       "published": "2026-11-18T19:12:55+00:00",
-      "content_status": "summary",
-      "word_count": 32,
-      "quality_score": 32,
-      "extraction_method": "dom:postmedia:article:strict"
+      "content_status": "partial",
+      "word_count": 801,
+      "quality_score": 83,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -1713,9 +1741,9 @@
       "url": "https://nationalpost.com/news/crime-justice/toronto-police-arrest-21-people-and-cancel-towing-contract-in-project-swords-fallout",
       "published": "2026-11-18T19:12:44+00:00",
       "content_status": "partial",
-      "word_count": 44,
-      "quality_score": 48,
-      "extraction_method": "trafilatura:postmedia-last-resort"
+      "word_count": 604,
+      "quality_score": 78,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2918,21 +2946,34 @@
       "title": "Human Trafficking Case Tied to Oxford County",
       "url": "https://www.heartfm.ca/news/local-news/human-trafficking-case-tied-to-oxford-county",
       "published": "2026-11-18T19:05:40+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
+      "audit_status": "review",
+      "audit_score": 76,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 2,
       "info_count": 0,
       "content_status": "full",
-      "word_count": 200,
+      "word_count": 637,
       "paragraph_count": 8,
-      "inline_image_count": 0,
-      "quality_score": 66,
+      "inline_image_count": 18,
+      "quality_score": 76,
       "quality_grade": "good",
-      "extraction_method": "dom:heartfm:main",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "heartfm",
-      "local_score": 56,
-      "issues": []
+      "local_score": 38,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "18 inline images"
+        },
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "18 consecutive images"
+        }
+      ]
     },
     {
       "id": "197256d23ba85869",
@@ -4477,21 +4518,21 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "summary",
-      "word_count": 32,
-      "paragraph_count": 2,
+      "content_status": "partial",
+      "word_count": 801,
+      "paragraph_count": 18,
       "inline_image_count": 0,
-      "quality_score": 32,
-      "quality_grade": "poor",
-      "extraction_method": "dom:postmedia:article:strict",
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
-      "local_score": 18,
+      "local_score": 0,
       "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
-          "detail": "Local score 18/100"
+          "detail": "Local score 0/100"
         }
       ]
     },
@@ -4507,12 +4548,12 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "partial",
-      "word_count": 44,
-      "paragraph_count": 3,
+      "word_count": 604,
+      "paragraph_count": 21,
       "inline_image_count": 0,
-      "quality_score": 48,
-      "quality_grade": "partial",
-      "extraction_method": "trafilatura:postmedia-last-resort",
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
       "local_score": 0,
       "issues": [
