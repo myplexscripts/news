@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T17:03:31.587435+00:00",
-  "generated_at_london": "2026-11-18T12:03:31.587435-05:00",
-  "news_generated_at": "2026-11-18T16:57:12.154174+00:00",
+  "generated_at": "2026-11-18T17:14:32.816895+00:00",
+  "generated_at_london": "2026-11-18T12:14:32.816895-05:00",
+  "news_generated_at": "2026-11-18T17:12:30.767612+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 671,
     "source_count": 28,
     "audited_story_count": 109,
     "pass_story_count": 101,
-    "review_story_count": 4,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
-    "warning_issue_count": 5,
+    "review_story_count": 5,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 7,
     "info_issue_count": 89,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -97,7 +97,7 @@
       "latest_published": "2026-11-18T11:34:09+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T16:55:10.789960+00:00",
+      "last_scrape": "2026-11-18T17:10:39.499320+00:00",
       "last_error": ""
     },
     {
@@ -107,23 +107,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
-      "review": 0,
-      "fail": 3,
+      "review": 1,
+      "fail": 2,
       "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 492,
-      "average_quality": 96,
+      "average_words": 508,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 3,
-      "warning_issues": 0,
+      "critical_issues": 2,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-18T15:52:15+00:00",
-      "found_this_run": 8,
+      "latest_published": "2026-11-18T16:33:58+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T15:51:15.951350+00:00",
+      "last_scrape": "2026-11-18T17:10:40.742909+00:00",
       "last_error": ""
     },
     {
@@ -196,7 +197,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -772,21 +773,6 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "46 words",
-      "story_id": "be5a1662e1122439",
-      "source": "Toronto Star",
-      "title": "Carney says Canada's trade relations with U.S. 'much more complex' than with China",
-      "url": "https://www.thestar.com/news/canada/carney-says-canada-s-trade-relations-with-u-s-much-more-complex-than-with-china/article_715b9ff6-e1c2-5659-ba87-6c492f114d58.html",
-      "published": "2026-11-18T08:47:58+00:00",
-      "content_status": "full",
-      "word_count": 46,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
       "detail": "31 words",
       "story_id": "786cf60daf6c04c5",
       "source": "Toronto Star",
@@ -872,6 +858,36 @@
       "word_count": 172,
       "quality_score": 58,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c5826c6f443f3e2c",
+      "source": "Toronto Star",
+      "title": "Ex-Alberta premier Jason Kenney says Quebec Conservatives could take power",
+      "url": "https://www.thestar.com/news/canada/quebec/ex-alberta-premier-jason-kenney-says-quebec-conservatives-could-take-power/article_5f998984-c69e-50aa-a760-7b5a703adcea.html",
+      "published": "2026-11-18T16:33:58+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "c5826c6f443f3e2c",
+      "source": "Toronto Star",
+      "title": "Ex-Alberta premier Jason Kenney says Quebec Conservatives could take power",
+      "url": "https://www.thestar.com/news/canada/quebec/ex-alberta-premier-jason-kenney-says-quebec-conservatives-could-take-power/article_5f998984-c69e-50aa-a760-7b5a703adcea.html",
+      "published": "2026-11-18T16:33:58+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2048,21 +2064,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "be5a1662e1122439",
-      "source": "Toronto Star",
-      "title": "Carney says Canada's trade relations with U.S. 'much more complex' than with China",
-      "url": "https://www.thestar.com/news/canada/carney-says-canada-s-trade-relations-with-u-s-much-more-complex-than-with-china/article_715b9ff6-e1c2-5659-ba87-6c492f114d58.html",
-      "published": "2026-11-18T08:47:58+00:00",
-      "content_status": "full",
-      "word_count": 46,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "3b4bc2b01084ecc9",
       "source": "Toronto Star",
       "title": "Carney says he hopes to sign trade arrangement deal with Taiwan soon",
@@ -2102,6 +2103,21 @@
       "word_count": 155,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c5826c6f443f3e2c",
+      "source": "Toronto Star",
+      "title": "Ex-Alberta premier Jason Kenney says Quebec Conservatives could take power",
+      "url": "https://www.thestar.com/news/canada/quebec/ex-alberta-premier-jason-kenney-says-quebec-conservatives-could-take-power/article_5f998984-c69e-50aa-a760-7b5a703adcea.html",
+      "published": "2026-11-18T16:33:58+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4680,6 +4696,47 @@
       ]
     },
     {
+      "id": "c5826c6f443f3e2c",
+      "source": "Toronto Star",
+      "title": "Ex-Alberta premier Jason Kenney says Quebec Conservatives could take power",
+      "url": "https://www.thestar.com/news/canada/quebec/ex-alberta-premier-jason-kenney-says-quebec-conservatives-could-take-power/article_5f998984-c69e-50aa-a760-7b5a703adcea.html",
+      "published": "2026-11-18T16:33:58+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 209,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2fa8bde4417728ac",
       "source": "Toronto Star",
       "title": "Ontario to increase fines against drivers who create excessive noise",
@@ -4943,41 +5000,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "25 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "be5a1662e1122439",
-      "source": "Toronto Star",
-      "title": "Carney says Canada's trade relations with U.S. 'much more complex' than with China",
-      "url": "https://www.thestar.com/news/canada/carney-says-canada-s-trade-relations-with-u-s-much-more-complex-than-with-china/article_715b9ff6-e1c2-5659-ba87-6c492f114d58.html",
-      "published": "2026-11-18T08:47:58+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 46,
-      "paragraph_count": 2,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "46 words"
         },
         {
           "severity": "info",
