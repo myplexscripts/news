@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T19:53:49.911073+00:00",
-  "generated_at_london": "2026-11-18T14:53:49.911073-05:00",
-  "news_generated_at": "2026-11-18T19:47:37.605967+00:00",
+  "generated_at": "2026-11-18T20:05:31.405637+00:00",
+  "generated_at_london": "2026-11-18T15:05:31.405637-05:00",
+  "news_generated_at": "2026-11-18T20:03:18.386694+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 698,
+    "archive_story_count": 696,
     "source_count": 28,
     "audited_story_count": 112,
-    "pass_story_count": 104,
-    "review_story_count": 7,
+    "pass_story_count": 103,
+    "review_story_count": 8,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 10,
+    "warning_issue_count": 12,
     "info_issue_count": 90,
     "healthy_source_count": 11,
     "review_source_count": 7,
@@ -70,7 +70,7 @@
       "latest_published": "2026-11-18T19:39:14.052000+00:00",
       "found_this_run": 2,
       "tracked": 30,
-      "last_scrape": "2026-11-18T19:45:29.054313+00:00",
+      "last_scrape": "2026-11-18T19:50:30.815271+00:00",
       "last_error": ""
     },
     {
@@ -149,7 +149,7 @@
       "latest_published": "2026-11-18T19:12:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T19:45:30.754555+00:00",
+      "last_scrape": "2026-11-18T20:01:07.444494+00:00",
       "last_error": ""
     },
     {
@@ -181,28 +181,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 271,
-      "average_quality": 96,
+      "average_words": 270,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-18T18:27:23+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-18T19:48:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T18:44:00.969653+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-18T20:01:09.086031+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -255,7 +256,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -271,10 +272,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 1,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='weather.gc.ca', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Global News London",
@@ -904,6 +905,36 @@
       "word_count": 153,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "61436f3988cb95e5",
+      "source": "Toronto Star",
+      "title": "Health Canada approves Eli Lilly's GLP-1 pill for weight loss",
+      "url": "https://www.thestar.com/news/ontario/health-canada-approves-eli-lilly-s-glp-1-pill-for-weight-loss/article_48a1ecf8-dfc0-5405-8aac-07033e1234c2.html",
+      "published": "2026-11-18T19:48:00+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "61436f3988cb95e5",
+      "source": "Toronto Star",
+      "title": "Health Canada approves Eli Lilly's GLP-1 pill for weight loss",
+      "url": "https://www.thestar.com/news/ontario/health-canada-approves-eli-lilly-s-glp-1-pill-for-weight-loss/article_48a1ecf8-dfc0-5405-8aac-07033e1234c2.html",
+      "published": "2026-11-18T19:48:00+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2095,6 +2126,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "61436f3988cb95e5",
+      "source": "Toronto Star",
+      "title": "Health Canada approves Eli Lilly's GLP-1 pill for weight loss",
+      "url": "https://www.thestar.com/news/ontario/health-canada-approves-eli-lilly-s-glp-1-pill-for-weight-loss/article_48a1ecf8-dfc0-5405-8aac-07033e1234c2.html",
+      "published": "2026-11-18T19:48:00+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "676903d5c346585e",
       "source": "Toronto Star",
       "title": "Inquest into Jamal Francique's death shown videos from after shooting",
@@ -2192,21 +2238,6 @@
       "published": "2026-11-18T17:34:41+00:00",
       "content_status": "full",
       "word_count": 547,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9276bc5653c5988c",
-      "source": "Toronto Star",
-      "title": "Toronto police charge 21 people in crimes connected to towing industry",
-      "url": "https://www.thestar.com/news/ontario/toronto-police-charge-21-people-in-crimes-connected-to-towing-industry/article_6d012b0d-cdae-544a-9f7c-92948f736680.html",
-      "published": "2026-11-18T17:18:00+00:00",
-      "content_status": "full",
-      "word_count": 227,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4831,6 +4862,47 @@
       ]
     },
     {
+      "id": "61436f3988cb95e5",
+      "source": "Toronto Star",
+      "title": "Health Canada approves Eli Lilly's GLP-1 pill for weight loss",
+      "url": "https://www.thestar.com/news/ontario/health-canada-approves-eli-lilly-s-glp-1-pill-for-weight-loss/article_48a1ecf8-dfc0-5405-8aac-07033e1234c2.html",
+      "published": "2026-11-18T19:48:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 211,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8e8744b6288fbd34",
       "source": "Toronto Star",
       "title": "A petition demanding U.S. Ambassador Pete Hoekstra's removal signed by nearly 300,000",
@@ -5076,35 +5148,6 @@
       "content_status": "full",
       "word_count": 257,
       "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9276bc5653c5988c",
-      "source": "Toronto Star",
-      "title": "Toronto police charge 21 people in crimes connected to towing industry",
-      "url": "https://www.thestar.com/news/ontario/toronto-police-charge-21-people-in-crimes-connected-to-towing-industry/article_6d012b0d-cdae-544a-9f7c-92948f736680.html",
-      "published": "2026-11-18T17:18:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 227,
-      "paragraph_count": 11,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
