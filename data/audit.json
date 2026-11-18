@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T09:57:31.499641+00:00",
-  "generated_at_london": "2026-11-18T04:57:31.499641-05:00",
-  "news_generated_at": "2026-11-18T09:52:03.414563+00:00",
+  "generated_at": "2026-11-18T10:10:24.456031+00:00",
+  "generated_at_london": "2026-11-18T05:10:24.456031-05:00",
+  "news_generated_at": "2026-11-18T10:08:27.205809+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 685,
+    "archive_story_count": 682,
     "source_count": 28,
     "audited_story_count": 105,
-    "pass_story_count": 100,
-    "review_story_count": 2,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 3,
+    "pass_story_count": 99,
+    "review_story_count": 4,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 7,
     "info_issue_count": 92,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -77,29 +77,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
-      "fail": 2,
-      "pass_rate": 80,
+      "pass": 7,
+      "review": 2,
+      "fail": 1,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 490,
-      "average_quality": 94,
+      "average_words": 467,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
-        "dom:star:article": 1
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-18T09:00:18+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-18T10:00:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T09:23:30.877744+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-18T10:06:38.330890+00:00",
+      "last_error": ""
     },
     {
       "source": "104.7 Heart FM",
@@ -224,7 +224,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -243,7 +243,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -651,9 +651,9 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-17T23:18:35+00:00",
-      "found_this_run": 9,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T09:50:37.067367+00:00",
+      "last_scrape": "2026-11-18T10:06:34.806046+00:00",
       "last_error": ""
     },
     {
@@ -769,21 +769,6 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "58 words",
-      "story_id": "7e047c1ec14cad46",
-      "source": "Toronto Star",
-      "title": "Charity March of Dimes Canada changes its name to Disability Can",
-      "url": "https://www.thestar.com/news/ontario/charity-march-of-dimes-canada-changes-its-name-to-disability-can/article_dcfb34d9-d693-5c99-ac09-f106d3ce89bd.html",
-      "published": "2026-11-17T22:20:36+00:00",
-      "content_status": "full",
-      "word_count": 58,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "image_gallery_leak",
       "message": "Several images appear consecutively with no article text between them.",
@@ -827,6 +812,66 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "979d939f5944f631",
+      "source": "Toronto Star",
+      "title": "How an Alberta farm kid became a global opera star — and why he’s bringing his work back to Toronto",
+      "url": "https://www.thestar.com/entertainment/stage/how-an-alberta-farm-kid-became-an-global-opera-star-and-why-he-s-bringing-his-work-back-to-toronto/article_f6429e39-908e-4ad9-b41e-0ddde1601304.html",
+      "published": "2026-11-18T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "15 inline images",
+      "story_id": "979d939f5944f631",
+      "source": "Toronto Star",
+      "title": "How an Alberta farm kid became a global opera star — and why he’s bringing his work back to Toronto",
+      "url": "https://www.thestar.com/entertainment/stage/how-an-alberta-farm-kid-became-an-global-opera-star-and-why-he-s-bringing-his-work-back-to-toronto/article_f6429e39-908e-4ad9-b41e-0ddde1601304.html",
+      "published": "2026-11-18T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 183,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "15da009f8add5dc6",
+      "source": "Toronto Star",
+      "title": "What 'Godzilla El Niño' means for Toronto snowfall and the prospect of a white Christmas",
+      "url": "https://www.thestar.com/news/gta/what-godzilla-el-ni-o-means-for-toronto-snowfall-and-the-prospect-of-a-white-christmas/article_2e8c074c-1c5c-4bc0-9b63-58f114549443.html",
+      "published": "2026-11-18T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "15da009f8add5dc6",
+      "source": "Toronto Star",
+      "title": "What 'Godzilla El Niño' means for Toronto snowfall and the prospect of a white Christmas",
+      "url": "https://www.thestar.com/news/gta/what-godzilla-el-ni-o-means-for-toronto-snowfall-and-the-prospect-of-a-white-christmas/article_2e8c074c-1c5c-4bc0-9b63-58f114549443.html",
+      "published": "2026-11-18T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2078,21 +2123,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "7e047c1ec14cad46",
-      "source": "Toronto Star",
-      "title": "Charity March of Dimes Canada changes its name to Disability Can",
-      "url": "https://www.thestar.com/news/ontario/charity-march-of-dimes-canada-changes-its-name-to-disability-can/article_dcfb34d9-d693-5c99-ac09-f106d3ce89bd.html",
-      "published": "2026-11-17T22:20:36+00:00",
-      "content_status": "full",
-      "word_count": 58,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "786cf60daf6c04c5",
       "source": "Toronto Star",
       "title": "Chow to lay out vision for new term as Toronto council holds first meeting",
@@ -2123,13 +2153,13 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1bee833ea58a5096",
+      "story_id": "979d939f5944f631",
       "source": "Toronto Star",
-      "title": "Manning-led report says Western Canada can unite, gain power within Confederation",
-      "url": "https://www.thestar.com/news/canada/alberta/manning-led-report-says-western-canada-can-unite-gain-power-within-confederation/article_70bbd980-a767-54c0-8c49-434a2db838d9.html",
-      "published": "2026-11-17T22:38:40+00:00",
+      "title": "How an Alberta farm kid became a global opera star — and why he’s bringing his work back to Toronto",
+      "url": "https://www.thestar.com/entertainment/stage/how-an-alberta-farm-kid-became-an-global-opera-star-and-why-he-s-bringing-his-work-back-to-toronto/article_f6429e39-908e-4ad9-b41e-0ddde1601304.html",
+      "published": "2026-11-18T10:00:00+00:00",
       "content_status": "full",
-      "word_count": 550,
+      "word_count": 183,
       "quality_score": 80,
       "extraction_method": "dom:star:article"
     },
@@ -2147,6 +2177,21 @@
       "word_count": 887,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "15da009f8add5dc6",
+      "source": "Toronto Star",
+      "title": "What 'Godzilla El Niño' means for Toronto snowfall and the prospect of a white Christmas",
+      "url": "https://www.thestar.com/news/gta/what-godzilla-el-ni-o-means-for-toronto-snowfall-and-the-prospect-of-a-white-christmas/article_2e8c074c-1c5c-4bc0-9b63-58f114549443.html",
+      "published": "2026-11-18T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 186,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4600,6 +4645,88 @@
       ]
     },
     {
+      "id": "15da009f8add5dc6",
+      "source": "Toronto Star",
+      "title": "What 'Godzilla El Niño' means for Toronto snowfall and the prospect of a white Christmas",
+      "url": "https://www.thestar.com/news/gta/what-godzilla-el-ni-o-means-for-toronto-snowfall-and-the-prospect-of-a-white-christmas/article_2e8c074c-1c5c-4bc0-9b63-58f114549443.html",
+      "published": "2026-11-18T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 186,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "979d939f5944f631",
+      "source": "Toronto Star",
+      "title": "How an Alberta farm kid became a global opera star — and why he’s bringing his work back to Toronto",
+      "url": "https://www.thestar.com/entertainment/stage/how-an-alberta-farm-kid-became-an-global-opera-star-and-why-he-s-bringing-his-work-back-to-toronto/article_f6429e39-908e-4ad9-b41e-0ddde1601304.html",
+      "published": "2026-11-18T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 183,
+      "paragraph_count": 2,
+      "inline_image_count": 15,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "15 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "66edc13cd7aaa651",
       "source": "Toronto Star",
       "title": "Researchers on B.C. coast use drones to collect whale snot for genome sequencing",
@@ -4829,70 +4956,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1bee833ea58a5096",
-      "source": "Toronto Star",
-      "title": "Manning-led report says Western Canada can unite, gain power within Confederation",
-      "url": "https://www.thestar.com/news/canada/alberta/manning-led-report-says-western-canada-can-unite-gain-power-within-confederation/article_70bbd980-a767-54c0-8c49-434a2db838d9.html",
-      "published": "2026-11-17T22:38:40+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 550,
-      "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 80,
-      "quality_grade": "good",
-      "extraction_method": "dom:star:article",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "7e047c1ec14cad46",
-      "source": "Toronto Star",
-      "title": "Charity March of Dimes Canada changes its name to Disability Can",
-      "url": "https://www.thestar.com/news/ontario/charity-march-of-dimes-canada-changes-its-name-to-disability-can/article_dcfb34d9-d693-5c99-ac09-f106d3ce89bd.html",
-      "published": "2026-11-17T22:20:36+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 58,
-      "paragraph_count": 4,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "58 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
