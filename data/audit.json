@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T18:37:37.211556+00:00",
-  "generated_at_london": "2026-11-18T13:37:37.211556-05:00",
-  "news_generated_at": "2026-11-18T18:31:32.211590+00:00",
+  "generated_at": "2026-11-18T18:47:48.050801+00:00",
+  "generated_at_london": "2026-11-18T13:47:48.050801-05:00",
+  "news_generated_at": "2026-11-18T18:45:53.468160+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 689,
+    "archive_story_count": 693,
     "source_count": 28,
     "audited_story_count": 111,
-    "pass_story_count": 104,
-    "review_story_count": 6,
+    "pass_story_count": 102,
+    "review_story_count": 8,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 12,
     "info_issue_count": 89,
-    "healthy_source_count": 12,
-    "review_source_count": 5,
+    "healthy_source_count": 11,
+    "review_source_count": 6,
     "error_source_count": 0,
     "waiting_source_count": 11
   },
@@ -123,7 +123,7 @@
       "latest_published": "2026-11-18T17:30:21+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T18:29:41.587959+00:00",
+      "last_scrape": "2026-11-18T18:43:58.616342+00:00",
       "last_error": ""
     },
     {
@@ -149,7 +149,34 @@
       "latest_published": "2026-11-18T18:17:11.521000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T18:29:38.413457+00:00",
+      "last_scrape": "2026-11-18T18:43:49.138094+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 245,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 10,
+      "latest_published": "2026-11-18T18:27:23+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-18T18:44:00.969653+00:00",
       "last_error": ""
     },
     {
@@ -363,7 +390,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -509,19 +536,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 421,
+      "average_words": 430,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-18T18:29:03+00:00",
+      "latest_published": "2026-11-18T18:42:13+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T18:29:36.803260+00:00",
+      "last_scrape": "2026-11-18T18:43:42.717826+00:00",
       "last_error": ""
     },
     {
@@ -681,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-18T15:50:29.061909+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 261,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-18T18:09:59+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-11-18T18:29:44.204432+00:00",
       "last_error": ""
     },
     {
@@ -872,6 +874,66 @@
       "word_count": 153,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "8e8744b6288fbd34",
+      "source": "Toronto Star",
+      "title": "A petition demanding U.S. Ambassador Pete Hoekstra's removal signed by nearly 300,000",
+      "url": "https://www.thestar.com/news/canada/a-petition-demanding-u-s-ambassador-pete-hoekstra-s-removal-signed-by-nearly-300-000/article_ba306624-a725-538c-8857-ee59d000fe22.html",
+      "published": "2026-11-18T18:27:23+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "8e8744b6288fbd34",
+      "source": "Toronto Star",
+      "title": "A petition demanding U.S. Ambassador Pete Hoekstra's removal signed by nearly 300,000",
+      "url": "https://www.thestar.com/news/canada/a-petition-demanding-u-s-ambassador-pete-hoekstra-s-removal-signed-by-nearly-300-000/article_ba306624-a725-538c-8857-ee59d000fe22.html",
+      "published": "2026-11-18T18:27:23+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "676903d5c346585e",
+      "source": "Toronto Star",
+      "title": "Inquest into Jamal Francique's death shown videos from after shooting",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-jamal-francique-s-death-shown-videos-from-after-shooting/article_0fbb74ca-bab6-55bb-855e-5eb1ff75cbd8.html",
+      "published": "2026-11-18T18:12:43+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "676903d5c346585e",
+      "source": "Toronto Star",
+      "title": "Inquest into Jamal Francique's death shown videos from after shooting",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-jamal-francique-s-death-shown-videos-from-after-shooting/article_0fbb74ca-bab6-55bb-855e-5eb1ff75cbd8.html",
+      "published": "2026-11-18T18:12:43+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1403,21 +1465,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "40557600e22cf159",
-      "source": "Global News Canada",
-      "title": "Calgary to explore new rules for data centres but temporary pause will go to public hearing",
-      "url": "https://globalnews.ca/news/12154507/calgary-to-explore-new-rules-for-data-centres-but-temporary-pause-will-go-to-public-hearing",
-      "published": "2026-11-18T14:42:37+00:00",
-      "content_status": "full",
-      "word_count": 676,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "2f3d8c258824abeb",
       "source": "Global News Canada",
       "title": "Canadian women’s flag football team to hold camp",
@@ -1442,6 +1489,21 @@
       "word_count": 208,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c909ed451b73d27c",
+      "source": "Global News Canada",
+      "title": "China’s growth a model for Canada, Carney says",
+      "url": "https://globalnews.ca/news/12156552/canada-economic-growth-china",
+      "published": "2026-11-18T18:42:13+00:00",
+      "content_status": "full",
+      "word_count": 763,
+      "quality_score": 91,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2018,6 +2080,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "8e8744b6288fbd34",
+      "source": "Toronto Star",
+      "title": "A petition demanding U.S. Ambassador Pete Hoekstra's removal signed by nearly 300,000",
+      "url": "https://www.thestar.com/news/canada/a-petition-demanding-u-s-ambassador-pete-hoekstra-s-removal-signed-by-nearly-300-000/article_ba306624-a725-538c-8857-ee59d000fe22.html",
+      "published": "2026-11-18T18:27:23+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "f1738c839d7d6767",
       "source": "Toronto Star",
       "title": "Conservative legislators will be sworn in Thursday as Doerkson prepares to take power",
@@ -2033,15 +2110,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c5826c6f443f3e2c",
+      "story_id": "676903d5c346585e",
       "source": "Toronto Star",
-      "title": "Ex-Alberta premier Jason Kenney says Quebec Conservatives could take power",
-      "url": "https://www.thestar.com/news/canada/quebec/ex-alberta-premier-jason-kenney-says-quebec-conservatives-could-take-power/article_5f998984-c69e-50aa-a760-7b5a703adcea.html",
-      "published": "2026-11-18T16:33:58+00:00",
+      "title": "Inquest into Jamal Francique's death shown videos from after shooting",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-jamal-francique-s-death-shown-videos-from-after-shooting/article_0fbb74ca-bab6-55bb-855e-5eb1ff75cbd8.html",
+      "published": "2026-11-18T18:12:43+00:00",
       "content_status": "full",
-      "word_count": 435,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2085,21 +2162,6 @@
       "published": "2026-11-18T17:29:08+00:00",
       "content_status": "full",
       "word_count": 257,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "2fa8bde4417728ac",
-      "source": "Toronto Star",
-      "title": "Ontario to increase fines against drivers who create excessive noise",
-      "url": "https://www.thestar.com/news/ontario/ontario-to-increase-fines-against-drivers-who-create-excessive-noise/article_bcbce41a-7cfe-57b9-8b9f-ce665d5b0cad.html",
-      "published": "2026-11-18T15:52:15+00:00",
-      "content_status": "full",
-      "word_count": 154,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3505,6 +3567,35 @@
       "issues": []
     },
     {
+      "id": "c909ed451b73d27c",
+      "source": "Global News Canada",
+      "title": "China’s growth a model for Canada, Carney says",
+      "url": "https://globalnews.ca/news/12156552/canada-economic-growth-china",
+      "published": "2026-11-18T18:42:13+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 763,
+      "paragraph_count": 28,
+      "inline_image_count": 3,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6aa0116fdfc002c7",
       "source": "Global News Canada",
       "title": "Talks with Meta ‘confidential’ following reports of possible deal, Miller says",
@@ -3751,35 +3842,6 @@
       "word_count": 691,
       "paragraph_count": 22,
       "inline_image_count": 5,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "40557600e22cf159",
-      "source": "Global News Canada",
-      "title": "Calgary to explore new rules for data centres but temporary pause will go to public hearing",
-      "url": "https://globalnews.ca/news/12154507/calgary-to-explore-new-rules-for-data-centres-but-temporary-pause-will-go-to-public-hearing",
-      "published": "2026-11-18T14:42:37+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 676,
-      "paragraph_count": 21,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4743,6 +4805,88 @@
       ]
     },
     {
+      "id": "8e8744b6288fbd34",
+      "source": "Toronto Star",
+      "title": "A petition demanding U.S. Ambassador Pete Hoekstra's removal signed by nearly 300,000",
+      "url": "https://www.thestar.com/news/canada/a-petition-demanding-u-s-ambassador-pete-hoekstra-s-removal-signed-by-nearly-300-000/article_ba306624-a725-538c-8857-ee59d000fe22.html",
+      "published": "2026-11-18T18:27:23+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 215,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "676903d5c346585e",
+      "source": "Toronto Star",
+      "title": "Inquest into Jamal Francique's death shown videos from after shooting",
+      "url": "https://www.thestar.com/news/ontario/inquest-into-jamal-francique-s-death-shown-videos-from-after-shooting/article_0fbb74ca-bab6-55bb-855e-5eb1ff75cbd8.html",
+      "published": "2026-11-18T18:12:43+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 220,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ff3937e77a1a491a",
       "source": "Toronto Star",
       "title": "Montreal metro station vandalized; group claims responsibility",
@@ -4959,64 +5103,6 @@
       "content_status": "full",
       "word_count": 227,
       "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c5826c6f443f3e2c",
-      "source": "Toronto Star",
-      "title": "Ex-Alberta premier Jason Kenney says Quebec Conservatives could take power",
-      "url": "https://www.thestar.com/news/canada/quebec/ex-alberta-premier-jason-kenney-says-quebec-conservatives-could-take-power/article_5f998984-c69e-50aa-a760-7b5a703adcea.html",
-      "published": "2026-11-18T16:33:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 435,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2fa8bde4417728ac",
-      "source": "Toronto Star",
-      "title": "Ontario to increase fines against drivers who create excessive noise",
-      "url": "https://www.thestar.com/news/ontario/ontario-to-increase-fines-against-drivers-who-create-excessive-noise/article_bcbce41a-7cfe-57b9-8b9f-ce665d5b0cad.html",
-      "published": "2026-11-18T15:52:15+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 154,
-      "paragraph_count": 9,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
