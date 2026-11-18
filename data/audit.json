@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-18T11:15:53.309495+00:00",
-  "generated_at_london": "2026-11-18T06:15:53.309495-05:00",
-  "news_generated_at": "2026-11-18T11:10:09.878623+00:00",
+  "generated_at": "2026-11-18T11:28:10.352198+00:00",
+  "generated_at_london": "2026-11-18T06:28:10.352198-05:00",
+  "news_generated_at": "2026-11-18T11:26:40.122758+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 683,
+    "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 100,
@@ -85,25 +85,26 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 854,
-      "average_quality": 78,
+      "average_words": 782,
+      "average_quality": 75,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "trafilatura:postmedia-last-resort": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-18T11:00:00+00:00",
+      "latest_published": "2026-11-18T11:13:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T11:08:52.420156+00:00",
+      "last_scrape": "2026-11-18T11:25:06.682537+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -121,10 +122,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-18T10:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-18T10:06:38.330890+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "104.7 Heart FM",
@@ -249,7 +250,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -268,7 +269,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -441,7 +442,7 @@
       "latest_published": "2026-11-18T11:00:01+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-18T11:06:43.039415+00:00",
+      "last_scrape": "2026-11-18T11:12:46.383402+00:00",
       "last_error": ""
     },
     {
@@ -1597,6 +1598,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "cbdd600299c22042",
+      "source": "National Post",
+      "title": "Deutsche Bank worried about Canadian steelmaker and its Russian owners, leaked records show",
+      "url": "https://nationalpost.com/news/canada/inside-deutsche-bank-evraz-russia",
+      "published": "2026-11-18T11:13:49+00:00",
+      "content_status": "partial",
+      "word_count": 45,
+      "quality_score": 48,
+      "extraction_method": "trafilatura:postmedia-last-resort"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "afbaeb1113f97adb",
       "source": "National Post",
       "title": "Gas fell under a dollar at a Winnipeg gas station: ‘Insane’",
@@ -1620,21 +1636,6 @@
       "content_status": "full",
       "word_count": 732,
       "quality_score": 79,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "e9ea59df1236d84b",
-      "source": "National Post",
-      "title": "House of Commons offers new ‘bug sweeps’ to MPs on foreign affairs committee",
-      "url": "https://nationalpost.com/news/canadian-politics/house-of-commons-offers-new-bug-sweeps-to-mps-on-foreign-affairs-committee",
-      "published": "2026-11-17T09:00:00+00:00",
-      "content_status": "full",
-      "word_count": 763,
-      "quality_score": 77,
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
@@ -4308,6 +4309,35 @@
       ]
     },
     {
+      "id": "cbdd600299c22042",
+      "source": "National Post",
+      "title": "Deutsche Bank worried about Canadian steelmaker and its Russian owners, leaked records show",
+      "url": "https://nationalpost.com/news/canada/inside-deutsche-bank-evraz-russia",
+      "published": "2026-11-18T11:13:49+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 45,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "trafilatura:postmedia-last-resort",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "794ebec1e8824651",
       "source": "National Post",
       "title": "Large majority ‘concerned’ about Carney’s hiked immigration targets: poll",
@@ -4561,35 +4591,6 @@
       "paragraph_count": 32,
       "inline_image_count": 0,
       "quality_score": 83,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e9ea59df1236d84b",
-      "source": "National Post",
-      "title": "House of Commons offers new ‘bug sweeps’ to MPs on foreign affairs committee",
-      "url": "https://nationalpost.com/news/canadian-politics/house-of-commons-offers-new-bug-sweeps-to-mps-on-foreign-affairs-committee",
-      "published": "2026-11-17T09:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 763,
-      "paragraph_count": 28,
-      "inline_image_count": 0,
-      "quality_score": 77,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "postmedia",
