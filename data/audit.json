@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-19T17:23:03.767606+00:00",
-  "generated_at_london": "2026-11-19T12:23:03.767606-05:00",
-  "news_generated_at": "2026-11-19T17:15:50.363811+00:00",
+  "generated_at": "2026-11-19T17:32:46.246692+00:00",
+  "generated_at_london": "2026-11-19T12:32:46.246692-05:00",
+  "news_generated_at": "2026-11-19T17:30:39.331614+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 721,
+    "archive_story_count": 723,
     "source_count": 28,
-    "audited_story_count": 112,
-    "pass_story_count": 103,
+    "audited_story_count": 113,
+    "pass_story_count": 105,
     "review_story_count": 5,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
     "warning_issue_count": 8,
     "info_issue_count": 90,
     "healthy_source_count": 10,
@@ -133,24 +133,25 @@
       "collector_status": "healthy",
       "profile": "global",
       "sample_size": 10,
-      "pass": 8,
+      "pass": 9,
       "review": 0,
-      "fail": 2,
-      "pass_rate": 80,
+      "fail": 1,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 407,
-      "average_quality": 96,
+      "average_words": 427,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
+      "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-19T14:55:31+00:00",
+      "latest_published": "2026-11-19T17:15:51+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T15:08:30.110870+00:00",
+      "last_scrape": "2026-11-19T17:28:26.530494+00:00",
       "last_error": ""
     },
     {
@@ -183,7 +184,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -201,10 +202,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-19T16:32:31+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-19T16:57:17.011548+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -252,7 +253,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -582,26 +583,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "police",
-      "sample_size": 5,
-      "pass": 5,
+      "sample_size": 6,
+      "pass": 6,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 268,
+      "average_words": 282,
       "average_quality": 73,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
         "dom:semantic-rich-v1": 3,
-        "reader:semantic-rich-v1": 2
+        "reader:semantic-rich-v1": 2,
+        "dom:police:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 2,
       "latest_published": "2026-11-19T05:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 5,
-      "last_scrape": "2026-11-19T14:03:58.291844+00:00",
+      "tracked": 6,
+      "last_scrape": "2026-11-19T17:26:48.357351+00:00",
       "last_error": ""
     },
     {
@@ -680,7 +682,7 @@
       "latest_published": "2026-11-19T17:01:18+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T17:13:27.576848+00:00",
+      "last_scrape": "2026-11-19T17:28:30.516695+00:00",
       "last_error": ""
     },
     {
@@ -751,21 +753,6 @@
       "published": "2026-11-13T05:00:00+00:00",
       "content_status": "full",
       "word_count": 0,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "41 words",
-      "story_id": "6dd3a30ecabaad42",
-      "source": "Global News Canada",
-      "title": "Watch: Global Okanagan News at 5:30 p.m. – Nov. 18",
-      "url": "https://globalnews.ca/news/9913127/watch-global-okanagan-news-at-530",
-      "published": "2026-11-18T23:00:38+00:00",
-      "content_status": "full",
-      "word_count": 41,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1569,6 +1556,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "83c5098b62a24037",
+      "source": "Global News Canada",
+      "title": "Report into deadly Manitoba plane crash raises concerns about weight balance, fuel",
+      "url": "https://globalnews.ca/news/12157991/manitoba-plane-crash-tsb-report",
+      "published": "2026-11-19T17:15:51+00:00",
+      "content_status": "full",
+      "word_count": 240,
+      "quality_score": 72,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e76941deb2c8c019",
       "source": "Global News Canada",
       "title": "Saskatoon proposes 5.45% property tax increase in next year’s budget",
@@ -1591,21 +1593,6 @@
       "published": "2026-11-19T14:55:31+00:00",
       "content_status": "full",
       "word_count": 904,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "6dd3a30ecabaad42",
-      "source": "Global News Canada",
-      "title": "Watch: Global Okanagan News at 5:30 p.m. – Nov. 18",
-      "url": "https://globalnews.ca/news/9913127/watch-global-okanagan-news-at-530",
-      "published": "2026-11-18T23:00:38+00:00",
-      "content_status": "full",
-      "word_count": 41,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2992,6 +2979,28 @@
       ]
     },
     {
+      "id": "31d7255f65f6c235",
+      "source": "London Police Service",
+      "title": "Human trafficking",
+      "url": "https://www.londonpolice.ca/news/posts/human-trafficking-26-105351",
+      "published": "2026-11-19T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 350,
+      "paragraph_count": 11,
+      "inline_image_count": 1,
+      "quality_score": 74,
+      "quality_grade": "good",
+      "extraction_method": "dom:police:main",
+      "extraction_profile": "police",
+      "local_score": 100,
+      "issues": []
+    },
+    {
       "id": "9eea3e88e0cefd79",
       "source": "London Police Service",
       "title": "Human trafficking investigation",
@@ -3635,6 +3644,35 @@
       "issues": []
     },
     {
+      "id": "83c5098b62a24037",
+      "source": "Global News Canada",
+      "title": "Report into deadly Manitoba plane crash raises concerns about weight balance, fuel",
+      "url": "https://globalnews.ca/news/12157991/manitoba-plane-crash-tsb-report",
+      "published": "2026-11-19T17:15:51+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 240,
+      "paragraph_count": 7,
+      "inline_image_count": 2,
+      "quality_score": 72,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f6e8117a3796625d",
       "source": "Global News Canada",
       "title": "Travel advisories can help assess China detention risk, Anand says",
@@ -3893,41 +3931,6 @@
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6dd3a30ecabaad42",
-      "source": "Global News Canada",
-      "title": "Watch: Global Okanagan News at 5:30 p.m. – Nov. 18",
-      "url": "https://globalnews.ca/news/9913127/watch-global-okanagan-news-at-530",
-      "published": "2026-11-18T23:00:38+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 41,
-      "paragraph_count": 2,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "41 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
