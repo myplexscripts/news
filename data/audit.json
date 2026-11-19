@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-19T18:56:13.886303+00:00",
-  "generated_at_london": "2026-11-19T13:56:13.886303-05:00",
-  "news_generated_at": "2026-11-19T18:48:54.661316+00:00",
+  "generated_at": "2026-11-19T19:06:56.528753+00:00",
+  "generated_at_london": "2026-11-19T14:06:56.528753-05:00",
+  "news_generated_at": "2026-11-19T19:04:24.126929+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 737,
+    "archive_story_count": 738,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 110,
-    "review_story_count": 3,
+    "pass_story_count": 109,
+    "review_story_count": 4,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 6,
-    "info_issue_count": 95,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "warning_issue_count": 8,
+    "info_issue_count": 94,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -111,19 +111,47 @@
       "fail": 1,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 453,
-      "average_quality": 96,
+      "average_words": 420,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 1,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-19T18:29:13+00:00",
+      "latest_published": "2026-11-19T19:00:12+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T18:31:18.748373+00:00",
+      "last_scrape": "2026-11-19T19:02:06.311333+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 366,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 11,
+      "latest_published": "2026-11-19T18:34:32+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-19T19:02:09.901228+00:00",
       "last_error": ""
     },
     {
@@ -440,7 +468,7 @@
       "warning_issues": 0,
       "info_issues": 13,
       "latest_published": "2026-11-19T17:46:57.533000+00:00",
-      "found_this_run": 4,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-11-19T18:04:30.323232+00:00",
       "last_error": ""
@@ -627,7 +655,7 @@
       "latest_published": "2026-11-19T18:29:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T18:46:37.115155+00:00",
+      "last_scrape": "2026-11-19T19:02:08.368327+00:00",
       "last_error": ""
     },
     {
@@ -682,32 +710,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-19T18:15:02.914980+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 358,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-19T18:29:01+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-19T18:46:38.478627+00:00",
       "last_error": ""
     },
     {
@@ -858,6 +860,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "df9b25aca368ffbc",
+      "source": "Toronto Star",
+      "title": "Court quashes B.C. mine's substantial start determination, orders consultation",
+      "url": "https://www.thestar.com/news/canada/british-columbia/court-quashes-b-c-mine-s-substantial-start-determination-orders-consultation/article_78851ef6-e507-52bd-8cbf-90300fda7802.html",
+      "published": "2026-11-19T18:34:32+00:00",
+      "content_status": "full",
+      "word_count": 232,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "df9b25aca368ffbc",
+      "source": "Toronto Star",
+      "title": "Court quashes B.C. mine's substantial start determination, orders consultation",
+      "url": "https://www.thestar.com/news/canada/british-columbia/court-quashes-b-c-mine-s-substantial-start-determination-orders-consultation/article_78851ef6-e507-52bd-8cbf-90300fda7802.html",
+      "published": "2026-11-19T18:34:32+00:00",
+      "content_status": "full",
+      "word_count": 232,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1464,21 +1496,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0af0b25337085046",
-      "source": "Global News Canada",
-      "title": "Chow to shuffle city hall leadership, decide whether to sit on Toronto police board",
-      "url": "https://globalnews.ca/news/12157656/olivia-chow-toronto-leadership",
-      "published": "2026-11-19T13:11:21+00:00",
-      "content_status": "full",
-      "word_count": 140,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "6b0c7306e8207dc0",
       "source": "Global News Canada",
       "title": "Former top Mountie to be sentenced for assault on teen in B.C. court",
@@ -1509,15 +1526,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "74ec8438b18bb77b",
+      "story_id": "0b581cdfa15b2a73",
       "source": "Global News Canada",
-      "title": "New designer drug found in Toronto fentanyl supply",
-      "url": "https://globalnews.ca/news/12157663/new-designer-drug-found-in-toronto-fentanyl-supply",
-      "published": "2026-11-19T13:22:30+00:00",
+      "title": "Man arrested over alleged racist threat to run over people in Toronto",
+      "url": "https://globalnews.ca/news/12158190/hamilton-police-toronto-arrest",
+      "published": "2026-11-19T19:00:12+00:00",
       "content_status": "full",
-      "word_count": 859,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 188,
+      "quality_score": 70,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -1578,6 +1595,21 @@
       "word_count": 15,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2728bee4c0222712",
+      "source": "Global News Canada",
+      "title": "‘Difficult to predict’ timeline to end CAF ammunition shortage: official",
+      "url": "https://globalnews.ca/news/12158159/canadian-forces-ammunition-shortage-plans",
+      "published": "2026-11-19T18:56:50+00:00",
+      "content_status": "full",
+      "word_count": 479,
+      "quality_score": 83,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -2124,6 +2156,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "df9b25aca368ffbc",
+      "source": "Toronto Star",
+      "title": "Court quashes B.C. mine's substantial start determination, orders consultation",
+      "url": "https://www.thestar.com/news/canada/british-columbia/court-quashes-b-c-mine-s-substantial-start-determination-orders-consultation/article_78851ef6-e507-52bd-8cbf-90300fda7802.html",
+      "published": "2026-11-19T18:34:32+00:00",
+      "content_status": "full",
+      "word_count": 232,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6db50d657c678c21",
       "source": "Toronto Star",
       "title": "Forensic pathologist 'shocked' Francique survived as long as he did after gunshot",
@@ -2176,36 +2223,6 @@
       "published": "2026-11-19T17:39:44+00:00",
       "content_status": "full",
       "word_count": 905,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "a2c201027f0695c9",
-      "source": "Toronto Star",
-      "title": "Poilievre brushes off questions about staff departures from his office",
-      "url": "https://www.thestar.com/news/canada/poilievre-brushes-off-questions-about-staff-departures-from-his-office/article_a74353e6-2647-50d9-a894-df13997f231c.html",
-      "published": "2026-11-19T16:32:31+00:00",
-      "content_status": "full",
-      "word_count": 150,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a2c201027f0695c9",
-      "source": "Toronto Star",
-      "title": "Poilievre brushes off questions about staff departures from his office",
-      "url": "https://www.thestar.com/news/canada/poilievre-brushes-off-questions-about-staff-departures-from-his-office/article_a74353e6-2647-50d9-a894-df13997f231c.html",
-      "published": "2026-11-19T16:32:31+00:00",
-      "content_status": "full",
-      "word_count": 150,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3736,6 +3753,64 @@
       "issues": []
     },
     {
+      "id": "0b581cdfa15b2a73",
+      "source": "Global News Canada",
+      "title": "Man arrested over alleged racist threat to run over people in Toronto",
+      "url": "https://globalnews.ca/news/12158190/hamilton-police-toronto-arrest",
+      "published": "2026-11-19T19:00:12+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 188,
+      "paragraph_count": 8,
+      "inline_image_count": 1,
+      "quality_score": 70,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "2728bee4c0222712",
+      "source": "Global News Canada",
+      "title": "‘Difficult to predict’ timeline to end CAF ammunition shortage: official",
+      "url": "https://globalnews.ca/news/12158159/canadian-forces-ammunition-shortage-plans",
+      "published": "2026-11-19T18:56:50+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 479,
+      "paragraph_count": 14,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4dc240245c2c944e",
       "source": "Global News Canada",
       "title": "Quebec survey captures complexity of grief among people affected by suicide",
@@ -3958,64 +4033,6 @@
       "content_status": "full",
       "word_count": 212,
       "paragraph_count": 7,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "74ec8438b18bb77b",
-      "source": "Global News Canada",
-      "title": "New designer drug found in Toronto fentanyl supply",
-      "url": "https://globalnews.ca/news/12157663/new-designer-drug-found-in-toronto-fentanyl-supply",
-      "published": "2026-11-19T13:22:30+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 859,
-      "paragraph_count": 27,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0af0b25337085046",
-      "source": "Global News Canada",
-      "title": "Chow to shuffle city hall leadership, decide whether to sit on Toronto police board",
-      "url": "https://globalnews.ca/news/12157656/olivia-chow-toronto-leadership",
-      "published": "2026-11-19T13:11:21+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 140,
-      "paragraph_count": 5,
       "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4932,6 +4949,47 @@
       ]
     },
     {
+      "id": "df9b25aca368ffbc",
+      "source": "Toronto Star",
+      "title": "Court quashes B.C. mine's substantial start determination, orders consultation",
+      "url": "https://www.thestar.com/news/canada/british-columbia/court-quashes-b-c-mine-s-substantial-start-determination-orders-consultation/article_78851ef6-e507-52bd-8cbf-90300fda7802.html",
+      "published": "2026-11-19T18:34:32+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 232,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "77a30b594ecb45e9",
       "source": "Toronto Star",
       "title": "Regulatory harmonization not a goal of associate membership for Canada: EU ambassador",
@@ -5190,41 +5248,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a2c201027f0695c9",
-      "source": "Toronto Star",
-      "title": "Poilievre brushes off questions about staff departures from his office",
-      "url": "https://www.thestar.com/news/canada/poilievre-brushes-off-questions-about-staff-departures-from-his-office/article_a74353e6-2647-50d9-a894-df13997f231c.html",
-      "published": "2026-11-19T16:32:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 150,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
