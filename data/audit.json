@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-19T23:05:13.899227+00:00",
-  "generated_at_london": "2026-11-19T18:05:13.899227-05:00",
-  "news_generated_at": "2026-11-19T22:59:10.389087+00:00",
+  "generated_at": "2026-11-19T23:19:05.840928+00:00",
+  "generated_at_london": "2026-11-19T18:19:05.840928-05:00",
+  "news_generated_at": "2026-11-19T23:16:26.590792+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 733,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 7,
     "info_issue_count": 96,
-    "healthy_source_count": 13,
-    "review_source_count": 3,
+    "healthy_source_count": 11,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -125,6 +125,58 @@
       "tracked": 30,
       "last_scrape": "2026-11-19T21:54:00.470243+00:00",
       "last_error": ""
+    },
+    {
+      "source": "London Transit Commission",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 381,
+      "average_quality": 78,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-11-18T05:00:00+00:00",
+      "found_this_run": 0,
+      "tracked": 1,
+      "last_scrape": "2026-11-18T20:15:43.828991+00:00",
+      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7809f167be90>, 'Connection to www.londontransit.ca time"
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 367,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 12,
+      "latest_published": "2026-11-19T22:26:57+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-11-19T22:41:35.259843+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -321,7 +373,7 @@
     {
       "source": "Middlesex-London Health Unit",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -337,10 +389,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='www.healthunit.com', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.healthunit.com', port=443): Read timed out. (read timeout=8)\"))"
+      "last_error": ""
     },
     {
       "source": "Ontario Newsroom",
@@ -552,32 +604,6 @@
       "last_error": ""
     },
     {
-      "source": "London Transit Commission",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "generic",
-      "sample_size": 1,
-      "pass": 1,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 381,
-      "average_quality": 78,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 1,
-      "latest_published": "2026-11-18T05:00:00+00:00",
-      "found_this_run": 3,
-      "tracked": 1,
-      "last_scrape": "2026-11-18T20:15:43.828991+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Middlesex County",
       "status": "healthy",
       "collector_status": "healthy",
@@ -627,7 +653,7 @@
       "latest_published": "2026-11-19T22:16:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T22:56:47.679145+00:00",
+      "last_scrape": "2026-11-19T23:13:49.164555+00:00",
       "last_error": ""
     },
     {
@@ -668,46 +694,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 538,
-      "average_quality": 89,
+      "average_words": 689,
+      "average_quality": 88,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 8,
-        "dom:globe:article#content-gate": 2
+        "dom:globe:article#content-gate": 3,
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-19T22:28:50.564000+00:00",
+      "latest_published": "2026-11-19T22:58:13.614000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T22:41:28.170823+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 367,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-19T22:26:57+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-19T22:41:35.259843+00:00",
+      "last_scrape": "2026-11-19T23:13:43.782553+00:00",
       "last_error": ""
     },
     {
@@ -1941,6 +1941,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "bd4372803995bb5f",
+      "source": "The Globe and Mail",
+      "title": "Canadian producer Brian Ahern helped lay the groundwork for the Americana sound",
+      "url": "https://www.theglobeandmail.com/canada/article-producer-brian-ahern-helped-lay-groundwork-for-americana-sound",
+      "published": "2026-11-19T22:58:13.614000+00:00",
+      "content_status": "full",
+      "word_count": 1903,
+      "quality_score": 90,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1966,21 +1981,6 @@
       "published": "2026-11-19T19:00:00+00:00",
       "content_status": "partial",
       "word_count": 813,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "871aa3e4ad028896",
-      "source": "The Globe and Mail",
-      "title": "Nasa’s Voyager 1 is an awe-inspiring one light-day away from Earth",
-      "url": "https://www.theglobeandmail.com/canada/science/article-nasa-voyager-1-one-light-day-away-from-earth",
-      "published": "2026-11-19T15:09:24.145000+00:00",
-      "content_status": "partial",
-      "word_count": 391,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -4399,6 +4399,35 @@
       ]
     },
     {
+      "id": "bd4372803995bb5f",
+      "source": "The Globe and Mail",
+      "title": "Canadian producer Brian Ahern helped lay the groundwork for the Americana sound",
+      "url": "https://www.theglobeandmail.com/canada/article-producer-brian-ahern-helped-lay-groundwork-for-americana-sound",
+      "published": "2026-11-19T22:58:13.614000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1903,
+      "paragraph_count": 46,
+      "inline_image_count": 2,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "bb140d55da78d050",
       "source": "The Globe and Mail",
       "title": "Why is the federal government fighting to keep the Stellantis Brampton plant open? Ask our reporter",
@@ -4669,35 +4698,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "871aa3e4ad028896",
-      "source": "The Globe and Mail",
-      "title": "Nasa’s Voyager 1 is an awe-inspiring one light-day away from Earth",
-      "url": "https://www.theglobeandmail.com/canada/science/article-nasa-voyager-1-one-light-day-away-from-earth",
-      "published": "2026-11-19T15:09:24.145000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 391,
-      "paragraph_count": 13,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
