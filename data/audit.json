@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-19T19:58:37.648775+00:00",
-  "generated_at_london": "2026-11-19T14:58:37.648775-05:00",
-  "news_generated_at": "2026-11-19T19:51:08.958848+00:00",
+  "generated_at": "2026-11-19T20:09:08.795324+00:00",
+  "generated_at_london": "2026-11-19T15:09:08.795324-05:00",
+  "news_generated_at": "2026-11-19T20:06:57.357628+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 733,
+    "archive_story_count": 734,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 111,
+    "pass_story_count": 112,
     "review_story_count": 3,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
     "warning_issue_count": 6,
     "info_issue_count": 95,
     "healthy_source_count": 13,
@@ -101,30 +101,30 @@
       "last_error": ""
     },
     {
-      "source": "Global News Canada",
+      "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
-      "profile": "global",
+      "collector_status": "degraded",
+      "profile": "star",
       "sample_size": 10,
-      "pass": 9,
+      "pass": 10,
       "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "fail": 0,
+      "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 494,
+      "average_words": 382,
       "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
+      "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 10
       },
-      "critical_issues": 1,
+      "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-19T19:30:59+00:00",
-      "found_this_run": 10,
+      "info_issues": 11,
+      "latest_published": "2026-11-19T18:34:32+00:00",
+      "found_this_run": 0,
       "tracked": 30,
-      "last_scrape": "2026-11-19T19:32:56.259749+00:00",
-      "last_error": ""
+      "last_scrape": "2026-11-19T19:02:09.901228+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -498,6 +498,33 @@
       "last_error": ""
     },
     {
+      "source": "Global News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "global",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 515,
+      "average_quality": 94,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-19T19:49:54+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-19T20:04:36.874099+00:00",
+      "last_error": ""
+    },
+    {
       "source": "London Health Sciences Centre",
       "status": "healthy",
       "collector_status": "healthy",
@@ -627,7 +654,7 @@
       "latest_published": "2026-11-19T18:29:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T19:48:46.378978+00:00",
+      "last_scrape": "2026-11-19T20:04:39.233060+00:00",
       "last_error": ""
     },
     {
@@ -684,32 +711,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 382,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-19T18:34:32+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-19T19:02:09.901228+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -750,21 +751,6 @@
       "published": "2026-11-13T05:00:00+00:00",
       "content_status": "full",
       "word_count": 0,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "15 words",
-      "story_id": "b9952a9a814122a8",
-      "source": "Global News Canada",
-      "title": "Winnipeg Blue Bombers fire head coach Mike O’Shea after 12 seasons",
-      "url": "https://globalnews.ca/news/12157716/winnipeg-blue-bombers-mike-oshea-fired",
-      "published": "2026-11-19T14:01:18+00:00",
-      "content_status": "full",
-      "word_count": 15,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1538,6 +1524,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "fd7b817f6dda8975",
+      "source": "Global News Canada",
+      "title": "Saskatchewan recovery centre accused of falsifying record to be investigated by auditor",
+      "url": "https://globalnews.ca/news/12158291/saskatchewan-auditor-general-ehn-willowview-recovery-centre",
+      "published": "2026-11-19T19:49:54+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 73,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "f6e8117a3796625d",
       "source": "Global News Canada",
       "title": "Travel advisories can help assess China detention risk, Anand says",
@@ -1545,21 +1546,6 @@
       "published": "2026-11-19T14:55:31+00:00",
       "content_status": "full",
       "word_count": 904,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b9952a9a814122a8",
-      "source": "Global News Canada",
-      "title": "Winnipeg Blue Bombers fire head coach Mike O’Shea after 12 seasons",
-      "url": "https://globalnews.ca/news/12157716/winnipeg-blue-bombers-mike-oshea-fired",
-      "published": "2026-11-19T14:01:18+00:00",
-      "content_status": "full",
-      "word_count": 15,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3757,6 +3743,35 @@
       "issues": []
     },
     {
+      "id": "fd7b817f6dda8975",
+      "source": "Global News Canada",
+      "title": "Saskatchewan recovery centre accused of falsifying record to be investigated by auditor",
+      "url": "https://globalnews.ca/news/12158291/saskatchewan-auditor-general-ehn-willowview-recovery-centre",
+      "published": "2026-11-19T19:49:54+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 227,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 73,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c62f0d96e135990a",
       "source": "Global News Canada",
       "title": "Bidding war for Telus expected, analysts say, as Quebecor calls out Bell",
@@ -4009,41 +4024,6 @@
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b9952a9a814122a8",
-      "source": "Global News Canada",
-      "title": "Winnipeg Blue Bombers fire head coach Mike O’Shea after 12 seasons",
-      "url": "https://globalnews.ca/news/12157716/winnipeg-blue-bombers-mike-oshea-fired",
-      "published": "2026-11-19T14:01:18+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 15,
-      "paragraph_count": 2,
-      "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "15 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
