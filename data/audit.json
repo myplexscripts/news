@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-19T20:12:29.351839+00:00",
-  "generated_at_london": "2026-11-19T15:12:29.351839-05:00",
-  "news_generated_at": "2026-11-19T20:06:57.357628+00:00",
+  "generated_at": "2026-11-19T20:24:39.130048+00:00",
+  "generated_at_london": "2026-11-19T15:24:39.130048-05:00",
+  "news_generated_at": "2026-11-19T20:22:28.687596+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 733,
+    "archive_story_count": 735,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 111,
-    "review_story_count": 4,
+    "pass_story_count": 110,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 95,
     "healthy_source_count": 12,
     "review_source_count": 4,
@@ -111,46 +111,48 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 514,
-      "average_quality": 96,
+      "average_words": 462,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-19T19:49:54+00:00",
+      "latest_published": "2026-11-19T20:17:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T20:04:36.874099+00:00",
+      "last_scrape": "2026-11-19T20:20:00.429274+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 382,
-      "average_quality": 96,
+      "average_words": 341,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 11,
-      "latest_published": "2026-11-19T18:34:32+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-19T19:49:53+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T19:02:09.901228+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-19T20:20:05.124336+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -653,7 +655,7 @@
       "latest_published": "2026-11-19T18:29:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T20:04:39.233060+00:00",
+      "last_scrape": "2026-11-19T20:20:03.553803+00:00",
       "last_error": ""
     },
     {
@@ -857,6 +859,36 @@
       "word_count": 223,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "e17882e889702a91",
+      "source": "Toronto Star",
+      "title": "Halton cop charged after shooting man multiple times during traffic stop: SIU",
+      "url": "https://www.thestar.com/news/ontario/halton-cop-charged-after-shooting-man-multiple-times-during-traffic-stop-siu/article_88689ad3-b532-5357-9909-ca3f72f40baf.html",
+      "published": "2026-11-19T19:49:53+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "e17882e889702a91",
+      "source": "Toronto Star",
+      "title": "Halton cop charged after shooting man multiple times during traffic stop: SIU",
+      "url": "https://www.thestar.com/news/ontario/halton-cop-charged-after-shooting-man-multiple-times-during-traffic-stop-siu/article_88689ad3-b532-5357-9909-ca3f72f40baf.html",
+      "published": "2026-11-19T19:49:53+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1478,6 +1510,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "e0119f0470bede2c",
+      "source": "Global News Canada",
+      "title": "Death toll in Burlington house fire climbs to 4 with mother’s passing",
+      "url": "https://globalnews.ca/news/12157955/stuart-family-burlington-fire-death",
+      "published": "2026-11-19T20:17:43+00:00",
+      "content_status": "full",
+      "word_count": 378,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "53a9b4d599145ffb",
       "source": "Global News Canada",
       "title": "Kelowna’s Apple Bowl expansion project moves forward despite parking concerns",
@@ -1545,21 +1592,6 @@
       "published": "2026-11-19T19:49:54+00:00",
       "content_status": "full",
       "word_count": 223,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f6e8117a3796625d",
-      "source": "Global News Canada",
-      "title": "Travel advisories can help assess China detention risk, Anand says",
-      "url": "https://globalnews.ca/news/12157741/anita-anand-canadians-china",
-      "published": "2026-11-19T14:55:31+00:00",
-      "content_status": "full",
-      "word_count": 904,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2183,15 +2215,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "a222fb8dbd2d4b25",
+      "story_id": "e17882e889702a91",
       "source": "Toronto Star",
-      "title": "Green think-tank welcomes Alberta well cleanup plan, but says more needed",
-      "url": "https://www.thestar.com/business/green-think-tank-welcomes-alberta-well-cleanup-plan-but-says-more-needed/article_1f282a39-04e7-5cb6-ac0b-117d820c76da.html",
-      "published": "2026-11-19T16:59:49+00:00",
+      "title": "Halton cop charged after shooting man multiple times during traffic stop: SIU",
+      "url": "https://www.thestar.com/news/ontario/halton-cop-charged-after-shooting-man-multiple-times-during-traffic-stop-siu/article_88689ad3-b532-5357-9909-ca3f72f40baf.html",
+      "published": "2026-11-19T19:49:53+00:00",
       "content_status": "full",
-      "word_count": 610,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3757,6 +3789,35 @@
       "issues": []
     },
     {
+      "id": "e0119f0470bede2c",
+      "source": "Global News Canada",
+      "title": "Death toll in Burlington house fire climbs to 4 with mother’s passing",
+      "url": "https://globalnews.ca/news/12157955/stuart-family-burlington-fire-death",
+      "published": "2026-11-19T20:17:43+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 378,
+      "paragraph_count": 13,
+      "inline_image_count": 1,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fd7b817f6dda8975",
       "source": "Global News Canada",
       "title": "Saskatchewan recovery centre accused of falsifying record to be investigated by auditor",
@@ -4009,35 +4070,6 @@
       "word_count": 240,
       "paragraph_count": 7,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f6e8117a3796625d",
-      "source": "Global News Canada",
-      "title": "Travel advisories can help assess China detention risk, Anand says",
-      "url": "https://globalnews.ca/news/12157741/anita-anand-canadians-china",
-      "published": "2026-11-19T14:55:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 904,
-      "paragraph_count": 28,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4959,6 +4991,47 @@
       ]
     },
     {
+      "id": "e17882e889702a91",
+      "source": "Toronto Star",
+      "title": "Halton cop charged after shooting man multiple times during traffic stop: SIU",
+      "url": "https://www.thestar.com/news/ontario/halton-cop-charged-after-shooting-man-multiple-times-during-traffic-stop-siu/article_88689ad3-b532-5357-9909-ca3f72f40baf.html",
+      "published": "2026-11-19T19:49:53+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 200,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "df9b25aca368ffbc",
       "source": "Toronto Star",
       "title": "Court quashes B.C. mine's substantial start determination, orders consultation",
@@ -5210,35 +5283,6 @@
       "content_status": "full",
       "word_count": 224,
       "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a222fb8dbd2d4b25",
-      "source": "Toronto Star",
-      "title": "Green think-tank welcomes Alberta well cleanup plan, but says more needed",
-      "url": "https://www.thestar.com/business/green-think-tank-welcomes-alberta-well-cleanup-plan-but-says-more-needed/article_1f282a39-04e7-5cb6-ac0b-117d820c76da.html",
-      "published": "2026-11-19T16:59:49+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 610,
-      "paragraph_count": 28,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
