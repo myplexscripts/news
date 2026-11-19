@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-19T14:23:59.337692+00:00",
-  "generated_at_london": "2026-11-19T09:23:59.337692-05:00",
+  "generated_at": "2026-11-19T14:27:43.978494+00:00",
+  "generated_at_london": "2026-11-19T09:27:43.978494-05:00",
   "news_generated_at": "2026-11-19T14:22:45.687034+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 717,
     "source_count": 28,
     "audited_story_count": 113,
-    "pass_story_count": 106,
-    "review_story_count": 4,
+    "pass_story_count": 105,
+    "review_story_count": 5,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 7,
+    "warning_issue_count": 8,
     "info_issue_count": 95,
-    "healthy_source_count": 12,
-    "review_source_count": 4,
+    "healthy_source_count": 11,
+    "review_source_count": 5,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -101,6 +101,33 @@
       "last_error": ""
     },
     {
+      "source": "City of London Newsroom",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "municipal",
+      "sample_size": 6,
+      "pass": 5,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 83,
+      "usable_body_rate": 100,
+      "average_words": 1889,
+      "average_quality": 85,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:semantic-rich-v1": 2,
+        "reader:semantic-rich-v1": 4
+      },
+      "critical_issues": 0,
+      "warning_issues": 1,
+      "info_issues": 4,
+      "latest_published": "2026-11-19T05:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 6,
+      "last_scrape": "2026-11-19T14:19:15.556143+00:00",
+      "last_error": ""
+    },
+    {
       "source": "Global News Canada",
       "status": "review",
       "collector_status": "healthy",
@@ -111,7 +138,7 @@
       "fail": 2,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 347,
+      "average_words": 345,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
@@ -472,34 +499,6 @@
       "last_error": ""
     },
     {
-      "source": "City of London Newsroom",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "municipal",
-      "sample_size": 6,
-      "pass": 6,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 1889,
-      "average_quality": 83,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:municipal:.field--name-body": 1,
-        "reader:semantic-rich-v1": 4,
-        "dom:semantic-rich-v1": 1
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 4,
-      "latest_published": "2026-11-19T05:00:00+00:00",
-      "found_this_run": 10,
-      "tracked": 6,
-      "last_scrape": "2026-11-19T14:19:15.556143+00:00",
-      "last_error": ""
-    },
-    {
       "source": "CityNews Canada",
       "status": "healthy",
       "collector_status": "healthy",
@@ -774,14 +773,14 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "36 words",
+      "detail": "15 words",
       "story_id": "b9952a9a814122a8",
       "source": "Global News Canada",
       "title": "Winnipeg Blue Bombers fire head coach Mike O’Shea after 12 seasons",
       "url": "https://globalnews.ca/news/12157716/winnipeg-blue-bombers-mike-oshea-fired",
       "published": "2026-11-19T14:01:18+00:00",
       "content_status": "full",
-      "word_count": 36,
+      "word_count": 15,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -859,6 +858,21 @@
       "word_count": 102,
       "quality_score": 45,
       "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "warning",
+      "code": "image_gallery_leak",
+      "message": "Several images appear consecutively with no article text between them.",
+      "detail": "3 consecutive images",
+      "story_id": "2d59e504bb0e1d9b",
+      "source": "City of London Newsroom",
+      "title": "Bradley Avenue extended with newly built road in southwest London",
+      "url": "https://london.ca/newsroom/feature/bradley-avenue-extended-newly-built-road-southwest-london",
+      "published": "2026-11-19T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 384,
+      "quality_score": 87,
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -1651,7 +1665,7 @@
       "url": "https://globalnews.ca/news/12157716/winnipeg-blue-bombers-mike-oshea-fired",
       "published": "2026-11-19T14:01:18+00:00",
       "content_status": "full",
-      "word_count": 36,
+      "word_count": 15,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2838,21 +2852,28 @@
       "title": "Bradley Avenue extended with newly built road in southwest London",
       "url": "https://london.ca/newsroom/feature/bradley-avenue-extended-newly-built-road-southwest-london",
       "published": "2026-11-19T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
+      "audit_status": "review",
+      "audit_score": 88,
       "critical_count": 0,
-      "warning_count": 0,
+      "warning_count": 1,
       "info_count": 0,
       "content_status": "full",
       "word_count": 384,
       "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 77,
+      "inline_image_count": 3,
+      "quality_score": 87,
       "quality_grade": "good",
-      "extraction_method": "dom:municipal:.field--name-body",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "municipal",
       "local_score": 87,
-      "issues": []
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "image_gallery_leak",
+          "message": "Several images appear consecutively with no article text between them.",
+          "detail": "3 consecutive images"
+        }
+      ]
     },
     {
       "id": "e2dbfe7683fbc8f5",
@@ -3727,7 +3748,7 @@
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 36,
+      "word_count": 15,
       "paragraph_count": 2,
       "inline_image_count": 2,
       "quality_score": 96,
@@ -3740,7 +3761,7 @@
           "severity": "critical",
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "36 words"
+          "detail": "15 words"
         },
         {
           "severity": "info",
