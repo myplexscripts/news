@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-20T13:18:03.593252+00:00",
-  "generated_at_london": "2026-11-20T08:18:03.593252-05:00",
-  "news_generated_at": "2026-11-20T13:04:06.530740+00:00",
+  "generated_at": "2026-11-20T13:22:27.362825+00:00",
+  "generated_at_london": "2026-11-20T08:22:27.362825-05:00",
+  "news_generated_at": "2026-11-20T13:20:12.830315+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 717,
+    "archive_story_count": 718,
     "source_count": 28,
     "audited_story_count": 117,
     "pass_story_count": 110,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 8,
-    "info_issue_count": 92,
+    "info_issue_count": 93,
     "healthy_source_count": 12,
     "review_source_count": 4,
     "error_source_count": 1,
@@ -111,25 +111,26 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 938,
-      "average_quality": 94,
+      "average_words": 812,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
-      "info_issues": 12,
-      "latest_published": "2026-11-20T12:00:00+00:00",
+      "info_issues": 13,
+      "latest_published": "2026-11-20T13:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T12:15:03.320953+00:00",
+      "last_scrape": "2026-11-20T13:17:45.961488+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -147,10 +148,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-20T12:32:11+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-20T12:46:37.977421+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -678,7 +679,7 @@
       "latest_published": "2026-11-20T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T13:02:11.535164+00:00",
+      "last_scrape": "2026-11-20T13:17:48.643260+00:00",
       "last_error": ""
     },
     {
@@ -1882,21 +1883,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "bd4372803995bb5f",
-      "source": "The Globe and Mail",
-      "title": "Canadian producer Brian Ahern helped lay the groundwork for the Americana sound",
-      "url": "https://www.theglobeandmail.com/canada/article-producer-brian-ahern-helped-lay-groundwork-for-americana-sound",
-      "published": "2026-11-19T22:58:13.614000+00:00",
-      "content_status": "full",
-      "word_count": 1895,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "cfb0853a1cdbead9",
       "source": "The Globe and Mail",
       "title": "Dateline comes to Canada: Keith Morrison and Diana Swain on true crime and Primetime",
@@ -1981,6 +1967,36 @@
       "word_count": 818,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "9b59429083d6f38e",
+      "source": "The Globe and Mail",
+      "title": "Tranquil setting and nearby school sold couple on Leaside home",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-34-glenbrae-ave-toronto-home-of-the-week",
+      "published": "2026-11-20T13:00:00+00:00",
+      "content_status": "full",
+      "word_count": 642,
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "9b59429083d6f38e",
+      "source": "The Globe and Mail",
+      "title": "Tranquil setting and nearby school sold couple on Leaside home",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-34-glenbrae-ave-toronto-home-of-the-week",
+      "published": "2026-11-20T13:00:00+00:00",
+      "content_status": "full",
+      "word_count": 642,
+      "quality_score": 87,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4356,6 +4372,41 @@
       ]
     },
     {
+      "id": "9b59429083d6f38e",
+      "source": "The Globe and Mail",
+      "title": "Tranquil setting and nearby school sold couple on Leaside home",
+      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-34-glenbrae-ave-toronto-home-of-the-week",
+      "published": "2026-11-20T13:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 642,
+      "paragraph_count": 39,
+      "inline_image_count": 0,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "cfb0853a1cdbead9",
       "source": "The Globe and Mail",
       "title": "Dateline comes to Canada: Keith Morrison and Diana Swain on true crime and Primetime",
@@ -4621,35 +4672,6 @@
       "paragraph_count": 17,
       "inline_image_count": 0,
       "quality_score": 86,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bd4372803995bb5f",
-      "source": "The Globe and Mail",
-      "title": "Canadian producer Brian Ahern helped lay the groundwork for the Americana sound",
-      "url": "https://www.theglobeandmail.com/canada/article-producer-brian-ahern-helped-lay-groundwork-for-americana-sound",
-      "published": "2026-11-19T22:58:13.614000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1895,
-      "paragraph_count": 44,
-      "inline_image_count": 2,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
