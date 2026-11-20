@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-20T22:51:22.945283+00:00",
-  "generated_at_london": "2026-11-20T17:51:22.945283-05:00",
-  "news_generated_at": "2026-11-20T22:45:03.716694+00:00",
+  "generated_at": "2026-11-20T23:01:45.989084+00:00",
+  "generated_at_london": "2026-11-20T18:01:45.989084-05:00",
+  "news_generated_at": "2026-11-20T22:59:59.346086+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 723,
+    "archive_story_count": 724,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 114,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 7,
-    "info_issue_count": 92,
+    "info_issue_count": 94,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-20T18:58:22+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T22:42:41.764736+00:00",
+      "last_scrape": "2026-11-20T22:58:07.879393+00:00",
       "last_error": ""
     },
     {
@@ -669,19 +669,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 757,
-      "average_quality": 96,
+      "average_words": 782,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 12,
-      "latest_published": "2026-11-20T21:55:40.301000+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-20T22:45:58.534000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T22:11:13.094369+00:00",
+      "last_scrape": "2026-11-20T22:58:03.824367+00:00",
       "last_error": ""
     },
     {
@@ -1953,6 +1954,36 @@
       "word_count": 1057,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "4cb134307549c8d2",
+      "source": "The Globe and Mail",
+      "title": "Stellantis agrees to continue talks about retaining ownership of plant",
+      "url": "https://www.theglobeandmail.com/business/article-stellantis-brampton-plant-continue-talks-ownership",
+      "published": "2026-11-20T22:45:58.534000+00:00",
+      "content_status": "full",
+      "word_count": 443,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4cb134307549c8d2",
+      "source": "The Globe and Mail",
+      "title": "Stellantis agrees to continue talks about retaining ownership of plant",
+      "url": "https://www.theglobeandmail.com/business/article-stellantis-brampton-plant-continue-talks-ownership",
+      "published": "2026-11-20T22:45:58.534000+00:00",
+      "content_status": "full",
+      "word_count": 443,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4373,6 +4404,41 @@
       ]
     },
     {
+      "id": "4cb134307549c8d2",
+      "source": "The Globe and Mail",
+      "title": "Stellantis agrees to continue talks about retaining ownership of plant",
+      "url": "https://www.theglobeandmail.com/business/article-stellantis-brampton-plant-continue-talks-ownership",
+      "published": "2026-11-20T22:45:58.534000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 443,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b0f72601cac07fd2",
       "source": "The Globe and Mail",
       "title": "NHL linesman Matt Pavelich was a peacemaker during a wild era of on-ice lawlessness",
@@ -4650,28 +4716,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "d25cfb5351cfebef",
-      "source": "The Globe and Mail",
-      "title": "Man arrested hours after being placed on Canada’s most wanted list",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-man-arrested-canada-most-wanted-list",
-      "published": "2026-11-20T13:15:35.439000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 192,
-      "paragraph_count": 7,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 35,
-      "issues": []
     },
     {
       "id": "46b9a1d0a5cdad8d",
