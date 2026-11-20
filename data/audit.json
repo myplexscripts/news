@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-20T18:23:08.427980+00:00",
-  "generated_at_london": "2026-11-20T13:23:08.427980-05:00",
-  "news_generated_at": "2026-11-20T18:17:20.412338+00:00",
+  "generated_at": "2026-11-20T18:34:46.929926+00:00",
+  "generated_at_london": "2026-11-20T13:34:46.929926-05:00",
+  "news_generated_at": "2026-11-20T18:33:12.202547+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 718,
+    "archive_story_count": 719,
     "source_count": 28,
     "audited_story_count": 119,
-    "pass_story_count": 113,
-    "review_story_count": 5,
+    "pass_story_count": 112,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 94,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-20T17:22:32+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T18:15:46.522094+00:00",
+      "last_scrape": "2026-11-20T18:31:37.717531+00:00",
       "last_error": ""
     },
     {
@@ -133,24 +133,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 1,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 409,
-      "average_quality": 96,
+      "average_words": 404,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 1,
+      "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-11-20T17:42:38+00:00",
+      "latest_published": "2026-11-20T18:12:17+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T18:00:24.048950+00:00",
+      "last_scrape": "2026-11-20T18:31:38.916032+00:00",
       "last_error": ""
     },
     {
@@ -340,7 +341,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 9,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -457,7 +458,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 313,
+      "average_words": 311,
       "average_quality": 71,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -466,10 +467,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 11,
-      "latest_published": "2026-11-20T18:13:27.679000+00:00",
+      "latest_published": "2026-11-20T18:19:59.715000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T11:17:40.575210+00:00",
+      "last_scrape": "2026-11-20T18:29:39.018233+00:00",
       "last_error": ""
     },
     {
@@ -510,19 +511,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 523,
-      "average_quality": 96,
+      "average_words": 474,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:article:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-20T16:54:48+00:00",
+      "latest_published": "2026-11-20T18:22:18+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T16:57:34.343991+00:00",
+      "last_scrape": "2026-11-20T18:31:32.355962+00:00",
       "last_error": ""
     },
     {
@@ -875,6 +877,36 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c28dd5fd6341bbf3",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada upholds conviction for aggravated sexual assault",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-upholds-conviction-for-aggravated-sexual-assault/article_789e18fb-9fcf-5b08-8998-2baee6d9f227.html",
+      "published": "2026-11-20T18:12:17+00:00",
+      "content_status": "full",
+      "word_count": 225,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c28dd5fd6341bbf3",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada upholds conviction for aggravated sexual assault",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-upholds-conviction-for-aggravated-sexual-assault/article_789e18fb-9fcf-5b08-8998-2baee6d9f227.html",
+      "published": "2026-11-20T18:12:17+00:00",
+      "content_status": "full",
+      "word_count": 225,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -1074,6 +1106,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 12/100",
+      "story_id": "ed66ff8a0249464f",
+      "source": "CTV News London",
+      "title": "Beal Gives Back campaign returns to support London organizations",
+      "url": "https://www.ctvnews.ca/london/article/beal-gives-back-campaign-returns-to-support-london-organizations",
+      "published": "2026-11-20T18:19:59.715000+00:00",
+      "content_status": "full",
+      "word_count": 119,
+      "quality_score": 57,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
       "story_id": "1685b8497db00821",
       "source": "CTV News London",
       "title": "Calls for government to crack down on wage theft after Motive Espresso shuttered",
@@ -1082,21 +1129,6 @@
       "content_status": "full",
       "word_count": 684,
       "quality_score": 86,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0f447478d24a5052",
-      "source": "CTV News London",
-      "title": "Driver dies in single-vehicle rollover in Woodstock",
-      "url": "https://www.ctvnews.ca/london/article/driver-dies-in-single-vehicle-rollover-in-woodstock",
-      "published": "2026-11-19T16:15:48.772000+00:00",
-      "content_status": "full",
-      "word_count": 143,
-      "quality_score": 57,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1539,15 +1571,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "21253436e83097bc",
+      "story_id": "6e06d6b37ce006e4",
       "source": "Global News Canada",
-      "title": "Secularism to pass Christianity as main group in Canada by 2050: Pew",
-      "url": "https://globalnews.ca/news/12158315/decline-in-christianity-canada",
-      "published": "2026-11-19T21:27:23+00:00",
+      "title": "Ontario, Ottawa committing $250M to help fund new port in Sault Ste. Marie",
+      "url": "https://globalnews.ca/news/12159786/ontario-ottawa-committing-250m-to-help-fund-new-port-in-sault-ste-marie",
+      "published": "2026-11-20T18:22:18+00:00",
       "content_status": "full",
-      "word_count": 817,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 328,
+      "quality_score": 78,
+      "extraction_method": "dom:global:article:strict"
     },
     {
       "severity": "info",
@@ -2108,21 +2140,6 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "be8b139a0b506c34",
-      "source": "Toronto Star",
-      "title": "London man arrested hours after being placed on Canada's most wanted list",
-      "url": "https://www.thestar.com/news/ontario/london-man-arrested-hours-after-being-placed-on-canada-s-most-wanted-list/article_8b942548-612f-54fc-a5c8-1dd773f82c46.html",
-      "published": "2026-11-20T12:32:11+00:00",
-      "content_status": "full",
-      "word_count": 273,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
       "story_id": "c63f297ff1d01a3c",
       "source": "Toronto Star",
@@ -2193,6 +2210,21 @@
       "word_count": 326,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c28dd5fd6341bbf3",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada upholds conviction for aggravated sexual assault",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-upholds-conviction-for-aggravated-sexual-assault/article_789e18fb-9fcf-5b08-8998-2baee6d9f227.html",
+      "published": "2026-11-20T18:12:17+00:00",
+      "content_status": "full",
+      "word_count": 225,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2307,6 +2339,35 @@
       "extraction_profile": "global",
       "local_score": 55,
       "issues": []
+    },
+    {
+      "id": "ed66ff8a0249464f",
+      "source": "CTV News London",
+      "title": "Beal Gives Back campaign returns to support London organizations",
+      "url": "https://www.ctvnews.ca/london/article/beal-gives-back-campaign-returns-to-support-london-organizations",
+      "published": "2026-11-20T18:19:59.715000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 119,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
     },
     {
       "id": "df6b84568f1a815e",
@@ -2571,35 +2632,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "0f447478d24a5052",
-      "source": "CTV News London",
-      "title": "Driver dies in single-vehicle rollover in Woodstock",
-      "url": "https://www.ctvnews.ca/london/article/driver-dies-in-single-vehicle-rollover-in-woodstock",
-      "published": "2026-11-19T16:15:48.772000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 143,
-      "paragraph_count": 6,
-      "inline_image_count": 0,
-      "quality_score": 57,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
         }
       ]
     },
@@ -3845,6 +3877,35 @@
       "issues": []
     },
     {
+      "id": "6e06d6b37ce006e4",
+      "source": "Global News Canada",
+      "title": "Ontario, Ottawa committing $250M to help fund new port in Sault Ste. Marie",
+      "url": "https://globalnews.ca/news/12159786/ontario-ottawa-committing-250m-to-help-fund-new-port-in-sault-ste-marie",
+      "published": "2026-11-20T18:22:18+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 328,
+      "paragraph_count": 11,
+      "inline_image_count": 1,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:article:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a4785c022ffd6c33",
       "source": "Global News Canada",
       "title": "‘GTA VI’ actor with Canadian ties says it’s ‘surreal’ to be part of game",
@@ -4091,35 +4152,6 @@
       "word_count": 521,
       "paragraph_count": 18,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "21253436e83097bc",
-      "source": "Global News Canada",
-      "title": "Secularism to pass Christianity as main group in Canada by 2050: Pew",
-      "url": "https://globalnews.ca/news/12158315/decline-in-christianity-canada",
-      "published": "2026-11-19T21:27:23+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 817,
-      "paragraph_count": 25,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -5028,6 +5060,47 @@
       ]
     },
     {
+      "id": "c28dd5fd6341bbf3",
+      "source": "Toronto Star",
+      "title": "Supreme Court of Canada upholds conviction for aggravated sexual assault",
+      "url": "https://www.thestar.com/news/canada/supreme-court-of-canada-upholds-conviction-for-aggravated-sexual-assault/article_789e18fb-9fcf-5b08-8998-2baee6d9f227.html",
+      "published": "2026-11-20T18:12:17+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 225,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c63f297ff1d01a3c",
       "source": "Toronto Star",
       "title": "N.B. government in talks with Quebec firm about restarting idled Nackawic pulp mill",
@@ -5291,35 +5364,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "be8b139a0b506c34",
-      "source": "Toronto Star",
-      "title": "London man arrested hours after being placed on Canada's most wanted list",
-      "url": "https://www.thestar.com/news/ontario/london-man-arrested-hours-after-being-placed-on-canada-s-most-wanted-list/article_8b942548-612f-54fc-a5c8-1dd773f82c46.html",
-      "published": "2026-11-20T12:32:11+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 273,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
         }
       ]
     },
