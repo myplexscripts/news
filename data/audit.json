@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-20T13:42:08.825090+00:00",
-  "generated_at_london": "2026-11-20T08:42:08.825090-05:00",
-  "news_generated_at": "2026-11-20T13:35:27.078669+00:00",
+  "generated_at": "2026-11-20T13:54:10.845907+00:00",
+  "generated_at_london": "2026-11-20T08:54:10.845907-05:00",
+  "news_generated_at": "2026-11-20T13:51:34.200006+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 718,
     "source_count": 28,
     "audited_story_count": 117,
-    "pass_story_count": 109,
-    "review_story_count": 6,
+    "pass_story_count": 108,
+    "review_story_count": 7,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 9,
+    "warning_issue_count": 11,
     "info_issue_count": 92,
     "healthy_source_count": 11,
     "review_source_count": 5,
@@ -123,7 +123,7 @@
       "latest_published": "2026-11-20T13:21:47+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T13:33:30.189679+00:00",
+      "last_scrape": "2026-11-20T13:49:06.185772+00:00",
       "last_error": ""
     },
     {
@@ -137,46 +137,48 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 766,
-      "average_quality": 95,
+      "average_words": 823,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 12,
-      "latest_published": "2026-11-20T13:15:35.439000+00:00",
+      "latest_published": "2026-11-20T13:30:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T13:33:27.988656+00:00",
+      "last_scrape": "2026-11-20T13:49:02.990982+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 1,
+      "pass": 7,
+      "review": 2,
       "fail": 1,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 584,
-      "average_quality": 96,
+      "average_words": 543,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 1,
+      "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-11-20T12:32:11+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-20T13:23:57+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T12:46:37.977421+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-20T13:49:07.691272+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -901,6 +903,36 @@
       "word_count": 1623,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "4be8edb0e65dc219",
+      "source": "Toronto Star",
+      "title": "Transport fuel truck crashes near Trenton, fire closes Highway 401 eastbound",
+      "url": "https://www.thestar.com/news/ontario/transport-fuel-truck-crashes-near-trenton-fire-closes-highway-401-eastbound/article_79356b8a-bbc9-5c36-9469-08499cd69b6e.html",
+      "published": "2026-11-20T13:23:57+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "4be8edb0e65dc219",
+      "source": "Toronto Star",
+      "title": "Transport fuel truck crashes near Trenton, fire closes Highway 401 eastbound",
+      "url": "https://www.thestar.com/news/ontario/transport-fuel-truck-crashes-near-trenton-fire-closes-highway-401-eastbound/article_79356b8a-bbc9-5c36-9469-08499cd69b6e.html",
+      "published": "2026-11-20T13:23:57+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1972,6 +2004,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "3e1b7c683dd2a15f",
+      "source": "The Globe and Mail",
+      "title": "Robots helping build houses, a bright side of price-drops and the Home of the Week: Canadian real estate news for the week of Nov. 20",
+      "url": "https://www.theglobeandmail.com/business/article-promise-robotics-ai-home-construction-canada-real-estate-news-nov-20",
+      "published": "2026-11-20T13:30:00+00:00",
+      "content_status": "full",
+      "word_count": 1045,
+      "quality_score": 93,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "a4137eb6ba6262d5",
       "source": "The Globe and Mail",
       "title": "Supreme Court reverses policy and reopens courtroom doors to intervenors",
@@ -2039,21 +2086,6 @@
       "published": "2026-11-20T02:53:47.303000+00:00",
       "content_status": "full",
       "word_count": 890,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9609640603d89e72",
-      "source": "The Globe and Mail",
-      "title": "Why many Canadians now need higher incomes to get a mortgage even as home prices decline",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-why-many-canadians-now-need-higher-incomes-to-get-a-mortgage-even-as",
-      "published": "2026-11-19T23:23:11.642000+00:00",
-      "content_status": "full",
-      "word_count": 473,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2152,21 +2184,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5f6c012090d60cce",
-      "source": "Toronto Star",
-      "title": "New report on Tumbler Ridge shooter's AI chats 'deeply disturbing'",
-      "url": "https://www.thestar.com/news/canada/new-report-on-tumbler-ridge-shooter-s-ai-chats-deeply-disturbing/article_719b31d3-92f1-59d9-9dff-1f7d348354db.html",
-      "published": "2026-11-19T22:10:34+00:00",
-      "content_status": "full",
-      "word_count": 630,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "f80a63c7b698e0af",
       "source": "Toronto Star",
       "title": "Ontario Liberals to select third new leader since 2018",
@@ -2206,6 +2223,21 @@
       "word_count": 211,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4be8edb0e65dc219",
+      "source": "Toronto Star",
+      "title": "Transport fuel truck crashes near Trenton, fire closes Highway 401 eastbound",
+      "url": "https://www.thestar.com/news/ontario/transport-fuel-truck-crashes-near-trenton-fire-closes-highway-401-eastbound/article_79356b8a-bbc9-5c36-9469-08499cd69b6e.html",
+      "published": "2026-11-20T13:23:57+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4371,6 +4403,35 @@
       ]
     },
     {
+      "id": "3e1b7c683dd2a15f",
+      "source": "The Globe and Mail",
+      "title": "Robots helping build houses, a bright side of price-drops and the Home of the Week: Canadian real estate news for the week of Nov. 20",
+      "url": "https://www.theglobeandmail.com/business/article-promise-robotics-ai-home-construction-canada-real-estate-news-nov-20",
+      "published": "2026-11-20T13:30:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1045,
+      "paragraph_count": 21,
+      "inline_image_count": 4,
+      "quality_score": 93,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d25cfb5351cfebef",
       "source": "The Globe and Mail",
       "title": "Man arrested hours after being placed on Canada’s most wanted list",
@@ -4632,35 +4693,6 @@
       "info_count": 1,
       "content_status": "full",
       "word_count": 818,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9609640603d89e72",
-      "source": "The Globe and Mail",
-      "title": "Why many Canadians now need higher incomes to get a mortgage even as home prices decline",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-why-many-canadians-now-need-higher-incomes-to-get-a-mortgage-even-as",
-      "published": "2026-11-19T23:23:11.642000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 473,
       "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
@@ -4974,6 +5006,47 @@
       ]
     },
     {
+      "id": "4be8edb0e65dc219",
+      "source": "Toronto Star",
+      "title": "Transport fuel truck crashes near Trenton, fire closes Highway 401 eastbound",
+      "url": "https://www.thestar.com/news/ontario/transport-fuel-truck-crashes-near-trenton-fire-closes-highway-401-eastbound/article_79356b8a-bbc9-5c36-9469-08499cd69b6e.html",
+      "published": "2026-11-20T13:23:57+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 211,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "be8b139a0b506c34",
       "source": "Toronto Star",
       "title": "London man arrested hours after being placed on Canada's most wanted list",
@@ -5231,35 +5304,6 @@
       "content_status": "full",
       "word_count": 211,
       "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5f6c012090d60cce",
-      "source": "Toronto Star",
-      "title": "New report on Tumbler Ridge shooter's AI chats 'deeply disturbing'",
-      "url": "https://www.thestar.com/news/canada/new-report-on-tumbler-ridge-shooter-s-ai-chats-deeply-disturbing/article_719b31d3-92f1-59d9-9dff-1f7d348354db.html",
-      "published": "2026-11-19T22:10:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 630,
-      "paragraph_count": 20,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
