@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-20T03:36:39.316180+00:00",
-  "generated_at_london": "2026-11-19T22:36:39.316180-05:00",
-  "news_generated_at": "2026-11-20T03:25:06.817084+00:00",
+  "generated_at": "2026-11-20T03:43:04.599322+00:00",
+  "generated_at_london": "2026-11-19T22:43:04.599322-05:00",
+  "news_generated_at": "2026-11-20T03:40:57.468239+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 736,
+    "archive_story_count": 737,
     "source_count": 28,
     "audited_story_count": 118,
     "pass_story_count": 112,
-    "review_story_count": 4,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 7,
+    "review_story_count": 5,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 9,
     "info_issue_count": 93,
     "healthy_source_count": 12,
     "review_source_count": 4,
@@ -133,23 +133,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 383,
-      "average_quality": 96,
+      "average_words": 396,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 11,
-      "latest_published": "2026-11-19T22:54:35+00:00",
+      "latest_published": "2026-11-20T03:17:35+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-19T23:28:19.966922+00:00",
+      "last_scrape": "2026-11-20T03:38:42.847340+00:00",
       "last_error": ""
     },
     {
@@ -653,7 +654,7 @@
       "latest_published": "2026-11-19T23:49:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T03:23:14.929041+00:00",
+      "last_scrape": "2026-11-20T03:38:41.624177+00:00",
       "last_error": ""
     },
     {
@@ -753,21 +754,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "78 words",
-      "story_id": "1a90e9c7dcabd847",
-      "source": "Toronto Star",
-      "title": "B.C. Environmental Assessment Office pauses review of Massey Tunnel project",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-environmental-assessment-office-pauses-review-of-massey-tunnel-project/article_9579e2c6-72f8-5adc-a210-a9fca5214d32.html",
-      "published": "2026-11-19T17:33:16+00:00",
-      "content_status": "full",
-      "word_count": 78,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -873,6 +859,36 @@
       "word_count": 223,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "13e610ed104b0355",
+      "source": "Toronto Star",
+      "title": "Cupe education workers in Ontario vote in favour of strike mandate",
+      "url": "https://www.thestar.com/news/ontario/cupe-education-workers-in-ontario-vote-in-favour-of-strike-mandate/article_4c2aaa4d-d549-59a9-b836-a7e2b5f844bf.html",
+      "published": "2026-11-20T03:17:35+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "13e610ed104b0355",
+      "source": "Toronto Star",
+      "title": "Cupe education workers in Ontario vote in favour of strike mandate",
+      "url": "https://www.thestar.com/news/ontario/cupe-education-workers-in-ontario-vote-in-favour-of-strike-mandate/article_4c2aaa4d-d549-59a9-b836-a7e2b5f844bf.html",
+      "published": "2026-11-20T03:17:35+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2049,21 +2065,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1a90e9c7dcabd847",
-      "source": "Toronto Star",
-      "title": "B.C. Environmental Assessment Office pauses review of Massey Tunnel project",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-environmental-assessment-office-pauses-review-of-massey-tunnel-project/article_9579e2c6-72f8-5adc-a210-a9fca5214d32.html",
-      "published": "2026-11-19T17:33:16+00:00",
-      "content_status": "full",
-      "word_count": 78,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "80c39d73e4d8c40c",
       "source": "Toronto Star",
       "title": "Consumers will watch their holiday spending over price concerns, polls find",
@@ -2088,6 +2089,21 @@
       "word_count": 88,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "13e610ed104b0355",
+      "source": "Toronto Star",
+      "title": "Cupe education workers in Ontario vote in favour of strike mandate",
+      "url": "https://www.thestar.com/news/ontario/cupe-education-workers-in-ontario-vote-in-favour-of-strike-mandate/article_4c2aaa4d-d549-59a9-b836-a7e2b5f844bf.html",
+      "published": "2026-11-20T03:17:35+00:00",
+      "content_status": "full",
+      "word_count": 205,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4977,6 +4993,47 @@
       ]
     },
     {
+      "id": "13e610ed104b0355",
+      "source": "Toronto Star",
+      "title": "Cupe education workers in Ontario vote in favour of strike mandate",
+      "url": "https://www.thestar.com/news/ontario/cupe-education-workers-in-ontario-vote-in-favour-of-strike-mandate/article_4c2aaa4d-d549-59a9-b836-a7e2b5f844bf.html",
+      "published": "2026-11-20T03:17:35+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 205,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e17569cb44428d1b",
       "source": "Toronto Star",
       "title": "Mother dead in Burlington, Ont., house fire that killed father and two children",
@@ -5235,41 +5292,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1a90e9c7dcabd847",
-      "source": "Toronto Star",
-      "title": "B.C. Environmental Assessment Office pauses review of Massey Tunnel project",
-      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-environmental-assessment-office-pauses-review-of-massey-tunnel-project/article_9579e2c6-72f8-5adc-a210-a9fca5214d32.html",
-      "published": "2026-11-19T17:33:16+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 78,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "78 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
