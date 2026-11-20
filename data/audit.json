@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-20T12:39:42.318169+00:00",
-  "generated_at_london": "2026-11-20T07:39:42.318169-05:00",
-  "news_generated_at": "2026-11-20T12:33:16.759795+00:00",
+  "generated_at": "2026-11-20T12:50:19.840912+00:00",
+  "generated_at_london": "2026-11-20T07:50:19.840912-05:00",
+  "news_generated_at": "2026-11-20T12:48:28.381849+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 720,
@@ -13,10 +13,10 @@
     "review_story_count": 6,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 9,
+    "warning_issue_count": 10,
     "info_issue_count": 92,
-    "healthy_source_count": 11,
-    "review_source_count": 5,
+    "healthy_source_count": 12,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -101,32 +101,6 @@
       "last_error": ""
     },
     {
-      "source": "Global News Canada",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "global",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 1,
-      "fail": 0,
-      "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 595,
-      "average_quality": 96,
-      "primary_method": "dom:semantic-rich-v1",
-      "method_counts": {
-        "dom:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 1,
-      "info_issues": 10,
-      "latest_published": "2026-11-20T00:23:52+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-20T00:30:57.565479+00:00",
-      "last_error": ""
-    },
-    {
       "source": "The Globe and Mail",
       "status": "review",
       "collector_status": "healthy",
@@ -158,24 +132,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 1,
+      "pass": 7,
+      "review": 2,
       "fail": 1,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 615,
-      "average_quality": 96,
+      "average_words": 578,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 1,
+      "warning_issues": 3,
       "info_issues": 10,
-      "latest_published": "2026-11-20T10:00:00+00:00",
+      "latest_published": "2026-11-20T12:32:11+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T10:26:03.914093+00:00",
+      "last_scrape": "2026-11-20T12:46:37.977421+00:00",
       "last_error": ""
     },
     {
@@ -550,6 +525,33 @@
       "last_error": ""
     },
     {
+      "source": "Global News Canada",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "global",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 645,
+      "average_quality": 95,
+      "primary_method": "dom:semantic-rich-v1",
+      "method_counts": {
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-20T12:39:12+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-20T12:46:34.073779+00:00",
+      "last_error": ""
+    },
+    {
       "source": "London Health Sciences Centre",
       "status": "healthy",
       "collector_status": "healthy",
@@ -678,7 +680,7 @@
       "latest_published": "2026-11-20T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-20T12:30:51.398607+00:00",
+      "last_scrape": "2026-11-20T12:46:36.746744+00:00",
       "last_error": ""
     },
     {
@@ -859,21 +861,6 @@
     },
     {
       "severity": "warning",
-      "code": "truncated_ending",
-      "message": "Article body appears to end with an ellipsis.",
-      "detail": "",
-      "story_id": "fd7b817f6dda8975",
-      "source": "Global News Canada",
-      "title": "Saskatchewan recovery centre accused of falsifying record to be investigated by auditor",
-      "url": "https://globalnews.ca/news/12158291/saskatchewan-auditor-general-ehn-willowview-recovery-centre",
-      "published": "2026-11-19T19:49:54+00:00",
-      "content_status": "full",
-      "word_count": 223,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
       "code": "image_gallery_leak",
       "message": "Several images appear consecutively with no article text between them.",
       "detail": "4 consecutive images",
@@ -901,6 +888,36 @@
       "word_count": 1623,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "be8b139a0b506c34",
+      "source": "Toronto Star",
+      "title": "London man arrested hours after being placed on Canada's most wanted list",
+      "url": "https://www.thestar.com/news/ontario/london-man-arrested-hours-after-being-placed-on-canada-s-most-wanted-list/article_8b942548-612f-54fc-a5c8-1dd773f82c46.html",
+      "published": "2026-11-20T12:32:11+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "11 inline images",
+      "story_id": "be8b139a0b506c34",
+      "source": "Toronto Star",
+      "title": "London man arrested hours after being placed on Canada's most wanted list",
+      "url": "https://www.thestar.com/news/ontario/london-man-arrested-hours-after-being-placed-on-canada-s-most-wanted-list/article_8b942548-612f-54fc-a5c8-1dd773f82c46.html",
+      "published": "2026-11-20T12:32:11+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1537,6 +1554,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "2d81df1139e378c4",
+      "source": "Global News Canada",
+      "title": "Ontario Liberals to select third new leader since 2018",
+      "url": "https://globalnews.ca/news/12159363/ontario-liberals-2026-leaders",
+      "published": "2026-11-20T12:39:12+00:00",
+      "content_status": "full",
+      "word_count": 717,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e4d914e2f678abee",
       "source": "Global News Canada",
       "title": "Ontario father finds unanchored soccer nets in community where son died",
@@ -1544,21 +1576,6 @@
       "published": "2026-11-19T21:30:47+00:00",
       "content_status": "full",
       "word_count": 521,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "fd7b817f6dda8975",
-      "source": "Global News Canada",
-      "title": "Saskatchewan recovery centre accused of falsifying record to be investigated by auditor",
-      "url": "https://globalnews.ca/news/12158291/saskatchewan-auditor-general-ehn-willowview-recovery-centre",
-      "published": "2026-11-19T19:49:54+00:00",
-      "content_status": "full",
-      "word_count": 223,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2092,21 +2109,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "80c39d73e4d8c40c",
-      "source": "Toronto Star",
-      "title": "Consumers will watch their holiday spending over price concerns, polls find",
-      "url": "https://www.thestar.com/news/canada/quebec/consumers-will-watch-their-holiday-spending-over-price-concerns-polls-find/article_b8408549-d6db-536c-9047-00b1db5b91cd.html",
-      "published": "2026-11-19T22:04:33+00:00",
-      "content_status": "full",
-      "word_count": 579,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "13e610ed104b0355",
       "source": "Toronto Star",
       "title": "Cupe education workers in Ontario vote in favour of strike mandate",
@@ -2131,6 +2133,21 @@
       "word_count": 1623,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
+      "story_id": "be8b139a0b506c34",
+      "source": "Toronto Star",
+      "title": "London man arrested hours after being placed on Canada's most wanted list",
+      "url": "https://www.thestar.com/news/ontario/london-man-arrested-hours-after-being-placed-on-canada-s-most-wanted-list/article_8b942548-612f-54fc-a5c8-1dd773f82c46.html",
+      "published": "2026-11-20T12:32:11+00:00",
+      "content_status": "full",
+      "word_count": 212,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3779,6 +3796,35 @@
       "issues": []
     },
     {
+      "id": "2d81df1139e378c4",
+      "source": "Global News Canada",
+      "title": "Ontario Liberals to select third new leader since 2018",
+      "url": "https://globalnews.ca/news/12159363/ontario-liberals-2026-leaders",
+      "published": "2026-11-20T12:39:12+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 717,
+      "paragraph_count": 19,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4b0185ab12539464",
       "source": "Global News Canada",
       "title": "Vancouver landlords fined $90K now facing prosecution over West Side property",
@@ -4031,41 +4077,6 @@
       "extraction_profile": "global",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "fd7b817f6dda8975",
-      "source": "Global News Canada",
-      "title": "Saskatchewan recovery centre accused of falsifying record to be investigated by auditor",
-      "url": "https://globalnews.ca/news/12158291/saskatchewan-auditor-general-ehn-willowview-recovery-centre",
-      "published": "2026-11-19T19:49:54+00:00",
-      "audit_status": "review",
-      "audit_score": 85,
-      "critical_count": 0,
-      "warning_count": 1,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 223,
-      "paragraph_count": 12,
-      "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "truncated_ending",
-          "message": "Article body appears to end with an ellipsis.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4975,6 +4986,47 @@
       ]
     },
     {
+      "id": "be8b139a0b506c34",
+      "source": "Toronto Star",
+      "title": "London man arrested hours after being placed on Canada's most wanted list",
+      "url": "https://www.thestar.com/news/ontario/london-man-arrested-hours-after-being-placed-on-canada-s-most-wanted-list/article_8b942548-612f-54fc-a5c8-1dd773f82c46.html",
+      "published": "2026-11-20T12:32:11+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 212,
+      "paragraph_count": 2,
+      "inline_image_count": 11,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "11 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
+    {
       "id": "80c9b11ee7ba0c5d",
       "source": "Toronto Star",
       "title": "How to make friends and beat loneliness, according to Star readers",
@@ -5232,35 +5284,6 @@
       "content_status": "full",
       "word_count": 630,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "80c39d73e4d8c40c",
-      "source": "Toronto Star",
-      "title": "Consumers will watch their holiday spending over price concerns, polls find",
-      "url": "https://www.thestar.com/news/canada/quebec/consumers-will-watch-their-holiday-spending-over-price-concerns-polls-find/article_b8408549-d6db-536c-9047-00b1db5b91cd.html",
-      "published": "2026-11-19T22:04:33+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 579,
-      "paragraph_count": 18,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
