@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-21T14:57:28.216857+00:00",
-  "generated_at_london": "2026-11-21T09:57:28.216857-05:00",
-  "news_generated_at": "2026-11-21T14:49:58.453098+00:00",
+  "generated_at": "2026-11-21T15:07:53.811277+00:00",
+  "generated_at_london": "2026-11-21T10:07:53.811277-05:00",
+  "news_generated_at": "2026-11-21T15:05:16.172246+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 708,
+    "archive_story_count": 709,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 112,
@@ -125,13 +125,13 @@
       "latest_published": "2026-11-21T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-21T14:47:36.388540+00:00",
+      "last_scrape": "2026-11-21T15:03:03.216801+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -149,10 +149,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-21T12:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-21T12:13:42.585904+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -457,8 +457,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 262,
-      "average_quality": 66,
+      "average_words": 301,
+      "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -467,10 +467,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-11-21T11:00:01+00:00",
+      "latest_published": "2026-11-21T14:59:54.141000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-21T11:16:53.819276+00:00",
+      "last_scrape": "2026-11-21T15:01:10.388507+00:00",
       "last_error": ""
     },
     {
@@ -511,19 +511,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 524,
-      "average_quality": 96,
+      "average_words": 517,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-21T02:29:43+00:00",
+      "latest_published": "2026-11-21T14:51:02+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-21T02:38:00.812261+00:00",
+      "last_scrape": "2026-11-21T15:02:57.372162+00:00",
       "last_error": ""
     },
     {
@@ -733,7 +734,7 @@
       "warning_issues": 0,
       "info_issues": 4,
       "latest_published": "2026-11-20T16:40:58+00:00",
-      "found_this_run": 10,
+      "found_this_run": 9,
       "tracked": 9,
       "last_scrape": "2026-11-20T16:56:38.848571+00:00",
       "last_error": ""
@@ -1162,21 +1163,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 5/100",
-      "story_id": "ebf104f79ee3f582",
-      "source": "CTV News London",
-      "title": "Sunny, mild weather before rain moves in",
-      "url": "https://www.ctvnews.ca/london/article/sunny-mild-weather-before-rain-moves-in",
-      "published": "2026-11-20T11:00:01+00:00",
-      "content_status": "full",
-      "word_count": 123,
-      "quality_score": 53,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1189,6 +1175,21 @@
       "word_count": 13,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 10/100",
+      "story_id": "2fd354cacf2aa290",
+      "source": "CTV News London",
+      "title": "The CCH Crusaders win 3rd straight city football title in ‘Fog Bowl’",
+      "url": "https://www.ctvnews.ca/london/article/the-cch-crusaders-win-3rd-straight-city-football-title-in-fog-bowl",
+      "published": "2026-11-21T14:59:54.141000+00:00",
+      "content_status": "full",
+      "word_count": 518,
+      "quality_score": 85,
+      "extraction_method": "embedded-json:ctv"
     },
     {
       "severity": "info",
@@ -1435,6 +1436,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "192e21de828d60cc",
+      "source": "Global News Canada",
+      "title": "$2M from emergency drug stockpile lost after freezer malfunction, Ottawa says",
+      "url": "https://globalnews.ca/news/12160799/emergency-drug-stockpile-freezer-malfunction",
+      "published": "2026-11-21T14:51:02+00:00",
+      "content_status": "full",
+      "word_count": 412,
+      "quality_score": 83,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "dc3ea34aa7c78d24",
       "source": "Global News Canada",
       "title": "25 new prosecutors half to what is needed to make ‘meaningful change’ on Manitoba Crown workloads",
@@ -1502,21 +1518,6 @@
       "published": "2026-11-20T20:33:20+00:00",
       "content_status": "full",
       "word_count": 163,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5f4ddc43fd6acf4e",
-      "source": "Global News Canada",
-      "title": "Saskatoon appeals board rules oversized million-dollar home can remain",
-      "url": "https://globalnews.ca/news/12158863/saskatoon-appeals-board-rules-oversized-million-dollar-home-can-remain",
-      "published": "2026-11-20T20:22:20+00:00",
-      "content_status": "full",
-      "word_count": 490,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2295,6 +2296,35 @@
       "issues": []
     },
     {
+      "id": "2fd354cacf2aa290",
+      "source": "CTV News London",
+      "title": "The CCH Crusaders win 3rd straight city football title in ‘Fog Bowl’",
+      "url": "https://www.ctvnews.ca/london/article/the-cch-crusaders-win-3rd-straight-city-football-title-in-fog-bowl",
+      "published": "2026-11-21T14:59:54.141000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 518,
+      "paragraph_count": 20,
+      "inline_image_count": 2,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 10,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 10/100"
+        }
+      ]
+    },
+    {
       "id": "eec68caa58e97cf5",
       "source": "CTV News London",
       "title": "Windsor bed-building competition raises money for program helping local children",
@@ -2544,35 +2574,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 12/100"
-        }
-      ]
-    },
-    {
-      "id": "ebf104f79ee3f582",
-      "source": "CTV News London",
-      "title": "Sunny, mild weather before rain moves in",
-      "url": "https://www.ctvnews.ca/london/article/sunny-mild-weather-before-rain-moves-in",
-      "published": "2026-11-20T11:00:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 123,
-      "paragraph_count": 5,
-      "inline_image_count": 1,
-      "quality_score": 53,
-      "quality_grade": "partial",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 5,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 5/100"
         }
       ]
     },
@@ -3811,6 +3812,35 @@
       "issues": []
     },
     {
+      "id": "192e21de828d60cc",
+      "source": "Global News Canada",
+      "title": "$2M from emergency drug stockpile lost after freezer malfunction, Ottawa says",
+      "url": "https://globalnews.ca/news/12160799/emergency-drug-stockpile-freezer-malfunction",
+      "published": "2026-11-21T14:51:02+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 412,
+      "paragraph_count": 14,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0d00c6f8fa174ec7",
       "source": "Global News Canada",
       "title": "Kelowna city hall faces more transparency questions after wage hike kept quiet",
@@ -4057,35 +4087,6 @@
       "word_count": 163,
       "paragraph_count": 7,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5f4ddc43fd6acf4e",
-      "source": "Global News Canada",
-      "title": "Saskatoon appeals board rules oversized million-dollar home can remain",
-      "url": "https://globalnews.ca/news/12158863/saskatoon-appeals-board-rules-oversized-million-dollar-home-can-remain",
-      "published": "2026-11-20T20:22:20+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 490,
-      "paragraph_count": 18,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
