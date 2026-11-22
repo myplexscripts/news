@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-22T21:32:17.076293+00:00",
-  "generated_at_london": "2026-11-22T16:32:17.076293-05:00",
-  "news_generated_at": "2026-11-22T21:27:57.770507+00:00",
+  "generated_at": "2026-11-22T21:44:57.598520+00:00",
+  "generated_at_london": "2026-11-22T16:44:57.598520-05:00",
+  "news_generated_at": "2026-11-22T21:43:23.907963+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 701,
+    "archive_story_count": 702,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 115,
@@ -146,7 +146,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -415,7 +415,7 @@
       "latest_published": "2026-11-22T21:26:55.500000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T21:16:16.679319+00:00",
+      "last_scrape": "2026-11-22T21:30:17.590125+00:00",
       "last_error": ""
     },
     {
@@ -628,7 +628,7 @@
       "latest_published": "2026-11-22T14:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T21:26:20.079099+00:00",
+      "last_scrape": "2026-11-22T21:41:47.229591+00:00",
       "last_error": ""
     },
     {
@@ -669,19 +669,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 710,
+      "average_words": 718,
       "average_quality": 96,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 15,
-      "latest_published": "2026-11-22T21:04:49.231000+00:00",
+      "latest_published": "2026-11-22T21:31:20.406000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T21:10:50.981714+00:00",
+      "last_scrape": "2026-11-22T21:41:44.505386+00:00",
       "last_error": ""
     },
     {
@@ -1836,6 +1837,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "d2ab60d5f8ef7090",
+      "source": "The Globe and Mail",
+      "title": "New Ontario Liberal Leader to appear with caucus Monday at Queen’s Park – without a seat",
+      "url": "https://www.theglobeandmail.com/canada/article-new-ontario-liberal-leader-navdeep-bains-caucus-queens-park-no-seat",
+      "published": "2026-11-22T21:31:20.406000+00:00",
+      "content_status": "full",
+      "word_count": 783,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1937,21 +1953,6 @@
       "content_status": "full",
       "word_count": 856,
       "quality_score": 97,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "60647d1680e6201b",
-      "source": "The Globe and Mail",
-      "title": "The curious persistence of the medical fax",
-      "url": "https://www.theglobeandmail.com/opinion/editorials/article-the-curious-persistence-of-the-medical-fax",
-      "published": "2026-11-21T11:45:00+00:00",
-      "content_status": "full",
-      "word_count": 701,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -4293,6 +4294,35 @@
       ]
     },
     {
+      "id": "d2ab60d5f8ef7090",
+      "source": "The Globe and Mail",
+      "title": "New Ontario Liberal Leader to appear with caucus Monday at Queen’s Park – without a seat",
+      "url": "https://www.theglobeandmail.com/canada/article-new-ontario-liberal-leader-navdeep-bains-caucus-queens-park-no-seat",
+      "published": "2026-11-22T21:31:20.406000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 783,
+      "paragraph_count": 24,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9ade10ca42c0e6aa",
       "source": "The Globe and Mail",
       "title": "Ottawa unlikely to meet 2030 emissions target, despite official statements",
@@ -4570,35 +4600,6 @@
       "paragraph_count": 22,
       "inline_image_count": 7,
       "quality_score": 97,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "60647d1680e6201b",
-      "source": "The Globe and Mail",
-      "title": "The curious persistence of the medical fax",
-      "url": "https://www.theglobeandmail.com/opinion/editorials/article-the-curious-persistence-of-the-medical-fax",
-      "published": "2026-11-21T11:45:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 701,
-      "paragraph_count": 15,
-      "inline_image_count": 0,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
