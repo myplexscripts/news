@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-22T22:03:20.150626+00:00",
-  "generated_at_london": "2026-11-22T17:03:20.150626-05:00",
-  "news_generated_at": "2026-11-22T21:58:28.527244+00:00",
+  "generated_at": "2026-11-22T22:16:25.181136+00:00",
+  "generated_at_london": "2026-11-22T17:16:25.181136-05:00",
+  "news_generated_at": "2026-11-22T22:14:38.999489+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 701,
     "source_count": 28,
     "audited_story_count": 119,
-    "pass_story_count": 115,
-    "review_story_count": 3,
+    "pass_story_count": 114,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
+    "warning_issue_count": 8,
     "info_issue_count": 90,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -101,6 +101,33 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 670,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-22T21:46:22+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-22T22:12:56.857326+00:00",
+      "last_error": ""
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -175,7 +202,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -194,7 +221,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb"
     },
     {
       "source": "Government of Canada News",
@@ -628,7 +655,7 @@
       "latest_published": "2026-11-22T14:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T21:56:55.791618+00:00",
+      "last_scrape": "2026-11-22T22:12:55.542816+00:00",
       "last_error": ""
     },
     {
@@ -682,32 +709,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-22T21:41:44.505386+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 767,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-22T19:11:30+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-22T19:22:50.000616+00:00",
       "last_error": ""
     },
     {
@@ -843,6 +844,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c259c2c49eb9152f",
+      "source": "Toronto Star",
+      "title": "U.S. trade chief sees progress in Canada talks, raises China concerns",
+      "url": "https://www.thestar.com/news/canada/u-s-trade-chief-sees-progress-in-canada-talks-raises-china-concerns/article_b9b3c8ce-0a04-5597-a99a-70dba1f8d86a.html",
+      "published": "2026-11-22T21:46:22+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c259c2c49eb9152f",
+      "source": "Toronto Star",
+      "title": "U.S. trade chief sees progress in Canada talks, raises China concerns",
+      "url": "https://www.thestar.com/news/canada/u-s-trade-chief-sees-progress-in-canada-talks-raises-china-concerns/article_b9b3c8ce-0a04-5597-a99a-70dba1f8d86a.html",
+      "published": "2026-11-22T21:46:22+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2049,21 +2080,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c150fab2fad381d6",
-      "source": "Toronto Star",
-      "title": "From Trudeau cabinet minister to Ontario Liberal leader: Who is Navdeep Bains?",
-      "url": "https://www.thestar.com/politics/provincial/from-trudeau-cabinet-minister-to-ontario-liberal-leader-who-is-navdeep-bains/article_a91177ba-f47f-419b-9f7a-ff2b8a173120.html",
-      "published": "2026-11-21T21:35:00+00:00",
-      "content_status": "full",
-      "word_count": 1196,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "581be844ac32ce1d",
       "source": "Toronto Star",
       "title": "Group calls on people to give coyote space following Edward Gardens incident",
@@ -2118,6 +2134,21 @@
       "word_count": 110,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c259c2c49eb9152f",
+      "source": "Toronto Star",
+      "title": "U.S. trade chief sees progress in Canada talks, raises China concerns",
+      "url": "https://www.thestar.com/news/canada/u-s-trade-chief-sees-progress-in-canada-talks-raises-china-concerns/article_b9b3c8ce-0a04-5597-a99a-70dba1f8d86a.html",
+      "published": "2026-11-22T21:46:22+00:00",
+      "content_status": "full",
+      "word_count": 224,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4903,6 +4934,47 @@
       ]
     },
     {
+      "id": "c259c2c49eb9152f",
+      "source": "Toronto Star",
+      "title": "U.S. trade chief sees progress in Canada talks, raises China concerns",
+      "url": "https://www.thestar.com/news/canada/u-s-trade-chief-sees-progress-in-canada-talks-raises-china-concerns/article_b9b3c8ce-0a04-5597-a99a-70dba1f8d86a.html",
+      "published": "2026-11-22T21:46:22+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 224,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b9b6800ab92c4a79",
       "source": "Toronto Star",
       "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
@@ -5148,35 +5220,6 @@
       "content_status": "full",
       "word_count": 84,
       "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c150fab2fad381d6",
-      "source": "Toronto Star",
-      "title": "From Trudeau cabinet minister to Ontario Liberal leader: Who is Navdeep Bains?",
-      "url": "https://www.thestar.com/politics/provincial/from-trudeau-cabinet-minister-to-ontario-liberal-leader-who-is-navdeep-bains/article_a91177ba-f47f-419b-9f7a-ff2b8a173120.html",
-      "published": "2026-11-21T21:35:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1196,
-      "paragraph_count": 35,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
