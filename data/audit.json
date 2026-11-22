@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-22T19:15:48.294857+00:00",
-  "generated_at_london": "2026-11-22T14:15:48.294857-05:00",
-  "news_generated_at": "2026-11-22T19:08:53.138117+00:00",
+  "generated_at": "2026-11-22T19:26:48.515517+00:00",
+  "generated_at_london": "2026-11-22T14:26:48.515517-05:00",
+  "news_generated_at": "2026-11-22T19:24:42.367401+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 696,
+    "archive_story_count": 697,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 114,
-    "review_story_count": 3,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 6,
+    "review_story_count": 4,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 8,
     "info_issue_count": 88,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -107,23 +107,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 781,
-      "average_quality": 96,
+      "average_words": 796,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-22T18:46:53+00:00",
+      "latest_published": "2026-11-22T19:11:30+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T19:07:06.510097+00:00",
+      "last_scrape": "2026-11-22T19:22:50.000616+00:00",
       "last_error": ""
     },
     {
@@ -415,7 +416,7 @@
       "latest_published": "2026-11-22T19:00:34.455000+00:00",
       "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-11-22T19:07:02.995545+00:00",
+      "last_scrape": "2026-11-22T19:12:06.541063+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +655,7 @@
       "latest_published": "2026-11-22T14:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T19:07:05.156756+00:00",
+      "last_scrape": "2026-11-22T19:22:48.594662+00:00",
       "last_error": ""
     },
     {
@@ -755,21 +756,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "75 words",
-      "story_id": "9f9393f5f32476e2",
-      "source": "Toronto Star",
-      "title": "Quebec students are considering a general strike to protest affordability crisis",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-students-are-considering-a-general-strike-to-protest-affordability-crisis/article_42180453-2c23-56d9-b4d9-dfdf4ed47a1a.html",
-      "published": "2026-11-21T21:07:29+00:00",
-      "content_status": "full",
-      "word_count": 75,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -858,6 +844,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b9b6800ab92c4a79",
+      "source": "Toronto Star",
+      "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
+      "url": "https://www.thestar.com/news/canada/british-columbia/first-nations-leader-says-he-s-open-to-talks-with-doerkson-but-opposes-dripa-repeal/article_3ffcbebd-0554-5993-bc1f-a35eb964c6f7.html",
+      "published": "2026-11-22T19:11:30+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "b9b6800ab92c4a79",
+      "source": "Toronto Star",
+      "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
+      "url": "https://www.thestar.com/news/canada/british-columbia/first-nations-leader-says-he-s-open-to-talks-with-doerkson-but-opposes-dripa-repeal/article_3ffcbebd-0554-5993-bc1f-a35eb964c6f7.html",
+      "published": "2026-11-22T19:11:30+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2019,6 +2035,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "b9b6800ab92c4a79",
+      "source": "Toronto Star",
+      "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
+      "url": "https://www.thestar.com/news/canada/british-columbia/first-nations-leader-says-he-s-open-to-talks-with-doerkson-but-opposes-dripa-repeal/article_3ffcbebd-0554-5993-bc1f-a35eb964c6f7.html",
+      "published": "2026-11-22T19:11:30+00:00",
+      "content_status": "full",
+      "word_count": 227,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "c150fab2fad381d6",
       "source": "Toronto Star",
       "title": "From Trudeau cabinet minister to Ontario Liberal leader: Who is Navdeep Bains?",
@@ -2056,21 +2087,6 @@
       "published": "2026-11-22T03:49:03+00:00",
       "content_status": "full",
       "word_count": 84,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9f9393f5f32476e2",
-      "source": "Toronto Star",
-      "title": "Quebec students are considering a general strike to protest affordability crisis",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-students-are-considering-a-general-strike-to-protest-affordability-crisis/article_42180453-2c23-56d9-b4d9-dfdf4ed47a1a.html",
-      "published": "2026-11-21T21:07:29+00:00",
-      "content_status": "full",
-      "word_count": 75,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4877,6 +4893,47 @@
       ]
     },
     {
+      "id": "b9b6800ab92c4a79",
+      "source": "Toronto Star",
+      "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
+      "url": "https://www.thestar.com/news/canada/british-columbia/first-nations-leader-says-he-s-open-to-talks-with-doerkson-but-opposes-dripa-repeal/article_3ffcbebd-0554-5993-bc1f-a35eb964c6f7.html",
+      "published": "2026-11-22T19:11:30+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 227,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "581be844ac32ce1d",
       "source": "Toronto Star",
       "title": "Group calls on people to give coyote space following Edward Gardens incident",
@@ -5129,41 +5186,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9f9393f5f32476e2",
-      "source": "Toronto Star",
-      "title": "Quebec students are considering a general strike to protest affordability crisis",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-students-are-considering-a-general-strike-to-protest-affordability-crisis/article_42180453-2c23-56d9-b4d9-dfdf4ed47a1a.html",
-      "published": "2026-11-21T21:07:29+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 75,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "75 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
