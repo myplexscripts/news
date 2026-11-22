@@ -1,23 +1,23 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-22T11:16:29.487706+00:00",
-  "generated_at_london": "2026-11-22T06:16:29.487706-05:00",
-  "news_generated_at": "2026-11-22T11:10:24.247726+00:00",
+  "generated_at": "2026-11-22T11:27:38.814363+00:00",
+  "generated_at_london": "2026-11-22T06:27:38.814363-05:00",
+  "news_generated_at": "2026-11-22T11:25:55.519311+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 707,
+    "archive_story_count": 710,
     "source_count": 28,
     "audited_story_count": 119,
-    "pass_story_count": 112,
-    "review_story_count": 3,
+    "pass_story_count": 109,
+    "review_story_count": 6,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 6,
+    "warning_issue_count": 12,
     "info_issue_count": 89,
     "healthy_source_count": 14,
-    "review_source_count": 3,
-    "error_source_count": 1,
+    "review_source_count": 2,
+    "error_source_count": 2,
     "waiting_source_count": 10
   },
   "source_reports": [
@@ -45,6 +45,33 @@
       "found_this_run": 10,
       "tracked": 2,
       "last_scrape": "2026-11-20T05:11:45.707981+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 4,
+      "review": 3,
+      "fail": 3,
+      "pass_rate": 40,
+      "usable_body_rate": 100,
+      "average_words": 323,
+      "average_quality": 91,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 3,
+        "reader:semantic-rich-v1": 7
+      },
+      "critical_issues": 3,
+      "warning_issues": 6,
+      "info_issues": 10,
+      "latest_published": "2026-11-22T11:00:14+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-22T11:24:16.103233+00:00",
       "last_error": ""
     },
     {
@@ -98,32 +125,6 @@
       "found_this_run": 10,
       "tracked": 8,
       "last_scrape": "2026-11-20T19:47:40.954021+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 7,
-      "review": 0,
-      "fail": 3,
-      "pass_rate": 70,
-      "usable_body_rate": 100,
-      "average_words": 360,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 3,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-22T03:49:03+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-22T04:11:03.286215+00:00",
       "last_error": ""
     },
     {
@@ -654,7 +655,7 @@
       "latest_published": "2026-11-21T17:12:49+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T11:08:30.702192+00:00",
+      "last_scrape": "2026-11-22T11:24:11.953085+00:00",
       "last_error": ""
     },
     {
@@ -888,6 +889,96 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "978be41ad4e55a06",
+      "source": "Toronto Star",
+      "title": "'Happy, exercise, help others': The secrets behind Raymond Cho's 90 years on Earth",
+      "url": "https://www.thestar.com/news/ontario/happy-exercise-help-others-the-secrets-behind-raymond-cho-s-90-years-on-earth/article_c274db23-a2ca-5a66-b05d-3e22154aefec.html",
+      "published": "2026-11-22T11:00:06+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "978be41ad4e55a06",
+      "source": "Toronto Star",
+      "title": "'Happy, exercise, help others': The secrets behind Raymond Cho's 90 years on Earth",
+      "url": "https://www.thestar.com/news/ontario/happy-exercise-help-others-the-secrets-behind-raymond-cho-s-90-years-on-earth/article_c274db23-a2ca-5a66-b05d-3e22154aefec.html",
+      "published": "2026-11-22T11:00:06+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "8ba921c94f1a638c",
+      "source": "Toronto Star",
+      "title": "'Such hard work:' professor and Métis builder team up on 13-foot birch-bark canoe",
+      "url": "https://www.thestar.com/news/canada/manitoba/such-hard-work-professor-and-m-tis-builder-team-up-on-13-foot-birch-bark-canoe/article_eecd9854-0155-5e0d-a1fd-567b38dc5080.html",
+      "published": "2026-11-22T11:00:14+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "8ba921c94f1a638c",
+      "source": "Toronto Star",
+      "title": "'Such hard work:' professor and Métis builder team up on 13-foot birch-bark canoe",
+      "url": "https://www.thestar.com/news/canada/manitoba/such-hard-work-professor-and-m-tis-builder-team-up-on-13-foot-birch-bark-canoe/article_eecd9854-0155-5e0d-a1fd-567b38dc5080.html",
+      "published": "2026-11-22T11:00:14+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "25d8cb92f84bbaa2",
+      "source": "Toronto Star",
+      "title": "All signs show Canada can’t meet its Paris target — here’s why Ottawa won’t admit it",
+      "url": "https://www.thestar.com/news/canada/all-signs-show-canada-can-t-meet-its-paris-target-here-s-why-ottawa-won-t-admit-it/article_2df27d53-ee30-5e8b-8683-527816deac68.html",
+      "published": "2026-11-22T11:00:03+00:00",
+      "content_status": "full",
+      "word_count": 213,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "25d8cb92f84bbaa2",
+      "source": "Toronto Star",
+      "title": "All signs show Canada can’t meet its Paris target — here’s why Ottawa won’t admit it",
+      "url": "https://www.thestar.com/news/canada/all-signs-show-canada-can-t-meet-its-paris-target-here-s-why-ottawa-won-t-admit-it/article_2df27d53-ee30-5e8b-8683-527816deac68.html",
+      "published": "2026-11-22T11:00:03+00:00",
+      "content_status": "full",
+      "word_count": 213,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2019,6 +2110,51 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "978be41ad4e55a06",
+      "source": "Toronto Star",
+      "title": "'Happy, exercise, help others': The secrets behind Raymond Cho's 90 years on Earth",
+      "url": "https://www.thestar.com/news/ontario/happy-exercise-help-others-the-secrets-behind-raymond-cho-s-90-years-on-earth/article_c274db23-a2ca-5a66-b05d-3e22154aefec.html",
+      "published": "2026-11-22T11:00:06+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "8ba921c94f1a638c",
+      "source": "Toronto Star",
+      "title": "'Such hard work:' professor and Métis builder team up on 13-foot birch-bark canoe",
+      "url": "https://www.thestar.com/news/canada/manitoba/such-hard-work-professor-and-m-tis-builder-team-up-on-13-foot-birch-bark-canoe/article_eecd9854-0155-5e0d-a1fd-567b38dc5080.html",
+      "published": "2026-11-22T11:00:14+00:00",
+      "content_status": "full",
+      "word_count": 190,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "25d8cb92f84bbaa2",
+      "source": "Toronto Star",
+      "title": "All signs show Canada can’t meet its Paris target — here’s why Ottawa won’t admit it",
+      "url": "https://www.thestar.com/news/canada/all-signs-show-canada-can-t-meet-its-paris-target-here-s-why-ottawa-won-t-admit-it/article_2df27d53-ee30-5e8b-8683-527816deac68.html",
+      "published": "2026-11-22T11:00:03+00:00",
+      "content_status": "full",
+      "word_count": 213,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e5003d8da405e4f0",
       "source": "Toronto Star",
       "title": "B.C. business groups are praising plans by Conservative government to cut red tape",
@@ -2041,21 +2177,6 @@
       "published": "2026-11-21T17:50:15+00:00",
       "content_status": "full",
       "word_count": 60,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "67c8295a95e1ac8b",
-      "source": "Toronto Star",
-      "title": "Eight people arrested in distraction theft targeting seniors in Toronto",
-      "url": "https://www.thestar.com/news/ontario/eight-people-arrested-in-distraction-theft-targeting-seniors-in-toronto/article_aa18864b-476c-56ba-9fce-fb8b5e436daf.html",
-      "published": "2026-11-21T15:15:18+00:00",
-      "content_status": "full",
-      "word_count": 128,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2094,21 +2215,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "75b3083c0038eda6",
-      "source": "Toronto Star",
-      "title": "McGuinty not aware U.S. has changed military co-operation policy with Canada",
-      "url": "https://www.thestar.com/news/canada/mcguinty-not-aware-u-s-has-changed-military-co-operation-policy-with-canada/article_ecf03de5-a7c9-5dcd-82ae-0d889ddf7f83.html",
-      "published": "2026-11-21T17:20:48+00:00",
-      "content_status": "full",
-      "word_count": 640,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "0f18c82ee2ade5ae",
       "source": "Toronto Star",
       "title": "Police seek suspects as over $100,000 in GPS units stolen from West Perth farms",
@@ -2131,21 +2237,6 @@
       "published": "2026-11-21T21:07:29+00:00",
       "content_status": "full",
       "word_count": 75,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d6f1f20e152911b6",
-      "source": "Toronto Star",
-      "title": "Toronto man arrested for homicide after appearing on Canada's most wanted list",
-      "url": "https://www.thestar.com/news/ontario/toronto-man-arrested-for-homicide-after-appearing-on-canada-s-most-wanted-list/article_b1582a77-0f6f-5d7f-bbcf-7823d7893c30.html",
-      "published": "2026-11-21T15:26:47+00:00",
-      "content_status": "full",
-      "word_count": 214,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4929,6 +5020,129 @@
       ]
     },
     {
+      "id": "8ba921c94f1a638c",
+      "source": "Toronto Star",
+      "title": "'Such hard work:' professor and Métis builder team up on 13-foot birch-bark canoe",
+      "url": "https://www.thestar.com/news/canada/manitoba/such-hard-work-professor-and-m-tis-builder-team-up-on-13-foot-birch-bark-canoe/article_eecd9854-0155-5e0d-a1fd-567b38dc5080.html",
+      "published": "2026-11-22T11:00:14+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 190,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "978be41ad4e55a06",
+      "source": "Toronto Star",
+      "title": "'Happy, exercise, help others': The secrets behind Raymond Cho's 90 years on Earth",
+      "url": "https://www.thestar.com/news/ontario/happy-exercise-help-others-the-secrets-behind-raymond-cho-s-90-years-on-earth/article_c274db23-a2ca-5a66-b05d-3e22154aefec.html",
+      "published": "2026-11-22T11:00:06+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "25d8cb92f84bbaa2",
+      "source": "Toronto Star",
+      "title": "All signs show Canada can’t meet its Paris target — here’s why Ottawa won’t admit it",
+      "url": "https://www.thestar.com/news/canada/all-signs-show-canada-can-t-meet-its-paris-target-here-s-why-ottawa-won-t-admit-it/article_2df27d53-ee30-5e8b-8683-527816deac68.html",
+      "published": "2026-11-22T11:00:03+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 213,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8101664fcb38004f",
       "source": "Toronto Star",
       "title": "Jacobs' foursome advances to final at Gsoc National in Sydney",
@@ -5141,93 +5355,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "60 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "75b3083c0038eda6",
-      "source": "Toronto Star",
-      "title": "McGuinty not aware U.S. has changed military co-operation policy with Canada",
-      "url": "https://www.thestar.com/news/canada/mcguinty-not-aware-u-s-has-changed-military-co-operation-policy-with-canada/article_ecf03de5-a7c9-5dcd-82ae-0d889ddf7f83.html",
-      "published": "2026-11-21T17:20:48+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 640,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d6f1f20e152911b6",
-      "source": "Toronto Star",
-      "title": "Toronto man arrested for homicide after appearing on Canada's most wanted list",
-      "url": "https://www.thestar.com/news/ontario/toronto-man-arrested-for-homicide-after-appearing-on-canada-s-most-wanted-list/article_b1582a77-0f6f-5d7f-bbcf-7823d7893c30.html",
-      "published": "2026-11-21T15:26:47+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 214,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "67c8295a95e1ac8b",
-      "source": "Toronto Star",
-      "title": "Eight people arrested in distraction theft targeting seniors in Toronto",
-      "url": "https://www.thestar.com/news/ontario/eight-people-arrested-in-distraction-theft-targeting-seniors-in-toronto/article_aa18864b-476c-56ba-9fce-fb8b5e436daf.html",
-      "published": "2026-11-21T15:15:18+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 128,
-      "paragraph_count": 9,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
