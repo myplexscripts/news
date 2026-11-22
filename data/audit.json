@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-22T14:52:22.274547+00:00",
-  "generated_at_london": "2026-11-22T09:52:22.274547-05:00",
-  "news_generated_at": "2026-11-22T14:46:41.230460+00:00",
+  "generated_at": "2026-11-22T15:03:42.935443+00:00",
+  "generated_at_london": "2026-11-22T10:03:42.935443-05:00",
+  "news_generated_at": "2026-11-22T15:01:49.773940+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 704,
     "source_count": 28,
     "audited_story_count": 119,
     "pass_story_count": 112,
-    "review_story_count": 4,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
-    "warning_issue_count": 7,
+    "review_story_count": 5,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
+    "warning_issue_count": 9,
     "info_issue_count": 89,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -126,7 +126,7 @@
       "latest_published": "2026-11-22T14:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T14:44:46.557999+00:00",
+      "last_scrape": "2026-11-22T15:00:08.283863+00:00",
       "last_error": ""
     },
     {
@@ -136,23 +136,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 0,
-      "fail": 2,
+      "review": 1,
+      "fail": 1,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 829,
-      "average_quality": 96,
+      "average_words": 844,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 2,
-      "warning_issues": 0,
+      "critical_issues": 1,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-22T11:30:00+00:00",
+      "latest_published": "2026-11-22T14:46:21+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-22T11:39:07.464470+00:00",
+      "last_scrape": "2026-11-22T15:00:09.614193+00:00",
       "last_error": ""
     },
     {
@@ -442,7 +443,7 @@
       "warning_issues": 0,
       "info_issues": 12,
       "latest_published": "2026-11-22T10:00:00+00:00",
-      "found_this_run": 4,
+      "found_this_run": 3,
       "tracked": 30,
       "last_scrape": "2026-11-22T10:10:56.161076+00:00",
       "last_error": ""
@@ -759,21 +760,6 @@
       "severity": "critical",
       "code": "status_mismatch",
       "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "29 words",
-      "story_id": "0f18c82ee2ade5ae",
-      "source": "Toronto Star",
-      "title": "Police seek suspects as over $100,000 in GPS units stolen from West Perth farms",
-      "url": "https://www.thestar.com/news/ontario/police-seek-suspects-as-over-100-000-in-gps-units-stolen-from-west-perth-farms/article_dc3eb717-13b8-59c1-b982-231822ef81f8.html",
-      "published": "2026-11-21T18:01:31+00:00",
-      "content_status": "full",
-      "word_count": 29,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
       "detail": "75 words",
       "story_id": "9f9393f5f32476e2",
       "source": "Toronto Star",
@@ -889,6 +875,36 @@
       "word_count": 58,
       "quality_score": 50,
       "extraction_method": "trafilatura:postmedia-repair"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f44ed8c1d01b7a5b",
+      "source": "Toronto Star",
+      "title": "Two dead following triple shooting overnight in Scarborough",
+      "url": "https://www.thestar.com/news/ontario/two-dead-following-triple-shooting-overnight-in-scarborough/article_d99ce852-e19c-5daa-bbec-ebe48c04130c.html",
+      "published": "2026-11-22T14:46:21+00:00",
+      "content_status": "full",
+      "word_count": 182,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "f44ed8c1d01b7a5b",
+      "source": "Toronto Star",
+      "title": "Two dead following triple shooting overnight in Scarborough",
+      "url": "https://www.thestar.com/news/ontario/two-dead-following-triple-shooting-overnight-in-scarborough/article_d99ce852-e19c-5daa-bbec-ebe48c04130c.html",
+      "published": "2026-11-22T14:46:21+00:00",
+      "content_status": "full",
+      "word_count": 182,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2110,21 +2126,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0f18c82ee2ade5ae",
-      "source": "Toronto Star",
-      "title": "Police seek suspects as over $100,000 in GPS units stolen from West Perth farms",
-      "url": "https://www.thestar.com/news/ontario/police-seek-suspects-as-over-100-000-in-gps-units-stolen-from-west-perth-farms/article_dc3eb717-13b8-59c1-b982-231822ef81f8.html",
-      "published": "2026-11-21T18:01:31+00:00",
-      "content_status": "full",
-      "word_count": 29,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "9f9393f5f32476e2",
       "source": "Toronto Star",
       "title": "Quebec students are considering a general strike to protest affordability crisis",
@@ -2149,6 +2150,21 @@
       "word_count": 309,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "f44ed8c1d01b7a5b",
+      "source": "Toronto Star",
+      "title": "Two dead following triple shooting overnight in Scarborough",
+      "url": "https://www.thestar.com/news/ontario/two-dead-following-triple-shooting-overnight-in-scarborough/article_d99ce852-e19c-5daa-bbec-ebe48c04130c.html",
+      "published": "2026-11-22T14:46:21+00:00",
+      "content_status": "full",
+      "word_count": 182,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4936,6 +4952,47 @@
       ]
     },
     {
+      "id": "f44ed8c1d01b7a5b",
+      "source": "Toronto Star",
+      "title": "Two dead following triple shooting overnight in Scarborough",
+      "url": "https://www.thestar.com/news/ontario/two-dead-following-triple-shooting-overnight-in-scarborough/article_d99ce852-e19c-5daa-bbec-ebe48c04130c.html",
+      "published": "2026-11-22T14:46:21+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 182,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "106c859b7a75e712",
       "source": "Toronto Star",
       "title": "When patients attack: Canadian doctors say they don't get much help in the face of violence",
@@ -5194,41 +5251,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0f18c82ee2ade5ae",
-      "source": "Toronto Star",
-      "title": "Police seek suspects as over $100,000 in GPS units stolen from West Perth farms",
-      "url": "https://www.thestar.com/news/ontario/police-seek-suspects-as-over-100-000-in-gps-units-stolen-from-west-perth-farms/article_dc3eb717-13b8-59c1-b982-231822ef81f8.html",
-      "published": "2026-11-21T18:01:31+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 29,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "29 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
