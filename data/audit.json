@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-23T20:21:59.622031+00:00",
-  "generated_at_london": "2026-11-23T15:21:59.622031-05:00",
-  "news_generated_at": "2026-11-23T20:14:42.059121+00:00",
+  "generated_at": "2026-11-23T20:32:05.725082+00:00",
+  "generated_at_london": "2026-11-23T15:32:05.725082-05:00",
+  "news_generated_at": "2026-11-23T20:30:10.230033+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 692,
+    "archive_story_count": 694,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 111,
-    "review_story_count": 4,
+    "pass_story_count": 110,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 87,
-    "healthy_source_count": 14,
-    "review_source_count": 3,
+    "healthy_source_count": 13,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -124,6 +124,33 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-20T19:47:40.954021+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 253,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 9,
+      "latest_published": "2026-11-23T20:00:31+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-23T20:28:19.787181+00:00",
       "last_error": ""
     },
     {
@@ -458,19 +485,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 440,
-      "average_quality": 96,
+      "average_words": 444,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 9,
-      "latest_published": "2026-11-23T19:56:23+00:00",
+      "latest_published": "2026-11-23T20:21:25+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T19:56:30.248083+00:00",
+      "last_scrape": "2026-11-23T20:28:14.719210+00:00",
       "last_error": ""
     },
     {
@@ -629,7 +657,7 @@
       "latest_published": "2026-11-23T18:40:25+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T20:12:38.479279+00:00",
+      "last_scrape": "2026-11-23T20:28:17.693078+00:00",
       "last_error": ""
     },
     {
@@ -683,32 +711,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-23T19:41:10.390290+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 253,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 9,
-      "latest_published": "2026-11-23T18:36:55+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-23T18:54:15.607429+00:00",
       "last_error": ""
     },
     {
@@ -859,6 +861,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "fc1e220d3f9789a9",
+      "source": "Toronto Star",
+      "title": "Detective says police did not plan to arrest Francique, inquest hears",
+      "url": "https://www.thestar.com/news/ontario/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:31+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "fc1e220d3f9789a9",
+      "source": "Toronto Star",
+      "title": "Detective says police did not plan to arrest Francique, inquest hears",
+      "url": "https://www.thestar.com/news/ontario/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:31+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1435,21 +1467,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "8bf62f0f9d5e2c7b",
-      "source": "Global News Canada",
-      "title": "Some Bell customers’ information accessed in cybersecurity incident",
-      "url": "https://globalnews.ca/news/12162247/bell-cyber-security-incident-personal-info-accessed",
-      "published": "2026-11-23T16:14:58+00:00",
-      "content_status": "full",
-      "word_count": 400,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "ac8b2f03beedc884",
       "source": "Global News Canada",
       "title": "Steven Del Duca fires top civil servant using ‘strong chair’ powers",
@@ -1474,6 +1491,21 @@
       "word_count": 114,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "4a092bceb176fe84",
+      "source": "Global News Canada",
+      "title": "‘Resistance’ group hosting Toronto conference added to Canada’s terrorist list",
+      "url": "https://globalnews.ca/news/12162797/masar-badil-conference-added-canada-terrorist-list",
+      "published": "2026-11-23T20:21:25+00:00",
+      "content_status": "full",
+      "word_count": 449,
+      "quality_score": 83,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1975,6 +2007,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "fc1e220d3f9789a9",
+      "source": "Toronto Star",
+      "title": "Detective says police did not plan to arrest Francique, inquest hears",
+      "url": "https://www.thestar.com/news/ontario/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:31+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "234460eb83cbfea0",
       "source": "Toronto Star",
       "title": "Man charged with second-degree murder in killing of B.C. actor Stewart McLean",
@@ -2042,21 +2089,6 @@
       "published": "2026-11-23T15:49:03+00:00",
       "content_status": "full",
       "word_count": 253,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ca2838745ca00cce",
-      "source": "Toronto Star",
-      "title": "Quebec court suspends law making it optional to swear oath to King",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-court-suspends-law-making-it-optional-to-swear-oath-to-king/article_eaff3b53-2c45-5d79-b7c4-1284db63b744.html",
-      "published": "2026-11-23T15:35:40+00:00",
-      "content_status": "full",
-      "word_count": 217,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3606,6 +3638,35 @@
       "issues": []
     },
     {
+      "id": "4a092bceb176fe84",
+      "source": "Global News Canada",
+      "title": "‘Resistance’ group hosting Toronto conference added to Canada’s terrorist list",
+      "url": "https://globalnews.ca/news/12162797/masar-badil-conference-added-canada-terrorist-list",
+      "published": "2026-11-23T20:21:25+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 449,
+      "paragraph_count": 17,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "0f8901ae20b90928",
       "source": "Global News Canada",
       "title": "Premiers Ford, Smith say interprovincial trade remains complicated despite efforts",
@@ -3844,35 +3905,6 @@
       "content_status": "full",
       "word_count": 559,
       "paragraph_count": 20,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8bf62f0f9d5e2c7b",
-      "source": "Global News Canada",
-      "title": "Some Bell customers’ information accessed in cybersecurity incident",
-      "url": "https://globalnews.ca/news/12162247/bell-cyber-security-incident-personal-info-accessed",
-      "published": "2026-11-23T16:14:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 400,
-      "paragraph_count": 14,
       "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4801,6 +4833,47 @@
       ]
     },
     {
+      "id": "fc1e220d3f9789a9",
+      "source": "Toronto Star",
+      "title": "Detective says police did not plan to arrest Francique, inquest hears",
+      "url": "https://www.thestar.com/news/ontario/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:31+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 220,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "65defe24d0f65ed7",
       "source": "Toronto Star",
       "title": "Police solve 1968 murder of teen girl in London, Ont., thanks to genetic genealogy",
@@ -5039,35 +5112,6 @@
       "content_status": "full",
       "word_count": 253,
       "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ca2838745ca00cce",
-      "source": "Toronto Star",
-      "title": "Quebec court suspends law making it optional to swear oath to King",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-court-suspends-law-making-it-optional-to-swear-oath-to-king/article_eaff3b53-2c45-5d79-b7c4-1284db63b744.html",
-      "published": "2026-11-23T15:35:40+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 217,
-      "paragraph_count": 18,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
