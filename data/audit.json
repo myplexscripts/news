@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-23T15:01:47.747747+00:00",
-  "generated_at_london": "2026-11-23T10:01:47.747747-05:00",
-  "news_generated_at": "2026-11-23T14:46:40.324924+00:00",
+  "generated_at": "2026-11-23T15:03:22.180475+00:00",
+  "generated_at_london": "2026-11-23T10:03:22.180475-05:00",
+  "news_generated_at": "2026-11-23T15:02:02.830237+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 685,
+    "archive_story_count": 686,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 106,
-    "review_story_count": 4,
+    "pass_story_count": 105,
+    "review_story_count": 5,
     "fail_story_count": 4,
     "critical_issue_count": 4,
-    "warning_issue_count": 7,
+    "warning_issue_count": 9,
     "info_issue_count": 87,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 7,
-      "review": 0,
+      "pass": 6,
+      "review": 1,
       "fail": 3,
-      "pass_rate": 70,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 323,
-      "average_quality": 96,
+      "average_words": 326,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 3,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
       "latest_published": "2026-11-23T10:00:02+00:00",
-      "found_this_run": 0,
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T10:05:30.468471+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-23T15:00:49.168671+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -656,7 +657,7 @@
       "latest_published": "2026-11-23T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T14:45:12.831014+00:00",
+      "last_scrape": "2026-11-23T15:00:48.004162+00:00",
       "last_error": ""
     },
     {
@@ -905,6 +906,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "21c392b4dd7deab6",
+      "source": "Toronto Star",
+      "title": "Two U.S. men sentenced to life in Dominica for murders of Canadian animation pioneer and his partner",
+      "url": "https://www.thestar.com/news/canada/two-u-s-men-sentenced-to-life-in-prison-for-murders-of-canadian-animation-pioneer-partner-in-dominica/article_a4905e7c-dc22-4b5c-9331-5858a88a2f52.html",
+      "published": "2026-11-23T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 242,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "21c392b4dd7deab6",
+      "source": "Toronto Star",
+      "title": "Two U.S. men sentenced to life in Dominica for murders of Canadian animation pioneer and his partner",
+      "url": "https://www.thestar.com/news/canada/two-u-s-men-sentenced-to-life-in-prison-for-murders-of-canadian-animation-pioneer-partner-in-dominica/article_a4905e7c-dc22-4b5c-9331-5858a88a2f52.html",
+      "published": "2026-11-23T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 242,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2066,21 +2097,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "581be844ac32ce1d",
-      "source": "Toronto Star",
-      "title": "Group calls on people to give coyote space following Edward Gardens incident",
-      "url": "https://www.thestar.com/news/ontario/group-calls-on-people-to-give-coyote-space-following-edward-gardens-incident/article_ac1cd2f8-cb8a-510b-b12d-24dff3d3cc48.html",
-      "published": "2026-11-22T18:46:53+00:00",
-      "content_status": "full",
-      "word_count": 215,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "9a147c80c295130b",
       "source": "Toronto Star",
       "title": "Ottawa recruiting commissioners for wrongful-conviction review body",
@@ -2120,6 +2136,21 @@
       "word_count": 211,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "21c392b4dd7deab6",
+      "source": "Toronto Star",
+      "title": "Two U.S. men sentenced to life in Dominica for murders of Canadian animation pioneer and his partner",
+      "url": "https://www.thestar.com/news/canada/two-u-s-men-sentenced-to-life-in-prison-for-murders-of-canadian-animation-pioneer-partner-in-dominica/article_a4905e7c-dc22-4b5c-9331-5858a88a2f52.html",
+      "published": "2026-11-23T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 242,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5011,6 +5042,47 @@
       ]
     },
     {
+      "id": "21c392b4dd7deab6",
+      "source": "Toronto Star",
+      "title": "Two U.S. men sentenced to life in Dominica for murders of Canadian animation pioneer and his partner",
+      "url": "https://www.thestar.com/news/canada/two-u-s-men-sentenced-to-life-in-prison-for-murders-of-canadian-animation-pioneer-partner-in-dominica/article_a4905e7c-dc22-4b5c-9331-5858a88a2f52.html",
+      "published": "2026-11-23T05:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 242,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c259c2c49eb9152f",
       "source": "Toronto Star",
       "title": "U.S. trade chief sees progress in Canada talks, raises China concerns",
@@ -5066,35 +5138,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "73 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "581be844ac32ce1d",
-      "source": "Toronto Star",
-      "title": "Group calls on people to give coyote space following Edward Gardens incident",
-      "url": "https://www.thestar.com/news/ontario/group-calls-on-people-to-give-coyote-space-following-edward-gardens-incident/article_ac1cd2f8-cb8a-510b-b12d-24dff3d3cc48.html",
-      "published": "2026-11-22T18:46:53+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 215,
-      "paragraph_count": 12,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
