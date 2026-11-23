@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-23T14:37:58.184032+00:00",
-  "generated_at_london": "2026-11-23T09:37:58.184032-05:00",
-  "news_generated_at": "2026-11-23T14:32:00.616290+00:00",
+  "generated_at": "2026-11-23T14:48:19.403823+00:00",
+  "generated_at_london": "2026-11-23T09:48:19.403823-05:00",
+  "news_generated_at": "2026-11-23T14:46:40.324924+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 685,
@@ -94,7 +94,7 @@
       "warning_issues": 1,
       "info_issues": 12,
       "latest_published": "2026-11-23T10:00:00+00:00",
-      "found_this_run": 3,
+      "found_this_run": 2,
       "tracked": 30,
       "last_scrape": "2026-11-23T10:09:12.690397+00:00",
       "last_error": ""
@@ -129,7 +129,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
@@ -147,10 +147,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-23T10:00:02+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-23T10:05:30.468471+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -484,19 +484,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 423,
-      "average_quality": 96,
+      "average_words": 381,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-23T13:41:48+00:00",
+      "latest_published": "2026-11-23T14:39:29+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T13:43:23.329113+00:00",
+      "last_scrape": "2026-11-23T14:45:11.025470+00:00",
       "last_error": ""
     },
     {
@@ -656,7 +657,7 @@
       "latest_published": "2026-11-23T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T14:30:04.705785+00:00",
+      "last_scrape": "2026-11-23T14:45:12.831014+00:00",
       "last_error": ""
     },
     {
@@ -1466,15 +1467,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0d00c6f8fa174ec7",
+      "story_id": "9480893073f3d668",
       "source": "Global News Canada",
-      "title": "Kelowna city hall faces more transparency questions after wage hike kept quiet",
-      "url": "https://globalnews.ca/news/12160417/kelowna-city-hall-faces-transparency-questions-wage-hike-quiet",
-      "published": "2026-11-21T02:29:43+00:00",
+      "title": "Feds’ wrongful-conviction review body begins commissioner recruitment",
+      "url": "https://globalnews.ca/news/12162224/wrongful-conviction-review-body-commissioner-recruitment",
+      "published": "2026-11-23T14:39:29+00:00",
       "content_status": "full",
-      "word_count": 548,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 125,
+      "quality_score": 63,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3594,6 +3595,35 @@
       "issues": []
     },
     {
+      "id": "9480893073f3d668",
+      "source": "Global News Canada",
+      "title": "Feds’ wrongful-conviction review body begins commissioner recruitment",
+      "url": "https://globalnews.ca/news/12162224/wrongful-conviction-review-body-commissioner-recruitment",
+      "published": "2026-11-23T14:39:29+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 125,
+      "paragraph_count": 6,
+      "inline_image_count": 2,
+      "quality_score": 63,
+      "quality_grade": "partial",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c58c9a9c5229749a",
       "source": "Global News Canada",
       "title": "B.C. trial in author Stephen Galloway’s defamation lawsuit enters final week",
@@ -3840,35 +3870,6 @@
       "word_count": 412,
       "paragraph_count": 14,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0d00c6f8fa174ec7",
-      "source": "Global News Canada",
-      "title": "Kelowna city hall faces more transparency questions after wage hike kept quiet",
-      "url": "https://globalnews.ca/news/12160417/kelowna-city-hall-faces-transparency-questions-wage-hike-quiet",
-      "published": "2026-11-21T02:29:43+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 548,
-      "paragraph_count": 20,
-      "inline_image_count": 4,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
