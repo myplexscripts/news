@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-23T09:54:16.209944+00:00",
-  "generated_at_london": "2026-11-23T04:54:16.209944-05:00",
-  "news_generated_at": "2026-11-23T09:52:23.962769+00:00",
+  "generated_at": "2026-11-23T10:08:10.137371+00:00",
+  "generated_at_london": "2026-11-23T05:08:10.137371-05:00",
+  "news_generated_at": "2026-11-23T10:06:45.370835+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 694,
+    "archive_story_count": 691,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 106,
-    "review_story_count": 4,
-    "fail_story_count": 5,
-    "critical_issue_count": 5,
-    "warning_issue_count": 7,
+    "review_story_count": 5,
+    "fail_story_count": 4,
+    "critical_issue_count": 4,
+    "warning_issue_count": 9,
     "info_issue_count": 88,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -84,8 +84,8 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 498,
-      "average_quality": 80,
+      "average_words": 575,
+      "average_quality": 81,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -93,10 +93,10 @@
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 12,
-      "latest_published": "2026-11-22T23:51:30.852000+00:00",
-      "found_this_run": 4,
+      "latest_published": "2026-11-23T10:00:00+00:00",
+      "found_this_run": 5,
       "tracked": 30,
-      "last_scrape": "2026-11-23T00:05:10.830365+00:00",
+      "last_scrape": "2026-11-23T10:05:27.116900+00:00",
       "last_error": ""
     },
     {
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 6,
-      "review": 0,
-      "fail": 4,
+      "review": 1,
+      "fail": 3,
       "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 226,
-      "average_quality": 96,
+      "average_words": 242,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 4,
-      "warning_issues": 0,
+      "critical_issues": 3,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-23T09:06:38+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-23T10:00:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T09:24:11.234723+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-23T10:05:30.468471+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -656,7 +657,7 @@
       "latest_published": "2026-11-23T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T09:50:40.959796+00:00",
+      "last_scrape": "2026-11-23T10:05:29.254499+00:00",
       "last_error": ""
     },
     {
@@ -802,21 +803,6 @@
       "extraction_method": "reader:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "65 words",
-      "story_id": "f44ed8c1d01b7a5b",
-      "source": "Toronto Star",
-      "title": "Two dead following triple shooting overnight in Scarborough",
-      "url": "https://www.thestar.com/news/ontario/two-dead-following-triple-shooting-overnight-in-scarborough/article_d99ce852-e19c-5daa-bbec-ebe48c04130c.html",
-      "published": "2026-11-22T14:46:21+00:00",
-      "content_status": "full",
-      "word_count": 65,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -920,6 +906,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "27b29853224a2d45",
+      "source": "Toronto Star",
+      "title": "Why daily cannabis use in Canada just topped daily alcohol use for adults under 50: 'A generational shift'",
+      "url": "https://www.thestar.com/news/gta/why-daily-cannabis-use-in-canada-just-topped-daily-alcohol-use-for-adults-under-50-a-generational-shift/article_e5d9348b-2a3a-41a2-97a1-c630412b1886.html",
+      "published": "2026-11-23T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "27b29853224a2d45",
+      "source": "Toronto Star",
+      "title": "Why daily cannabis use in Canada just topped daily alcohol use for adults under 50: 'A generational shift'",
+      "url": "https://www.thestar.com/news/gta/why-daily-cannabis-use-in-canada-just-topped-daily-alcohol-use-for-adults-under-50-a-generational-shift/article_e5d9348b-2a3a-41a2-97a1-c630412b1886.html",
+      "published": "2026-11-23T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1076,21 +1092,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "cbdc3a9f143d5353",
-      "source": "CTV News Canada",
-      "title": "World leaders gather in Halifax for international security forum",
-      "url": "https://www.ctvnews.ca/canada/article/world-leaders-gather-in-halifax-for-international-security-forum",
-      "published": "2026-11-21T02:08:00.736000+00:00",
-      "content_status": "full",
-      "word_count": 442,
-      "quality_score": 83,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "d94baf1aa7bed29f",
       "source": "CTV News Canada",
       "title": "‘A wake-up call’: Experts raise alarm over drone incursions at Canadian military bases",
@@ -1099,6 +1100,21 @@
       "content_status": "full",
       "word_count": 613,
       "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ef8a6e331abefea3",
+      "source": "CTV News Canada",
+      "title": "‘Just horrific’: Canadian alleged bag tag switch victims trapped in New Zealand for 14 months",
+      "url": "https://www.ctvnews.ca/canada/article/just-horrific-canadian-alleged-bag-tag-switch-victims-trapped-in-new-zealand-for-14-months",
+      "published": "2026-11-23T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1205,
+      "quality_score": 91,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2156,21 +2172,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f44ed8c1d01b7a5b",
-      "source": "Toronto Star",
-      "title": "Two dead following triple shooting overnight in Scarborough",
-      "url": "https://www.thestar.com/news/ontario/two-dead-following-triple-shooting-overnight-in-scarborough/article_d99ce852-e19c-5daa-bbec-ebe48c04130c.html",
-      "published": "2026-11-22T14:46:21+00:00",
-      "content_status": "full",
-      "word_count": 65,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "c259c2c49eb9152f",
       "source": "Toronto Star",
       "title": "U.S. trade chief sees progress in Canada talks, raises China concerns",
@@ -2180,6 +2181,21 @@
       "word_count": 255,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "27b29853224a2d45",
+      "source": "Toronto Star",
+      "title": "Why daily cannabis use in Canada just topped daily alcohol use for adults under 50: 'A generational shift'",
+      "url": "https://www.thestar.com/news/gta/why-daily-cannabis-use-in-canada-just-topped-daily-alcohol-use-for-adults-under-50-a-generational-shift/article_e5d9348b-2a3a-41a2-97a1-c630412b1886.html",
+      "published": "2026-11-23T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 220,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3936,6 +3952,35 @@
       ]
     },
     {
+      "id": "ef8a6e331abefea3",
+      "source": "CTV News Canada",
+      "title": "‘Just horrific’: Canadian alleged bag tag switch victims trapped in New Zealand for 14 months",
+      "url": "https://www.ctvnews.ca/canada/article/just-horrific-canadian-alleged-bag-tag-switch-victims-trapped-in-new-zealand-for-14-months",
+      "published": "2026-11-23T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1205,
+      "paragraph_count": 55,
+      "inline_image_count": 5,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a2ed3509c34f8104",
       "source": "CTV News Canada",
       "title": "Understanding Canada’s commitment to the $100 million Nato Innovation Fund",
@@ -4202,35 +4247,6 @@
       "inline_image_count": 3,
       "quality_score": 91,
       "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "cbdc3a9f143d5353",
-      "source": "CTV News Canada",
-      "title": "World leaders gather in Halifax for international security forum",
-      "url": "https://www.ctvnews.ca/canada/article/world-leaders-gather-in-halifax-for-international-security-forum",
-      "published": "2026-11-21T02:08:00.736000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 442,
-      "paragraph_count": 14,
-      "inline_image_count": 3,
-      "quality_score": 83,
-      "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
@@ -4854,6 +4870,47 @@
       ]
     },
     {
+      "id": "27b29853224a2d45",
+      "source": "Toronto Star",
+      "title": "Why daily cannabis use in Canada just topped daily alcohol use for adults under 50: 'A generational shift'",
+      "url": "https://www.thestar.com/news/gta/why-daily-cannabis-use-in-canada-just-topped-daily-alcohol-use-for-adults-under-50-a-generational-shift/article_e5d9348b-2a3a-41a2-97a1-c630412b1886.html",
+      "published": "2026-11-23T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 220,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9a147c80c295130b",
       "source": "Toronto Star",
       "title": "Ottawa recruiting commissioners for wrongful-conviction review body",
@@ -5123,41 +5180,6 @@
           "code": "status_mismatch",
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "63 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f44ed8c1d01b7a5b",
-      "source": "Toronto Star",
-      "title": "Two dead following triple shooting overnight in Scarborough",
-      "url": "https://www.thestar.com/news/ontario/two-dead-following-triple-shooting-overnight-in-scarborough/article_d99ce852-e19c-5daa-bbec-ebe48c04130c.html",
-      "published": "2026-11-22T14:46:21+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 65,
-      "paragraph_count": 4,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "65 words"
         },
         {
           "severity": "info",
