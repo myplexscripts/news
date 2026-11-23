@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-23T15:38:39.750299+00:00",
-  "generated_at_london": "2026-11-23T10:38:39.750299-05:00",
-  "news_generated_at": "2026-11-23T15:33:42.193900+00:00",
+  "generated_at": "2026-11-23T15:51:17.865391+00:00",
+  "generated_at_london": "2026-11-23T10:51:17.865391-05:00",
+  "news_generated_at": "2026-11-23T15:49:29.504847+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 685,
+    "archive_story_count": 684,
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 106,
-    "review_story_count": 4,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
-    "warning_issue_count": 7,
+    "review_story_count": 5,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 9,
     "info_issue_count": 87,
     "healthy_source_count": 13,
     "review_source_count": 4,
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
       "pass": 7,
-      "review": 0,
-      "fail": 3,
+      "review": 1,
+      "fail": 2,
       "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 364,
-      "average_quality": 96,
+      "average_words": 379,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 3,
-      "warning_issues": 0,
+      "critical_issues": 2,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-23T10:00:02+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-23T15:35:40+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T15:00:49.168671+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-23T15:47:53.531207+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -442,7 +443,7 @@
       "latest_published": "2026-11-23T15:20:08.750000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T15:30:22.928592+00:00",
+      "last_scrape": "2026-11-23T15:36:10.252570+00:00",
       "last_error": ""
     },
     {
@@ -656,7 +657,7 @@
       "latest_published": "2026-11-23T11:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T15:32:08.608871+00:00",
+      "last_scrape": "2026-11-23T15:47:52.121161+00:00",
       "last_error": ""
     },
     {
@@ -768,21 +769,6 @@
       "published": "2026-11-23T08:00:02+00:00",
       "content_status": "full",
       "word_count": 39,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "73 words",
-      "story_id": "b9b6800ab92c4a79",
-      "source": "Toronto Star",
-      "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
-      "url": "https://www.thestar.com/news/canada/british-columbia/first-nations-leader-says-he-s-open-to-talks-with-doerkson-but-opposes-dripa-repeal/article_3ffcbebd-0554-5993-bc1f-a35eb964c6f7.html",
-      "published": "2026-11-22T19:11:30+00:00",
-      "content_status": "full",
-      "word_count": 73,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -905,6 +891,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "ca2838745ca00cce",
+      "source": "Toronto Star",
+      "title": "Quebec court suspends law making it optional to swear oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-court-suspends-law-making-it-optional-to-swear-oath-to-king/article_eaff3b53-2c45-5d79-b7c4-1284db63b744.html",
+      "published": "2026-11-23T15:35:40+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "ca2838745ca00cce",
+      "source": "Toronto Star",
+      "title": "Quebec court suspends law making it optional to swear oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-court-suspends-law-making-it-optional-to-swear-oath-to-king/article_eaff3b53-2c45-5d79-b7c4-1284db63b744.html",
+      "published": "2026-11-23T15:35:40+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2051,21 +2067,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "b9b6800ab92c4a79",
-      "source": "Toronto Star",
-      "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
-      "url": "https://www.thestar.com/news/canada/british-columbia/first-nations-leader-says-he-s-open-to-talks-with-doerkson-but-opposes-dripa-repeal/article_3ffcbebd-0554-5993-bc1f-a35eb964c6f7.html",
-      "published": "2026-11-22T19:11:30+00:00",
-      "content_status": "full",
-      "word_count": 73,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "9a147c80c295130b",
       "source": "Toronto Star",
       "title": "Ottawa recruiting commissioners for wrongful-conviction review body",
@@ -2075,6 +2076,21 @@
       "word_count": 21,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ca2838745ca00cce",
+      "source": "Toronto Star",
+      "title": "Quebec court suspends law making it optional to swear oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-court-suspends-law-making-it-optional-to-swear-oath-to-king/article_eaff3b53-2c45-5d79-b7c4-1284db63b744.html",
+      "published": "2026-11-23T15:35:40+00:00",
+      "content_status": "full",
+      "word_count": 215,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4796,6 +4812,47 @@
       ]
     },
     {
+      "id": "ca2838745ca00cce",
+      "source": "Toronto Star",
+      "title": "Quebec court suspends law making it optional to swear oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-court-suspends-law-making-it-optional-to-swear-oath-to-king/article_eaff3b53-2c45-5d79-b7c4-1284db63b744.html",
+      "published": "2026-11-23T15:35:40+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 215,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c214f13e473570f6",
       "source": "Toronto Star",
       "title": "B.C. trial in author Stephen Galloway's defamation lawsuit enters final week",
@@ -5060,41 +5117,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b9b6800ab92c4a79",
-      "source": "Toronto Star",
-      "title": "First Nations leader says he's open to talks with Doerkson, but opposes Dripa repeal",
-      "url": "https://www.thestar.com/news/canada/british-columbia/first-nations-leader-says-he-s-open-to-talks-with-doerkson-but-opposes-dripa-repeal/article_3ffcbebd-0554-5993-bc1f-a35eb964c6f7.html",
-      "published": "2026-11-22T19:11:30+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 73,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "73 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
