@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-23T08:07:08.767954+00:00",
-  "generated_at_london": "2026-11-23T03:07:08.767954-05:00",
-  "news_generated_at": "2026-11-23T08:02:47.272144+00:00",
+  "generated_at": "2026-11-23T08:21:08.613806+00:00",
+  "generated_at_london": "2026-11-23T03:21:08.613806-05:00",
+  "news_generated_at": "2026-11-23T08:19:05.910027+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 695,
+    "archive_story_count": 696,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 107,
+    "pass_story_count": 106,
     "review_story_count": 4,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
+    "fail_story_count": 5,
+    "critical_issue_count": 5,
     "warning_issue_count": 7,
     "info_issue_count": 88,
     "healthy_source_count": 13,
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 7,
+      "pass": 6,
       "review": 0,
-      "fail": 3,
-      "pass_rate": 70,
+      "fail": 4,
+      "pass_rate": 60,
       "usable_body_rate": 100,
-      "average_words": 643,
-      "average_quality": 96,
+      "average_words": 374,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 3,
+      "critical_issues": 4,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-23T06:26:42+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-23T08:00:02+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T06:49:00.175851+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-23T08:17:12.071712+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -656,7 +657,7 @@
       "latest_published": "2026-11-22T23:43:57+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T08:01:16.223572+00:00",
+      "last_scrape": "2026-11-23T08:17:10.928473+00:00",
       "last_error": ""
     },
     {
@@ -755,6 +756,21 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "61 words",
+      "story_id": "ef89008c8990efcb",
+      "source": "Toronto Star",
+      "title": "B.C. Greens take the oath of office as Leader Lowan laments failed climate conference",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-greens-take-the-oath-of-office-as-leader-lowan-laments-failed-climate-conference/article_4e5ad5d2-4487-585b-b14f-aa9c78665959.html",
+      "published": "2026-11-23T08:00:02+00:00",
+      "content_status": "full",
+      "word_count": 61,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "critical",
@@ -2021,21 +2037,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "978be41ad4e55a06",
-      "source": "Toronto Star",
-      "title": "'Happy, exercise, help others': The secrets behind Raymond Cho's 90 years on Earth",
-      "url": "https://www.thestar.com/news/ontario/happy-exercise-help-others-the-secrets-behind-raymond-cho-s-90-years-on-earth/article_c274db23-a2ca-5a66-b05d-3e22154aefec.html",
-      "published": "2026-11-22T11:00:06+00:00",
-      "content_status": "full",
-      "word_count": 2750,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "8ba921c94f1a638c",
       "source": "Toronto Star",
       "title": "'Such hard work:' professor and Métis builder team up on 13-foot birch-bark canoe",
@@ -2045,6 +2046,21 @@
       "word_count": 688,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "ef89008c8990efcb",
+      "source": "Toronto Star",
+      "title": "B.C. Greens take the oath of office as Leader Lowan laments failed climate conference",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-greens-take-the-oath-of-office-as-leader-lowan-laments-failed-climate-conference/article_4e5ad5d2-4487-585b-b14f-aa9c78665959.html",
+      "published": "2026-11-23T08:00:02+00:00",
+      "content_status": "full",
+      "word_count": 61,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4839,6 +4855,41 @@
       ]
     },
     {
+      "id": "ef89008c8990efcb",
+      "source": "Toronto Star",
+      "title": "B.C. Greens take the oath of office as Leader Lowan laments failed climate conference",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-greens-take-the-oath-of-office-as-leader-lowan-laments-failed-climate-conference/article_4e5ad5d2-4487-585b-b14f-aa9c78665959.html",
+      "published": "2026-11-23T08:00:02+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 61,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "61 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "23fa21767e2325a9",
       "source": "Toronto Star",
       "title": "Crews prepare to pull last of container ship run aground off Newfoundland",
@@ -5103,35 +5154,6 @@
       "word_count": 688,
       "paragraph_count": 29,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "978be41ad4e55a06",
-      "source": "Toronto Star",
-      "title": "'Happy, exercise, help others': The secrets behind Raymond Cho's 90 years on Earth",
-      "url": "https://www.thestar.com/news/ontario/happy-exercise-help-others-the-secrets-behind-raymond-cho-s-90-years-on-earth/article_c274db23-a2ca-5a66-b05d-3e22154aefec.html",
-      "published": "2026-11-22T11:00:06+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 2750,
-      "paragraph_count": 120,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
