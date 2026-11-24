@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T16:58:35.168162+00:00",
-  "generated_at_london": "2026-11-24T11:58:35.168162-05:00",
-  "news_generated_at": "2026-11-24T16:52:04.938953+00:00",
+  "generated_at": "2026-11-24T17:09:34.524172+00:00",
+  "generated_at_london": "2026-11-24T12:09:34.524172-05:00",
+  "news_generated_at": "2026-11-24T17:07:37.057390+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 709,
+    "archive_story_count": 710,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 109,
-    "review_story_count": 4,
+    "pass_story_count": 108,
+    "review_story_count": 5,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 95,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -103,28 +103,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 327,
-      "average_quality": 96,
+      "average_words": 244,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-24T16:07:26+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-24T16:42:50+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T16:34:35.569897+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-24T17:05:50.101195+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -172,7 +173,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -442,7 +443,7 @@
       "latest_published": "2026-11-24T16:49:52.551000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T16:39:19.262272+00:00",
+      "last_scrape": "2026-11-24T16:55:21.459582+00:00",
       "last_error": ""
     },
     {
@@ -484,19 +485,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 421,
-      "average_quality": 96,
+      "average_words": 431,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-24T16:31:26+00:00",
+      "latest_published": "2026-11-24T16:57:17+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T16:34:30.582081+00:00",
+      "last_scrape": "2026-11-24T17:05:45.536042+00:00",
       "last_error": ""
     },
     {
@@ -653,7 +655,7 @@
       "latest_published": "2026-11-24T16:18:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T16:50:20.745706+00:00",
+      "last_scrape": "2026-11-24T17:05:47.888737+00:00",
       "last_error": ""
     },
     {
@@ -886,6 +888,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "9a8a6217b38dc230",
+      "source": "Toronto Star",
+      "title": "Yukon Energy fires prime contractor in delayed $35M battery-storage project",
+      "url": "https://www.thestar.com/news/canada/yukon/yukon-energy-fires-prime-contractor-in-delayed-35m-battery-storage-project/article_ed59e972-a132-5a1b-8a39-fa2bd9864819.html",
+      "published": "2026-11-24T16:42:50+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "9a8a6217b38dc230",
+      "source": "Toronto Star",
+      "title": "Yukon Energy fires prime contractor in delayed $35M battery-storage project",
+      "url": "https://www.thestar.com/news/canada/yukon/yukon-energy-fires-prime-contractor-in-delayed-35m-battery-storage-project/article_ed59e972-a132-5a1b-8a39-fa2bd9864819.html",
+      "published": "2026-11-24T16:42:50+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1492,15 +1524,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "b66d95a05cca23e5",
+      "story_id": "3fddda57cdeb6992",
       "source": "Global News Canada",
-      "title": "Montreal touts aerospace, AI in bid to host Nato defence bank",
-      "url": "https://globalnews.ca/news/12163120/montreal-defence-security-and-resilience-bank-bid",
-      "published": "2026-11-24T10:00:48+00:00",
+      "title": "Mortgage delinquencies at 13-year high as Canadians fall behind on payments",
+      "url": "https://globalnews.ca/news/12164175/mortgage-delinquencies-2026",
+      "published": "2026-11-24T16:57:17+00:00",
       "content_status": "full",
-      "word_count": 400,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 501,
+      "quality_score": 89,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -2167,21 +2199,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "bfdc668c31a33d53",
-      "source": "Toronto Star",
-      "title": "German submarine CEO says Canadian business will benefit from tighter European ties",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/german-submarine-ceo-says-canadian-business-will-benefit-from-tighter-european-ties/article_39d31f9d-7f95-54f5-b6cd-4a95be544e38.html",
-      "published": "2026-11-24T09:00:07+00:00",
-      "content_status": "full",
-      "word_count": 1027,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "9e767a63f868fb69",
       "source": "Toronto Star",
       "title": "Largest emissions spike in decade further sets back climate goals in Toronto area",
@@ -2251,6 +2268,21 @@
       "word_count": 198,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "9a8a6217b38dc230",
+      "source": "Toronto Star",
+      "title": "Yukon Energy fires prime contractor in delayed $35M battery-storage project",
+      "url": "https://www.thestar.com/news/canada/yukon/yukon-energy-fires-prime-contractor-in-delayed-35m-battery-storage-project/article_ed59e972-a132-5a1b-8a39-fa2bd9864819.html",
+      "published": "2026-11-24T16:42:50+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3750,6 +3782,35 @@
       "issues": []
     },
     {
+      "id": "3fddda57cdeb6992",
+      "source": "Global News Canada",
+      "title": "Mortgage delinquencies at 13-year high as Canadians fall behind on payments",
+      "url": "https://globalnews.ca/news/12164175/mortgage-delinquencies-2026",
+      "published": "2026-11-24T16:57:17+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 501,
+      "paragraph_count": 17,
+      "inline_image_count": 1,
+      "quality_score": 89,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1983c226a1eeb9d8",
       "source": "Global News Canada",
       "title": "Ontario property tax change could hike affordable housing costs: critics",
@@ -3996,35 +4057,6 @@
       "word_count": 509,
       "paragraph_count": 16,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b66d95a05cca23e5",
-      "source": "Global News Canada",
-      "title": "Montreal touts aerospace, AI in bid to host Nato defence bank",
-      "url": "https://globalnews.ca/news/12163120/montreal-defence-security-and-resilience-bank-bid",
-      "published": "2026-11-24T10:00:48+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 400,
-      "paragraph_count": 16,
-      "inline_image_count": 6,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4982,6 +5014,47 @@
       ]
     },
     {
+      "id": "9a8a6217b38dc230",
+      "source": "Toronto Star",
+      "title": "Yukon Energy fires prime contractor in delayed $35M battery-storage project",
+      "url": "https://www.thestar.com/news/canada/yukon/yukon-energy-fires-prime-contractor-in-delayed-35m-battery-storage-project/article_ed59e972-a132-5a1b-8a39-fa2bd9864819.html",
+      "published": "2026-11-24T16:42:50+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "89947186e1e4a5e1",
       "source": "Toronto Star",
       "title": "Two Nova Scotia seafood firms ticketed for illegal lobster processing deny claims",
@@ -5233,35 +5306,6 @@
       "content_status": "full",
       "word_count": 966,
       "paragraph_count": 32,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "bfdc668c31a33d53",
-      "source": "Toronto Star",
-      "title": "German submarine CEO says Canadian business will benefit from tighter European ties",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/german-submarine-ceo-says-canadian-business-will-benefit-from-tighter-european-ties/article_39d31f9d-7f95-54f5-b6cd-4a95be544e38.html",
-      "published": "2026-11-24T09:00:07+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1027,
-      "paragraph_count": 41,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
