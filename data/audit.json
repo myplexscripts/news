@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T03:17:23.722815+00:00",
-  "generated_at_london": "2026-11-23T22:17:23.722815-05:00",
-  "news_generated_at": "2026-11-24T03:11:39.971808+00:00",
+  "generated_at": "2026-11-24T03:29:17.735222+00:00",
+  "generated_at_london": "2026-11-23T22:29:17.735222-05:00",
+  "news_generated_at": "2026-11-24T03:27:17.479865+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 695,
     "source_count": 28,
     "audited_story_count": 116,
-    "pass_story_count": 109,
-    "review_story_count": 4,
+    "pass_story_count": 108,
+    "review_story_count": 5,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 90,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -106,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
-      "review": 0,
+      "pass": 7,
+      "review": 1,
       "fail": 2,
-      "pass_rate": 80,
+      "pass_rate": 70,
       "usable_body_rate": 100,
-      "average_words": 401,
-      "average_quality": 96,
+      "average_words": 353,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "reader:semantic-rich-v1": 9,
+        "dom:star:article": 1
       },
       "critical_issues": 2,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 9,
       "latest_published": "2026-11-23T22:05:06+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-23T22:32:27.487046+00:00",
+      "last_scrape": "2026-11-24T03:25:27.858473+00:00",
       "last_error": ""
     },
     {
@@ -201,7 +202,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -220,7 +221,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
+      "last_error": ""
     },
     {
       "source": "Government of Canada News",
@@ -655,7 +656,7 @@
       "latest_published": "2026-11-24T02:45:27+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T03:10:14.478120+00:00",
+      "last_scrape": "2026-11-24T03:25:26.073799+00:00",
       "last_error": ""
     },
     {
@@ -903,6 +904,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "702a76258500d62e",
+      "source": "Toronto Star",
+      "title": "Police wouldn't have arrested Francique if he stayed home, detective tells inquest",
+      "url": "https://www.thestar.com/news/gta/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:00+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "702a76258500d62e",
+      "source": "Toronto Star",
+      "title": "Police wouldn't have arrested Francique if he stayed home, detective tells inquest",
+      "url": "https://www.thestar.com/news/gta/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:00+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2154,21 +2185,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6cb81088570a0aa4",
-      "source": "Toronto Star",
-      "title": "Newfoundland and Labrador expects oil windfall, balanced budget after soaring prices",
-      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/newfoundland-and-labrador-expects-oil-windfall-balanced-budget-after-soaring-prices/article_45f0f05e-0bf0-580a-9def-f6a683b89197.html",
-      "published": "2026-11-23T16:37:50+00:00",
-      "content_status": "full",
-      "word_count": 703,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "351f1717fcb17030",
       "source": "Toronto Star",
       "title": "Olivia Chow uses strong mayor powers to replace Toronto's city manager",
@@ -2178,6 +2194,21 @@
       "word_count": 55,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "702a76258500d62e",
+      "source": "Toronto Star",
+      "title": "Police wouldn't have arrested Francique if he stayed home, detective tells inquest",
+      "url": "https://www.thestar.com/news/gta/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:00+00:00",
+      "content_status": "full",
+      "word_count": 229,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -5032,6 +5063,47 @@
       ]
     },
     {
+      "id": "702a76258500d62e",
+      "source": "Toronto Star",
+      "title": "Police wouldn't have arrested Francique if he stayed home, detective tells inquest",
+      "url": "https://www.thestar.com/news/gta/detective-says-police-did-not-plan-to-arrest-francique-inquest-hears/article_bac19977-847d-5f22-bcaa-71c13dbf1a0e.html",
+      "published": "2026-11-23T20:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 229,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "65defe24d0f65ed7",
       "source": "Toronto Star",
       "title": "Police solve 1968 murder of teen girl in London, Ont., thanks to genetic genealogy",
@@ -5167,35 +5239,6 @@
       "word_count": 539,
       "paragraph_count": 18,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6cb81088570a0aa4",
-      "source": "Toronto Star",
-      "title": "Newfoundland and Labrador expects oil windfall, balanced budget after soaring prices",
-      "url": "https://www.thestar.com/news/canada/newfoundland-and-labrador/newfoundland-and-labrador-expects-oil-windfall-balanced-budget-after-soaring-prices/article_45f0f05e-0bf0-580a-9def-f6a683b89197.html",
-      "published": "2026-11-23T16:37:50+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 703,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
