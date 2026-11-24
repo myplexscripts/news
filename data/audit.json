@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T17:59:00.983039+00:00",
-  "generated_at_london": "2026-11-24T12:59:00.983039-05:00",
-  "news_generated_at": "2026-11-24T17:54:05.478169+00:00",
+  "generated_at": "2026-11-24T18:12:25.992133+00:00",
+  "generated_at_london": "2026-11-24T13:12:25.992133-05:00",
+  "news_generated_at": "2026-11-24T18:10:28.016596+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 705,
+    "archive_story_count": 704,
     "source_count": 28,
     "audited_story_count": 115,
     "pass_story_count": 109,
-    "review_story_count": 4,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 8,
+    "review_story_count": 5,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 10,
     "info_issue_count": 94,
     "healthy_source_count": 14,
     "review_source_count": 3,
@@ -107,23 +107,24 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
-      "review": 0,
-      "fail": 1,
+      "review": 1,
+      "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 198,
-      "average_quality": 96,
+      "average_words": 213,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-24T17:37:36+00:00",
+      "latest_published": "2026-11-24T17:46:15+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T17:52:51.111590+00:00",
+      "last_scrape": "2026-11-24T18:08:34.657173+00:00",
       "last_error": ""
     },
     {
@@ -653,7 +654,7 @@
       "latest_published": "2026-11-24T16:18:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T17:52:49.478434+00:00",
+      "last_scrape": "2026-11-24T18:08:32.382219+00:00",
       "last_error": ""
     },
     {
@@ -751,21 +752,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "61 words",
-      "story_id": "1a6fdc2903cbf38f",
-      "source": "Toronto Star",
-      "title": "Author Galloway's lawyer asks B.C. court for millions in defamation award",
-      "url": "https://www.thestar.com/news/canada/british-columbia/author-galloway-s-lawyer-asks-b-c-court-for-millions-in-defamation-award/article_4668128c-b907-55ea-87a4-58f7dce1390c.html",
-      "published": "2026-11-24T09:00:16+00:00",
-      "content_status": "full",
-      "word_count": 61,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -886,6 +872,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "daa0a47c3dfb8a8a",
+      "source": "Toronto Star",
+      "title": "Ottawa says UN court ruling on Rohingya genocide is 'binding,' pledges no new action",
+      "url": "https://www.thestar.com/news/canada/ottawa-says-un-court-ruling-on-rohingya-genocide-is-binding-pledges-no-new-action/article_96ff6981-37b4-57a5-829d-c347046f7397.html",
+      "published": "2026-11-24T17:46:15+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "daa0a47c3dfb8a8a",
+      "source": "Toronto Star",
+      "title": "Ottawa says UN court ruling on Rohingya genocide is 'binding,' pledges no new action",
+      "url": "https://www.thestar.com/news/canada/ottawa-says-un-court-ruling-on-rohingya-genocide-is-binding-pledges-no-new-action/article_96ff6981-37b4-57a5-829d-c347046f7397.html",
+      "published": "2026-11-24T17:46:15+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2122,21 +2138,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "1a6fdc2903cbf38f",
-      "source": "Toronto Star",
-      "title": "Author Galloway's lawyer asks B.C. court for millions in defamation award",
-      "url": "https://www.thestar.com/news/canada/british-columbia/author-galloway-s-lawyer-asks-b-c-court-for-millions-in-defamation-award/article_4668128c-b907-55ea-87a4-58f7dce1390c.html",
-      "published": "2026-11-24T09:00:16+00:00",
-      "content_status": "full",
-      "word_count": 61,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "99534fa96723b008",
       "source": "Toronto Star",
       "title": "Conservatives want answers on planned Parks Canada cuts, layoffs",
@@ -2176,6 +2177,21 @@
       "word_count": 108,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "daa0a47c3dfb8a8a",
+      "source": "Toronto Star",
+      "title": "Ottawa says UN court ruling on Rohingya genocide is 'binding,' pledges no new action",
+      "url": "https://www.thestar.com/news/canada/ottawa-says-un-court-ruling-on-rohingya-genocide-is-binding-pledges-no-new-action/article_96ff6981-37b4-57a5-829d-c347046f7397.html",
+      "published": "2026-11-24T17:46:15+00:00",
+      "content_status": "full",
+      "word_count": 208,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4961,6 +4977,47 @@
       ]
     },
     {
+      "id": "daa0a47c3dfb8a8a",
+      "source": "Toronto Star",
+      "title": "Ottawa says UN court ruling on Rohingya genocide is 'binding,' pledges no new action",
+      "url": "https://www.thestar.com/news/canada/ottawa-says-un-court-ruling-on-rohingya-genocide-is-binding-pledges-no-new-action/article_96ff6981-37b4-57a5-829d-c347046f7397.html",
+      "published": "2026-11-24T17:46:15+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 208,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "497a7f265ebd43d3",
       "source": "Toronto Star",
       "title": "Montreal mayor announces 10 per cent tax hikes to address infrastructure ‘backlog’",
@@ -5213,41 +5270,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1a6fdc2903cbf38f",
-      "source": "Toronto Star",
-      "title": "Author Galloway's lawyer asks B.C. court for millions in defamation award",
-      "url": "https://www.thestar.com/news/canada/british-columbia/author-galloway-s-lawyer-asks-b-c-court-for-millions-in-defamation-award/article_4668128c-b907-55ea-87a4-58f7dce1390c.html",
-      "published": "2026-11-24T09:00:16+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 61,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "61 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
