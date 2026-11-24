@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T12:18:18.709350+00:00",
-  "generated_at_london": "2026-11-24T07:18:18.709350-05:00",
-  "news_generated_at": "2026-11-24T12:11:56.596448+00:00",
+  "generated_at": "2026-11-24T12:30:04.255953+00:00",
+  "generated_at_london": "2026-11-24T07:30:04.255953-05:00",
+  "news_generated_at": "2026-11-24T12:28:14.789841+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 690,
+    "archive_story_count": 693,
     "source_count": 28,
     "audited_story_count": 113,
     "pass_story_count": 108,
@@ -15,8 +15,8 @@
     "critical_issue_count": 1,
     "warning_issue_count": 8,
     "info_issue_count": 91,
-    "healthy_source_count": 15,
-    "review_source_count": 2,
+    "healthy_source_count": 14,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 10
   },
@@ -101,6 +101,32 @@
       "last_error": ""
     },
     {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "degraded",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 807,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-24T09:00:16+00:00",
+      "found_this_run": 0,
+      "tracked": 30,
+      "last_scrape": "2026-11-24T10:06:54.863295+00:00",
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+    },
+    {
       "source": "CBC News Canada",
       "status": "waiting",
       "collector_status": "error",
@@ -146,7 +172,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -626,7 +652,7 @@
       "latest_published": "2026-11-24T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T12:10:17.713928+00:00",
+      "last_scrape": "2026-11-24T12:26:19.687559+00:00",
       "last_error": ""
     },
     {
@@ -667,45 +693,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 725,
-      "average_quality": 94,
+      "average_words": 784,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 3,
+        "dom:semantic-rich-v1": 7
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-24T11:45:00+00:00",
+      "latest_published": "2026-11-24T12:07:41.660000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T12:10:14.228146+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 807,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-24T09:00:16+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-24T10:06:54.863295+00:00",
+      "last_scrape": "2026-11-24T12:26:18.190120+00:00",
       "last_error": ""
     },
     {
@@ -1833,36 +1834,6 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "0f2edb6936e4867e",
-      "source": "The Globe and Mail",
-      "title": "B.C. man charged with murder in actor Stewart McLean’s death",
-      "url": "https://www.theglobeandmail.com/canada/article-vancouver-actor-stewart-mclean-murder",
-      "published": "2026-11-23T22:51:58.711000+00:00",
-      "content_status": "full",
-      "word_count": 596,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "0f2edb6936e4867e",
-      "source": "The Globe and Mail",
-      "title": "B.C. man charged with murder in actor Stewart McLean’s death",
-      "url": "https://www.theglobeandmail.com/canada/article-vancouver-actor-stewart-mclean-murder",
-      "published": "2026-11-23T22:51:58.711000+00:00",
-      "content_status": "full",
-      "word_count": 596,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1874,21 +1845,6 @@
       "content_status": "partial",
       "word_count": 804,
       "quality_score": 86,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "6e993862a0652875",
-      "source": "The Globe and Mail",
-      "title": "Doug Ford, Danielle Smith tout potential pipeline partnership but point fingers on interprovincial trade",
-      "url": "https://www.theglobeandmail.com/canada/article-doug-ford-danielle-smith-pipelines-interprovincial-trade",
-      "published": "2026-11-23T22:50:49.133000+00:00",
-      "content_status": "full",
-      "word_count": 690,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -1926,15 +1882,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "247182b2f1e03e49",
+      "story_id": "5e8b9cf7d8550dbd",
       "source": "The Globe and Mail",
-      "title": "Pentagon releases ‘fact sheet’ criticizing Canada’s defence spending",
-      "url": "https://www.theglobeandmail.com/canada/article-pentagon-hegseth-defence-spending-fact-sheet",
-      "published": "2026-11-23T22:46:26.216000+00:00",
+      "title": "Ontario rec centre includes Canada’s first known glass floor for sport events",
+      "url": "https://www.theglobeandmail.com/business/industry-news/property-report/article-ontario-rec-centre-includes-canadas-first-known-glass-floor-for-sport",
+      "published": "2026-11-24T12:00:00+00:00",
       "content_status": "full",
-      "word_count": 756,
+      "word_count": 932,
       "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1995,6 +1951,51 @@
       "word_count": 236,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "93088e2c585acbcb",
+      "source": "The Globe and Mail",
+      "title": "The cost of Ontario’s nuclear plan spirals. When will the province get serious?",
+      "url": "https://www.theglobeandmail.com/business/commentary/article-ontario-nuclear-plan-cost-spirals-when-will-the-province-get-serious",
+      "published": "2026-11-24T12:00:00+00:00",
+      "content_status": "full",
+      "word_count": 783,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "1d54503058a6f36f",
+      "source": "The Globe and Mail",
+      "title": "Toronto-area emissions see largest rise in decade, setting back climate goals",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-area-emissions-see-largest-rise-in-decade",
+      "published": "2026-11-24T12:07:41.660000+00:00",
+      "content_status": "full",
+      "word_count": 915,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1d54503058a6f36f",
+      "source": "The Globe and Mail",
+      "title": "Toronto-area emissions see largest rise in decade, setting back climate goals",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-area-emissions-see-largest-rise-in-decade",
+      "published": "2026-11-24T12:07:41.660000+00:00",
+      "content_status": "full",
+      "word_count": 915,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4232,6 +4233,99 @@
       ]
     },
     {
+      "id": "1d54503058a6f36f",
+      "source": "The Globe and Mail",
+      "title": "Toronto-area emissions see largest rise in decade, setting back climate goals",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-toronto-area-emissions-see-largest-rise-in-decade",
+      "published": "2026-11-24T12:07:41.660000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 915,
+      "paragraph_count": 24,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "93088e2c585acbcb",
+      "source": "The Globe and Mail",
+      "title": "The cost of Ontario’s nuclear plan spirals. When will the province get serious?",
+      "url": "https://www.theglobeandmail.com/business/commentary/article-ontario-nuclear-plan-cost-spirals-when-will-the-province-get-serious",
+      "published": "2026-11-24T12:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 783,
+      "paragraph_count": 16,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "5e8b9cf7d8550dbd",
+      "source": "The Globe and Mail",
+      "title": "Ontario rec centre includes Canada’s first known glass floor for sport events",
+      "url": "https://www.theglobeandmail.com/business/industry-news/property-report/article-ontario-rec-centre-includes-canadas-first-known-glass-floor-for-sport",
+      "published": "2026-11-24T12:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 932,
+      "paragraph_count": 25,
+      "inline_image_count": 2,
+      "quality_score": 96,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f33a5f9d7ef4a666",
       "source": "The Globe and Mail",
       "title": "Transparency goes off the rails at Ontario’s transit agency",
@@ -4438,99 +4532,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0f2edb6936e4867e",
-      "source": "The Globe and Mail",
-      "title": "B.C. man charged with murder in actor Stewart McLean’s death",
-      "url": "https://www.theglobeandmail.com/canada/article-vancouver-actor-stewart-mclean-murder",
-      "published": "2026-11-23T22:51:58.711000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 596,
-      "paragraph_count": 26,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6e993862a0652875",
-      "source": "The Globe and Mail",
-      "title": "Doug Ford, Danielle Smith tout potential pipeline partnership but point fingers on interprovincial trade",
-      "url": "https://www.theglobeandmail.com/canada/article-doug-ford-danielle-smith-pipelines-interprovincial-trade",
-      "published": "2026-11-23T22:50:49.133000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 690,
-      "paragraph_count": 16,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "247182b2f1e03e49",
-      "source": "The Globe and Mail",
-      "title": "Pentagon releases ‘fact sheet’ criticizing Canada’s defence spending",
-      "url": "https://www.theglobeandmail.com/canada/article-pentagon-hegseth-defence-spending-fact-sheet",
-      "published": "2026-11-23T22:46:26.216000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 756,
-      "paragraph_count": 21,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
