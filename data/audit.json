@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T20:04:47.377626+00:00",
-  "generated_at_london": "2026-11-24T15:04:47.377626-05:00",
-  "news_generated_at": "2026-11-24T19:59:20.709725+00:00",
+  "generated_at": "2026-11-24T20:15:47.239617+00:00",
+  "generated_at_london": "2026-11-24T15:15:47.239617-05:00",
+  "news_generated_at": "2026-11-24T20:14:17.385854+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 704,
+    "archive_story_count": 701,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 110,
-    "review_story_count": 4,
+    "pass_story_count": 109,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 94,
-    "healthy_source_count": 14,
-    "review_source_count": 2,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -98,6 +98,33 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-24T16:16:15.127243+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 229,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-24T19:56:44+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-24T20:12:53.997280+00:00",
       "last_error": ""
     },
     {
@@ -413,7 +440,7 @@
       "latest_published": "2026-11-24T19:48:10.971000+00:00",
       "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-11-24T19:57:20.603345+00:00",
+      "last_scrape": "2026-11-24T20:02:20.571899+00:00",
       "last_error": ""
     },
     {
@@ -625,7 +652,7 @@
       "latest_published": "2026-11-24T18:35:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T19:57:23.128449+00:00",
+      "last_scrape": "2026-11-24T20:12:51.947269+00:00",
       "last_error": ""
     },
     {
@@ -679,32 +706,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-24T19:10:34.047623+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 220,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-24T18:38:55+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-24T19:10:37.768418+00:00",
       "last_error": ""
     },
     {
@@ -869,6 +870,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f99b1eff0a4625b8",
+      "source": "Toronto Star",
+      "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
+      "url": "https://www.thestar.com/news/ontario/ending-homelessness-will-be-very-challenging-ontario-premier-doug-ford-says/article_69505a2e-72ab-5df2-8147-6f3db8c9af84.html",
+      "published": "2026-11-24T19:56:44+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "f99b1eff0a4625b8",
+      "source": "Toronto Star",
+      "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
+      "url": "https://www.thestar.com/news/ontario/ending-homelessness-will-be-very-challenging-ontario-premier-doug-ford-says/article_69505a2e-72ab-5df2-8147-6f3db8c9af84.html",
+      "published": "2026-11-24T19:56:44+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2090,6 +2121,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "f99b1eff0a4625b8",
+      "source": "Toronto Star",
+      "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
+      "url": "https://www.thestar.com/news/ontario/ending-homelessness-will-be-very-challenging-ontario-premier-doug-ford-says/article_69505a2e-72ab-5df2-8147-6f3db8c9af84.html",
+      "published": "2026-11-24T19:56:44+00:00",
+      "content_status": "full",
+      "word_count": 192,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "cc7fa0c32609c55a",
       "source": "Toronto Star",
       "title": "Hamilton toy drive lets people pay parking tickets with donations",
@@ -2142,21 +2188,6 @@
       "published": "2026-11-24T17:46:15+00:00",
       "content_status": "full",
       "word_count": 288,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "94e2dddcf6cfcde5",
-      "source": "Toronto Star",
-      "title": "Pedestrian dies after being struck by a bus in St-Hyacinthe, Que.",
-      "url": "https://www.thestar.com/news/canada/quebec/pedestrian-dies-after-being-struck-by-a-bus-in-st-hyacinthe-que/article_b26ce058-1507-5458-ab84-ad481ad1e190.html",
-      "published": "2026-11-24T15:05:11+00:00",
-      "content_status": "full",
-      "word_count": 93,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4944,6 +4975,47 @@
       ]
     },
     {
+      "id": "f99b1eff0a4625b8",
+      "source": "Toronto Star",
+      "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
+      "url": "https://www.thestar.com/news/ontario/ending-homelessness-will-be-very-challenging-ontario-premier-doug-ford-says/article_69505a2e-72ab-5df2-8147-6f3db8c9af84.html",
+      "published": "2026-11-24T19:56:44+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 192,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "d544447616d6986b",
       "source": "Toronto Star",
       "title": "McGuinty says he can't explain Pentagon's criticism of Canada's defence spending",
@@ -5189,35 +5261,6 @@
       "content_status": "full",
       "word_count": 314,
       "paragraph_count": 22,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "94e2dddcf6cfcde5",
-      "source": "Toronto Star",
-      "title": "Pedestrian dies after being struck by a bus in St-Hyacinthe, Que.",
-      "url": "https://www.thestar.com/news/canada/quebec/pedestrian-dies-after-being-struck-by-a-bus-in-st-hyacinthe-que/article_b26ce058-1507-5458-ab84-ad481ad1e190.html",
-      "published": "2026-11-24T15:05:11+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 93,
-      "paragraph_count": 9,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
