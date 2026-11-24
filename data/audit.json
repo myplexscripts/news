@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T16:41:42.595890+00:00",
-  "generated_at_london": "2026-11-24T11:41:42.595890-05:00",
-  "news_generated_at": "2026-11-24T16:36:19.674461+00:00",
+  "generated_at": "2026-11-24T16:54:03.843845+00:00",
+  "generated_at_london": "2026-11-24T11:54:03.843845-05:00",
+  "news_generated_at": "2026-11-24T16:52:04.938953+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 710,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 8,
-    "info_issue_count": 96,
+    "info_issue_count": 95,
     "healthy_source_count": 14,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -103,7 +103,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -122,10 +122,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-24T16:07:26+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-24T16:34:35.569897+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -430,7 +430,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 292,
+      "average_words": 286,
       "average_quality": 70,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -439,11 +439,11 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 7,
-      "latest_published": "2026-11-24T16:23:58.736000+00:00",
+      "info_issues": 6,
+      "latest_published": "2026-11-24T16:49:52.551000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T16:32:30.673739+00:00",
+      "last_scrape": "2026-11-24T16:39:19.262272+00:00",
       "last_error": ""
     },
     {
@@ -655,7 +655,7 @@
       "latest_published": "2026-11-24T16:18:58+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T16:34:33.335222+00:00",
+      "last_scrape": "2026-11-24T16:50:20.745706+00:00",
       "last_error": ""
     },
     {
@@ -1157,21 +1157,6 @@
       "content_status": "full",
       "word_count": 630,
       "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "73abf5cc0b437e6c",
-      "source": "CTV News London",
-      "title": "Bringing the magic of Christmas to Children’s Hospital",
-      "url": "https://www.ctvnews.ca/london/article/bringing-the-magic-of-christmas-to-childrens-hospital",
-      "published": "2026-11-23T20:51:28.585000+00:00",
-      "content_status": "full",
-      "word_count": 302,
-      "quality_score": 76,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2376,6 +2361,28 @@
       "issues": []
     },
     {
+      "id": "dd353fb18bfcbbb3",
+      "source": "CTV News London",
+      "title": "Ex-London councillor Mariam Hamou receives probation for threat involving mayor",
+      "url": "https://www.ctvnews.ca/london/article/ex-london-councillor-mariam-hamou-receives-probation-for-threat-involving-mayor",
+      "published": "2026-11-24T16:49:52.551000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 251,
+      "paragraph_count": 12,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 30,
+      "issues": []
+    },
+    {
       "id": "bcbc6b235369c34c",
       "source": "CTV News London",
       "title": "Commuters wake up to London’s first snowfall of the season",
@@ -2611,35 +2618,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "73abf5cc0b437e6c",
-      "source": "CTV News London",
-      "title": "Bringing the magic of Christmas to Children’s Hospital",
-      "url": "https://www.ctvnews.ca/london/article/bringing-the-magic-of-christmas-to-childrens-hospital",
-      "published": "2026-11-23T20:51:28.585000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 302,
-      "paragraph_count": 11,
-      "inline_image_count": 0,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
         }
       ]
     },
