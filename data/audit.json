@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T21:38:34.103341+00:00",
-  "generated_at_london": "2026-11-24T16:38:34.103341-05:00",
-  "news_generated_at": "2026-11-24T21:32:50.100947+00:00",
+  "generated_at": "2026-11-24T21:49:59.072943+00:00",
+  "generated_at_london": "2026-11-24T16:49:59.072943-05:00",
+  "news_generated_at": "2026-11-24T21:48:25.743428+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 702,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 109,
-    "review_story_count": 4,
+    "pass_story_count": 107,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 12,
     "info_issue_count": 95,
     "healthy_source_count": 13,
     "review_source_count": 3,
@@ -103,28 +103,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 8,
+      "review": 2,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 209,
-      "average_quality": 96,
+      "average_words": 191,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-24T20:41:54+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-24T21:22:34+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T20:59:27.601375+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-24T21:46:52.730317+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -201,7 +202,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -220,7 +221,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "503 Server Error: Service Unavailable for url: https://news.google.com/rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb0lMMjB2TUdJeGRER"
     },
     {
       "source": "Government of Canada News",
@@ -651,7 +652,7 @@
       "latest_published": "2026-11-24T21:14:46+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T21:31:10.222612+00:00",
+      "last_scrape": "2026-11-24T21:46:49.956421+00:00",
       "last_error": ""
     },
     {
@@ -869,6 +870,66 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "f7caa70350f3a38d",
+      "source": "Toronto Star",
+      "title": "Canada and Qatar sign agreement to boost investment",
+      "url": "https://www.thestar.com/news/canada/canada-and-qatar-sign-agreement-to-boost-investment/article_c69dfe25-20c9-5385-b50d-ab34dcf93182.html",
+      "published": "2026-11-24T21:19:41+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "f7caa70350f3a38d",
+      "source": "Toronto Star",
+      "title": "Canada and Qatar sign agreement to boost investment",
+      "url": "https://www.thestar.com/news/canada/canada-and-qatar-sign-agreement-to-boost-investment/article_c69dfe25-20c9-5385-b50d-ab34dcf93182.html",
+      "published": "2026-11-24T21:19:41+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "9bd48c5d9a0a65b3",
+      "source": "Toronto Star",
+      "title": "Quebec earmarks another $10 million to tackle homelessness",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-earmarks-another-10-million-to-tackle-homelessness/article_a879e456-368c-554e-8935-2695a8868cad.html",
+      "published": "2026-11-24T21:22:34+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "9bd48c5d9a0a65b3",
+      "source": "Toronto Star",
+      "title": "Quebec earmarks another $10 million to tackle homelessness",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-earmarks-another-10-million-to-tackle-homelessness/article_a879e456-368c-554e-8935-2695a8868cad.html",
+      "published": "2026-11-24T21:22:34+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2120,6 +2181,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "f7caa70350f3a38d",
+      "source": "Toronto Star",
+      "title": "Canada and Qatar sign agreement to boost investment",
+      "url": "https://www.thestar.com/news/canada/canada-and-qatar-sign-agreement-to-boost-investment/article_c69dfe25-20c9-5385-b50d-ab34dcf93182.html",
+      "published": "2026-11-24T21:19:41+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "f99b1eff0a4625b8",
       "source": "Toronto Star",
       "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
@@ -2195,6 +2271,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "9bd48c5d9a0a65b3",
+      "source": "Toronto Star",
+      "title": "Quebec earmarks another $10 million to tackle homelessness",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-earmarks-another-10-million-to-tackle-homelessness/article_a879e456-368c-554e-8935-2695a8868cad.html",
+      "published": "2026-11-24T21:22:34+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "e9a50a54eb76005e",
       "source": "Toronto Star",
       "title": "Quebec opposition leaders urge premier not to delay session over oath to the King",
@@ -2202,36 +2293,6 @@
       "published": "2026-11-24T18:25:49+00:00",
       "content_status": "full",
       "word_count": 163,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "89947186e1e4a5e1",
-      "source": "Toronto Star",
-      "title": "Two Nova Scotia seafood firms ticketed for illegal lobster processing deny claims",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/two-nova-scotia-seafood-firms-ticketed-for-illegal-lobster-processing-deny-claims/article_c5acb0ab-32e4-52a2-b595-8c9cf0a136d9.html",
-      "published": "2026-11-24T16:07:26+00:00",
-      "content_status": "full",
-      "word_count": 198,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "9a8a6217b38dc230",
-      "source": "Toronto Star",
-      "title": "Yukon Energy fires prime contractor in delayed $35M battery-storage project",
-      "url": "https://www.thestar.com/news/canada/yukon/yukon-energy-fires-prime-contractor-in-delayed-35m-battery-storage-project/article_ed59e972-a132-5a1b-8a39-fa2bd9864819.html",
-      "published": "2026-11-24T16:42:50+00:00",
-      "content_status": "full",
-      "word_count": 394,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -4943,6 +5004,88 @@
       ]
     },
     {
+      "id": "9bd48c5d9a0a65b3",
+      "source": "Toronto Star",
+      "title": "Quebec earmarks another $10 million to tackle homelessness",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-earmarks-another-10-million-to-tackle-homelessness/article_a879e456-368c-554e-8935-2695a8868cad.html",
+      "published": "2026-11-24T21:22:34+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "f7caa70350f3a38d",
+      "source": "Toronto Star",
+      "title": "Canada and Qatar sign agreement to boost investment",
+      "url": "https://www.thestar.com/news/canada/canada-and-qatar-sign-agreement-to-boost-investment/article_c69dfe25-20c9-5385-b50d-ab34dcf93182.html",
+      "published": "2026-11-24T21:19:41+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 209,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "723d8f074bbeb9d9",
       "source": "Toronto Star",
       "title": "Buses back on Regina roads after city and transit workers reach tentative deal",
@@ -5159,64 +5302,6 @@
       "content_status": "full",
       "word_count": 214,
       "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "9a8a6217b38dc230",
-      "source": "Toronto Star",
-      "title": "Yukon Energy fires prime contractor in delayed $35M battery-storage project",
-      "url": "https://www.thestar.com/news/canada/yukon/yukon-energy-fires-prime-contractor-in-delayed-35m-battery-storage-project/article_ed59e972-a132-5a1b-8a39-fa2bd9864819.html",
-      "published": "2026-11-24T16:42:50+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 394,
-      "paragraph_count": 24,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "89947186e1e4a5e1",
-      "source": "Toronto Star",
-      "title": "Two Nova Scotia seafood firms ticketed for illegal lobster processing deny claims",
-      "url": "https://www.thestar.com/news/canada/nova-scotia/two-nova-scotia-seafood-firms-ticketed-for-illegal-lobster-processing-deny-claims/article_c5acb0ab-32e4-52a2-b595-8c9cf0a136d9.html",
-      "published": "2026-11-24T16:07:26+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 198,
-      "paragraph_count": 12,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
