@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T20:35:57.934831+00:00",
-  "generated_at_london": "2026-11-24T15:35:57.934831-05:00",
-  "news_generated_at": "2026-11-24T20:30:37.270533+00:00",
+  "generated_at": "2026-11-24T20:46:13.385352+00:00",
+  "generated_at_london": "2026-11-24T15:46:13.385352-05:00",
+  "news_generated_at": "2026-11-24T20:45:06.425739+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 702,
+    "archive_story_count": 705,
     "source_count": 28,
     "audited_story_count": 115,
-    "pass_story_count": 110,
-    "review_story_count": 4,
+    "pass_story_count": 109,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
+    "warning_issue_count": 10,
     "info_issue_count": 95,
-    "healthy_source_count": 14,
-    "review_source_count": 2,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -98,6 +98,33 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-24T16:16:15.127243+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 215,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-24T20:29:00+00:00",
+      "found_this_run": 9,
+      "tracked": 30,
+      "last_scrape": "2026-11-24T20:43:51.900313+00:00",
       "last_error": ""
     },
     {
@@ -482,19 +509,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 484,
-      "average_quality": 96,
+      "average_words": 444,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-24T20:21:43+00:00",
+      "latest_published": "2026-11-24T20:40:55+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T20:28:36.221833+00:00",
+      "last_scrape": "2026-11-24T20:43:48.791087+00:00",
       "last_error": ""
     },
     {
@@ -625,7 +653,7 @@
       "latest_published": "2026-11-24T18:35:33+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T20:28:40.250151+00:00",
+      "last_scrape": "2026-11-24T20:43:50.660284+00:00",
       "last_error": ""
     },
     {
@@ -679,32 +707,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-24T20:28:38.745392+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 225,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-24T19:56:44+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-24T20:12:53.997280+00:00",
       "last_error": ""
     },
     {
@@ -869,6 +871,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "6643c8b0549ab7a2",
+      "source": "Toronto Star",
+      "title": "Alberta takes symbolic stand against federal hate crime law, says it silences speech",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-takes-symbolic-stand-against-federal-hate-crime-law-says-it-silences-speech/article_1e40f241-32a9-5eda-9a88-7e39df17ff30.html",
+      "published": "2026-11-24T20:29:00+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "6643c8b0549ab7a2",
+      "source": "Toronto Star",
+      "title": "Alberta takes symbolic stand against federal hate crime law, says it silences speech",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-takes-symbolic-stand-against-federal-hate-crime-law-says-it-silences-speech/article_1e40f241-32a9-5eda-9a88-7e39df17ff30.html",
+      "published": "2026-11-24T20:29:00+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1430,6 +1462,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "b5dae302be28e238",
+      "source": "Global News Canada",
+      "title": "Can’t explain thinking behind Pentagon’s Canada ‘fact sheet,’ McGuinty says",
+      "url": "https://globalnews.ca/news/12164586/mcguinty-pentagon-canada-defence-spending-criticisms",
+      "published": "2026-11-24T20:31:32+00:00",
+      "content_status": "full",
+      "word_count": 358,
+      "quality_score": 80,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "5b3a96861aa900ea",
       "source": "Global News Canada",
       "title": "Constable who shot Jamal Francique offers condolences to family at inquest",
@@ -1439,6 +1486,21 @@
       "word_count": 335,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "99d24fe9c8aef3f1",
+      "source": "Global News Canada",
+      "title": "Csis engages Iranian, Jewish communities targeted by foreign interference",
+      "url": "https://globalnews.ca/news/12164483/csis-engages-iranian-jewish-communities-foreign-interference",
+      "published": "2026-11-24T20:40:55+00:00",
+      "content_status": "full",
+      "word_count": 371,
+      "quality_score": 78,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -1467,36 +1529,6 @@
       "published": "2026-11-24T19:17:26+00:00",
       "content_status": "full",
       "word_count": 716,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3fddda57cdeb6992",
-      "source": "Global News Canada",
-      "title": "Mortgage delinquencies at 13-year high as Canadians fall behind on payments",
-      "url": "https://globalnews.ca/news/12164175/mortgage-delinquencies-2026",
-      "published": "2026-11-24T16:57:17+00:00",
-      "content_status": "full",
-      "word_count": 501,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1983c226a1eeb9d8",
-      "source": "Global News Canada",
-      "title": "Ontario property tax change could hike affordable housing costs: critics",
-      "url": "https://globalnews.ca/news/12164088/ontario-property-tax-change-could-hike-affordable-housing-costs-critics",
-      "published": "2026-11-24T16:31:26+00:00",
-      "content_status": "full",
-      "word_count": 628,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2090,6 +2122,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "6643c8b0549ab7a2",
+      "source": "Toronto Star",
+      "title": "Alberta takes symbolic stand against federal hate crime law, says it silences speech",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-takes-symbolic-stand-against-federal-hate-crime-law-says-it-silences-speech/article_1e40f241-32a9-5eda-9a88-7e39df17ff30.html",
+      "published": "2026-11-24T20:29:00+00:00",
+      "content_status": "full",
+      "word_count": 210,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "2df29b56ff038696",
       "source": "Toronto Star",
       "title": "Alleged Tumbler Ridge co-conspirator applies for release from jail",
@@ -2187,21 +2234,6 @@
       "published": "2026-11-24T18:25:49+00:00",
       "content_status": "full",
       "word_count": 163,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "89037cd10c6e8457",
-      "source": "Toronto Star",
-      "title": "Singer offers tearful apology for O Canada flub at Leafs-Islanders game in New York",
-      "url": "https://www.thestar.com/news/ontario/singer-offers-tearful-apology-for-o-canada-flub-at-leafs-islanders-game-in-new-york/article_c86aad45-7074-5320-ab6a-a871c9a4d1cb.html",
-      "published": "2026-11-24T15:25:33+00:00",
-      "content_status": "full",
-      "word_count": 314,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3733,6 +3765,64 @@
       ]
     },
     {
+      "id": "99d24fe9c8aef3f1",
+      "source": "Global News Canada",
+      "title": "Csis engages Iranian, Jewish communities targeted by foreign interference",
+      "url": "https://globalnews.ca/news/12164483/csis-engages-iranian-jewish-communities-foreign-interference",
+      "published": "2026-11-24T20:40:55+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 371,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "b5dae302be28e238",
+      "source": "Global News Canada",
+      "title": "Can’t explain thinking behind Pentagon’s Canada ‘fact sheet,’ McGuinty says",
+      "url": "https://globalnews.ca/news/12164586/mcguinty-pentagon-canada-defence-spending-criticisms",
+      "published": "2026-11-24T20:31:32+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 358,
+      "paragraph_count": 12,
+      "inline_image_count": 1,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2cde3dd6c51582ae",
       "source": "Global News Canada",
       "title": "Ottawa’s plan for 100k temporary workers in provinces’ hands: minister",
@@ -3950,64 +4040,6 @@
       "word_count": 203,
       "paragraph_count": 7,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3fddda57cdeb6992",
-      "source": "Global News Canada",
-      "title": "Mortgage delinquencies at 13-year high as Canadians fall behind on payments",
-      "url": "https://globalnews.ca/news/12164175/mortgage-delinquencies-2026",
-      "published": "2026-11-24T16:57:17+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 501,
-      "paragraph_count": 17,
-      "inline_image_count": 4,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1983c226a1eeb9d8",
-      "source": "Global News Canada",
-      "title": "Ontario property tax change could hike affordable housing costs: critics",
-      "url": "https://globalnews.ca/news/12164088/ontario-property-tax-change-could-hike-affordable-housing-costs-critics",
-      "published": "2026-11-24T16:31:26+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 628,
-      "paragraph_count": 18,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4965,6 +4997,47 @@
       ]
     },
     {
+      "id": "6643c8b0549ab7a2",
+      "source": "Toronto Star",
+      "title": "Alberta takes symbolic stand against federal hate crime law, says it silences speech",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-takes-symbolic-stand-against-federal-hate-crime-law-says-it-silences-speech/article_1e40f241-32a9-5eda-9a88-7e39df17ff30.html",
+      "published": "2026-11-24T20:29:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 210,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "f99b1eff0a4625b8",
       "source": "Toronto Star",
       "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
@@ -5210,35 +5283,6 @@
       "content_status": "full",
       "word_count": 298,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "89037cd10c6e8457",
-      "source": "Toronto Star",
-      "title": "Singer offers tearful apology for O Canada flub at Leafs-Islanders game in New York",
-      "url": "https://www.thestar.com/news/ontario/singer-offers-tearful-apology-for-o-canada-flub-at-leafs-islanders-game-in-new-york/article_c86aad45-7074-5320-ab6a-a871c9a4d1cb.html",
-      "published": "2026-11-24T15:25:33+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 314,
-      "paragraph_count": 22,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
