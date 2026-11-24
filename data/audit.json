@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T14:52:31.603864+00:00",
-  "generated_at_london": "2026-11-24T09:52:31.603864-05:00",
-  "news_generated_at": "2026-11-24T14:47:03.818344+00:00",
+  "generated_at": "2026-11-24T15:02:48.768264+00:00",
+  "generated_at_london": "2026-11-24T10:02:48.768264-05:00",
+  "news_generated_at": "2026-11-24T15:01:27.937596+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 698,
@@ -14,7 +14,7 @@
     "fail_story_count": 1,
     "critical_issue_count": 1,
     "warning_issue_count": 8,
-    "info_issue_count": 92,
+    "info_issue_count": 93,
     "healthy_source_count": 15,
     "review_source_count": 2,
     "error_source_count": 1,
@@ -362,7 +362,7 @@
       "info_issues": 0,
       "latest_published": "2026-11-23T20:32:21+00:00",
       "found_this_run": 10,
-      "tracked": 15,
+      "tracked": 14,
       "last_scrape": "2026-11-23T20:41:50.206309+00:00",
       "last_error": ""
     },
@@ -627,7 +627,7 @@
       "latest_published": "2026-11-24T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T14:45:10.451917+00:00",
+      "last_scrape": "2026-11-24T15:00:14.034468+00:00",
       "last_error": ""
     },
     {
@@ -668,19 +668,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 656,
-      "average_quality": 93,
+      "average_words": 577,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-11-24T14:00:00+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-24T14:43:13.412000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T14:14:31.216768+00:00",
+      "last_scrape": "2026-11-24T15:00:13.309845+00:00",
       "last_error": ""
     },
     {
@@ -1879,18 +1880,33 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "b5c1b888e4767e77",
+      "source": "The Globe and Mail",
+      "title": "George Weston profit rises, boosted by Loblaw’s sale of PC Financial",
+      "url": "https://www.theglobeandmail.com/business/article-george-weston-profit-rises-boosted-by-loblaws-sale-of-pc-financial",
+      "published": "2026-11-24T14:43:13.412000+00:00",
+      "content_status": "full",
+      "word_count": 162,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "d344e20e1e1b68ae",
+      "story_id": "b5c1b888e4767e77",
       "source": "The Globe and Mail",
-      "title": "Inside Operation Niagara, a week-long blitz to halt cryptocurrency scams",
-      "url": "https://www.theglobeandmail.com/business/technology/article-operation-niagara-cryptocurrency-fraud-scams-law-enforcement",
-      "published": "2026-11-24T11:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 944,
-      "quality_score": 92,
-      "extraction_method": "dom:semantic-rich-v1"
+      "title": "George Weston profit rises, boosted by Loblaw’s sale of PC Financial",
+      "url": "https://www.theglobeandmail.com/business/article-george-weston-profit-rises-boosted-by-loblaws-sale-of-pc-financial",
+      "published": "2026-11-24T14:43:13.412000+00:00",
+      "content_status": "full",
+      "word_count": 162,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -4261,6 +4277,41 @@
       ]
     },
     {
+      "id": "b5c1b888e4767e77",
+      "source": "The Globe and Mail",
+      "title": "George Weston profit rises, boosted by Loblaw’s sale of PC Financial",
+      "url": "https://www.theglobeandmail.com/business/article-george-weston-profit-rises-boosted-by-loblaws-sale-of-pc-financial",
+      "published": "2026-11-24T14:43:13.412000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 162,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "3cd22b482cc1f755",
       "source": "The Globe and Mail",
       "title": "Can my employer track my location when I’m working?",
@@ -4531,35 +4582,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d344e20e1e1b68ae",
-      "source": "The Globe and Mail",
-      "title": "Inside Operation Niagara, a week-long blitz to halt cryptocurrency scams",
-      "url": "https://www.theglobeandmail.com/business/technology/article-operation-niagara-cryptocurrency-fraud-scams-law-enforcement",
-      "published": "2026-11-24T11:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 944,
-      "paragraph_count": 27,
-      "inline_image_count": 2,
-      "quality_score": 92,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
