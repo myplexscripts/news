@@ -1,8 +1,8 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T22:04:33.870439+00:00",
-  "generated_at_london": "2026-11-24T17:04:33.870439-05:00",
+  "generated_at": "2026-11-24T22:08:14.652138+00:00",
+  "generated_at_london": "2026-11-24T17:08:14.652138-05:00",
   "news_generated_at": "2026-11-24T22:03:16.485648+00:00",
   "sample_per_source": 10,
   "overview": {
@@ -10,10 +10,10 @@
     "source_count": 28,
     "audited_story_count": 114,
     "pass_story_count": 107,
-    "review_story_count": 6,
-    "fail_story_count": 1,
-    "critical_issue_count": 1,
-    "warning_issue_count": 12,
+    "review_story_count": 4,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 8,
     "info_issue_count": 99,
     "healthy_source_count": 13,
     "review_source_count": 3,
@@ -107,19 +107,19 @@
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
-      "review": 2,
-      "fail": 0,
+      "review": 0,
+      "fail": 2,
       "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 235,
+      "average_words": 199,
       "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "dom:star:article": 2,
         "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 0,
-      "warning_issues": 4,
+      "critical_issues": 2,
+      "warning_issues": 0,
       "info_issues": 14,
       "latest_published": "2026-11-24T21:42:56+00:00",
       "found_this_run": 10,
@@ -485,9 +485,8 @@
       "average_quality": 90,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:citynews:article": 1,
-        "reader:semantic-rich-v1": 8,
-        "dom:semantic-rich-v1": 1
+        "dom:semantic-rich-v1": 2,
+        "reader:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -752,6 +751,36 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "28 words",
+      "story_id": "3e654f6d024870bd",
+      "source": "Toronto Star",
+      "title": "Civil liberties group says digital safety bill risks censorship, 'shadow banning'",
+      "url": "https://www.thestar.com/news/canada/civil-liberties-group-says-digital-safety-bill-risks-censorship-shadow-banning/article_9d380834-ba6e-5170-a863-34f7dc905fab.html",
+      "published": "2026-11-24T21:42:56+00:00",
+      "content_status": "full",
+      "word_count": 28,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "57 words",
+      "story_id": "f991a7c6df35b046",
+      "source": "Toronto Star",
+      "title": "Fact File: Cruise line didn't cite homelessness for decision to end Halifax stops",
+      "url": "https://www.thestar.com/news/canada/fact-file-cruise-line-didn-t-cite-homelessness-for-decision-to-end-halifax-stops/article_5d0746f1-ed9c-5cb6-ba0d-3e3483e08d67.html",
+      "published": "2026-11-24T21:42:36+00:00",
+      "content_status": "full",
+      "word_count": 57,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -870,66 +899,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "3e654f6d024870bd",
-      "source": "Toronto Star",
-      "title": "Civil liberties group says digital safety bill risks censorship, 'shadow banning'",
-      "url": "https://www.thestar.com/news/canada/civil-liberties-group-says-digital-safety-bill-risks-censorship-shadow-banning/article_9d380834-ba6e-5170-a863-34f7dc905fab.html",
-      "published": "2026-11-24T21:42:56+00:00",
-      "content_status": "full",
-      "word_count": 208,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "13 inline images",
-      "story_id": "3e654f6d024870bd",
-      "source": "Toronto Star",
-      "title": "Civil liberties group says digital safety bill risks censorship, 'shadow banning'",
-      "url": "https://www.thestar.com/news/canada/civil-liberties-group-says-digital-safety-bill-risks-censorship-shadow-banning/article_9d380834-ba6e-5170-a863-34f7dc905fab.html",
-      "published": "2026-11-24T21:42:56+00:00",
-      "content_status": "full",
-      "word_count": 208,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "inline_related_content",
-      "message": "Possible publisher module leaked into the article body.",
-      "detail": "Trending",
-      "story_id": "f991a7c6df35b046",
-      "source": "Toronto Star",
-      "title": "Fact File: Cruise line didn't cite homelessness for decision to end Halifax stops",
-      "url": "https://www.thestar.com/news/canada/fact-file-cruise-line-didn-t-cite-homelessness-for-decision-to-end-halifax-stops/article_5d0746f1-ed9c-5cb6-ba0d-3e3483e08d67.html",
-      "published": "2026-11-24T21:42:36+00:00",
-      "content_status": "full",
-      "word_count": 234,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
-    },
-    {
-      "severity": "warning",
-      "code": "too_many_images",
-      "message": "Article contains an unusually large number of inline images.",
-      "detail": "13 inline images",
-      "story_id": "f991a7c6df35b046",
-      "source": "Toronto Star",
-      "title": "Fact File: Cruise line didn't cite homelessness for decision to end Halifax stops",
-      "url": "https://www.thestar.com/news/canada/fact-file-cruise-line-didn-t-cite-homelessness-for-decision-to-end-halifax-stops/article_5d0746f1-ed9c-5cb6-ba0d-3e3483e08d67.html",
-      "published": "2026-11-24T21:42:36+00:00",
-      "content_status": "full",
-      "word_count": 234,
-      "quality_score": 80,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1469,7 +1438,7 @@
       "content_status": "full",
       "word_count": 694,
       "quality_score": 81,
-      "extraction_method": "dom:citynews:article"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2232,7 +2201,7 @@
       "url": "https://www.thestar.com/news/canada/civil-liberties-group-says-digital-safety-bill-risks-censorship-shadow-banning/article_9d380834-ba6e-5170-a863-34f7dc905fab.html",
       "published": "2026-11-24T21:42:56+00:00",
       "content_status": "full",
-      "word_count": 208,
+      "word_count": 28,
       "quality_score": 80,
       "extraction_method": "dom:star:article"
     },
@@ -2277,7 +2246,7 @@
       "url": "https://www.thestar.com/news/canada/fact-file-cruise-line-didn-t-cite-homelessness-for-decision-to-end-halifax-stops/article_5d0746f1-ed9c-5cb6-ba0d-3e3483e08d67.html",
       "published": "2026-11-24T21:42:36+00:00",
       "content_status": "full",
-      "word_count": 234,
+      "word_count": 57,
       "quality_score": 80,
       "extraction_method": "dom:star:article"
     },
@@ -5069,15 +5038,15 @@
       "title": "Civil liberties group says digital safety bill risks censorship, 'shadow banning'",
       "url": "https://www.thestar.com/news/canada/civil-liberties-group-says-digital-safety-bill-risks-censorship-shadow-banning/article_9d380834-ba6e-5170-a863-34f7dc905fab.html",
       "published": "2026-11-24T21:42:56+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
-      "critical_count": 0,
-      "warning_count": 2,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 208,
+      "word_count": 28,
       "paragraph_count": 2,
-      "inline_image_count": 13,
+      "inline_image_count": 0,
       "quality_score": 80,
       "quality_grade": "good",
       "extraction_method": "dom:star:article",
@@ -5085,16 +5054,10 @@
       "local_score": 0,
       "issues": [
         {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "13 inline images"
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "28 words"
         },
         {
           "severity": "info",
@@ -5110,15 +5073,15 @@
       "title": "Fact File: Cruise line didn't cite homelessness for decision to end Halifax stops",
       "url": "https://www.thestar.com/news/canada/fact-file-cruise-line-didn-t-cite-homelessness-for-decision-to-end-halifax-stops/article_5d0746f1-ed9c-5cb6-ba0d-3e3483e08d67.html",
       "published": "2026-11-24T21:42:36+00:00",
-      "audit_status": "review",
-      "audit_score": 73,
-      "critical_count": 0,
-      "warning_count": 2,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 234,
+      "word_count": 57,
       "paragraph_count": 2,
-      "inline_image_count": 13,
+      "inline_image_count": 0,
       "quality_score": 80,
       "quality_grade": "good",
       "extraction_method": "dom:star:article",
@@ -5126,16 +5089,10 @@
       "local_score": 0,
       "issues": [
         {
-          "severity": "warning",
-          "code": "inline_related_content",
-          "message": "Possible publisher module leaked into the article body.",
-          "detail": "Trending"
-        },
-        {
-          "severity": "warning",
-          "code": "too_many_images",
-          "message": "Article contains an unusually large number of inline images.",
-          "detail": "13 inline images"
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "57 words"
         },
         {
           "severity": "info",
@@ -5418,7 +5375,7 @@
       "inline_image_count": 0,
       "quality_score": 81,
       "quality_grade": "good",
-      "extraction_method": "dom:citynews:article",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "citynews",
       "local_score": 0,
       "issues": [
