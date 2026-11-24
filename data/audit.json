@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-24T23:42:30.693610+00:00",
-  "generated_at_london": "2026-11-24T18:42:30.693610-05:00",
-  "news_generated_at": "2026-11-24T23:36:37.972881+00:00",
+  "generated_at": "2026-11-24T23:55:22.925166+00:00",
+  "generated_at_london": "2026-11-24T18:55:22.925166-05:00",
+  "news_generated_at": "2026-11-24T23:53:20.928002+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 695,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 109,
-    "review_story_count": 4,
+    "pass_story_count": 108,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
-    "info_issue_count": 100,
-    "healthy_source_count": 14,
-    "review_source_count": 2,
+    "warning_issue_count": 10,
+    "info_issue_count": 99,
+    "healthy_source_count": 13,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 11
   },
@@ -98,6 +98,33 @@
       "found_this_run": 10,
       "tracked": 6,
       "last_scrape": "2026-11-24T16:16:15.127243+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 408,
+      "average_quality": 95,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 13,
+      "latest_published": "2026-11-24T23:38:05+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-24T23:51:26.681420+00:00",
       "last_error": ""
     },
     {
@@ -481,19 +508,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 568,
-      "average_quality": 96,
+      "average_words": 557,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-24T22:55:49+00:00",
+      "latest_published": "2026-11-24T23:47:54+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T23:03:51.454590+00:00",
+      "last_scrape": "2026-11-24T23:51:20.694911+00:00",
       "last_error": ""
     },
     {
@@ -624,7 +652,7 @@
       "latest_published": "2026-11-24T21:14:46+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T23:35:05.976810+00:00",
+      "last_scrape": "2026-11-24T23:51:22.595785+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +706,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-24T20:59:24.909117+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 397,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 14,
-      "latest_published": "2026-11-24T23:01:00+00:00",
-      "found_this_run": 9,
-      "tracked": 30,
-      "last_scrape": "2026-11-24T23:19:54.297275+00:00",
       "last_error": ""
     },
     {
@@ -868,6 +870,36 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "2a2557cd64b962fa",
+      "source": "Toronto Star",
+      "title": "A timeline before and after mass shooting in Tumbler Ridge, B.C.",
+      "url": "https://www.thestar.com/news/canada/a-timeline-before-and-after-mass-shooting-in-tumbler-ridge-b-c/article_03327ce0-aa19-5631-a8aa-31b49a040851.html",
+      "published": "2026-11-24T23:38:05+00:00",
+      "content_status": "full",
+      "word_count": 265,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "2a2557cd64b962fa",
+      "source": "Toronto Star",
+      "title": "A timeline before and after mass shooting in Tumbler Ridge, B.C.",
+      "url": "https://www.thestar.com/news/canada/a-timeline-before-and-after-mass-shooting-in-tumbler-ridge-b-c/article_03327ce0-aa19-5631-a8aa-31b49a040851.html",
+      "published": "2026-11-24T23:38:05+00:00",
+      "content_status": "full",
+      "word_count": 265,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1504,6 +1536,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "bdf2800ab1672b42",
+      "source": "Global News Canada",
+      "title": "Kelowna foster care village aims to tackle declining number of foster homes",
+      "url": "https://globalnews.ca/news/12163426/kelowna-foster-care-village-aims-to-tackle-declining-number-of-foster-homes",
+      "published": "2026-11-24T23:47:54+00:00",
+      "content_status": "full",
+      "word_count": 462,
+      "quality_score": 88,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "ec956479152c6222",
       "source": "Global News Canada",
       "title": "Manitoba urged to continue work on wildfire response after devastating 2025 season",
@@ -1511,21 +1558,6 @@
       "published": "2026-11-24T22:55:49+00:00",
       "content_status": "full",
       "word_count": 1069,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "d6137ec27d17b075",
-      "source": "Global News Canada",
-      "title": "Ontario vows to restore frozen Osap by New Year if fraud bill passes",
-      "url": "https://globalnews.ca/news/12164387/ontario-vows-restore-frozen-osap-new-year-fraud-bill-passes",
-      "published": "2026-11-24T18:55:31+00:00",
-      "content_status": "full",
-      "word_count": 570,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2101,6 +2133,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "2a2557cd64b962fa",
+      "source": "Toronto Star",
+      "title": "A timeline before and after mass shooting in Tumbler Ridge, B.C.",
+      "url": "https://www.thestar.com/news/canada/a-timeline-before-and-after-mass-shooting-in-tumbler-ridge-b-c/article_03327ce0-aa19-5631-a8aa-31b49a040851.html",
+      "published": "2026-11-24T23:38:05+00:00",
+      "content_status": "full",
+      "word_count": 265,
+      "quality_score": 87,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2186,36 +2233,6 @@
       "published": "2026-11-24T21:42:56+00:00",
       "content_status": "full",
       "word_count": 366,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "f99b1eff0a4625b8",
-      "source": "Toronto Star",
-      "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
-      "url": "https://www.thestar.com/news/ontario/ending-homelessness-will-be-very-challenging-ontario-premier-doug-ford-says/article_69505a2e-72ab-5df2-8147-6f3db8c9af84.html",
-      "published": "2026-11-24T19:56:44+00:00",
-      "content_status": "full",
-      "word_count": 150,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f99b1eff0a4625b8",
-      "source": "Toronto Star",
-      "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
-      "url": "https://www.thestar.com/news/ontario/ending-homelessness-will-be-very-challenging-ontario-premier-doug-ford-says/article_69505a2e-72ab-5df2-8147-6f3db8c9af84.html",
-      "published": "2026-11-24T19:56:44+00:00",
-      "content_status": "full",
-      "word_count": 150,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -3791,6 +3808,35 @@
       ]
     },
     {
+      "id": "bdf2800ab1672b42",
+      "source": "Global News Canada",
+      "title": "Kelowna foster care village aims to tackle declining number of foster homes",
+      "url": "https://globalnews.ca/news/12163426/kelowna-foster-care-village-aims-to-tackle-declining-number-of-foster-homes",
+      "published": "2026-11-24T23:47:54+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 462,
+      "paragraph_count": 17,
+      "inline_image_count": 4,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ec956479152c6222",
       "source": "Global News Canada",
       "title": "Manitoba urged to continue work on wildfire response after devastating 2025 season",
@@ -4037,35 +4083,6 @@
       "word_count": 716,
       "paragraph_count": 25,
       "inline_image_count": 3,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "d6137ec27d17b075",
-      "source": "Global News Canada",
-      "title": "Ontario vows to restore frozen Osap by New Year if fraud bill passes",
-      "url": "https://globalnews.ca/news/12164387/ontario-vows-restore-frozen-osap-new-year-fraud-bill-passes",
-      "published": "2026-11-24T18:55:31+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 570,
-      "paragraph_count": 18,
-      "inline_image_count": 2,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -5023,6 +5040,47 @@
       ]
     },
     {
+      "id": "2a2557cd64b962fa",
+      "source": "Toronto Star",
+      "title": "A timeline before and after mass shooting in Tumbler Ridge, B.C.",
+      "url": "https://www.thestar.com/news/canada/a-timeline-before-and-after-mass-shooting-in-tumbler-ridge-b-c/article_03327ce0-aa19-5631-a8aa-31b49a040851.html",
+      "published": "2026-11-24T23:38:05+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 265,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 87,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5e968654c3b602f9",
       "source": "Toronto Star",
       "title": "How well do you know the Canadian national anthem?",
@@ -5280,41 +5338,6 @@
       "content_status": "full",
       "word_count": 149,
       "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f99b1eff0a4625b8",
-      "source": "Toronto Star",
-      "title": "Ending homelessness will be 'very challenging,' Ontario Premier Doug Ford says",
-      "url": "https://www.thestar.com/news/ontario/ending-homelessness-will-be-very-challenging-ontario-premier-doug-ford-says/article_69505a2e-72ab-5df2-8147-6f3db8c9af84.html",
-      "published": "2026-11-24T19:56:44+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 150,
-      "paragraph_count": 9,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
