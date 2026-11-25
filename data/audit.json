@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-25T23:28:54.462099+00:00",
-  "generated_at_london": "2026-11-25T18:28:54.462099-05:00",
-  "news_generated_at": "2026-11-25T23:23:00.386250+00:00",
+  "generated_at": "2026-11-25T23:40:31.152207+00:00",
+  "generated_at_london": "2026-11-25T18:40:31.152207-05:00",
+  "news_generated_at": "2026-11-25T23:39:12.309061+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 660,
+    "archive_story_count": 664,
     "source_count": 28,
     "audited_story_count": 103,
-    "pass_story_count": 98,
-    "review_story_count": 4,
+    "pass_story_count": 96,
+    "review_story_count": 6,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 7,
+    "warning_issue_count": 11,
     "info_issue_count": 86,
-    "healthy_source_count": 11,
-    "review_source_count": 3,
+    "healthy_source_count": 10,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -124,6 +124,33 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-25T22:50:41.000617+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
+      "usable_body_rate": 100,
+      "average_words": 488,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 0,
+      "warning_issues": 4,
+      "info_issues": 10,
+      "latest_published": "2026-11-25T22:45:39+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-25T23:37:23.387350+00:00",
       "last_error": ""
     },
     {
@@ -501,8 +528,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 305,
-      "average_quality": 67,
+      "average_words": 340,
+      "average_quality": 68,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 9,
@@ -511,10 +538,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 8,
-      "latest_published": "2026-11-25T22:08:30.713000+00:00",
+      "latest_published": "2026-11-25T23:26:25.937000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T22:56:45.907443+00:00",
+      "last_scrape": "2026-11-25T23:35:24.378104+00:00",
       "last_error": ""
     },
     {
@@ -646,7 +673,7 @@
       "latest_published": "2026-11-25T21:09:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T23:21:35.494854+00:00",
+      "last_scrape": "2026-11-25T23:37:20.594981+00:00",
       "last_error": ""
     },
     {
@@ -660,11 +687,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 697,
-      "average_quality": 94,
+      "average_words": 683,
+      "average_quality": 93,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -672,33 +700,7 @@
       "latest_published": "2026-11-25T23:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T23:21:32.420674+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 570,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-25T22:42:01+00:00",
-      "found_this_run": 8,
-      "tracked": 30,
-      "last_scrape": "2026-11-25T23:21:41.226536+00:00",
+      "last_scrape": "2026-11-25T23:37:16.846303+00:00",
       "last_error": ""
     },
     {
@@ -848,6 +850,66 @@
       "word_count": 665,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "6c29093919558727",
+      "source": "Toronto Star",
+      "title": "B.C. court rules against supplement makers in class action over false labelling",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-court-rules-against-supplement-makers-in-class-action-over-false-labelling/article_2c55df87-77d7-5dd1-a274-faabb9282276.html",
+      "published": "2026-11-25T22:45:39+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "6c29093919558727",
+      "source": "Toronto Star",
+      "title": "B.C. court rules against supplement makers in class action over false labelling",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-court-rules-against-supplement-makers-in-class-action-over-false-labelling/article_2c55df87-77d7-5dd1-a274-faabb9282276.html",
+      "published": "2026-11-25T22:45:39+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "a8b44d16f43d9d98",
+      "source": "Toronto Star",
+      "title": "Man accused in beating attack of homeless victim in Vancouver arrested in Ontario",
+      "url": "https://www.thestar.com/news/canada/british-columbia/man-accused-in-beating-attack-of-homeless-victim-in-vancouver-arrested-in-ontario/article_8ed9d286-76d6-5974-b74d-366beb1bcb1d.html",
+      "published": "2026-11-25T22:05:00+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "a8b44d16f43d9d98",
+      "source": "Toronto Star",
+      "title": "Man accused in beating attack of homeless victim in Vancouver arrested in Ontario",
+      "url": "https://www.thestar.com/news/canada/british-columbia/man-accused-in-beating-attack-of-homeless-victim-in-vancouver-arrested-in-ontario/article_8ed9d286-76d6-5974-b74d-366beb1bcb1d.html",
+      "published": "2026-11-25T22:05:00+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1874,15 +1936,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "db7bbddddc79b63c",
+      "story_id": "c78c1569ca7d25d9",
       "source": "The Globe and Mail",
-      "title": "One man dead after shooting in midtown Toronto",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-one-man-dead-after-toronto-residential-shooting",
-      "published": "2026-11-25T13:34:03.545000+00:00",
+      "title": "Quebec Premier invites provincial party leaders to sign declaration refusing oath to King",
+      "url": "https://www.theglobeandmail.com/canada/article-quebec-premier-party-leaders-declaration-refusing-oath-to-king",
+      "published": "2026-11-25T18:31:47.584000+00:00",
       "content_status": "full",
-      "word_count": 567,
-      "quality_score": 94,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 426,
+      "quality_score": 81,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1943,6 +2005,21 @@
       "word_count": 636,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "6c29093919558727",
+      "source": "Toronto Star",
+      "title": "B.C. court rules against supplement makers in class action over false labelling",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-court-rules-against-supplement-makers-in-class-action-over-false-labelling/article_2c55df87-77d7-5dd1-a274-faabb9282276.html",
+      "published": "2026-11-25T22:45:39+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2009,21 +2086,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "12bd817126f3cc42",
-      "source": "Toronto Star",
-      "title": "Heavy rains, storm surge, high tides cause 'real drama' along B.C.'s coast",
-      "url": "https://www.thestar.com/news/canada/british-columbia/heavy-rains-storm-surge-high-tides-cause-real-drama-along-b-c-s-coast/article_6f0797a1-9a83-5fab-8dd0-9ed71be507ba.html",
-      "published": "2026-11-25T09:05:08+00:00",
-      "content_status": "full",
-      "word_count": 652,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "39838f0cfd7d81a6",
       "source": "Toronto Star",
       "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
@@ -2033,6 +2095,21 @@
       "word_count": 256,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "a8b44d16f43d9d98",
+      "source": "Toronto Star",
+      "title": "Man accused in beating attack of homeless victim in Vancouver arrested in Ontario",
+      "url": "https://www.thestar.com/news/canada/british-columbia/man-accused-in-beating-attack-of-homeless-victim-in-vancouver-arrested-in-ontario/article_8ed9d286-76d6-5974-b74d-366beb1bcb1d.html",
+      "published": "2026-11-25T22:05:00+00:00",
+      "content_status": "full",
+      "word_count": 203,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2061,21 +2138,6 @@
       "published": "2026-11-25T20:46:46+00:00",
       "content_status": "full",
       "word_count": 486,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1cde2b9df1540b87",
-      "source": "Toronto Star",
-      "title": "The final Ontario Trillium Benefit payment of 2026 is coming soon. Here's what you need to know",
-      "url": "https://www.thestar.com/news/the-final-ontario-trillium-benefit-payment-of-2026-is-coming-soon-here-s-what-you-need-to-know/article_13c5de31-7aeb-4b81-b45f-e570c0e07a5a.html",
-      "published": "2026-11-25T10:00:00+00:00",
-      "content_status": "full",
-      "word_count": 575,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2183,6 +2245,28 @@
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "global",
       "local_score": 55,
+      "issues": []
+    },
+    {
+      "id": "5e550e9bcea279b0",
+      "source": "CTV News London",
+      "title": "London mayor pledges city support as province considers suspending property tax exemption for affordable housing",
+      "url": "https://www.ctvnews.ca/london/article/london-mayor-pledges-city-support-as-province-considers-suspending-property-tax-exemption-for-affordable-housing",
+      "published": "2026-11-25T23:26:25.937000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 643,
+      "paragraph_count": 19,
+      "inline_image_count": 1,
+      "quality_score": 83,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 30,
       "issues": []
     },
     {
@@ -2437,28 +2521,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "54a87a99f090e29c",
-      "source": "CTV News London",
-      "title": "Rain, gusty winds and possible wintry mix in forecast for southern Ontario",
-      "url": "https://www.ctvnews.ca/london/article/rain-gusty-winds-and-possible-wintry-mix-in-forecast-for-southern-ontario",
-      "published": "2026-11-25T18:21:16.005000+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 293,
-      "paragraph_count": 11,
-      "inline_image_count": 1,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 35,
-      "issues": []
     },
     {
       "id": "138c402b6342a708",
@@ -4062,6 +4124,35 @@
       ]
     },
     {
+      "id": "c78c1569ca7d25d9",
+      "source": "The Globe and Mail",
+      "title": "Quebec Premier invites provincial party leaders to sign declaration refusing oath to King",
+      "url": "https://www.theglobeandmail.com/canada/article-quebec-premier-party-leaders-declaration-refusing-oath-to-king",
+      "published": "2026-11-25T18:31:47.584000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 426,
+      "paragraph_count": 16,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8e8b9a3741e269c9",
       "source": "The Globe and Mail",
       "title": "Montreal police arrest third officer over alleged racism and misconduct",
@@ -4147,35 +4238,6 @@
       "paragraph_count": 17,
       "inline_image_count": 5,
       "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "db7bbddddc79b63c",
-      "source": "The Globe and Mail",
-      "title": "One man dead after shooting in midtown Toronto",
-      "url": "https://www.theglobeandmail.com/canada/toronto/article-one-man-dead-after-toronto-residential-shooting",
-      "published": "2026-11-25T13:34:03.545000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 567,
-      "paragraph_count": 18,
-      "inline_image_count": 2,
-      "quality_score": 94,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
@@ -4480,6 +4542,47 @@
       ]
     },
     {
+      "id": "6c29093919558727",
+      "source": "Toronto Star",
+      "title": "B.C. court rules against supplement makers in class action over false labelling",
+      "url": "https://www.thestar.com/news/canada/british-columbia/b-c-court-rules-against-supplement-makers-in-class-action-over-false-labelling/article_2c55df87-77d7-5dd1-a274-faabb9282276.html",
+      "published": "2026-11-25T22:45:39+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 202,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "598ff9bead21983f",
       "source": "Toronto Star",
       "title": "Feds announce $11m expansion to hatchery in northern B.C. dedicated to sockeye salmon",
@@ -4596,6 +4699,47 @@
       ]
     },
     {
+      "id": "a8b44d16f43d9d98",
+      "source": "Toronto Star",
+      "title": "Man accused in beating attack of homeless victim in Vancouver arrested in Ontario",
+      "url": "https://www.thestar.com/news/canada/british-columbia/man-accused-in-beating-attack-of-homeless-victim-in-vancouver-arrested-in-ontario/article_8ed9d286-76d6-5974-b74d-366beb1bcb1d.html",
+      "published": "2026-11-25T22:05:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 203,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1430df98081bb425",
       "source": "Toronto Star",
       "title": "Quebec premier asks opposition to sign letter in fight over oath to King",
@@ -4697,64 +4841,6 @@
       "word_count": 893,
       "paragraph_count": 23,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1cde2b9df1540b87",
-      "source": "Toronto Star",
-      "title": "The final Ontario Trillium Benefit payment of 2026 is coming soon. Here's what you need to know",
-      "url": "https://www.thestar.com/news/the-final-ontario-trillium-benefit-payment-of-2026-is-coming-soon-here-s-what-you-need-to-know/article_13c5de31-7aeb-4b81-b45f-e570c0e07a5a.html",
-      "published": "2026-11-25T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 575,
-      "paragraph_count": 23,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "12bd817126f3cc42",
-      "source": "Toronto Star",
-      "title": "Heavy rains, storm surge, high tides cause 'real drama' along B.C.'s coast",
-      "url": "https://www.thestar.com/news/canada/british-columbia/heavy-rains-storm-surge-high-tides-cause-real-drama-along-b-c-s-coast/article_6f0797a1-9a83-5fab-8dd0-9ed71be507ba.html",
-      "published": "2026-11-25T09:05:08+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 652,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
