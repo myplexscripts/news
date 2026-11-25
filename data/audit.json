@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-25T10:01:37.225736+00:00",
-  "generated_at_london": "2026-11-25T05:01:37.225736-05:00",
-  "news_generated_at": "2026-11-25T09:59:45.242105+00:00",
+  "generated_at": "2026-11-25T10:15:45.383249+00:00",
+  "generated_at_london": "2026-11-25T05:15:45.383249-05:00",
+  "news_generated_at": "2026-11-25T10:14:27.920945+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 686,
+    "archive_story_count": 688,
     "source_count": 28,
     "audited_story_count": 104,
-    "pass_story_count": 98,
-    "review_story_count": 4,
+    "pass_story_count": 97,
+    "review_story_count": 5,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 8,
-    "info_issue_count": 86,
+    "warning_issue_count": 10,
+    "info_issue_count": 85,
     "healthy_source_count": 11,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -106,24 +106,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
+      "pass": 8,
+      "review": 1,
       "fail": 1,
-      "pass_rate": 90,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 548,
-      "average_quality": 96,
+      "average_words": 489,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 1,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-25T09:05:08+00:00",
+      "latest_published": "2026-11-25T10:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T09:30:53.893708+00:00",
+      "last_scrape": "2026-11-25T10:13:01.659487+00:00",
       "last_error": ""
     },
     {
@@ -475,19 +476,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 427,
-      "average_quality": 77,
+      "average_words": 492,
+      "average_quality": 79,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 15,
-      "latest_published": "2026-11-25T02:50:00.833000+00:00",
-      "found_this_run": 7,
+      "info_issues": 14,
+      "latest_published": "2026-11-25T10:00:00+00:00",
+      "found_this_run": 8,
       "tracked": 30,
-      "last_scrape": "2026-11-25T03:02:26.294860+00:00",
+      "last_scrape": "2026-11-25T10:12:59.334185+00:00",
       "last_error": ""
     },
     {
@@ -671,7 +672,7 @@
       "latest_published": "2026-11-25T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T09:57:46.045671+00:00",
+      "last_scrape": "2026-11-25T10:13:00.266720+00:00",
       "last_error": ""
     },
     {
@@ -880,6 +881,36 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "1cde2b9df1540b87",
+      "source": "Toronto Star",
+      "title": "The final Ontario Trillium Benefit payment of 2026 is coming soon. Here's what you need to know",
+      "url": "https://www.thestar.com/news/the-final-ontario-trillium-benefit-payment-of-2026-is-coming-soon-here-s-what-you-need-to-know/article_13c5de31-7aeb-4b81-b45f-e570c0e07a5a.html",
+      "published": "2026-11-25T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "1cde2b9df1540b87",
+      "source": "Toronto Star",
+      "title": "The final Ontario Trillium Benefit payment of 2026 is coming soon. Here's what you need to know",
+      "url": "https://www.thestar.com/news/the-final-ontario-trillium-benefit-payment-of-2026-is-coming-soon-here-s-what-you-need-to-know/article_13c5de31-7aeb-4b81-b45f-e570c0e07a5a.html",
+      "published": "2026-11-25T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -899,36 +930,6 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
-      "story_id": "1f8c0ef3749dfa0a",
-      "source": "CTV News Canada",
-      "title": "$5K bonus payments for trades workers going out early next month, government says",
-      "url": "https://www.ctvnews.ca/canada/article/5k-bonus-payments-for-trades-workers-going-out-early-next-month-government-says",
-      "published": "2026-11-24T14:25:00.073000+00:00",
-      "content_status": "full",
-      "word_count": 175,
-      "quality_score": 66,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "1f8c0ef3749dfa0a",
-      "source": "CTV News Canada",
-      "title": "$5K bonus payments for trades workers going out early next month, government says",
-      "url": "https://www.ctvnews.ca/canada/article/5k-bonus-payments-for-trades-workers-going-out-early-next-month-government-says",
-      "published": "2026-11-24T14:25:00.073000+00:00",
-      "content_status": "full",
-      "word_count": 175,
-      "quality_score": 66,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
       "story_id": "ff40c478cb0998d4",
       "source": "CTV News Canada",
       "title": "Canada and Qatar sign agreement to boost investment",
@@ -982,6 +983,21 @@
       "content_status": "full",
       "word_count": 116,
       "quality_score": 57,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "97b63156d370513d",
+      "source": "CTV News Canada",
+      "title": "Literacy levels have plunged to an ‘all-time low’ in Canada, report shows",
+      "url": "https://www.ctvnews.ca/canada/article/literacy-levels-have-plunged-to-an-all-time-low-in-canada-report-shows",
+      "published": "2026-11-25T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 828,
+      "quality_score": 86,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -2039,21 +2055,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "f991a7c6df35b046",
-      "source": "Toronto Star",
-      "title": "Fact File: Cruise line didn't cite homelessness for decision to end Halifax stops",
-      "url": "https://www.thestar.com/news/canada/fact-file-cruise-line-didn-t-cite-homelessness-for-decision-to-end-halifax-stops/article_5d0746f1-ed9c-5cb6-ba0d-3e3483e08d67.html",
-      "published": "2026-11-24T21:42:36+00:00",
-      "content_status": "full",
-      "word_count": 786,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "12bd817126f3cc42",
       "source": "Toronto Star",
       "title": "Heavy rains, storm surge, high tides cause 'real drama' along B.C.'s coast",
@@ -2108,6 +2109,21 @@
       "word_count": 732,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1cde2b9df1540b87",
+      "source": "Toronto Star",
+      "title": "The final Ontario Trillium Benefit payment of 2026 is coming soon. Here's what you need to know",
+      "url": "https://www.thestar.com/news/the-final-ontario-trillium-benefit-payment-of-2026-is-coming-soon-here-s-what-you-need-to-know/article_13c5de31-7aeb-4b81-b45f-e570c0e07a5a.html",
+      "published": "2026-11-25T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3619,6 +3635,35 @@
       ]
     },
     {
+      "id": "97b63156d370513d",
+      "source": "CTV News Canada",
+      "title": "Literacy levels have plunged to an ‘all-time low’ in Canada, report shows",
+      "url": "https://www.ctvnews.ca/canada/article/literacy-levels-have-plunged-to-an-all-time-low-in-canada-report-shows",
+      "published": "2026-11-25T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 828,
+      "paragraph_count": 26,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "5a24cfce8e4daa19",
       "source": "CTV News Canada",
       "title": "‘We would lose our home’: Why Alto high speed rail debate is at a ‘fever pitch’",
@@ -3895,41 +3940,6 @@
       "extraction_profile": "ctv",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1f8c0ef3749dfa0a",
-      "source": "CTV News Canada",
-      "title": "$5K bonus payments for trades workers going out early next month, government says",
-      "url": "https://www.ctvnews.ca/canada/article/5k-bonus-payments-for-trades-workers-going-out-early-next-month-government-says",
-      "published": "2026-11-24T14:25:00.073000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 175,
-      "paragraph_count": 8,
-      "inline_image_count": 0,
-      "quality_score": 66,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4537,6 +4547,47 @@
       ]
     },
     {
+      "id": "1cde2b9df1540b87",
+      "source": "Toronto Star",
+      "title": "The final Ontario Trillium Benefit payment of 2026 is coming soon. Here's what you need to know",
+      "url": "https://www.thestar.com/news/the-final-ontario-trillium-benefit-payment-of-2026-is-coming-soon-here-s-what-you-need-to-know/article_13c5de31-7aeb-4b81-b45f-e570c0e07a5a.html",
+      "published": "2026-11-25T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 197,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "12bd817126f3cc42",
       "source": "Toronto Star",
       "title": "Heavy rains, storm surge, high tides cause 'real drama' along B.C.'s coast",
@@ -4788,35 +4839,6 @@
       "content_status": "full",
       "word_count": 375,
       "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f991a7c6df35b046",
-      "source": "Toronto Star",
-      "title": "Fact File: Cruise line didn't cite homelessness for decision to end Halifax stops",
-      "url": "https://www.thestar.com/news/canada/fact-file-cruise-line-didn-t-cite-homelessness-for-decision-to-end-halifax-stops/article_5d0746f1-ed9c-5cb6-ba0d-3e3483e08d67.html",
-      "published": "2026-11-24T21:42:36+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 786,
-      "paragraph_count": 22,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
