@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-25T23:16:11.977707+00:00",
-  "generated_at_london": "2026-11-25T18:16:11.977707-05:00",
-  "news_generated_at": "2026-11-25T23:08:30.310908+00:00",
+  "generated_at": "2026-11-25T23:24:11.301286+00:00",
+  "generated_at_london": "2026-11-25T18:24:11.301286-05:00",
+  "news_generated_at": "2026-11-25T23:23:00.386250+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 656,
+    "archive_story_count": 661,
     "source_count": 28,
     "audited_story_count": 103,
-    "pass_story_count": 97,
-    "review_story_count": 4,
-    "fail_story_count": 2,
-    "critical_issue_count": 2,
-    "warning_issue_count": 7,
+    "pass_story_count": 92,
+    "review_story_count": 10,
+    "fail_story_count": 1,
+    "critical_issue_count": 1,
+    "warning_issue_count": 19,
     "info_issue_count": 86,
     "healthy_source_count": 10,
     "review_source_count": 4,
@@ -129,28 +129,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 4,
+      "review": 6,
+      "fail": 0,
+      "pass_rate": 40,
       "usable_body_rate": 100,
-      "average_words": 650,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
+      "average_words": 421,
+      "average_quality": 86,
+      "primary_method": "dom:star:article",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 6,
+        "reader:semantic-rich-v1": 4
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 12,
       "info_issues": 10,
-      "latest_published": "2026-11-25T12:38:58+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-25T22:42:01+00:00",
+      "found_this_run": 8,
       "tracked": 30,
-      "last_scrape": "2026-11-25T12:49:21.887746+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-25T23:21:41.226536+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -339,7 +340,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 2,
+      "found_this_run": 3,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -672,7 +673,7 @@
       "latest_published": "2026-11-25T21:09:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T23:06:19.261729+00:00",
+      "last_scrape": "2026-11-25T23:21:35.494854+00:00",
       "last_error": ""
     },
     {
@@ -686,19 +687,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 505,
+      "average_words": 657,
       "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-25T22:34:50.372000+00:00",
+      "latest_published": "2026-11-25T23:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T23:06:16.661177+00:00",
+      "last_scrape": "2026-11-25T23:21:32.420674+00:00",
       "last_error": ""
     },
     {
@@ -723,7 +725,7 @@
       "info_issues": 3,
       "latest_published": "2026-11-24T18:02:25+00:00",
       "found_this_run": 10,
-      "tracked": 6,
+      "tracked": 5,
       "last_scrape": "2026-11-24T18:22:59.002937+00:00",
       "last_error": ""
     }
@@ -743,21 +745,6 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "58 words",
-      "story_id": "4d52f9ff270be818",
-      "source": "Toronto Star",
-      "title": "Manitoba premier says no special treatment for First Nation-backed mine proposal",
-      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-premier-says-no-special-treatment-for-first-nation-backed-mine-proposal/article_5d2075c4-69d1-5431-8df7-5e86dd14fb49.html",
-      "published": "2026-11-24T22:52:14+00:00",
-      "content_status": "full",
-      "word_count": 58,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "warning",
@@ -863,6 +850,186 @@
       "word_count": 665,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "83d526ed83cf1e8e",
+      "source": "Toronto Star",
+      "title": "Cyclist dead in collision involving a school bus in downtown Toronto",
+      "url": "https://www.thestar.com/news/ontario/cyclist-dead-in-collision-involving-a-school-bus-in-downtown-toronto/article_e16fd81e-7a56-55b7-86d5-0e3510f0816e.html",
+      "published": "2026-11-25T22:15:22+00:00",
+      "content_status": "full",
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "83d526ed83cf1e8e",
+      "source": "Toronto Star",
+      "title": "Cyclist dead in collision involving a school bus in downtown Toronto",
+      "url": "https://www.thestar.com/news/ontario/cyclist-dead-in-collision-involving-a-school-bus-in-downtown-toronto/article_e16fd81e-7a56-55b7-86d5-0e3510f0816e.html",
+      "published": "2026-11-25T22:15:22+00:00",
+      "content_status": "full",
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "4b529099eaa834b7",
+      "source": "Toronto Star",
+      "title": "Exceptional access to cancer drugs not a simple issue, minister says amid outcry",
+      "url": "https://www.thestar.com/news/ontario/exceptional-access-to-cancer-drugs-not-a-simple-issue-minister-says-amid-outcry/article_16d91330-7b8e-58d6-b698-cf78c72b838f.html",
+      "published": "2026-11-25T18:34:46+00:00",
+      "content_status": "full",
+      "word_count": 213,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "4b529099eaa834b7",
+      "source": "Toronto Star",
+      "title": "Exceptional access to cancer drugs not a simple issue, minister says amid outcry",
+      "url": "https://www.thestar.com/news/ontario/exceptional-access-to-cancer-drugs-not-a-simple-issue-minister-says-amid-outcry/article_16d91330-7b8e-58d6-b698-cf78c72b838f.html",
+      "published": "2026-11-25T18:34:46+00:00",
+      "content_status": "full",
+      "word_count": 213,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "598ff9bead21983f",
+      "source": "Toronto Star",
+      "title": "Feds announce $11m expansion to hatchery in northern B.C. dedicated to sockeye salmon",
+      "url": "https://www.thestar.com/news/canada/british-columbia/feds-announce-11m-expansion-to-hatchery-in-northern-b-c-dedicated-to-sockeye-salmon/article_fee4505e-46ac-5b1e-bf9c-6dad37124c22.html",
+      "published": "2026-11-25T22:42:01+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "598ff9bead21983f",
+      "source": "Toronto Star",
+      "title": "Feds announce $11m expansion to hatchery in northern B.C. dedicated to sockeye salmon",
+      "url": "https://www.thestar.com/news/canada/british-columbia/feds-announce-11m-expansion-to-hatchery-in-northern-b-c-dedicated-to-sockeye-salmon/article_fee4505e-46ac-5b1e-bf9c-6dad37124c22.html",
+      "published": "2026-11-25T22:42:01+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "39838f0cfd7d81a6",
+      "source": "Toronto Star",
+      "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
+      "url": "https://www.thestar.com/news/ontario/lcbo-to-deploy-paid-duty-cops-in-more-than-40-stores-as-part-of-anti-theft-blitz/article_50f8d9bb-3e81-59ca-b520-05f8dd357598.html",
+      "published": "2026-11-25T22:12:02+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "39838f0cfd7d81a6",
+      "source": "Toronto Star",
+      "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
+      "url": "https://www.thestar.com/news/ontario/lcbo-to-deploy-paid-duty-cops-in-more-than-40-stores-as-part-of-anti-theft-blitz/article_50f8d9bb-3e81-59ca-b520-05f8dd357598.html",
+      "published": "2026-11-25T22:12:02+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "1430df98081bb425",
+      "source": "Toronto Star",
+      "title": "Quebec premier asks opposition to sign letter in fight over oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-asks-opposition-to-sign-letter-in-fight-over-oath-to-king/article_d3dd27c9-99f0-5475-8cb7-0d37c359ef0d.html",
+      "published": "2026-11-25T20:46:46+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "1430df98081bb425",
+      "source": "Toronto Star",
+      "title": "Quebec premier asks opposition to sign letter in fight over oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-asks-opposition-to-sign-letter-in-fight-over-oath-to-king/article_d3dd27c9-99f0-5475-8cb7-0d37c359ef0d.html",
+      "published": "2026-11-25T20:46:46+00:00",
+      "content_status": "full",
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "12cc090256820ec4",
+      "source": "Toronto Star",
+      "title": "U.S. prosecution opposes release of alleged co-conspirator in B.C. mass shooting",
+      "url": "https://www.thestar.com/news/canada/u-s-prosecution-opposes-release-of-alleged-co-conspirator-in-b-c-mass-shooting/article_bdd86ed1-5f89-50b3-8648-d6d40f12ee87.html",
+      "published": "2026-11-25T22:36:43+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "12cc090256820ec4",
+      "source": "Toronto Star",
+      "title": "U.S. prosecution opposes release of alleged co-conspirator in B.C. mass shooting",
+      "url": "https://www.thestar.com/news/canada/u-s-prosecution-opposes-release-of-alleged-co-conspirator-in-b-c-mass-shooting/article_bdd86ed1-5f89-50b3-8648-d6d40f12ee87.html",
+      "published": "2026-11-25T22:36:43+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1766,21 +1933,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "660648c361c6871f",
-      "source": "The Globe and Mail",
-      "title": "Buyer for Playter Estates home surfaces after asking price raised",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-buyer-for-playter-estates-home-surfaces-after-asking-price-raised",
-      "published": "2026-11-25T13:00:00+00:00",
-      "content_status": "full",
-      "word_count": 361,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1934,6 +2086,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "38f9ddeb58908344",
+      "source": "The Globe and Mail",
+      "title": "Stage diva Dawn Greenhalgh was the brash matriarch of a Canadian theatrical dynasty",
+      "url": "https://www.theglobeandmail.com/canada/article-dawn-greenhalgh-obituary-stage-diva-canadian-theatrical-dynasty",
+      "published": "2026-11-25T23:00:00+00:00",
+      "content_status": "full",
+      "word_count": 1884,
+      "quality_score": 91,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "ce38bc760f10de80",
       "source": "The Globe and Mail",
       "title": "Struggling Kensington Capital names new CEO",
@@ -1964,60 +2131,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "2a2557cd64b962fa",
+      "story_id": "83d526ed83cf1e8e",
       "source": "Toronto Star",
-      "title": "A timeline before and after mass shooting in Tumbler Ridge, B.C.",
-      "url": "https://www.thestar.com/news/canada/a-timeline-before-and-after-mass-shooting-in-tumbler-ridge-b-c/article_03327ce0-aa19-5631-a8aa-31b49a040851.html",
-      "published": "2026-11-24T23:38:05+00:00",
+      "title": "Cyclist dead in collision involving a school bus in downtown Toronto",
+      "url": "https://www.thestar.com/news/ontario/cyclist-dead-in-collision-involving-a-school-bus-in-downtown-toronto/article_e16fd81e-7a56-55b7-86d5-0e3510f0816e.html",
+      "published": "2026-11-25T22:15:22+00:00",
       "content_status": "full",
-      "word_count": 1088,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "2a9c7a7905eef4f8",
-      "source": "Toronto Star",
-      "title": "Anthem singer who flubbed ‘O Canada’ says she practised for a month. Then her ‘menopause brain’ hit",
-      "url": "https://www.thestar.com/news/canada/anthem-singer-who-flubbed-o-canada-says-she-practised-for-a-month-then-her-menopause-brain-hit/article_ef049479-9b57-4c37-a269-264084abb11a.html",
-      "published": "2026-11-24T23:58:00+00:00",
-      "content_status": "full",
-      "word_count": 925,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "70fd7609cac7879d",
-      "source": "Toronto Star",
-      "title": "Canada is bringing in 380,000 immigrants, but a new report projects their skills will be wasted",
-      "url": "https://www.thestar.com/news/canada/canada-is-underusing-its-immigrant-talent-and-2027-won-t-be-any-better-new-report-projects/article_12f39a15-52f5-4b2c-8f48-cc456cfe3add.html",
-      "published": "2026-11-25T05:00:00+00:00",
-      "content_status": "full",
-      "word_count": 746,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "6316a4e4476e2abf",
-      "source": "Toronto Star",
-      "title": "Driver in 2025 crash that killed Ontario father of three expected to be sentenced",
-      "url": "https://www.thestar.com/news/ontario/driver-in-2025-crash-that-killed-ontario-father-of-three-expected-to-be-sentenced/article_11a3fdcf-36d4-57f4-a1d9-52db0dae7bc1.html",
-      "published": "2026-11-25T09:00:03+00:00",
-      "content_status": "full",
-      "word_count": 604,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 191,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2039,6 +2161,36 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "4b529099eaa834b7",
+      "source": "Toronto Star",
+      "title": "Exceptional access to cancer drugs not a simple issue, minister says amid outcry",
+      "url": "https://www.thestar.com/news/ontario/exceptional-access-to-cancer-drugs-not-a-simple-issue-minister-says-amid-outcry/article_16d91330-7b8e-58d6-b698-cf78c72b838f.html",
+      "published": "2026-11-25T18:34:46+00:00",
+      "content_status": "full",
+      "word_count": 213,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "598ff9bead21983f",
+      "source": "Toronto Star",
+      "title": "Feds announce $11m expansion to hatchery in northern B.C. dedicated to sockeye salmon",
+      "url": "https://www.thestar.com/news/canada/british-columbia/feds-announce-11m-expansion-to-hatchery-in-northern-b-c-dedicated-to-sockeye-salmon/article_fee4505e-46ac-5b1e-bf9c-6dad37124c22.html",
+      "published": "2026-11-25T22:42:01+00:00",
+      "content_status": "full",
+      "word_count": 200,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "12bd817126f3cc42",
       "source": "Toronto Star",
       "title": "Heavy rains, storm surge, high tides cause 'real drama' along B.C.'s coast",
@@ -2054,15 +2206,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "5e968654c3b602f9",
+      "story_id": "39838f0cfd7d81a6",
       "source": "Toronto Star",
-      "title": "How well do you know the Canadian national anthem?",
-      "url": "https://www.thestar.com/news/canada/how-well-do-you-know-the-canadian-national-anthem/article_c54e7f1a-a396-46b2-bf01-77b64180eaaf.html",
-      "published": "2026-11-24T23:01:00+00:00",
+      "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
+      "url": "https://www.thestar.com/news/ontario/lcbo-to-deploy-paid-duty-cops-in-more-than-40-stores-as-part-of-anti-theft-blitz/article_50f8d9bb-3e81-59ca-b520-05f8dd357598.html",
+      "published": "2026-11-25T22:12:02+00:00",
       "content_status": "full",
-      "word_count": 84,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2084,15 +2236,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "4d52f9ff270be818",
+      "story_id": "1430df98081bb425",
       "source": "Toronto Star",
-      "title": "Manitoba premier says no special treatment for First Nation-backed mine proposal",
-      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-premier-says-no-special-treatment-for-first-nation-backed-mine-proposal/article_5d2075c4-69d1-5431-8df7-5e86dd14fb49.html",
-      "published": "2026-11-24T22:52:14+00:00",
+      "title": "Quebec premier asks opposition to sign letter in fight over oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-asks-opposition-to-sign-letter-in-fight-over-oath-to-king/article_d3dd27c9-99f0-5475-8cb7-0d37c359ef0d.html",
+      "published": "2026-11-25T20:46:46+00:00",
       "content_status": "full",
-      "word_count": 58,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 199,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2108,6 +2260,21 @@
       "word_count": 575,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "12cc090256820ec4",
+      "source": "Toronto Star",
+      "title": "U.S. prosecution opposes release of alleged co-conspirator in B.C. mass shooting",
+      "url": "https://www.thestar.com/news/canada/u-s-prosecution-opposes-release-of-alleged-co-conspirator-in-b-c-mass-shooting/article_bdd86ed1-5f89-50b3-8648-d6d40f12ee87.html",
+      "published": "2026-11-25T22:36:43+00:00",
+      "content_status": "full",
+      "word_count": 209,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3897,6 +4064,35 @@
       ]
     },
     {
+      "id": "38f9ddeb58908344",
+      "source": "The Globe and Mail",
+      "title": "Stage diva Dawn Greenhalgh was the brash matriarch of a Canadian theatrical dynasty",
+      "url": "https://www.theglobeandmail.com/canada/article-dawn-greenhalgh-obituary-stage-diva-canadian-theatrical-dynasty",
+      "published": "2026-11-25T23:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 1884,
+      "paragraph_count": 53,
+      "inline_image_count": 7,
+      "quality_score": 91,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e732d5262b2dc970",
       "source": "The Globe and Mail",
       "title": "Lcbo to deploy paid duty cops in over 40 stores to bolster anti-theft efforts",
@@ -4162,35 +4358,6 @@
       "paragraph_count": 18,
       "inline_image_count": 2,
       "quality_score": 94,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "660648c361c6871f",
-      "source": "The Globe and Mail",
-      "title": "Buyer for Playter Estates home surfaces after asking price raised",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-buyer-for-playter-estates-home-surfaces-after-asking-price-raised",
-      "published": "2026-11-25T13:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 361,
-      "paragraph_count": 20,
-      "inline_image_count": 3,
-      "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
@@ -4495,6 +4662,252 @@
       ]
     },
     {
+      "id": "598ff9bead21983f",
+      "source": "Toronto Star",
+      "title": "Feds announce $11m expansion to hatchery in northern B.C. dedicated to sockeye salmon",
+      "url": "https://www.thestar.com/news/canada/british-columbia/feds-announce-11m-expansion-to-hatchery-in-northern-b-c-dedicated-to-sockeye-salmon/article_fee4505e-46ac-5b1e-bf9c-6dad37124c22.html",
+      "published": "2026-11-25T22:42:01+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 200,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "12cc090256820ec4",
+      "source": "Toronto Star",
+      "title": "U.S. prosecution opposes release of alleged co-conspirator in B.C. mass shooting",
+      "url": "https://www.thestar.com/news/canada/u-s-prosecution-opposes-release-of-alleged-co-conspirator-in-b-c-mass-shooting/article_bdd86ed1-5f89-50b3-8648-d6d40f12ee87.html",
+      "published": "2026-11-25T22:36:43+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 209,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "83d526ed83cf1e8e",
+      "source": "Toronto Star",
+      "title": "Cyclist dead in collision involving a school bus in downtown Toronto",
+      "url": "https://www.thestar.com/news/ontario/cyclist-dead-in-collision-involving-a-school-bus-in-downtown-toronto/article_e16fd81e-7a56-55b7-86d5-0e3510f0816e.html",
+      "published": "2026-11-25T22:15:22+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 191,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "39838f0cfd7d81a6",
+      "source": "Toronto Star",
+      "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
+      "url": "https://www.thestar.com/news/ontario/lcbo-to-deploy-paid-duty-cops-in-more-than-40-stores-as-part-of-anti-theft-blitz/article_50f8d9bb-3e81-59ca-b520-05f8dd357598.html",
+      "published": "2026-11-25T22:12:02+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 202,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "1430df98081bb425",
+      "source": "Toronto Star",
+      "title": "Quebec premier asks opposition to sign letter in fight over oath to King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-asks-opposition-to-sign-letter-in-fight-over-oath-to-king/article_d3dd27c9-99f0-5475-8cb7-0d37c359ef0d.html",
+      "published": "2026-11-25T20:46:46+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 199,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "4b529099eaa834b7",
+      "source": "Toronto Star",
+      "title": "Exceptional access to cancer drugs not a simple issue, minister says amid outcry",
+      "url": "https://www.thestar.com/news/ontario/exceptional-access-to-cancer-drugs-not-a-simple-issue-minister-says-amid-outcry/article_16d91330-7b8e-58d6-b698-cf78c72b838f.html",
+      "published": "2026-11-25T18:34:46+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 213,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e1112bb6756d4a47",
       "source": "Toronto Star",
       "title": "Man dead after midtown residential shooting: Toronto police",
@@ -4602,186 +5015,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6316a4e4476e2abf",
-      "source": "Toronto Star",
-      "title": "Driver in 2025 crash that killed Ontario father of three expected to be sentenced",
-      "url": "https://www.thestar.com/news/ontario/driver-in-2025-crash-that-killed-ontario-father-of-three-expected-to-be-sentenced/article_11a3fdcf-36d4-57f4-a1d9-52db0dae7bc1.html",
-      "published": "2026-11-25T09:00:03+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 604,
-      "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "70fd7609cac7879d",
-      "source": "Toronto Star",
-      "title": "Canada is bringing in 380,000 immigrants, but a new report projects their skills will be wasted",
-      "url": "https://www.thestar.com/news/canada/canada-is-underusing-its-immigrant-talent-and-2027-won-t-be-any-better-new-report-projects/article_12f39a15-52f5-4b2c-8f48-cc456cfe3add.html",
-      "published": "2026-11-25T05:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 746,
-      "paragraph_count": 19,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2a9c7a7905eef4f8",
-      "source": "Toronto Star",
-      "title": "Anthem singer who flubbed ‘O Canada’ says she practised for a month. Then her ‘menopause brain’ hit",
-      "url": "https://www.thestar.com/news/canada/anthem-singer-who-flubbed-o-canada-says-she-practised-for-a-month-then-her-menopause-brain-hit/article_ef049479-9b57-4c37-a269-264084abb11a.html",
-      "published": "2026-11-24T23:58:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 925,
-      "paragraph_count": 25,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "2a2557cd64b962fa",
-      "source": "Toronto Star",
-      "title": "A timeline before and after mass shooting in Tumbler Ridge, B.C.",
-      "url": "https://www.thestar.com/news/canada/a-timeline-before-and-after-mass-shooting-in-tumbler-ridge-b-c/article_03327ce0-aa19-5631-a8aa-31b49a040851.html",
-      "published": "2026-11-24T23:38:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1088,
-      "paragraph_count": 40,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5e968654c3b602f9",
-      "source": "Toronto Star",
-      "title": "How well do you know the Canadian national anthem?",
-      "url": "https://www.thestar.com/news/canada/how-well-do-you-know-the-canadian-national-anthem/article_c54e7f1a-a396-46b2-bf01-77b64180eaaf.html",
-      "published": "2026-11-24T23:01:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 84,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4d52f9ff270be818",
-      "source": "Toronto Star",
-      "title": "Manitoba premier says no special treatment for First Nation-backed mine proposal",
-      "url": "https://www.thestar.com/news/canada/manitoba/manitoba-premier-says-no-special-treatment-for-first-nation-backed-mine-proposal/article_5d2075c4-69d1-5431-8df7-5e86dd14fb49.html",
-      "published": "2026-11-24T22:52:14+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 58,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "58 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
