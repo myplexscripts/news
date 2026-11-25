@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-25T00:29:16.694302+00:00",
-  "generated_at_london": "2026-11-24T19:29:16.694302-05:00",
-  "news_generated_at": "2026-11-25T00:23:55.740364+00:00",
+  "generated_at": "2026-11-25T00:40:12.159155+00:00",
+  "generated_at_london": "2026-11-24T19:40:12.159155-05:00",
+  "news_generated_at": "2026-11-25T00:38:56.641162+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 697,
+    "archive_story_count": 701,
     "source_count": 28,
     "audited_story_count": 114,
-    "pass_story_count": 109,
-    "review_story_count": 4,
+    "pass_story_count": 108,
+    "review_story_count": 5,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 8,
-    "info_issue_count": 99,
+    "warning_issue_count": 10,
+    "info_issue_count": 98,
     "healthy_source_count": 13,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -103,28 +103,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 498,
-      "average_quality": 96,
+      "average_words": 504,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-11-24T23:38:05+00:00",
-      "found_this_run": 0,
+      "warning_issues": 2,
+      "info_issues": 12,
+      "latest_published": "2026-11-24T23:58:00+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-24T23:51:26.681420+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-25T00:37:35.183989+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -427,19 +428,19 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 446,
-      "average_quality": 79,
+      "average_words": 418,
+      "average_quality": 76,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 16,
-      "latest_published": "2026-11-24T23:52:57.510000+00:00",
-      "found_this_run": 5,
+      "info_issues": 17,
+      "latest_published": "2026-11-25T00:33:31.053000+00:00",
+      "found_this_run": 6,
       "tracked": 30,
-      "last_scrape": "2026-11-25T00:10:46.965896+00:00",
+      "last_scrape": "2026-11-25T00:37:28.031865+00:00",
       "last_error": ""
     },
     {
@@ -649,7 +650,7 @@
       "latest_published": "2026-11-25T00:19:07+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T00:22:07.032645+00:00",
+      "last_scrape": "2026-11-25T00:37:32.725757+00:00",
       "last_error": ""
     },
     {
@@ -690,19 +691,21 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 493,
-      "average_quality": 94,
+      "average_words": 620,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 7,
+        "dom:globe:main": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 15,
-      "latest_published": "2026-11-24T23:46:06.588000+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-25T00:16:31.127000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T00:06:32.153789+00:00",
+      "last_scrape": "2026-11-25T00:37:31.261466+00:00",
       "last_error": ""
     },
     {
@@ -869,6 +872,36 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "2a9c7a7905eef4f8",
+      "source": "Toronto Star",
+      "title": "Anthem singer who flubbed ‘O Canada’ says she practised for a month. Then her ‘menopause brain’ hit",
+      "url": "https://www.thestar.com/news/canada/anthem-singer-who-flubbed-o-canada-says-she-practised-for-a-month-then-her-menopause-brain-hit/article_ef049479-9b57-4c37-a269-264084abb11a.html",
+      "published": "2026-11-24T23:58:00+00:00",
+      "content_status": "full",
+      "word_count": 218,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "2a9c7a7905eef4f8",
+      "source": "Toronto Star",
+      "title": "Anthem singer who flubbed ‘O Canada’ says she practised for a month. Then her ‘menopause brain’ hit",
+      "url": "https://www.thestar.com/news/canada/anthem-singer-who-flubbed-o-canada-says-she-practised-for-a-month-then-her-menopause-brain-hit/article_ef049479-9b57-4c37-a269-264084abb11a.html",
+      "published": "2026-11-24T23:58:00+00:00",
+      "content_status": "full",
+      "word_count": 218,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
@@ -941,6 +974,36 @@
       "content_status": "full",
       "word_count": 507,
       "quality_score": 81,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "bd176920d14f46b1",
+      "source": "CTV News Canada",
+      "title": "Canadian Forces Military Police member charged with five service offences",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-forces-military-police-member-charged-with-five-service-offences",
+      "published": "2026-11-25T00:33:31.053000+00:00",
+      "content_status": "full",
+      "word_count": 116,
+      "quality_score": 57,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "bd176920d14f46b1",
+      "source": "CTV News Canada",
+      "title": "Canadian Forces Military Police member charged with five service offences",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-forces-military-police-member-charged-with-five-service-offences",
+      "published": "2026-11-25T00:33:31.053000+00:00",
+      "content_status": "full",
+      "word_count": 116,
+      "quality_score": 57,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1046,21 +1109,6 @@
       "content_status": "full",
       "word_count": 510,
       "quality_score": 81,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "c30d8ccedd7d4551",
-      "source": "CTV News Canada",
-      "title": "Regina transit suspension leaves commuters stranded in freezing weather",
-      "url": "https://www.ctvnews.ca/canada/article/regina-transit-suspension-leaves-commuters-stranded-in-freezing-weather",
-      "published": "2026-11-24T00:28:25.644000+00:00",
-      "content_status": "full",
-      "word_count": 402,
-      "quality_score": 83,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -1878,36 +1926,6 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
-      "story_id": "861a25f0a7b3a1ec",
-      "source": "The Globe and Mail",
-      "title": "Alleged Tumbler Ridge co-conspirator seeks release from U.S. jail",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-alleged-tumbler-ridge-co-conspirator-seeks-jail-release",
-      "published": "2026-11-24T15:50:04.290000+00:00",
-      "content_status": "partial",
-      "word_count": 541,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "861a25f0a7b3a1ec",
-      "source": "The Globe and Mail",
-      "title": "Alleged Tumbler Ridge co-conspirator seeks release from U.S. jail",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-alleged-tumbler-ridge-co-conspirator-seeks-jail-release",
-      "published": "2026-11-24T15:50:04.290000+00:00",
-      "content_status": "partial",
-      "word_count": 541,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
       "story_id": "ae6cbee854af158c",
       "source": "The Globe and Mail",
       "title": "Amazon violated Ontario’s anti-discrimination laws by not hiring Iranian engineer, tribunal rules",
@@ -1932,6 +1950,21 @@
       "word_count": 872,
       "quality_score": 89,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "7c7d64157f32e643",
+      "source": "The Globe and Mail",
+      "title": "First Nations in B.C. to acquire stake in Coastal GasLink pipeline",
+      "url": "https://www.theglobeandmail.com/politics/article-bc-first-nations-coastal-gaslink-pipeline-november-24",
+      "published": "2026-11-24T21:56:45.904000+00:00",
+      "content_status": "full",
+      "word_count": 639,
+      "quality_score": 92,
+      "extraction_method": "dom:globe:main"
     },
     {
       "severity": "info",
@@ -1980,6 +2013,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "9ee8a702ce7b408a",
+      "source": "The Globe and Mail",
+      "title": "Ontario changed out-of-country health care rules in bad faith, patients’ lawyers say",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-changed-out-of-country-health-care-rules-in-bad-faith",
+      "published": "2026-11-25T00:16:31.127000+00:00",
+      "content_status": "full",
+      "word_count": 809,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "9ee8a702ce7b408a",
+      "source": "The Globe and Mail",
+      "title": "Ontario changed out-of-country health care rules in bad faith, patients’ lawyers say",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-changed-out-of-country-health-care-rules-in-bad-faith",
+      "published": "2026-11-25T00:16:31.127000+00:00",
+      "content_status": "full",
+      "word_count": 809,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -2010,21 +2073,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "261547b8acc21062",
-      "source": "The Globe and Mail",
-      "title": "Singer apologizes for fumbling O Canada lyrics ahead of Leafs-Islanders game",
-      "url": "https://www.theglobeandmail.com/sports/article-singer-apologizes-o-canada-flub-nhl-game",
-      "published": "2026-11-24T15:43:11.031000+00:00",
-      "content_status": "full",
-      "word_count": 247,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -2055,33 +2103,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "116717fd417219df",
-      "source": "The Globe and Mail",
-      "title": "The casino that never closes: Inside Canada’s online gambling epidemic",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-the-casino-that-never-closes-inside-canadas-online-gambling-epidemic",
-      "published": "2026-11-24T15:10:16.692000+00:00",
-      "content_status": "full",
-      "word_count": 186,
-      "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "116717fd417219df",
+      "story_id": "02ab88bb8ca2d0a6",
       "source": "The Globe and Mail",
-      "title": "The casino that never closes: Inside Canada’s online gambling epidemic",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-the-casino-that-never-closes-inside-canadas-online-gambling-epidemic",
-      "published": "2026-11-24T15:10:16.692000+00:00",
+      "title": "The inspiring story of B.C.’s new Deputy Premier",
+      "url": "https://www.theglobeandmail.com/opinion/article-bc-new-deputy-premier-claire-rattee-lorne-doerkson",
+      "published": "2026-11-24T21:00:01+00:00",
       "content_status": "full",
-      "word_count": 186,
-      "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 792,
+      "quality_score": 88,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -2115,33 +2148,18 @@
     },
     {
       "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "6643c8b0549ab7a2",
-      "source": "Toronto Star",
-      "title": "Alberta takes symbolic stand against federal hate crime law, says it silences speech",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-takes-symbolic-stand-against-federal-hate-crime-law-says-it-silences-speech/article_1e40f241-32a9-5eda-9a88-7e39df17ff30.html",
-      "published": "2026-11-24T20:29:00+00:00",
-      "content_status": "full",
-      "word_count": 149,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "6643c8b0549ab7a2",
+      "story_id": "2a9c7a7905eef4f8",
       "source": "Toronto Star",
-      "title": "Alberta takes symbolic stand against federal hate crime law, says it silences speech",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-takes-symbolic-stand-against-federal-hate-crime-law-says-it-silences-speech/article_1e40f241-32a9-5eda-9a88-7e39df17ff30.html",
-      "published": "2026-11-24T20:29:00+00:00",
+      "title": "Anthem singer who flubbed ‘O Canada’ says she practised for a month. Then her ‘menopause brain’ hit",
+      "url": "https://www.thestar.com/news/canada/anthem-singer-who-flubbed-o-canada-says-she-practised-for-a-month-then-her-menopause-brain-hit/article_ef049479-9b57-4c37-a269-264084abb11a.html",
+      "published": "2026-11-24T23:58:00+00:00",
       "content_status": "full",
-      "word_count": 149,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 218,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4072,6 +4090,41 @@
       ]
     },
     {
+      "id": "bd176920d14f46b1",
+      "source": "CTV News Canada",
+      "title": "Canadian Forces Military Police member charged with five service offences",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-forces-military-police-member-charged-with-five-service-offences",
+      "published": "2026-11-25T00:33:31.053000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 116,
+      "paragraph_count": 6,
+      "inline_image_count": 0,
+      "quality_score": 57,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c740e8da7f7662d5",
       "source": "CTV News Canada",
       "title": "‘Bank of grandma and grandpa’: Canadians turn to grandparents for financial support",
@@ -4369,26 +4422,32 @@
       ]
     },
     {
-      "id": "c30d8ccedd7d4551",
-      "source": "CTV News Canada",
-      "title": "Regina transit suspension leaves commuters stranded in freezing weather",
-      "url": "https://www.ctvnews.ca/canada/article/regina-transit-suspension-leaves-commuters-stranded-in-freezing-weather",
-      "published": "2026-11-24T00:28:25.644000+00:00",
+      "id": "9ee8a702ce7b408a",
+      "source": "The Globe and Mail",
+      "title": "Ontario changed out-of-country health care rules in bad faith, patients’ lawyers say",
+      "url": "https://www.theglobeandmail.com/canada/article-ontario-changed-out-of-country-health-care-rules-in-bad-faith",
+      "published": "2026-11-25T00:16:31.127000+00:00",
       "audit_status": "pass",
-      "audit_score": 97,
+      "audit_score": 94,
       "critical_count": 0,
       "warning_count": 0,
-      "info_count": 1,
+      "info_count": 2,
       "content_status": "full",
-      "word_count": 402,
-      "paragraph_count": 20,
+      "word_count": 809,
+      "paragraph_count": 24,
       "inline_image_count": 0,
-      "quality_score": 83,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4424,6 +4483,64 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "7c7d64157f32e643",
+      "source": "The Globe and Mail",
+      "title": "First Nations in B.C. to acquire stake in Coastal GasLink pipeline",
+      "url": "https://www.theglobeandmail.com/politics/article-bc-first-nations-coastal-gaslink-pipeline-november-24",
+      "published": "2026-11-24T21:56:45.904000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 639,
+      "paragraph_count": 24,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:main",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "02ab88bb8ca2d0a6",
+      "source": "The Globe and Mail",
+      "title": "The inspiring story of B.C.’s new Deputy Premier",
+      "url": "https://www.theglobeandmail.com/opinion/article-bc-new-deputy-premier-claire-rattee-lorne-doerkson",
+      "published": "2026-11-24T21:00:01+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 792,
+      "paragraph_count": 20,
+      "inline_image_count": 1,
+      "quality_score": 88,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -4610,105 +4727,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "861a25f0a7b3a1ec",
-      "source": "The Globe and Mail",
-      "title": "Alleged Tumbler Ridge co-conspirator seeks release from U.S. jail",
-      "url": "https://www.theglobeandmail.com/canada/british-columbia/article-alleged-tumbler-ridge-co-conspirator-seeks-jail-release",
-      "published": "2026-11-24T15:50:04.290000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 541,
-      "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "261547b8acc21062",
-      "source": "The Globe and Mail",
-      "title": "Singer apologizes for fumbling O Canada lyrics ahead of Leafs-Islanders game",
-      "url": "https://www.theglobeandmail.com/sports/article-singer-apologizes-o-canada-flub-nhl-game",
-      "published": "2026-11-24T15:43:11.031000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 247,
-      "paragraph_count": 11,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "116717fd417219df",
-      "source": "The Globe and Mail",
-      "title": "The casino that never closes: Inside Canada’s online gambling epidemic",
-      "url": "https://www.theglobeandmail.com/investing/personal-finance/article-the-casino-that-never-closes-inside-canadas-online-gambling-epidemic",
-      "published": "2026-11-24T15:10:16.692000+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 186,
-      "paragraph_count": 3,
-      "inline_image_count": 0,
-      "quality_score": 89,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
@@ -5008,6 +5026,47 @@
       ]
     },
     {
+      "id": "2a9c7a7905eef4f8",
+      "source": "Toronto Star",
+      "title": "Anthem singer who flubbed ‘O Canada’ says she practised for a month. Then her ‘menopause brain’ hit",
+      "url": "https://www.thestar.com/news/canada/anthem-singer-who-flubbed-o-canada-says-she-practised-for-a-month-then-her-menopause-brain-hit/article_ef049479-9b57-4c37-a269-264084abb11a.html",
+      "published": "2026-11-24T23:58:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 218,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "2a2557cd64b962fa",
       "source": "Toronto Star",
       "title": "A timeline before and after mass shooting in Tumbler Ridge, B.C.",
@@ -5272,41 +5331,6 @@
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "6643c8b0549ab7a2",
-      "source": "Toronto Star",
-      "title": "Alberta takes symbolic stand against federal hate crime law, says it silences speech",
-      "url": "https://www.thestar.com/news/canada/alberta/alberta-takes-symbolic-stand-against-federal-hate-crime-law-says-it-silences-speech/article_1e40f241-32a9-5eda-9a88-7e39df17ff30.html",
-      "published": "2026-11-24T20:29:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "full",
-      "word_count": 149,
-      "paragraph_count": 10,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
