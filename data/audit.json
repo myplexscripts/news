@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T11:46:38.333817+00:00",
-  "generated_at_london": "2026-11-26T06:46:38.333817-05:00",
-  "news_generated_at": "2026-11-26T11:40:03.861035+00:00",
+  "generated_at": "2026-11-26T11:56:21.536867+00:00",
+  "generated_at_london": "2026-11-26T06:56:21.536867-05:00",
+  "news_generated_at": "2026-11-26T11:55:02.302031+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 660,
+    "archive_story_count": 661,
     "source_count": 28,
     "audited_story_count": 95,
     "pass_story_count": 88,
@@ -155,7 +155,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 8,
@@ -174,10 +174,10 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-26T10:00:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-26T11:22:11.215549+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -552,7 +552,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 532,
+      "average_words": 536,
       "average_quality": 81,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -561,10 +561,10 @@
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-26T10:00:00+00:00",
+      "latest_published": "2026-11-26T11:40:41.363000+00:00",
       "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-11-26T10:09:25.888462+00:00",
+      "last_scrape": "2026-11-26T11:53:26.666906+00:00",
       "last_error": ""
     },
     {
@@ -590,7 +590,7 @@
       "latest_published": "2026-11-26T11:25:34.286000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T11:36:08.481725+00:00",
+      "last_scrape": "2026-11-26T11:42:55.843347+00:00",
       "last_error": ""
     },
     {
@@ -694,9 +694,9 @@
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-26T11:30:00+00:00",
-      "found_this_run": 10,
+      "found_this_run": 7,
       "tracked": 30,
-      "last_scrape": "2026-11-26T11:38:17.494019+00:00",
+      "last_scrape": "2026-11-26T11:38:16.105853+00:00",
       "last_error": ""
     },
     {
@@ -1017,14 +1017,14 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "c740e8da7f7662d5",
+      "story_id": "84c0516bfd0109fe",
       "source": "CTV News Canada",
-      "title": "‘Bank of grandma and grandpa’: Canadians turn to grandparents for financial support",
-      "url": "https://www.ctvnews.ca/canada/article/bank-of-grandma-and-grandpa-canadians-turn-to-grandparents-for-financial-support",
-      "published": "2026-11-24T23:52:57.510000+00:00",
+      "title": "Why you might start seeing police officers at some Lcbo outlets",
+      "url": "https://www.ctvnews.ca/canada/article/why-you-might-start-seeing-police-officers-at-some-lcbo-outlets",
+      "published": "2026-11-26T11:40:41.363000+00:00",
       "content_status": "full",
-      "word_count": 481,
-      "quality_score": 83,
+      "word_count": 524,
+      "quality_score": 85,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -3299,6 +3299,35 @@
       ]
     },
     {
+      "id": "84c0516bfd0109fe",
+      "source": "CTV News Canada",
+      "title": "Why you might start seeing police officers at some Lcbo outlets",
+      "url": "https://www.ctvnews.ca/canada/article/why-you-might-start-seeing-police-officers-at-some-lcbo-outlets",
+      "published": "2026-11-26T11:40:41.363000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 524,
+      "paragraph_count": 17,
+      "inline_image_count": 2,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "95efefe631e45a62",
       "source": "CTV News Canada",
       "title": "Police officers to be deployed at Lcbo outlets in effort to curb liquor store robberies",
@@ -3569,35 +3598,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "c740e8da7f7662d5",
-      "source": "CTV News Canada",
-      "title": "‘Bank of grandma and grandpa’: Canadians turn to grandparents for financial support",
-      "url": "https://www.ctvnews.ca/canada/article/bank-of-grandma-and-grandpa-canadians-turn-to-grandparents-for-financial-support",
-      "published": "2026-11-24T23:52:57.510000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 481,
-      "paragraph_count": 22,
-      "inline_image_count": 1,
-      "quality_score": 83,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
