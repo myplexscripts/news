@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T21:56:30.989622+00:00",
-  "generated_at_london": "2026-11-26T16:56:30.989622-05:00",
-  "news_generated_at": "2026-11-26T21:52:14.119930+00:00",
+  "generated_at": "2026-11-26T22:08:28.689540+00:00",
+  "generated_at_london": "2026-11-26T17:08:28.689540-05:00",
+  "news_generated_at": "2026-11-26T22:07:09.743878+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 659,
+    "archive_story_count": 656,
     "source_count": 28,
     "audited_story_count": 99,
-    "pass_story_count": 95,
-    "review_story_count": 2,
+    "pass_story_count": 94,
+    "review_story_count": 3,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 4,
+    "warning_issue_count": 6,
     "info_issue_count": 85,
-    "healthy_source_count": 11,
-    "review_source_count": 3,
+    "healthy_source_count": 10,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 13
   },
@@ -124,7 +124,34 @@
       "latest_published": "2026-11-26T20:45:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T21:50:38.696066+00:00",
+      "last_scrape": "2026-11-26T22:05:48.280279+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 397,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 11,
+      "latest_published": "2026-11-26T21:40:57+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-26T22:05:49.734337+00:00",
       "last_error": ""
     },
     {
@@ -173,7 +200,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -516,7 +543,7 @@
       "latest_published": "2026-11-26T21:37:35.995000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T21:48:16.834409+00:00",
+      "last_scrape": "2026-11-26T21:54:31.858705+00:00",
       "last_error": ""
     },
     {
@@ -678,32 +705,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 405,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-26T20:48:17+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-26T21:03:16.597465+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -820,6 +821,36 @@
       "word_count": 151,
       "quality_score": 58,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "b45bfcec074b2424",
+      "source": "Toronto Star",
+      "title": "Quebec premier says parliamentary session will go ahead without oath to the King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-says-parliamentary-session-will-go-ahead-without-oath-to-the-king/article_1c6837d7-8e38-52bc-b5f1-e5c82b2e81aa.html",
+      "published": "2026-11-26T21:40:57+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "b45bfcec074b2424",
+      "source": "Toronto Star",
+      "title": "Quebec premier says parliamentary session will go ahead without oath to the King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-says-parliamentary-session-will-go-ahead-without-oath-to-the-king/article_1c6837d7-8e38-52bc-b5f1-e5c82b2e81aa.html",
+      "published": "2026-11-26T21:40:57+00:00",
+      "content_status": "full",
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1981,15 +2012,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "415d58512e32716c",
+      "story_id": "b45bfcec074b2424",
       "source": "Toronto Star",
-      "title": "Prosecutor appeals electronic monitoring order for Canadian in Belgian espionage case",
-      "url": "https://www.thestar.com/news/canada/prosecutor-appeals-electronic-monitoring-order-for-canadian-in-belgian-espionage-case/article_5d46b6cd-f700-55c2-a1ae-0d46e183f2ae.html",
-      "published": "2026-11-26T17:02:58+00:00",
+      "title": "Quebec premier says parliamentary session will go ahead without oath to the King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-says-parliamentary-session-will-go-ahead-without-oath-to-the-king/article_1c6837d7-8e38-52bc-b5f1-e5c82b2e81aa.html",
+      "published": "2026-11-26T21:40:57+00:00",
       "content_status": "full",
-      "word_count": 279,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 197,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4309,6 +4340,47 @@
       ]
     },
     {
+      "id": "b45bfcec074b2424",
+      "source": "Toronto Star",
+      "title": "Quebec premier says parliamentary session will go ahead without oath to the King",
+      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-says-parliamentary-session-will-go-ahead-without-oath-to-the-king/article_1c6837d7-8e38-52bc-b5f1-e5c82b2e81aa.html",
+      "published": "2026-11-26T21:40:57+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 197,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "9acec51e52ecf99f",
       "source": "Toronto Star",
       "title": "Man from Ontario gets 4.5 years for meth smuggling at Vancouver International Airport",
@@ -4560,35 +4632,6 @@
       "content_status": "full",
       "word_count": 1121,
       "paragraph_count": 48,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "415d58512e32716c",
-      "source": "Toronto Star",
-      "title": "Prosecutor appeals electronic monitoring order for Canadian in Belgian espionage case",
-      "url": "https://www.thestar.com/news/canada/prosecutor-appeals-electronic-monitoring-order-for-canadian-in-belgian-espionage-case/article_5d46b6cd-f700-55c2-a1ae-0d46e183f2ae.html",
-      "published": "2026-11-26T17:02:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 279,
-      "paragraph_count": 19,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
