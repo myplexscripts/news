@@ -1,23 +1,23 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T09:21:01.589787+00:00",
-  "generated_at_london": "2026-11-26T04:21:01.589787-05:00",
+  "generated_at": "2026-11-26T09:24:32.839845+00:00",
+  "generated_at_london": "2026-11-26T04:24:32.839845-05:00",
   "news_generated_at": "2026-11-26T09:19:14.198096+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 651,
     "source_count": 28,
     "audited_story_count": 96,
-    "pass_story_count": 87,
+    "pass_story_count": 88,
     "review_story_count": 3,
-    "fail_story_count": 6,
-    "critical_issue_count": 6,
+    "fail_story_count": 5,
+    "critical_issue_count": 5,
     "warning_issue_count": 6,
     "info_issue_count": 84,
     "healthy_source_count": 10,
-    "review_source_count": 2,
-    "error_source_count": 2,
+    "review_source_count": 3,
+    "error_source_count": 1,
     "waiting_source_count": 14
   },
   "source_reports": [
@@ -45,33 +45,6 @@
       "found_this_run": 10,
       "tracked": 1,
       "last_scrape": "2026-11-20T05:11:45.707981+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "error",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 5,
-      "review": 0,
-      "fail": 5,
-      "pass_rate": 50,
-      "usable_body_rate": 100,
-      "average_words": 374,
-      "average_quality": 93,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "dom:star:article": 1,
-        "reader:semantic-rich-v1": 9
-      },
-      "critical_issues": 5,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-26T09:01:04+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-26T09:17:07.253955+00:00",
       "last_error": ""
     },
     {
@@ -124,6 +97,32 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-26T03:00:42.957328+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 6,
+      "review": 0,
+      "fail": 4,
+      "pass_rate": 60,
+      "usable_body_rate": 100,
+      "average_words": 438,
+      "average_quality": 96,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "reader:semantic-rich-v1": 10
+      },
+      "critical_issues": 4,
+      "warning_issues": 0,
+      "info_issues": 10,
+      "latest_published": "2026-11-26T09:01:04+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-26T09:17:07.253955+00:00",
       "last_error": ""
     },
     {
@@ -684,12 +683,11 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 837,
+      "average_words": 835,
       "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:globe:article#content-gate": 1,
-        "dom:semantic-rich-v1": 9
+        "dom:semantic-rich-v1": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -802,21 +800,6 @@
       "word_count": 76,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "79 words",
-      "story_id": "1af9da93b9326c9a",
-      "source": "Toronto Star",
-      "title": "Ontario was warned about career college with skyrocketing Osap growth, letter shows",
-      "url": "https://www.thestar.com/news/ontario/ontario-was-warned-about-career-college-with-skyrocketing-osap-growth-letter-shows/article_dce38429-abf0-5488-9eba-70c75ab03faf.html",
-      "published": "2026-11-26T09:01:04+00:00",
-      "content_status": "full",
-      "word_count": 79,
-      "quality_score": 62,
-      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1968,10 +1951,10 @@
       "title": "Who’ll pay for overruns on the Darlington small modular reactor? – and other unanswered questions",
       "url": "https://www.theglobeandmail.com/business/article-wholl-pay-for-overruns-on-the-darlington-small-modular-reactor-and",
       "published": "2026-11-26T09:00:00+00:00",
-      "content_status": "full",
-      "word_count": 1556,
+      "content_status": "partial",
+      "word_count": 1534,
       "quality_score": 96,
-      "extraction_method": "dom:globe:article#content-gate"
+      "extraction_method": "dom:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -2089,9 +2072,9 @@
       "url": "https://www.thestar.com/news/ontario/ontario-was-warned-about-career-college-with-skyrocketing-osap-growth-letter-shows/article_dce38429-abf0-5488-9eba-70c75ab03faf.html",
       "published": "2026-11-26T09:01:04+00:00",
       "content_status": "full",
-      "word_count": 79,
-      "quality_score": 62,
-      "extraction_method": "dom:star:article"
+      "word_count": 719,
+      "quality_score": 96,
+      "extraction_method": "reader:semantic-rich-v1"
     },
     {
       "severity": "info",
@@ -3739,13 +3722,13 @@
       "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "full",
-      "word_count": 1556,
-      "paragraph_count": 41,
+      "content_status": "partial",
+      "word_count": 1534,
+      "paragraph_count": 40,
       "inline_image_count": 2,
       "quality_score": 96,
-      "quality_grade": "excellent",
-      "extraction_method": "dom:globe:article#content-gate",
+      "quality_grade": "good",
+      "extraction_method": "dom:semantic-rich-v1",
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
@@ -4338,27 +4321,21 @@
       "title": "Ontario was warned about career college with skyrocketing Osap growth, letter shows",
       "url": "https://www.thestar.com/news/ontario/ontario-was-warned-about-career-college-with-skyrocketing-osap-growth-letter-shows/article_dce38429-abf0-5488-9eba-70c75ab03faf.html",
       "published": "2026-11-26T09:01:04+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
       "warning_count": 0,
       "info_count": 1,
       "content_status": "full",
-      "word_count": 79,
-      "paragraph_count": 2,
-      "inline_image_count": 5,
-      "quality_score": 62,
-      "quality_grade": "partial",
-      "extraction_method": "dom:star:article",
+      "word_count": 719,
+      "paragraph_count": 29,
+      "inline_image_count": 0,
+      "quality_score": 96,
+      "quality_grade": "good",
+      "extraction_method": "reader:semantic-rich-v1",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "79 words"
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
