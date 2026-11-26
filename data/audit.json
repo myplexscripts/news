@@ -1,24 +1,24 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T13:19:33.899262+00:00",
-  "generated_at_london": "2026-11-26T08:19:33.899262-05:00",
-  "news_generated_at": "2026-11-26T13:13:57.838844+00:00",
+  "generated_at": "2026-11-26T13:32:19.292888+00:00",
+  "generated_at_london": "2026-11-26T08:32:19.292888-05:00",
+  "news_generated_at": "2026-11-26T13:30:15.904622+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 657,
+    "archive_story_count": 658,
     "source_count": 28,
-    "audited_story_count": 95,
-    "pass_story_count": 88,
+    "audited_story_count": 96,
+    "pass_story_count": 89,
     "review_story_count": 3,
     "fail_story_count": 4,
     "critical_issue_count": 4,
     "warning_issue_count": 5,
-    "info_issue_count": 82,
-    "healthy_source_count": 8,
+    "info_issue_count": 84,
+    "healthy_source_count": 9,
     "review_source_count": 5,
     "error_source_count": 1,
-    "waiting_source_count": 14
+    "waiting_source_count": 13
   },
   "source_reports": [
     {
@@ -84,20 +84,21 @@
       "fail": 1,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 662,
-      "average_quality": 90,
+      "average_words": 687,
+      "average_quality": 91,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "reader:semantic-rich-v1": 6,
-        "dom:semantic-rich-v1": 4
+        "dom:semantic-rich-v1": 3,
+        "dom:citynews:article": 1
       },
       "critical_issues": 1,
       "warning_issues": 0,
-      "info_issues": 9,
+      "info_issues": 10,
       "latest_published": "2026-11-26T11:01:20+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T11:06:30.205264+00:00",
+      "last_scrape": "2026-11-26T13:28:15.677504+00:00",
       "last_error": ""
     },
     {
@@ -347,30 +348,6 @@
       "last_error": ""
     },
     {
-      "source": "London Health Sciences Centre",
-      "status": "waiting",
-      "collector_status": "waiting",
-      "profile": "generic",
-      "sample_size": 0,
-      "pass": 0,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 0,
-      "usable_body_rate": 0,
-      "average_words": 0,
-      "average_quality": 0,
-      "primary_method": "unknown",
-      "method_counts": {},
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 0,
-      "latest_published": "",
-      "found_this_run": 10,
-      "tracked": 0,
-      "last_scrape": "",
-      "last_error": ""
-    },
-    {
       "source": "London Transit Commission",
       "status": "waiting",
       "collector_status": "waiting",
@@ -421,7 +398,7 @@
     {
       "source": "Middlesex-London Health Unit",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -437,10 +414,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='www.healthunit.com', port=443): Max retries exceeded with url: /news/ (Caused by ReadTimeoutError(\"HTTPSConnectionPool(host='www.healthunit.com', port=443): Read timed out. (read timeout=8)\"))"
     },
     {
       "source": "Ontario Newsroom",
@@ -646,6 +623,32 @@
       "last_error": ""
     },
     {
+      "source": "London Health Sciences Centre",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "generic",
+      "sample_size": 1,
+      "pass": 1,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 100,
+      "average_words": 914,
+      "average_quality": 82,
+      "primary_method": "dom:generic:main",
+      "method_counts": {
+        "dom:generic:main": 1
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 1,
+      "latest_published": "2026-11-26T05:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 1,
+      "last_scrape": "2026-11-26T13:26:49.762914+00:00",
+      "last_error": ""
+    },
+    {
       "source": "London Police Service",
       "status": "healthy",
       "collector_status": "healthy",
@@ -696,7 +699,7 @@
       "latest_published": "2026-11-26T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T13:12:26.233058+00:00",
+      "last_scrape": "2026-11-26T13:28:13.802023+00:00",
       "last_error": ""
     },
     {
@@ -1272,6 +1275,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "ee7887febf6ffac8",
+      "source": "CityNews Canada",
+      "title": "Health Canada warns of rare vision loss risk with Ozempic and other semaglutide drugs",
+      "url": "https://toronto.citynews.ca/2026/11/25/health-canada-warns-of-rare-vision-loss-risk-with-ozempic-and-other-semaglutide-drugs",
+      "published": "2026-11-25T19:48:25+00:00",
+      "content_status": "full",
+      "word_count": 570,
+      "quality_score": 81,
+      "extraction_method": "dom:citynews:article"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "bd77f01cf9673dd1",
       "source": "CityNews Canada",
       "title": "Immigrants in Canada more likely to be overqualified for their jobs: report",
@@ -1476,6 +1494,21 @@
       "word_count": 596,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "8ea854455ddbaddb",
+      "source": "London Health Sciences Centre",
+      "title": "Molly’s story: From patient to provider to patient again",
+      "url": "https://www.lhsc.on.ca/news/mollys-story-from-patient-to-provider-to-patient-again",
+      "published": "2026-11-26T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 914,
+      "quality_score": 82,
+      "extraction_method": "dom:generic:main"
     },
     {
       "severity": "info",
@@ -2833,6 +2866,35 @@
           "code": "image_gallery_leak",
           "message": "Several images appear consecutively with no article text between them.",
           "detail": "18 consecutive images"
+        }
+      ]
+    },
+    {
+      "id": "8ea854455ddbaddb",
+      "source": "London Health Sciences Centre",
+      "title": "Molly’s story: From patient to provider to patient again",
+      "url": "https://www.lhsc.on.ca/news/mollys-story-from-patient-to-provider-to-patient-again",
+      "published": "2026-11-26T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 914,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 82,
+      "quality_grade": "good",
+      "extraction_method": "dom:generic:main",
+      "extraction_profile": "generic",
+      "local_score": 38,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
         }
       ]
     },
@@ -4641,6 +4703,35 @@
       ]
     },
     {
+      "id": "ee7887febf6ffac8",
+      "source": "CityNews Canada",
+      "title": "Health Canada warns of rare vision loss risk with Ozempic and other semaglutide drugs",
+      "url": "https://toronto.citynews.ca/2026/11/25/health-canada-warns-of-rare-vision-loss-risk-with-ozempic-and-other-semaglutide-drugs",
+      "published": "2026-11-25T19:48:25+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 570,
+      "paragraph_count": 25,
+      "inline_image_count": 0,
+      "quality_score": 81,
+      "quality_grade": "good",
+      "extraction_method": "dom:citynews:article",
+      "extraction_profile": "citynews",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "dfe100a6c5890a11",
       "source": "CityNews Canada",
       "title": "Will Navdeep Bains meet the moment?",
@@ -4784,28 +4875,6 @@
           "detail": "Local score 0/100"
         }
       ]
-    },
-    {
-      "id": "eef034bbd20d786d",
-      "source": "CityNews Canada",
-      "title": "1968 murder of teen girl in London, Ont. solved",
-      "url": "https://toronto.citynews.ca/2026/11/24/1968-murder-of-teen-girl-in-london-ont-solved",
-      "published": "2026-11-24T14:39:22+00:00",
-      "audit_status": "pass",
-      "audit_score": 100,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 0,
-      "content_status": "full",
-      "word_count": 320,
-      "paragraph_count": 15,
-      "inline_image_count": 0,
-      "quality_score": 76,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "citynews",
-      "local_score": 35,
-      "issues": []
     }
   ]
 }
