@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T08:20:12.957229+00:00",
-  "generated_at_london": "2026-11-26T03:20:12.957229-05:00",
-  "news_generated_at": "2026-11-26T08:15:55.398422+00:00",
+  "generated_at": "2026-11-26T08:33:39.023247+00:00",
+  "generated_at_london": "2026-11-26T03:33:39.023247-05:00",
+  "news_generated_at": "2026-11-26T08:31:54.828470+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 658,
+    "archive_story_count": 660,
     "source_count": 28,
     "audited_story_count": 96,
-    "pass_story_count": 87,
+    "pass_story_count": 86,
     "review_story_count": 3,
-    "fail_story_count": 6,
-    "critical_issue_count": 6,
+    "fail_story_count": 7,
+    "critical_issue_count": 7,
     "warning_issue_count": 6,
     "info_issue_count": 84,
     "healthy_source_count": 10,
@@ -53,24 +53,26 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 5,
+      "pass": 4,
       "review": 0,
-      "fail": 5,
-      "pass_rate": 50,
-      "usable_body_rate": 100,
-      "average_words": 444,
-      "average_quality": 96,
+      "fail": 6,
+      "pass_rate": 40,
+      "usable_body_rate": 90,
+      "average_words": 284,
+      "average_quality": 86,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "trafilatura:fallback": 1,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 5,
+      "critical_issues": 6,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-26T05:01:04+00:00",
+      "latest_published": "2026-11-26T08:00:04+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T05:21:39.529434+00:00",
+      "last_scrape": "2026-11-26T08:29:56.096345+00:00",
       "last_error": ""
     },
     {
@@ -669,7 +671,7 @@
       "latest_published": "2026-11-26T00:09:25+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T08:14:14.357055+00:00",
+      "last_scrape": "2026-11-26T08:29:52.439361+00:00",
       "last_error": ""
     },
     {
@@ -815,6 +817,21 @@
       "word_count": 62,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "61 words",
+      "story_id": "b6aeeaa65f07fd11",
+      "source": "Toronto Star",
+      "title": "Smith hopes to leave separatism behind as UCP meets after divisive referendum",
+      "url": "https://www.thestar.com/news/canada/alberta/smith-hopes-to-leave-separatism-behind-as-ucp-meets-after-divisive-referendum/article_454669fa-23fd-5d39-8991-e627527e4e99.html",
+      "published": "2026-11-26T08:00:04+00:00",
+      "content_status": "full",
+      "word_count": 61,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "warning",
@@ -1976,6 +1993,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "4082808b572c4fb1",
+      "source": "Toronto Star",
+      "title": "Alberta health officials to give update on soldiers injured in CFB Wainwright fire",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-health-officials-to-give-update-on-soldiers-injured-in-cfb-wainwright-fire/article_ea96ccff-8968-5cee-9b97-21f3b21feefd.html",
+      "published": "2026-11-26T08:00:04+00:00",
+      "content_status": "summary",
+      "word_count": 0,
+      "quality_score": 30,
+      "extraction_method": "trafilatura:fallback"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "6c29093919558727",
       "source": "Toronto Star",
       "title": "B.C. court rules against supplement makers in class action over false labelling",
@@ -1998,21 +2030,6 @@
       "published": "2026-11-25T22:15:22+00:00",
       "content_status": "full",
       "word_count": 25,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "4b529099eaa834b7",
-      "source": "Toronto Star",
-      "title": "Exceptional access to cancer drugs not a simple issue, minister says amid outcry",
-      "url": "https://www.thestar.com/news/ontario/exceptional-access-to-cancer-drugs-not-a-simple-issue-minister-says-amid-outcry/article_16d91330-7b8e-58d6-b698-cf78c72b838f.html",
-      "published": "2026-11-25T18:34:46+00:00",
-      "content_status": "full",
-      "word_count": 1065,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2081,21 +2098,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "e1112bb6756d4a47",
-      "source": "Toronto Star",
-      "title": "Man dead after midtown residential shooting: Toronto police",
-      "url": "https://www.thestar.com/news/ontario/man-dead-after-midtown-residential-shooting-toronto-police/article_84852861-1f5c-5ec8-8b38-4b3e630d9c28.html",
-      "published": "2026-11-25T12:38:58+00:00",
-      "content_status": "full",
-      "word_count": 876,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "1430df98081bb425",
       "source": "Toronto Star",
       "title": "Quebec premier asks opposition to sign letter in fight over oath to King",
@@ -2105,6 +2107,21 @@
       "word_count": 62,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "b6aeeaa65f07fd11",
+      "source": "Toronto Star",
+      "title": "Smith hopes to leave separatism behind as UCP meets after divisive referendum",
+      "url": "https://www.thestar.com/news/canada/alberta/smith-hopes-to-leave-separatism-behind-as-ucp-meets-after-divisive-referendum/article_454669fa-23fd-5d39-8991-e627527e4e99.html",
+      "published": "2026-11-26T08:00:04+00:00",
+      "content_status": "full",
+      "word_count": 61,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4331,6 +4348,70 @@
       ]
     },
     {
+      "id": "b6aeeaa65f07fd11",
+      "source": "Toronto Star",
+      "title": "Smith hopes to leave separatism behind as UCP meets after divisive referendum",
+      "url": "https://www.thestar.com/news/canada/alberta/smith-hopes-to-leave-separatism-behind-as-ucp-meets-after-divisive-referendum/article_454669fa-23fd-5d39-8991-e627527e4e99.html",
+      "published": "2026-11-26T08:00:04+00:00",
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 61,
+      "paragraph_count": 2,
+      "inline_image_count": 6,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "61 words"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "4082808b572c4fb1",
+      "source": "Toronto Star",
+      "title": "Alberta health officials to give update on soldiers injured in CFB Wainwright fire",
+      "url": "https://www.thestar.com/news/canada/alberta/alberta-health-officials-to-give-update-on-soldiers-injured-in-cfb-wainwright-fire/article_ea96ccff-8968-5cee-9b97-21f3b21feefd.html",
+      "published": "2026-11-26T08:00:04+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 0,
+      "paragraph_count": 0,
+      "inline_image_count": 0,
+      "quality_score": 30,
+      "quality_grade": "poor",
+      "extraction_method": "trafilatura:fallback",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "fb5fbf25c8cf93b6",
       "source": "Toronto Star",
       "title": "Low-income, Black and Latin American people less likely to have a family doctor: report",
@@ -4584,64 +4665,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "62 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4b529099eaa834b7",
-      "source": "Toronto Star",
-      "title": "Exceptional access to cancer drugs not a simple issue, minister says amid outcry",
-      "url": "https://www.thestar.com/news/ontario/exceptional-access-to-cancer-drugs-not-a-simple-issue-minister-says-amid-outcry/article_16d91330-7b8e-58d6-b698-cf78c72b838f.html",
-      "published": "2026-11-25T18:34:46+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1065,
-      "paragraph_count": 30,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "e1112bb6756d4a47",
-      "source": "Toronto Star",
-      "title": "Man dead after midtown residential shooting: Toronto police",
-      "url": "https://www.thestar.com/news/ontario/man-dead-after-midtown-residential-shooting-toronto-police/article_84852861-1f5c-5ec8-8b38-4b3e630d9c28.html",
-      "published": "2026-11-25T12:38:58+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 876,
-      "paragraph_count": 31,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
