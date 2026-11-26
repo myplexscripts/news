@@ -1,23 +1,23 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T10:27:39.160525+00:00",
-  "generated_at_london": "2026-11-26T05:27:39.160525-05:00",
-  "news_generated_at": "2026-11-26T10:22:53.336121+00:00",
+  "generated_at": "2026-11-26T10:38:37.114568+00:00",
+  "generated_at_london": "2026-11-26T05:38:37.114568-05:00",
+  "news_generated_at": "2026-11-26T10:37:15.389308+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 654,
+    "archive_story_count": 656,
     "source_count": 28,
     "audited_story_count": 96,
-    "pass_story_count": 87,
-    "review_story_count": 4,
-    "fail_story_count": 5,
-    "critical_issue_count": 5,
-    "warning_issue_count": 7,
+    "pass_story_count": 86,
+    "review_story_count": 6,
+    "fail_story_count": 4,
+    "critical_issue_count": 4,
+    "warning_issue_count": 11,
     "info_issue_count": 83,
     "healthy_source_count": 9,
-    "review_source_count": 4,
-    "error_source_count": 1,
+    "review_source_count": 3,
+    "error_source_count": 2,
     "waiting_source_count": 14
   },
   "source_reports": [
@@ -45,6 +45,33 @@
       "found_this_run": 10,
       "tracked": 1,
       "last_scrape": "2026-11-20T05:11:45.707981+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "error",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 5,
+      "review": 2,
+      "fail": 3,
+      "pass_rate": 50,
+      "usable_body_rate": 100,
+      "average_words": 450,
+      "average_quality": 93,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
+      },
+      "critical_issues": 3,
+      "warning_issues": 4,
+      "info_issues": 10,
+      "latest_published": "2026-11-26T10:00:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-26T10:35:39.991388+00:00",
       "last_error": ""
     },
     {
@@ -123,32 +150,6 @@
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-26T10:20:34.890772+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "Toronto Star",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 6,
-      "review": 0,
-      "fail": 4,
-      "pass_rate": 60,
-      "usable_body_rate": 100,
-      "average_words": 438,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 4,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-26T09:01:04+00:00",
-      "found_this_run": 8,
-      "tracked": 30,
-      "last_scrape": "2026-11-26T09:17:07.253955+00:00",
       "last_error": ""
     },
     {
@@ -346,7 +347,7 @@
     {
       "source": "London Transit Commission",
       "status": "waiting",
-      "collector_status": "error",
+      "collector_status": "waiting",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -362,10 +363,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 0,
+      "found_this_run": 3,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "HTTPSConnectionPool(host='www.londontransit.ca', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.londontransit.ca', port=443) at 0x7e2387bf3ec0>, 'Connection to www.londontransit.ca time"
+      "last_error": ""
     },
     {
       "source": "Middlesex County",
@@ -695,7 +696,7 @@
       "latest_published": "2026-11-26T00:09:25+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T10:20:39.080966+00:00",
+      "last_scrape": "2026-11-26T10:35:36.875712+00:00",
       "last_error": ""
     },
     {
@@ -783,21 +784,6 @@
       "published": "2026-11-25T22:42:01+00:00",
       "content_status": "full",
       "word_count": 55,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "76 words",
-      "story_id": "39838f0cfd7d81a6",
-      "source": "Toronto Star",
-      "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
-      "url": "https://www.thestar.com/news/ontario/lcbo-to-deploy-paid-duty-cops-in-more-than-40-stores-as-part-of-anti-theft-blitz/article_50f8d9bb-3e81-59ca-b520-05f8dd357598.html",
-      "published": "2026-11-25T22:12:02+00:00",
-      "content_status": "full",
-      "word_count": 76,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -905,6 +891,66 @@
       "word_count": 2100,
       "quality_score": 97,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "05662dcf91e4f74c",
+      "source": "Toronto Star",
+      "title": "Over-the-counter hearing aids are coming to Ontario. Here’s how they can help — and how they're limited",
+      "url": "https://www.thestar.com/news/gta/over-the-counter-hearing-aids-are-coming-to-ontario-here-s-how-they-can-help-and-how-they-re-limited/article_d5227944-7973-4c9d-827c-8864ee453d75.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "05662dcf91e4f74c",
+      "source": "Toronto Star",
+      "title": "Over-the-counter hearing aids are coming to Ontario. Here’s how they can help — and how they're limited",
+      "url": "https://www.thestar.com/news/gta/over-the-counter-hearing-aids-are-coming-to-ontario-here-s-how-they-can-help-and-how-they-re-limited/article_d5227944-7973-4c9d-827c-8864ee453d75.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "bdd82ba6f10b088d",
+      "source": "Toronto Star",
+      "title": "Why a Supreme Court ruling on a secularism law could reverberate across Canadian politics",
+      "url": "https://www.thestar.com/politics/federal/why-a-supreme-court-ruling-on-a-secularism-law-could-reverberate-across-canadian-politics/article_9b253d2c-4494-4659-9d0e-53cfee39b03e.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "bdd82ba6f10b088d",
+      "source": "Toronto Star",
+      "title": "Why a Supreme Court ruling on a secularism law could reverberate across Canadian politics",
+      "url": "https://www.thestar.com/politics/federal/why-a-supreme-court-ruling-on-a-secularism-law-could-reverberate-across-canadian-politics/article_9b253d2c-4494-4659-9d0e-53cfee39b03e.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2021,21 +2067,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "39838f0cfd7d81a6",
-      "source": "Toronto Star",
-      "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
-      "url": "https://www.thestar.com/news/ontario/lcbo-to-deploy-paid-duty-cops-in-more-than-40-stores-as-part-of-anti-theft-blitz/article_50f8d9bb-3e81-59ca-b520-05f8dd357598.html",
-      "published": "2026-11-25T22:12:02+00:00",
-      "content_status": "full",
-      "word_count": 76,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "fb5fbf25c8cf93b6",
       "source": "Toronto Star",
       "title": "Low-income, Black and Latin American people less likely to have a family doctor: report",
@@ -2043,21 +2074,6 @@
       "published": "2026-11-26T05:01:04+00:00",
       "content_status": "full",
       "word_count": 924,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "a8b44d16f43d9d98",
-      "source": "Toronto Star",
-      "title": "Man accused in beating attack of homeless victim in Vancouver arrested in Ontario",
-      "url": "https://www.thestar.com/news/canada/british-columbia/man-accused-in-beating-attack-of-homeless-victim-in-vancouver-arrested-in-ontario/article_8ed9d286-76d6-5974-b74d-366beb1bcb1d.html",
-      "published": "2026-11-25T22:05:00+00:00",
-      "content_status": "full",
-      "word_count": 218,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2075,6 +2091,21 @@
       "word_count": 719,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "05662dcf91e4f74c",
+      "source": "Toronto Star",
+      "title": "Over-the-counter hearing aids are coming to Ontario. Here’s how they can help — and how they're limited",
+      "url": "https://www.thestar.com/news/gta/over-the-counter-hearing-aids-are-coming-to-ontario-here-s-how-they-can-help-and-how-they-re-limited/article_d5227944-7973-4c9d-827c-8864ee453d75.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 201,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -2105,6 +2136,21 @@
       "word_count": 1071,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "bdd82ba6f10b088d",
+      "source": "Toronto Star",
+      "title": "Why a Supreme Court ruling on a secularism law could reverberate across Canadian politics",
+      "url": "https://www.thestar.com/politics/federal/why-a-supreme-court-ruling-on-a-secularism-law-could-reverberate-across-canadian-politics/article_9b253d2c-4494-4659-9d0e-53cfee39b03e.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 211,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4316,6 +4362,88 @@
       ]
     },
     {
+      "id": "05662dcf91e4f74c",
+      "source": "Toronto Star",
+      "title": "Over-the-counter hearing aids are coming to Ontario. Here’s how they can help — and how they're limited",
+      "url": "https://www.thestar.com/news/gta/over-the-counter-hearing-aids-are-coming-to-ontario-here-s-how-they-can-help-and-how-they-re-limited/article_d5227944-7973-4c9d-827c-8864ee453d75.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 201,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "bdd82ba6f10b088d",
+      "source": "Toronto Star",
+      "title": "Why a Supreme Court ruling on a secularism law could reverberate across Canadian politics",
+      "url": "https://www.thestar.com/politics/federal/why-a-supreme-court-ruling-on-a-secularism-law-could-reverberate-across-canadian-politics/article_9b253d2c-4494-4659-9d0e-53cfee39b03e.html",
+      "published": "2026-11-26T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 211,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "1af9da93b9326c9a",
       "source": "Toronto Star",
       "title": "Ontario was warned about career college with skyrocketing Osap growth, letter shows",
@@ -4557,70 +4685,6 @@
           "message": "Story is marked full but the extracted body is extremely short.",
           "detail": "25 words"
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "39838f0cfd7d81a6",
-      "source": "Toronto Star",
-      "title": "Lcbo to deploy paid duty cops in more than 40 stores as part of anti-theft blitz",
-      "url": "https://www.thestar.com/news/ontario/lcbo-to-deploy-paid-duty-cops-in-more-than-40-stores-as-part-of-anti-theft-blitz/article_50f8d9bb-3e81-59ca-b520-05f8dd357598.html",
-      "published": "2026-11-25T22:12:02+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 76,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "76 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "a8b44d16f43d9d98",
-      "source": "Toronto Star",
-      "title": "Man accused in beating attack of homeless victim in Vancouver arrested in Ontario",
-      "url": "https://www.thestar.com/news/canada/british-columbia/man-accused-in-beating-attack-of-homeless-victim-in-vancouver-arrested-in-ontario/article_8ed9d286-76d6-5974-b74d-366beb1bcb1d.html",
-      "published": "2026-11-25T22:05:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 218,
-      "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
