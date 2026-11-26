@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T00:31:26.170161+00:00",
-  "generated_at_london": "2026-11-25T19:31:26.170161-05:00",
-  "news_generated_at": "2026-11-26T00:25:33.931991+00:00",
+  "generated_at": "2026-11-26T00:42:10.317107+00:00",
+  "generated_at_london": "2026-11-25T19:42:10.317107-05:00",
+  "news_generated_at": "2026-11-26T00:41:01.065257+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 662,
@@ -500,21 +500,20 @@
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
-      "usable_body_rate": 90,
-      "average_words": 340,
-      "average_quality": 68,
+      "usable_body_rate": 100,
+      "average_words": 371,
+      "average_quality": 72,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
-        "embedded-json:ctv": 9,
-        "ctv:summary-fallback": 1
+        "embedded-json:ctv": 10
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 8,
-      "latest_published": "2026-11-25T23:26:25.937000+00:00",
+      "latest_published": "2026-11-26T00:25:12.689000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T23:41:40.147980+00:00",
+      "last_scrape": "2026-11-26T00:37:51.314812+00:00",
       "last_error": ""
     },
     {
@@ -647,7 +646,7 @@
       "latest_published": "2026-11-26T00:09:25+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T00:23:57.101471+00:00",
+      "last_scrape": "2026-11-26T00:39:41.583763+00:00",
       "last_error": ""
     },
     {
@@ -661,11 +660,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 682,
-      "average_quality": 94,
+      "average_words": 600,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:globe:article#content-gate": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -673,7 +673,7 @@
       "latest_published": "2026-11-25T23:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T23:37:16.846303+00:00",
+      "last_scrape": "2026-11-26T00:39:39.040664+00:00",
       "last_error": ""
     },
     {
@@ -1122,6 +1122,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
+      "story_id": "d6b7ef3fc63b94fb",
+      "source": "CTV News London",
+      "title": "London Abused Women’s Centre collecting holiday donations to support women and children",
+      "url": "https://www.ctvnews.ca/london/article/london-abused-womens-centre-collecting-holiday-donations-to-support-women-and-children",
+      "published": "2026-11-26T00:25:12.689000+00:00",
+      "content_status": "full",
+      "word_count": 339,
+      "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1179,21 +1194,6 @@
       "word_count": 287,
       "quality_score": 77,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "bd5b3f8448940593",
-      "source": "CTV News London",
-      "title": "Vehicle hits house, prompting Longwoods Road closure",
-      "url": "https://www.ctvnews.ca/london/article/vehicle-hits-house-prompting-longwoods-road-closure",
-      "published": "2026-11-25T19:02:37.386000+00:00",
-      "content_status": "summary",
-      "word_count": 24,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -1752,6 +1752,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "8418467d9fe3ed17",
+      "source": "The Globe and Mail",
+      "title": "Canadian astronaut aboard space station welcomes baby girl born on Earth",
+      "url": "https://www.theglobeandmail.com/canada/article-canadian-astronaut-joshua-kutryk-welcomes-baby",
+      "published": "2026-11-25T17:38:12.157000+00:00",
+      "content_status": "full",
+      "word_count": 158,
+      "quality_score": 66,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1778,21 +1793,6 @@
       "content_status": "full",
       "word_count": 742,
       "quality_score": 89,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "3ce36cc776357313",
-      "source": "The Globe and Mail",
-      "title": "King Toronto: A monument to new perspectives on living",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-king-toronto-a-monument-to-new-perspectives-on-living",
-      "published": "2026-11-25T14:00:00+00:00",
-      "content_status": "full",
-      "word_count": 975,
-      "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
@@ -2187,6 +2187,35 @@
       "issues": []
     },
     {
+      "id": "d6b7ef3fc63b94fb",
+      "source": "CTV News London",
+      "title": "London Abused Women’s Centre collecting holiday donations to support women and children",
+      "url": "https://www.ctvnews.ca/london/article/london-abused-womens-centre-collecting-holiday-donations-to-support-women-and-children",
+      "published": "2026-11-26T00:25:12.689000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 339,
+      "paragraph_count": 19,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
+    {
       "id": "5e550e9bcea279b0",
       "source": "CTV News London",
       "title": "London mayor pledges city support as province considers suspending property tax exemption for affordable housing",
@@ -2431,35 +2460,6 @@
       "extraction_profile": "ctv",
       "local_score": 73,
       "issues": []
-    },
-    {
-      "id": "bd5b3f8448940593",
-      "source": "CTV News London",
-      "title": "Vehicle hits house, prompting Longwoods Road closure",
-      "url": "https://www.ctvnews.ca/london/article/vehicle-hits-house-prompting-longwoods-road-closure",
-      "published": "2026-11-25T19:02:37.386000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 24,
-      "paragraph_count": 1,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
     },
     {
       "id": "138c402b6342a708",
@@ -4092,6 +4092,35 @@
       ]
     },
     {
+      "id": "8418467d9fe3ed17",
+      "source": "The Globe and Mail",
+      "title": "Canadian astronaut aboard space station welcomes baby girl born on Earth",
+      "url": "https://www.theglobeandmail.com/canada/article-canadian-astronaut-joshua-kutryk-welcomes-baby",
+      "published": "2026-11-25T17:38:12.157000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 158,
+      "paragraph_count": 8,
+      "inline_image_count": 0,
+      "quality_score": 66,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "8e8b9a3741e269c9",
       "source": "The Globe and Mail",
       "title": "Montreal police arrest third officer over alleged racism and misconduct",
@@ -4153,35 +4182,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "3ce36cc776357313",
-      "source": "The Globe and Mail",
-      "title": "King Toronto: A monument to new perspectives on living",
-      "url": "https://www.theglobeandmail.com/real-estate/toronto/article-king-toronto-a-monument-to-new-perspectives-on-living",
-      "published": "2026-11-25T14:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 975,
-      "paragraph_count": 17,
-      "inline_image_count": 5,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
