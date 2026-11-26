@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T15:41:43.911296+00:00",
-  "generated_at_london": "2026-11-26T10:41:43.911296-05:00",
-  "news_generated_at": "2026-11-26T15:36:17.764520+00:00",
+  "generated_at": "2026-11-26T15:53:38.876506+00:00",
+  "generated_at_london": "2026-11-26T10:53:38.876506-05:00",
+  "news_generated_at": "2026-11-26T15:51:33.634160+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 659,
@@ -155,7 +155,7 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -173,10 +173,10 @@
       "warning_issues": 0,
       "info_issues": 11,
       "latest_published": "2026-11-26T13:49:50+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-26T14:46:48.257933+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -224,7 +224,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10001 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -527,8 +527,8 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 549,
-      "average_quality": 82,
+      "average_words": 514,
+      "average_quality": 79,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
         "embedded-json:ctv": 10
@@ -537,9 +537,9 @@
       "warning_issues": 0,
       "info_issues": 12,
       "latest_published": "2026-11-26T14:43:43.270000+00:00",
-      "found_this_run": 2,
+      "found_this_run": 3,
       "tracked": 30,
-      "last_scrape": "2026-11-26T15:21:34.169063+00:00",
+      "last_scrape": "2026-11-26T15:49:29.408349+00:00",
       "last_error": ""
     },
     {
@@ -697,7 +697,7 @@
       "latest_published": "2026-11-26T13:54:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T15:34:13.074354+00:00",
+      "last_scrape": "2026-11-26T15:49:31.317887+00:00",
       "last_error": ""
     },
     {
@@ -865,6 +865,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "e53001dc85cd08dc",
+      "source": "CTV News Canada",
+      "title": "Canadian astronaut Joshua Kutryk becomes father for the third time, while in space",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-astronaut-joshua-kutryk-becomes-father-for-the-third-time-while-in-space",
+      "published": "2026-11-25T16:42:34.035000+00:00",
+      "content_status": "full",
+      "word_count": 126,
+      "quality_score": 53,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -966,21 +981,6 @@
       "content_status": "full",
       "word_count": 524,
       "quality_score": 85,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "5ccef85c9b69732d",
-      "source": "CTV News Canada",
-      "title": "The rise of the ‘bank of grandma and grandpa’ puts retirement budgets to the test",
-      "url": "https://www.ctvnews.ca/canada/article/the-rise-of-the-bank-of-grandma-and-grandpa-puts-retirement-budgets-to-the-test",
-      "published": "2026-11-25T00:47:31.690000+00:00",
-      "content_status": "full",
-      "word_count": 481,
-      "quality_score": 83,
       "extraction_method": "embedded-json:ctv"
     },
     {
@@ -3478,6 +3478,35 @@
       ]
     },
     {
+      "id": "e53001dc85cd08dc",
+      "source": "CTV News Canada",
+      "title": "Canadian astronaut Joshua Kutryk becomes father for the third time, while in space",
+      "url": "https://www.ctvnews.ca/canada/article/canadian-astronaut-joshua-kutryk-becomes-father-for-the-third-time-while-in-space",
+      "published": "2026-11-25T16:42:34.035000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 126,
+      "paragraph_count": 5,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "4822c6f51966e695",
       "source": "CTV News Canada",
       "title": "1 in 3 students can’t read by the time they finish Grade 3, new report says",
@@ -3581,35 +3610,6 @@
       "inline_image_count": 1,
       "quality_score": 88,
       "quality_grade": "excellent",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "5ccef85c9b69732d",
-      "source": "CTV News Canada",
-      "title": "The rise of the ‘bank of grandma and grandpa’ puts retirement budgets to the test",
-      "url": "https://www.ctvnews.ca/canada/article/the-rise-of-the-bank-of-grandma-and-grandpa-puts-retirement-budgets-to-the-test",
-      "published": "2026-11-25T00:47:31.690000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 481,
-      "paragraph_count": 22,
-      "inline_image_count": 1,
-      "quality_score": 83,
-      "quality_grade": "good",
       "extraction_method": "embedded-json:ctv",
       "extraction_profile": "ctv",
       "local_score": 0,
