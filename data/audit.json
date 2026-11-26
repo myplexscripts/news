@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T20:40:05.924685+00:00",
-  "generated_at_london": "2026-11-26T15:40:05.924685-05:00",
-  "news_generated_at": "2026-11-26T20:33:45.939919+00:00",
+  "generated_at": "2026-11-26T20:50:20.663897+00:00",
+  "generated_at_london": "2026-11-26T15:50:20.663897-05:00",
+  "news_generated_at": "2026-11-26T20:48:54.416189+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 658,
+    "archive_story_count": 660,
     "source_count": 28,
     "audited_story_count": 99,
     "pass_story_count": 95,
@@ -14,7 +14,7 @@
     "fail_story_count": 2,
     "critical_issue_count": 2,
     "warning_issue_count": 4,
-    "info_issue_count": 87,
+    "info_issue_count": 86,
     "healthy_source_count": 11,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -111,20 +111,21 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 994,
-      "average_quality": 79,
+      "average_words": 890,
+      "average_quality": 76,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
+        "trafilatura:postmedia-last-resort": 1,
+        "reader:semantic-rich-v1": 8,
         "merge:reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-26T20:03:56+00:00",
+      "latest_published": "2026-11-26T20:45:43+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T20:31:43.859006+00:00",
+      "last_scrape": "2026-11-26T20:47:21.610257+00:00",
       "last_error": ""
     },
     {
@@ -202,7 +203,7 @@
     {
       "source": "Google News London Discovery",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -221,7 +222,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='news.google.com', port=443): Max retries exceeded with url: /rss/topics/CAAqHAgKIhZDQklTQ2pvSWJHOWpZV3hmZGpJb0FBUAE/sections/CAQiTkNCSVNORG9JYkc5allXeGZkakpDRUd4dlkyRnNYM1l5WDNObFkzUnBiMjV5Q2hJSUwyMHZNR0l4ZERGNkNnb"
     },
     {
       "source": "Government of Canada News",
@@ -503,7 +504,7 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 90,
-      "average_words": 233,
+      "average_words": 243,
       "average_quality": 65,
       "primary_method": "embedded-json:ctv",
       "method_counts": {
@@ -512,8 +513,8 @@
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-26T19:57:27.199000+00:00",
+      "info_issues": 10,
+      "latest_published": "2026-11-26T20:44:51.216000+00:00",
       "found_this_run": 10,
       "tracked": 30,
       "last_scrape": "2026-11-26T20:04:09.265020+00:00",
@@ -1183,21 +1184,6 @@
     },
     {
       "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 17/100",
-      "story_id": "1990673b1b257c02",
-      "source": "CTV News London",
-      "title": "Strong storm system to bring heavy rain, powerful winds to southwestern Ontario",
-      "url": "https://www.ctvnews.ca/london/article/strong-storm-system-to-bring-heavy-rain-powerful-winds-to-southwestern-ontario",
-      "published": "2026-11-26T11:00:01+00:00",
-      "content_status": "full",
-      "word_count": 270,
-      "quality_score": 73,
-      "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1696,6 +1682,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "c011e0be1f68fe34",
+      "source": "National Post",
+      "title": "Report reveals ‘deeply troubling levels of antisemitism, anti-Jewish attitudes’ on Canadian university campuses",
+      "url": "https://nationalpost.com/news/canada/troubling-antisemitism-canadian-university-campuses-report",
+      "published": "2026-11-26T20:45:43+00:00",
+      "content_status": "partial",
+      "word_count": 44,
+      "quality_score": 48,
+      "extraction_method": "trafilatura:postmedia-last-resort"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "624eb9ae736f1280",
       "source": "National Post",
       "title": "Toronto is ‘darker, colder’: Tributes for musician killed in Casa Loma home invasion pour in as police release suspect vehicle image",
@@ -1718,21 +1719,6 @@
       "published": "2026-11-26T18:52:35+00:00",
       "content_status": "partial",
       "word_count": 808,
-      "quality_score": 83,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "f7e60750791fbba6",
-      "source": "National Post",
-      "title": "‘Rule of law has to prevail,’ says lawyer at heart of Quebec’s oath to the King decision",
-      "url": "https://nationalpost.com/news/rule-of-law-has-to-prevail-says-lawyer-at-heart-of-quebecs-oath-to-the-king-decision",
-      "published": "2026-11-25T23:36:14+00:00",
-      "content_status": "partial",
-      "word_count": 1085,
       "quality_score": 83,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2173,6 +2159,28 @@
       "issues": []
     },
     {
+      "id": "970b9597b9157d36",
+      "source": "CTV News London",
+      "title": "London police investigate ‘cash-for-card’ fraud ring targeting public",
+      "url": "https://www.ctvnews.ca/london/article/london-police-investigate-cash-for-card-fraud-ring-targeting-public",
+      "published": "2026-11-26T20:44:51.216000+00:00",
+      "audit_status": "pass",
+      "audit_score": 100,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 0,
+      "content_status": "full",
+      "word_count": 368,
+      "paragraph_count": 18,
+      "inline_image_count": 1,
+      "quality_score": 78,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 28,
+      "issues": []
+    },
+    {
       "id": "b7a93dbd131c2d19",
       "source": "CTV News London",
       "title": "Freezing rain warnings and Special Weather Statements issued for parts of southwestern Ontario",
@@ -2435,35 +2443,6 @@
           "code": "low_local_relevance",
           "message": "Story has a low London relevance score.",
           "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "1990673b1b257c02",
-      "source": "CTV News London",
-      "title": "Strong storm system to bring heavy rain, powerful winds to southwestern Ontario",
-      "url": "https://www.ctvnews.ca/london/article/strong-storm-system-to-bring-heavy-rain-powerful-winds-to-southwestern-ontario",
-      "published": "2026-11-26T11:00:01+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 270,
-      "paragraph_count": 6,
-      "inline_image_count": 1,
-      "quality_score": 73,
-      "quality_grade": "good",
-      "extraction_method": "embedded-json:ctv",
-      "extraction_profile": "ctv",
-      "local_score": 17,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 17/100"
         }
       ]
     },
@@ -4056,6 +4035,35 @@
       ]
     },
     {
+      "id": "c011e0be1f68fe34",
+      "source": "National Post",
+      "title": "Report reveals ‘deeply troubling levels of antisemitism, anti-Jewish attitudes’ on Canadian university campuses",
+      "url": "https://nationalpost.com/news/canada/troubling-antisemitism-canadian-university-campuses-report",
+      "published": "2026-11-26T20:45:43+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 44,
+      "paragraph_count": 3,
+      "inline_image_count": 0,
+      "quality_score": 48,
+      "quality_grade": "partial",
+      "extraction_method": "trafilatura:postmedia-last-resort",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "22270868f961cfb7",
       "source": "National Post",
       "title": "Flair Airlines ordered to pay for essential items bought by passenger waiting for delayed suitcase",
@@ -4307,35 +4315,6 @@
       "content_status": "partial",
       "word_count": 873,
       "paragraph_count": 29,
-      "inline_image_count": 0,
-      "quality_score": 83,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "f7e60750791fbba6",
-      "source": "National Post",
-      "title": "‘Rule of law has to prevail,’ says lawyer at heart of Quebec’s oath to the King decision",
-      "url": "https://nationalpost.com/news/rule-of-law-has-to-prevail-says-lawyer-at-heart-of-quebecs-oath-to-the-king-decision",
-      "published": "2026-11-25T23:36:14+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 1085,
-      "paragraph_count": 42,
       "inline_image_count": 0,
       "quality_score": 83,
       "quality_grade": "good",
