@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-26T05:12:56.573021+00:00",
-  "generated_at_london": "2026-11-26T00:12:56.573021-05:00",
-  "news_generated_at": "2026-11-26T05:07:23.911401+00:00",
+  "generated_at": "2026-11-26T05:24:40.679287+00:00",
+  "generated_at_london": "2026-11-26T00:24:40.679287-05:00",
+  "news_generated_at": "2026-11-26T05:23:18.057732+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 656,
+    "archive_story_count": 658,
     "source_count": 28,
     "audited_story_count": 96,
-    "pass_story_count": 92,
-    "review_story_count": 3,
+    "pass_story_count": 91,
+    "review_story_count": 4,
     "fail_story_count": 1,
     "critical_issue_count": 1,
-    "warning_issue_count": 6,
-    "info_issue_count": 83,
+    "warning_issue_count": 8,
+    "info_issue_count": 84,
     "healthy_source_count": 10,
     "review_source_count": 3,
     "error_source_count": 1,
@@ -24,7 +24,7 @@
     {
       "source": "Fanshawe College Newsroom",
       "status": "error",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "generic",
       "sample_size": 1,
       "pass": 0,
@@ -44,7 +44,7 @@
       "latest_published": "2026-11-24T05:00:00+00:00",
       "found_this_run": 10,
       "tracked": 1,
-      "last_scrape": "2026-11-26T05:04:48.372611+00:00",
+      "last_scrape": "2026-11-20T05:11:45.707981+00:00",
       "last_error": ""
     },
     {
@@ -102,28 +102,29 @@
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "degraded",
+      "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 10,
-      "review": 0,
+      "pass": 9,
+      "review": 1,
       "fail": 0,
-      "pass_rate": 100,
+      "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 521,
-      "average_quality": 96,
+      "average_words": 454,
+      "average_quality": 94,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
       },
       "critical_issues": 0,
-      "warning_issues": 0,
+      "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-25T22:45:39+00:00",
-      "found_this_run": 0,
+      "latest_published": "2026-11-26T05:01:04+00:00",
+      "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-25T23:37:23.387350+00:00",
-      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
+      "last_scrape": "2026-11-26T05:21:39.529434+00:00",
+      "last_error": ""
     },
     {
       "source": "CBC News Canada",
@@ -669,7 +670,7 @@
       "latest_published": "2026-11-26T00:09:25+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T05:05:56.277429+00:00",
+      "last_scrape": "2026-11-26T05:21:38.047531+00:00",
       "last_error": ""
     },
     {
@@ -683,19 +684,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 670,
-      "average_quality": 95,
+      "average_words": 725,
+      "average_quality": 94,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 13,
-      "latest_published": "2026-11-26T03:07:56.566000+00:00",
+      "info_issues": 14,
+      "latest_published": "2026-11-26T05:01:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T03:16:20.536595+00:00",
+      "last_scrape": "2026-11-26T05:21:35.869650+00:00",
       "last_error": ""
     },
     {
@@ -830,6 +832,36 @@
       "word_count": 665,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "fb5fbf25c8cf93b6",
+      "source": "Toronto Star",
+      "title": "Low-income, Black and Latin American people less likely to have a family doctor: report",
+      "url": "https://www.thestar.com/news/ontario/low-income-black-and-latin-american-people-less-likely-to-have-a-family-doctor-report/article_c3fb7c56-0ce0-5440-a594-1c68739d644f.html",
+      "published": "2026-11-26T05:01:04+00:00",
+      "content_status": "full",
+      "word_count": 216,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "fb5fbf25c8cf93b6",
+      "source": "Toronto Star",
+      "title": "Low-income, Black and Latin American people less likely to have a family doctor: report",
+      "url": "https://www.thestar.com/news/ontario/low-income-black-and-latin-american-people-less-likely-to-have-a-family-doctor-report/article_c3fb7c56-0ce0-5440-a594-1c68739d644f.html",
+      "published": "2026-11-26T05:01:04+00:00",
+      "content_status": "full",
+      "word_count": 216,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1691,6 +1723,36 @@
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
+      "story_id": "c0da3b7ebb7af7b0",
+      "source": "The Globe and Mail",
+      "title": "Adults in lowest-income neighbourhoods more likely to be hospitalized for manageable conditions, study says",
+      "url": "https://www.theglobeandmail.com/canada/article-adults-in-lowest-income-neighbourhoods-more-likely-to-be-hospitalized",
+      "published": "2026-11-26T05:01:00+00:00",
+      "content_status": "full",
+      "word_count": 703,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "c0da3b7ebb7af7b0",
+      "source": "The Globe and Mail",
+      "title": "Adults in lowest-income neighbourhoods more likely to be hospitalized for manageable conditions, study says",
+      "url": "https://www.theglobeandmail.com/canada/article-adults-in-lowest-income-neighbourhoods-more-likely-to-be-hospitalized",
+      "published": "2026-11-26T05:01:00+00:00",
+      "content_status": "full",
+      "word_count": 703,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
       "story_id": "e53a75758a26e79e",
       "source": "The Globe and Mail",
       "title": "Bird advocates press case against Pelee Island tower",
@@ -1713,21 +1775,6 @@
       "published": "2026-11-26T01:06:49.028000+00:00",
       "content_status": "partial",
       "word_count": 952,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "8418467d9fe3ed17",
-      "source": "The Globe and Mail",
-      "title": "Canadian astronaut aboard space station welcomes baby girl born on Earth",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-astronaut-joshua-kutryk-welcomes-baby",
-      "published": "2026-11-25T17:38:12.157000+00:00",
-      "content_status": "partial",
-      "word_count": 158,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1916,21 +1963,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "4f8ca987a638aff9",
-      "source": "Toronto Star",
-      "title": "El Nino sets up warm winter, but polar vortex could answer back: Weather Network",
-      "url": "https://www.thestar.com/news/canada/el-nino-sets-up-warm-winter-but-polar-vortex-could-answer-back-weather-network/article_cd629ba2-593c-5a36-b39d-6cf0e161aa0b.html",
-      "published": "2026-11-25T11:00:04+00:00",
-      "content_status": "full",
-      "word_count": 893,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "4b529099eaa834b7",
       "source": "Toronto Star",
       "title": "Exceptional access to cancer drugs not a simple issue, minister says amid outcry",
@@ -1970,6 +2002,21 @@
       "word_count": 256,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fb5fbf25c8cf93b6",
+      "source": "Toronto Star",
+      "title": "Low-income, Black and Latin American people less likely to have a family doctor: report",
+      "url": "https://www.thestar.com/news/ontario/low-income-black-and-latin-american-people-less-likely-to-have-a-family-doctor-report/article_c3fb7c56-0ce0-5440-a594-1c68739d644f.html",
+      "published": "2026-11-26T05:01:04+00:00",
+      "content_status": "full",
+      "word_count": 216,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3637,6 +3684,41 @@
       ]
     },
     {
+      "id": "c0da3b7ebb7af7b0",
+      "source": "The Globe and Mail",
+      "title": "Adults in lowest-income neighbourhoods more likely to be hospitalized for manageable conditions, study says",
+      "url": "https://www.theglobeandmail.com/canada/article-adults-in-lowest-income-neighbourhoods-more-likely-to-be-hospitalized",
+      "published": "2026-11-26T05:01:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 703,
+      "paragraph_count": 25,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "dcae6ae64be1de34",
       "source": "The Globe and Mail",
       "title": "Galloway has not proven that accusations have taken a toll on his writing, defence argues",
@@ -3900,35 +3982,6 @@
       "content_status": "partial",
       "word_count": 412,
       "paragraph_count": 15,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "8418467d9fe3ed17",
-      "source": "The Globe and Mail",
-      "title": "Canadian astronaut aboard space station welcomes baby girl born on Earth",
-      "url": "https://www.theglobeandmail.com/canada/article-canadian-astronaut-joshua-kutryk-welcomes-baby",
-      "published": "2026-11-25T17:38:12.157000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "partial",
-      "word_count": 158,
-      "paragraph_count": 8,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4235,6 +4288,47 @@
       ]
     },
     {
+      "id": "fb5fbf25c8cf93b6",
+      "source": "Toronto Star",
+      "title": "Low-income, Black and Latin American people less likely to have a family doctor: report",
+      "url": "https://www.thestar.com/news/ontario/low-income-black-and-latin-american-people-less-likely-to-have-a-family-doctor-report/article_c3fb7c56-0ce0-5440-a594-1c68739d644f.html",
+      "published": "2026-11-26T05:01:04+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 216,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "6c29093919558727",
       "source": "Toronto Star",
       "title": "B.C. court rules against supplement makers in class action over false labelling",
@@ -4481,35 +4575,6 @@
       "word_count": 876,
       "paragraph_count": 31,
       "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "4f8ca987a638aff9",
-      "source": "Toronto Star",
-      "title": "El Nino sets up warm winter, but polar vortex could answer back: Weather Network",
-      "url": "https://www.thestar.com/news/canada/el-nino-sets-up-warm-winter-but-polar-vortex-could-answer-back-weather-network/article_cd629ba2-593c-5a36-b39d-6cf0e161aa0b.html",
-      "published": "2026-11-25T11:00:04+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 893,
-      "paragraph_count": 23,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "reader:semantic-rich-v1",
