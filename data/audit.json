@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T03:51:20.333730+00:00",
-  "generated_at_london": "2026-11-26T22:51:20.333730-05:00",
-  "news_generated_at": "2026-11-27T03:46:29.173584+00:00",
+  "generated_at": "2026-11-27T04:03:01.077863+00:00",
+  "generated_at_london": "2026-11-26T23:03:01.077863-05:00",
+  "news_generated_at": "2026-11-27T04:01:33.210103+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 660,
+    "archive_story_count": 661,
     "source_count": 28,
     "audited_story_count": 99,
-    "pass_story_count": 93,
-    "review_story_count": 3,
+    "pass_story_count": 92,
+    "review_story_count": 4,
     "fail_story_count": 3,
     "critical_issue_count": 3,
-    "warning_issue_count": 5,
+    "warning_issue_count": 7,
     "info_issue_count": 80,
-    "healthy_source_count": 10,
-    "review_source_count": 5,
+    "healthy_source_count": 9,
+    "review_source_count": 6,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-27T01:42:56.157000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T03:32:27.952796+00:00",
+      "last_scrape": "2026-11-27T03:48:56.734358+00:00",
       "last_error": ""
     },
     {
@@ -178,7 +178,34 @@
       "latest_published": "2026-11-27T00:50:05+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T03:44:38.281824+00:00",
+      "last_scrape": "2026-11-27T03:59:53.598435+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 334,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 10,
+      "latest_published": "2026-11-27T03:45:29+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-27T03:59:55.138863+00:00",
       "last_error": ""
     },
     {
@@ -680,32 +707,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 323,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 10,
-      "latest_published": "2026-11-27T02:17:46+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-27T02:27:49.001837+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -852,6 +853,36 @@
       "word_count": 151,
       "quality_score": 58,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "c7dd7ec9416d9188",
+      "source": "Toronto Star",
+      "title": "Ottawa deems Whitehorse Power Centres project of national interest",
+      "url": "https://www.thestar.com/news/canada/yukon/ottawa-deems-whitehorse-power-centres-project-of-national-interest/article_6b216757-d3c2-5800-8189-67f226c058ee.html",
+      "published": "2026-11-27T03:45:29+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "c7dd7ec9416d9188",
+      "source": "Toronto Star",
+      "title": "Ottawa deems Whitehorse Power Centres project of national interest",
+      "url": "https://www.thestar.com/news/canada/yukon/ottawa-deems-whitehorse-power-centres-project-of-national-interest/article_6b216757-d3c2-5800-8189-67f226c058ee.html",
+      "published": "2026-11-27T03:45:29+00:00",
+      "content_status": "full",
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1938,15 +1969,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "126805302eea9f3f",
+      "story_id": "c7dd7ec9416d9188",
       "source": "Toronto Star",
-      "title": "More consultations planned on proposal to replace Ontario bar exam with course",
-      "url": "https://www.thestar.com/news/ontario/more-consultations-planned-on-proposal-to-replace-ontario-bar-exam-with-course/article_cd20348b-ef2d-50c5-827e-4830a50e3ed7.html",
-      "published": "2026-11-26T18:49:34+00:00",
+      "title": "Ottawa deems Whitehorse Power Centres project of national interest",
+      "url": "https://www.thestar.com/news/canada/yukon/ottawa-deems-whitehorse-power-centres-project-of-national-interest/article_6b216757-d3c2-5800-8189-67f226c058ee.html",
+      "published": "2026-11-27T03:45:29+00:00",
       "content_status": "full",
-      "word_count": 87,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
+      "word_count": 202,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -4252,6 +4283,47 @@
       ]
     },
     {
+      "id": "c7dd7ec9416d9188",
+      "source": "Toronto Star",
+      "title": "Ottawa deems Whitehorse Power Centres project of national interest",
+      "url": "https://www.thestar.com/news/canada/yukon/ottawa-deems-whitehorse-power-centres-project-of-national-interest/article_6b216757-d3c2-5800-8189-67f226c058ee.html",
+      "published": "2026-11-27T03:45:29+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 202,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "da15405e7b8b18be",
       "source": "Toronto Star",
       "title": "BC Transit and Unifor reach tentative deal, one-day Victoria strike called off",
@@ -4497,35 +4569,6 @@
       "content_status": "full",
       "word_count": 324,
       "paragraph_count": 20,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "126805302eea9f3f",
-      "source": "Toronto Star",
-      "title": "More consultations planned on proposal to replace Ontario bar exam with course",
-      "url": "https://www.thestar.com/news/ontario/more-consultations-planned-on-proposal-to-replace-ontario-bar-exam-with-course/article_cd20348b-ef2d-50c5-827e-4830a50e3ed7.html",
-      "published": "2026-11-26T18:49:34+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 87,
-      "paragraph_count": 2,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
