@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T00:00:39.760517+00:00",
-  "generated_at_london": "2026-11-26T19:00:39.760517-05:00",
-  "news_generated_at": "2026-11-26T23:55:00.494907+00:00",
+  "generated_at": "2026-11-27T00:13:19.787186+00:00",
+  "generated_at_london": "2026-11-26T19:13:19.787186-05:00",
+  "news_generated_at": "2026-11-27T00:11:13.684605+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 654,
+    "archive_story_count": 655,
     "source_count": 28,
     "audited_story_count": 99,
-    "pass_story_count": 95,
-    "review_story_count": 2,
+    "pass_story_count": 94,
+    "review_story_count": 3,
     "fail_story_count": 2,
     "critical_issue_count": 2,
-    "warning_issue_count": 4,
+    "warning_issue_count": 6,
     "info_issue_count": 83,
-    "healthy_source_count": 12,
-    "review_source_count": 3,
+    "healthy_source_count": 11,
+    "review_source_count": 4,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -124,7 +124,34 @@
       "latest_published": "2026-11-26T22:34:26+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T23:53:45.080587+00:00",
+      "last_scrape": "2026-11-27T00:09:12.774991+00:00",
+      "last_error": ""
+    },
+    {
+      "source": "Toronto Star",
+      "status": "review",
+      "collector_status": "healthy",
+      "profile": "star",
+      "sample_size": 10,
+      "pass": 9,
+      "review": 1,
+      "fail": 0,
+      "pass_rate": 90,
+      "usable_body_rate": 100,
+      "average_words": 323,
+      "average_quality": 94,
+      "primary_method": "reader:semantic-rich-v1",
+      "method_counts": {
+        "dom:star:article": 1,
+        "reader:semantic-rich-v1": 9
+      },
+      "critical_issues": 0,
+      "warning_issues": 2,
+      "info_issues": 11,
+      "latest_published": "2026-11-26T23:45:00+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-27T00:09:14.697749+00:00",
       "last_error": ""
     },
     {
@@ -492,7 +519,7 @@
       "latest_published": "2026-11-26T23:50:53.999000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T23:51:54.271248+00:00",
+      "last_scrape": "2026-11-26T23:57:09.738899+00:00",
       "last_error": ""
     },
     {
@@ -533,19 +560,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 527,
-      "average_quality": 96,
+      "average_words": 557,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:global:main:strict": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 10,
-      "latest_published": "2026-11-26T23:26:12+00:00",
+      "latest_published": "2026-11-27T00:02:47+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-26T23:38:48.683174+00:00",
+      "last_scrape": "2026-11-27T00:09:10.498023+00:00",
       "last_error": ""
     },
     {
@@ -680,32 +708,6 @@
       "last_error": ""
     },
     {
-      "source": "Toronto Star",
-      "status": "healthy",
-      "collector_status": "healthy",
-      "profile": "star",
-      "sample_size": 10,
-      "pass": 10,
-      "review": 0,
-      "fail": 0,
-      "pass_rate": 100,
-      "usable_body_rate": 100,
-      "average_words": 411,
-      "average_quality": 96,
-      "primary_method": "reader:semantic-rich-v1",
-      "method_counts": {
-        "reader:semantic-rich-v1": 10
-      },
-      "critical_issues": 0,
-      "warning_issues": 0,
-      "info_issues": 11,
-      "latest_published": "2026-11-26T21:40:57+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-26T22:05:49.734337+00:00",
-      "last_error": ""
-    },
-    {
       "source": "Western News",
       "status": "healthy",
       "collector_status": "healthy",
@@ -822,6 +824,36 @@
       "word_count": 151,
       "quality_score": 58,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "88630f03a3b22cc4",
+      "source": "Toronto Star",
+      "title": "Ford says gambling ads are ‘out of control,’ but his government is resisting calls for a quick ban",
+      "url": "https://www.thestar.com/news/ontario/ford-says-gambling-ads-are-out-of-control-but-his-government-is-resisting-calls-for-a-quick-ban/article_1aff3f8a-6a0a-49c8-b283-72219d67334e.html",
+      "published": "2026-11-26T23:45:00+00:00",
+      "content_status": "full",
+      "word_count": 237,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "12 inline images",
+      "story_id": "88630f03a3b22cc4",
+      "source": "Toronto Star",
+      "title": "Ford says gambling ads are ‘out of control,’ but his government is resisting calls for a quick ban",
+      "url": "https://www.thestar.com/news/ontario/ford-says-gambling-ads-are-out-of-control-but-his-government-is-resisting-calls-for-a-quick-ban/article_1aff3f8a-6a0a-49c8-b283-72219d67334e.html",
+      "published": "2026-11-26T23:45:00+00:00",
+      "content_status": "full",
+      "word_count": 237,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1308,6 +1340,21 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
+      "story_id": "555f6ddb6ed0a8f7",
+      "source": "Global News Canada",
+      "title": "Advisory council to issue antisemitism report as Jewish groups call out campus hate",
+      "url": "https://globalnews.ca/news/12168223/antisemitism-on-campus",
+      "published": "2026-11-27T00:02:47+00:00",
+      "content_status": "full",
+      "word_count": 700,
+      "quality_score": 90,
+      "extraction_method": "dom:global:main:strict"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
       "story_id": "b6026dd8d3db4ecc",
       "source": "Global News Canada",
       "title": "Canadians’ debt rising ahead of 2027 mortgage renewal wave, says TransUnion",
@@ -1315,21 +1362,6 @@
       "published": "2026-11-26T20:57:36+00:00",
       "content_status": "full",
       "word_count": 766,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "de15d7f6547de48b",
-      "source": "Global News Canada",
-      "title": "Ford, Unifor call for Canadian automakers to be exempt from GHG penalties",
-      "url": "https://globalnews.ca/news/12167337/calls-to-scrap-federal-ghg-rules-automakers",
-      "published": "2026-11-26T16:35:40+00:00",
-      "content_status": "full",
-      "word_count": 397,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -1893,21 +1925,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "515fd8eb2130338a",
-      "source": "Toronto Star",
-      "title": "Carney in Saskatchewan to campaign for long-shot byelection win",
-      "url": "https://www.thestar.com/news/canada/saskatchewan/carney-in-saskatchewan-to-campaign-for-long-shot-byelection-win/article_7f8c6be6-5729-58f6-8895-43b4df1dc06e.html",
-      "published": "2026-11-26T18:00:05+00:00",
-      "content_status": "full",
-      "word_count": 1121,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "860b6e2856ca5e32",
       "source": "Toronto Star",
       "title": "Defendant in Galloway defamation lawsuit played 'limited' role, lawyer tells trial",
@@ -1917,6 +1934,21 @@
       "word_count": 324,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "88630f03a3b22cc4",
+      "source": "Toronto Star",
+      "title": "Ford says gambling ads are ‘out of control,’ but his government is resisting calls for a quick ban",
+      "url": "https://www.thestar.com/news/ontario/ford-says-gambling-ads-are-out-of-control-but-his-government-is-resisting-calls-for-a-quick-ban/article_1aff3f8a-6a0a-49c8-b283-72219d67334e.html",
+      "published": "2026-11-26T23:45:00+00:00",
+      "content_status": "full",
+      "word_count": 237,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3066,6 +3098,35 @@
       "issues": []
     },
     {
+      "id": "555f6ddb6ed0a8f7",
+      "source": "Global News Canada",
+      "title": "Advisory council to issue antisemitism report as Jewish groups call out campus hate",
+      "url": "https://globalnews.ca/news/12168223/antisemitism-on-campus",
+      "published": "2026-11-27T00:02:47+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 700,
+      "paragraph_count": 21,
+      "inline_image_count": 1,
+      "quality_score": 90,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ccf018fbc8fcd708",
       "source": "Global News Canada",
       "title": "Summerland woman’s stolen family coin collection rebuilt by content creator",
@@ -3312,35 +3373,6 @@
       "word_count": 191,
       "paragraph_count": 7,
       "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "de15d7f6547de48b",
-      "source": "Global News Canada",
-      "title": "Ford, Unifor call for Canadian automakers to be exempt from GHG penalties",
-      "url": "https://globalnews.ca/news/12167337/calls-to-scrap-federal-ghg-rules-automakers",
-      "published": "2026-11-26T16:35:40+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 397,
-      "paragraph_count": 12,
-      "inline_image_count": 3,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
@@ -4267,6 +4299,47 @@
       ]
     },
     {
+      "id": "88630f03a3b22cc4",
+      "source": "Toronto Star",
+      "title": "Ford says gambling ads are ‘out of control,’ but his government is resisting calls for a quick ban",
+      "url": "https://www.thestar.com/news/ontario/ford-says-gambling-ads-are-out-of-control-but-his-government-is-resisting-calls-for-a-quick-ban/article_1aff3f8a-6a0a-49c8-b283-72219d67334e.html",
+      "published": "2026-11-26T23:45:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 237,
+      "paragraph_count": 2,
+      "inline_image_count": 12,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "12 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "b45bfcec074b2424",
       "source": "Toronto Star",
       "title": "Quebec premier says parliamentary session will go ahead without oath to the King",
@@ -4518,35 +4591,6 @@
       "content_status": "full",
       "word_count": 226,
       "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "515fd8eb2130338a",
-      "source": "Toronto Star",
-      "title": "Carney in Saskatchewan to campaign for long-shot byelection win",
-      "url": "https://www.thestar.com/news/canada/saskatchewan/carney-in-saskatchewan-to-campaign-for-long-shot-byelection-win/article_7f8c6be6-5729-58f6-8895-43b4df1dc06e.html",
-      "published": "2026-11-26T18:00:05+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1121,
-      "paragraph_count": 48,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
