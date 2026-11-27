@@ -1,19 +1,19 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T10:00:20.665623+00:00",
-  "generated_at_london": "2026-11-27T05:00:20.665623-05:00",
-  "news_generated_at": "2026-11-27T09:55:24.341296+00:00",
+  "generated_at": "2026-11-27T10:13:38.128305+00:00",
+  "generated_at_london": "2026-11-27T05:13:38.128305-05:00",
+  "news_generated_at": "2026-11-27T10:11:55.684777+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 663,
+    "archive_story_count": 665,
     "source_count": 28,
     "audited_story_count": 98,
-    "pass_story_count": 91,
-    "review_story_count": 3,
-    "fail_story_count": 4,
-    "critical_issue_count": 4,
-    "warning_issue_count": 5,
+    "pass_story_count": 90,
+    "review_story_count": 5,
+    "fail_story_count": 3,
+    "critical_issue_count": 3,
+    "warning_issue_count": 9,
     "info_issue_count": 81,
     "healthy_source_count": 9,
     "review_source_count": 6,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-27T01:42:56.157000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T09:42:53.661562+00:00",
+      "last_scrape": "2026-11-27T09:57:13.088171+00:00",
       "last_error": ""
     },
     {
@@ -178,7 +178,7 @@
       "latest_published": "2026-11-27T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T09:54:06.873259+00:00",
+      "last_scrape": "2026-11-27T10:10:08.957272+00:00",
       "last_error": ""
     },
     {
@@ -187,24 +187,25 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
+      "pass": 8,
+      "review": 2,
+      "fail": 0,
+      "pass_rate": 80,
       "usable_body_rate": 100,
-      "average_words": 319,
-      "average_quality": 96,
+      "average_words": 317,
+      "average_quality": 93,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 10
+        "dom:star:article": 2,
+        "reader:semantic-rich-v1": 8
       },
-      "critical_issues": 1,
-      "warning_issues": 0,
+      "critical_issues": 0,
+      "warning_issues": 4,
       "info_issues": 10,
-      "latest_published": "2026-11-27T09:17:17+00:00",
+      "latest_published": "2026-11-27T10:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T09:38:53.661451+00:00",
+      "last_scrape": "2026-11-27T10:10:13.165414+00:00",
       "last_error": ""
     },
     {
@@ -689,19 +690,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 784,
-      "average_quality": 96,
+      "average_words": 668,
+      "average_quality": 91,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 2,
+        "dom:semantic-rich-v1": 8
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-27T04:11:43.911000+00:00",
+      "latest_published": "2026-11-27T10:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T05:47:37.285729+00:00",
+      "last_scrape": "2026-11-27T10:10:07.545480+00:00",
       "last_error": ""
     },
     {
@@ -778,21 +780,6 @@
       "extraction_method": "dom:semantic-rich-v1"
     },
     {
-      "severity": "critical",
-      "code": "status_mismatch",
-      "message": "Story is marked full but the extracted body is extremely short.",
-      "detail": "77 words",
-      "story_id": "88630f03a3b22cc4",
-      "source": "Toronto Star",
-      "title": "Ford says gambling ads are ‘out of control,’ but his government is resisting calls for a quick ban",
-      "url": "https://www.thestar.com/news/ontario/ford-says-gambling-ads-are-out-of-control-but-his-government-is-resisting-calls-for-a-quick-ban/article_1aff3f8a-6a0a-49c8-b283-72219d67334e.html",
-      "published": "2026-11-26T23:45:00+00:00",
-      "content_status": "full",
-      "word_count": 77,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
       "severity": "warning",
       "code": "too_many_images",
       "message": "Article contains an unusually large number of inline images.",
@@ -866,6 +853,66 @@
       "word_count": 151,
       "quality_score": 58,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "14482d42dbf8d430",
+      "source": "Toronto Star",
+      "title": "A $13,000 dinner tab and a secret CEO salary: Inside the allegations roiling Ontario’s dental association",
+      "url": "https://www.thestar.com/news/investigations/a-13-000-ritz-carlton-dinner-tab-and-a-secret-ceo-salary-inside-the-allegations-roiling-ontario-s-dental-association/article_fdf1acbe-a0d6-4812-b5ba-056de1c12c45.html",
+      "published": "2026-11-27T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 188,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "14 inline images",
+      "story_id": "14482d42dbf8d430",
+      "source": "Toronto Star",
+      "title": "A $13,000 dinner tab and a secret CEO salary: Inside the allegations roiling Ontario’s dental association",
+      "url": "https://www.thestar.com/news/investigations/a-13-000-ritz-carlton-dinner-tab-and-a-secret-ceo-salary-inside-the-allegations-roiling-ontario-s-dental-association/article_fdf1acbe-a0d6-4812-b5ba-056de1c12c45.html",
+      "published": "2026-11-27T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 188,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "inline_related_content",
+      "message": "Possible publisher module leaked into the article body.",
+      "detail": "Trending",
+      "story_id": "6a239c0b802129bb",
+      "source": "Toronto Star",
+      "title": "This Ontario hospital locks patients up alone as a ‘first resort,’ ex-Waypoint psychotherapist warns",
+      "url": "https://www.thestar.com/news/ontario/this-ontario-hospital-locks-patients-up-alone-as-a-first-resort-ex-waypoint-psychotherapist-warns/article_3d82c743-9493-40f3-a44e-b6f48503a2fe.html",
+      "published": "2026-11-27T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
+    },
+    {
+      "severity": "warning",
+      "code": "too_many_images",
+      "message": "Article contains an unusually large number of inline images.",
+      "detail": "13 inline images",
+      "story_id": "6a239c0b802129bb",
+      "source": "Toronto Star",
+      "title": "This Ontario hospital locks patients up alone as a ‘first resort,’ ex-Waypoint psychotherapist warns",
+      "url": "https://www.thestar.com/news/ontario/this-ontario-hospital-locks-patients-up-alone-as-a-first-resort-ex-waypoint-psychotherapist-warns/article_3d82c743-9493-40f3-a44e-b6f48503a2fe.html",
+      "published": "2026-11-27T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1802,21 +1849,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "17acdb7785ff2733",
-      "source": "The Globe and Mail",
-      "title": "Ford says he would use his own gun to fight back against intruder",
-      "url": "https://www.theglobeandmail.com/canada/article-ontario-doug-ford-toronto-home-invasions-gun",
-      "published": "2026-11-26T20:53:43.295000+00:00",
-      "content_status": "full",
-      "word_count": 1061,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "87a47e91c0f1a1a9",
       "source": "The Globe and Mail",
       "title": "Guitarist killed in home invasion mourned by Toronto music scene",
@@ -1826,6 +1858,21 @@
       "word_count": 570,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "85db971e8b4108c6",
+      "source": "The Globe and Mail",
+      "title": "More Canadians are struggling to pay their mortgage",
+      "url": "https://www.theglobeandmail.com/podcasts/the-decibel/article-more-canadians-are-struggling-to-pay-their-mortgage",
+      "published": "2026-11-27T10:00:00+00:00",
+      "content_status": "partial",
+      "word_count": 117,
+      "quality_score": 53,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1847,15 +1894,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "0526002b314700d1",
+      "story_id": "c99cb53a9cf91d6a",
       "source": "The Globe and Mail",
-      "title": "Two Ontario Maid cases should have been referred to police, former oversight committee member says",
-      "url": "https://www.theglobeandmail.com/canada/article-ontario-maid-cases-should-refer-police-former-oversight-committee",
-      "published": "2026-11-26T20:10:40.463000+00:00",
+      "title": "This Christmas, don’t let driving get in the way of your drinking. Stay home",
+      "url": "https://www.theglobeandmail.com/drive/culture/article-this-christmas-dont-let-driving-get-in-the-way-of-your-drinking-stay",
+      "published": "2026-11-27T10:00:00+00:00",
       "content_status": "full",
-      "word_count": 1046,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 830,
+      "quality_score": 86,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -1886,6 +1933,21 @@
       "word_count": 958,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "14482d42dbf8d430",
+      "source": "Toronto Star",
+      "title": "A $13,000 dinner tab and a secret CEO salary: Inside the allegations roiling Ontario’s dental association",
+      "url": "https://www.thestar.com/news/investigations/a-13-000-ritz-carlton-dinner-tab-and-a-secret-ceo-salary-inside-the-allegations-roiling-ontario-s-dental-association/article_fdf1acbe-a0d6-4812-b5ba-056de1c12c45.html",
+      "published": "2026-11-27T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 188,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -1967,21 +2029,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "88630f03a3b22cc4",
-      "source": "Toronto Star",
-      "title": "Ford says gambling ads are ‘out of control,’ but his government is resisting calls for a quick ban",
-      "url": "https://www.thestar.com/news/ontario/ford-says-gambling-ads-are-out-of-control-but-his-government-is-resisting-calls-for-a-quick-ban/article_1aff3f8a-6a0a-49c8-b283-72219d67334e.html",
-      "published": "2026-11-26T23:45:00+00:00",
-      "content_status": "full",
-      "word_count": 77,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "c7dd7ec9416d9188",
       "source": "Toronto Star",
       "title": "Ottawa deems Whitehorse Power Centres project of national interest",
@@ -1989,21 +2036,6 @@
       "published": "2026-11-27T03:45:29+00:00",
       "content_status": "full",
       "word_count": 151,
-      "quality_score": 96,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "b45bfcec074b2424",
-      "source": "Toronto Star",
-      "title": "Quebec premier says parliamentary session will go ahead without oath to the King",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-says-parliamentary-session-will-go-ahead-without-oath-to-the-king/article_1c6837d7-8e38-52bc-b5f1-e5c82b2e81aa.html",
-      "published": "2026-11-26T21:40:57+00:00",
-      "content_status": "full",
-      "word_count": 338,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
     },
@@ -2036,6 +2068,21 @@
       "word_count": 313,
       "quality_score": 96,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "6a239c0b802129bb",
+      "source": "Toronto Star",
+      "title": "This Ontario hospital locks patients up alone as a ‘first resort,’ ex-Waypoint psychotherapist warns",
+      "url": "https://www.thestar.com/news/ontario/this-ontario-hospital-locks-patients-up-alone-as-a-first-resort-ex-waypoint-psychotherapist-warns/article_3d82c743-9493-40f3-a44e-b6f48503a2fe.html",
+      "published": "2026-11-27T10:00:00+00:00",
+      "content_status": "full",
+      "word_count": 204,
+      "quality_score": 80,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3662,6 +3709,64 @@
       ]
     },
     {
+      "id": "85db971e8b4108c6",
+      "source": "The Globe and Mail",
+      "title": "More Canadians are struggling to pay their mortgage",
+      "url": "https://www.theglobeandmail.com/podcasts/the-decibel/article-more-canadians-are-struggling-to-pay-their-mortgage",
+      "published": "2026-11-27T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "partial",
+      "word_count": 117,
+      "paragraph_count": 4,
+      "inline_image_count": 0,
+      "quality_score": 53,
+      "quality_grade": "partial",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
+      "id": "c99cb53a9cf91d6a",
+      "source": "The Globe and Mail",
+      "title": "This Christmas, don’t let driving get in the way of your drinking. Stay home",
+      "url": "https://www.theglobeandmail.com/drive/culture/article-this-christmas-dont-let-driving-get-in-the-way-of-your-drinking-stay",
+      "published": "2026-11-27T10:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 830,
+      "paragraph_count": 18,
+      "inline_image_count": 0,
+      "quality_score": 86,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "145d6b8fdb9465dd",
       "source": "The Globe and Mail",
       "title": "Whitehorse Power Centres deemed project of national interest",
@@ -3896,64 +4001,6 @@
       "content_status": "full",
       "word_count": 570,
       "paragraph_count": 21,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "17acdb7785ff2733",
-      "source": "The Globe and Mail",
-      "title": "Ford says he would use his own gun to fight back against intruder",
-      "url": "https://www.theglobeandmail.com/canada/article-ontario-doug-ford-toronto-home-invasions-gun",
-      "published": "2026-11-26T20:53:43.295000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1061,
-      "paragraph_count": 34,
-      "inline_image_count": 1,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "0526002b314700d1",
-      "source": "The Globe and Mail",
-      "title": "Two Ontario Maid cases should have been referred to police, former oversight committee member says",
-      "url": "https://www.theglobeandmail.com/canada/article-ontario-maid-cases-should-refer-police-former-oversight-committee",
-      "published": "2026-11-26T20:10:40.463000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1046,
-      "paragraph_count": 32,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
@@ -4266,6 +4313,47 @@
       ]
     },
     {
+      "id": "6a239c0b802129bb",
+      "source": "Toronto Star",
+      "title": "This Ontario hospital locks patients up alone as a ‘first resort,’ ex-Waypoint psychotherapist warns",
+      "url": "https://www.thestar.com/news/ontario/this-ontario-hospital-locks-patients-up-alone-as-a-first-resort-ex-waypoint-psychotherapist-warns/article_3d82c743-9493-40f3-a44e-b6f48503a2fe.html",
+      "published": "2026-11-27T10:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 204,
+      "paragraph_count": 2,
+      "inline_image_count": 13,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "13 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "a633aea6cbd3c446",
       "source": "Toronto Star",
       "title": "District of Squamish asks residents to limit indoor water use after wet B.C. weather",
@@ -4411,6 +4499,47 @@
       ]
     },
     {
+      "id": "14482d42dbf8d430",
+      "source": "Toronto Star",
+      "title": "A $13,000 dinner tab and a secret CEO salary: Inside the allegations roiling Ontario’s dental association",
+      "url": "https://www.thestar.com/news/investigations/a-13-000-ritz-carlton-dinner-tab-and-a-secret-ceo-salary-inside-the-allegations-roiling-ontario-s-dental-association/article_fdf1acbe-a0d6-4812-b5ba-056de1c12c45.html",
+      "published": "2026-11-27T05:00:00+00:00",
+      "audit_status": "review",
+      "audit_score": 73,
+      "critical_count": 0,
+      "warning_count": 2,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 188,
+      "paragraph_count": 2,
+      "inline_image_count": 14,
+      "quality_score": 80,
+      "quality_grade": "good",
+      "extraction_method": "dom:star:article",
+      "extraction_profile": "star",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "inline_related_content",
+          "message": "Possible publisher module leaked into the article body.",
+          "detail": "Trending"
+        },
+        {
+          "severity": "warning",
+          "code": "too_many_images",
+          "message": "Article contains an unusually large number of inline images.",
+          "detail": "14 inline images"
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "c7dd7ec9416d9188",
       "source": "Toronto Star",
       "title": "Ottawa deems Whitehorse Power Centres project of national interest",
@@ -4482,70 +4611,6 @@
       "content_status": "full",
       "word_count": 226,
       "paragraph_count": 19,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "88630f03a3b22cc4",
-      "source": "Toronto Star",
-      "title": "Ford says gambling ads are ‘out of control,’ but his government is resisting calls for a quick ban",
-      "url": "https://www.thestar.com/news/ontario/ford-says-gambling-ads-are-out-of-control-but-his-government-is-resisting-calls-for-a-quick-ban/article_1aff3f8a-6a0a-49c8-b283-72219d67334e.html",
-      "published": "2026-11-26T23:45:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 77,
-      "paragraph_count": 2,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "star",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "status_mismatch",
-          "message": "Story is marked full but the extracted body is extremely short.",
-          "detail": "77 words"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "b45bfcec074b2424",
-      "source": "Toronto Star",
-      "title": "Quebec premier says parliamentary session will go ahead without oath to the King",
-      "url": "https://www.thestar.com/news/canada/quebec/quebec-premier-says-parliamentary-session-will-go-ahead-without-oath-to-the-king/article_1c6837d7-8e38-52bc-b5f1-e5c82b2e81aa.html",
-      "published": "2026-11-26T21:40:57+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 338,
-      "paragraph_count": 22,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
