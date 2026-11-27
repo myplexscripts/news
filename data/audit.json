@@ -1,18 +1,18 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T09:29:44.279414+00:00",
-  "generated_at_london": "2026-11-27T04:29:44.279414-05:00",
-  "news_generated_at": "2026-11-27T09:25:09.427510+00:00",
+  "generated_at": "2026-11-27T09:42:12.919303+00:00",
+  "generated_at_london": "2026-11-27T04:42:12.919303-05:00",
+  "news_generated_at": "2026-11-27T09:40:48.919530+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 663,
+    "archive_story_count": 664,
     "source_count": 28,
     "audited_story_count": 98,
-    "pass_story_count": 90,
+    "pass_story_count": 89,
     "review_story_count": 3,
-    "fail_story_count": 5,
-    "critical_issue_count": 5,
+    "fail_story_count": 6,
+    "critical_issue_count": 6,
     "warning_issue_count": 5,
     "info_issue_count": 81,
     "healthy_source_count": 9,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-27T01:42:56.157000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T09:12:18.865925+00:00",
+      "last_scrape": "2026-11-27T09:27:19.410568+00:00",
       "last_error": ""
     },
     {
@@ -164,21 +164,22 @@
       "review": 1,
       "fail": 0,
       "pass_rate": 90,
-      "usable_body_rate": 100,
-      "average_words": 1001,
-      "average_quality": 79,
+      "usable_body_rate": 90,
+      "average_words": 814,
+      "average_quality": 74,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "reader:semantic-rich-v1": 9,
+        "dom:postmedia:article:strict": 1,
+        "reader:semantic-rich-v1": 8,
         "merge:reader:semantic-rich-v1": 1
       },
       "critical_issues": 0,
       "warning_issues": 1,
       "info_issues": 10,
-      "latest_published": "2026-11-27T00:50:05+00:00",
+      "latest_published": "2026-11-27T09:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T09:23:21.994059+00:00",
+      "last_scrape": "2026-11-27T09:38:52.209190+00:00",
       "last_error": ""
     },
     {
@@ -187,26 +188,26 @@
       "collector_status": "healthy",
       "profile": "star",
       "sample_size": 10,
-      "pass": 8,
+      "pass": 7,
       "review": 0,
-      "fail": 2,
-      "pass_rate": 80,
-      "usable_body_rate": 90,
-      "average_words": 259,
-      "average_quality": 80,
+      "fail": 3,
+      "pass_rate": 70,
+      "usable_body_rate": 100,
+      "average_words": 239,
+      "average_quality": 83,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
-        "dom:star:article": 2,
-        "trafilatura:fallback": 3,
+        "dom:star:article": 3,
+        "trafilatura:fallback": 2,
         "reader:semantic-rich-v1": 5
       },
-      "critical_issues": 2,
+      "critical_issues": 3,
       "warning_issues": 0,
       "info_issues": 10,
       "latest_published": "2026-11-27T09:17:17+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T09:23:27.099092+00:00",
+      "last_scrape": "2026-11-27T09:38:53.661451+00:00",
       "last_error": ""
     },
     {
@@ -260,7 +261,7 @@
     {
       "source": "Environment Canada London Alerts",
       "status": "waiting",
-      "collector_status": "waiting",
+      "collector_status": "error",
       "profile": "generic",
       "sample_size": 0,
       "pass": 0,
@@ -276,10 +277,10 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 1,
+      "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": ""
+      "last_error": "HTTPSConnectionPool(host='weather.gc.ca', port=443): Max retries exceeded with url: /rss/battleboard/onrm117_e.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='weather.gc.ca', port=443) at 0x75dfc453cc50>, 'Connection to weather.gc"
     },
     {
       "source": "Google News London Discovery",
@@ -324,7 +325,7 @@
       "warning_issues": 0,
       "info_issues": 0,
       "latest_published": "",
-      "found_this_run": 6,
+      "found_this_run": 5,
       "tracked": 0,
       "last_scrape": "",
       "last_error": ""
@@ -778,6 +779,21 @@
       "word_count": 0,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "critical",
+      "code": "status_mismatch",
+      "message": "Story is marked full but the extracted body is extremely short.",
+      "detail": "57 words",
+      "story_id": "63d14a8fd4aa9aad",
+      "source": "Toronto Star",
+      "title": "Carney travels to Yellowknife for announcement on 'major' initiative",
+      "url": "https://www.thestar.com/news/canada/yukon/carney-travels-to-yellowknife-for-announcement-on-major-initiative/article_8e7bf97f-d23f-52b3-9129-80f0952dd35d.html",
+      "published": "2026-11-27T09:00:09+00:00",
+      "content_status": "full",
+      "word_count": 57,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "critical",
@@ -1564,21 +1580,6 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "3e1770d4060e262f",
-      "source": "National Post",
-      "title": "20 per cent of nine-year-olds aren’t reading to expectations, and they aren’t catching up as teenagers: report",
-      "url": "https://nationalpost.com/news/canada/canada-children-literacy-underperforming-reports",
-      "published": "2026-11-26T11:30:00+00:00",
-      "content_status": "full",
-      "word_count": 1906,
-      "quality_score": 79,
-      "extraction_method": "reader:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
       "story_id": "68ba6569e2791347",
       "source": "National Post",
       "title": "Canada expected to bar diplomats in high-risk missions from dating apps, relationships with locals",
@@ -1648,6 +1649,21 @@
       "word_count": 981,
       "quality_score": 83,
       "extraction_method": "reader:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1aec1629af0e7e5c",
+      "source": "National Post",
+      "title": "Supreme Court to deliver historic ruling on Quebec’s Bill 21",
+      "url": "https://nationalpost.com/news/supreme-court-to-deliver-historic-ruling-on-quebecs-bill-21",
+      "published": "2026-11-27T09:00:00+00:00",
+      "content_status": "summary",
+      "word_count": 34,
+      "quality_score": 32,
+      "extraction_method": "dom:postmedia:article:strict"
     },
     {
       "severity": "info",
@@ -1959,10 +1975,10 @@
       "title": "Carney travels to Yellowknife for announcement on 'major' initiative",
       "url": "https://www.thestar.com/news/canada/yukon/carney-travels-to-yellowknife-for-announcement-on-major-initiative/article_8e7bf97f-d23f-52b3-9129-80f0952dd35d.html",
       "published": "2026-11-27T09:00:09+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 30,
-      "extraction_method": "trafilatura:fallback"
+      "content_status": "full",
+      "word_count": 57,
+      "quality_score": 62,
+      "extraction_method": "dom:star:article"
     },
     {
       "severity": "info",
@@ -3987,6 +4003,35 @@
       ]
     },
     {
+      "id": "1aec1629af0e7e5c",
+      "source": "National Post",
+      "title": "Supreme Court to deliver historic ruling on Quebec’s Bill 21",
+      "url": "https://nationalpost.com/news/supreme-court-to-deliver-historic-ruling-on-quebecs-bill-21",
+      "published": "2026-11-27T09:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "summary",
+      "word_count": 34,
+      "paragraph_count": 2,
+      "inline_image_count": 0,
+      "quality_score": 32,
+      "quality_grade": "poor",
+      "extraction_method": "dom:postmedia:article:strict",
+      "extraction_profile": "postmedia",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "baacdcb051a43b5a",
       "source": "National Post",
       "title": "Two Maid deaths should have been referred to police, ex-member of oversight committee tells MPs",
@@ -4254,35 +4299,6 @@
       ]
     },
     {
-      "id": "3e1770d4060e262f",
-      "source": "National Post",
-      "title": "20 per cent of nine-year-olds aren’t reading to expectations, and they aren’t catching up as teenagers: report",
-      "url": "https://nationalpost.com/news/canada/canada-children-literacy-underperforming-reports",
-      "published": "2026-11-26T11:30:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 1906,
-      "paragraph_count": 45,
-      "inline_image_count": 0,
-      "quality_score": 79,
-      "quality_grade": "good",
-      "extraction_method": "reader:semantic-rich-v1",
-      "extraction_profile": "postmedia",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
       "id": "a633aea6cbd3c446",
       "source": "Toronto Star",
       "title": "District of Squamish asks residents to limit indoor water use after wet B.C. weather",
@@ -4323,21 +4339,27 @@
       "title": "Carney travels to Yellowknife for announcement on 'major' initiative",
       "url": "https://www.thestar.com/news/canada/yukon/carney-travels-to-yellowknife-for-announcement-on-major-initiative/article_8e7bf97f-d23f-52b3-9129-80f0952dd35d.html",
       "published": "2026-11-27T09:00:09+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
+      "audit_status": "fail",
+      "audit_score": 62,
+      "critical_count": 1,
       "warning_count": 0,
       "info_count": 1,
-      "content_status": "summary",
-      "word_count": 0,
-      "paragraph_count": 0,
-      "inline_image_count": 0,
-      "quality_score": 30,
-      "quality_grade": "poor",
-      "extraction_method": "trafilatura:fallback",
+      "content_status": "full",
+      "word_count": 57,
+      "paragraph_count": 2,
+      "inline_image_count": 4,
+      "quality_score": 62,
+      "quality_grade": "partial",
+      "extraction_method": "dom:star:article",
       "extraction_profile": "star",
       "local_score": 0,
       "issues": [
+        {
+          "severity": "critical",
+          "code": "status_mismatch",
+          "message": "Story is marked full but the extracted body is extremely short.",
+          "detail": "57 words"
+        },
         {
           "severity": "info",
           "code": "low_local_relevance",
