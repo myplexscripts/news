@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T00:46:54.282143+00:00",
-  "generated_at_london": "2026-11-26T19:46:54.282143-05:00",
-  "news_generated_at": "2026-11-27T00:41:52.720531+00:00",
+  "generated_at": "2026-11-27T00:58:30.543263+00:00",
+  "generated_at_london": "2026-11-26T19:58:30.543263-05:00",
+  "news_generated_at": "2026-11-27T00:56:56.106554+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 652,
@@ -97,7 +97,7 @@
       "latest_published": "2026-11-26T23:50:53.999000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T00:29:53.903377+00:00",
+      "last_scrape": "2026-11-27T00:44:18.067105+00:00",
       "last_error": ""
     },
     {
@@ -123,14 +123,14 @@
       "info_issues": 10,
       "latest_published": "2026-11-26T14:17:35+00:00",
       "found_this_run": 10,
-      "tracked": 24,
+      "tracked": 23,
       "last_scrape": "2026-11-26T18:41:48.391129+00:00",
       "last_error": ""
     },
     {
       "source": "National Post",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "postmedia",
       "sample_size": 10,
       "pass": 9,
@@ -149,10 +149,10 @@
       "warning_issues": 1,
       "info_issues": 10,
       "latest_published": "2026-11-26T22:34:26+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
-      "last_scrape": "2026-11-27T00:39:53.153983+00:00",
-      "last_error": ""
+      "last_scrape": "2026-11-26T22:37:36.287450+00:00",
+      "last_error": "403 Client Error: Forbidden for url: https://nationalpost.com/category/news/canada/"
     },
     {
       "source": "Toronto Star",
@@ -560,11 +560,12 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 557,
-      "average_quality": 96,
+      "average_words": 594,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:semantic-rich-v1": 9,
+        "dom:global:main:strict": 1
       },
       "critical_issues": 0,
       "warning_issues": 0,
@@ -572,7 +573,7 @@
       "latest_published": "2026-11-27T00:02:47+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T00:09:10.498023+00:00",
+      "last_scrape": "2026-11-27T00:55:23.845824+00:00",
       "last_error": ""
     },
     {
@@ -1398,21 +1399,6 @@
       "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "eb207f9951a35566",
-      "source": "Global News Canada",
-      "title": "New Brunswick community plans to expropriate land from owner that closed mill",
-      "url": "https://globalnews.ca/news/12167386/nackawic-expropriate-land-closed-mill",
-      "published": "2026-11-26T16:52:39+00:00",
-      "content_status": "full",
-      "word_count": 191,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
       "detail": "Local score 5/100",
       "story_id": "47dcb43c585557ed",
       "source": "Global News Canada",
@@ -1453,6 +1439,21 @@
       "word_count": 630,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "fc50470aaef29c41",
+      "source": "Global News Canada",
+      "title": "Supreme Court set to rule on Quebec secularism law in landmark Charter case",
+      "url": "https://globalnews.ca/news/12168107/supreme-court-quebec-bill-21-charter-ruling",
+      "published": "2026-11-26T23:48:19+00:00",
+      "content_status": "full",
+      "word_count": 556,
+      "quality_score": 85,
+      "extraction_method": "dom:global:main:strict"
     },
     {
       "severity": "info",
@@ -3132,6 +3133,35 @@
       ]
     },
     {
+      "id": "fc50470aaef29c41",
+      "source": "Global News Canada",
+      "title": "Supreme Court set to rule on Quebec secularism law in landmark Charter case",
+      "url": "https://globalnews.ca/news/12168107/supreme-court-quebec-bill-21-charter-ruling",
+      "published": "2026-11-26T23:48:19+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 556,
+      "paragraph_count": 17,
+      "inline_image_count": 1,
+      "quality_score": 85,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:global:main:strict",
+      "extraction_profile": "global",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "ccf018fbc8fcd708",
       "source": "Global News Canada",
       "title": "Summerland woman’s stolen family coin collection rebuilt by content creator",
@@ -3349,35 +3379,6 @@
       "word_count": 289,
       "paragraph_count": 10,
       "inline_image_count": 2,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "global",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "eb207f9951a35566",
-      "source": "Global News Canada",
-      "title": "New Brunswick community plans to expropriate land from owner that closed mill",
-      "url": "https://globalnews.ca/news/12167386/nackawic-expropriate-land-closed-mill",
-      "published": "2026-11-26T16:52:39+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 191,
-      "paragraph_count": 7,
-      "inline_image_count": 1,
       "quality_score": 96,
       "quality_grade": "good",
       "extraction_method": "dom:semantic-rich-v1",
