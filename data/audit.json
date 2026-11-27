@@ -1,9 +1,9 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T13:08:46.513189+00:00",
-  "generated_at_london": "2026-11-27T08:08:46.513189-05:00",
-  "news_generated_at": "2026-11-27T13:02:16.298466+00:00",
+  "generated_at": "2026-11-27T13:20:25.805802+00:00",
+  "generated_at_london": "2026-11-27T08:20:25.805802-05:00",
+  "news_generated_at": "2026-11-27T13:18:14.517513+00:00",
   "sample_per_source": 10,
   "overview": {
     "archive_story_count": 670,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-27T11:30:57.429000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T12:49:02.000477+00:00",
+      "last_scrape": "2026-11-27T13:05:00.602794+00:00",
       "last_error": ""
     },
     {
@@ -177,7 +177,7 @@
       "latest_published": "2026-11-27T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T13:00:15.539004+00:00",
+      "last_scrape": "2026-11-27T13:16:07.039404+00:00",
       "last_error": ""
     },
     {
@@ -226,7 +226,7 @@
       "found_this_run": 0,
       "tracked": 0,
       "last_scrape": "",
-      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10002 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
+      "last_error": "CBC discovery routes unavailable; cached CBC stories retained: https://www.cbc.ca/webfeed/rss/rss-canada-london: CBC curl fallback failed: curl: (28) Operation timed out after 10003 milliseconds with 0 bytes received | https://rss.cbc.ca/li"
     },
     {
       "source": "Environment Canada London Alerts",
@@ -662,19 +662,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 774,
-      "average_quality": 96,
+      "average_words": 805,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-27T12:11:02.482000+00:00",
+      "latest_published": "2026-11-27T13:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T12:29:16.307463+00:00",
+      "last_scrape": "2026-11-27T13:16:04.759156+00:00",
       "last_error": ""
     },
     {
@@ -1708,6 +1709,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "bc1aa7c6c3bfba4b",
+      "source": "The Globe and Mail",
+      "title": "A modern Ontario home in a vibrant natural setting",
+      "url": "https://www.theglobeandmail.com/real-estate/article-home-of-the-week-a-modern-ontario-home-in-a-vibrant-natural-setting",
+      "published": "2026-11-27T13:00:00+00:00",
+      "content_status": "full",
+      "word_count": 975,
+      "quality_score": 92,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1778,21 +1794,6 @@
       "published": "2026-11-27T11:45:00+00:00",
       "content_status": "partial",
       "word_count": 719,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "ce22e5da5ab75ebd",
-      "source": "The Globe and Mail",
-      "title": "Public Health Ontario warned province about online gambling risks in April, document shows",
-      "url": "https://www.theglobeandmail.com/canada/article-public-health-ontario-warned-online-gambling-risks-document-shows",
-      "published": "2026-11-27T03:06:02.731000+00:00",
-      "content_status": "full",
-      "word_count": 662,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -3711,6 +3712,35 @@
       ]
     },
     {
+      "id": "bc1aa7c6c3bfba4b",
+      "source": "The Globe and Mail",
+      "title": "A modern Ontario home in a vibrant natural setting",
+      "url": "https://www.theglobeandmail.com/real-estate/article-home-of-the-week-a-modern-ontario-home-in-a-vibrant-natural-setting",
+      "published": "2026-11-27T13:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 975,
+      "paragraph_count": 27,
+      "inline_image_count": 0,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "e70a583ebd4af50d",
       "source": "The Globe and Mail",
       "title": "Kenneth Law sentencing hearing set to resume",
@@ -3981,35 +4011,6 @@
           "message": "Story has no hero image.",
           "detail": ""
         },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "ce22e5da5ab75ebd",
-      "source": "The Globe and Mail",
-      "title": "Public Health Ontario warned province about online gambling risks in April, document shows",
-      "url": "https://www.theglobeandmail.com/canada/article-public-health-ontario-warned-online-gambling-risks-document-shows",
-      "published": "2026-11-27T03:06:02.731000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 662,
-      "paragraph_count": 14,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
         {
           "severity": "info",
           "code": "low_local_relevance",
