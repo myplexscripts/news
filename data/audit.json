@@ -1,22 +1,22 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T20:05:43.229760+00:00",
-  "generated_at_london": "2026-11-27T15:05:43.229760-05:00",
-  "news_generated_at": "2026-11-27T20:00:19.908261+00:00",
+  "generated_at": "2026-11-27T20:18:51.512340+00:00",
+  "generated_at_london": "2026-11-27T15:18:51.512340-05:00",
+  "news_generated_at": "2026-11-27T20:16:35.342262+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 693,
+    "archive_story_count": 690,
     "source_count": 28,
     "audited_story_count": 104,
-    "pass_story_count": 98,
+    "pass_story_count": 99,
     "review_story_count": 3,
-    "fail_story_count": 3,
-    "critical_issue_count": 3,
+    "fail_story_count": 2,
+    "critical_issue_count": 2,
     "warning_issue_count": 6,
     "info_issue_count": 80,
-    "healthy_source_count": 11,
-    "review_source_count": 4,
+    "healthy_source_count": 12,
+    "review_source_count": 3,
     "error_source_count": 1,
     "waiting_source_count": 12
   },
@@ -98,33 +98,6 @@
       "found_this_run": 4,
       "tracked": 30,
       "last_scrape": "2026-11-27T16:57:53.410535+00:00",
-      "last_error": ""
-    },
-    {
-      "source": "CTV News London",
-      "status": "review",
-      "collector_status": "healthy",
-      "profile": "ctv",
-      "sample_size": 10,
-      "pass": 9,
-      "review": 0,
-      "fail": 1,
-      "pass_rate": 90,
-      "usable_body_rate": 70,
-      "average_words": 305,
-      "average_quality": 66,
-      "primary_method": "embedded-json:ctv",
-      "method_counts": {
-        "embedded-json:ctv": 7,
-        "ctv:summary-fallback": 3
-      },
-      "critical_issues": 1,
-      "warning_issues": 0,
-      "info_issues": 7,
-      "latest_published": "2026-11-27T19:44:43.377000+00:00",
-      "found_this_run": 10,
-      "tracked": 30,
-      "last_scrape": "2026-11-27T19:48:43.990714+00:00",
       "last_error": ""
     },
     {
@@ -469,6 +442,33 @@
       "last_error": ""
     },
     {
+      "source": "CTV News London",
+      "status": "healthy",
+      "collector_status": "healthy",
+      "profile": "ctv",
+      "sample_size": 10,
+      "pass": 10,
+      "review": 0,
+      "fail": 0,
+      "pass_rate": 100,
+      "usable_body_rate": 80,
+      "average_words": 300,
+      "average_quality": 70,
+      "primary_method": "embedded-json:ctv",
+      "method_counts": {
+        "embedded-json:ctv": 8,
+        "ctv:summary-fallback": 2
+      },
+      "critical_issues": 0,
+      "warning_issues": 0,
+      "info_issues": 7,
+      "latest_published": "2026-11-27T20:05:41.411000+00:00",
+      "found_this_run": 10,
+      "tracked": 30,
+      "last_scrape": "2026-11-27T20:12:21.353705+00:00",
+      "last_error": ""
+    },
+    {
       "source": "City of London Newsroom",
       "status": "healthy",
       "collector_status": "healthy",
@@ -649,7 +649,7 @@
       "latest_published": "2026-11-27T19:52:48+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T19:58:46.111838+00:00",
+      "last_scrape": "2026-11-27T20:14:36.329396+00:00",
       "last_error": ""
     },
     {
@@ -732,21 +732,6 @@
     }
   ],
   "issues": [
-    {
-      "severity": "critical",
-      "code": "scrape_error",
-      "message": "Scoop recorded a scraping error.",
-      "detail": "404 Client Error: Not Found for url: https://www.ctvnews.ca/london/article/watch-ctv-news-london-at-6/",
-      "story_id": "f67910aa6dfcb49d",
-      "source": "CTV News London",
-      "title": "Watch: CTV News London at 6",
-      "url": "https://www.ctvnews.ca/london/article/watch-ctv-news-london-at-6",
-      "published": "2026-11-26T23:00:00+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
-    },
     {
       "severity": "critical",
       "code": "status_mismatch",
@@ -1079,6 +1064,21 @@
     },
     {
       "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 12/100",
+      "story_id": "248cd989d5307c59",
+      "source": "CTV News London",
+      "title": "Holiday classic with a twist returns to the Grand Theatre stage",
+      "url": "https://www.ctvnews.ca/london/article/holiday-classic-with-a-twist-returns-to-the-grand-theatre-stage",
+      "published": "2026-11-27T20:05:41.411000+00:00",
+      "content_status": "full",
+      "word_count": 255,
+      "quality_score": 76,
+      "extraction_method": "embedded-json:ctv"
+    },
+    {
+      "severity": "info",
       "code": "missing_hero_image",
       "message": "Story has no hero image.",
       "detail": "",
@@ -1136,21 +1136,6 @@
       "word_count": 384,
       "quality_score": 76,
       "extraction_method": "embedded-json:ctv"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 12/100",
-      "story_id": "f67910aa6dfcb49d",
-      "source": "CTV News London",
-      "title": "Watch: CTV News London at 6",
-      "url": "https://www.ctvnews.ca/london/article/watch-ctv-news-london-at-6",
-      "published": "2026-11-26T23:00:00+00:00",
-      "content_status": "summary",
-      "word_count": 0,
-      "quality_score": 40,
-      "extraction_method": "ctv:summary-fallback"
     },
     {
       "severity": "info",
@@ -2092,6 +2077,35 @@
       "issues": []
     },
     {
+      "id": "248cd989d5307c59",
+      "source": "CTV News London",
+      "title": "Holiday classic with a twist returns to the Grand Theatre stage",
+      "url": "https://www.ctvnews.ca/london/article/holiday-classic-with-a-twist-returns-to-the-grand-theatre-stage",
+      "published": "2026-11-27T20:05:41.411000+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 255,
+      "paragraph_count": 10,
+      "inline_image_count": 0,
+      "quality_score": 76,
+      "quality_grade": "good",
+      "extraction_method": "embedded-json:ctv",
+      "extraction_profile": "ctv",
+      "local_score": 12,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 12/100"
+        }
+      ]
+    },
+    {
       "id": "bf9833ded50139bb",
       "source": "CTV News London",
       "title": "Off-duty London police officer charged with assault and forcible confinement",
@@ -2330,41 +2344,6 @@
       "extraction_profile": "ctv",
       "local_score": 40,
       "issues": []
-    },
-    {
-      "id": "f67910aa6dfcb49d",
-      "source": "CTV News London",
-      "title": "Watch: CTV News London at 6",
-      "url": "https://www.ctvnews.ca/london/article/watch-ctv-news-london-at-6",
-      "published": "2026-11-26T23:00:00+00:00",
-      "audit_status": "fail",
-      "audit_score": 62,
-      "critical_count": 1,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "summary",
-      "word_count": 0,
-      "paragraph_count": 0,
-      "inline_image_count": 0,
-      "quality_score": 40,
-      "quality_grade": "poor",
-      "extraction_method": "ctv:summary-fallback",
-      "extraction_profile": "ctv",
-      "local_score": 12,
-      "issues": [
-        {
-          "severity": "critical",
-          "code": "scrape_error",
-          "message": "Scoop recorded a scraping error.",
-          "detail": "404 Client Error: Not Found for url: https://www.ctvnews.ca/london/article/watch-ctv-news-london-at-6/"
-        },
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 12/100"
-        }
-      ]
     },
     {
       "id": "68beb91c4be841f7",
