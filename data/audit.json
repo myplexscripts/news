@@ -1,20 +1,20 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-27T14:56:43.271117+00:00",
-  "generated_at_london": "2026-11-27T09:56:43.271117-05:00",
-  "news_generated_at": "2026-11-27T14:50:45.483080+00:00",
+  "generated_at": "2026-11-27T15:08:04.773647+00:00",
+  "generated_at_london": "2026-11-27T10:08:04.773647-05:00",
+  "news_generated_at": "2026-11-27T15:06:13.373717+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 672,
+    "archive_story_count": 673,
     "source_count": 28,
-    "audited_story_count": 100,
-    "pass_story_count": 93,
+    "audited_story_count": 101,
+    "pass_story_count": 94,
     "review_story_count": 4,
     "fail_story_count": 3,
     "critical_issue_count": 3,
     "warning_issue_count": 7,
-    "info_issue_count": 81,
+    "info_issue_count": 82,
     "healthy_source_count": 10,
     "review_source_count": 5,
     "error_source_count": 1,
@@ -124,7 +124,7 @@
       "latest_published": "2026-11-27T11:30:57.429000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T14:37:27.191887+00:00",
+      "last_scrape": "2026-11-27T14:53:53.236929+00:00",
       "last_error": ""
     },
     {
@@ -177,7 +177,7 @@
       "latest_published": "2026-11-27T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T14:48:35.192303+00:00",
+      "last_scrape": "2026-11-27T15:04:25.551738+00:00",
       "last_error": ""
     },
     {
@@ -499,26 +499,27 @@
       "status": "healthy",
       "collector_status": "healthy",
       "profile": "municipal",
-      "sample_size": 3,
-      "pass": 3,
+      "sample_size": 4,
+      "pass": 4,
       "review": 0,
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 1995,
-      "average_quality": 83,
+      "average_words": 1643,
+      "average_quality": 80,
       "primary_method": "reader:semantic-rich-v1",
       "method_counts": {
         "dom:semantic-rich-v1": 1,
+        "dom:municipal:.field--name-body": 1,
         "reader:semantic-rich-v1": 2
       },
       "critical_issues": 0,
       "warning_issues": 0,
-      "info_issues": 1,
+      "info_issues": 2,
       "latest_published": "2026-11-27T05:00:00+00:00",
       "found_this_run": 10,
-      "tracked": 3,
-      "last_scrape": "2026-11-27T14:31:03.967266+00:00",
+      "tracked": 4,
+      "last_scrape": "2026-11-27T15:02:13.870713+00:00",
       "last_error": ""
     },
     {
@@ -663,19 +664,20 @@
       "fail": 0,
       "pass_rate": 100,
       "usable_body_rate": 100,
-      "average_words": 808,
-      "average_quality": 95,
+      "average_words": 755,
+      "average_quality": 92,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 0,
       "info_issues": 13,
-      "latest_published": "2026-11-27T13:38:32.904000+00:00",
+      "latest_published": "2026-11-27T14:47:56.529000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-27T13:47:02.551145+00:00",
+      "last_scrape": "2026-11-27T15:04:22.586624+00:00",
       "last_error": ""
     },
     {
@@ -1166,6 +1168,21 @@
       "word_count": 0,
       "quality_score": 40,
       "extraction_method": "ctv:summary-fallback"
+    },
+    {
+      "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "37b84812a67a3bb3",
+      "source": "City of London Newsroom",
+      "title": "City of London releases details of 2026/27 Winter Response to support people experiencing homelessness",
+      "url": "https://london.ca/newsroom/city-london-releases-details-202627-winter-response-support-people-experiencing",
+      "published": "2026-11-27T05:00:00+00:00",
+      "content_status": "full",
+      "word_count": 586,
+      "quality_score": 72,
+      "extraction_method": "dom:municipal:.field--name-body"
     },
     {
       "severity": "info",
@@ -1769,6 +1786,36 @@
     },
     {
       "severity": "info",
+      "code": "missing_hero_image",
+      "message": "Story has no hero image.",
+      "detail": "",
+      "story_id": "1654b542461a41cf",
+      "source": "The Globe and Mail",
+      "title": "Home invasion in Hamilton neighbourhood leaves owner in hospital",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-hamilton-home-invasion",
+      "published": "2026-11-27T14:47:56.529000+00:00",
+      "content_status": "full",
+      "word_count": 158,
+      "quality_score": 69,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
+      "code": "low_local_relevance",
+      "message": "Story has a low London relevance score.",
+      "detail": "Local score 0/100",
+      "story_id": "1654b542461a41cf",
+      "source": "The Globe and Mail",
+      "title": "Home invasion in Hamilton neighbourhood leaves owner in hospital",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-hamilton-home-invasion",
+      "published": "2026-11-27T14:47:56.529000+00:00",
+      "content_status": "full",
+      "word_count": 158,
+      "quality_score": 69,
+      "extraction_method": "dom:globe:article#content-gate"
+    },
+    {
+      "severity": "info",
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
@@ -1824,36 +1871,6 @@
       "published": "2026-11-27T13:30:00+00:00",
       "content_status": "partial",
       "word_count": 985,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "missing_hero_image",
-      "message": "Story has no hero image.",
-      "detail": "",
-      "story_id": "eecbca2aabbad7f9",
-      "source": "The Globe and Mail",
-      "title": "Quebec doctors increasingly burnt out, depressed one year after controversial law, survey finds",
-      "url": "https://www.theglobeandmail.com/canada/article-quebec-doctors-burnt-out-depressed-controversial-law-survey-finds",
-      "published": "2026-11-27T10:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 681,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
-    },
-    {
-      "severity": "info",
-      "code": "low_local_relevance",
-      "message": "Story has a low London relevance score.",
-      "detail": "Local score 0/100",
-      "story_id": "eecbca2aabbad7f9",
-      "source": "The Globe and Mail",
-      "title": "Quebec doctors increasingly burnt out, depressed one year after controversial law, survey finds",
-      "url": "https://www.theglobeandmail.com/canada/article-quebec-doctors-burnt-out-depressed-controversial-law-survey-finds",
-      "published": "2026-11-27T10:00:00+00:00",
-      "content_status": "partial",
-      "word_count": 681,
       "quality_score": 96,
       "extraction_method": "dom:semantic-rich-v1"
     },
@@ -2630,6 +2647,35 @@
       "extraction_profile": "municipal",
       "local_score": 55,
       "issues": []
+    },
+    {
+      "id": "37b84812a67a3bb3",
+      "source": "City of London Newsroom",
+      "title": "City of London releases details of 2026/27 Winter Response to support people experiencing homelessness",
+      "url": "https://london.ca/newsroom/city-london-releases-details-202627-winter-response-support-people-experiencing",
+      "published": "2026-11-27T05:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 586,
+      "paragraph_count": 14,
+      "inline_image_count": 0,
+      "quality_score": 72,
+      "quality_grade": "good",
+      "extraction_method": "dom:municipal:.field--name-body",
+      "extraction_profile": "municipal",
+      "local_score": 85,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        }
+      ]
     },
     {
       "id": "54325f8e2a2cd4f1",
@@ -3734,6 +3780,41 @@
       ]
     },
     {
+      "id": "1654b542461a41cf",
+      "source": "The Globe and Mail",
+      "title": "Home invasion in Hamilton neighbourhood leaves owner in hospital",
+      "url": "https://www.theglobeandmail.com/canada/toronto/article-hamilton-home-invasion",
+      "published": "2026-11-27T14:47:56.529000+00:00",
+      "audit_status": "pass",
+      "audit_score": 94,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 2,
+      "content_status": "full",
+      "word_count": 158,
+      "paragraph_count": 11,
+      "inline_image_count": 0,
+      "quality_score": 69,
+      "quality_grade": "good",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "missing_hero_image",
+          "message": "Story has no hero image.",
+          "detail": ""
+        },
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "7e3f774c4686d23e",
       "source": "The Globe and Mail",
       "title": "Corus reports $59.4-million loss as revenue falls in fourth quarter",
@@ -3998,41 +4079,6 @@
       "extraction_profile": "globe",
       "local_score": 0,
       "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "eecbca2aabbad7f9",
-      "source": "The Globe and Mail",
-      "title": "Quebec doctors increasingly burnt out, depressed one year after controversial law, survey finds",
-      "url": "https://www.theglobeandmail.com/canada/article-quebec-doctors-burnt-out-depressed-controversial-law-survey-finds",
-      "published": "2026-11-27T10:00:00+00:00",
-      "audit_status": "pass",
-      "audit_score": 94,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 2,
-      "content_status": "partial",
-      "word_count": 681,
-      "paragraph_count": 26,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "missing_hero_image",
-          "message": "Story has no hero image.",
-          "detail": ""
-        },
         {
           "severity": "info",
           "code": "low_local_relevance",
