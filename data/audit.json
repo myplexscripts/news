@@ -1,12 +1,12 @@
 {
   "audit_schema_version": 1,
   "news_schema_version": 16,
-  "generated_at": "2026-11-28T13:00:01.426650+00:00",
-  "generated_at_london": "2026-11-28T08:00:01.426650-05:00",
-  "news_generated_at": "2026-11-28T12:54:06.325718+00:00",
+  "generated_at": "2026-11-28T13:09:59.765277+00:00",
+  "generated_at_london": "2026-11-28T08:09:59.765277-05:00",
+  "news_generated_at": "2026-11-28T13:08:38.498539+00:00",
   "sample_per_source": 10,
   "overview": {
-    "archive_story_count": 706,
+    "archive_story_count": 707,
     "source_count": 28,
     "audited_story_count": 105,
     "pass_story_count": 96,
@@ -164,25 +164,26 @@
       "fail": 0,
       "pass_rate": 90,
       "usable_body_rate": 100,
-      "average_words": 1679,
-      "average_quality": 96,
+      "average_words": 1677,
+      "average_quality": 95,
       "primary_method": "dom:semantic-rich-v1",
       "method_counts": {
-        "dom:semantic-rich-v1": 10
+        "dom:globe:article#content-gate": 1,
+        "dom:semantic-rich-v1": 9
       },
       "critical_issues": 0,
       "warning_issues": 2,
       "info_issues": 10,
-      "latest_published": "2026-11-28T12:00:00+00:00",
+      "latest_published": "2026-11-28T13:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-28T12:20:19.331963+00:00",
+      "last_scrape": "2026-11-28T13:07:03.126726+00:00",
       "last_error": ""
     },
     {
       "source": "Toronto Star",
       "status": "review",
-      "collector_status": "healthy",
+      "collector_status": "degraded",
       "profile": "star",
       "sample_size": 10,
       "pass": 9,
@@ -200,10 +201,10 @@
       "warning_issues": 0,
       "info_issues": 9,
       "latest_published": "2026-11-28T11:00:03+00:00",
-      "found_this_run": 10,
+      "found_this_run": 0,
       "tracked": 30,
       "last_scrape": "2026-11-28T11:18:32.652663+00:00",
-      "last_error": ""
+      "last_error": "429 Client Error: Too Many Requests for url: https://www.thestar.com/news/canada/"
     },
     {
       "source": "CBC News Canada",
@@ -543,7 +544,7 @@
       "latest_published": "2026-11-28T12:32:24.618000+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-28T12:41:34.978444+00:00",
+      "last_scrape": "2026-11-28T12:57:05.284509+00:00",
       "last_error": ""
     },
     {
@@ -701,7 +702,7 @@
       "latest_published": "2026-11-28T12:00:00+00:00",
       "found_this_run": 10,
       "tracked": 30,
-      "last_scrape": "2026-11-28T12:51:43.026152+00:00",
+      "last_scrape": "2026-11-28T13:07:04.632483+00:00",
       "last_error": ""
     },
     {
@@ -1892,15 +1893,15 @@
       "code": "low_local_relevance",
       "message": "Story has a low London relevance score.",
       "detail": "Local score 0/100",
-      "story_id": "18784cd418cb7b99",
+      "story_id": "72d9ea871070c1d9",
       "source": "The Globe and Mail",
-      "title": "Seven teams of architects and builders shortlisted to renovate 24 Sussex",
-      "url": "https://www.theglobeandmail.com/canada/article-24-sussex-drive-renovation-prime-ministers-residence-short-list",
-      "published": "2026-11-28T01:36:33.146000+00:00",
+      "title": "Six standout Canadian wines to celebrate cabernet franc day",
+      "url": "https://www.theglobeandmail.com/life/style/food-and-drink/article-six-standout-canadian-wines-to-celebrate-cabernet-franc-day",
+      "published": "2026-11-28T13:00:00+00:00",
       "content_status": "full",
-      "word_count": 568,
-      "quality_score": 96,
-      "extraction_method": "dom:semantic-rich-v1"
+      "word_count": 544,
+      "quality_score": 92,
+      "extraction_method": "dom:globe:article#content-gate"
     },
     {
       "severity": "info",
@@ -3900,6 +3901,35 @@
       ]
     },
     {
+      "id": "72d9ea871070c1d9",
+      "source": "The Globe and Mail",
+      "title": "Six standout Canadian wines to celebrate cabernet franc day",
+      "url": "https://www.theglobeandmail.com/life/style/food-and-drink/article-six-standout-canadian-wines-to-celebrate-cabernet-franc-day",
+      "published": "2026-11-28T13:00:00+00:00",
+      "audit_status": "pass",
+      "audit_score": 97,
+      "critical_count": 0,
+      "warning_count": 0,
+      "info_count": 1,
+      "content_status": "full",
+      "word_count": 544,
+      "paragraph_count": 9,
+      "inline_image_count": 6,
+      "quality_score": 92,
+      "quality_grade": "excellent",
+      "extraction_method": "dom:globe:article#content-gate",
+      "extraction_profile": "globe",
+      "local_score": 0,
+      "issues": [
+        {
+          "severity": "info",
+          "code": "low_local_relevance",
+          "message": "Story has a low London relevance score.",
+          "detail": "Local score 0/100"
+        }
+      ]
+    },
+    {
       "id": "61b1164c918d3799",
       "source": "The Globe and Mail",
       "title": "‘I don’t feel like a hero’: Passenger who took on alleged hijacker recounts chaos aboard FlyDubai flight",
@@ -4157,35 +4187,6 @@
       "content_status": "full",
       "word_count": 679,
       "paragraph_count": 18,
-      "inline_image_count": 0,
-      "quality_score": 96,
-      "quality_grade": "good",
-      "extraction_method": "dom:semantic-rich-v1",
-      "extraction_profile": "globe",
-      "local_score": 0,
-      "issues": [
-        {
-          "severity": "info",
-          "code": "low_local_relevance",
-          "message": "Story has a low London relevance score.",
-          "detail": "Local score 0/100"
-        }
-      ]
-    },
-    {
-      "id": "18784cd418cb7b99",
-      "source": "The Globe and Mail",
-      "title": "Seven teams of architects and builders shortlisted to renovate 24 Sussex",
-      "url": "https://www.theglobeandmail.com/canada/article-24-sussex-drive-renovation-prime-ministers-residence-short-list",
-      "published": "2026-11-28T01:36:33.146000+00:00",
-      "audit_status": "pass",
-      "audit_score": 97,
-      "critical_count": 0,
-      "warning_count": 0,
-      "info_count": 1,
-      "content_status": "full",
-      "word_count": 568,
-      "paragraph_count": 16,
       "inline_image_count": 0,
       "quality_score": 96,
       "quality_grade": "good",
